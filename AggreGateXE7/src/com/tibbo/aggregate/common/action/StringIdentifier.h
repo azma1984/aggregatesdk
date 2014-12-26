@@ -12,17 +12,17 @@ class StringIdentifier
   private:
    std::string id; //идентификатор
 
-  protected:
-    StringIdentifier();
-
   public:
-	StringIdentifier(std::string id);
+   StringIdentifier(const std::string &id);
 
-	std::string getId();
+   std::string getId();
 
-	bool equals(void* o);
-	int hashCode();
-	std::string toString();
+   bool equals(void* obj);
+
+  //todo - Whether this function is necessary?
+   int hashCode();
+
+   std::string toString();
 };
 
 #endif
