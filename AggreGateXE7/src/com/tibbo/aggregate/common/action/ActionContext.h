@@ -3,8 +3,8 @@
 #ifndef ActionContextH
 #define ActionContextH
 
-#include <list>;
-#include <exception>;
+#include <list>
+#include <exception>
 #include <iostream>
 
 #include "ActionDefinition.h"
@@ -14,20 +14,24 @@
 #include "context.h"
 
 
- enum ActionState
+
+enum ActionState
 	{
 	 CREATED, INITIALIZED, WORKING, DESTROYED
 	};
 
+
 class ActionContext
 {
+
  private:
 	ActionDefinition *actionDefinition;
 	BatchContext* batchContext;
 	RequestCache* requestCache;
 
 
-	ActionState* actionState;
+
+	ActionState *actionState;
 	ActionManager* actionManager;
 	std::list<RequestIdentifier> requestedIds;
 
@@ -42,7 +46,7 @@ class ActionContext
 	ActionDefinition* getActionDefinition();
 	BatchContext* getBatchContext();
 	RequestCache* getRequestCache();
-	ActionState *getActionState();
+	ActionState* getActionState();
 	ActionManager *getActionManager();
 
 	std::list<RequestIdentifier>* getRequestedIds();
@@ -55,5 +59,6 @@ class ActionContext
 
 	void setActionState(ActionState* actionState);
 	void setActionManager(ActionManager* actionManager);
+
 };
 #endif

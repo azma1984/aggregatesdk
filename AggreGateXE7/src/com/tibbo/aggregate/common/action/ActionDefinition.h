@@ -6,12 +6,13 @@
 #include "EntityDefinition.h"
 #include "ResourceMask.h"
 #include "GroupIdentifier.h"
-#include "Action.h"
+
 #include "ActionCommand.h"
 #include "InitialRequest.h"
 //#include <mutex>  mutex is not present in library dinkumware
-
-
+#include <list>
+//forward declarations
+template <class I,class C,class R> class Action;
 
 
 class ActionDefinition: public EntityDefinition

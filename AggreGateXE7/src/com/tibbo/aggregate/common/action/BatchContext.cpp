@@ -5,17 +5,18 @@
 
 void BatchContext::addBatchEntry(BatchEntry* batchEntry)
 {
-	if(batchEntry == 0) {
+	if(batchEntry == 0)
+	{
 		std::cout << "Pointer = NULL!";
 	}
-	//todo
-   //	entries.pop_front(batchEntry);
+    //todo
+   //	entries.insert(batchEntry);
 }
 
 std::list<BatchEntry*>* BatchContext::getEntries()
 {
-
-	//todo
+ // std::list::iterator iterator =
+  //todo
 	//return Collections::unmodifiableList(entries);
 }
 

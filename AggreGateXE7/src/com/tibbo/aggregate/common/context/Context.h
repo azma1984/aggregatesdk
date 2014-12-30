@@ -3,7 +3,7 @@
 #ifndef ContextH
 #define ContextH
 
- #include <string>
+#include <string>
 
 /*
 Интерфейс Context используется, чтобы обеспечить объединенный способ получить доступ
@@ -153,13 +153,13 @@ template <class C> class Context
 	ContextStatus* getStatus();
 
 	ContextManager* getContextManager();
-	::java::util::List* getChildren(CallerController* caller);
-	::java::util::List* getChildren();
-	::java::util::List* getVisibleChildren(CallerController* caller);
-	::java::util::List* getVisibleChildren();
+	std::list  getChildren(CallerController* caller);
+	std::list  getChildren();
+	std::list  getVisibleChildren(CallerController* caller);
+	std::list  getVisibleChildren();
 	bool isMapped();
-	::java::util::List* getMappedChildren(CallerController* caller);
-	::java::util::List* getMappedChildren();
+	std::list  getMappedChildren(CallerController* caller);
+	std::list  getMappedChildren();
 	Context* getRoot();
 	Context* get(std::string* path, CallerController* caller);
 	Context* get(std::string* path);
@@ -180,31 +180,31 @@ template <class C> class Context
 	VariableData* getVariableData(std::string* name);
 	VariableDefinition* getVariableDefinition(std::string* name);
 	VariableDefinition* getVariableDefinition(std::string* name, CallerController* caller);
-	::java::util::List* getVariableDefinitions(CallerController* caller);
-	::java::util::List* getVariableDefinitions();
-	::java::util::List* getVariableDefinitions(CallerController* caller, std::string* group);
-	::java::util::List* getVariableDefinitions(std::string* group);
-	::java::util::List* getVariableDefinitions(CallerController* caller, bool includeHidden);
+	std::list  getVariableDefinitions(CallerController* caller);
+	std::list  getVariableDefinitions();
+	std::list  getVariableDefinitions(CallerController* caller, std::string* group);
+	std::list  getVariableDefinitions(std::string* group);
+	std::list  getVariableDefinitions(CallerController* caller, bool includeHidden);
 	void addFunctionDefinition(FunctionDefinition* def);
 	void removeFunctionDefinition(std::string* name);
 	FunctionData* getFunctionData(std::string* name);
 	FunctionDefinition* getFunctionDefinition(std::string* name);
 	FunctionDefinition* getFunctionDefinition(std::string* name, CallerController* caller);
-	::java::util::List* getFunctionDefinitions(CallerController* caller);
-	::java::util::List* getFunctionDefinitions();
-	::java::util::List* getFunctionDefinitions(CallerController* caller, std::string* group);
-	::java::util::List* getFunctionDefinitions(std::string* group);
-	::java::util::List* getFunctionDefinitions(CallerController* caller, bool includeHidden);
+	std::list  getFunctionDefinitions(CallerController* caller);
+	std::list  getFunctionDefinitions();
+	std::list  getFunctionDefinitions(CallerController* caller, std::string* group);
+	std::list  getFunctionDefinitions(std::string* group);
+	std::list  getFunctionDefinitions(CallerController* caller, bool includeHidden);
 	void addEventDefinition(EventDefinition* def);
 	void removeEventDefinition(std::string* name);
 	EventDefinition* getEventDefinition(std::string* name);
 	EventDefinition* getEventDefinition(std::string* name, CallerController* caller);
 	EventData* getEventData(std::string* name);
-	::java::util::List* getEventDefinitions(CallerController* caller);
-	::java::util::List* getEventDefinitions();
-	::java::util::List* getEventDefinitions(CallerController* caller, std::string* group);
-	::java::util::List* getEventDefinitions(std::string* group);
-	::java::util::List* getEventDefinitions(CallerController* caller, bool includeHidden);
+	std::list  getEventDefinitions(CallerController* caller);
+	std::list  getEventDefinitions();
+	std::list  getEventDefinitions(CallerController* caller, std::string* group);
+	std::list  getEventDefinitions(std::string* group);
+	std::list  getEventDefinitions(CallerController* caller, bool includeHidden);
 	::com::tibbo::aggregate::common::datatable::DataTable* getVariable(std::string* name, CallerController* caller, RequestController* request);
 	::com::tibbo::aggregate::common::datatable::DataTable* getVariable(std::string* name, CallerController* caller);
 	::com::tibbo::aggregate::common::datatable::DataTable* getVariable(std::string* name);
@@ -237,15 +237,15 @@ template <class C> class Context
     ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(std::string* name);
     ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(std::string* name, CallerController* caller);
     ::com::tibbo::aggregate::common::action::ActionDefinition* getDefaultActionDefinition(CallerController* caller);
-    ::java::util::List* getActionDefinitions();
-    ::java::util::List* getActionDefinitions(CallerController* caller);
-    ::java::util::List* getActionDefinitions(CallerController* caller, bool includeHidden);
+    std::list  getActionDefinitions();
+    std::list  getActionDefinitions(CallerController* caller);
+    std::list  getActionDefinitions(CallerController* caller, bool includeHidden);
     ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
     ::com::tibbo::aggregate::common::security::Permissions* getChildrenViewPermissions();
     bool addEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
     bool addEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool weak);
     bool removeEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
-    ::java::util::List* getEventHistory(std::string* name);
+    std::list  getEventHistory(std::string* name);
 	void accept(ContextVisitor* visitor) ;
 
  */

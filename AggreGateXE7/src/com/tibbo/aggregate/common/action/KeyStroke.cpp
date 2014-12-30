@@ -54,7 +54,7 @@ javax::swing::KeyStroke* KeyStroke::getKeyStroke()
     return keyStroke;
 }
 
-java::lang::String* KeyStroke::toString()
+std::string KeyStroke::toString()
 {
 	return keyStroke->toString();
 }

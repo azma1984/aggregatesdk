@@ -3,11 +3,11 @@
 #ifndef ActionResponseH
 #define ActionResponseH
 
- #include "RequestIdentifier.h"
+#include "RequestIdentifier.h"
 class ActionResponse
 {
-	bool shouldRemember();
-	RequestIdentifier* getRequestId();
+  virtual bool shouldRemember();
+  virtual RequestIdentifier* getRequestId();
 
 };
 

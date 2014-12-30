@@ -3,6 +3,8 @@
 #ifndef EntityDefinitionH
 #define EntityDefinitionH
 
+#include <string>
+
 class EntityDefinition
 {
 	virtual std::string getName();

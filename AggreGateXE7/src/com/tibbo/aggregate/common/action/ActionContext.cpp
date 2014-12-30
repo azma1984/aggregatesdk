@@ -1,6 +1,6 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionContext.java
 #include "ActionContext.h"
-#include "ActionManager.h"
+
 
 
 ActionContext::ActionContext(ActionDefinition* actionDefinition, ActionManager* actionManager)

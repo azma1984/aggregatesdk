@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionManager.java
 #include <ActionManager.h>
 
+ /*
 
-/*
 void ActionManager::init()
 {
     actionIdGenerator = new ActionIdGenerator();
@@ -10,36 +10,38 @@ void ActionManager::init()
     actionContexts = ::java::util::Collections::synchronizedMap(new ::java::util::HashMap());
 }
 
-void ActionManager::ctor(ActionDirectory* actionDirectory)
+void ActionManager::ActionManager(ActionDirectory* actionDirectory)
 {
-    super::ctor();
-    init();
-    if(actionDirectory == 0) {
-        std::exception("Pointer = NULL!");
+	init();
+	if(actionDirectory == 0)
+	{
+	 std::cout<<"Pointer = NULL!";
     }
     this->actionDirectory = actionDirectory;
 }
 
-java::util::List* ActionManager::resolveDefinitions(::java::util::List* actionLocators)
+std::list<ActionDefinition>* ActionManager::resolveDefinitions(std::list<ActionLocator>  actionLocators)
 {
-    if(actionLocators == 0) {
-        std::exception("Pointer = NULL!");
-    }
-    ::java::util::List* actionDefinitions = new ::java::util::LinkedList();
-    for (auto _i = actionLocators)->iterator(); _i->hasNext(); ) {
+	if(actionLocators == 0) {
+		std::cout<<"Pointer = NULL!";
+	}
+	std::list<ActionDefinition>  actionDefinitions;
+
+	for (auto _i = actionLocators)->iterator(); _i->hasNext(); )
+	{
         ActionLocator* actionLocator = java_cast< ActionLocator* >(_i->next());
         {
             auto actionDefinition = actionDirectory)->getActionDefinition(actionLocator);
             if(actionDefinition == 0) {
-                throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(u"Can't resolve: "_j)->append(static_cast< void* >(actionLocator))->toString());
+                std::cout <<"Can't resolve: "_j)->append(actionLocator))->toString());
             }
-            actionDefinitions)->add(static_cast< void* >(actionDefinition));
+            actionDefinitions)->add(actionDefinition));
         }
     }
     return actionDefinitions;
 }
 
-ActionIdentifier* ActionManager::initActions(::java::util::List* entries, ActionContext* batchActionContext)
+ActionIdentifier* ActionManager::initActions(std::list  entries, ActionContext* batchActionContext)
 {
     if(entries == 0) {
         std::exception("Pointer = NULL!");
@@ -98,7 +100,7 @@ ActionCommand* ActionManager::service(ActionIdentifier* actionId, ActionResponse
     }
     auto action = java_cast< Action* >(actions)->get(actionId));
     if(action == 0) {
-        throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Action with id '"_j)->append(static_cast< void* >(actionId))
+        throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Action with id '"_j)->append(actionId))
             ->append(u"' doesn't exists"_j)->toString());
     }
     auto actionContext = java_cast< ActionContext* >(actionContexts)->get(action));
@@ -118,13 +120,13 @@ ActionCommand* ActionManager::service(ActionIdentifier* actionId, ActionResponse
             requestCache)->addRequest(activeRequest)->getRequestId(), activeRequest);
         }
         actionCommand = java_cast< ActionCommand* >(action)->service(activeRequest));
-        if(requestCache != 0 && actionCommand != 0 && actionCommand)->getRequestId() != 0 && !actionContext)->getRequestedIds())->contains(static_cast< void* >(actionCommand)->getRequestId()))) {
+        if(requestCache != 0 && actionCommand != 0 && actionCommand)->getRequestId() != 0 && !actionContext)->getRequestedIds())->contains(actionCommand)->getRequestId()))) {
             activeRequest = requestCache)->getRequest(actionCommand)->getRequestId());
         } else {
             activeRequest;
         }
         if(actionCommand != 0 && actionCommand)->getRequestId() != 0) {
-            actionContext)->getRequestedIds())->add(static_cast< void* >(actionCommand)->getRequestId()));
+            actionContext)->getRequestedIds())->add(actionCommand)->getRequestId()));
         }
     } while (activeRequest != 0);
     return actionCommand;
@@ -137,7 +139,7 @@ ActionResult* ActionManager::destroyAction(ActionIdentifier* actionId)
     }
     auto action = java_cast< Action* >(actions)->get(actionId));
     if(action == 0) {
-        Log::CONTEXT_ACTIONS())->debug(std::stringBuilder().append(u"Action with id '"_j)->append(static_cast< void* >(actionId))
+        Log::CONTEXT_ACTIONS())->debug(std::stringBuilder().append(u"Action with id '"_j)->append(actionId))
             ->append(u"' doesn't exists"_j)->toString());
         return 0;
     }
@@ -183,5 +185,4 @@ ActionIdentifier* ActionManager::registerAction(ActionContext* actionContext, Ac
     return actionId;
 }
 
-
-  */
+*/

@@ -8,8 +8,11 @@
 
 class GroupIdentifier: public StringIdentifier
 {
- //public:
-  //	GroupIdentifier(const std::string &id);
+ public:
+  GroupIdentifier(const std::string &id):StringIdentifier(id)
+  {
+
+  }
 
 
 
