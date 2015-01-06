@@ -1,6 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataRecord.java
-
-//#include <com/tibbo/aggregate/common/util/PublicCloneable.h"
+#ifndef _DATARECORD_H_
+#define _DATARECORD_H_
 
 #include <Cres.h>
 #include <data/Data.h>
@@ -15,8 +14,12 @@
 #include <util/ElementList.h>
 #include <util/StringUtils.h>
 #include <util/Util.h>
+#inc;ude <util/Clonable.h>
 
-class DataRecord	//implements Cloneable, PublicCloneable
+#include <string>
+#include <map>
+
+class DataRecord :Cloneable//, PublicCloneable
 {   
 public:
 	// Generated
@@ -25,13 +28,15 @@ public:
     DataRecord(TableFormat* tableFormat, voidArray* data);
     DataRecord(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
     DataRecord(TableFormat* tableFormat, const std::string& dataString);
+	
+	DataRecord(DataRecord&);
 
     void cloneFormatFromTable();
     std::string dataAsString(bool showFieldNames, bool showHiddenFields);
     std::string valueAsString(const std::string& name);
     std::string toString();
     DataTable* wrap();
-    DataRecord* clone();    
+    virtual DataRecord* clone() const;    
 	//TODO:
 	DataRecord* setValue(const std::string& name, void*/*Object*/ value);
     DataRecord* setValue(const std::string&name, void* value, bool validate);
@@ -108,7 +113,7 @@ protected:
 private:
     static int INITIAL_DATA_SIZE;
     static std::string ELEMENT_ID_;
-    std::map<std::string, void/*Object*/> data;
+    std::map<std::string, void*/*Object*/> data;
     TableFormat* format;
     std::string id;
     DataTable* table;
@@ -120,3 +125,5 @@ private:
     void* getValue(FieldFormat* ff);
 
 };
+
+#endif //_DATARECORD_H_
