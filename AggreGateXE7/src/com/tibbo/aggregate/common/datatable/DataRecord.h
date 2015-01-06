@@ -16,7 +16,7 @@
 #include <util/StringUtils.h>
 #include <util/Util.h>
 
-class DataRecord
+class DataRecord	//implements Cloneable, PublicCloneable
 {   
 public:
 	// Generated
@@ -56,7 +56,6 @@ public:
     DataRecord* addData(Data* val);
     DataRecord* setValue(int index, void* value);
 
-	bool equals(void* obj);
     bool hasField(const std::string& name);
 	bool meetToCondition(QueryCondition* cond);
     void setTable(DataTable* table);
@@ -88,13 +87,16 @@ public:
     DataTable getDataTable(const std::string& name);
     DataTable getDataTable(int index);
 	//TODO: java::awt::Color определитбь свой Color
-    Color* getColor(const std::string& name);
-    Color* getColor(int index);
-    Data* getData(const std::string& name);
-    Data* getData(int index);
+    Color getColor(const std::string& name);
+    Color getColor(int index);
+    Data getData(const std::string& name);
+    Data getData(int index);
 	//TODO:
     void*/*Object*/ getValue(int index);
     void*/*Object*/ getValue(const std::string& name);
+
+	//	bool equals(void* obj);
+	bool operator==(const DataRecord& dataRecord) const;
 
 protected:    
     void ctor();

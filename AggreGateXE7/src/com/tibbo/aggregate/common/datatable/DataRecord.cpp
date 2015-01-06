@@ -311,9 +311,10 @@ DataRecord* DataRecord::addValue(void* value)
 
 int DataRecord::findIndex(const std::string& name)
 {
-    auto index = format)->getFieldIndex(name);
-    if(index == -int(1)) {
-        std::list  fields = new ::java::util::LinkedList();
+    int index = format->getFieldIndex(name);
+    if (index == -1) {
+        std::list<std::string>  fields;
+
         for (auto _i = getFormat())->iterator(); _i->hasNext(); ) {
             FieldFormat* ff = java_cast< FieldFormat* >(_i->next());
             {
@@ -326,126 +327,130 @@ int DataRecord::findIndex(const std::string& name)
     return index;
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::getString(std::string* name)
+std::string DataRecord::getString(const std::string& name)
 {
     return getString(findIndex(name));
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::getString(int index)
+std::string DataRecord::getString(int index)
 {
-    return java_cast< std::string* >(getValue(index));
+    return java_cast<std::string>(getValue(index));
 }
 
-java::lang::Integer* com::tibbo::aggregate::common::datatable::DataRecord::getInt(std::string* name)
+int DataRecord::getInt(const std::string& name)
 {
     return getInt(findIndex(name));
 }
 
-java::lang::Integer* com::tibbo::aggregate::common::datatable::DataRecord::getInt(int index)
+int DataRecord::getInt(int index)
 {
-    return java_cast< ::java::lang::Integer* >(getValue(index));
+    return java_cast<int>(getValue(index));
 }
 
-java::lang::Boolean* com::tibbo::aggregate::common::datatable::DataRecord::getBoolean(std::string* name)
+bool DataRecord::getBoolean(const std::string& name)
 {
     return getBoolean(findIndex(name));
 }
 
-java::lang::Boolean* com::tibbo::aggregate::common::datatable::DataRecord::getBoolean(int index)
+bool DataRecord::getBoolean(int index)
 {
-    return java_cast< ::java::lang::Boolean* >(getValue(index));
+    return java_cast<boolean>(getValue(index));
 }
 
-java::lang::Long* com::tibbo::aggregate::common::datatable::DataRecord::getLong(std::string* name)
+long DataRecord::getLong(const std::string& name)
 {
     return getLong(findIndex(name));
 }
 
-java::lang::Long* com::tibbo::aggregate::common::datatable::DataRecord::getLong(int index)
+long DataRecord::getLong(int index)
 {
-    return java_cast< ::java::lang::Long* >(getValue(index));
+    return java_cast<long>(getValue(index));
 }
 
-java::lang::Float* com::tibbo::aggregate::common::datatable::DataRecord::getFloat(std::string* name)
+float DataRecord::getFloat(std::string* name)
 {
     return getFloat(findIndex(name));
 }
 
-java::lang::Float* com::tibbo::aggregate::common::datatable::DataRecord::getFloat(int index)
+float DataRecord::getFloat(int index)
 {
-    return java_cast< ::java::lang::Float* >(getValue(index));
+    return java_cast<float>(getValue(index));
 }
 
-java::lang::Double* com::tibbo::aggregate::common::datatable::DataRecord::getDouble(std::string* name)
+double DataRecord::getDouble(const std::string& name)
 {
     return getDouble(findIndex(name));
 }
 
-java::lang::Double* com::tibbo::aggregate::common::datatable::DataRecord::getDouble(int index)
+double DataRecord::getDouble(int index)
 {
-    return java_cast< ::java::lang::Double* >(getValue(index));
+    return java_cast<double>(getValue(index));
 }
 
-java::util::Date* com::tibbo::aggregate::common::datatable::DataRecord::getDate(std::string* name)
+Date DataRecord::getDate(const std::string& name)
 {
     return getDate(findIndex(name));
 }
 
-java::util::Date* com::tibbo::aggregate::common::datatable::DataRecord::getDate(int index)
+//TODO: Date
+Date DataRecord::getDate(int index)
 {
-    return java_cast< ::java::util::Date* >(getValue(index));
+    return java_cast<Date* >(getValue(index));
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataRecord::getDataTable(std::string* name)
+DataTable DataRecord::getDataTable(const std::string& name)
 {
     return getDataTable(findIndex(name));
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataRecord::getDataTable(int index)
+DataTable DataRecord::getDataTable(int index)
 {
-    return java_cast< DataTable* >(getValue(index));
+    return java_cast< DataTable>(getValue(index));
 }
 
-java::awt::Color* com::tibbo::aggregate::common::datatable::DataRecord::getColor(std::string* name)
+//TODO: Color
+Color DataRecord::getColor(const std::string& name)
 {
     return getColor(findIndex(name));
 }
-
-java::awt::Color* com::tibbo::aggregate::common::datatable::DataRecord::getColor(int index)
+//TODO: Color
+Color DataRecord::getColor(int index)
 {
-    return java_cast< ::java::awt::Color* >(getValue(index));
+    return java_cast<Color>(getValue(index));
 }
 
-com::tibbo::aggregate::common::data::Data* com::tibbo::aggregate::common::datatable::DataRecord::getData(std::string* name)
+Data DataRecord::getData(const std::string& name)
 {
     return getData(findIndex(name));
 }
 
-com::tibbo::aggregate::common::data::Data* com::tibbo::aggregate::common::datatable::DataRecord::getData(int index)
+Data DataRecord::getData(int index)
 {
-    return java_cast< ::com::tibbo::aggregate::common::data::Data* >(getValue(index));
+    return java_cast<Data>(getValue(index));
 }
 
-void* com::tibbo::aggregate::common::datatable::DataRecord::getValue(int index)
+void* DataRecord::getValue(int index)
 {
     auto ff = format)->getField(index);
     return getValue(ff);
 }
 
-void* com::tibbo::aggregate::common::datatable::DataRecord::getValue(std::string* name)
+void* DataRecord::getValue(const std::string& name)
 {
     return getValue(findIndex(name));
 }
 
-void* com::tibbo::aggregate::common::datatable::DataRecord::getValue(FieldFormat* ff)
+//TODO: void* Object
+void* DataRecord::getValue(FieldFormat* ff)
 {
-    if(data)->containsKey(ff)->getName())) {
+    if(data.find(ff->getName()) != data.end()) {
         return java_cast< void* >(data)->get(ff)->getName()));
     }
-    return ff)->isDefaultOverride() ? 0) : java_cast< void* >(ff)->getDefaultValueCopy());
+
+    return ff->isDefaultOverride() ? 0 : java_cast< void* >(ff)->getDefaultValueCopy());
 }
 
-void* com::tibbo::aggregate::common::datatable::DataRecord::getValueDescription(std::string* name)
+void* DataRecord::getValueDescription(const std::string& name)
 {
     auto value = getValue(name);
     auto const ff = getFormat(name);
@@ -454,42 +459,46 @@ void* com::tibbo::aggregate::common::datatable::DataRecord::getValueDescription(
     return description != 0 ? description) : ff)->valueToString(value));
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::getValueAsString(std::string* name)
+DataRecord::getValueAsString(const std::string& name)
 {
     return getValueAsString(findIndex(name));
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::getValueAsString(int index)
+std::string DataRecord::getValueAsString(int index)
 {
-    return format)->getField(index))->valueToString(getValue(index));
+    return format->getField(index)->valueToString(getValue(index));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::setId(std::string* id)
+DataRecord* DataRecord::setId(std::string* id)
 {
     this->id = id;
     return this;
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::setTable(DataTable* table)
+void DataRecord::setTable(DataTable* table)
 {
     this->table = table;
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::setFormat(TableFormat* format)
+void setFormat(TableFormat* format)
 {
     format)->makeImmutable(0);
     this->format = format;
 }
 
-bool com::tibbo::aggregate::common::datatable::DataRecord::equals(void* obj)
+//TODO:
+//bool DataRecord::equals(void* obj)
+bool DataRecord::operator==(const DataRecord& dataRecord) const;
 {
+	/*
     if(obj == 0) {
         return false;
     }
     if(!(dynamic_cast< DataRecord* >(obj) != 0)) {
         return false;
     }
-    auto rec = java_cast< DataRecord* >(obj);
+	*/
+    auto rec = dataRecord;
     if(!::com::tibbo::aggregate::common::util::Util::equals(getId(), rec)->getId())) {
         return false;
     }
@@ -508,12 +517,13 @@ bool com::tibbo::aggregate::common::datatable::DataRecord::equals(void* obj)
     return true;
 }
 
-bool com::tibbo::aggregate::common::datatable::DataRecord::hasField(std::string* name)
+bool DataRecord::hasField(const std::string& name)
 {
-    return getFormat())->hasField(name);
+    return getFormat()->hasField(name);
 }
 
-bool com::tibbo::aggregate::common::datatable::DataRecord::meetToCondition(QueryCondition* cond)
+//TODO:
+bool DataRecord::meetToCondition(QueryCondition* cond)
 {
     if(hasField(cond)->getField())) {
         auto val = getValue(cond)->getField());
@@ -547,7 +557,7 @@ bool com::tibbo::aggregate::common::datatable::DataRecord::meetToCondition(Query
     return false;
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::cloneFormatFromTable()
+void DataRecord::cloneFormatFromTable()
 {
     if(table != 0) {
         format = table)->getFormat())->clone();
@@ -556,7 +566,7 @@ void com::tibbo::aggregate::common::datatable::DataRecord::cloneFormatFromTable(
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::dataAsString(bool showFieldNames, bool showHiddenFields)
+std::string DataRecord::dataAsString(bool showFieldNames, bool showHiddenFields)
 {
     auto res = new std::stringBuffer();
     auto needSeparator = false;
@@ -576,9 +586,10 @@ std::string com::tibbo::aggregate::common::datatable::DataRecord::dataAsString(b
     return res)->toString();
 }
 
+//TODO:
 std::string DataRecord::valueAsString(const std::string& name)
 {
-    auto ff = getFormat(name);
+    FieldFormat* ff = getFormat(name);
     auto val = getValue(name);
     auto value = val != 0 ? val)->toString() : u"NULL"_j;
     if(ff)->hasSelectionValues()) {
