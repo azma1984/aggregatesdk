@@ -23,40 +23,41 @@ public:
     DataRecord();
     DataRecord(TableFormat* tableFormat);
     DataRecord(TableFormat* tableFormat, voidArray* data);
-    DataRecord(TableFormat* tableFormat, std::string* dataString, ClassicEncodingSettings* settings, bool validate, std::list  fieldNamesInData);
-    DataRecord(TableFormat* tableFormat, std::string* dataString);
+    DataRecord(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
+    DataRecord(TableFormat* tableFormat, const std::string& dataString);
 
     void cloneFormatFromTable();
-    std::string* dataAsString(bool showFieldNames, bool showHiddenFields);
-    std::string* valueAsString(std::string* name);
-    std::string* toString();
+    std::string dataAsString(bool showFieldNames, bool showHiddenFields);
+    std::string valueAsString(const std::string& name);
+    std::string toString();
     DataTable* wrap();
     DataRecord* clone();    
-
-	DataRecord* setValue(std::string* name, void* value);
-    DataRecord* setValue(std::string* name, void* value, bool validate);
+	//TODO:
+	DataRecord* setValue(const std::string& name, void*/*Object*/ value);
+    DataRecord* setValue(const std::string&name, void* value, bool validate);
     DataRecord* setValueSmart(int index, void* value);
-    DataRecord* setValueSmart(std::string* name, void* value);
+    DataRecord* setValueSmart(const std::string& name, void* value);
     DataRecord* addValue(void* value);
-	void* getValueDescription(std::string* name);
-    std::string getValueAsString(std::string* name);
+	//TODO:
+	void*/*Object*/ getValueDescription(const std::string& name);
+    std::string getValueAsString(const std::string& name);
     std::string getValueAsString(int index);
-    DataRecord* setId(std::string* id);
+    DataRecord* setId(const std::string& id);
 
-	DataRecord* addInt(::java::lang::Integer* val);
-    DataRecord* addString(std::string* val);
-    DataRecord* addBoolean(::java::lang::Boolean* val);
-    DataRecord* addLong(::java::lang::Long* val);
-    DataRecord* addFloat(::java::lang::Float* val);
-    DataRecord* addDouble(::java::lang::Double* val);
-    DataRecord* addDate(::java::util::Date* val);
+	DataRecord* addInt(int val);
+    DataRecord* addString(const std::string& val);
+    DataRecord* addBoolean(bool val);
+    DataRecord* addLong(long val);
+    DataRecord* addFloat(float val);
+    DataRecord* addDouble(double val);
+    DataRecord* addDate(Date* val);
     DataRecord* addDataTable(DataTable* val);
     DataRecord* addColor(::java::awt::Color* val);
-    DataRecord* addData(::com::tibbo::aggregate::common::data::Data* val);
+    DataRecord* addData(Data* val);
     DataRecord* setValue(int index, void* value);
 
 	bool equals(void* obj);
-    bool hasField(std::string* name);
+    bool hasField(const std::string& name);
 	bool meetToCondition(QueryCondition* cond);
     void setTable(DataTable* table);
     void setFormat(TableFormat* format);
@@ -64,54 +65,53 @@ public:
 	int getFieldCount();
     TableFormat* getFormat();
     FieldFormat* getFormat(int index);
-    FieldFormat* getFormat(std::string* name);
+    FieldFormat* getFormat(const std::string& name);
     std::string getId();
     DataTable* getTable();
     std::string encode(bool useVisibleSeparators);
-    std::string encode(::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    std::string encode(ClassicEncodingSettings* settings);
 
-	std::string getString(std::string* name);
+	std::string getString(const std::string& name);
     std::string getString(int index);
-    Integer getInt(std::string* name);
-    Integer getInt(int index);
-    Boolean getBoolean(std::string* name);
-    Boolean getBoolean(int index);
-    Long getLong(std::string* name);
-    Long getLong(int index);
-    Float getFloat(std::string* name);
-    Float getFloat(int index);
-    Double getDouble(std::string* name);
-    Double getDouble(int index);
-    Date getDate(std::string* name);
+    int getInt(const std::string& name);
+    int getInt(int index);
+    bool getBoolean(const std::string& name);
+    bool getBoolean(int index);
+    long getLong(const std::string& name);
+    long getLong(int index);
+    float getFloat(const std::string& name);
+    float getFloat(int index);
+    double getDouble(const std::string& name);
+    double getDouble(int index);
+    Date getDate(const std::string& name);
     Date getDate(int index);
-    DataTable getDataTable(std::string* name);
+    DataTable getDataTable(const std::string& name);
     DataTable getDataTable(int index);
 	//TODO: java::awt::Color определитбь свой Color
-    Color* getColor(std::string* name);
+    Color* getColor(const std::string& name);
     Color* getColor(int index);
-    Data* getData(std::string* name);
+    Data* getData(const std::string& name);
     Data* getData(int index);
 	//TODO:
     void*/*Object*/ getValue(int index);
-    void*/*Object*/ getValue(std::string* name);
+    void*/*Object*/ getValue(const std::string& name);
 
 protected:    
     void ctor();
     void ctor(TableFormat* tableFormat);
 	void ctor(TableFormat* tableFormat, voidArray* data);
-	void ctor(TableFormat* tableFormat, std::string* dataString, ClassicEncodingSettings* settings, bool validate, std::list  fieldNamesInData);
-	void ctor(TableFormat* tableFormat, std::string* dataString)
-	DataRecord(const ::default_init_tag&);
+	void ctor(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
+	void ctor(TableFormat* tableFormat, std::string* dataString);
 
 private:
-    static const int INITIAL_DATA_SIZE = 4) };
-    static const std::string ELEMENT_ID_;
-    std::map data;
+    static int INITIAL_DATA_SIZE;
+    static std::string ELEMENT_ID_;
+    std::map<std::string, void/*Object*/> data;
     TableFormat* format;
-    std::string* id;
+    std::string id;
     DataTable* table;
 
-	void setData(std::string* dataString, ClassicEncodingSettings* settings, bool validate, std::list  fieldNamesInData);
+	void setData(std::string* dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
     void checkNumberOfDataFieldsSet(void* value);
     DataRecord* setValue(int index, void* value, bool validate);   
     int findIndex(std::string* name);

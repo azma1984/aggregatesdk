@@ -2,98 +2,82 @@
 #include "DataRecord.h"
 
 
-/*
-com::tibbo::aggregate::common::datatable::DataRecord::DataRecord(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
-{
-    
-}
 
-com::tibbo::aggregate::common::datatable::DataRecord::DataRecord() 
-    : DataRecord(*static_cast< ::default_init_tag* >(0))
+DataRecord::DataRecord() 
 {
     ctor();
 }
 
 com::tibbo::aggregate::common::datatable::DataRecord::DataRecord(TableFormat* tableFormat) 
-    : DataRecord(*static_cast< ::default_init_tag* >(0))
 {
     ctor(tableFormat);
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord::DataRecord(TableFormat* tableFormat, voidArray* data)
-    : DataRecord(*static_cast< ::default_init_tag* >(0))
+DataRecord::DataRecord(TableFormat* tableFormat, voidArray* data)
 {
     ctor(tableFormat,data);
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord::DataRecord(TableFormat* tableFormat, std::string* dataString, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate, std::list  fieldNamesInData)
-    : DataRecord(*static_cast< ::default_init_tag* >(0))
+DataRecord::DataRecord(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData)
 {
     ctor(tableFormat,dataString,settings,validate,fieldNamesInData);
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord::DataRecord(TableFormat* tableFormat, std::string* dataString)
-    : DataRecord(*static_cast< ::default_init_tag* >(0))
+DataRecord::DataRecord(TableFormat* tableFormat, const std::string& dataString)
 {
     ctor(tableFormat,dataString);
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::init()
+void DataRecord::init()
 {
-    format = new TableFormat();
-    id;
+	table = null;
+    format = new TableFormat();    
 }
 
-const int com::tibbo::aggregate::common::datatable::DataRecord::INITIAL_DATA_SIZE;
+int DataRecord::INITIAL_DATA_SIZE = 4;
+std::string DataRecord::ELEMENT_ID_ = "I";
 
-std::string& com::tibbo::aggregate::common::datatable::DataRecord::ELEMENT_ID()
+void DataRecord::ctor()
 {
-    
-    return ELEMENT_ID_;
-}
-std::string com::tibbo::aggregate::common::datatable::DataRecord::ELEMENT_ID_;
-
-void com::tibbo::aggregate::common::datatable::DataRecord::ctor()
-{
-    super::ctor();
+    this->ctor();
     init();
     data = new ::java::util::HashMap(INITIAL_DATA_SIZE);
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::ctor(TableFormat* tableFormat)
+void DataRecord::ctor(TableFormat* tableFormat)
 {
-    super::ctor();
+    this->ctor();
     init();
-    data = new ::java::util::HashMap(tableFormat != 0 ? tableFormat)->getFieldCount() : INITIAL_DATA_SIZE);
-    if(tableFormat != 0) {
-        tableFormat)->makeImmutable(0);
+//    data = new ::java::util::HashMap(tableFormat != 0 ? tableFormat)->getFieldCount() : INITIAL_DATA_SIZE);
+    if (tableFormat != 0) {
+        tableFormat->makeImmutable(0);
         format = tableFormat;
     }
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::ctor(TableFormat* tableFormat, voidArray*data)
+void DataRecord::ctor(TableFormat* tableFormat, voidArray* data)
 {
     ctor(tableFormat);
-    for(auto param : *data)) {
+	//TODO:
+    for (auto param : *data)) {
         addValue(param);
     }
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::ctor(TableFormat* tableFormat, std::string* dataString, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate, std::list  fieldNamesInData)
+void DataRecord::ctor(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>& fieldNamesInData)
 {
     ctor(tableFormat);
     setData(dataString, settings, validate, fieldNamesInData);
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::ctor(TableFormat* tableFormat, std::string* dataString)
+void DataRecord::ctor(TableFormat* tableFormat, const std::string& dataString)
 {
-    ctor(tableFormat, dataString, new ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings(false), true, 0);
+    ctor(tableFormat, dataString, new ClassicEncodingSettings(false), true, 0);
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::setData(std::string* dataString, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate, std::list  fieldNamesInData)
+void DataRecord::setData(const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData)
 {
-    auto recs = ::com::tibbo::aggregate::common::util::StringUtils::elements(dataString, settings)->isUseVisibleSeparators());
+    auto recs = StringUtils::elements(dataString, settings)->isUseVisibleSeparators();
     auto i = int(0);
     for (auto _i = recs)->iterator(); _i->hasNext(); ) {
         ::com::tibbo::aggregate::common::util::Element* el = java_cast< ::com::tibbo::aggregate::common::util::Element* >(_i->next());
@@ -124,7 +108,7 @@ void com::tibbo::aggregate::common::datatable::DataRecord::setData(std::string* 
     }
 }
 
-int com::tibbo::aggregate::common::datatable::DataRecord::getFieldCount()
+int DataRecord::getFieldCount()
 {
     if(format == 0) {
         return 0;
@@ -133,37 +117,37 @@ int com::tibbo::aggregate::common::datatable::DataRecord::getFieldCount()
     }
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::DataRecord::getFormat()
+TableFormat* DataRecord::getFormat()
 {
     return format;
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::DataRecord::getFormat(int index)
+FieldFormat* DataRecord::getFormat(int index)
 {
     return format)->getField(index);
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::DataRecord::getFormat(std::string* name)
+FieldFormat* DataRecord::getFormat(std::string* name)
 {
     return format)->getField(name);
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::getId()
+std::string DataRecord::getId()
 {
     return id;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataRecord::getTable()
+DataTable* DataRecord::getTable()
 {
     return table;
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::encode(bool useVisibleSeparators)
+std::string DataRecord::encode(bool useVisibleSeparators)
 {
     return encode(new ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings(useVisibleSeparators));
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::encode(::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings)
+std::string DataRecord::encode(ClassicEncodingSettings* settings)
 {
     auto encodedData = new std::stringBuffer();
     auto useVisibleSeparators = settings != 0 ? settings)->isUseVisibleSeparators() : false;
@@ -178,79 +162,81 @@ std::string com::tibbo::aggregate::common::datatable::DataRecord::encode(::com::
     return encodedData)->toString();
 }
 
-void com::tibbo::aggregate::common::datatable::DataRecord::checkNumberOfDataFieldsSet(void* value)
+void DataRecord::checkNumberOfDataFieldsSet(void* value)
 {
     if(data)->size() >= format)->getFieldCount()) {
         throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Can't add data to data record since all data fields defined by format are already set: "_j)->append(value))->toString());
     }
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addInt(::java::lang::Integer* val)
+DataRecord* DataRecord::addInt(int val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addString(std::string* val)
+DataRecord* DataRecord::addString(const std::string& val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addBoolean(::java::lang::Boolean* val)
+DataRecord* DataRecord::addBoolean(bool val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addLong(::java::lang::Long* val)
+DataRecord* DataRecord::addLong(long val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addFloat(::java::lang::Float* val)
+DataRecord* DataRecord::addFloat(float val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addDouble(::java::lang::Double* val)
+DataRecord* DataRecord::addDouble(double val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addDate(::java::util::Date* val)
+//TODD: Date класс был из java util
+DataRecord* DataRecord::addDate(Date* val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addDataTable(DataTable* val)
+DataRecord* DataRecord::addDataTable(DataTable* val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addColor(::java::awt::Color* val)
+//TODO: java::awt::Color
+DataRecord* DataRecord::addColor(Color* val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addData(::com::tibbo::aggregate::common::data::Data* val)
+DataRecord* DataRecord::addData(Data* val)
 {
     checkNumberOfDataFieldsSet(val);
     return setValue(data)->size(), val));
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::setValue(int index, void* value)
+DataRecord* DataRecord::setValue(int index, void* value)
 {
     return setValue(index, value, true);
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::setValue(int index, void* value, bool validate)
+DataRecord* DataRecord::setValue(int index, void* value, bool validate)
 {
     auto ff = getFormat())->getField(index);
     try {
@@ -271,23 +257,23 @@ com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::com
     return this;
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::setValue(std::string* name, void* value)
+DataRecord* DataRecord::setValue(const std::string& name, void* value)
 {
     return setValue(findIndex(name), value, true);
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::setValue(std::string* name, void* value, bool validate)
+DataRecord* DataRecord::setValue(const std::string& name, void* value, bool validate)
 {
     return setValue(findIndex(name), value, validate);
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::setValueSmart(int index, void* value)
+DataRecord* DataRecord::setValueSmart(int index, void* value)
 {
     auto ff = getFormat(index);
     return setValueSmart(ff)->getName(), value);
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::setValueSmart(std::string* name, void* value)
+DataRecord* DataRecord::setValueSmart(const std::string& name, void* value)
 {
     auto ff = getFormat())->getField(name);
     if(ff == 0) {
@@ -317,13 +303,13 @@ com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::com
     }
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::addValue(void* value)
+DataRecord* DataRecord::addValue(void* value)
 {
     checkNumberOfDataFieldsSet(value);
     return setValue(data)->size(), value);
 }
 
-int com::tibbo::aggregate::common::datatable::DataRecord::findIndex(std::string* name)
+int DataRecord::findIndex(const std::string& name)
 {
     auto index = format)->getFieldIndex(name);
     if(index == -int(1)) {
@@ -590,7 +576,7 @@ std::string com::tibbo::aggregate::common::datatable::DataRecord::dataAsString(b
     return res)->toString();
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::valueAsString(std::string* name)
+std::string DataRecord::valueAsString(const std::string& name)
 {
     auto ff = getFormat(name);
     auto val = getValue(name);
@@ -602,17 +588,17 @@ std::string com::tibbo::aggregate::common::datatable::DataRecord::valueAsString(
     return value;
 }
 
-std::string com::tibbo::aggregate::common::datatable::DataRecord::toString()
+std::string DataRecord::toString()
 {
     return dataAsString(true, true);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataRecord::wrap()
+DataTable* DataRecord::wrap()
 {
     return new DataTable(this);
 }
 
-com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::common::datatable::DataRecord::clone()
+DataRecord* DataRecord::clone()
 {
     DataRecord* cl;
     try {
@@ -623,9 +609,4 @@ com::tibbo::aggregate::common::datatable::DataRecord* com::tibbo::aggregate::com
     cl)->data = java_cast< std::map >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(data));
     return cl;
 }
-
-
-
-
-*/
 
