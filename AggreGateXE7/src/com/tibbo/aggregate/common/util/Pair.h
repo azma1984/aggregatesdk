@@ -38,6 +38,6 @@ private:
 	F first;
 	S second;
 	*/
-};
+;}
 
 #endif

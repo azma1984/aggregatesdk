@@ -1,20 +1,31 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/AggreGateBean.java
-
 #ifndef AggreGateBeanH
 #define AggreGateBeanH
- /*
-#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-*/
+
+/**
+ * WARNING:
+ * 
+ * In the inherited classes, do not assign field values in the declaration!
+ * 
+ * Field values will be assigned by one of the AggreGateBean constructor.
+ * 
+ * Default field values must be defined in the format.
+ * 
+ * Successors must override AggreGateBean(DataRecord) constructor!
+ */
+
+#include <datatable/DataRecord.h>
+#include <datatable/DataTable.h>
+#include <datatable/DataTableConversion.h>
+#include <datatable/DataTableException.h>
+#include <datatable/TableFormat.h>
+
 
 class AggreGateBean
 {
-/*
+
 private:
 	TableFormat* format;
+
 protected:
 	void ctor(TableFormat* format);
 	void ctor(TableFormat* format, DataRecord* data);
@@ -28,7 +39,7 @@ public:
 	AggreGateBean(TableFormat* format);
 	AggreGateBean(TableFormat* format, DataRecord* data);
 protected:
-	AggreGateBean(const ::default_init_tag&);     */
+	AggreGateBean(const ::default_init_tag&);     
 
 };
 
