@@ -1,75 +1,43 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/ChangeProcessor.java
-
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#ifndef _CHANGEPROCESSOR_H_
+#define _CHANGEPROCESSOR_H_
 
 
-
-class com::tibbo::aggregate::common::util::ChangeProcessor
-    
+/**
+ * This class mimics the logic of org.rrd4j.core.Datasource
+ */
+public class ChangeProcessor
 {
-
 public:
-    typedef void super;
-    static const int GAUGE) };
-    static const int COUNTER = 1) };
-    static const int DERIVE = 2) };
-    static const int ABSOLUTE = 3) };
-    static const int OUT_OF_RANGE_IGNORE) };
-    static const int OUT_OF_RANGE_DISCARD = 1) };
-    static const int OUT_OF_RANGE_NORMALIZE = 2) };
+	static int GAUGE;
+	static int COUNTER;
+	static int DERIVE;
+	static int ABSOLUTE;
+  
+	static int OUT_OF_RANGE_IGNORE;
+	static int OUT_OF_RANGE_DISCARD;
+	static int OUT_OF_RANGE_NORMALIZE;
 
+	static double MAX_32_BIT;
+	static double MAX_64_BIT;
+
+	ChangeProcessor(int type);
+	ChangeProcessor(int type, int outOfRangeValuesHandling, double minValue, double maxValue);
+
+	double process(long newTime, Double newValue);	
+
+	static std::map<int, std::string> getSelectionValues();
+  
 private:
-    static std::map SELECTION_VALUES_;
+	double calculateUpdateValue(long oldTime, Double oldValue, long newTime, double newValue);
 
-public:
-    static std::map getSelectionValues();
+	static std::map<int, std::string> SELECTION_VALUES;
+	int type;
+	int outOfRangeValuesHandling;
+	double minValue;
+	double maxValue;
+  
+	long lastUpdateTime;
+	double lastValue;
+};   
 
-private:
-    static double MAX_32_BIT_;
-    static double MAX_64_BIT_;
-    int type;
-    int outOfRangeValuesHandling;
-    ::java::lang::Double* minValue;
-    ::java::lang::Double* maxValue;
-    long lastUpdateTime;
-    ::java::lang::Double* lastValue;
-protected:
-    void ctor(int type);
-    void ctor(int type, int outOfRangeValuesHandling, ::java::lang::Double* minValue, ::java::lang::Double* maxValue);
-
-public:
-    ::java::lang::Double* process(long newTime, ::java::lang::Double* newValue);
-
-private:
-    ::java::lang::Double* calculateUpdateValue(long oldTime, ::java::lang::Double* oldValue, long newTime, ::java::lang::Double* newValue);
-
-    // Generated
-
-public:
-    ChangeProcessor(int type);
-    ChangeProcessor(int type, int outOfRangeValuesHandling, ::java::lang::Double* minValue, ::java::lang::Double* maxValue);
-protected:
-    ChangeProcessor(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-
-private:
-    void init();
-    static std::map& SELECTION_VALUES();
-
-public:
-    static double& MAX_32_BIT();
-    static double& MAX_64_BIT();
-
-private:
-    ::java::lang::Class* getClass0();
-};
+#endif

@@ -1,75 +1,51 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/data/Data.java
+#ifndef _DATA_H_
+#define _DATA_H_
 
-#pragma once
+#include <util/Clonable.h>
+#include <context/ContextManager.h>
+#include <context/CallerController.h>
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/data/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Cloneable.h"
-#include <com/tibbo/aggregate/common/util/PublicCloneable.h"
+#include <string>
+#include <vector>
+#include <map>
 
-
-
-class com::tibbo::aggregate::common::data::Data
-    
-    , public ::java::lang::Cloneable
-    , public ::com::tibbo::aggregate::common::util::PublicCloneable
+public class Data : Cloneable, PublicCloneable
 {
-
 public:
-    typedef void super;
+	Data();  
+	Data(std::vector<char>& data); 
+	Data(std::string name, std::vector<char>& data);  
 
+	void setPreview(std::vector<char>& preview); 
+	void setId(long id);  
+	void setData(std::vector<char>& data);
+	void setBlob(std::vector<char>& blob);  
+	void setName(std::string name);  
+
+	std::vector<char> getPreview()  
+	std::string getName();
+	long getId();
+	std::vector<char> getData();
+	std::vector<char> getBlob();
+	std::map<String, Object> getAttachments();
+	std::vector<char> fetchData(ContextManager* cm, CallerController* cc);// throws ContextException  
+	std::string toDetailedString();
+	void setAttachments(Map<String, Object> attachments);
+
+	virtual Data* clone() const;
+	
+	//  public String toString()
+	operator std::string() const;
+	std::string toCleanString();		
+	bool operator ==(const Data& data) const;	
+  
 private:
-    ::java::lang::Long* id;
-    std::string* name;
-    ::int8_tArray* preview;
-    ::int8_tArray* data;
-    std::map attachments;
-protected:
-    void ctor();
-    void ctor(::int8_tArray* data);
-    void ctor(std::string* name, ::int8_tArray* data);
-
-public:
-    void setPreview(::int8_tArray* preview);
-    void setId(::java::lang::Long* id);
-    void setData(::int8_tArray* data);
-    void setBlob(::int8_tArray* blob);
-    void setName(std::string* name);
-    ::int8_tArray* getPreview();
-    std::string* getName();
-    ::java::lang::Long* getId();
-    ::int8_tArray* getData();
-    ::int8_tArray* getBlob();
-    std::map getAttachments();
-    ::int8_tArray* fetchData(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* cc) /* throws(ContextException) */;
-
-private:
-    int checksum(::int8_tArray* bytes);
-
-public:
-    std::string* toDetailedString();
-    std::string* toString();
-    std::string* toCleanString();
-    Data* clone();
-    bool equals(void* obj);
-    void setAttachments(std::map attachments);
-
-    // Generated
-    Data();
-    Data(::int8_tArray* data);
-    Data(std::string* name, ::int8_tArray* data);
-protected:
-    Data(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+	long id;
+	std::string name;
+	std::vector<char> preview;
+	std::vector<char> data;
+	//TODO: Object
+	std::map<std::string, void*> attachments;
 };
+
+#endif

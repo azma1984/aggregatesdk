@@ -1,50 +1,39 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/Aggregation.java
+#ifndef _AGGREGATION_H_
+#define _AGGREGATION_H_
 
-#pragma once
+#include "../CRes.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::util::Aggregation
-    
+class Aggregation
 {
-
 public:
-    typedef void super;
-    static const int AVERAGE) };
-    static const int MINIMUM = 1) };
-    static const int MAXIMUM = 2) };
-    static const int SUMMATION = 3) };
-    static const int FIRST = 4) };
-    static const int LAST = 5) };
-    static const int FIRST_DATE = 6) };
-    static const int LAST_DATE = 7) };
-    static const int TOTAL_COUNT = 8) };
-    static const int VALID_COUNT = 9) };
-    static const int MINIMUM_DATE = 10) };
-    static const int MAXIMUM_DATE = 11) };
+	static int AVERAGE = 0;
+	static int MINIMUM = 1;
+	static int MAXIMUM = 2;
+	static int SUMMATION = 3;
+	static int FIRST = 4;
+	static int LAST = 5;
+	static int FIRST_DATE = 6;
+	static int LAST_DATE = 7;
+	static int TOTAL_COUNT = 8;
+	static int VALID_COUNT = 9;
+	static int MINIMUM_DATE = 10;
+	static int MAXIMUM_DATE = 11;
 
+	// TODO: можно оптимизироватьб при каждом обращении не заполнять map
+	static std::map<int, std::string> getSelectionValues() {
+		SELECTION_VALUES.clear();
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("average") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("minimum") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("maximum") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("summation") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("first") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("last") ) );
+
+		return SELECTION_VALUES;
+	}
+  
 private:
-    static std::map SELECTION_VALUES_;
-
-public:
-    static std::map getSelectionValues();
-
-    // Generated
-    Aggregation();
-protected:
-    Aggregation(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-
-private:
-    static std::map& SELECTION_VALUES();
-    ::java::lang::Class* getClass0();
+	static std::map<int, std::string> SELECTION_VALUES;   
 };
+
+#endif

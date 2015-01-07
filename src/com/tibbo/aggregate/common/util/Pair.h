@@ -1,42 +1,43 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/Pair.java
+#ifndef _PAIR_H_
+#define _PAIR_H_
 
-#pragma once
-
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::util::Pair
-    
+template<class F, class S> class Pair
 {
+	/*
+	Pair(F first, S second) {
+		first = first;
+		second = second;
+	}
+  
+	F getFirst() {
+		return first;
+	}
+  
+	void setFirst(F first)
+	{
+		first = first;
+	}
+  
+	S getSecond()
+	{
+	return second;
+	}
+  
+	void setSecond(S second)
+	{
+		second = second;
+	}
+  
+	
+	std::string toString()
+	{
+	return "[" + first + " & " + second + "]";
+	}
 
-public:
-    typedef void super;
+private: 
+	F first;
+	S second;
+	*/
+;}
 
-private:
-    void* first;
-    void* second;
-protected:
-    void ctor(void* first, void* second);
-
-public:
-    void* getFirst();
-    void setFirst(void* first);
-    void* getSecond();
-    void setSecond(void* second);
-    std::string* toString();
-
-    // Generated
-    Pair(void* first, void* second);
-protected:
-    Pair(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
-};
+#endif

@@ -1,30 +1,21 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/ElementList.java
+package com.tibbo.aggregate.common.util;
 
-#pragma once
-
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/ArrayList.h"
-
-
-
-class com::tibbo::aggregate::common::util::ElementList
-    : public ::java::util::ArrayList
+//TODO: проверить
+// возможно можно весь класс заменить на std::list<Element> и отдельно реализовать метод getElement
+/*
+Не советуется наследовать std::string класс: у него невиртуальный деструктор (#6). Также это правило относится к большинству STL-типов: vector, deque, list, set.
+*/
+class ElementList : public std::list<Element>// ArrayList<Element>
 {
-
 public:
-    typedef ::java::util::ArrayList super;
-    Element* getElement(std::string* name);
 
-    // Generated
-    ElementList();
-protected:
-    ElementList(const ::default_init_tag&);
+	 Element getElement(std::string name) {
+		for (std::list<Element>::iterator it=this->begin(); it != this->end(); ++it) {
+			if ( !(*it).getName().empty() && ((*it).getName() == name)) {
+				return *it;
+			}
+		}
 
-
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
-};
+		return null;
+	}
+}
