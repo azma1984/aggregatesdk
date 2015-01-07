@@ -7,7 +7,11 @@ include_directories (${PROJECT_SOURCE_DIR}
 ./src/com/tibbo/aggregate/common/action 
 ./src/com/tibbo/aggregate/common/datatable 
 ./src/com/tibbo/aggregate/common/util 
-./src/com/tibbo/aggregate/common/context)
+./src/com/tibbo/aggregate/common/context
+./src/com/tibbo/aggregate/common/protocol
+./src/com/tibbo/aggregate/common/agent
+
+)
 
 add_executable(aggregatesdk 
 
@@ -52,8 +56,15 @@ add_executable(aggregatesdk
 ./src/com/tibbo/aggregate/common/action/StringIdentifier.h
 ./src/com/tibbo/aggregate/common/action/TreeMask.h
 
+#agent
+./src/com/tibbo/aggregate/common/agent/Agent.cpp
+./src/com/tibbo/aggregate/common/agent/AgentContext.cpp
+./src/com/tibbo/aggregate/common/agent/AgentImplementationController.cpp
+./src/com/tibbo/aggregate/common/agent/HistoricalValue.cpp
 
 
+#context
+./src/com/tibbo/aggregate/common/context/AbstractContext.cpp
 
 main.cpp)
 
