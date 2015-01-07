@@ -8,16 +8,7 @@ private:
     std::string details;
     std::string message;
 
-protected:
-    void ctor(std::string* message);
-    void ctor(std::string* message, std::string* details);
-    void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause, std::string* details);
-
 public:
-    std::string getDetails() { return details; }
-
     AggreGateException(const std::string &message)
     {
         this->message = message;
@@ -29,4 +20,6 @@ public:
         this->details = details;
     }
 
+    std::string getDetails() { return details; }
+    std::string getMessage() { return message; }
 };
