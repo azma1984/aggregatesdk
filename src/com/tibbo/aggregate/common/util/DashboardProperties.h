@@ -23,9 +23,9 @@ public:
 	static TableFormat FORMAT ;
 
 	DashboardProperties();
-	DashboardProperties(DataRecord data); 
-	DashboardProperties(std::string name, std::string description);
-	DashboardProperties(std::string name, std::string description, int layout);
+    DashboardProperties(DataRecord& data);
+    DashboardProperties(std::string &name, std::string &description);
+    DashboardProperties(std::string &name, std::string &description, int layout);
   
     std::string getName();
     void setName(std::string name);

@@ -1,43 +1,34 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/EditCode.java
+#ifndef _EDIT_CODE_H_
+#define _EDIT_CODE_H_
 
-#pragma once
-
-#include <com/tibbo/aggregate/common/action/command/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/action/GenericActionCommand.h"
+#include "action/GenericActionCommand.h"
+#include <string>
 
 
-
-class com::tibbo::aggregate::common::action::command::EditCode
-    : public ::com::tibbo::aggregate::common::action::GenericActionCommand
+class EditCode : public GenericActionCommand
 {
-
-public:
-    typedef ::com::tibbo::aggregate::common::action::GenericActionCommand super;
-
 private:
     static const std::string CF_CODE_;
     static const std::string CF_MODE_;
     static const std::string RF_RESULT_;
     static const std::string RF_CODE_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_EDIT_CODE_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* RFT_EDIT_CODE_;
-    std::string* code;
-    std::string* mode;
+    static TableFormat* CFT_EDIT_CODE_;
+    static TableFormat* RFT_EDIT_CODE_;
+    std::string code;
+    std::string mode;
 protected:
     void ctor();
-    void ctor(std::string* title, std::string* code, std::string* mode);
-    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    void ctor(const std::string& title, const std::string& code, const std::string& mode);
+    void ctor(const std::string& title, DataTable* parameters);
 
 public: /* protected */
-    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+    DataTable* constructParameters();
 
 public:
-    std::string* getCode();
-    void setCode(std::string* code);
-    std::string* getMode();
-    void setMode(std::string* mode);
+    std::string getCode();
+    void setCode(const std::string& code);
+    std::string getMode();
+    void setMode(const std::string& mode);
 
     // Generated
     EditCode();
@@ -60,3 +51,4 @@ public:
 private:
     ::java::lang::Class* getClass0();
 };
+#endif  //_EDIT_CODE_H_

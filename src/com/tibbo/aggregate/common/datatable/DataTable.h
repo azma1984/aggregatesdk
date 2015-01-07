@@ -1,9 +1,8 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTable.java
 #ifndef DataTableH
 #define DataTableH
 
 #include <list>
-#include "PublicCloneable.h"
+#include "util/Cloneable.h"
 #include "DataRecord.h"
 /*
  #include <com/tibbo/aggregate/common/Cres.h"
@@ -36,7 +35,7 @@
 #include <com/tibbo/aggregate/common/util/Util.h"
   */
 
-class DataTable: public PublicCloneable
+class DataTable: public Cloneable
 {
 
 private:
@@ -178,7 +177,7 @@ private:
 	*/
 public:
 	DataTable* clone();
-	DataTable(DataTable&); //конструктор копии
+	DataTable(DataTable&); //РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёРё
 	void init();
 
 	DataTable();

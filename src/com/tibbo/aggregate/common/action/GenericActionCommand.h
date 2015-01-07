@@ -1,16 +1,16 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/GenericActionCommand.java
 #ifndef GenericActionCommandH
 #define GenericActionCommandH
- /*
-#include <com/tibbo/aggregate/common/action/ActionCommand.h"
-#include <com/tibbo/aggregate/common/action/ActionCommandRegistry.h"
-#include <com/tibbo/aggregate/common/action/GenericActionResponse.h"
-#include <com/tibbo/aggregate/common/action/RequestIdentifier.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-  */
+
+#include "action/ActionCommand.h"
+#include "action/ActionCommandRegistry.h"
+#include "action/GenericActionResponse.h"
+#include "action/RequestIdentifier.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataTableConversion.h"
+#include "datatable/DataTableException.h"
+#include "datatable/TableFormat.h"
+
 #include "ActionCommand.h"
 
 

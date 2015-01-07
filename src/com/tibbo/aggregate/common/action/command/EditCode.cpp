@@ -1,25 +1,20 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/EditCode.java
-//#include <com/tibbo/aggregate/common/action/command/EditCode.h"
+#include "action/command/EditCode.h"
 
-#include <com/tibbo/aggregate/common/action/ActionUtils.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+#include "action/ActionUtils.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
+
 /*
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-#include <ObjectArray.h"*/
-
 template<typename T>
 static T* T* t)
 {
     if(!t) std::exception("Pointer = NULL!");
     return t;
 }
+*/
 
-com::tibbo::aggregate::common::action::command::EditCode::EditCode(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
+EditCode::EditCode()
+    : GenericActionCommand(*static_cast< ::default_init_tag* >(0))
 {
     
 }

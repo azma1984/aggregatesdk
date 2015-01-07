@@ -19,7 +19,7 @@ public:
 	static int MINIMUM_DATE = 10;
 	static int MAXIMUM_DATE = 11;
 
-	// TODO: можно оптимизироватьб при каждом обращении не заполнять map
+	// TODO: РјРѕР¶РЅРѕ РѕРїС‚РёРјРёР·РёСЂРѕРІР°С‚СЊР± РїСЂРё РєР°Р¶РґРѕРј РѕР±СЂР°С‰РµРЅРёРё РЅРµ Р·Р°РїРѕР»РЅСЏС‚СЊ map
 	static std::map<int, std::string> getSelectionValues() {
 		SELECTION_VALUES.clear();
 		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("average") ) );

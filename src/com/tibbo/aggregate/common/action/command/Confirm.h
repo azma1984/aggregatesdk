@@ -1,4 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/Confirm.java
+#ifndef _CONFIRM_H_
+#define _CONFIRM_H_
 
 /*
 #include <com/tibbo/aggregate/common/Cres.h"
@@ -9,9 +10,9 @@
 #include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
 #include <com/tibbo/aggregate/common/datatable/TableFormat.h"
 */
-#include "ActionUtils.h"
-#include "GenericActionResponse.h"
-#include "GenericActionCommand.h"
+#include "action/ActionUtils.h"
+#include "action/GenericActionResponse.h"
+#include "action/GenericActionCommand.h"
 
 
 
@@ -26,12 +27,12 @@ class Confirm : public GenericActionCommand
        //DataTable* constructParameters();// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
-	GenericActionResponse* createDefaultResponse();
+    GenericActionResponse createDefaultResponse();
 	int parseConfirm(GenericActionResponse* resp);
 	std::string getMessage();
 	int getOptionType();
 	int getMessageType();
-	void setMessage(std::string* message);
+    void setMessage(std::string& message);
 	void setOptionType(int optionType);
 	void setMessageType(int messageType);
 
@@ -43,9 +44,10 @@ public:
 //	static TableFormat* RFT_CONFIRM;
         
 	Init(const std::string &title, std::string  &message, int optionType, int messageType);
-      //  Confirm();
-        Confirm(const std::string &message);
+    Confirm();
+    Confirm(const std::string &message);
 	Confirm(const std::string &title, std::string  &message, int optionType, int messageType);
 	//Confirm(const std::string &title, DataTable* parameters);
 	
 };
+#endif//_CONFIRM_H_

@@ -1,6 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/ActivateDashboard.java
 #include "ActivateDashboard.h"
-
 
 std::string  ActivateDashboard::CF_NAME      = "name";
 std::string  ActivateDashboard::CF_PATH      = "path";

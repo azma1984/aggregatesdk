@@ -1,6 +1,6 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/LaunchWidget.java
-#include <com/tibbo/aggregate/common/action/command/LaunchWidget.h"
+#include "action/command/LaunchWidget.h"
 
+/*
 #include <com/tibbo/aggregate/common/Cres.h"
 #include <com/tibbo/aggregate/common/action/ActionUtils.h"
 #include <com/tibbo/aggregate/common/datatable/DataTable.h"
@@ -8,89 +8,71 @@
 #include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
 #include <com/tibbo/aggregate/common/util/DashboardProperties.h"
 #include <com/tibbo/aggregate/common/util/WindowLocation.h"
-/*
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/util/ResourceBundle.h"
-#include <ObjectArray.h"*/
+*/
 
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
 
-com::tibbo::aggregate::common::action::command::LaunchWidget::LaunchWidget(const ::default_init_tag&)
+LaunchWidget::LaunchWidget(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::action::command::LaunchWidget::LaunchWidget() 
+LaunchWidget::LaunchWidget()
     : LaunchWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::LaunchWidget::LaunchWidget(std::string* title, std::string* widgetContext, std::string* defaultContext) 
+LaunchWidget::LaunchWidget(std::string* title, std::string* widgetContext, std::string* defaultContext)
     : LaunchWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,widgetContext,defaultContext);
 }
 
-com::tibbo::aggregate::common::action::command::LaunchWidget::LaunchWidget(std::string* title, std::string* widgetContext, std::string* defaultContext, std::string* template_) 
+LaunchWidget::LaunchWidget(std::string* title, std::string* widgetContext, std::string* defaultContext, std::string* template_)
     : LaunchWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,widgetContext,defaultContext,template_);
 }
 
-com::tibbo::aggregate::common::action::command::LaunchWidget::LaunchWidget(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
+LaunchWidget::LaunchWidget(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
     : LaunchWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
 }
 
-std::string& com::tibbo::aggregate::common::action::command::LaunchWidget::CF_DEFAULT_CONTEXT()
-{
-    
+LaunchWidget::CF_DEFAULT_CONTEXT()
+{  
     return CF_DEFAULT_CONTEXT_;
 }
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::CF_DEFAULT_CONTEXT_;
+std::string LaunchWidget::CF_DEFAULT_CONTEXT_;
 
-std::string& com::tibbo::aggregate::common::action::command::LaunchWidget::CF_WIDGET_CONTEXT()
-{
-    
+std::string LaunchWidget::CF_WIDGET_CONTEXT()
+{    
     return CF_WIDGET_CONTEXT_;
 }
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::CF_WIDGET_CONTEXT_;
+std::string LaunchWidget::CF_WIDGET_CONTEXT_;
 
-std::string& com::tibbo::aggregate::common::action::command::LaunchWidget::CF_TEMPLATE()
-{
-    
+std::string LaunchWidget::CF_TEMPLATE()
+{ 
     return CF_TEMPLATE_;
 }
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::CF_TEMPLATE_;
+std::string LaunchWidget::CF_TEMPLATE_;
 
-std::string& com::tibbo::aggregate::common::action::command::LaunchWidget::CF_LOCATION()
-{
-    
+std::string LaunchWidget::CF_LOCATION()
+{    
     return CF_LOCATION_;
 }
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::CF_LOCATION_;
+std::string LaunchWidget::CF_LOCATION_;
 
-std::string& com::tibbo::aggregate::common::action::command::LaunchWidget::CF_DASHBOARD()
-{
-    
+std::string LaunchWidget::CF_DASHBOARD()
+{    
     return CF_DASHBOARD_;
 }
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::CF_DASHBOARD_;
+std::string LaunchWidget::CF_DASHBOARD_;
 
-std::string& com::tibbo::aggregate::common::action::command::LaunchWidget::CF_INPUT()
-{
-    
+std::string LaunchWidget::CF_INPUT()
+{    
     return CF_INPUT_;
 }
 std::string com::tibbo::aggregate::common::action::command::LaunchWidget::CF_INPUT_;

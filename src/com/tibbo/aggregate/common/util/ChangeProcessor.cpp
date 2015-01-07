@@ -1,5 +1,5 @@
 #include "ChangeProcessor.h"
-#include "math.h
+#include <math.h>
 
 int ChangeProcessor::GAUGE = 0;
 int ChangeProcessor::COUNTER = 1;
@@ -14,22 +14,23 @@ double ChangeProcessor::MAX_32_BIT = pow(2, 32);
 double ChangeProcessor::MAX_64_BIT = pow(2, 64);
 
 
-ChangeProcessor::ChangeProcessor(int type) 
+ChangeProcessor::ChangeProcessor(int type) :
+    type(type), minValue(0), maxValue(0), lastUpdateTime(0), lastValue(0), outOfRangeValuesHandling(OUT_OF_RANGE_IGNORE)
 {
-	ChangeProcessor(type, OUT_OF_RANGE_IGNORE, null, null);
+
 }
 
 
 ChangeProcessor::ChangeProcessor(int type, int outOfRangeValuesHandling, double minValue, double maxValue) :
-	lastUpdateTime(0)
+    lastUpdateTime(0), lastUpdateTime(0), lastValue(0)
 {
 	this->type = type;
     this->outOfRangeValuesHandling = outOfRangeValuesHandling;
-    this->minValue = outOfRangeValuesHandling == OUT_OF_RANGE_IGNORE ? null : minValue;
-    this->maxValue = outOfRangeValuesHandling == OUT_OF_RANGE_IGNORE ? null : maxValue;
+    this->minValue = outOfRangeValuesHandling == OUT_OF_RANGE_IGNORE ? 0 : minValue;
+    this->maxValue = outOfRangeValuesHandling == OUT_OF_RANGE_IGNORE ? 0 : maxValue;
 }
 
-// TODO: можно оптимизироватьб при каждом обращении не заполнять map
+// TODO: РјРѕР¶РЅРѕ РѕРїС‚РёРјРёР·РёСЂРѕРІР°С‚СЊР± РїСЂРё РєР°Р¶РґРѕРј РѕР±СЂР°С‰РµРЅРёРё РЅРµ Р·Р°РїРѕР»РЅСЏС‚СЊ map
 static std::map<int, std::string> ChangeProcessor::getSelectionValues() 
 {
 	SELECTION_VALUES.clear();

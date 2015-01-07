@@ -1,21 +1,10 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/LaunchWidget.java
-
-#pragma once
-
-#include <com/tibbo/aggregate/common/action/command/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/action/GenericActionCommand.h"
+#ifndef _LAUNCHWIDGET_H_
+#define _LAUNCHWIDGET_H_
+#include "action/GenericActionCommand.h"
 
 
-
-class com::tibbo::aggregate::common::action::command::LaunchWidget
-    : public ::com::tibbo::aggregate::common::action::GenericActionCommand
+class LaunchWidget : public GenericActionCommand
 {
-
-public:
-    typedef ::com::tibbo::aggregate::common::action::GenericActionCommand super;
 
 private:
     static const std::string CF_DEFAULT_CONTEXT_;
@@ -33,26 +22,26 @@ private:
     ::com::tibbo::aggregate::common::datatable::DataTable* input;
 protected:
     void ctor();
-    void ctor(std::string* title, std::string* widgetContext, std::string* defaultContext);
-    void ctor(std::string* title, std::string* widgetContext, std::string* defaultContext, std::string* template_);
-    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    void ctor(std::string& title, std::string& widgetContext, std::string& defaultContext);
+    void ctor(std::string& title, std::string& widgetContext, std::string& defaultContext, std::string* template_);
+    void ctor(std::string& title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
 
 public: /* protected */
     ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
 
 public:
-    std::string* getDefaultContext();
-    void setDefaultContext(std::string* defaultContext);
-    std::string* getWidgetContext();
-    void setWidgetContext(std::string* widgetContext);
-    std::string* getTemplate();
-    void setTemplate(std::string* encodedWidgetTemplate);
-    ::com::tibbo::aggregate::common::util::WindowLocation* getLocation();
-    void setLocation(::com::tibbo::aggregate::common::util::WindowLocation* location);
-    ::com::tibbo::aggregate::common::util::DashboardProperties* getDashboard();
-    void setDashboard(::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
-    ::com::tibbo::aggregate::common::datatable::DataTable* getInput();
-    void setInput(::com::tibbo::aggregate::common::datatable::DataTable* input);
+    std::string getDefaultContext();
+    void setDefaultContext(const std::string& defaultContext);
+    std::string getWidgetContext();
+    void setWidgetContext(const std::string& widgetContext);
+    std::strin* getTemplate();
+    void setTemplate(const std::string& encodedWidgetTemplate);
+    WindowLocation* getLocation();
+    void setLocation(WindowLocation* location);
+    DashboardProperties* getDashboard();
+    void setDashboard(DashboardProperties* dashboard);
+    DataTable* getInput();
+    void setInput(DataTable* input);
 
     // Generated
     LaunchWidget();
@@ -62,10 +51,7 @@ public:
 protected:
     LaunchWidget(const ::default_init_tag&);
 
-
-public:
-    
-    static void 
+public:       
     static const std::string& CF_DEFAULT_CONTEXT();
     static const std::string& CF_WIDGET_CONTEXT();
     static const std::string& CF_TEMPLATE();
@@ -77,3 +63,4 @@ public:
 private:
     ::java::lang::Class* getClass0();
 };
+#endif  //_LAUNCHWIDGET_H_

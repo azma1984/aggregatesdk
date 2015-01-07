@@ -91,7 +91,7 @@ public:
     Date getDate(int index);
     DataTable getDataTable(const std::string& name);
     DataTable getDataTable(int index);
-	//TODO: java::awt::Color определитбь свой Color
+	//TODO: java::awt::Color РѕРїСЂРµРґРµР»РёС‚Р±СЊ СЃРІРѕР№ Color
     Color getColor(const std::string& name);
     Color getColor(int index);
     Data getData(const std::string& name);

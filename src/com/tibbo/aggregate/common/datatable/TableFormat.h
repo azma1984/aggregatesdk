@@ -1,5 +1,5 @@
 #pragma once
-#include "PublicCloneable.h"
+#include "util/Cloneable.h"
 
 class TableFormat: public PublicCloneable
 {

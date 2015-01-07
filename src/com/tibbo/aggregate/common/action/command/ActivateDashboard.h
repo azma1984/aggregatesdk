@@ -2,18 +2,8 @@
 #ifndef ActivateDashboardH
 #define ActivateDashboardH
 
-#include "GenericActionCommand.h"
-#include "ActionUtils.h"
-/*
-#include <com/tibbo/aggregate/common/Cres.h"
-
-#include <com/tibbo/aggregate/common/context/Contexts.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
-#include <com/tibbo/aggregate/common/util/DashboardProperties.h"     */
-//#include "WindowLocation.h"
+#include "action/GenericActionCommand.h"
+//#include "ActionUtils.h"
 
 
 

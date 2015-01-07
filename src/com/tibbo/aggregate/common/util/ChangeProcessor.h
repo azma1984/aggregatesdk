@@ -1,11 +1,13 @@
 #ifndef _CHANGEPROCESSOR_H_
 #define _CHANGEPROCESSOR_H_
 
+#include <string>
+#include <map>
 
 /**
  * This class mimics the logic of org.rrd4j.core.Datasource
  */
-public class ChangeProcessor
+class ChangeProcessor
 {
 public:
 	static int GAUGE;

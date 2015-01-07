@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/Confirm.java
 #include "Confirm.h"
 
 std::string Confirm::CF_MESSAGE = "message";
@@ -64,16 +63,15 @@ DataTable* Confirm::constructParameters()
 	return new DataRecord(CFT_CONFIRM)->addString(message))->addInt(optionType)->addInt(messageType)->wrap();
 }
 
-GenericActionResponse* Confirm::createDefaultResponse()
+GenericActionResponse Confirm::createDefaultResponse()
 {
 	TableFormat *responseFormat = RFT_CONFIRM->clone();
-	std::map<void*,string> selectionValues;
+    std::map<int, std::string> selectionValues;
 	int optionType = getParameters()->rec()->getInt(Confirm::CF_OPTION_TYPE);
 
-	if(ActionUtils::YES_NO_OPTION == optionType)
-	{
-		selectionValues[ActionUtils::YES_OPTION]= Cres::get()->getString(u"yes");
-		selectionValues[ActionUtils::NO_OPTION]= Cres::get()->getString(u"no"));
+    if(ActionUtils::YES_NO_OPTION == optionType) {
+        selectionValues[ActionUtils::YES_OPTION]= Cres::get()->getString("yes");
+        selectionValues[ActionUtils::NO_OPTION]= Cres::get()->getString("no"));
 	} else if(ActionUtils::OK_CANCEL_OPTION == optionType) {
 		selectionValues[ActionUtils::OK_OPTION]= Cres::get()->getString(u"ok");
 		selectionValues[ActionUtils::CANCEL_OPTION]= Cres::get()->getString(u"cancel");
@@ -85,7 +83,7 @@ GenericActionResponse* Confirm::createDefaultResponse()
 	{
       std::cout<<"Unsupported option type: ";
     }
-    responseFormat)->getField(RF_OPTION_))->setSelectionValues(static_cast< std::map >(selectionValues));
+    responseFormat->getField(RF_OPTION_)->setSelectionValues(selectionValues);
     return new GenericActionResponse(new ::DataTable(responseFormat, true));
 }
 

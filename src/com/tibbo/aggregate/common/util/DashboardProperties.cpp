@@ -42,22 +42,22 @@ static
 
 
 DashboardProperties::DashboardProperties() : 
-	AggreGateBean(FORMAT)
-{    
-}
-  
-DashboardProperties::DashboardProperties(DataRecord data) :
-	AggreGateBean(FORMAT, data)
+    AggreGateBean(FORMAT), layout(0), columns(0), closable(0), cleanup(0)
 {
 }
   
-DashboardProperties::DashboardProperties(std::string name, std::string description) :
-	AggreGateBean(FORMAT), name(name), description(description)
+DashboardProperties::DashboardProperties(DataRecord &data) :
+    AggreGateBean(FORMAT, data), layout(0), columns(0), closable(0), cleanup(0)
+{
+}
+  
+DashboardProperties::DashboardProperties(std::string& name, std::string& description) :
+    AggreGateBean(FORMAT), name(name), description(description), layout(0), columns(0), closable(0), cleanup(0)
 {    
 }
   
-DashboardProperties::DashboardProperties(std::string name, std::string description, int layout) :
-	AggreGateBean(FORMAT), name(name), description(description), layout(layout)
+DashboardProperties::DashboardProperties(std::string& name, std::string& description, int layout) :
+    AggreGateBean(FORMAT), name(name), description(description), layout(layout), columns(0), closable(0), cleanup(0)
 {
 }
   
@@ -125,5 +125,6 @@ DashboardProperties::operator std::string() const
 {
     stringstream ss;
     ss <<"Dashboard [name=" <<name <<", description=" <<description <<", layout=" <<layout <<"]";
+
     return ss.str();
 }
