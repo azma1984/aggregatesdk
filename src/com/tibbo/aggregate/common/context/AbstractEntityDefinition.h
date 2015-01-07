@@ -1,19 +1,19 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/AbstractEntityDefinition.java
 
-#pragma once
+#ifndef AbstractEntityDefinitionH
+#define AbstractEntityDefinitionH
 
 //#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/Object.h"
-#include <com/tibbo/aggregate/common/context/EntityDefinition.h"
+
+#include "EntityDefinition.h"
 
 
 
-class com::tibbo::aggregate::common::context::AbstractEntityDefinition
-    
-    , public EntityDefinition
+class AbstractEntityDefinition:public EntityDefinition
 {
-
+/*
 public:
     typedef void super;
 
@@ -50,9 +50,6 @@ protected:
     AbstractEntityDefinition(const ::default_init_tag&);
 
 
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
+*/
 };
+#endif

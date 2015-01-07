@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateDevice.java
 
-#pragma once
+#ifndef AggreGateDeviceH
+#define AggreGateDeviceH
 
 #include "TimeHelper.h";
 
@@ -18,7 +19,7 @@ class AggreGateDevice
 
 public:
 
-    static const long DEFAULT_COMMAND_TIMEOUT = TimeHelper::HOUR_IN_MS;
+    static long DEFAULT_COMMAND_TIMEOUT; 
 
     std::string getName();
     void setName(std::string name);
@@ -40,3 +41,5 @@ public:
     AggreGateDevice(std::string name);
 
 };
+
+#endif

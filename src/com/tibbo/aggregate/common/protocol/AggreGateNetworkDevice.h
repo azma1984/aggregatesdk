@@ -16,7 +16,7 @@ private:
 	int port;
 	long connectionTimeout;
 public:
-	static const long DEFAULT_CONNECTION_TIMEOUT = 20* TimeHelper::SECOND_IN_MS;
+	static long DEFAULT_CONNECTION_TIMEOUT;
 
 	std::string getAddress();
     int getPort();

@@ -1,24 +1,14 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/FunctionDefinition.java
 
-#pragma once
+#ifndef FunctionDefinitionH
+#define FunctionDefinitionH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/security/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/context/AbstractEntityDefinition.h"
-//#include <java/lang/Cloneable.h"
-//#include <java/lang/Comparable.h"
+#include "AbstractEntityDefinition.h"
 
 
-
-class com::tibbo::aggregate::common::context::FunctionDefinition
-    : public AbstractEntityDefinition
-    , public ::java::lang::Cloneable
-    , public ::java::lang::Comparable
+class FunctionDefinition : public AbstractEntityDefinition
 {
-
+/*
 public:
     typedef AbstractEntityDefinition super;
 
@@ -71,7 +61,7 @@ private:
 
 public:
     int compareTo(void* arg0);
-
-private:
-    ::java::lang::Class* getClass0();
+*/
 };
+
+#endif
