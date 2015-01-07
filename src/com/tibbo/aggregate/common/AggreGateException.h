@@ -1,45 +1,25 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/AggreGateException.java
-
 #pragma once
+#include <string>
 
-#include <com/tibbo/aggregate/common/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Exception.h"
-
-
-
-class com::tibbo::aggregate::common::AggreGateException
-    : public ::java::lang::Exception
+class AggreGateException
 {
 
-public:
-    typedef ::java::lang::Exception super;
-
 private:
-    std::string* details;
-protected:
-    void ctor(std::string* message);
-    void ctor(std::string* message, std::string* details);
-    void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause, std::string* details);
+    std::string details;
+    std::string message;
 
 public:
-    std::string* getDetails();
+    AggreGateException(const std::string &message)
+    {
+        this->message = message;
+    }
 
-    // Generated
-    AggreGateException(std::string* message);
-    AggreGateException(std::string* message, std::string* details);
-    AggreGateException(::java::lang::Throwable* cause);
-    AggreGateException(std::string* message, ::java::lang::Throwable* cause);
-    AggreGateException(std::string* message, ::java::lang::Throwable* cause, std::string* details);
-protected:
-    AggreGateException(const ::default_init_tag&);
+    AggreGateException(const std::string &message, const std::string &details)
+    {
+        this->message = message;
+        this->details = details;
+    }
 
-
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
+    std::string getDetails() { return details; }
+    std::string getMessage() { return message; }
 };
