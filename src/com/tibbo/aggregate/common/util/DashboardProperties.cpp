@@ -1,4 +1,4 @@
-#include "DashboardProperties.h"
+#include "util/DashboardProperties.h"
 
 
 std::string DashboardProperties::FIELD_NAME = "name";
@@ -11,7 +11,7 @@ std::string DashboardProperties::FIELD_CLEANUP = "cleanup";
 int DashboardProperties::LAYOUT_DOCKABLE = 0;
 int DashboardProperties::LAYOUT_SCROLLABLE = 1;
 
-TableFormat DashboardProperties::FORMAT = TableFormat(1, 1)
+TableFormat DashboardProperties::FORMAT = TableFormat(1, 1);
 // TODO: нужно инициализировать FORMAT до конструктора DashboardProperties()
 /*
 static
@@ -56,7 +56,7 @@ DashboardProperties::DashboardProperties(std::string name, std::string descripti
 {    
 }
   
-DashboardProperties::DashboardProperties(std::string name, std::string description, int layout)
+DashboardProperties::DashboardProperties(std::string name, std::string description, int layout) :
 	AggreGateBean(FORMAT), name(name), description(description), layout(layout)
 {
 }
@@ -123,5 +123,7 @@ bool DashboardProperties::isClosable()
 
 DashboardProperties::operator std::string() const
 {
-	return "Dashboard [name=" + name + ", description=" + description + ", layout=" + layout + "]";
+    stringstream ss;
+    ss <<"Dashboard [name=" <<name <<", description=" <<description <<", layout=" <<layout <<"]";
+    return ss.str();
 }

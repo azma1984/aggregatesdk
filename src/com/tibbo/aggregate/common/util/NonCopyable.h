@@ -1,7 +1,6 @@
 #ifndef _NONCOPYABLE_H_
 #define _NONCOPYABLE_H_
 
-#include <util/owutildll.h>
 
 /**
  * Ensures derived classes have private copy constructor and copy assignment.

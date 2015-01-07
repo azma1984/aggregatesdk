@@ -1,9 +1,9 @@
 #ifndef _CLONEABLE_H_
 #define _CLONEABLE_H_
 
-#include <util/NonCopyable.h>
+//#include <util/NonCopyable.h>
 
-class Cloneable : NonCopyable {
+class Cloneable {//: NonCopyable {
 public:
 
 	virtual ~Cloneable() {};

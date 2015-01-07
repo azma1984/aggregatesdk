@@ -1,12 +1,13 @@
 #ifndef _DASHBOARD_PROPERTIES_H_
 #define _DASHBOARD_PROPERTIES_H_
 
-#include <datatable/AggreGateBean.h>
-#include <datatable/DataRecord.h>
-#include <datatable/TableFormat.h>
+#include "datatable/AggreGateBean.h"
+#include "datatable/DataRecord.h"
+#include "datatable/TableFormat.h"
 
+#include <string>
 
-public class DashboardProperties : public AggreGateBean
+class DashboardProperties : public AggreGateBean
 {
 public:
 	static std::string FIELD_NAME;
@@ -26,17 +27,17 @@ public:
 	DashboardProperties(std::string name, std::string description);
 	DashboardProperties(std::string name, std::string description, int layout);
   
-	std::string getName() 
-	void setName(std::string name)
-	std::string getDescription()
-	void setDescription(std::string description)
-	int getLayout()
-	void setLayout(int layout)  
-	int getColumns()  
-	void setColumns(int columns)  
-	void setClosable(bool closable)  
-	bool isCleanup()
-	void setCleanup(bool cleanup)
+    std::string getName();
+    void setName(std::string name);
+    std::string getDescription();
+    void setDescription(std::string description);
+    int getLayout();
+    void setLayout(int layout);
+    int getColumns();
+    void setColumns(int columns);
+    void setClosable(bool closable);
+    bool isCleanup();
+    void setCleanup(bool cleanup);
 	bool isClosable();
 
 	operator std::string() const;	  

@@ -1,6 +1,10 @@
 #ifndef _Util_H_
 #define _Util_H_
  
+#include <string>
+#include <list>
+#include <map>
+
 class Util
 {
 
@@ -13,8 +17,9 @@ public:
 	*/
     static std::vector<char> readStream(std::iostream& is) ;
     static Number convertToNumber(void* value, bool validate, bool allowNull);
-    static bool convertToBoolean(void* value, bool validate, bool allowNull);
-    static bool isFloatingPoint(::java::lang::Number* n);
+    static bool convertToBoolean(void* value, bool validate, bool allowNull);    
+    //static bool isFloatingPoint(Number* n);
+    //TODO:
     static std::string getObjectDescription(void* obj) const;
 	//TODO:
 	/* 
@@ -24,10 +29,9 @@ public:
     static int parseVersion(const std::string& version);
     static std::string nameToDescription(const std::string& name);
     static std::string descriptionToName(const std::string& value);
-    static std::string getTrayIconId(const std::string& prefix);
-	//TODO: Image
-    static std::list<Image> getIconImages(const std::string& prefix, std::list<int>&  sizes);
-	static std::map sortByValue(std::map map);
-	template <K, V> static Map<K, V> sortByValue(Map<K, V>& map) 
+    //static std::string getTrayIconId(const std::string& prefix);
+    //static std::list<Image> getIconImages(const std::string& prefix, std::list<int>&  sizes);
+    //static std::map sortByValue(std::map map);
+    //template <K, V> static Map<K, V> sortByValue(Map<K, V>& map);
 }; 
 #endif	//_Util_H_
