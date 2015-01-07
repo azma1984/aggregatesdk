@@ -1,50 +1,57 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.java
-
 #pragma once
+#include "../FieldFormat.h"
+#include "../encoding/ClassicEncodingSettings.h"
+#include "SString.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/encoding/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/field/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-//#include <java/lang/Boolean.h"
-
-
-
-class com::tibbo::aggregate::common::datatable::field::BooleanFieldFormat
-    : public ::com::tibbo::aggregate::common::datatable::FieldFormat
+class BooleanFieldFormat : public FieldFormat<bool>
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::FieldFormat super;
-protected:
-    void ctor(std::string* name);
+    BooleanFieldFormat(const std::string &name) : FieldFormat(name)
+    {
 
-public:
-    char16_t getType();
-    ::java::lang::Class* getFieldClass();
-    ::java::lang::Class* getFieldWrappedClass();
-    ::java::lang::Boolean* getNotNullDefault();
+    }
 
-public: /* protected */
-    void* convertValue(void* value) /* throws(ValidationException) */;
+    char getType()
+    {
+        return FieldFormat::BOOLEAN_FIELD;
+    }
 
-public:
-    ::java::lang::Boolean* valueFromString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-    std::string* valueToString(::java::lang::Boolean* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    bool getNotNullDefault()
+    {
+        return false;
+    }
 
-    // Generated
-    BooleanFieldFormat(std::string* name);
-protected:
-    BooleanFieldFormat(const ::default_init_tag&);
+    //todo
+    /*Object convertValue(Object value) throws ValidationException
+    {
+      if (value != null && !(value instanceof Boolean))
+      {
+        value = Util.convertToBoolean(value, true, false);
+      }
+
+      return value;
+    }*/
 
 
-public:
-    
-    std::string* valueToString(void* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void* valueFromString(std::string* value);
-    std::string* valueToString(void* value);
+    bool valueFromString(const std::string &value, boost::shared_ptr<ClassicEncodingSettings> settings, bool validate)
+    {
+        SString v(value);
 
-private:
-    ::java::lang::Class* getClass0();
+        if (v == "1" || v.toUpperCase() == "TRUE")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    std::string valueToString(bool value, boost::shared_ptr<ClassicEncodingSettings> settings)
+    {
+        return value ? "1" : "0";
+    }
+
+
 };

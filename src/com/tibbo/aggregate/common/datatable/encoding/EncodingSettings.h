@@ -1,43 +1,39 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/encoding/EncodingSettings.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/encoding/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include <boost/shared_ptr.hpp>
+#include "../TableFormat.h"
 
-
-
-class com::tibbo::aggregate::common::datatable::encoding::EncodingSettings
-    
+class EncodingSettings
 {
-
-public:
-    typedef void super;
-
 private:
-    bool encodeFormat;
-    ::com::tibbo::aggregate::common::datatable::TableFormat* format;
-protected:
-    void ctor(bool encodeFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
+    bool        encodeFormat;
+    boost::shared_ptr<TableFormat> format;
 
 public:
-    ::com::tibbo::aggregate::common::datatable::TableFormat* getFormat();
-    void setFormat(::com::tibbo::aggregate::common::datatable::TableFormat* format);
-    bool isEncodeFormat();
-    void setEncodeFormat(bool encodeFormat);
+    EncodingSettings(bool encodeFormat, boost::shared_ptr<TableFormat> format) : encodeFormat(true)
+    {
+        encodeFormat = encodeFormat;
+        format = format;
+    }
 
-    // Generated
-    EncodingSettings(bool encodeFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
-protected:
-    EncodingSettings(const ::default_init_tag&);
+    boost::shared_ptr<TableFormat> getFormat()
+    {
+        return format;
+    }
 
+    void setFormat(boost::shared_ptr<TableFormat> format)
+    {
+        this->format = format;
+    }
 
-public:
-    
+    bool isEncodeFormat()
+    {
+        return encodeFormat;
+    }
 
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+    void setEncodeFormat(bool encodeFormat)
+    {
+        this->encodeFormat = encodeFormat;
+    }
+
 };

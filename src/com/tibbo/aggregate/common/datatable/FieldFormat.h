@@ -54,17 +54,26 @@ private:
     bool hidden;
     bool keyField;
     bool inlineData;
-    private boolean advanced;
-    private boolean defaultOverride;
-    private T defaultValue;
-    private String description;
-    private String help;
-    private String group;
-    private String editor;
-    private String editorOptions;
-    private Map<T, String> selectionValues;
-    private List<FieldValidator> validators = new LinkedList<FieldValidator>();
-    private String icon;
+    bool advanced;
+    bool defaultOverride;
+    T    defaultValue;
+    std::string description;
+    std::string help;
+    std::string group;
+    std::string editor;
+    std::string editorOptions;
+    //private Map<T, String> selectionValues;
+    //private List<FieldValidator> validators = new LinkedList<FieldValidator>();
+    std::string icon;
+
+protected:
+    FieldFormat(const std::string &name)
+    {
+        this->name = name;
+    }
+
+public:
+    //static FieldFormat create(const std::string &name, char type);
 
 
 };

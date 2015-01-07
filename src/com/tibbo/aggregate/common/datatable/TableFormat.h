@@ -1,11 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/TableFormat.java
-
-#ifndef TableFormatH
-#define TableFormatH
-
+#pragma once
 #include "PublicCloneable.h"
-
-
 
 class TableFormat: public PublicCloneable
 {
@@ -187,4 +181,3 @@ private:
     static const std::string& ELEMENT_MAX_RECORDS();
     static const std::string& ELEMENT_NAMING();*/
 };
-#endif
