@@ -1,10 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/ContextManager.java
 
+//#include "ContextEventListener.h"
+#ifndef ContextManagerH
+#define ContextManagerH
 
-
-#include "ContextEventListener.h"
-
-#pragma once
 
 template <class T> class ContextManager
 {
@@ -40,3 +39,5 @@ template <class T> class ContextManager
    // ::java::util::concurrent::ExecutorService* getExecutorService();
     CallerController* getCallerController();   */
 };
+
+#endif
