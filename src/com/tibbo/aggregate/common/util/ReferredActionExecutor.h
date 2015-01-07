@@ -1,18 +1,13 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/ReferredActionExecutor.java
+#ifndef _ReferredActionExecutor_H_
+#define  _ReferredActionExecutor_H_
 
-#pragma once
+#include <util/Interface.h>
+#include <util/RemoteConnector.h>
+#include <expression/Reference.h>
+#include <datatable/DataTable.h>
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::util::ReferredActionExecutor
-    
+class ReferredActionExecutor : Interface   
 {
-    bool executeReferredAction(::com::tibbo::aggregate::common::expression::Reference* ref, RemoteConnector* connector, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
-
-    // Generated
-    
+    virtual bool executeReferredAction(Reference* ref, RemoteConnector* connector, DataTable* parameters);
 };
+#endif	// _ReferredActionExecutor_H_

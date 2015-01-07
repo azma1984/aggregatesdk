@@ -1,40 +1,21 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/PersistentProperties.java
+#ifndef _PERSISTENT_PROPERTIES_H_
+#define _PERSISTENT_PROPERTIES_H_
 
-#pragma once
-
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::util::PersistentProperties
-    
+class PersistentProperties   
 {
-
+/*
 public:
-    typedef void super;
-
+    PersistentProperties() {}
+	
+    std::map<std::string, DataTable> getProperties()
+	{
+	}
+    DataTable getProperty(const std::string& name)
+	{
+	}
+	
 private:
-    std::map properties;
-
-public:
-    std::map getProperties();
-    ::com::tibbo::aggregate::common::datatable::DataTable* getProperty(std::string* name);
-
-    // Generated
-    PersistentProperties();
-protected:
-    void ctor();
-    PersistentProperties(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+    std::map<std::string, DataTable> properties;
+*/
 };
+#endif	//_PERSISTENT_PROPERTIES_H_

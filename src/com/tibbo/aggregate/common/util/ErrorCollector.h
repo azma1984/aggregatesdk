@@ -1,32 +1,23 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/ErrorCollector.java
-#ifndef ErrorCollectorH
-#define ErrorCollectorH
+#ifndef _ErrorCollector_H_
+#define _ErrorCollector_H_
 
-
+#include <list>
 
 class ErrorCollector
 {
-/*
-private:
-	std::list  errors;
-
 public:
-	void addError(::java::lang::Exception* error);
-	std::list  getErrors();
-
-	// Generated
-	ErrorCollector();
-protected:
-	void ctor();
-	ErrorCollector(const ::default_init_tag&);
-
-
-public:
-
+	ErrorCollector() {}
+	
+	void addError(std::exception& error)
+	{
+		errors.push_back( error );
+	}
+	std::list<std::exception>  getErrors() 
+	{
+		return errors;
+	}	
 
 private:
-	void init();
-	::java::lang::Class* getClass0();
-	*/
+	std::list<std::exception>  errors;	
 };
 #endif
