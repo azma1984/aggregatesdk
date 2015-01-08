@@ -26,9 +26,10 @@ private:
     static const std::string REPLY_CODE_OK_;
     static const std::string REPLY_CODE_DENIED_;
     static const std::string REPLY_CODE_ERROR_;
-
+*/
 public:
-    static const char16_t COMMAND_OPERATION_GET_VAR { u'G' };
+ /*
+   static const char16_t COMMAND_OPERATION_GET_VAR { u'G' };
     static const char16_t COMMAND_OPERATION_SET_VAR { u'S' };
     static const char16_t COMMAND_OPERATION_CALL_FUNCTION { u'C' };
     static const char16_t COMMAND_OPERATION_ADD_EVENT_LISTENER { u'L' };
@@ -38,7 +39,9 @@ public:
     static const int INDEX_MESSAGE_CODE = 2) };
     static const int INDEX_PROTOCOL_VERSION = 3) };
     static const int INDEX_OPERATION_CODE = 3) };
-    static const int INDEX_OPERATION_CONTEXT = 4) };
+    */
+    static const int INDEX_OPERATION_CONTEXT = 4;
+    /*
     static const int INDEX_OPERATION_TARGET = 5) };
     static const int INDEX_OPERATION_MESSAGE_DATA_TABLE = 6) };
     static const int INDEX_OPERATION_LISTENER_CODE = 6) };

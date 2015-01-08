@@ -15,3 +15,4 @@ public:
     std::string encode();
     void validate(DataTable* table, DataRecord* record) /* throws(ValidationException) */;
 };
+#endif 

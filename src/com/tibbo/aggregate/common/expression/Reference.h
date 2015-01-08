@@ -2,10 +2,17 @@
 #define _REFERENCE_H_
 
 #include "util/Cloneable.h"
+/*
+#include <com/tibbo/aggregate/common/context/ContextUtils.h"
+#include <com/tibbo/aggregate/common/expression/Expression.h"
+#include <com/tibbo/aggregate/common/expression/ExpressionUtils.h"
+*/
+
 #include <string>
 
 class Reference : public Cloneable
 {
+  /*
 private:
     static const std::string SCHEMA_FORM;
     static const std::string SCHEMA_TABLE;
@@ -48,7 +55,7 @@ protected:
     void ctor(std::string* context, std::string* entity, int entityType);
     void ctor(std::string* context, std::string* function, voidArray* parameters);
 
-public: /* protected */
+public:
     void parse(std::string* source);
 
 public:
@@ -58,7 +65,7 @@ public:
     int getEntityType();
     std::string* getField();
     std::list  getParameters();
-    ::java::lang::Integer* getRow();
+    int getRow();
     std::string* getSchema();
     std::string* getProperty();
     std::string* getImage();
@@ -111,7 +118,7 @@ public:
     static const std::string& SCHEMA_ACTION();
 
 private:
-    ::java::lang::Class* getClass0();
+    ::java::lang::Class* getClass0();*/
 };
 
 #endif  //_REFERENCE_H_

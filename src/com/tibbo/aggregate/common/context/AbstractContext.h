@@ -9,10 +9,11 @@
 
 template <class C> class AbstractContext : public Context//<C>
 {
- private:
+private:
 	std::string IMPLEMENTATION_METHOD_PREFIX;
 	std::string SETTER_METHOD_PREFIX;
 	std::string GETTER_METHOD_PREFIX;
+public:
 	std::string V_INFO;
 	std::string V_CHILDREN;
 	std::string V_VARIABLES;
@@ -24,7 +25,7 @@ template <class C> class AbstractContext : public Context//<C>
 	std::string F_COPY;
 	std::string F_COPY_TO_CHILDREN;
 	std::string E_INFO;
-	std::string E_UPDATED;
+	static std::string E_UPDATED;
 	std::string E_CHANGE;
 	std::string E_DESTROYED;
 	std::string E_INFO_CHANGED;

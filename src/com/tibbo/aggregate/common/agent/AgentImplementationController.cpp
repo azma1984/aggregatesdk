@@ -3,12 +3,6 @@
 
 
 
-/*
-
-AgentImplementationController::AgentImplementationController(BlockingChannel* dataChannel, ContextManager* contextManager, ExecutorService* commandExecutionService, int maxEventQueueLength) 
-{
-   DefaultClientController(dataChannel,contextManager,commandExecutionService,maxEventQueueLength);
-}
 
 
 void AgentImplementationController::processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) 
@@ -18,7 +12,7 @@ void AgentImplementationController::processMessageOperation(IncomingAggreGateCom
     Context* con = getContext(context);
     if(con != 0) 
     {
-        addNormalListener(con->getPath(),AbstractContext::E_UPDATED, getDefaultEventListener());
+    // addNormalListener(con->getPath(),AbstractContext<Context>::E_UPDATED, getDefaultEventListener());
     }
 }
 
@@ -27,5 +21,5 @@ bool AgentImplementationController::controllerShouldHandle(Event* ev, ContextEve
     return true;
 }
 
-*/
+
 

@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/IncomingAggreGateCommand.java
 
-#pragma once
+#ifndef IncomingAggreGateCommandH
+#define IncomingAggreGateCommandH
 
 #include "AggreGateCommand.h"
 
@@ -25,7 +26,7 @@ public:
 public:
     int getNumberOfParameters();
     bool hasParameter(int number);
-    std::string* getParameter(int number);
+
     std::list  getParameters(int number);
     bool isReply();
     bool isMessage();
@@ -44,14 +45,9 @@ public:
     IncomingAggreGateCommand(::java::io::ByteArrayOutputStream* s);
 protected:
     IncomingAggreGateCommand(const ::default_init_tag&);
-
+*/
 
 public:
-    
-    static void 
-
-private:
-    void init();
-    static const std::string& EMPTY_ID();
-    ::java::lang::Class* getClass0();  */
+    std::string getParameter(int number);
 };
+#endif

@@ -16,7 +16,7 @@
 
 class TableFormat: public Cloneable
 {    
-
+/*
 public:
     static boost::shared_ptr<TableFormat> EMPTY_FORMAT;
     static const int DEFAULT_MIN_RECORDS;
@@ -40,7 +40,7 @@ private:
     static const char REORDERABLE_FLAG;
     static const char UNRESIZEBLE_FLAG;
     static const char BINDINGS_EDITABLE_FLAG;
-    std::list<FieldFormat>  fields;
+   // std::list<FieldFormat>  fields;
     std::map<std::string, int> fieldLookup;
     int minRecords;
     int maxRecords;
@@ -166,6 +166,7 @@ public:
 
 private:
     void init();
+    */
 };
 
 #endif  //_TABLE_FORMAT_H_

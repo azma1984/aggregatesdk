@@ -3,6 +3,7 @@
 
 #include "util/Cloneable.h"
 #include "util/Interface.h"
+#include "DataTable.h"
 
 #include <string>
 
@@ -10,6 +11,6 @@ class TableValidator : public Interface, public Cloneable
 {
     std::string/*Character **/ getType();
     std::string encode();
-    void validate(DataTable* table) /* throws(ValidationException) */;
+    //void validate(DataTable* table) /* throws(ValidationException) */;
 };
 #endif  //_TABLE_VALIDATOR_H_

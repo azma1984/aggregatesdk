@@ -5,6 +5,8 @@
 
 #include "AbstractClientController.h"
 
+#include "Context.h"
+#include "BlockingChannel.h"
 
 /*
 #include <com/tibbo/aggregate/common/AggreGateException.h"
@@ -15,9 +17,9 @@
 #include <com/tibbo/aggregate/common/communication/CommandParser.h"
 #include <com/tibbo/aggregate/common/context/AbstractContext.h"
 #include <com/tibbo/aggregate/common/context/CallerController.h"
-#include <com/tibbo/aggregate/common/context/Context.h"
+
 #include <com/tibbo/aggregate/common/context/ContextException.h"
-#include <com/tibbo/aggregate/common/context/ContextManager.h"
+
 #include <com/tibbo/aggregate/common/context/ContextSecurityException.h"
 #include <com/tibbo/aggregate/common/context/FunctionDefinition.h"
 #include <com/tibbo/aggregate/common/context/VariableDefinition.h"
@@ -27,7 +29,7 @@
 #include <com/tibbo/aggregate/common/datatable/encoding/ClassicEncodingSettings.h"
 #include <com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.h"
 #include <com/tibbo/aggregate/common/device/DisconnectionException.h"
-#include <com/tibbo/aggregate/common/event/ContextEventListener.h"
+
 #include <com/tibbo/aggregate/common/expression/Expression.h"
 #include <com/tibbo/aggregate/common/protocol/AggreGateCommand.h"
 #include <com/tibbo/aggregate/common/protocol/AggreGateCommandParser.h"
@@ -37,26 +39,36 @@
 #include <com/tibbo/aggregate/common/protocol/IncomingAggreGateCommand.h"
 #include <com/tibbo/aggregate/common/protocol/OutgoingAggreGateCommand.h"
 #include <com/tibbo/aggregate/common/server/RootContextConstants.h"
-#include <com/tibbo/aggregate/common/util/BlockingChannel.h"
+
 #include <com/tibbo/aggregate/common/util/SyntaxErrorException.h"*/
+#include "BlockingChannel.h"
+#include "ContextManager.h"
+#include "ContextEventListener.h"
+
+#include <string>
 
 class DefaultClientController : public AbstractClientController
 {
-
-/*
 private:
+/*
+
     ::com::tibbo::aggregate::common::util::BlockingChannel* dataChannel;
     ::com::tibbo::aggregate::common::communication::CommandParser* commandParser;
     bool startMessageReceived;
     bool shutDown;
-    ::com::tibbo::aggregate::common::event::ContextEventListener* defaultEventListener;
+    */
+    ContextEventListener* defaultEventListener;
+    /*
     ::java::util::concurrent::ExecutorService* commandExecutionService;
     ::java::util::concurrent::BlockingQueue* pendingCommandsQueue;
 protected:
     void ctor(::com::tibbo::aggregate::common::util::BlockingChannel* dataChannel, ::com::tibbo::aggregate::common::context::ContextManager* contextManager, ::java::util::concurrent::ExecutorService* commandExecutionService, int maxEventQueueLength);
-
+*/
 public:
-    void processOperationGetVar(std::string* id, ::com::tibbo::aggregate::common::context::Context* con, std::string* name, OutgoingAggreGateCommand* ans) ;
+   ContextEventListener *getDefaultEventListener();
+
+ /*
+  void processOperationGetVar(std::string* id, ::com::tibbo::aggregate::common::context::Context* con, std::string* name, OutgoingAggreGateCommand* ans) ;
 
 public: 
     ::com::tibbo::aggregate::common::datatable::DataTable* getVariable(::com::tibbo::aggregate::common::context::Context* con, std::string* name) ;
@@ -74,8 +86,9 @@ public:
 public: 
     ::com::tibbo::aggregate::common::context::FunctionDefinition* getFunctionDefinition(::com::tibbo::aggregate::common::context::Context* con, std::string* name);
     ::com::tibbo::aggregate::common::datatable::DataTable* callFunction(::com::tibbo::aggregate::common::context::Context* con, std::string* name, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) ;
-    bool addNormalListener(std::string* context, std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* cel);
-
+  */
+    bool addNormalListener(const std::string &context,const std::string &name, ContextEventListener* cel);
+/*
 public:
     void processOperationAddEventListener(std::string* id, std::string* context, std::string* name, ::java::lang::Integer* listener, std::string* filter, OutgoingAggreGateCommand* ans) ;
     void processOperationRemoveEventListener(std::string* id, std::string* context, std::string* name, ::java::lang::Integer* listenerHashCode, std::string* filter, OutgoingAggreGateCommand* ans) ;
@@ -101,11 +114,11 @@ public:
 
 private:
     void processPendingEvents();
+ */
 
-public: 
-    ::com::tibbo::aggregate::common::context::Context* getContext(std::string* path);
+   Context* getContext(const std::string &path);
+/*
 
-public:
     bool controllerShouldHandle(::com::tibbo::aggregate::common::data::Event* ev, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
     ::com::tibbo::aggregate::common::event::ContextEventListener* getDefaultEventListener();
 
@@ -117,13 +130,7 @@ public:
     bool isConnected();
     std::string* getAddress();
 
-    // Generated
-    DefaultClientController(::com::tibbo::aggregate::common::util::BlockingChannel* dataChannel, ::com::tibbo::aggregate::common::context::ContextManager* contextManager, ::java::util::concurrent::ExecutorService* commandExecutionService, int maxEventQueueLength);
-protected:
-    DefaultClientController(const ::default_init_tag&);
 
-
-public:
     
 
 private:
@@ -132,5 +139,10 @@ private:
     friend class DefaultClientController_ForwardingEventListener;
     friend class DefaultClientController_ProcessCommandTask;
     friend class DefaultClientController_PendingEventProcessingTask;*/
+
+
+    DefaultClientController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService* */void* commandExecutionService, int maxEventQueueLength);
+
+
 };
 #endif
