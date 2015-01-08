@@ -1,8 +1,7 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTableException.java
-
 #ifndef DataTableExceptionH
 #define DataTableExceptionH
-#include "ContextException.h"
+
+#include "context/ContextException.h"
 
 
 

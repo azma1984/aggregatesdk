@@ -1,9 +1,7 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/EditReport.java
-//#include <com/tibbo/aggregate/common/action/command/EditReport.h"
+#include "action/command/EditReport.h"
 
-//#include <com/tibbo/aggregate/common/action/ActionUtils.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
 /*
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
@@ -11,32 +9,21 @@
 //#include <java/lang/StringBuilder.h"
 #include <ObjectArray.h"
 */
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
 
-com::tibbo::aggregate::common::action::command::EditReport::EditReport(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
-{
-    
-}
 
-com::tibbo::aggregate::common::action::command::EditReport::EditReport() 
+EditReport::EditReport()
     : EditReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::EditReport::EditReport(std::string* title, std::string* template_, ::com::tibbo::aggregate::common::datatable::DataTable* data) 
+EditReport::EditReport(const std::string& title, std::string* template_, ::com::tibbo::aggregate::common::datatable::DataTable* data)
     : EditReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,template_,data);
 }
 
-com::tibbo::aggregate::common::action::command::EditReport::EditReport(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
+EditReport::EditReport(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
     : EditReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);

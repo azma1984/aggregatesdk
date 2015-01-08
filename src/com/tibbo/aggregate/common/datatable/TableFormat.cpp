@@ -211,7 +211,7 @@ TableFormat* TableFormat::addField(char type, std::string* name, std::string* de
     addField(static_cast< FieldFormat* >(&FieldFormat::create(name, type, description, defaultValue, nullable, group)));
     return this;
 }
-
+//TODO: доступ по индексу
 TableFormat* TableFormat::addField(FieldFormat* ff, int index)
 {
     if(immutable) {
@@ -256,48 +256,63 @@ TableFormat* TableFormat::addField(char16_t type, std::string* name, int index)
     return addField(FieldFormat::create(name, type), index);
 }
 
-TableFormat* TableFormat::removeField(std::string* name)
+//TODO: доступ по инлексу
+TableFormat* TableFormat::removeField(const std::string& name)
 {
     if (immutable) {
         throw AggreGateException("Immutable", "TableFormat::addField");
     }
 
-    auto index = java_cast< ::java::lang::Integer* >(getFieldLookup())->remove(name));
-    if(index != 0) {
-        fields)->remove(index)->intValue());
-        for (int i = (index))->intValue(); i < fields)->size(); i++) {
-            auto fn = java_cast< FieldFormat* >(fields)->get(i)))->getName();
-            getFieldLookup())->put(fn, (java_cast< ::java::lang::Integer* >(getFieldLookup())->get(fn))))->intValue() - int(1)));
+    std::map<std::string, int>::iterator it= fieldLookup.find(name);
+    if (it != fieldLookup.end()) {
+        int index = it->second();
+        fieldLookup.erase( it );
+        //TODO: удаление по индексу
+        /*
+        fields.remove(index.intValue());
+        for (int i = index; i < fields->size(); i++) {
+            std::string fn = fields->get(i)->getName();
+            getFieldLookup().put(fn, getFieldLookup().get(fn) - 1);
         }
+        */
     }
+
     return this;
 }
 
-TableFormat* TableFormat::renameField(std::string* oldName, std::string* newName)
+TableFormat* TableFormat::renameField(const std::string& oldName, const std::string& newName)
 {
-    if(immutable) {
-        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
+    if (immutable) {
+        throw AggreGateException("renameField", "TableFormat::addField");
     }
-    auto ff = getField(oldName);
-    if(ff == 0) {
+
+    FieldFormat* ff = getField(oldName);
+    if (ff == 0) {
         return this;
     }
-    ff)->setName(newName);
-    auto index = java_cast< ::java::lang::Integer* >(getFieldLookup())->remove(oldName));
-    if(index != 0) {
-        getFieldLookup())->put(newName, index);
+
+    ff->setName(newName);
+
+    std::map<std::string, int>::iterator it= fieldLookup.find(name);
+    if (it != fieldLookup.end()) {
+        int index = it->second();
+        fieldLookup.erase( it );
+        fieldLookup.insert(newName, index);
     }
+
     return this;
 }
 
-char16_t TableFormat::getFieldType(int index)
+char TableFormat::getFieldType(int index)
 {
-    return java_cast< FieldFormat* >(fields)->get(index)))->getType();
+    //TODO:
+    return fields.get(index)->getType();
 }
 
 std::string TableFormat::getFieldName(int index)
 {
-    return java_cast< FieldFormat* >(fields)->get(index)))->getName();
+    //TODO:
+    return fields.get(index)->getName();
 }
 
 int TableFormat::getFieldIndex(std::string* name)
@@ -308,12 +323,12 @@ int TableFormat::getFieldIndex(std::string* name)
 
 int TableFormat::getFieldCount()
 {
-    return fields)->size();
+    return fields.size();
 }
 
-java::util::List* TableFormat::getFields()
+std::list<FieldFormat*> TableFormat::getFields()
 {
-    return immutable ? ::java::util::Collections::unmodifiableList(fields) : fields;
+    return immutable ? unmodifiableList(fields) : fields;
 }
 
 java::util::List* TableFormat::getRecordValidators()

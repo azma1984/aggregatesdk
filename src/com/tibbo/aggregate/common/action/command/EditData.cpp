@@ -1,6 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/EditData.java
-#include <com/tibbo/aggregate/common/action/command/EditData.h"
-
+#include "action/command/EditData.h"
+/*
 #include <com/tibbo/aggregate/common/Cres.h"
 #include <com/tibbo/aggregate/common/action/ActionUtils.h"
 #include <com/tibbo/aggregate/common/action/EditDataMerger.h"
@@ -12,20 +11,7 @@
 #include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
 #include <com/tibbo/aggregate/common/util/DashboardProperties.h"
 #include <com/tibbo/aggregate/common/util/WindowLocation.h"
-/*
-//#include <java/lang/Boolean.h"
-//#include <java/lang/Long.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/util/ResourceBundle.h"*/
-
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
+*/
 
 com::tibbo::aggregate::common::action::command::EditData::EditData(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))

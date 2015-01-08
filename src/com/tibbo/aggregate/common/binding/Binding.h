@@ -9,8 +9,8 @@
 class Binding : public Cloneable
 {
 public:
-    Binding(::com::tibbo::aggregate::common::expression::Reference* reference, ::com::tibbo::aggregate::common::expression::Expression* expression);
-    Binding(std::string* reference, std::string* expression);
+    Binding(Reference* reference, Expression* expression);
+    Binding(const std::string& reference, const std::string& expression);
 
     Expression* getExpression();
     Reference* getReference();

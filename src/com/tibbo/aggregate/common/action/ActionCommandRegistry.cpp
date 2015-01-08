@@ -1,5 +1,21 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionCommandRegistry.java
 #include "ActionCommandRegistry.h"
+
+#include "command/ActivateDashboard.h"
+#include "command/Browse.h"
+#include "command/Confirm.h"
+#include "command/EditCode.h"
+#include "command/EditProperties.h"
+#include "command/EditReport.h"
+#include "command/EditText.h"
+#include "command/EditWidget.h"
+#include "command/LaunchWidget.h"
+#include "command/SelectEntities.h"
+#include "command/ShowError.h"
+#include "command/ShowEventLog.h"
+#include "command/ShowGuide.h"
+#include "command/ShowMessage.h"
+#include "command/ShowReport.h"
+#include "command/ShowSystemTree.h"
 
 ActionCommandRegistry::ActionCommandRegistry()
 {

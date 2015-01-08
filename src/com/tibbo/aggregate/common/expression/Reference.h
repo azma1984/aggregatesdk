@@ -5,7 +5,7 @@
 #include <string>
 
 class Reference : public Cloneable
-{
+{/*
 private:
     static const std::string SCHEMA_FORM;
     static const std::string SCHEMA_TABLE;
@@ -48,7 +48,7 @@ protected:
     void ctor(std::string* context, std::string* entity, int entityType);
     void ctor(std::string* context, std::string* function, voidArray* parameters);
 
-public: /* protected */
+public:// protected
     void parse(std::string* source);
 
 public:
@@ -112,6 +112,7 @@ public:
 
 private:
     ::java::lang::Class* getClass0();
+*/
 };
 
 #endif  //_REFERENCE_H_

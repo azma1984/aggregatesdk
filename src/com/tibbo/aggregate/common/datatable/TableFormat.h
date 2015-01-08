@@ -33,7 +33,7 @@ private:
     static const std::string ELEMENT_NAMING;
 
 public:
-    static const char TABLE_VALIDATOR_KEY_FIELDS{'1'};
+    static const char TABLE_VALIDATOR_KEY_FIELDS;
     static const char TABLE_VALIDATOR_EXPRESSION;
     static const char RECORD_VALIDATOR_KEY_FIELDS;
 
@@ -41,7 +41,7 @@ private:
     static const char REORDERABLE_FLAG;
     static const char UNRESIZEBLE_FLAG;
     static const char BINDINGS_EDITABLE_FLAG;
-    std::list<FieldFormat>  fields;   //TODO: заменить на vector или std::map<int, FieldFormat> , т.к тербуется доступ по индексу в addField(FieldFormat* ff, int index)
+    std::list<boost::shared_ptr<FieldFormat>>  fields;   //TODO: заменить на vector или std::map<int, FieldFormat> , т.к тербуется доступ по индексу в addField(FieldFormat* ff, int index)
     std::map<std::string, int> fieldLookup;
     int minRecords;
     int maxRecords;
@@ -119,7 +119,7 @@ public:
     Expression* getNamingExpression();
     std::string encode(bool useVisibleSeparators);
     std::string encode(ClassicEncodingSettings* settings);
-    std::map<std::string, int> getFieldLookup();
+//    std::map<std::string, int> getFieldLookup();
     std::string* toString();
     FieldFormat* getField(int index);
     FieldFormat* getField(const std::string& fieldName);

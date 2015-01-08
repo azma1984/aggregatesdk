@@ -1,10 +1,9 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/Expression.java
+#ifndef _EXPRESSION_H_
+#define _EXPRESSION_H_
 
-#pragma once
+#include "util/Cloneable.h"
 
-#include <PublicCloneable.h>
-
-class Expression: public PublicCloneable
+class Expression: public Cloneable
 {
    /*
 public:
@@ -44,3 +43,4 @@ public:
 private:
     ::java::lang::Class* getClass0();  */
 };
+#endif//_EXPRESSION_H_
