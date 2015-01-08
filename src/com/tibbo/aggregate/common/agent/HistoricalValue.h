@@ -3,7 +3,7 @@
 #ifndef HistoricalValueH
 #define HistoricalValueH
 
-//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
+#include "DataTable.h"
 #include <string>
 #include <ctime>
 
@@ -15,7 +15,7 @@ class HistoricalValue
 private:
     std::string variable;
     std::time_t timestamp;
-  //  DataTable* value; //todo define com\tibbo\aggregate\common\datatable\DataTable.h
+    DataTable* value; //define com\tibbo\aggregate\common\datatable\DataTable.h
     
 
 public:
@@ -23,10 +23,10 @@ public:
     void setVariable(const std::string &variable);
     std::time_t getTimestamp();
     void setTimestamp(std::time_t timestamp);
- //   DataTable* getValue();
-   // void setValue(DataTable* value);
+    DataTable* getValue();
+    void setValue(DataTable* value);
 
-    HistoricalValue(const std::string &variable, std::time_t  timestamp/*, DataTable* value*/);
+    HistoricalValue(const std::string &variable, std::time_t  timestamp, DataTable* value);
 
 };
 

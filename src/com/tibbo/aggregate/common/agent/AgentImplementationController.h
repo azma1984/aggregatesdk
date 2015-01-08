@@ -21,9 +21,11 @@ class AgentImplementationController : public DefaultClientController
    void processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
   
   public:  
- 
-   // AgentImplementationController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager, ExecutorService* commandExecutionService, int maxEventQueueLength);
-
+ //todo ExecutorService
+  AgentImplementationController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService**/void* commandExecutionService, int maxEventQueueLength)
+:DefaultClientController(dataChannel,contextManager,commandExecutionService,maxEventQueueLength)
+{
+}
 
    
   bool controllerShouldHandle(Event* ev, ContextEventListener* listener);

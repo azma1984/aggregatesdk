@@ -17,7 +17,7 @@
 
 class TableFormat: public Cloneable
 {    
-
+/*
 public:
     static boost::shared_ptr<TableFormat> EMPTY_FORMAT;
     static const int DEFAULT_MIN_RECORDS;
@@ -42,6 +42,7 @@ private:
     static const char UNRESIZEBLE_FLAG;
     static const char BINDINGS_EDITABLE_FLAG;
     std::list<boost::shared_ptr<FieldFormat>>  fields;   //TODO: заменить на vector или std::map<int, FieldFormat> , т.к тербуется доступ по индексу в addField(FieldFormat* ff, int index)
+>>>>>>> 5d707ae527bcd11441b432f4fb6d3b4bf6646f98
     std::map<std::string, int> fieldLookup;
     int minRecords;
     int maxRecords;
@@ -167,6 +168,7 @@ public:
 
 private:
     void init();
+    */
 };
 
 #endif  //_TABLE_FORMAT_H_
