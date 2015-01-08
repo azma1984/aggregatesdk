@@ -1,54 +1,34 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/binding/Binding.java
+#ifndef _BINDING_H_
+#define _BINDING_H_
 
-#pragma once
+#include "util/Cloneable.h"
+#include "expression/Expression.h"
+#include "expression/Reference.h"
+#include <boost/shared_ptr.hpp>
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Cloneable.h"
-#include <com/tibbo/aggregate/common/util/PublicCloneable.h"
-
-
-
-class com::tibbo::aggregate::common::binding::Binding
-    
-    , public ::java::lang::Cloneable
-    , public ::com::tibbo::aggregate::common::util::PublicCloneable
+class Binding : public Cloneable
 {
-
 public:
-    typedef void super;
+    Binding(::com::tibbo::aggregate::common::expression::Reference* reference, ::com::tibbo::aggregate::common::expression::Expression* expression);
+    Binding(std::string* reference, std::string* expression);
 
-private:
-    ::com::tibbo::aggregate::common::expression::Reference* reference;
-    ::com::tibbo::aggregate::common::expression::Expression* expression;
-    ::java::lang::Long* id;
-protected:
-    void ctor(::com::tibbo::aggregate::common::expression::Reference* reference, ::com::tibbo::aggregate::common::expression::Expression* expression);
-    void ctor(std::string* reference, std::string* expression);
-
-public:
-    ::com::tibbo::aggregate::common::expression::Expression* getExpression();
-    ::com::tibbo::aggregate::common::expression::Reference* getReference();
+    Expression* getExpression();
+    Reference* getReference();
     int hashCode();
     bool equals(void* obj);
     Binding* clone();
-    std::string* toString();
-    ::java::lang::Long* getId();
-    void setId(::java::lang::Long* id);
+    std::string toString();
+    long getId() const;
+    void setId(long id);
 
-    // Generated
-    Binding(::com::tibbo::aggregate::common::expression::Reference* reference, ::com::tibbo::aggregate::common::expression::Expression* expression);
-    Binding(std::string* reference, std::string* expression);
 protected:
-    Binding(const ::default_init_tag&);
-
-
-public:
-    
+    void ctor(Reference* reference, Expression* expression);
+    void ctor(const std::string& reference, const std::string& expression);
 
 private:
-    ::java::lang::Class* getClass0();
+    boost::shared_ptr<Reference> reference;
+    boost::shared_ptr<Expression> expression;
+    long id;
 };
+
+#endif

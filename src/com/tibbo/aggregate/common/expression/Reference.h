@@ -1,18 +1,10 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/Reference.java
-
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Cloneable.h"
-#include <com/tibbo/aggregate/common/util/PublicCloneable.h"
+#ifndef _REFERENCE_H_
+#define _REFERENCE_H_
+#include "util/Cloneable.h"
 
 
 
-class com::tibbo::aggregate::common::expression::Reference
+class Reference
     
     , public ::java::lang::Cloneable
     , public ::com::tibbo::aggregate::common::util::PublicCloneable
@@ -128,3 +120,5 @@ public:
 private:
     ::java::lang::Class* getClass0();
 };
+
+#endif  //_REFERENCE_H_

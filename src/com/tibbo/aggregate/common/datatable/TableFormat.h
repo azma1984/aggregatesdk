@@ -62,7 +62,23 @@ protected:
     void ctor(const std::string& format, ClassicEncodingSettings* settings);
     void ctor(const std::string& format, ClassicEncodingSettings* settings, bool validate);
     void ctor(int minRecords, int maxRecords, const std::string& fieldFormat);
-    void ctor(int minRecords, int maxRecords, FieldFormat* fieldFormat);
+    void ctor(int minRecords, int maxRecords, FieldFormat* fieldFormat);    
+
+private:
+    static void encAppend(std::stringBuffer* buffer, const std::string& name, const std::string& value, ClassicEncodingSettings* settings);
+
+private:
+    std::string getEncodedFlags();
+    std::string getEncodedTableValidators(ClassicEncodingSettings* settings);
+    std::string getEncodedRecordValidators(ClassicEncodingSettings* settings);
+    std::string getEncodedBindings(ClassicEncodingSettings* settings);
+
+
+private:
+    void createTableValidators(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    void createRecordValidators(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    void createBindings(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    void createNaming(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
 
 public:
     TableFormat* addFields(std::list<FieldFormat>& fieldFormats);
@@ -98,24 +114,11 @@ public:
     void addBinding(Reference* target, Expression* expression);
     void addBinding(const std::string& target, const std::string& expression);
     void removeBinding(Binding* binding);
-    void setBindings(std::list  in_bindings);
+    void setBindings(std::list<Binding>& in_bindings);
     Expression* getNamingExpression();
     std::string encode(bool useVisibleSeparators);
     std::string encode(ClassicEncodingSettings* settings);
-
-private:
-    static void encAppend(std::stringBuffer* buffer, const std::string& name, const std::string& value, ClassicEncodingSettings* settings);
-
-public:
     std::map<std::string, int> getFieldLookup();
-
-private:
-    std::string getEncodedFlags();
-    std::string getEncodedTableValidators(ClassicEncodingSettings* settings);
-    std::string getEncodedRecordValidators(ClassicEncodingSettings* settings);
-    std::string getEncodedBindings(ClassicEncodingSettings* settings);
-
-public:
     std::string* toString();
     FieldFormat* getField(int index);
     FieldFormat* getField(const std::string& fieldName);
@@ -127,15 +130,6 @@ public:
     std::string extendMessage(TableFormat* other);
     void addTableValidator(TableValidator* tv);
     void addRecordValidator(RecordValidator* rv);
-
-private:
-    void createTableValidators(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void createRecordValidators(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void createBindings(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void createNaming(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-
-public:
-    ::java::util::Iterator* iterator();
     bool isReplicated();
     bool isReadonly();
     bool isGrouped();
@@ -148,50 +142,30 @@ public:
     TableFormat* resetAllowedRecords();
     TableFormat* setMaxRecords(int maxRecords);
     TableFormat* setMinRecords(int minRecords);
-
-public:
     void fixRecords(DataTable* table);
 
 public:
     TableFormat* setReorderable(bool reorderable);
-    TableFormat* setNamingExpression(::com::tibbo::aggregate::common::expression::Expression* namingExpression);
-    TableFormat* setNamingExpression(std::string* namingExpression);
-    int hashCode();
-    bool equals(void* obj);
+    TableFormat* setNamingExpression(Expression* namingExpression);
+    TableFormat* setNamingExpression(const std::string& namingExpression);
+    int hashCode();    
     TableFormat* clone();
     void makeImmutable(DataTable* immutabilizer);
+
+    bool operator==(const TableFormat& tableFormat) const;//equals(void* obj);
 
     // Generated
     TableFormat();
     TableFormat(bool reorderable);
     TableFormat(int minRecords, int maxRecords);
     TableFormat(FieldFormat* ff);
-    TableFormat(std::string* format, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    TableFormat(std::string* format, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-    TableFormat(int minRecords, int maxRecords, std::string* fieldFormat);
+    TableFormat(const std::string& format, ClassicEncodingSettings* settings);
+    TableFormat(const std::string& format, ClassicEncodingSettings* settings, bool validate);
+    TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat);
     TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat);
-protected:
-    TableFormat(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
 
 private:
     void init();
-
-public:
-    static TableFormat*& EMPTY_FORMAT();
-
-private:
-    static const std::string& ELEMENT_FLAGS();
-    static const std::string& ELEMENT_TABLE_VALIDATORS();
-    static const std::string& ELEMENT_RECORD_VALIDATORS();
-    static const std::string& ELEMENT_BINDINGS();
-    static const std::string& ELEMENT_MIN_RECORDS();
-    static const std::string& ELEMENT_MAX_RECORDS();
-    static const std::string& ELEMENT_NAMING();*/
 };
 
 #endif  //_TABLE_FORMAT_H_

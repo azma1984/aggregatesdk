@@ -1,21 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/validator/TableValidator.java
+#ifndef _TABLE_VALIDATOR_H_
+#define _TABLE_VALIDATOR_H_
 
-#pragma once
+#include "util/Cloneable.h"
+#include "util/Interface.h"
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Cloneable.h"
-#include <com/tibbo/aggregate/common/util/PublicCloneable.h"
+#include <string>
 
-struct com::tibbo::aggregate::common::datatable::validator::TableValidator
-    : public ::java::lang::Cloneable
-    , public ::com::tibbo::aggregate::common::util::PublicCloneable
+class TableValidator : public Interface, public Cloneable
 {
-    ::java::lang::Character* getType();
-    std::string* encode();
-    void validate(::com::tibbo::aggregate::common::datatable::DataTable* table) /* throws(ValidationException) */;
-
-    // Generated
-    
+    std::string/*Character **/ getType();
+    std::string encode();
+    void validate(DataTable* table) /* throws(ValidationException) */;
 };
+#endif  //_TABLE_VALIDATOR_H_
