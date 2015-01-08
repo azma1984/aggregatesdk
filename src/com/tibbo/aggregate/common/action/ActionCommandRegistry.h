@@ -10,7 +10,7 @@
 class ActionCommandRegistry
 {
  private:
-    std::map<std::string, boost::shared_ptr<GenericActionCommand>> COMMANDS;
+    std::map<std::string, boost::shared_ptr<GenericActionCommand> COMMANDS;
 
 	void register1(GenericActionCommand* command);
 

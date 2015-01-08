@@ -1,6 +1,7 @@
 #ifndef _DATARECORD_H_
 #define _DATARECORD_H_
 
+/*
 #include <Cres.h>
 #include <data/Data.h>
 #include <datatable/DataTable.h>
@@ -15,7 +16,7 @@
 #include <util/StringUtils.h>
 #include <util/Util.h>
 #include <util/Cloneable.h>
-
+*/
 #include <string>
 #include <map>
 

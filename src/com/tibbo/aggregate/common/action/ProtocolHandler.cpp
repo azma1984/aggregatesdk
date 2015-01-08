@@ -1,5 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ProtocolHandler.java
-//#include <com/tibbo/aggregate/common/action/ProtocolHandler.h"
+#ifndef _PROTOCOL_HANDLER_H_
 
 #include <com/tibbo/aggregate/common/action/ActionIdentifier.h"
 #include <com/tibbo/aggregate/common/action/GenericActionCommand.h"

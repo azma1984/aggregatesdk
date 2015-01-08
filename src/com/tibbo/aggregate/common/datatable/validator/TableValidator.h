@@ -10,8 +10,8 @@
 
 class TableValidator : public Interface, public Cloneable
 {
-    virtual std::string/*Character **/ getType();
-    virtual std::string encode();
-    virtual void validate(DataTable* table); /* throws(ValidationException) */
+    virtual std::string/*Character **/ getType() = 0;
+    virtual std::string encode() = 0;
+    virtual void validate(DataTable* table) = 0; /* throws(ValidationException) */
 };
 #endif  //_TABLE_VALIDATOR_H_

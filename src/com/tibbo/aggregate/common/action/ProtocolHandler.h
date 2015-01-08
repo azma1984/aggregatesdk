@@ -1,15 +1,9 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ProtocolHandler.java
-
-#pragma once
-
-//#include <com/tibbo/aggregate/common/action/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#ifndef _PROTOCOL_HANDLER_H_
+#define _PROTOCOL_HANDLER_H_
 
 
 
-class com::tibbo::aggregate::common::action::ProtocolHandler
+class ProtocolHandler
     
 {
 
@@ -65,3 +59,4 @@ private:
     static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT_ACTION_RESPONSE();
     ::java::lang::Class* getClass0();
 };
+#endif//_PROTOCOL_HANDLER_H_

@@ -3,15 +3,12 @@
 
 #include <boost/shared_ptr.hpp>
 #include "action/ActionCommand.h"
-#include "action/ActionCommandRegistry.h"
 #include "action/GenericActionResponse.h"
 #include "action/RequestIdentifier.h"
 #include "datatable/DataTable.h"
 #include "datatable/DataTableConversion.h"
 #include "datatable/DataTableException.h"
 #include "datatable/TableFormat.h"
-
-#include "ActionCommand.h"
 
 
 class GenericActionCommand : public ActionCommand
@@ -47,24 +44,26 @@ public:
     void setParameters(DataTable* parameters);
     void setTitle(const std::string& title);
     void setLast(bool last);
-    void setBatchEntry(bool batchEntry);
+    virtual void setBatchEntry(bool batchEntry);
     void setRequestId(RequestIdentifier* requestId);
     std::string getType();
     DataTable* getParameters();
+
+protected:
     DataTable* constructParameters();
 
 public:
     std::string getTitle();
-    bool isLast();
-    bool isBatchEntry();
+    virtual bool isLast();
+    virtual bool isBatchEntry();
     RequestIdentifier* getRequestId();
-    bool isResponseValid(ActionResponse* actionRequest);
+    virtual bool isResponseValid(ActionResponse* actionRequest);
     TableFormat* getResponseFormat();
     void setInteractive(bool interactive);
-    bool isInteractive();
+    virtual bool isInteractive();
     int hashCode();
     bool equals(void* obj);
-    ActionCommand* clone();
+    virtual ActionCommand* clone();
     std::string toString();
 
 public:

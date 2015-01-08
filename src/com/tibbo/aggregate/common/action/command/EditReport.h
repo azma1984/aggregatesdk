@@ -28,10 +28,7 @@ public:
     std::string template_;
     boost::shared_ptr<DataTable> data;
 
-protected:
-    void ctor();
-    void ctor(const std::string& title, const std::string& template_, DataTable* data);
-    void ctor(const std::string& title, DataTable* parameters);
+protected:    
     DataTable* constructParameters();
 };
 #endif  //_EDIT_REPORT_H_

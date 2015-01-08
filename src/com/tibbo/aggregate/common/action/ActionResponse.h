@@ -4,10 +4,12 @@
 #define ActionResponseH
 
 #include "RequestIdentifier.h"
-class ActionResponse
+#include "util/Interface.h"
+
+class ActionResponse : public Interface
 {
-  virtual bool shouldRemember();
-  virtual RequestIdentifier* getRequestId();
+  virtual bool shouldRemember() = 0;
+  virtual RequestIdentifier* getRequestId() = 0;
 
 };
 

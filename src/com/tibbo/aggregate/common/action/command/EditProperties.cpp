@@ -1,9 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/EditProperties.java
-#include <com/tibbo/aggregate/common/action/command/EditProperties.h"
-
+#include "action/command/EditProperties.h"
+/*
 #include <com/tibbo/aggregate/common/Cres.h"
 #include <com/tibbo/aggregate/common/action/ActionUtils.h"
-#include <com/tibbo/aggregate/common/action/GenericActionCommand.h"
 #include <com/tibbo/aggregate/common/context/Context.h"
 #include <com/tibbo/aggregate/common/datatable/DataRecord.h"
 #include <com/tibbo/aggregate/common/datatable/DataTable.h"
@@ -13,6 +12,7 @@
 #include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
 #include <com/tibbo/aggregate/common/util/DashboardProperties.h"
 #include <com/tibbo/aggregate/common/util/WindowLocation.h"
+*/
 /*
 //#include <java/lang/Boolean.h"
 //#include <java/lang/ClassCastException.h"

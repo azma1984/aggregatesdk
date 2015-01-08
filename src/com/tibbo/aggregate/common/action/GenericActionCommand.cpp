@@ -1,4 +1,4 @@
-#include "GenericActionCommand.h"
+#include "action/GenericActionCommand.h"
 
 #include "AggreGateException.h"
 

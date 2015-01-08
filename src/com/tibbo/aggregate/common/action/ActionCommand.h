@@ -6,7 +6,7 @@
 #include "util/Interface.h"
 #include "util/Cloneable.h"
 
-class ActionCommand// : /*public Cloneable,*/ public Interface
+class ActionCommand : /*public Cloneable,*/ public Interface
 {
 	virtual bool isResponseValid(ActionResponse* actionRequest) = 0;
 	virtual RequestIdentifier* getRequestId() = 0;
