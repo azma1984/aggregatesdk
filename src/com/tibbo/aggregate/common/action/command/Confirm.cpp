@@ -1,26 +1,24 @@
 #include "Confirm.h"
+#include "AggreGateException.h"
 
 std::string Confirm::CF_MESSAGE = "message";
-
 std::string Confirm::CF_OPTION_TYPE =  "optionType";
-
 std::string Confirm::CF_MESSAGE_TYPE = "messageType";
-
 std::string Confirm::RF_OPTION = "option";
 
-/*
+
 Confirm::Confirm()
 {
   GenericActionCommand(ActionUtils::CMD_CONFIRM, CFT_CONFIRM, RFT_CONFIRM);
 }
-*/
+
 Confirm::Confirm(const std::string &message)
 {
   // todo Cres is defined in com\tibbo\aggregate\common\cres.h
   Init(/*Cres::get()->getString(u"confirmation")*/"", message, ActionUtils::YES_NO_OPTION, ActionUtils::QUESTION_MESSAGE);
 }
 
- Confirm::Confirm(const std::string &title, const std::string &message, int optionType, int messageType)
+Confirm::Confirm(const std::string &title, const std::string &message, int optionType, int messageType)
 {
   Init(title, message,optionType, messageType);
 }
@@ -34,33 +32,21 @@ Confirm::Init(const std::string &title, const std::string &message, int optionTy
 	this->messageType = messageType; 
  }
 
-/*
+
 Confirm::Confirm(std::string title, DataTable parameters)
 {
-	GenericActionCommand(title,parameters);
+    GenericActionCommand(title, parameters);
 }
-*/
-
-
-TableFormat*& Confirm::CFT_CONFIRM()
-{
-    
-    return CFT_CONFIRM_;
-}
-TableFormat* Confirm::CFT_CONFIRM_;
-
-TableFormat*& Confirm::RFT_CONFIRM()
-{
-
-    return RFT_CONFIRM_;
-}
-TableFormat* Confirm::RFT_CONFIRM_;
-
 
 
 DataTable* Confirm::constructParameters()
 {
-	return new DataRecord(CFT_CONFIRM)->addString(message))->addInt(optionType)->addInt(messageType)->wrap();
+    DataRecord* dr = new DataRecord(CFT_CONFIRM);
+    dr->addString(message);
+    dr->addInt(optionType);
+    dr->addInt(messageType);
+
+    return dr;
 }
 
 GenericActionResponse Confirm::createDefaultResponse()
@@ -70,17 +56,16 @@ GenericActionResponse Confirm::createDefaultResponse()
 	int optionType = getParameters()->rec()->getInt(Confirm::CF_OPTION_TYPE);
 
     if(ActionUtils::YES_NO_OPTION == optionType) {
-        selectionValues[ActionUtils::YES_OPTION]= Cres::get()->getString("yes");
-        selectionValues[ActionUtils::NO_OPTION]= Cres::get()->getString("no"));
+        selectionValues.insert( std::pair<int, std::string>(ActionUtils::YES_OPTION, Cres::get()->getString("yes")) );
+        selectionValues.insert( std::pair<int, std::string>(ActionUtils::NO_OPTION, Cres::get()->getString("no")) );
 	} else if(ActionUtils::OK_CANCEL_OPTION == optionType) {
-		selectionValues[ActionUtils::OK_OPTION]= Cres::get()->getString(u"ok");
-		selectionValues[ActionUtils::CANCEL_OPTION]= Cres::get()->getString(u"cancel");
+        selectionValues.insert( std::pair<int, std::string>(ActionUtils::OK_OPTION, Cres::get()->getString("ok")) );
+        selectionValues.insert( std::pair<int, std::string>(ActionUtils::CANCEL_OPTION, Cres::get()->getString("cancel")) );
 	} else if(ActionUtils::YES_NO_CANCEL_OPTION == optionType) {
-		selectionValues)[ActionUtils::YES_OPTION]= Cres::get()->getString(u"yes");
-		selectionValues)[ActionUtils::NO_OPTION]= Cres::get()->getString(u"no");
-		selectionValues)[ActionUtils::CANCEL_OPTION]= Cres::get()->getString(u"cancel");
-	} else
-	{
+        selectionValues.insert( std::pair<int, std::string>(ActionUtils::YES_OPTION, Cres::get()->getString("yes")) );
+        selectionValues.insert(std::pair<int, std::string>(ActionUtils::NO_OPTION, Cres::get()->getString("no")) );
+        selectionValues.insert(std::pair<int, std::string>(ActionUtils::CANCEL_OPTION,Cres::get()->getString("cancel");
+    } else {
       std::cout<<"Unsupported option type: ";
     }
     responseFormat->getField(RF_OPTION_)->setSelectionValues(selectionValues);
@@ -89,22 +74,28 @@ GenericActionResponse Confirm::createDefaultResponse()
 
 int Confirm::parseConfirm(GenericActionResponse* resp)
 {
-    
-    auto t = resp != 0 ? resp)->getParameters() : static_cast< ::DataTable* >(0);
-    if(t == 0 || t)->getRecordCount() == 0) {
+    DataTable* dt = NULL;
+    if (resp) {
+        dt = resp->getParameters();
+    }
+
+    if (dt == NULL || (dt->getRecordCount() == 0) ) {
         return ActionUtils::CANCEL_OPTION;
     }
-    if(!t)->getFormat())->hasField(RF_OPTION_)) {
-        throw new ::java::lang::IllegalArgumentException(u"Malformed response"_j);
+
+    if (!dt->getFormat()->hasField(RF_OPTION)) {
+        throw  AggreGateException("Malformed response", "Confirm::parseConfirm");
     }
-    int option = (t)->rec())->getInt(RF_OPTION_)))->intValue();
+
+    int option = dt->rec()->getInt(RF_OPTION);
     switch (option) {
-    case ActionUtils::YES_OPTION:
-    case ActionUtils::NO_OPTION:
-	case ActionUtils::CANCEL_OPTION:
-        break;
-    default:
-        std::cout <<"Illegal response option: "_j)->append(option)->toString());
+        case ActionUtils::YES_OPTION:
+        case ActionUtils::NO_OPTION:
+        case ActionUtils::CANCEL_OPTION:
+            break;
+
+        default:
+            throw  AggreGateException("Illegal response option: ", "Confirm::parseConfirm");
     }
 
     return option;

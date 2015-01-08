@@ -1,19 +1,10 @@
 #ifndef _CONFIRM_H_
 #define _CONFIRM_H_
 
-/*
-#include <com/tibbo/aggregate/common/Cres.h"
-
-
-#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-*/
 #include "action/ActionUtils.h"
 #include "action/GenericActionResponse.h"
 #include "action/GenericActionCommand.h"
-
+#include <boost/shared_ptr.hpp>
 
 
 class Confirm : public GenericActionCommand
@@ -23,8 +14,8 @@ class Confirm : public GenericActionCommand
 	int optionType;
 	int messageType;
 
- protected:
-       //DataTable* constructParameters();// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+protected:
+    DataTable* constructParameters();// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
     GenericActionResponse createDefaultResponse();
@@ -40,8 +31,8 @@ public:
 	static std::string CF_OPTION_TYPE;
 	static std::string CF_MESSAGE_TYPE;
 	static std::string RF_OPTION;
-//	static TableFormat* CFT_CONFIRM; // todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
-//	static TableFormat* RFT_CONFIRM;
+    static boost::shared_ptr<TableFormat> CFT_CONFIRM; // todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+    static boost::shared_ptr<TableFormat> RFT_CONFIRM;
         
 	Init(const std::string &title, std::string  &message, int optionType, int messageType);
     Confirm();

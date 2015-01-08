@@ -9,7 +9,7 @@ GenericActionResponse::GenericActionResponse(DataTable* parameters)
 }
 
 
-void GenericActionResponse::GenericActionResponse(datatable::DataTable* parameters, bool remember, RequestIdentifier* requestId)
+void GenericActionResponse::GenericActionResponse(DataTable* parameters, bool remember, RequestIdentifier* requestId)
 {
   this->parameters = parameters;
   this->remember = remember;

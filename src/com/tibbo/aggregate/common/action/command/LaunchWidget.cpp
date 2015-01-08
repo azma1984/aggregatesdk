@@ -75,9 +75,9 @@ std::string LaunchWidget::CF_INPUT()
 {    
     return CF_INPUT_;
 }
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::CF_INPUT_;
+std::string LaunchWidget::CF_INPUT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET()
+TableFormat* com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET()
 {
     
     return CFT_LAUNCH_WIDGET_;
