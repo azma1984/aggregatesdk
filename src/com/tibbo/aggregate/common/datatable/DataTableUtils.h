@@ -1,25 +1,38 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTableUtils.java
 
-#pragma once
+#ifndef DataTableUtilsH
+#define DataTableUtilsH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/nio/charset/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+/*
+#include <com/tibbo/aggregate/common/Cres.h"
+#include <com/tibbo/aggregate/common/binding/DefaultBindingProcessor.h"
+#include <com/tibbo/aggregate/common/data/Data.h"
+#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
+#include <com/tibbo/aggregate/common/datatable/DataTable.h"
+#include <com/tibbo/aggregate/common/datatable/DataTableBindingProvider.h"
+#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
+#include <com/tibbo/aggregate/common/datatable/DataTableReplication.h"
+#include <com/tibbo/aggregate/common/datatable/DataTableUtils_createEvaluator_1.h"
+#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+#include <com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.h"
+#include <com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.h"
+#include <com/tibbo/aggregate/common/datatable/field/DataFieldFormat.h"
+#include <com/tibbo/aggregate/common/datatable/field/DateFieldFormat.h"
+#include <com/tibbo/aggregate/common/datatable/field/LongFieldFormat.h"
+#include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
+#include <com/tibbo/aggregate/common/expression/DefaultReferenceResolver.h"
+#include <com/tibbo/aggregate/common/expression/Evaluator.h"
+#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
+#include <com/tibbo/aggregate/common/util/StringUtils.h"
+#include <com/tibbo/aggregate/common/util/Util.h"
 
+*/
 
-
-class com::tibbo::aggregate::common::datatable::DataTableUtils
+class DataTableUtils
     
 {
-
-public:
-    typedef void super;
+/*
 
 private:
     static const std::string NAMING_ENVIRONMENT_SHORT_DATA_;
@@ -41,7 +54,7 @@ private:
 public:
     static const std::string transferDecode(std::string* value);
     static const std::string transferEncode(std::string* value);
-    static void inlineData(DataTable* table, ::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* cc) /* throws(ContextException) */;
+    static void inlineData(DataTable* table, ::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* cc);
     static std::map getEditorSelectionValues();
     static DataTable* wrapToTable(std::list  values);
     static DataTable* wrapToTable(std::map values);
@@ -74,4 +87,8 @@ private:
     ::java::lang::Class* getClass0();
     friend class DataTableUtils_FilterMode;
     friend class DataTableUtils_createEvaluator_1;
+    */
 };
+
+#endif
+

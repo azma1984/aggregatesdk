@@ -1,21 +1,26 @@
 #ifndef _EVENT_H_
 #define _EVENT_H_
 
-import java.util.*;
-
-import com.tibbo.aggregate.common.context.*;
-import com.tibbo.aggregate.common.datatable.*;
-import com.tibbo.aggregate.common.event.*;
-import com.tibbo.aggregate.common.security.*;
-import com.tibbo.aggregate.common.util.*;
-
-#include <util/Date>
+/*
+#include <com/tibbo/aggregate/common/context/EventDefinition.h"
+#include <com/tibbo/aggregate/common/datatable/DataTable.h"
+#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
+#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
+#include <com/tibbo/aggregate/common/event/Acknowledgement.h"
+#include <com/tibbo/aggregate/common/event/Enrichment.h"
+#include <com/tibbo/aggregate/common/security/Permissions.h"
+#include <com/tibbo/aggregate/common/util/CloneUtils.h"
+*/
+//#include "util/Date"
 #include <string>
 #include <list>
 
-public class Event implements Cloneable
+class Event// : public Cloneable
 {
-  public final static long DEFAULT_EVENT_EXPIRATION_PERIOD = 100 * TimeHelper.DAY_IN_MS; // Milliseconds
+  /*
+public:
+  
+  final static long DEFAULT_EVENT_EXPIRATION_PERIOD = 100 * TimeHelper.DAY_IN_MS; // Milliseconds
   
 private:  
 	void init(String context, String name, int level, DataTable data, Long id);
@@ -34,7 +39,7 @@ private:
 	int count = 1;
 	std::list<Enrichment> enrichments;  
 	//TODO:
-	void*/*Object*/ originator;
+	void* originator;
 	std::string deduplicationId;
   
 public:
@@ -283,5 +288,6 @@ public:
   {
     return "Event '" + name + "' in context '" + context + "': " + (data != null ? data.dataAsString() : "no data") + (listener != null ? ", for listener '" + listener + "'" : "");
   }
+  */
 };
 #endif //_EVENT_H_

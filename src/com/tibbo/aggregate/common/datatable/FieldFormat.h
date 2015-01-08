@@ -1,8 +1,9 @@
-#pragma once
-#include <string>
+#ifndef FieldFormatH
+#define FieldFormatH
 
 template <typename T> class FieldFormat
 {
+/*
 public:
     static const char INTEGER_FIELD = 'I';
     static const char STRING_FIELD = 'S';
@@ -74,11 +75,11 @@ protected:
 
 public:
     //static FieldFormat create(const std::string &name, char type);
-
+*/
 
 };
 
-
+/*
 template<typename T> double FieldFormat<T>::ELEMENT_FLAGS = "F";
 template<typename T> double FieldFormat<T>::ELEMENT_DEFAULT_VALUE = "A";
 template<typename T> double FieldFormat<T>::ELEMENT_DESCRIPTION = "D";
@@ -89,3 +90,6 @@ template<typename T> double FieldFormat<T>::ELEMENT_EDITOR = "E";
 template<typename T> double FieldFormat<T>::ELEMENT_EDITOR_OPTIONS = "O";
 template<typename T> double FieldFormat<T>::ELEMENT_ICON = "I";
 template<typename T> double FieldFormat<T>::ELEMENT_GROUP = "G";
+*/
+
+#endif

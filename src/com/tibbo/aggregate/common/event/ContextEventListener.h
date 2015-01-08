@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/ContextEventListener.java
 
-#pragma once
+#ifndef ContextEventListenerH
+#define ContextEventListenerH
 
 class ContextEventListener
 {
@@ -11,3 +12,4 @@ class ContextEventListener
 //  Expression* getFilter();
 
 };
+#endif

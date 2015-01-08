@@ -1,28 +1,15 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/EventDefinition.java
-
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/security/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/context/AbstractEntityDefinition.h"
-//#include <java/lang/Cloneable.h"
-//#include <java/lang/Comparable.h"
+#ifndef EventDefinitionH
+#define EventDefinitionH
 
 
+#include "AbstractEntityDefinition.h"
 
-class com::tibbo::aggregate::common::context::EventDefinition
-    : public AbstractEntityDefinition
-    , public ::java::lang::Cloneable
-    , public ::java::lang::Comparable
+
+class EventDefinition : public AbstractEntityDefinition
 {
 
-public:
-    typedef AbstractEntityDefinition super;
-
+/*
 private:
     ::com::tibbo::aggregate::common::datatable::TableFormat* format;
     bool hidden;
@@ -81,6 +68,7 @@ private:
 public:
     int compareTo(void* arg0);
 
-private:
-    ::java::lang::Class* getClass0();
+*/
 };
+
+#endif

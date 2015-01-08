@@ -1,6 +1,7 @@
 #include <data/Data.h>
 
 #include <datatable/DataTable.h>
+/*
 #include <util/String.h>
 
 Data::Data()
@@ -124,16 +125,16 @@ void Data::setAttachments(Map<String, Object> attachments)
 virtual Data* Data::clone() const
 {
 	Data* cl = new Data();
-    /*
-    try
-    {
-      cl = (Data) super.clone();
-    }
-    catch (CloneNotSupportedException ex)
-    {
-      throw new IllegalStateException(ex.getMessage(), ex);
-    }
-	*/
+ 
+  //  try
+  //  {
+  //    cl = (Data) super.clone();
+  //  }
+  //  catch (CloneNotSupportedException ex)
+  //  {
+  //    throw new IllegalStateException(ex.getMessage(), ex);
+  //  }
+	
     
     cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
     cl->data = data;//(byte[]) CloneUtils.deepClone(data);
@@ -165,3 +166,4 @@ bool Data::operator ==(const Data& data) const
 {
 	return (this->id==data.id) && (this->name == data.name) && (this->preview == data.preview) && (this->data, data.data);
 }
+*/

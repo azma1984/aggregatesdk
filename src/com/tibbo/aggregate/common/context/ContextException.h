@@ -1,17 +1,15 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/ContextException.java
 
-#pragma once
+#ifndef ContextExceptionH
+#define ContextExceptionH
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/AggreGateException.h"
-
+#include "AggreGateException.h"
 
 
-class com::tibbo::aggregate::common::context::ContextException
-    : public ::com::tibbo::aggregate::common::AggreGateException
+
+class ContextException  : public AggreGateException
 {
-
+/*
 public:
     typedef ::com::tibbo::aggregate::common::AggreGateException super;
 protected:
@@ -31,9 +29,6 @@ protected:
     ContextException(const ::default_init_tag&);
 
 
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
+*/
 };
+#endif

@@ -1,31 +1,29 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/agent/AgentContext.java
 #include "AgentContext.h"
 
-
-
+   std::string AgentContext::V_DATE= "date";
+ 
+   std::string AgentContext::F_LOGIN= "login";
+   std::string AgentContext::F_REGISTER= "register";
+   std::string AgentContext::F_SYNCHRONIZED= "synchronized";
+   std::string AgentContext::F_CONFIRM_EVENT= "confirmEvent";
+   std::string AgentContext::F_GET_HISTORY= "getHistory";
+   std::string AgentContext::E_EVENT_CONFIRMED= "eventConfirmed";
+   std::string AgentContext::FIF_LOGIN_CHALLENGE= "challenge";
+   std::string AgentContext::FIF_CONFIRM_EVENT_ID= "id";
+   std::string AgentContext::FOF_LOGIN_OWNER= "owner";
+   std::string AgentContext::FOF_LOGIN_NAME= "name";
+   std::string AgentContext::FOF_LOGIN_RESPONSE= "response";
+   std::string AgentContext::FOF_REGISTER_PASSWORD= "password";
+   std::string AgentContext::FOF_GET_HISTORY_VARIABLE= "variable";
+   std::string AgentContext::FOF_GET_HISTORY_TIMESTAMP= "timestamp";
+   std::string AgentContext::FOF_GET_HISTORY_VALUE= "value";
+   std::string AgentContext::EF_EVENT_CONFIRMED_ID= "id";
 
 
 AgentContext::AgentContext(RemoteServer* server, const std::string &name, bool eventConfirmation) 
 {   
-  
-  V_DATE= "date";
-  F_LOGIN= "login";
-  F_REGISTER= "register";
-  F_SYNCHRONIZED= "synchronized";
-  F_CONFIRM_EVENT= "confirmEvent";
-  F_GET_HISTORY= "getHistory";
-  E_EVENT_CONFIRMED= "eventConfirmed";
-  FIF_LOGIN_CHALLENGE= "challenge";
-  FIF_CONFIRM_EVENT_ID= "id";
-  FOF_LOGIN_OWNER= "owner";
-  FOF_LOGIN_NAME= "name";
-  FOF_LOGIN_RESPONSE= "response";
-  FOF_REGISTER_PASSWORD= "password";
-  FOF_GET_HISTORY_VARIABLE= "variable";
-  FOF_GET_HISTORY_TIMESTAMP= "timestamp";
-  FOF_GET_HISTORY_VALUE= "value";
-  EF_EVENT_CONFIRMED_ID= "id";
-    
+
   
   /*
    FIFT_LOGIN= new TableFormat(1, 1, "<" + FIF_LOGIN_CHALLENGE + "><S>")
@@ -49,9 +47,6 @@ AgentContext::AgentContext(RemoteServer* server, const std::string &name, bool e
    EFT_EVENT_CONFIRMED= new TableFormat(1, 1, "<" + EF_EVENT_CONFIRMED_ID + "><L>");  
   
   */
-  
-  
-  
   
   
   loginImpl = new FunctionImplementation1();

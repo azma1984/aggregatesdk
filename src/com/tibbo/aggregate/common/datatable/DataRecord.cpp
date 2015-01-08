@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataRecord.java
 #include "DataRecord.h"
 
-
+/*
 
 DataRecord::DataRecord() 
 {
@@ -64,11 +64,11 @@ void DataRecord::ctor(TableFormat* tableFormat, voidArray* data)
 {
     ctor(tableFormat);
 	//TODO:
-	/*
-    for (auto param : *data)) {
-        addValue(param);
-    }
-	*/
+
+//     for (auto param : *data)) {
+//         addValue(param);
+//     }
+	
 }
 
 void DataRecord::ctor(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>& fieldNamesInData)
@@ -85,37 +85,37 @@ void DataRecord::ctor(TableFormat* tableFormat, const std::string& dataString)
 void DataRecord::setData(const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData)
 {
 	//TODO:
-	/*
-    auto recs = StringUtils::elements(dataString, settings)->isUseVisibleSeparators();
-    auto i = int(0);
-    for (auto _i = recs)->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::util::Element* el = java_cast< ::com::tibbo::aggregate::common::util::Element* >(_i->next());
-        {
-            if(el)->getName() != 0) {
-                if(el)->getName())->equals(ELEMENT_ID_))) {
-                    setId(el)->getValue());
-                } else {
-                    auto ff = format)->getField(el)->getName());
-                    if(ff != 0) {
-                        setValue(el)->getName(), java_cast< void* >(ff)->valueFromEncodedString(el)->getValue(), settings, validate)), validate);
-                    }
-                }
-            } else {
-                if(fieldNamesInData != 0 && fieldNamesInData)->size() > i) {
-                    auto fieldName = java_cast< std::string* >(fieldNamesInData)->get(i));
-                    if(getFormat())->hasField(fieldName)) {
-                        auto value = java_cast< void* >(format)->getField(fieldName))->valueFromEncodedString(el)->getValue(), settings, validate));
-                        setValue(fieldName, value, validate);
-                    }
-                } else if(i < format)->getFieldCount()) {
-                    auto value = java_cast< void* >(format)->getField(i))->valueFromEncodedString(el)->getValue(), settings, validate));
-                    setValue(i, value, validate);
-                }
-                i++;
-            }
-        }
-    }
-	*/
+
+//     auto recs = StringUtils::elements(dataString, settings)->isUseVisibleSeparators();
+//     auto i = int(0);
+//     for (auto _i = recs)->iterator(); _i->hasNext(); ) {
+//         ::com::tibbo::aggregate::common::util::Element* el = java_cast< ::com::tibbo::aggregate::common::util::Element* >(_i->next());
+//         {
+//             if(el)->getName() != 0) {
+//                 if(el)->getName())->equals(ELEMENT_ID_))) {
+//                     setId(el)->getValue());
+//                 } else {
+//                     auto ff = format)->getField(el)->getName());
+//                     if(ff != 0) {
+//                         setValue(el)->getName(), java_cast< void* >(ff)->valueFromEncodedString(el)->getValue(), settings, validate)), validate);
+//                     }
+//                 }
+//             } else {
+//                 if(fieldNamesInData != 0 && fieldNamesInData)->size() > i) {
+//                     auto fieldName = java_cast< std::string* >(fieldNamesInData)->get(i));
+//                     if(getFormat())->hasField(fieldName)) {
+//                         auto value = java_cast< void* >(format)->getField(fieldName))->valueFromEncodedString(el)->getValue(), settings, validate));
+//                         setValue(fieldName, value, validate);
+//                     }
+//                 } else if(i < format)->getFieldCount()) {
+//                     auto value = java_cast< void* >(format)->getField(i))->valueFromEncodedString(el)->getValue(), settings, validate));
+//                     setValue(i, value, validate);
+//                 }
+//                 i++;
+//             }
+//         }
+//     }
+	
 }
 
 int DataRecord::getFieldCount()
@@ -160,19 +160,19 @@ std::string DataRecord::encode(bool useVisibleSeparators)
 std::string DataRecord::encode(ClassicEncodingSettings* settings)
 {
 	//TODO:
-	/*
-    auto encodedData = new std::stringBuffer();
-    auto useVisibleSeparators = settings != 0 ? settings)->isUseVisibleSeparators() : false;
-    if(getId() != 0) {
-        encodedData)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_ID_, std::string::valueOf(getId()))))->encode(useVisibleSeparators));
-    }
-    for (auto i = int(0); i < format)->getFieldCount(); i++) {
-        auto ff = format)->getField(i);
-        auto value = getValue(ff);
-        encodedData)->append((new ::com::tibbo::aggregate::common::util::Element(0, ff)->valueToEncodedString(value, settings)))->encode(useVisibleSeparators));
-    }
-    return encodedData)->toString();
-	*/
+	
+//     auto encodedData = new std::stringBuffer();
+//     auto useVisibleSeparators = settings != 0 ? settings)->isUseVisibleSeparators() : false;
+//     if(getId() != 0) {
+//         encodedData)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_ID_, std::string::valueOf(getId()))))->encode(useVisibleSeparators));
+//     }
+//     for (auto i = int(0); i < format)->getFieldCount(); i++) {
+//         auto ff = format)->getField(i);
+//         auto value = getValue(ff);
+//         encodedData)->append((new ::com::tibbo::aggregate::common::util::Element(0, ff)->valueToEncodedString(value, settings)))->encode(useVisibleSeparators));
+//     }
+//     return encodedData)->toString();
+	
 	
 	return std::string;
 }
@@ -255,8 +255,8 @@ DataRecord* DataRecord::setValue(int index, void* value)
 DataRecord* DataRecord::setValue(int index, void* value, bool validate)
 {
 	//TODO:
-	/*
-    auto ff = getFormat())->getField(index);
+	
+//     auto ff = getFormat())->getField(index);
     try {
         value = java_cast< void* >(ff)->checkAndConvertValue(value, validate));
     } catch (ValidationException* ex) {
@@ -272,7 +272,7 @@ DataRecord* DataRecord::setValue(int index, void* value, bool validate)
         data)->put(ff)->getName(), oldValue);
         throw new ::java::lang::IllegalArgumentException(ex1)->getMessage(), ex1);
     }
-	*/
+	
     return this;
 }
 
@@ -295,34 +295,34 @@ DataRecord* DataRecord::setValueSmart(int index, void* value)
 DataRecord* DataRecord::setValueSmart(const std::string& name, void* value)
 {
 	//TODO:
-	/*
-    FieldFormat* ff = getFormat()->getField(name);
-    if(ff == 0) {
-        throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"dtFieldNotFound"_j), new voidArray({name)})))->append(u": "_j)
-            ->append(dataAsString(true, true))->toString());
-    }
-    if(value == 0 || ff)->getFieldClass())->equals(value)->getClass()) || ff)->getFieldWrappedClass())->equals(value)->getClass())) {
-        return setValue(ff)->getName(), value);
-    } else {
-        auto stringValue = value)->toString();
-        try {
-            return setValue(ff)->getName(), java_cast< void* >(ff)->valueFromString(stringValue)));
-        } catch (::java::lang::Exception* ex) {
-            if(ff)->getSelectionValues() != 0) {
-                for (auto _i = ff)->getSelectionValues())->keySet())->iterator(); _i->hasNext(); ) {
-                    void* sv = java_cast< void* >(_i->next());
-                    {
-                        auto svdesc = java_cast< void* >(ff)->getSelectionValues())->get(sv)))->toString();
-                        if(stringValue)->equals(svdesc))) {
-                            return setValue(ff->getName(), sv);
-                        }
-                    }
-                }
-            }
-            throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"dtIllegalFieldValue"_j), new voidArray({::com::tibbo::aggregate::common::util::Util::getObjectDescription(value)), ff)->toDetailedString())})))->append(ex)->getMessage())->toString(), ex);
-        }
-    }
-	*/
+	
+//     FieldFormat* ff = getFormat()->getField(name);
+//     if(ff == 0) {
+//         throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"dtFieldNotFound"_j), new voidArray({name)})))->append(u": "_j)
+//             ->append(dataAsString(true, true))->toString());
+//     }
+//     if(value == 0 || ff)->getFieldClass())->equals(value)->getClass()) || ff)->getFieldWrappedClass())->equals(value)->getClass())) {
+//         return setValue(ff)->getName(), value);
+//     } else {
+//         auto stringValue = value)->toString();
+//         try {
+//             return setValue(ff)->getName(), java_cast< void* >(ff)->valueFromString(stringValue)));
+//         } catch (::java::lang::Exception* ex) {
+//             if(ff)->getSelectionValues() != 0) {
+//                 for (auto _i = ff)->getSelectionValues())->keySet())->iterator(); _i->hasNext(); ) {
+//                     void* sv = java_cast< void* >(_i->next());
+//                     {
+//                         auto svdesc = java_cast< void* >(ff)->getSelectionValues())->get(sv)))->toString();
+//                         if(stringValue)->equals(svdesc))) {
+//                             return setValue(ff->getName(), sv);
+//                         }
+//                     }
+//                 }
+//             }
+//             throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"dtIllegalFieldValue"_j), new voidArray({::com::tibbo::aggregate::common::util::Util::getObjectDescription(value)), ff)->toDetailedString())})))->append(ex)->getMessage())->toString(), ex);
+//         }
+//     }
+	
 }
 
 DataRecord* DataRecord::addValue(void* value)
@@ -336,20 +336,20 @@ int DataRecord::findIndex(const std::string& name)
 	//TODO:
 	
     int index = format->getFieldIndex(name);
-	/*
-    if (index == -1) {
-        std::list<std::string>  fields;
+	
+//     if (index == -1) {
+//         std::list<std::string>  fields;
+// 
+//         for (auto _i = getFormat())->iterator(); _i->hasNext(); ) {
+//             FieldFormat* ff = java_cast< FieldFormat* >(_i->next());
+//             {
+//                 fields)->add(ff)->getName()));
+//             }
+//         }
+//         throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"dtFieldNotFound"_j), new voidArray({name)})))->append(u": "_j)
+//             ->append(::com::tibbo::aggregate::common::util::StringUtils::print(static_cast< ::java::util::Collection* >(fields)))->toString());
+//     }
 
-        for (auto _i = getFormat())->iterator(); _i->hasNext(); ) {
-            FieldFormat* ff = java_cast< FieldFormat* >(_i->next());
-            {
-                fields)->add(ff)->getName()));
-            }
-        }
-        throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"dtFieldNotFound"_j), new voidArray({name)})))->append(u": "_j)
-            ->append(::com::tibbo::aggregate::common::util::StringUtils::print(static_cast< ::java::util::Collection* >(fields)))->toString());
-    }
-	*/
     return index;
 }
 
@@ -479,13 +479,13 @@ void* DataRecord::getValue(FieldFormat* ff)
 void* DataRecord::getValueDescription(const std::string& name)
 {
 	//TODO: Object
-	/*
-    auto value = getValue(name);
-    auto const ff = getFormat(name);
-    auto sv = ff)->getSelectionValues();
-    auto description = sv != 0 ? java_cast< std::string* >(sv)->get(value)) : static_cast< std::string* >(0);
-    return description != 0 ? description) : ff)->valueToString(value));
-	*/
+
+//     auto value = getValue(name);
+//     auto const ff = getFormat(name);
+//     auto sv = ff)->getSelectionValues();
+//     auto description = sv != 0 ? java_cast< std::string* >(sv)->get(value)) : static_cast< std::string* >(0);
+//     return description != 0 ? description) : ff)->valueToString(value));
+	
 }
 
 DataRecord::getValueAsString(const std::string& name)
@@ -519,14 +519,14 @@ void setFormat(TableFormat* format)
 //bool DataRecord::equals(void* obj)
 bool DataRecord::operator==(const DataRecord& dataRecord) const	;
 {
-	/*
-    if(obj == 0) {
-        return false;
-    }
-    if(!(dynamic_cast< DataRecord* >(obj) != 0)) {
-        return false;
-    }
-	*/
+	
+//     if(obj == 0) {
+//         return false;
+//     }
+//     if(!(dynamic_cast< DataRecord* >(obj) != 0)) {
+//         return false;
+//     }
+	
     if (this->id != dataRecord.getId()) {
         return false;
     }
@@ -594,10 +594,11 @@ void DataRecord::cloneFormatFromTable()
     if (table != 0) {
 		//TODO: возможна утечка памяти, необходим delete format
         format = table->getFormat()->clone();
-    }/* else {
+    }
+    // else {
 		//TODO: возможна утечка памяти, необходим delete format
-        format = format->clone();
-    }*/
+  //      format = format->clone();
+ //   }
 }
 
 std::string DataRecord::dataAsString(bool showFieldNames, bool showHiddenFields)
@@ -661,4 +662,4 @@ DataRecord* DataRecord::clone()
     cl)->data = java_cast< std::map >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(data));
     return cl;
 }
-
+*/

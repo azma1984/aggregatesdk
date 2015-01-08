@@ -1,10 +1,12 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateCommand.java
 
-#pragma once
 
+#ifndef AggreGateCommandH
+#define AggreGateCommandH
 
 #include "Command.h"
 
+//#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
 
 
 class AggreGateCommand: public Command
@@ -81,5 +83,7 @@ public:
     static const std::string& REPLY_CODE_DENIED();
     static const std::string& REPLY_CODE_ERROR();
     static const std::string& CLIENT_COMMAND_SEPARATOR();
-*/
+
+*/
 };
+#endif

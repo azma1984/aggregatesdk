@@ -1,8 +1,27 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/DefaultContextManager.java
 
-#pragma once
+#ifndef DefaultContextManagerH
+#define DefaultContextManagerH
 
-#include <ContextManager.h>
+#include "ContextManager.h"
+/*
+#include <com/tibbo/aggregate/common/context/CallerController.h"
+#include <com/tibbo/aggregate/common/context/Context.h"
+#include <com/tibbo/aggregate/common/context/ContextException.h"
+#include <com/tibbo/aggregate/common/context/ContextUtils.h"
+#include <com/tibbo/aggregate/common/context/DefaultContextManager_contextRemoved_2.h"
+#include <com/tibbo/aggregate/common/context/DefaultContextManager_contextRemoved_1.h"
+#include <com/tibbo/aggregate/common/context/DefaultContextManager_EventDispatcher.h"
+#include <com/tibbo/aggregate/common/context/DefaultContextManager_QueuedEvent.h"
+#include <com/tibbo/aggregate/common/context/EventData.h"
+#include <com/tibbo/aggregate/common/context/EventDefinition.h"
+#include <com/tibbo/aggregate/common/context/UncheckedCallerController.h"
+#include <com/tibbo/aggregate/common/data/Event.h"
+#include <com/tibbo/aggregate/common/event/ContextEventListener.h"
+#include <com/tibbo/aggregate/common/event/ContextEventListenerInfo.h"
+#include <com/tibbo/aggregate/common/event/ContextEventListenerSet.h"
+#include <com/tibbo/aggregate/common/event/EventUtils.h"
+*/
 
 
 template <class T> class DefaultContextManager: public ContextManager<T>
@@ -106,3 +125,4 @@ private:
     friend class DefaultContextManager_EventDispatcher_queue_1;
 	friend class DefaultContextManager_QueuedEvent; */
 };
+#endif

@@ -1,8 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/Command.java
 
-#pragma once
-
-
+#ifndef CommandH
+#define CommandH
 
 class Command
 {
@@ -39,3 +38,4 @@ protected:
 
 	*/
 };
+#endif

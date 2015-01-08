@@ -7,6 +7,7 @@
 
 template <class T> class ContextManager
 {
+public:
 	//Запуск события диспетчера потока
 	void start();
 	/**

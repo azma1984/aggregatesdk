@@ -3,8 +3,9 @@
 
 #include "../datatable/DataTableUtils.h"
 
-public class Element
+class Element
 {
+  /*
 public:  
 	Element::Element(std::string name, std::string value);
 
@@ -14,7 +15,7 @@ public:
   
 private:
 	std::string name;
-	std::string value;
+	std::string value;*/
 };
 
 #endif

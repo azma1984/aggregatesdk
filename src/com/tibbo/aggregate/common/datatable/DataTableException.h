@@ -1,17 +1,14 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTableException.java
 
-#pragma once
-
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/context/ContextException.h"
+#ifndef DataTableExceptionH
+#define DataTableExceptionH
+#include "ContextException.h"
 
 
 
-class com::tibbo::aggregate::common::datatable::DataTableException
-    : public ::com::tibbo::aggregate::common::context::ContextException
+class DataTableException : public ContextException
 {
-
+/*
 public:
     typedef ::com::tibbo::aggregate::common::context::ContextException super;
 protected:
@@ -29,9 +26,6 @@ protected:
     DataTableException(const ::default_init_tag&);
 
 
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
+*/
 };
+#endif

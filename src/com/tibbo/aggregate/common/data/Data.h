@@ -1,7 +1,7 @@
 #ifndef _DATA_H_
 #define _DATA_H_
 
-#include <util/Clonable.h>
+#include <util/Cloneable.h>
 #include <context/ContextManager.h>
 #include <context/CallerController.h>
 
@@ -9,8 +9,9 @@
 #include <vector>
 #include <map>
 
-public class Data : Cloneable, PublicCloneable
+class Data : public Cloneable//,PublicCloneable
 {
+  /*
 public:
 	Data();  
 	Data(std::vector<char>& data); 
@@ -45,7 +46,7 @@ private:
 	std::vector<char> preview;
 	std::vector<char> data;
 	//TODO: Object
-	std::map<std::string, void*> attachments;
+	std::map<std::string, void*> attachments;*/
 };
 
 #endif

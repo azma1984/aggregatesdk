@@ -20,14 +20,10 @@
 
 
 
-
-
-
-
 class FunctionImplementation1 :public FunctionImplementation
 {
  
-  DataTable* execute(Context<FunctionImplementation1>* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
   {
   /*
     std::string challenge = parameters.rec().getString(FIF_LOGIN_CHALLENGE);
@@ -43,7 +39,7 @@ class FunctionImplementation1 :public FunctionImplementation
 class FunctionImplementation2 :public FunctionImplementation
 {
   
-  DataTable* execute(Context<FunctionImplementation2>* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
   {
    //return new DataRecord(FOFT_REGISTER).addString(server.getPassword()).wrap(); 
   } 
@@ -54,7 +50,7 @@ class FunctionImplementation2 :public FunctionImplementation
 class FunctionImplementation3 :public FunctionImplementation
 {
  
-  DataTable* execute(Context<FunctionImplementation3>* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
   {
    //setSynchronized(true);
    return 0;
@@ -65,7 +61,7 @@ class FunctionImplementation3 :public FunctionImplementation
 
 class FunctionImplementation4 :public FunctionImplementation
 {
-  DataTable* execute(Context<FunctionImplementation4>* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
   {
   // confirmEvent(parameters.rec().getLong(FIF_CONFIRM_EVENT_ID));
    return 0;
@@ -75,7 +71,7 @@ class FunctionImplementation4 :public FunctionImplementation
 
 class FunctionImplementation5 :public FunctionImplementation
 {
-  DataTable* execute(Context<FunctionImplementation5>* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
   {
      /*
     DataTable res = new DataTable(def.getOutputFormat());
@@ -99,7 +95,7 @@ class FunctionImplementation5 :public FunctionImplementation
 
 
 
-class AgentContext: public AbstractContext<AgentContext>
+class AgentContext//: public AbstractContext<Context>
 {
 
 private:

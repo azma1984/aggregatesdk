@@ -14,13 +14,14 @@
 #include <util/ElementList.h>
 #include <util/StringUtils.h>
 #include <util/Util.h>
-#inc;ude <util/Clonable.h>
+#include <util/Cloneable.h>
 
 #include <string>
 #include <map>
 
-class DataRecord :Cloneable//, PublicCloneable
+class DataRecord //:Cloneable//, PublicCloneable
 {   
+  /*
 public:
 	// Generated
     DataRecord();
@@ -38,13 +39,13 @@ public:
     DataTable* wrap();
     virtual DataRecord* clone() const;    
 	//TODO:
-	DataRecord* setValue(const std::string& name, void*/*Object*/ value);
+	DataRecord* setValue(const std::string& name, void* value);
     DataRecord* setValue(const std::string&name, void* value, bool validate);
     DataRecord* setValueSmart(int index, void* value);
     DataRecord* setValueSmart(const std::string& name, void* value);
     DataRecord* addValue(void* value);
 	//TODO:
-	void*/*Object*/ getValueDescription(const std::string& name);
+	void* getValueDescription(const std::string& name);
     std::string getValueAsString(const std::string& name);
     std::string getValueAsString(int index);
     DataRecord* setId(const std::string& id);
@@ -91,14 +92,14 @@ public:
     Date getDate(int index);
     DataTable getDataTable(const std::string& name);
     DataTable getDataTable(int index);
-	//TODO: java::awt::Color –æ–ø—Ä–µ–¥–µ–ª–∏—Ç–±—å —Å–≤–æ–π Color
+	//TODO: java::awt::Color ÓÔÂ‰ÂÎËÚ·¸ Ò‚ÓÈ Color
     Color getColor(const std::string& name);
     Color getColor(int index);
     Data getData(const std::string& name);
     Data getData(int index);
 	//TODO:
-    void*/*Object*/ getValue(int index);
-    void*/*Object*/ getValue(const std::string& name);
+    void* getValue(int index);
+    void* getValue(const std::string& name);
 
 	//	bool equals(void* obj);
 	bool operator==(const DataRecord& dataRecord) const;
@@ -113,7 +114,7 @@ protected:
 private:
     static int INITIAL_DATA_SIZE;
     static std::string ELEMENT_ID_;
-    std::map<std::string, void*/*Object*/> data;
+    std::map<std::string, void*> data;
     TableFormat* format;
     std::string id;
     DataTable* table;
@@ -122,7 +123,7 @@ private:
     void checkNumberOfDataFieldsSet(void* value);
     DataRecord* setValue(int index, void* value, bool validate);   
     int findIndex(std::string* name);
-    void* getValue(FieldFormat* ff);
+    void* getValue(FieldFormat* ff);*/
 
 };
 

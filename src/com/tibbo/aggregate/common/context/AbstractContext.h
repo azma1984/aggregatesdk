@@ -7,7 +7,7 @@
 
 
 
-template <class C> class AbstractContext : public Context<C>
+template <class C> class AbstractContext : public Context//<C>
 {
  private:
 	std::string IMPLEMENTATION_METHOD_PREFIX;

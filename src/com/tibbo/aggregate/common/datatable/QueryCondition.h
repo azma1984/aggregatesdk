@@ -1,18 +1,14 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/QueryCondition.java
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#ifndef QueryConditionH
+#define QueryConditionH
 
 
 
-class com::tibbo::aggregate::common::datatable::QueryCondition
+class QueryCondition
     
 {
-
+/*
 public:
     typedef void super;
     static const int EQ = 1) };
@@ -41,11 +37,6 @@ public:
 protected:
     QueryCondition(const ::default_init_tag&);
 
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+*/
 };
+#endif

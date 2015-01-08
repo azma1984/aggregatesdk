@@ -2,25 +2,31 @@
 
 #ifndef AgentImplementationControllerH
 #define AgentImplementationControllerH
-/*
-#include <com/tibbo/aggregate/common/context/AbstractContext.h"
-#include <com/tibbo/aggregate/common/context/Context.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/IncomingAggreGateCommand.h"
-*/
+
+#include "AbstractContext.h"
+#include "Context.h"
+#include "AggreGateCommand.h"
+#include "IncomingAggreGateCommand.h"
+#include "OutgoingAggreGateCommand.h"
 #include "DefaultClientController.h"
+#include "Event.h"
+#include "ContextEventListener.h"
+#include "BlockingChannel.h"
+#include "ContextManager.h"
+
 
 class AgentImplementationController : public DefaultClientController
 {
   protected: 
- //  void processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
+   void processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
   
-   public:  
-  //AgentImplementationController(BlockingChannel* dataChannel, ContextManager* contextManager, ExecutorService* commandExecutionService, int maxEventQueueLength);
+  public:  
+ 
+   // AgentImplementationController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager, ExecutorService* commandExecutionService, int maxEventQueueLength);
 
 
    
- // bool controllerShouldHandle(Event* ev, ContextEventListener* listener);
+  bool controllerShouldHandle(Event* ev, ContextEventListener* listener);
 
 
   
