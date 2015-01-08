@@ -1,166 +1,79 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/TableFormat.java
-#include "TableFormat.h"
-#include "PublicCloneable.h"
-/*
-#include <com/tibbo/aggregate/common/binding/Binding.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/encoding/ClassicEncodingSettings.h"
-#include <com/tibbo/aggregate/common/datatable/validator/KeyFieldsValidator.h"
-#include <com/tibbo/aggregate/common/datatable/validator/RecordValidator.h"
-#include <com/tibbo/aggregate/common/datatable/validator/TableExpressionValidator.h"
-#include <com/tibbo/aggregate/common/datatable/validator/TableKeyFieldsValidator.h"
-#include <com/tibbo/aggregate/common/datatable/validator/TableValidator.h"
-#include <com/tibbo/aggregate/common/expression/Expression.h"
-#include <com/tibbo/aggregate/common/expression/Reference.h"
-#include <com/tibbo/aggregate/common/util/CloneUtils.h"
-#include <com/tibbo/aggregate/common/util/Element.h"
-#include <com/tibbo/aggregate/common/util/ElementList.h"
+#include "datatable/TableFormat.h"
 
-#include <com/tibbo/aggregate/common/util/StringUtils.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
-*/
-/*
-TableFormat::TableFormat(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
-{
-    
-}
+#include "util/ElementList.h"
+
+boost::shared_ptr<TableFormat> TableFormat::EMPTY_FORMAT = new TableFormat(0, 0);
+const int TableFormat::DEFAULT_MIN_RECORDS = 0;
+const int TableFormat::DEFAULT_MAX_RECORDS = 0x7fffffff;
+
+const std::string TableFormat::ELEMENT_FLAGS = "F";
+const std::string TableFormat::ELEMENT_TABLE_VALIDATORS = "V";
+const std::string TableFormat::ELEMENT_RECORD_VALIDATORS = "R";
+const std::string TableFormat::ELEMENT_BINDINGS = "B";
+const std::string TableFormat::ELEMENT_MIN_RECORDS = "M";
+const std::string TableFormat::ELEMENT_MAX_RECORDS = "X";
+const std::string TableFormat::ELEMENT_NAMING = "N";
+
+const char TableFormat::TABLE_VALIDATOR_KEY_FIELDS = 'K';
+const char TableFormat::TABLE_VALIDATOR_EXPRESSION = 'E';
+const char TableFormat::RECORD_VALIDATOR_KEY_FIELDS = 'K';
+
+const char TableFormat::REORDERABLE_FLAG = 'R';
+const char TableFormat::UNRESIZEBLE_FLAG = 'U';
+const char TableFormat::BINDINGS_EDITABLE_FLAG = 'B';
+
 
 TableFormat::TableFormat() 
-    : TableFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
 TableFormat::TableFormat(bool reorderable) 
-    : TableFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(reorderable);
 }
 
-TableFormat::TableFormat(int minRecords, int maxRecords) 
-    : TableFormat(*static_cast< ::default_init_tag* >(0))
+TableFormat::TableFormat(int minRecords, int maxRecords)
 {
     ctor(minRecords,maxRecords);
 }
 
 TableFormat::TableFormat(FieldFormat* ff) 
-    : TableFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(ff);
 }
 
-TableFormat::TableFormat(std::string* format, ::encoding::ClassicEncodingSettings* settings) 
-    : TableFormat(*static_cast< ::default_init_tag* >(0))
+TableFormat::TableFormat(const std::string& format, ClassicEncodingSettings* settings)
 {
-    ctor(format,settings);
+    ctor(format, settings);
 }
 
-TableFormat::TableFormat(std::string* format, ::encoding::ClassicEncodingSettings* settings, bool validate) 
-    : TableFormat(*static_cast< ::default_init_tag* >(0))
+TableFormat::TableFormat(const std::string& format, ClassicEncodingSettings* settings, bool validate)
 {
-    ctor(format,settings,validate);
+    ctor(format, settings, validate);
 }
 
-TableFormat::TableFormat(int minRecords, int maxRecords, std::string* fieldFormat) 
-    : TableFormat(*static_cast< ::default_init_tag* >(0))
+TableFormat::TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat)
 {
     ctor(minRecords,maxRecords,fieldFormat);
 }
 
-TableFormat::TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat) 
-    : TableFormat(*static_cast< ::default_init_tag* >(0))
+TableFormat::TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat)     
 {
     ctor(minRecords,maxRecords,fieldFormat);
 }
 
 void TableFormat::init()
-{
-    fields = new ::java::util::ArrayList(int(4));
-    fieldLookup = new ::java::util::HashMap(int(4));
+{    
     minRecords = TableFormat::DEFAULT_MIN_RECORDS;
     maxRecords = TableFormat::DEFAULT_MAX_RECORDS;
-    recordValidators = new ::java::util::LinkedList();
-    tableValidators = new ::java::util::LinkedList();
-    bindings = new ::java::util::LinkedList();
+    reorderable = false;
+    unresizable = false;
+    bindingsEditable = false;
 }
-
-TableFormat*& TableFormat::EMPTY_FORMAT()
-{
-    
-    return EMPTY_FORMAT_;
-}
-TableFormat* TableFormat::EMPTY_FORMAT_;
-
-const int TableFormat::DEFAULT_MIN_RECORDS;
-
-const int TableFormat::DEFAULT_MAX_RECORDS;
-
-std::string& TableFormat::ELEMENT_FLAGS()
-{
-    
-    return ELEMENT_FLAGS_;
-}
-std::string TableFormat::ELEMENT_FLAGS_;
-
-std::string& TableFormat::ELEMENT_TABLE_VALIDATORS()
-{
-    
-    return ELEMENT_TABLE_VALIDATORS_;
-}
-std::string TableFormat::ELEMENT_TABLE_VALIDATORS_;
-
-std::string& TableFormat::ELEMENT_RECORD_VALIDATORS()
-{
-    
-    return ELEMENT_RECORD_VALIDATORS_;
-}
-std::string TableFormat::ELEMENT_RECORD_VALIDATORS_;
-
-std::string& TableFormat::ELEMENT_BINDINGS()
-{
-    
-    return ELEMENT_BINDINGS_;
-}
-std::string TableFormat::ELEMENT_BINDINGS_;
-
-std::string& TableFormat::ELEMENT_MIN_RECORDS()
-{
-    
-    return ELEMENT_MIN_RECORDS_;
-}
-std::string TableFormat::ELEMENT_MIN_RECORDS_;
-
-std::string& TableFormat::ELEMENT_MAX_RECORDS()
-{
-    
-    return ELEMENT_MAX_RECORDS_;
-}
-std::string TableFormat::ELEMENT_MAX_RECORDS_;
-
-std::string& TableFormat::ELEMENT_NAMING()
-{
-    
-    return ELEMENT_NAMING_;
-}
-std::string TableFormat::ELEMENT_NAMING_;
-
-const char16_t TableFormat::TABLE_VALIDATOR_KEY_FIELDS;
-
-const char16_t TableFormat::TABLE_VALIDATOR_EXPRESSION;
-
-const char16_t TableFormat::RECORD_VALIDATOR_KEY_FIELDS;
-
-const char16_t TableFormat::REORDERABLE_FLAG;
-
-const char16_t TableFormat::UNRESIZEBLE_FLAG;
-
-const char16_t TableFormat::BINDINGS_EDITABLE_FLAG;
 
 void TableFormat::ctor()
 {
-    super::ctor();
     init();
 }
 
@@ -183,59 +96,43 @@ void TableFormat::ctor(FieldFormat* ff)
     addField(ff);
 }
 
-void TableFormat::ctor(std::string* format, ::encoding::ClassicEncodingSettings* settings)
+void TableFormat::ctor(const std::string& format, ClassicEncodingSettings* settings)
 {
     ctor(format, settings, true);
 }
 
-void TableFormat::ctor(std::string* format, ::encoding::ClassicEncodingSettings* settings, bool validate)
+void TableFormat::ctor(const std::string& format, ClassicEncodingSettings* settings, bool validate)
 {
     ctor();
-    if(format == 0) {
-        return;
-    }
-    auto els = ::com::tibbo::aggregate::common::util::StringUtils::elements(format, settings)->isUseVisibleSeparators());
-    for (auto _i = els)->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::util::Element* el = java_cast< ::com::tibbo::aggregate::common::util::Element* >(_i->next());
-        {
-            if(el)->getName() == 0) {
-                auto index = fields)->size();
-                auto ff = FieldFormat::create(el)->getValue(), settings, validate);
-                fields)->add(ff));
-                getFieldLookup())->put(ff)->getName(), index));
-                continue;
-            }
-            if(el)->getName())->equals(ELEMENT_FLAGS_))) {
-                auto flags = el)->getValue();
-                setReorderable(flags)->indexOf(static_cast< int >(REORDERABLE_FLAG)) != -int(1) ? true : false);
-                setUnresizable(flags)->indexOf(static_cast< int >(UNRESIZEBLE_FLAG)) != -int(1) ? true : false);
-                setBindingsEditable(flags)->indexOf(static_cast< int >(BINDINGS_EDITABLE_FLAG)) != -int(1) ? true : false);
-                continue;
-            }
-            if(el)->getName())->equals(ELEMENT_MIN_RECORDS_))) {
-                minRecords = ::java::lang::Integer::parseInt(el)->getValue());
-                continue;
-            }
-            if(el)->getName())->equals(ELEMENT_MAX_RECORDS_))) {
-                maxRecords = ::java::lang::Integer::parseInt(el)->getValue());
-                continue;
-            }
-            if(el)->getName())->equals(ELEMENT_TABLE_VALIDATORS_))) {
-                createTableValidators(el)->getValue(), settings);
-                continue;
-            }
-            if(el)->getName())->equals(ELEMENT_RECORD_VALIDATORS_))) {
-                createRecordValidators(el)->getValue(), settings);
-                continue;
-            }
-            if(el)->getName())->equals(ELEMENT_BINDINGS_))) {
-                createBindings(el)->getValue(), settings);
-                continue;
-            }
-            if(el)->getName())->equals(ELEMENT_NAMING_))) {
-                createNaming(el)->getValue(), settings);
-                continue;
-            }
+
+    //TODO: ElementList
+    ElementList els = StringUtils.elements(format, settings.isUseVisibleSeparators());
+
+    for (Element el : els)
+    {
+        if (el.getName() == null) {
+            int index = fields.size();
+            FieldFormat ff = FieldFormat.create(el.getValue(), settings, validate);
+            fields.add(ff);
+            getFieldLookup().put(ff.getName(), index);
+        }else if (el.getName().equals(ELEMENT_FLAGS)) {
+            String flags = el.getValue();
+            setReorderable(flags.indexOf(REORDERABLE_FLAG) != -1 ? true : false);
+            setUnresizable(flags.indexOf(UNRESIZEBLE_FLAG) != -1 ? true : false);
+            setBindingsEditable(flags.indexOf(BINDINGS_EDITABLE_FLAG) != -1 ? true : false);
+        }else if (el.getName().equals(ELEMENT_MIN_RECORDS)) {
+            minRecords = Integer.parseInt(el.getValue());
+            continue;
+        }else if (el.getName().equals(ELEMENT_MAX_RECORDS)) {
+            maxRecords = Integer.parseInt(el.getValue());
+        }else if (el.getName().equals(ELEMENT_TABLE_VALIDATORS)) {
+            createTableValidators(el.getValue(), settings);
+        }else if (el.getName().equals(ELEMENT_RECORD_VALIDATORS)) {
+            createRecordValidators(el.getValue(), settings);
+        }else if (el.getName().equals(ELEMENT_BINDINGS)) {
+            createBindings(el.getValue(), settings);
+        }else if (el.getName().equals(ELEMENT_NAMING)) {
+            createNaming(el.getValue(), settings);
         }
     }
 }
@@ -1064,26 +961,19 @@ TableFormat* TableFormat::clone()
 
 void TableFormat::makeImmutable(DataTable* immutabilizer)
 {
-    if(immutable) {
+    if (immutable) {
         return;
     }
+
     immutable = true;
     this->immutabilizer = immutabilizer;
-    for (auto _i = fields)->iterator(); _i->hasNext(); ) {
-        FieldFormat* ff = java_cast< FieldFormat* >(_i->next());
-        {
-            ff)->makeImmutable();
-        }
+
+    for (std::list<FieldFormat>::iterator it = fields.begin(); it!=fields.end(); ++it ) {
+        //TODO:
+        *it->makeImmutable();
     }
 }
 
-
-
-java::lang::Class* TableFormat::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.TableFormat", 48);
-    return c;
-}
 
 void TableFormat::clinit()
 {
@@ -1114,9 +1004,3 @@ struct clinit_ {
         static clinit_ clinit_instance;
     }
 }
-
-java::lang::Class* TableFormat::getClass0()
-{
-    return class_();
-}
-*/

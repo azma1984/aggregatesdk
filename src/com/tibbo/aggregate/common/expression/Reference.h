@@ -1,24 +1,17 @@
 #ifndef _REFERENCE_H_
 #define _REFERENCE_H_
+
 #include "util/Cloneable.h"
+#include <string>
 
-
-
-class Reference
-    
-    , public ::java::lang::Cloneable
-    , public ::com::tibbo::aggregate::common::util::PublicCloneable
+class Reference : public Cloneable
 {
-
-public:
-    typedef void super;
-
 private:
-    static const std::string SCHEMA_FORM_;
-    static const std::string SCHEMA_TABLE_;
-    static const std::string SCHEMA_STATISTICS_;
-    static const std::string SCHEMA_ENVIRONMENT_;
-    static const std::string SCHEMA_PARENT_;
+    static const std::string SCHEMA_FORM;
+    static const std::string SCHEMA_TABLE;
+    static const std::string SCHEMA_STATISTICS;
+    static const std::string SCHEMA_ENVIRONMENT;
+    static const std::string SCHEMA_PARENT;
     static const std::string SCHEMA_MENU_;
     static const std::string SCHEMA_ACTION_;
 
