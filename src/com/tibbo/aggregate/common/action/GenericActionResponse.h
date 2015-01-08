@@ -11,7 +11,7 @@ class GenericActionResponse: public ActionResponse
 private:
     boost::shared_ptr<DataTable> parameters;
     bool remember;
-    RequestIdentifier* requestId;
+     boost::shared_ptr<RequestIdentifier> requestId;
 
 public:
 	GenericActionResponse(DataTable* parameters);

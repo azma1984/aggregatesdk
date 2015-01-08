@@ -1,70 +1,67 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/GenericActionCommand.java
 #include "GenericActionCommand.h"
 
-/*
-com::tibbo::aggregate::common::action::GenericActionCommand::GenericActionCommand(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
+#include "AggreGateException.h"
+
+GenericActionCommand::GenericActionCommand()
 {
-    
+    init();
 }
 
-com::tibbo::aggregate::common::action::GenericActionCommand::GenericActionCommand(std::string* type, ::com::tibbo::aggregate::common::datatable::TableFormat* requestFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* responseFormat) 
-    : GenericActionCommand(*static_cast< ::default_init_tag* >(0))
+GenericActionCommand::GenericActionCommand(const std::string& type, TableFormat* requestFormat, TableFormat* responseFormat)
 {
     ctor(type,requestFormat,responseFormat);
 }
 
-com::tibbo::aggregate::common::action::GenericActionCommand::GenericActionCommand(std::string* type, std::string* title) 
-    : GenericActionCommand(*static_cast< ::default_init_tag* >(0))
+GenericActionCommand::GenericActionCommand(const std::string& type, const std::string& title)
 {
     ctor(type,title);
 }
 
-com::tibbo::aggregate::common::action::GenericActionCommand::GenericActionCommand(std::string* type, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters, ::com::tibbo::aggregate::common::datatable::TableFormat* format) 
-    : GenericActionCommand(*static_cast< ::default_init_tag* >(0))
+GenericActionCommand::GenericActionCommand(const std::string& type, const std::string& title, DataTable* parameters, TableFormat* format)
 {
     ctor(type,title,parameters,format);
 }
 
-com::tibbo::aggregate::common::action::GenericActionCommand::GenericActionCommand(std::string* requestId, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
-    : GenericActionCommand(*static_cast< ::default_init_tag* >(0))
+GenericActionCommand::GenericActionCommand(const std::string& requestId, const std::string& title, DataTable* parameters)
 {
     ctor(requestId,title,parameters);
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::init()
+void GenericActionCommand::init()
 {
     interactive = true;
+    last = false;
+    batchEntry = false;
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::ctor(std::string* type, ::com::tibbo::aggregate::common::datatable::TableFormat* requestFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* responseFormat)
+void GenericActionCommand::ctor(const std::string& type, TableFormat* requestFormat, TableFormat* responseFormat)
 {
-    super::ctor();
+    ctor();
     init();
-    this->responseFormat = responseFormat;
+    *(this->responseFormat) = *responseFormat;
     setType(type);
-    parameters = new ::com::tibbo::aggregate::common::datatable::DataTable(requestFormat);
+    this->parameters = new DataTable(requestFormat);
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::ctor(std::string* type, std::string* title)
+void GenericActionCommand::ctor(const std::string& type, const std::string& title)
 {
-    super::ctor();
+    ctor();
     init();
     setType(type);
     this->title = title;
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::ctor(std::string* type, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters, ::com::tibbo::aggregate::common::datatable::TableFormat* format)
+void GenericActionCommand::ctor(const std::string& type, const std::string& title, DataTable* parameters, TableFormat* format)
 {
     ctor(type, title);
     try {
-        ::com::tibbo::aggregate::common::datatable::DataTableConversion::populateBeanFromRecord(this, parameters)->rec(), format, true);
-    } catch (::com::tibbo::aggregate::common::datatable::DataTableException* ex) {
-        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
+        DataTableConversion::populateBeanFromRecord(this, parameters->rec(), format, true);
+    } catch (DataTableException& ex) {
+        throw  AggreGateException(ex.getMessage(), ex.getDetails());
     }
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::ctor(std::string* requestId, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void GenericActionCommand::ctor(std::string* requestId, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
 {
     ctor(requestId, title);
     setParameters(parameters);
@@ -72,196 +69,184 @@ void com::tibbo::aggregate::common::action::GenericActionCommand::ctor(std::stri
     setInteractive(false);
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::setType(std::string* type)
+void GenericActionCommand::setType(const std::string &type)
 {
-    if(type == 0 || type)->length() == 0) {
-        throw new ::java::lang::IllegalArgumentException(u"Action command type is null or zero-length"_j);
+    if (type.length() == 0) {
+        throw  AggreGateException("Action command type is null or zero-length");
     }
+
     this->type = type;
 }
 
-com::tibbo::aggregate::common::action::GenericActionResponse* com::tibbo::aggregate::common::action::GenericActionCommand::createDefaultResponse()
-{
-    auto format = responseFormat;
-    if(format == 0) {
-        auto const command = ActionCommandRegistry::getCommand(getType());
-        format = command != 0 ? command)->getResponseFormat() : (getParameters() != 0 ? getParameters())->getFormat() : static_cast< ::com::tibbo::aggregate::common::datatable::TableFormat* >(0));
+GenericActionResponse* GenericActionCommand::createDefaultResponse()
+{    
+    TableFormat* format = NULL;
+
+    if (responseFormat == 0) {
+        GenericActionCommand* command = ActionCommandRegistry::getCommand(getType();
+        format = (command != 0) ? command->getResponseFormat() : ( (getParameters() != 0) ? getParameters()->getFormat() : NULL);
     }
-    auto responseTable = format != 0 ? new ::com::tibbo::aggregate::common::datatable::DataTable(format, true) : static_cast< ::com::tibbo::aggregate::common::datatable::DataTable* >(0);
+    DataTable* responseTable = (format != 0) ? new DataTable(format, true) : 0;
+
     return new GenericActionResponse(responseTable);
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::setParameters(::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void GenericActionCommand::setParameters(DataTable* parameters)
 {
-    this->parameters = parameters;
+    *this->parameters = *parameters;
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::setTitle(std::string* title)
+void GenericActionCommand::setTitle(const std::string &title)
 {
     this->title = title;
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::setLast(bool last)
+void GenericActionCommand::setLast(bool last)
 {
     this->last = last;
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::setBatchEntry(bool batchEntry)
+void GenericActionCommand::setBatchEntry(bool batchEntry)
 {
     this->batchEntry = batchEntry;
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::setRequestId(RequestIdentifier* requestId)
+void GenericActionCommand::setRequestId(RequestIdentifier* requestId)
 {
     this->requestId = requestId;
 }
 
-std::string com::tibbo::aggregate::common::action::GenericActionCommand::getType()
+std::string GenericActionCommand::getType()
 {
     return type;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::GenericActionCommand::getParameters()
+DataTable* GenericActionCommand::getParameters()
 {
     return parameters != 0 ? parameters : constructParameters();
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::GenericActionCommand::constructParameters()
+DataTable* GenericActionCommand::constructParameters()
 {
     return 0;
 }
 
-std::string com::tibbo::aggregate::common::action::GenericActionCommand::getTitle()
+std::string GenericActionCommand::getTitle()
 {
     return title;
 }
 
-bool com::tibbo::aggregate::common::action::GenericActionCommand::isLast()
+bool GenericActionCommand::isLast()
 {
     return last;
 }
 
-bool com::tibbo::aggregate::common::action::GenericActionCommand::isBatchEntry()
+bool GenericActionCommand::isBatchEntry()
 {
     return batchEntry;
 }
 
-com::tibbo::aggregate::common::action::RequestIdentifier* com::tibbo::aggregate::common::action::GenericActionCommand::getRequestId()
+RequestIdentifier* GenericActionCommand::getRequestId()
 {
     return requestId;
 }
 
-bool com::tibbo::aggregate::common::action::GenericActionCommand::isResponseValid(ActionResponse* actionRequest)
+bool GenericActionCommand::isResponseValid(ActionResponse* actionRequest)
 {
     return true;
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::GenericActionCommand::getResponseFormat()
+TableFormat* GenericActionCommand::getResponseFormat()
 {
     return responseFormat;
 }
 
-void com::tibbo::aggregate::common::action::GenericActionCommand::setInteractive(bool interactive)
+void GenericActionCommand::setInteractive(bool interactive)
 {
     this->interactive = interactive;
 }
 
-bool com::tibbo::aggregate::common::action::GenericActionCommand::isInteractive()
+bool GenericActionCommand::isInteractive()
 {
     return interactive;
 }
-
-int com::tibbo::aggregate::common::action::GenericActionCommand::hashCode()
+//TODO: проверить необходимость
+int GenericActionCommand::hashCode()
 {
-    auto const prime = int(31);
-    auto result = int(1);
-    result = prime * result + (batchEntry ? int(1231) : int(1237));
-    result = prime * result + ((type == 0) ? int(0) : type)->hashCode());
+
+    const int prime = 31;
+    intresult = 1;
+    /*
+    result = prime * result + (batchEntry ? 1231 : 1237);
+    result = prime * result + type.hashCode();
     result = prime * result + (last ? int(1231) : int(1237));
     result = prime * result + ((parameters == 0) ? int(0) : parameters)->hashCode());
     result = prime * result + ((requestId == 0) ? int(0) : requestId)->hashCode());
     result = prime * result + ((title == 0) ? int(0) : title)->hashCode());
+    */
     return result;
 }
 
-bool com::tibbo::aggregate::common::action::GenericActionCommand::equals(void* obj)
+//TODO: возможно правильнее заменить на operator==()
+bool GenericActionCommand::equals(void* obj)
 {
-    if(this) == obj) {
-        return true;
-    }
-    if(obj == 0) {
+    GenericActionCommand* gac = static_cast<obj>;
+
+
+    if (gac == 0) {
         return false;
     }
-    if(getClass()) != obj)->getClass())) {
+
+    if (batchEntry != gac->batchEntry) {
         return false;
     }
-    auto other = java_cast< GenericActionCommand* >(obj);
-    if(batchEntry != other)->batchEntry) {
+
+    if (type != gac->type) {
         return false;
     }
-    if(type == 0) {
-        if(other)->type != 0) {
+
+    if (last != gac->last) {
+        return false;
+    }
+
+    if (parameters == 0) {
+        if (gac->parameters != 0) {
             return false;
         }
-    } else if(!type)->equals(other)->type))) {
+    }else if(!parameters->equals(gac->parameters)) {
         return false;
     }
-    if(last != other)->last) {
-        return false;
-    }
-    if(parameters == 0) {
-        if(other)->parameters != 0) {
+
+    if (requestId == 0) {
+        if(gac->requestId != 0) {
             return false;
         }
-    } else if(!parameters)->equals(other)->parameters))) {
+    } else if(!requestId->equals(gac->requestId)) {
         return false;
     }
-    if(requestId == 0) {
-        if(other)->requestId != 0) {
-            return false;
-        }
-    } else if(!requestId)->equals(other)->requestId))) {
+
+    if (title != gac->title) {
         return false;
     }
-    if(title == 0) {
-        if(other)->title != 0) {
-            return false;
-        }
-    } else if(!title)->equals(other)->title))) {
-        return false;
-    }
+
     return true;
 }
-
-com::tibbo::aggregate::common::action::ActionCommand* com::tibbo::aggregate::common::action::GenericActionCommand::clone()
+//TODO:
+ActionCommand* GenericActionCommand::clone()
 {
+    /*
     try {
         return java_cast< ActionCommand* >(super::clone());
-    } catch (::java::lang::CloneNotSupportedException* ex) {
+    } catch (CloneNotSupportedException* ex) {
         throw new ::java::lang::AssertionError();
     }
+    */
+
+    return static_cast<ActionCommand*>(0);
 }
 
-std::string com::tibbo::aggregate::common::action::GenericActionCommand::toString()
+std::string GenericActionCommand::toString()
 {
-    return std::stringBuilder().append(u"[type="_j)->append(type)
-        ->append(u", title="_j)
-        ->append(title)
-        ->append(u", id="_j)
-        ->append(requestId))
-        ->append(u"]"_j)->toString();
+    return std::string("[type=").append(type).append(", title=").append(title)
+            .append(", id=").append((requestId!=0) ? requestId->toString() : "null").append("]");
 }
-
-
-
-java::lang::Class* com::tibbo::aggregate::common::action::GenericActionCommand::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.GenericActionCommand", 54);
-    return c;
-}
-
-java::lang::Class* com::tibbo::aggregate::common::action::GenericActionCommand::getClass0()
-{
-    return class_();
-}
-                    */

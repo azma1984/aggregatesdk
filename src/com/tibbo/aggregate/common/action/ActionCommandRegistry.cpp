@@ -1,5 +1,5 @@
 #include "ActionCommandRegistry.h"
-
+/*
 #include "command/ActivateDashboard.h"
 #include "command/Browse.h"
 #include "command/Confirm.h"
@@ -16,7 +16,7 @@
 #include "command/ShowMessage.h"
 #include "command/ShowReport.h"
 #include "command/ShowSystemTree.h"
-
+*/
 ActionCommandRegistry::ActionCommandRegistry()
 {
 	/*
@@ -48,6 +48,6 @@ GenericActionCommand *ActionCommandRegistry::getCommand(const std::string &type)
 
 void ActionCommandRegistry::register1(GenericActionCommand* command)
 {
- COMMANDS[command->getType()] = command;
+    COMMANDS[command->getType()] = command;
 }
 

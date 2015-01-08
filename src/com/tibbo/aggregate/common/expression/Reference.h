@@ -12,7 +12,6 @@
 
 class Reference : public Cloneable
 {/*
-  /*
 private:
     static const std::string SCHEMA_FORM;
     static const std::string SCHEMA_TABLE;
@@ -117,8 +116,6 @@ public:
     static const std::string& SCHEMA_MENU();
     static const std::string& SCHEMA_ACTION();
 
-private:
-    ::java::lang::Class* getClass0();*/
 */
 };
 

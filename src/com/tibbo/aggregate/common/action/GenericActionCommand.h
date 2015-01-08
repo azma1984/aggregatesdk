@@ -1,6 +1,7 @@
 #ifndef GenericActionCommandH
 #define GenericActionCommandH
 
+#include <boost/shared_ptr.hpp>
 #include "action/ActionCommand.h"
 #include "action/ActionCommandRegistry.h"
 #include "action/GenericActionResponse.h"
@@ -13,19 +14,19 @@
 #include "ActionCommand.h"
 
 
-class GenericActionCommand: public ActionCommand
+class GenericActionCommand : public ActionCommand
 {
  private:
 	std::string type;
-  //DataTable* parameters; todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+    boost::shared_ptr<DataTable> parameters;
 	std::string title;
 	bool interactive;
 	bool last;
 	bool batchEntry;
-	RequestIdentifier* requestId;
-  //TableFormat* responseFormat; todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+    boost::shared_ptr<RequestIdentifier> requestId;
+    boost::shared_ptr<TableFormat> responseFormat;
 
-	/*
+
  public:
     bool isResponseValid(ActionResponse* actionRequest);
     RequestIdentifier* getRequestId();
@@ -35,51 +36,43 @@ class GenericActionCommand: public ActionCommand
     bool isInteractive();
 
 protected:
-    void ctor(std::string* type, ::com::tibbo::aggregate::common::datatable::TableFormat* requestFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* responseFormat);
-    void ctor(std::string* type, std::string* title);
-    void ctor(std::string* type, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
-    void ctor(std::string* requestId, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    void ctor(const std::string& type, TableFormat* requestFormat, TableFormat* responseFormat);
+    void ctor(const std::string& type, const std::string& title);
+    void ctor(const std::string& type, const std::string& title, DataTable* parameters, TableFormat* format);
+    void ctor(const std::string& requestId, const std::string& title, DataTable* parameters);
 
 public:
-    void setType(std::string* type);
+    void setType(const std::string& type);
     GenericActionResponse* createDefaultResponse();
-    void setParameters(::com::tibbo::aggregate::common::datatable::DataTable* parameters);
-    void setTitle(std::string* title);
+    void setParameters(DataTable* parameters);
+    void setTitle(const std::string& title);
     void setLast(bool last);
     void setBatchEntry(bool batchEntry);
     void setRequestId(RequestIdentifier* requestId);
-    std::string* getType();
-    ::com::tibbo::aggregate::common::datatable::DataTable* getParameters();
+    std::string getType();
+    DataTable* getParameters();
+    DataTable* constructParameters();
 
 public:
-    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
-
-public:
-    std::string* getTitle();
+    std::string getTitle();
     bool isLast();
     bool isBatchEntry();
     RequestIdentifier* getRequestId();
     bool isResponseValid(ActionResponse* actionRequest);
-    ::com::tibbo::aggregate::common::datatable::TableFormat* getResponseFormat();
+    TableFormat* getResponseFormat();
     void setInteractive(bool interactive);
     bool isInteractive();
     int hashCode();
     bool equals(void* obj);
     ActionCommand* clone();
-    std::string* toString();
-
-
-public:
-    GenericActionCommand(std::string* type, ::com::tibbo::aggregate::common::datatable::TableFormat* requestFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* responseFormat);
-    GenericActionCommand(std::string* type, std::string* title);
+    std::string toString();
 
 public:
-    GenericActionCommand(std::string* type, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
-    GenericActionCommand(std::string* requestId, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
-protected:
-    GenericActionCommand(const ::default_init_tag&);
-
- */
+    GenericActionCommand();
+    GenericActionCommand(const std::string& type, TableFormat* requestFormat, TableFormat* responseFormat);
+    GenericActionCommand(const std::string& type, const std::string& title);
+    GenericActionCommand(const std::string& type, const std::string& title, DataTable* parameters, TableFormat* format);
+    GenericActionCommand(const std::string& requestId, const std::string& title, DataTable* parameters);
 };
 
 #endif

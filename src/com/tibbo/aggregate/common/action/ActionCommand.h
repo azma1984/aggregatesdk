@@ -1,12 +1,12 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionCommand.java
-
 #ifndef ActionCommandH
 #define ActionCommandH
 
 #include "ActionResponse.h"
 #include "RequestIdentifier.h"
+#include "util/Interface.h"
+#include "util/Cloneable.h"
 
-class ActionCommand
+class ActionCommand// : /*public Cloneable,*/ public Interface
 {
 	virtual bool isResponseValid(ActionResponse* actionRequest) = 0;
 	virtual RequestIdentifier* getRequestId() = 0;

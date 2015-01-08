@@ -10,9 +10,9 @@ GenericActionResponse::GenericActionResponse(DataTable* parameters)
 
 void GenericActionResponse::GenericActionResponse(DataTable* parameters, bool remember, RequestIdentifier* requestId)
 {
-  this->parameters = parameters;
+  *this->parameters = *parameters;
   this->remember = remember;
-  this->requestId = requestId;
+  *this->requestId = *requestId;
 }
 
 DataTable* GenericActionResponse::getParameters()
