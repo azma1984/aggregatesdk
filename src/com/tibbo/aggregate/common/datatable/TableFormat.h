@@ -12,6 +12,7 @@
 #include <string>
 #include <list>
 #include <map>
+#include <vector>
 
 
 class TableFormat: public Cloneable
@@ -40,7 +41,7 @@ private:
     static const char REORDERABLE_FLAG;
     static const char UNRESIZEBLE_FLAG;
     static const char BINDINGS_EDITABLE_FLAG;
-    std::list<FieldFormat>  fields;
+    std::list<FieldFormat>  fields;   //TODO: заменить на vector или std::map<int, FieldFormat> , т.к тербуется доступ по индексу в addField(FieldFormat* ff, int index)
     std::map<std::string, int> fieldLookup;
     int minRecords;
     int maxRecords;

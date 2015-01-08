@@ -1,6 +1,7 @@
 #include "datatable/TableFormat.h"
 
 #include "util/ElementList.h"
+#include "AggreGateException.h"
 
 boost::shared_ptr<TableFormat> TableFormat::EMPTY_FORMAT = new TableFormat(0, 0);
 const int TableFormat::DEFAULT_MIN_RECORDS = 0;
@@ -106,7 +107,7 @@ void TableFormat::ctor(const std::string& format, ClassicEncodingSettings* setti
     ctor();
 
     //TODO: ElementList
-    ElementList els = StringUtils.elements(format, settings.isUseVisibleSeparators());
+    ElementList els = StringUtils.elements(format, settings->isUseVisibleSeparators());
 
     for (Element el : els)
     {
@@ -116,13 +117,12 @@ void TableFormat::ctor(const std::string& format, ClassicEncodingSettings* setti
             fields.add(ff);
             getFieldLookup().put(ff.getName(), index);
         }else if (el.getName().equals(ELEMENT_FLAGS)) {
-            String flags = el.getValue();
+            std::string flags = el.getValue();
             setReorderable(flags.indexOf(REORDERABLE_FLAG) != -1 ? true : false);
             setUnresizable(flags.indexOf(UNRESIZEBLE_FLAG) != -1 ? true : false);
             setBindingsEditable(flags.indexOf(BINDINGS_EDITABLE_FLAG) != -1 ? true : false);
         }else if (el.getName().equals(ELEMENT_MIN_RECORDS)) {
             minRecords = Integer.parseInt(el.getValue());
-            continue;
         }else if (el.getName().equals(ELEMENT_MAX_RECORDS)) {
             maxRecords = Integer.parseInt(el.getValue());
         }else if (el.getName().equals(ELEMENT_TABLE_VALIDATORS)) {
@@ -148,7 +148,7 @@ void TableFormat::ctor(int minRecords, int maxRecords, FieldFormat* fieldFormat)
     ctor(minRecords, maxRecords);
     addField(fieldFormat);
 }
-
+/*
 TableFormat* TableFormat::addFields(FieldFormatArray* fieldFormats)
 {
     for(auto each : *fieldFormats)) {
@@ -156,106 +156,112 @@ TableFormat* TableFormat::addFields(FieldFormatArray* fieldFormats)
     }
     return this;
 }
+*/
 
-TableFormat* TableFormat::addFields(std::list  fieldFormats)
+TableFormat* TableFormat::addFields(std::list<FieldFormat>& fieldFormats)
 {
-    for (auto _i = fieldFormats)->iterator(); _i->hasNext(); ) {
-        FieldFormat* each = java_cast< FieldFormat* >(_i->next());
-        {
-            this->addField(each);
-        }
+    for (std::list<FieldFormat>::iterator it = fieldFormats.begin(); it!=fieldFormats.end(); ++it) {
+        this->addField(each);
     }
+
     return this;
 }
 
 TableFormat* TableFormat::addField(FieldFormat* ff)
 {
-    return addField(ff, fields)->size());
+    return addField(ff, fields->size());
 }
 
 TableFormat* TableFormat::addField(std::string* encodedFormat)
 {
-    return addField(static_cast< FieldFormat* >(FieldFormat::create(encodedFormat)));
+    return addField(static_cast<FieldFormat*>(&FieldFormat::create(encodedFormat)) );
 }
 
-void TableFormat::addField(char16_t type, std::string* name) 
+void TableFormat::addField(char type, const std::string& name)
 {
-    addField(type, name, fields)->size());
+    addField(type, name, fields.size());
 }
 
-TableFormat* TableFormat::addField(char16_t type, std::string* name, std::string* description)
+TableFormat* TableFormat::addField(char type, const std::string& name, const std::string& description)
 {
-    addField(static_cast< FieldFormat* >(FieldFormat::create(name, type, description)));
+    addField(static_cast< FieldFormat* >(&FieldFormat::create(name, type, description)));
     return this;
 }
 
-TableFormat* TableFormat::addField(char16_t type, std::string* name, std::string* description, void* defaultValue)
+TableFormat* TableFormat::addField(char type, const std::string& name, const std::string& description, void* defaultValue)
 {
-    addField(static_cast< FieldFormat* >(FieldFormat::create(name, type, description, defaultValue)));
+    addField(static_cast<FieldFormat*>(&FieldFormat::create(name, type, description, defaultValue)));
     return this;
 }
 
-TableFormat* TableFormat::addField(char16_t type, std::string* name, std::string* description, void* defaultValue, std::string* group)
+TableFormat* TableFormat::addField(char type, const std::string& name, const std::string& description, void* defaultValue, const std::string& group)
 {
-    addField(static_cast< FieldFormat* >(FieldFormat::create(name, type, description, defaultValue), group)));
+    addField(static_cast<FieldFormat*>(&FieldFormat::create(name, type, description, defaultValue, group)));
     return this;
 }
 
-TableFormat* TableFormat::addField(char16_t type, std::string* name, std::string* description, void* defaultValue, bool nullable)
+TableFormat* TableFormat::addField(char type, const std::string& name, const std::string& description, void* defaultValue, bool nullable)
 {
-    addField(static_cast< FieldFormat* >(FieldFormat::create(name, type, description, defaultValue), nullable)));
+    addField(static_cast< FieldFormat* >(&FieldFormat::create(name, type, description, defaultValue, nullable)));
     return this;
 }
 
-TableFormat* TableFormat::addField(char16_t type, std::string* name, std::string* description, void* defaultValue, bool nullable, std::string* group)
+TableFormat* TableFormat::addField(char type, std::string* name, std::string* description, void* defaultValue, bool nullable, std::string* group)
 {
-    addField(static_cast< FieldFormat* >(FieldFormat::create(name, type, description, defaultValue, nullable, group)));
+    addField(static_cast< FieldFormat* >(&FieldFormat::create(name, type, description, defaultValue, nullable, group)));
     return this;
 }
 
 TableFormat* TableFormat::addField(FieldFormat* ff, int index)
 {
     if(immutable) {
-        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
+        throw AggreGateException("Immutable", "TableFormat::addField");
     }
-    auto existing = getField(ff)->getName());
-    if(existing != 0) {
-        if(!ff)->extend(existing)) {
-            std::cout <<"Field '"_j)->append(ff)->getName())
-                ->append(u"' already exist in format"_j)->toString());
-        } else {
+    FieldFormat existing = getField(ff.getName());
+
+    if (existing != null) {
+        if (!ff.extend(existing)) {
+            throw new AggreGateException(std::string("Field '").append(ff.getName()).append("' already exist in format") );
+        }else {
             return this;
         }
     }
-    for (auto i = index; i < fields)->size(); i++) {
-        auto fn = java_cast< FieldFormat* >(fields)->get(i)))->getName();
-        auto previousIndex = java_cast< ::java::lang::Integer* >(getFieldLookup())->get(fn));
-        if(previousIndex == 0) {
-            throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Null lookup index for field "_j)->append(i)
-                ->append(u" ("_j)
-                ->append(fn)
-                ->append(u")"_j)->toString());
-        }
-        getFieldLookup())->put(fn, (previousIndex))->intValue() + int(1)));
+
+    for (int i = index; i < fields.size(); i++) {
+      std::string fn = fields.get(i).getName();
+
+      Integer previousIndex = getFieldLookup().get(fn);
+
+      if (previousIndex == null)
+      {
+        throw new IllegalStateException("Null lookup index for field " + i + " (" + fn + ")");
+      }
+
+      getFieldLookup().put(fn, previousIndex + 1);
     }
-    fields)->add(index, ff);
-    getFieldLookup())->put(ff)->getName(), index));
+
+    fields.add(index, ff);
+
+    getFieldLookup().put(ff.getName(), index);
+
     return this;
 }
 
 TableFormat* TableFormat::addField(char16_t type, std::string* name, int index) 
 {
-    if(immutable) {
-        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
+    if (immutable) {
+        throw AggreGateException("Immutable", "TableFormat::addField");
     }
+
     return addField(FieldFormat::create(name, type), index);
 }
 
 TableFormat* TableFormat::removeField(std::string* name)
 {
-    if(immutable) {
-        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
+    if (immutable) {
+        throw AggreGateException("Immutable", "TableFormat::addField");
     }
+
     auto index = java_cast< ::java::lang::Integer* >(getFieldLookup())->remove(name));
     if(index != 0) {
         fields)->remove(index)->intValue());
