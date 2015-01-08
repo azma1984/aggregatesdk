@@ -6,6 +6,7 @@
 #include "action/GenericActionCommand.h"
 #include <boost/shared_ptr.hpp>
 
+#include <string>
 
 class Confirm : public GenericActionCommand
 {
@@ -15,6 +16,7 @@ class Confirm : public GenericActionCommand
 	int messageType;
 
 protected:
+    void init();
     DataTable* constructParameters();// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
@@ -34,11 +36,10 @@ public:
     static boost::shared_ptr<TableFormat> CFT_CONFIRM; // todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
     static boost::shared_ptr<TableFormat> RFT_CONFIRM;
         
-	Init(const std::string &title, std::string  &message, int optionType, int messageType);
     Confirm();
     Confirm(const std::string &message);
 	Confirm(const std::string &title, std::string  &message, int optionType, int messageType);
-	//Confirm(const std::string &title, DataTable* parameters);
+    Confirm(const std::string &title, DataTable* parameters);
 	
 };
 #endif//_CONFIRM_H_
