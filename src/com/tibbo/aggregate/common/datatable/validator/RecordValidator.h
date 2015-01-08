@@ -1,21 +1,17 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/validator/RecordValidator.java
+#ifndef _RECORD_VALIDATOR_H_
+#define _RECORD_VALIDATOR_H_
 
-#pragma once
+#include "util/Cloneable.h"
+#include "util/Interface.h"
+#include <string>
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Cloneable.h"
-#include <com/tibbo/aggregate/common/util/PublicCloneable.h"
+class DataTable;
+class DataRecord;
 
-struct com::tibbo::aggregate::common::datatable::validator::RecordValidator
-    : public ::java::lang::Cloneable
-    , public ::com::tibbo::aggregate::common::util::PublicCloneable
+class RecordValidator : public Interface, public Cloneable
 {
-    ::java::lang::Character* getType();
-    std::string* encode();
-    void validate(::com::tibbo::aggregate::common::datatable::DataTable* table, ::com::tibbo::aggregate::common::datatable::DataRecord* record) /* throws(ValidationException) */;
-
-    // Generated
-    
+public:
+    std::string /*Character* */ getType();
+    std::string encode();
+    void validate(DataTable* table, DataRecord* record) /* throws(ValidationException) */;
 };
