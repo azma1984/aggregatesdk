@@ -5,9 +5,9 @@
 #include "action/ActionUtils.h"
 
 
-
-std::string Browse::CF_BROWSE_URI="uri";
 /*
+std::string Browse::CF_BROWSE_URI="uri";
+
 Browse::Browse()
 {
  init();
@@ -28,7 +28,8 @@ DataTable* Browse::constructParameters()
 {
 	return new DataTable(CFT_BROWSE, new voidArray({url)->toString())}));
 }
- */
+
+
 
 URI Browse::getUrl()
 {
@@ -40,9 +41,6 @@ void Browse::setUrl(URI url)
     this->url = url;
 }
 
-
-
- /*
 void Browse::init()
 {
  CFT_BROWSE = FieldFormat::create("<" + CF_BROWSE_URI + "><S>")->wrap();

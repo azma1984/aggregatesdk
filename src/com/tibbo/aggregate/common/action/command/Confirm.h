@@ -38,7 +38,7 @@ public:
         
     Confirm();
     Confirm(const std::string &message);
-	Confirm(const std::string &title, std::string  &message, int optionType, int messageType);
+    Confirm(const std::string &title, const std::string  &message, int optionType, int messageType);
     Confirm(const std::string &title, DataTable* parameters);
 	
 };

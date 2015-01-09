@@ -7,7 +7,7 @@
 
 class Browse : public GenericActionCommand
 {
-
+/*
 private:
 	URI url;
 
@@ -24,6 +24,7 @@ public:
     Browse();
 	Browse(URI url);
 	void init();
+    */
 };
 
 #endif  //BrowseH

@@ -10,7 +10,7 @@ std::string Confirm::RF_OPTION = "option";
 Confirm::Confirm()
 {
     init();
-    GenericActionCommand(ActionUtils::CMD_CONFIRM, CFT_CONFIRM, RFT_CONFIRM);
+    GenericActionCommand(ActionUtils::CMD_CONFIRM, CFT_CONFIRM.get(), RFT_CONFIRM.get());
 }
 
 Confirm::Confirm(const std::string &message)
@@ -33,15 +33,15 @@ Confirm::Confirm(const std::string &title, const std::string &message, int optio
 }
 
 
-Confirm::Confirm(std::string title, DataTable* parameters)
+Confirm::Confirm(const std::string title, DataTable* parameters)
 {
-    GenericActionCommand(ActionUtils.CMD_CONFIRM, title, parameterstitle, parameters, CFT_CONFIRM);
+    GenericActionCommand(ActionUtils.CMD_CONFIRM, title, parameterstitle, parameters, CFT_CONFIRM.get());
 }
 
 
 DataTable* Confirm::constructParameters()
 {
-    DataRecord* dr = new DataRecord(CFT_CONFIRM);
+    DataRecord* dr = new DataRecord(CFT_CONFIRM.get());
     dr->addString(message);
     dr->addInt(optionType);
     dr->addInt(messageType);
