@@ -17,25 +17,25 @@ Confirm::Confirm(const std::string &message)
 {
     init();
     //TODO:
-    GenericActionCommand(/*Cres::get()->getString("confirmation")*/"", title);
-    this->message = message;
-    this->optionType = ActionUtils::YES_NO_OPTION;
-    this->messageType = ActionUtils::QUESTION_MESSAGE;
+    Confirm(/*Cres::get()->getString("confirmation")*/"", message, ActionUtils::YES_NO_OPTION, ActionUtils::QUESTION_MESSAGE);
+//    this->message = message;
+//    this->optionType = ActionUtils::YES_NO_OPTION;
+//    this->messageType = ActionUtils::QUESTION_MESSAGE;
 }
 
 Confirm::Confirm(const std::string &title, const std::string &message, int optionType, int messageType)
 {
     init();
-    GenericActionCommand(ActionUtils.CMD_CONFIRM, title);
+    GenericActionCommand(ActionUtils::CMD_CONFIRM, title);
     this->message = message;
     this->optionType = optionType;
     this->messageType = messageType;
 }
 
 
-Confirm::Confirm(const std::string title, DataTable* parameters)
+Confirm::Confirm(const std::string& title, DataTable* parameters)
 {
-    GenericActionCommand(ActionUtils.CMD_CONFIRM, title, parameterstitle, parameters, CFT_CONFIRM.get());
+    GenericActionCommand(ActionUtils::CMD_CONFIRM, title, parameters, CFT_CONFIRM.get());
 }
 
 

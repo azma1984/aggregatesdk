@@ -1,28 +1,27 @@
 #ifndef _DATARECORD_H_
 #define _DATARECORD_H_
 
-/*
-#include <Cres.h>
+
+//#include <Cres.h>
 #include <data/Data.h>
 #include <datatable/DataTable.h>
-#include <datatable/FieldFormat.h>
-#include <datatable/QueryCondition.h>
+//#include <datatable/FieldFormat.h>
+//#include <datatable/QueryCondition.h>
 #include <datatable/TableFormat.h>
-#include <datatable/ValidationException.h>
-#include <datatable/encoding/ClassicEncodingSettings.h>
-#include <util/CloneUtils.h>
-#include <util/Element.h>
-#include <util/ElementList.h>
-#include <util/StringUtils.h>
-#include <util/Util.h>
+//#include <datatable/ValidationException.h>
+//#include <datatable/encoding/ClassicEncodingSettings.h>
+//#include <util/CloneUtils.h>
+//#include <util/Element.h>
+//#include <util/ElementList.h>
+//#include <util/StringUtils.h>
+//#include <util/Util.h>
 #include <util/Cloneable.h>
-*/
+
 #include <string>
 #include <map>
 
 class DataRecord //:Cloneable//, PublicCloneable
-{   
-  /*
+{     
 public:
 	// Generated
     DataRecord();
@@ -41,7 +40,7 @@ public:
     virtual DataRecord* clone() const;    
 	//TODO:
 	DataRecord* setValue(const std::string& name, void* value);
-    DataRecord* setValue(const std::string&name, void* value, bool validate);
+    DataRecord* setValue(const std::string& name, void* value, bool validate);
     DataRecord* setValueSmart(int index, void* value);
     DataRecord* setValueSmart(const std::string& name, void* value);
     DataRecord* addValue(void* value);
@@ -124,8 +123,7 @@ private:
     void checkNumberOfDataFieldsSet(void* value);
     DataRecord* setValue(int index, void* value, bool validate);   
     int findIndex(std::string* name);
-    void* getValue(FieldFormat* ff);*/
-
+    void* getValue(FieldFormat* ff);
 };
 
 #endif //_DATARECORD_H_

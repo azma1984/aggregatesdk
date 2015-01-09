@@ -1,8 +1,6 @@
 #include <data/Data.h>
 
 #include <datatable/DataTable.h>
-/*
-#include <util/String.h>
 
 Data::Data()
 {
@@ -49,7 +47,7 @@ std::vector<char> Data::getPreview()
 	return this->preview;
 }
 
-std::string Data::::getName()
+std::string Data::getName()
 {
 	return this->name;
 }
@@ -99,7 +97,7 @@ std::vector<char> Data::fetchData(ContextManager* cm, CallerController* cc)// th
     }
     
 	//TODO: DataTable
-    DataTable dt = cm.get(Contexts.CTX_UTILITIES, cc).callFunction(UtilitiesContextConstants.F_GET_DATA, cc, getId());    
+    DataTable dt = cm.get(Contexts::CTX_UTILITIES, cc).callFunction(UtilitiesContextConstants.F_GET_DATA, cc, getId());
     data = dt.rec().getData(UtilitiesContextConstants.FOF_GET_DATA_DATA).getData();    
     
     return data;
@@ -135,10 +133,11 @@ virtual Data* Data::clone() const
   //    throw new IllegalStateException(ex.getMessage(), ex);
   //  }
 	
-    
+    c1->id = id;
     cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
     cl->data = data;//(byte[]) CloneUtils.deepClone(data);
-	
+    //TODO: копирование std::map<std::string, void*> attachments;
+
     return cl;
 }
 	
@@ -166,4 +165,3 @@ bool Data::operator ==(const Data& data) const
 {
 	return (this->id==data.id) && (this->name == data.name) && (this->preview == data.preview) && (this->data, data.data);
 }
-*/
