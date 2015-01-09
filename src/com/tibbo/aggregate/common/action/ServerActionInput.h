@@ -3,30 +3,30 @@
 #ifndef ServerActionInputH
 #define ServerActionInputH
 
-#include "InitialRequest.h"
-
-#include "GenericActionResponse.h"
-#include "RequestIdentifier.h"
-#include "DataTable.h"
+#include <boost/shared_ptr.hpp>
+#include "action/InitialRequest.h"
+#include "action/GenericActionResponse.h"
+#include "action/RequestIdentifier.h"
+#include "datatable/DataTable.h"
 
 
 class ServerActionInput : public InitialRequest
 {
  private:
-	DataTable *data;
+    boost::shared_ptr<DataTable> data;
+    boost::shared_ptr<RequestIdentifier> requestId;
     bool remember;
-	RequestIdentifier* requestId;
 
  public:
 	ServerActionInput();
 	ServerActionInput(GenericActionResponse* request);
 	ServerActionInput(DataTable* dataTable);
 
-	DataTable* getData();
-	bool shouldRemember();
+	DataTable* getData();	
 	void setRemember(bool flag);
 	void setRequestId(RequestIdentifier* requestId);
-	RequestIdentifier* getRequestId();
+    virtual bool shouldRemember();
+    virtual RequestIdentifier* getRequestId();
 	void init();
 };
 

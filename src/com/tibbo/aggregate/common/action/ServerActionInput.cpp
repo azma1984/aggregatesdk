@@ -1,47 +1,43 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ServerActionInput.java
 #include "ServerActionInput.h"
 #include "iostream"
 
+#include "AggreGateException.h"
 
-
-
+ServerActionInput::ServerActionInput()
+{
+    init();
+}
 
 ServerActionInput::ServerActionInput(GenericActionResponse* request)
 {
-  init();
+    init();
 
-  if(request == 0)
-  {
-	std::cout<<("Pointer = NULL!");
-  }
+    if (request == 0) {
+        throw AggreGateException("ServerActionInput - Null pointer");
+    }
 
-  if(request->getParameters() != 0)
-   {
-	data = request->getParameters()->clone();
-   }
-
-
+    if (request->getParameters() != 0) {
+        data = request->getParameters()->clone();
+    }
 }
-
-void ServerActionInput::init()
-{
-	data = new DataTable();
-}
-
 
 ServerActionInput::ServerActionInput(DataTable* dataTable)
 {
 	init();
-	if(dataTable != 0)
-	{
-	 data = dataTable->clone();
+    if (dataTable != 0) {
+        data = dataTable->clone();
 	}
 }
 
+void ServerActionInput::init()
+{
+    remember = false;
+    data = new DataTable();
+}
 
 DataTable* ServerActionInput::getData()
 {
-    return data;
+    return data.get();
 }
 
 bool ServerActionInput::shouldRemember()
@@ -61,7 +57,7 @@ void ServerActionInput::setRequestId(RequestIdentifier* requestId)
 
 RequestIdentifier* ServerActionInput::getRequestId()
 {
-    return requestId;
+    return requestId.get();
 }
 
 

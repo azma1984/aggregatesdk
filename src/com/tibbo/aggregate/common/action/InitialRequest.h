@@ -8,8 +8,8 @@
 
 class InitialRequest: public ActionResponse
 {
- public:
-  InitialRequest();
+public:
+    InitialRequest();
 
 };
 

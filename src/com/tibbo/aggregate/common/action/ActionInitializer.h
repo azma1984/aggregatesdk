@@ -1,23 +1,22 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionInitializer.java
-
 #ifndef ActionInitializerH
 #define ActionInitializerH
 
-
-#include "ActionIdentifier.h"
-#include "Context.h"
-#include "ServerActionInput.h"
-#include "DataTable.h"
 #include <map>
-#include "ActionExecutionMode.h"
-#include "CallerController.h"
-#include "ErrorCollector.h"
+#include "action/ActionIdentifier.h"
+#include "action/ServerActionInput.h"
+#include "action/ActionExecutionMode.h"
+#include "datatable/DataTable.h"
+#include "context/Context.h"
+#include "context/CallerController.h"
+#include "util/ErrorCollector.h"
 
 
 
-class ActionInitializer
+class ActionInitializer : public Interface
 {
-  ActionIdentifier* initAction(Context<ActionInitializer>* context, std::string actionName, ServerActionInput* initialParameters, DataTable* inputData, std::map<std::string,void*> environment, ActionExecutionMode* mode, CallerController* callerController, ErrorCollector* collector);
+    virtual ActionIdentifier* initAction(Context<ActionInitializer>* context, const std::string& actionName, ServerActionInput* initialParameters,
+                                       DataTable* inputData, std::map<std::string, void*> environment, ActionExecutionMode* mode,
+                                       CallerController* callerController, ErrorCollector* collector) = 0;
 };
 
-#endif
+#endif  //ActionInitializerH

@@ -10,7 +10,7 @@
 #include <com/tibbo/aggregate/common/util/WindowLocation.h"
 */
 
-
+/*
 LaunchWidget::LaunchWidget(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
@@ -235,4 +235,4 @@ java::lang::Class* com::tibbo::aggregate::common::action::command::LaunchWidget:
 {
     return class_();
 }
-
+*/

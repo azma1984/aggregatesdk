@@ -1,6 +1,7 @@
 #ifndef GenericActionResponseH
 #define GenericActionResponseH
 
+#include <boost/shared_ptr.hpp>
 #include "action/ActionResponse.h"
 #include "action/RequestIdentifier.h"
 #include "datatable/DataTable.h"
@@ -9,9 +10,9 @@
 class GenericActionResponse: public ActionResponse
 {
 private:
-    boost::shared_ptr<DataTable> parameters;
+    boost::shared_ptr<DataTable> parameters;    
+    boost::shared_ptr<RequestIdentifier> requestId;
     bool remember;
-     boost::shared_ptr<RequestIdentifier> requestId;
 
 public:
 	GenericActionResponse(DataTable* parameters);
