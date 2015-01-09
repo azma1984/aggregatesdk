@@ -1,65 +1,36 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/Acknowledgement.java
+#ifndef _Acknowledgement_H_
+#define _Acknowledgement_H_
 
-#pragma once
+#include <string>
+#include <boost/shared_ptr.hpp>
+#include "util/Cloneable.h"
+#include "datatable/TableFormat.h"
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Cloneable.h"
-
-
-
-class com::tibbo::aggregate::common::event::Acknowledgement
-    
-    , public ::java::lang::Cloneable
+class Acknowledgement : public Cloneable
 {
-
-public:
-    typedef void super;
-
 private:
-    static const std::string FIELD_AUTHOR_;
-    static const std::string FIELD_TIME_;
-    static const std::string FIELD_TEXT_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_;
-    std::string* author;
-    ::java::util::Date* time;
-    std::string* text;
+    static const std::string FIELD_AUTHOR;
+    static const std::string FIELD_TIME;
+    static const std::string FIELD_TEX;
+    static boost::shared_ptr<TableFormat> FORMAT;
+    std::string author;
+    boost::shared_ptr<Date> time;
+    std::string text;
 protected:
     void ctor();
-    void ctor(std::string* author, ::java::util::Date* time, std::string* text);
+    void ctor(const std::string& author, boost::shared_ptr<Date*> time, const std::string& text);
 
 public:
-    std::string* getAuthor();
-    std::string* getText();
-    ::java::util::Date* getTime();
-    void setAuthor(std::string* author);
-    void setText(std::string* text);
-    void setTime(::java::util::Date* time);
-    ::com::tibbo::aggregate::common::datatable::TableFormat* getFormat();
-    Acknowledgement* clone();
+    std::string getAuthor();
+    std::string getText();
+    boost::shared_ptr<Date> getTime();
+    void setAuthor(const std::string& author);
+    void setText(const std::string& text);
+    void setTime(boost::shared_ptr<Date> time);
+    boost::shared_ptr<TableFormat> getFormat();
+    virtual Acknowledgement* clone();
 
-    // Generated
     Acknowledgement();
     Acknowledgement(std::string* author, ::java::util::Date* time, std::string* text);
-protected:
-    Acknowledgement(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-
-private:
-    static const std::string& FIELD_AUTHOR();
-    static const std::string& FIELD_TIME();
-    static const std::string& FIELD_TEXT();
-
-public:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT();
-
-private:
-    ::java::lang::Class* getClass0();
 };
+#endif  //_Acknowledgement_H_

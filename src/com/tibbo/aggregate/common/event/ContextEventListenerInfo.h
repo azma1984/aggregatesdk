@@ -1,39 +1,28 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/ContextEventListenerInfo.java
+#ifndef _ContextEventListenerInfo_H_
+#define _ContextEventListenerInfo_H_
 
-#pragma once
+#include <boost/shared_ptr.hpp>
+#include "event/ContextEventListener.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::event::ContextEventListenerInfo
-    
+class ContextEventListenerInfo
 {
 
-public:
-    typedef void super;
-
 private:
-    ContextEventListener* listener;
-    bool weak;
-protected:
-    void ctor(ContextEventListener* listener, bool weak);
+    boost::shared_ptr<ContextEventListener> listener;
+    bool weak;   
 
 public:
-    ContextEventListener* getListener();
-    bool isWeak();
+    boost::shared_ptr<ContextEventListener> getListener() {
+        return listener;
+    }
 
-    // Generated
-    ContextEventListenerInfo(ContextEventListener* listener, bool weak);
-protected:
-    ContextEventListenerInfo(const ::default_init_tag&);
+    bool isWeak() {
+        return weak;
+    }
 
-
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
+    ContextEventListenerInfo(boost::shared_ptr<ContextEventListener> listener, bool weak) {
+        this->listener = listener;
+        this->weak = weak;
+    }
 };
+#endif  //_ContextEventListenerInfo_H_

@@ -1,7 +1,7 @@
 #ifndef FieldFormatH
 #define FieldFormatH
 
-template <typename T> class FieldFormat
+/*template <typename T>*/ class FieldFormat
 {
 /*
 public:

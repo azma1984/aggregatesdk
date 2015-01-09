@@ -1,8 +1,6 @@
 #ifndef _DATE_H_
 #define _DATE_H_
 
-#include <util/owutildll.h>
-
 #include <ctime>
 #include <string>
 

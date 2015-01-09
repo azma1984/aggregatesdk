@@ -3,13 +3,16 @@
 #ifndef ContextEventListenerH
 #define ContextEventListenerH
 
-class ContextEventListener
-{
- // bool shouldHandle(Event* ev);
-//  void handle(Event* event);
- // CallerController* getCallerController();
-  int getListenerCode();
-//  Expression* getFilter();
+#include "util/Interface.h"
+#include "data/Event.h"
+#include "expression/Expression.h"
 
+class ContextEventListener : public Interface
+{
+    virtual bool shouldHandle(Event* ev) = 0;
+    virtual void handle(Event* event) = 0;
+    virtual CallerController* getCallerController() = 0;
+    virtual int getListenerCode() = 0;
+    virtual Expression* getFilter() = 0;
 };
 #endif

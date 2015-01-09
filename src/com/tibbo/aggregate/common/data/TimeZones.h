@@ -10,12 +10,12 @@ private:
     static const std::string DEFAULT_TIME_ZONE_ID;
     static std::map<std::string, std::string> ZONES;
     static std::map SELECTION_VALUES;
+
     static const std::string getZoneDesc(std::string* zoneId);    
 
 public:
-    TimeZones();
 
-    static std::map getTimeZones();
+    static std::map<std::string, std::string> getTimeZones();
     static const std::string getZoneDescSimple(int offset);
     static std::map getSelectionValues(bool allowNotSelected);
     static const std::string getDefaultTimezoneId();    

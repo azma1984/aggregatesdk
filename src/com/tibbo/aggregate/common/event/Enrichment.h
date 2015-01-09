@@ -1,66 +1,47 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/Enrichment.java
+#ifndef _Enrichment_H_
+#define _Enrichment_H_
 
-#pragma once
+#include <string>
+#include <boost/shared_ptr.hpp>
+#include "util/Date.h"
+#include "datatable/TableFormat.h"
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::event::Enrichment
-    
+class Enrichment
 {
-
-public:
-    typedef void super;
 
 private:
     static const std::string FIELD_NAME_;
     static const std::string FIELD_VALUE_;
     static const std::string FIELD_DATE_;
     static const std::string FIELD_AUTHOR_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_;
-    std::string* name;
-    std::string* value;
-    ::java::util::Date* date;
-    std::string* author;
+    static boost::shared_ptr<TableFormat> FORMAT_;
+    std::string name;
+    std::string value;
+    boost::shared_ptr<Date> date;
+    std::string author;
+
 protected:
     void ctor();
     void ctor(std::string* name, std::string* value, ::java::util::Date* date, std::string* author);
 
 public:
-    std::string* getName();
-    void setName(std::string* name);
-    std::string* getValue();
-    void setValue(std::string* value);
-    ::java::util::Date* getDate();
-    void setDate(::java::util::Date* date);
-    std::string* getAuthor();
-    void setAuthor(std::string* author);
+    std::string getName();
+    void setName(const std::string& name);
+    std::string getValue();
+    void setValue(const std::string& value);
+    boost::shared_ptr<Date> getDate();
+    void setDate(boost::shared_ptr<Date> date);
+    std::string getAuthor();
+    void setAuthor(const std::string& author);
 
     // Generated
     Enrichment();
-    Enrichment(std::string* name, std::string* value, ::java::util::Date* date, std::string* author);
-protected:
-    Enrichment(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
+    Enrichment(const std::string& name, const std::string& value, boost::shared_ptr<Date> date, const std::string& author);
 
 private:
     static const std::string& FIELD_NAME();
     static const std::string& FIELD_VALUE();
     static const std::string& FIELD_DATE();
     static const std::string& FIELD_AUTHOR();
-
-public:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT();
-
-private:
-    ::java::lang::Class* getClass0();
 };
+#endif  //_Enrichment_H_

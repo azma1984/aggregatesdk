@@ -12,8 +12,8 @@ private:
 public:
     EncodingSettings(bool encodeFormat, boost::shared_ptr<TableFormat> format) : encodeFormat(true)
     {
-        encodeFormat = encodeFormat;
-        format = format;
+        this->encodeFormat = encodeFormat;
+        this->format = format;
     }
 
     boost::shared_ptr<TableFormat> getFormat()

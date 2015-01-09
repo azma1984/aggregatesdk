@@ -82,7 +82,7 @@ public:
     std::string getDeduplicationId();
     void setDeduplicationId(String deduplicationId);
     boost::shared_ptr<Event> clone();
-    int hashCode();
+//    int hashCode();
     bool equals(boost::shared_ptr<this> obj);
     std::string toString();
 };
