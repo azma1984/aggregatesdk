@@ -1,45 +1,46 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/data/Location.java
+#ifndef _LOCATION_H_
+#define _LOCATION_H_
 
-#pragma once
+#include <string>
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/data/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::data::Location
-    
+class Location
 {
-
-public:
-    typedef void super;
-
 private:
     float latitude;
     float longitude;
-protected:
-    void ctor(float latitude, float longitude);
-    void ctor(double latitude, double longitude);
 
 public:
-    float getLatitude();
-    void setLatitude(float latitude);
-    float getLongitude();
-    void setLongitude(float longitude);
-    std::string* toString();
+    float getLatitude() {
+        return latitude;
+    }
 
-    // Generated
-    Location(float latitude, float longitude);
-    Location(double latitude, double longitude);
-protected:
-    Location(const ::default_init_tag&);
+    void setLatitude(float latitude) {
+        this->latitude = latitude;
+    }
 
+    float getLongitude() {
+        return longitude;
+    }
 
-public:
-    
+    void setLongitude(float longitude) {
+        this->longitude = longitude;
+    }
 
-private:
-    ::java::lang::Class* getClass0();
+    std::string toString() {
+        std::stringstream ss;
+        ss <<"[Lat=" <<latitude <<", Lon=" <<longitude <<"]";
+
+        return ss.str();
+    }
+
+    Location(float latitude, float longitude) {
+        this->latitude = latitude;
+        this->longitude = longitude;
+    }
+
+    Location(double latitude, double longitude) {
+        this->latitude = static_cast<float>(latitude);
+        this->longitude = sttaic_cast<float>(longitude);
+    }
 };
+#endif  //_LOCATION_H_

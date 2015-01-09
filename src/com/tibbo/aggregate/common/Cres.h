@@ -2,10 +2,10 @@
 
 #pragma once
 
- /*
+
 class Cres
 {
-
+/*
 public:
 	typedef void super;
 
@@ -29,5 +29,5 @@ public:
 private:
 	static ::java::util::ResourceBundle*& BUNDLE();
 	::java::lang::Class* getClass0();
-};
 */
+};

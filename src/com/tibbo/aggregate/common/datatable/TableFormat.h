@@ -8,6 +8,7 @@
 #include "expression/Expression.h"
 #include "datatable/validator/TableValidator.h"
 #include "datatable/validator/RecordValidator.h"
+#include "datatable/encoding/ClassicEncodingSettings.h"
 
 #include <string>
 #include <list>
@@ -17,7 +18,6 @@
 
 class TableFormat: public Cloneable
 {    
-/*
 public:
     static boost::shared_ptr<TableFormat> EMPTY_FORMAT;
     static const int DEFAULT_MIN_RECORDS;
@@ -42,16 +42,15 @@ private:
     static const char UNRESIZEBLE_FLAG;
     static const char BINDINGS_EDITABLE_FLAG;
     std::list<boost::shared_ptr<FieldFormat>>  fields;   //TODO: заменить на vector или std::map<int, FieldFormat> , т.к тербуется доступ по индексу в addField(FieldFormat* ff, int index)
->>>>>>> 5d707ae527bcd11441b432f4fb6d3b4bf6646f98
     std::map<std::string, int> fieldLookup;
     int minRecords;
     int maxRecords;
     bool reorderable;
     bool unresizable;
     bool bindingsEditable;
-    std::list<RecordValidator>  recordValidators;
-    std::list<TableValidator>  tableValidators;
-    std::list<Binding>  bindings;
+    std::list<boost::shared_ptr<RecordValidator>>  recordValidators;
+    std::list<boost::shared_ptr<TableValidator>>  tableValidators;
+    std::list<boost::shared_ptr<Binding>>  bindings;
     boost::shared_ptr<Expression> namingExpression;
     bool immutable;
     boost::shared_ptr<DataTable> immutabilizer;
@@ -64,7 +63,7 @@ protected:
     void ctor(const std::string& format, ClassicEncodingSettings* settings);
     void ctor(const std::string& format, ClassicEncodingSettings* settings, bool validate);
     void ctor(int minRecords, int maxRecords, const std::string& fieldFormat);
-    void ctor(int minRecords, int maxRecords, FieldFormat* fieldFormat);    
+    void ctor(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat> fieldFormat);
 
 private:
     static void encAppend(std::stringBuffer* buffer, const std::string& name, const std::string& value, ClassicEncodingSettings* settings);
@@ -77,10 +76,10 @@ private:
 
 
 private:
-    void createTableValidators(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void createRecordValidators(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void createBindings(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void createNaming(std::string* source, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    void createTableValidators(const std::string& source, ClassicEncodingSettings* settings);
+    void createRecordValidators(const std::string& source, ClassicEncodingSettings* settings);
+    void createBindings(const std::string& source, ClassicEncodingSettings* settings);
+    void createNaming(const std::string& source, ClassicEncodingSettings* settings);
 
 public:
     TableFormat* addFields(std::list<FieldFormat>& fieldFormats);
@@ -101,9 +100,9 @@ public:
     std::string getFieldName(int index);
     int getFieldIndex(const std::string& name);
     int getFieldCount();
-    std::list  getFields();
-    std::list  getRecordValidators();
-    std::list  getTableValidators();
+    std::list<FieldFormat>  getFields();
+    std::list<RecordValidator>  getRecordValidators();
+    std::list<TableValidator>  getTableValidators();
     int getMaxRecords();
     int getMinRecords();
     bool isReorderable();
@@ -111,17 +110,17 @@ public:
     void setUnresizable(bool unresizable);
     bool isBindingsEditable();
     void setBindingsEditable(bool bindingsEditable);
-    std::list  getBindings();
+    std::list<Binding>  getBindings();
     void addBinding(Binding* binding);
     void addBinding(Reference* target, Expression* expression);
     void addBinding(const std::string& target, const std::string& expression);
     void removeBinding(Binding* binding);
-    void setBindings(std::list<Binding>& in_bindings);
+//    void setBindings(std::list<Binding>& in_bindings);
     Expression* getNamingExpression();
     std::string encode(bool useVisibleSeparators);
     std::string encode(ClassicEncodingSettings* settings);
 //    std::map<std::string, int> getFieldLookup();
-    std::string* toString();
+    std::string toString();
     FieldFormat* getField(int index);
     FieldFormat* getField(const std::string& fieldName);
     bool hasField(const std::string& name);
@@ -167,8 +166,7 @@ public:
     TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat);
 
 private:
-    void init();
-    */
+    void init();    
 };
 
 #endif  //_TABLE_FORMAT_H_

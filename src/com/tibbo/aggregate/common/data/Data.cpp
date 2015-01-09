@@ -114,8 +114,8 @@ std::string Data::toDetailedString()
 	   
 	return ss.str();
 }
-
-void Data::setAttachments(Map<String, Object> attachments)
+//TODO: вохможно необходимо копирование void *
+void Data::setAttachments(std::map<std::string, void *> &attachments)
 {
 	this->attachments = attachments;
 }

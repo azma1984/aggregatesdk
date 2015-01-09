@@ -143,7 +143,7 @@ void TableFormat::ctor(int minRecords, int maxRecords, std::string* fieldFormat)
     addField(fieldFormat);
 }
 
-void TableFormat::ctor(int minRecords, int maxRecords, FieldFormat* fieldFormat)
+void TableFormat::ctor(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat> fieldFormat)
 {
     ctor(minRecords, maxRecords);
     addField(fieldFormat);
@@ -305,20 +305,23 @@ TableFormat* TableFormat::renameField(const std::string& oldName, const std::str
 
 char TableFormat::getFieldType(int index)
 {
-    //TODO:
+    //TODO: доступ по инлексу
     return fields.get(index)->getType();
 }
 
 std::string TableFormat::getFieldName(int index)
 {
-    //TODO:
+    //TODO: доступ по инлексу
     return fields.get(index)->getName();
 }
 
-int TableFormat::getFieldIndex(std::string* name)
+int TableFormat::getFieldIndex(const std::string& name)
 {
-    auto index = java_cast< ::java::lang::Integer* >(getFieldLookup())->get(name));
-    return index != 0 ? (index))->intValue() : -int(1);
+    std::map<std::string, int>::iterator it = fieldLookup.find(name);
+    if (it!=fieldLookup.end())
+        return it.second();
+
+    return -1;
 }
 
 int TableFormat::getFieldCount()
@@ -326,19 +329,21 @@ int TableFormat::getFieldCount()
     return fields.size();
 }
 
-std::list<FieldFormat*> TableFormat::getFields()
+std::list<FieldFormat> TableFormat::getFields()
 {
-    return immutable ? unmodifiableList(fields) : fields;
+    return /*immutable ? unmodifiableList(fields) :*/ fields;
 }
 
-java::util::List* TableFormat::getRecordValidators()
-{
-    return immutable ? ::java::util::Collections::unmodifiableList(recordValidators) : recordValidators;
+//TODO:
+std::list<RecordValidator> TableFormat::getRecordValidators()
+{    
+    return /*immutable ? unmodifiableList(recordValidators) :*/ recordValidators;
 }
 
-java::util::List* TableFormat::getTableValidators()
+//TODO:
+std::list<TableValidator> TableFormat::getTableValidators()
 {
-    return immutable ? ::java::util::Collections::unmodifiableList(tableValidators) : tableValidators;
+    return /*immutable ? unmodifiableList(tableValidators) :*/ tableValidators;
 }
 
 int TableFormat::getMaxRecords()
@@ -364,7 +369,7 @@ bool TableFormat::isUnresizable()
 void TableFormat::setUnresizable(bool unresizable)
 {
     if(immutable) {
-        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
+        throw AggreGateException("Immutable");
     }
     this->unresizable = unresizable;
 }
@@ -379,37 +384,48 @@ void TableFormat::setBindingsEditable(bool bindingsEditable)
     this->bindingsEditable = bindingsEditable;
 }
 
-java::util::List* TableFormat::getBindings()
+//TODO:
+std::list<Binding> TableFormat::getBindings()
 {
-    return immutable ? ::java::util::Collections::unmodifiableList(bindings) : bindings;
+    return /*immutable ? unmodifiableList(bindings) :*/ bindings;
 }
 
-void TableFormat::addBinding(::com::tibbo::aggregate::common::binding::Binding* binding)
+void TableFormat::addBinding(Binding* binding)
 {
     if(immutable) {
-        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
+        throw AggreGateException("Immutable");
     }
-    bindings)->add(binding));
+
+    bindings.push_back(*binding);
 }
 
-void TableFormat::addBinding(::com::tibbo::aggregate::common::expression::Reference* target, ::com::tibbo::aggregate::common::expression::Expression* expression)
+void TableFormat::addBinding(Reference* target, Expression* expression)
 {
-    addBinding(new ::com::tibbo::aggregate::common::binding::Binding(target, expression));
+    addBinding(new Binding(target, expression));
 }
 
 void TableFormat::addBinding(std::string* target, std::string* expression)
 {
-    addBinding(new ::com::tibbo::aggregate::common::binding::Binding(new ::com::tibbo::aggregate::common::expression::Reference(target), new ::com::tibbo::aggregate::common::expression::Expression(expression)));
+    addBinding(new Binding(new Reference(target), new Expression(expression)));
 }
 
-void TableFormat::removeBinding(::com::tibbo::aggregate::common::binding::Binding* binding)
+void TableFormat::removeBinding(Binding* binding)
 {
     if(immutable) {
-        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
+        throw AggreGateException("Immutable");
     }
-    bindings)->remove(binding));
-}
 
+    bindings.remove( binding );
+    /*
+    for (std::list<boost::shared_ptr<Binding>>::iterator it = bindings.begin(); it!= bindings.end(); ++it) {
+        if (static_cast<Binding*>(*it)->equals(binding)) {
+            bindings.erase( it );
+        }
+    }
+    */
+}
+/*
+ * //TODO:: no usage
 void TableFormat::setBindings(std::list  in_bindings)
 {
     if(immutable) {
@@ -417,7 +433,7 @@ void TableFormat::setBindings(std::list  in_bindings)
     }
     bindings = in_bindings;
 }
-
+*/
 com::tibbo::aggregate::common::expression::Expression* TableFormat::getNamingExpression()
 {
     return namingExpression;
@@ -428,32 +444,35 @@ std::string TableFormat::encode(bool useVisibleSeparators)
     return encode(new ::encoding::ClassicEncodingSettings(useVisibleSeparators));
 }
 
-std::string TableFormat::encode(::encoding::ClassicEncodingSettings* settings)
+//TODO:
+std::string TableFormat::encode(ClassicEncodingSettings* settings)
 {
-    auto formatString = new std::stringBuffer(getFieldCount() * int(7));
+    std::stringstream formatString;
+    /*
     for (auto i = int(0); i < fields)->size(); i++) {
-        formatString)->append((new ::com::tibbo::aggregate::common::util::Element(0, getField(i))->encode(settings)))->encode(settings)->isUseVisibleSeparators()));
+        formatString)->append((new Element(0, getField(i))->encode(settings)))->encode(settings)->isUseVisibleSeparators()));
     }
     if(minRecords != DEFAULT_MIN_RECORDS) {
-        formatString)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_MIN_RECORDS_, std::string::valueOf(minRecords)))->encode(settings)->isUseVisibleSeparators()));
+        formatString)->append((new Element(ELEMENT_MIN_RECORDS_, std::string::valueOf(minRecords)))->encode(settings)->isUseVisibleSeparators()));
     }
     if(maxRecords != DEFAULT_MAX_RECORDS) {
-        formatString)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_MAX_RECORDS_, std::string::valueOf(maxRecords)))->encode(settings)->isUseVisibleSeparators()));
+        formatString)->append((new Element(ELEMENT_MAX_RECORDS_, std::string::valueOf(maxRecords)))->encode(settings)->isUseVisibleSeparators()));
     }
     if(tableValidators)->size() > 0) {
         formatString)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_TABLE_VALIDATORS_, getEncodedTableValidators(settings)))->encode(settings)->isUseVisibleSeparators()));
     }
     if(recordValidators)->size() > 0) {
-        formatString)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_RECORD_VALIDATORS_, getEncodedRecordValidators(settings)))->encode(settings)->isUseVisibleSeparators()));
+        formatString)->append((new Element(ELEMENT_RECORD_VALIDATORS_, getEncodedRecordValidators(settings)))->encode(settings)->isUseVisibleSeparators()));
     }
     if(bindings)->size() > 0) {
-        formatString)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_BINDINGS_, getEncodedBindings(settings)))->encode(settings)->isUseVisibleSeparators()));
+        formatString)->append((new Element(ELEMENT_BINDINGS_, getEncodedBindings(settings)))->encode(settings)->isUseVisibleSeparators()));
     }
     if(namingExpression != 0) {
-        formatString)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_NAMING_, namingExpression == 0 ? u""_j : namingExpression)->getText()))->encode(settings)->isUseVisibleSeparators()));
+        formatString)->append((new Element(ELEMENT_NAMING_, namingExpression == 0 ? u""_j : namingExpression)->getText()))->encode(settings)->isUseVisibleSeparators()));
     }
     encAppend(formatString, ELEMENT_FLAGS_, getEncodedFlags(), settings);
-    return formatString)->toString();
+    */
+    return formatString.str();
 }
 
 void TableFormat::encAppend(std::stringBuffer* buffer, std::string* name, std::string* value, ::encoding::ClassicEncodingSettings* settings)

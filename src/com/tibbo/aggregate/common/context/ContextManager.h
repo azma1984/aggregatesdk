@@ -1,22 +1,20 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/ContextManager.java
-
-//#include "ContextEventListener.h"
 #ifndef ContextManagerH
 #define ContextManagerH
 
+//#include "ContextEventListener.h"
 
 template <class T> class ContextManager
 {
 public:
-	//Запуск события диспетчера потока
+	//Р—Р°РїСѓСЃРє СЃРѕР±С‹С‚РёСЏ РґРёСЃРїРµС‚С‡РµСЂР° РїРѕС‚РѕРєР°
 	void start();
 	/**
-   * Вызов stop() и затем start()
+   * Р’С‹Р·РѕРІ stop() Рё Р·Р°С‚РµРј start()
    */
 	void restart();
 
-	//1. Остановить диспетчер событий
-	//2. Вызвать stop() корневого контекста
+	//1. РћСЃС‚Р°РЅРѕРІРёС‚СЊ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
+	//2. Р’С‹Р·РІР°С‚СЊ stop() РєРѕСЂРЅРµРІРѕРіРѕ РєРѕРЅС‚РµРєСЃС‚Р°
 	void stop();
 
 	 /*

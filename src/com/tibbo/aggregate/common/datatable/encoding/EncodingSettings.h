@@ -1,7 +1,7 @@
 #pragma once
 
 #include <boost/shared_ptr.hpp>
-#include "../TableFormat.h"
+#include "datatable/TableFormat.h"
 
 class EncodingSettings
 {
