@@ -11,14 +11,11 @@ class Acknowledgement : public Cloneable
 private:
     static const std::string FIELD_AUTHOR;
     static const std::string FIELD_TIME;
-    static const std::string FIELD_TEX;
-    static boost::shared_ptr<TableFormat> FORMAT;
+    static const std::string FIELD_TEXT;
+    static boost::shared_ptr<TableFormat> FORMAT_;
     std::string author;
     boost::shared_ptr<Date> time;
     std::string text;
-protected:
-    void ctor();
-    void ctor(const std::string& author, boost::shared_ptr<Date*> time, const std::string& text);
 
 public:
     std::string getAuthor();
@@ -26,11 +23,11 @@ public:
     boost::shared_ptr<Date> getTime();
     void setAuthor(const std::string& author);
     void setText(const std::string& text);
-    void setTime(boost::shared_ptr<Date> time);
-    boost::shared_ptr<TableFormat> getFormat();
+    void setTime(boost::shared_ptr<Date> time);    
     virtual Acknowledgement* clone();
+    static boost::shared_ptr<TableFormat> FORMAT();
 
     Acknowledgement();
-    Acknowledgement(std::string* author, ::java::util::Date* time, std::string* text);
+    Acknowledgement(const std::string& author, boost::shared_ptr<Date> time, const std::string& text);
 };
 #endif  //_Acknowledgement_H_

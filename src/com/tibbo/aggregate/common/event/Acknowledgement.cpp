@@ -1,21 +1,26 @@
 #include "event/Acknowledgement.h"
+#include "Cres.h"
 
 const std::string Acknowledgement::FIELD_AUTHOR = "author";
 const std::string Acknowledgement::FIELD_TIME = "time";
 const std::string Acknowledgement::FIELD_TEXT = "text";
-boost::shared_ptr<TableFormat> Acknowledgement::FORMAT = new TableFormat();
 
-//TODO:
-/*
-FORMAT.addField("<" + FIELD_AUTHOR + "><S><F=N><D=" + Cres.get().getString("author") + ">");
-FORMAT.addField("<" + FIELD_TIME + "><D><D=" + Cres.get().getString("time") + ">");
-FORMAT.addField("<" + FIELD_TEXT + "><S><D=" + Cres.get().getString("text") + ">");
 
-FORMAT.setNamingExpression("print({}, \"{" + FIELD_TIME + "} + ': ' + {" + FIELD_TEXT + "} + ' (' + {" + FIELD_AUTHOR + "} + ')'\", \"; \")");
-*/
+boost::shared_ptr<TableFormat> Acknowledgement::FORMAT()
+{
+    if (!FORMAT_) {
+        FORMAT_ = new TableFormat();
+        FORMAT_->addField( std::string("<").append(FIELD_AUTHOR).append("><S><F=N><D=").append(Cres::get().getString("author")).append(">") );
+        FORMAT_->addField( std::string("<").append(FIELD_TIME).append("><D><D=").append(Cres::get().getString("time")).append(">") );
+        FORMAT_->addField( std::string("<").append(FIELD_TEXT).append("><S><D=").append(Cres::get().getString("text") ).append(">") );
 
-//TODO:
-//DataTableConversion::registerFormatConverter(new DefaultFormatConverter(Acknowledgement.class, FORMAT));
+        FORMAT_->setNamingExpression( std::string("print({}, \"{").append(FIELD_TIME).append("} + ': ' + {").append(FIELD_TEXT).append("} + ' (' + {")
+                                    .append(FIELD_AUTHOR).append("} + ')'\", \"; \")") );
+    }
+}
+
+//TODO: зарегестрировать
+//DataTableConversion::registerFormatConverter(new DefaultFormatConverter(Acknowledgement.class, Acknowledgement::FORMAT()));
 
 
 Acknowledgement::Acknowledgement()
@@ -23,7 +28,7 @@ Acknowledgement::Acknowledgement()
 
 }
 
-Acknowledgement::Acknowledgement(String author, Date time, String text)
+Acknowledgement::Acknowledgement(const std::string& author, boost::shared_ptr<Date> time, const std::string& text)
 {
     this->author = author;
     this->time = time;
@@ -40,17 +45,17 @@ std::string Acknowledgement::getText()
     return text;
 }
 
-Date Acknowledgement::getTime()
+boost::shared_ptr<Date> Acknowledgement::getTime()
 {
     return time;
 }
 
-void Acknowledgement::setAuthor(String author)
+void Acknowledgement::setAuthor(const std::string& author)
 {
     this->author = author;
 }
 
-void Acknowledgement::setText(String text)
+void Acknowledgement::setText(const std::string& text)
 {
     this->text = text;
 }
@@ -68,13 +73,20 @@ boost::shared_ptr<TableFormat> Acknowledgement::getFormat()
 
 Acknowledgement Acknowledgement::clone()
 {
-    try
-    {
-      return (Acknowledgement) super.clone();
-    }
-    catch (CloneNotSupportedException ex)
-    {
-      throw new IllegalStateException(ex);
-    }
+    Acknowledgement* cl = new Acknowledgement();
+
+    cl->author = author;
+    cl->time = new Date(time);
+    cl->text = text;
+
+    return cl;
+//    try
+//    {
+//        return (Acknowledgement) super.clone();
+//    }
+//    catch (CloneNotSupportedException ex)
+//    {
+//        throw new IllegalStateException(ex);
+//    }
 }
 

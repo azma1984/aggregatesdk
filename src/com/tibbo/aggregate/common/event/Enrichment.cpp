@@ -2,14 +2,13 @@
 
 #include "AggreGateException.h"
 #include "Cres.h"
+#include "context/ContextUtils.h"
 
 const std::string Enrichment::FIELD_NAME = "name";
 const std::string Enrichment::FIELD_VALUE = "value";
 const std::string Enrichment::FIELD_DATE = "date";
 const std::string Enrichment::FIELD_AUTHOR = "author";
 
-//TODO: зарегестрировать
-//DataTableConversion::registerFormatConverter(new DefaultFormatConverter(Enrichment.class, FORMAT));
 
 boost::shared_ptr<TableFormat> Enrichment::FORMAT()
 {
@@ -26,15 +25,21 @@ boost::shared_ptr<TableFormat> Enrichment::FORMAT()
     }
 }
 
+//TODO: зарегестрировать
+//DataTableConversion::registerFormatConverter(new DefaultFormatConverter(Enrichment.class, Acknowledgement::FORMAT()));
+
 Enrichment::Enrichment()
 {
 }
 
 Enrichment::Enrichment(const std::string& name, const std::string& value, boost::shared_ptr<Date> date, const std::string& author)
 {
+    //TODO: ContextUtils
+    /*
     if (!ContextUtils::isValidContextName(name)) {
         throw AggreGateException(std::string("Illegal enrichment name: ").append(name));
     }
+    */
 
     this->name = name;
     this->value = value;
@@ -67,7 +72,7 @@ boost::shared_ptr<Date> Enrichment::getDate()
     return date;
 }
 
-void Enrichment::setDate(Date date)
+void Enrichment::setDate(boost::shared_ptr<Date> date)
 {
     this->date = date;
 }
