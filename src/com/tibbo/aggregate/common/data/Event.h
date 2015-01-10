@@ -10,6 +10,8 @@
 #include <com/tibbo/aggregate/common/security/Permissions.h"
 #include <com/tibbo/aggregate/common/util/CloneUtils.h"
 */
+#include "event/Enrichment.h"
+#include "event/Acknowledgement.h"
 #include "datatable/DataTable.h"
 #include "util/Cloneable.h"
 #include "util/Date.h"

@@ -10,11 +10,10 @@ class Enrichment
 {
 
 private:
-    static const std::string FIELD_NAME_;
-    static const std::string FIELD_VALUE_;
-    static const std::string FIELD_DATE_;
-    static const std::string FIELD_AUTHOR_;
-    static boost::shared_ptr<TableFormat> FORMAT_;
+    static const std::string FIELD_NAME;
+    static const std::string FIELD_VALUE;
+    static const std::string FIELD_DATE;
+    static const std::string FIELD_AUTHOR;
     std::string name;
     std::string value;
     boost::shared_ptr<Date> date;
@@ -33,15 +32,13 @@ public:
     void setDate(boost::shared_ptr<Date> date);
     std::string getAuthor();
     void setAuthor(const std::string& author);
+    static boost::shared_ptr<TableFormat> FORMAT();
 
     // Generated
     Enrichment();
     Enrichment(const std::string& name, const std::string& value, boost::shared_ptr<Date> date, const std::string& author);
 
 private:
-    static const std::string& FIELD_NAME();
-    static const std::string& FIELD_VALUE();
-    static const std::string& FIELD_DATE();
-    static const std::string& FIELD_AUTHOR();
+    static boost::shared_ptr<TableFormat> FORMAT_;
 };
 #endif  //_Enrichment_H_

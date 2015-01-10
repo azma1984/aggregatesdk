@@ -22,7 +22,6 @@ void Event::init()
     instantiationtime = new Date();
     data;
     count = int(1);
-    enrichments = new ::java::util::LinkedList();
 }
 
 const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD;
@@ -34,7 +33,7 @@ void Event::ctor()
     setCreationtime(new ::java::util::Date(::java::lang::System::currentTimeMillis()));
 }
 
-void Event::ctor(std::string* context, ::com::tibbo::aggregate::common::context::EventDefinition* def, int level, ::com::tibbo::aggregate::common::datatable::DataTable* data, ::java::lang::Long* id, ::java::util::Date* creationtime, ::com::tibbo::aggregate::common::security::Permissions* permissions)
+void Event::ctor(std::string* context, EventDefinition* def, int level, ::com::tibbo::aggregate::common::datatable::DataTable* data, ::java::lang::Long* id, ::java::util::Date* creationtime, ::com::tibbo::aggregate::common::security::Permissions* permissions)
 {
     ctor();
     init_(context, def)->getName(), level, data, id);
@@ -96,7 +95,7 @@ boost::shared_ptr<Date> Event::getExpirationtime()
 boost::shared_ptr<DataTable> Event::getAcknowledgementsTable()
 {
     try {
-        return DataTableConversion::beansToTable(acknowledgements, Acknowledgement::FORMAT, false);
+        return DataTableConversion::beansToTable(acknowledgements, Acknowledgement::FORMAT(), false);
     } catch (DataTableException& ex) {
         throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
     }
@@ -105,7 +104,7 @@ boost::shared_ptr<DataTable> Event::getAcknowledgementsTable()
 boost::shared_ptr<DataTable> Event::getEnrichmentsTable()
 {
     try {
-        return DataTableConversion::beansToTable(enrichments, Enrichment::FORMAT, false);
+        return DataTableConversion::beansToTable(enrichments, Enrichment::FORMAT(), false);
     } catch (DataTableException& ex) {
         throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
     }
