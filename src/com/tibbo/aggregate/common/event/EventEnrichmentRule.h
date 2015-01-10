@@ -1,22 +1,9 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/EventEnrichmentRule.java
-
 #pragma once
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/AggreGateBean.h"
-
-
-
-class com::tibbo::aggregate::common::event::EventEnrichmentRule
-    : public ::com::tibbo::aggregate::common::datatable::AggreGateBean
+//TOOD:
+class EventEnrichmentRule// : public AggreGateBean
 {
-
-public:
-    typedef ::com::tibbo::aggregate::common::datatable::AggreGateBean super;
-
+/*
 private:
     static const std::string FIELD_NAME_;
     static const std::string FIELD_EXPRESSION_;
@@ -55,4 +42,5 @@ public:
 
 private:
     ::java::lang::Class* getClass0();
+*/
 };

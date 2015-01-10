@@ -1,50 +1,29 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/EventLevel.java
+#ifndef _EventLevel_H_
+#define _EventLevel_H_
 
-#pragma once
+#include <string>
+#include <map>
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::event::EventLevel
-    
+class EventLevel
 {
-
-public:
-    typedef void super;
-
 private:
-    static std::map LEVELS_;
-    static std::map SELECTION_VALUES_;
+    static std::map<int, std::string> LEVELS_;
+    static std::map<int, std::string> SELECTION_VALUES_;
 
 public:
-    static const int NUM_LEVELS = 5) };
-    static const int NONE) };
-    static const int NOTICE = 1) };
-    static const int INFO = 2) };
-    static const int WARNING = 3) };
-    static const int ERROR = 4) };
-    static const int FATAL = 5) };
+    static const int NUM_LEVELS;
+    static const int NONE;
+    static const int NOTICE;
+    static const int INFO;
+    static const int WARNING;
+    static const int ERROR;
+    static const int FATAL;
+
     static bool isValid(int level);
-    static const std::string getName(::java::lang::Integer* level);
-    static std::map getSelectionValues();
-
-    // Generated
-    EventLevel();
-protected:
-    EventLevel(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
+    static const std::string getName(int level);
+    static std::map<int, std::string> getSelectionValues();
 
 private:
-    static std::map& LEVELS();
-    static std::map& SELECTION_VALUES();
-    ::java::lang::Class* getClass0();
+    static std::map<int, std::string>& LEVELS();
+    static std::map<int, std::string>& SELECTION_VALUES();
 };
