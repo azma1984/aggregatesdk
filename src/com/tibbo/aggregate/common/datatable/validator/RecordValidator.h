@@ -11,8 +11,8 @@
 class RecordValidator : public Interface, public Cloneable
 {
 public:
-    virtual std::string /*Character* */ getType();
-    virtual std::string encode();
-    virtual void validate(DataTable* table, DataRecord* record); /* throws(ValidationException) */
+    virtual char /*Character* */ getType() = 0;
+    virtual std::string encode() = 0;
+    virtual void validate(DataTable* table, DataRecord* record) = 0; /* throws(ValidationException) */
 };
 #endif 

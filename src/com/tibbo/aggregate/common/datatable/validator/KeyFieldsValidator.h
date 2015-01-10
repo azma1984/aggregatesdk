@@ -1,39 +1,50 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/validator/KeyFieldsValidator.java
+#ifndef _KeyFieldsValidator_H_
+#define _KeyFieldsValidator_H_
 
-#pragma once
+#include "datatable/validator/AbstractRecordValidator.h"
+#include "datatable/DataTableQuery.h"
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/AbstractRecordValidator.h"
-
-
-
-class com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator
-    : public AbstractRecordValidator
+class KeyFieldsValidator : public AbstractRecordValidator
 {
-
 public:
-    typedef AbstractRecordValidator super;
-protected:
-    void ctor();
-    void ctor(std::string* source);
+    virtual std::string encode() {
+        return "";
+    }
 
-public:
-    std::string* encode();
-    ::java::lang::Character* getType();
-    void validate(::com::tibbo::aggregate::common::datatable::DataTable* table, ::com::tibbo::aggregate::common::datatable::DataRecord* record) /* throws(ValidationException) */;
+    virtual char getType() {
+        return TableFormat::RECORD_VALIDATOR_KEY_FIELDS;
+    }
 
-    // Generated
-    KeyFieldsValidator();
-    KeyFieldsValidator(std::string* source);
-protected:
-    KeyFieldsValidator(const ::default_init_tag&);
+    //TODO:
+    virtual void validate(DataTable* table, DataRecord* record) { /* throws(ValidationException) */
+        std::list<std::string> keyFields = table->getFormat()->getKeyFields();
 
+        if (keyFields.size() == 0) {
+            return;
+        }
+        /*
+        DataTableQuery* query = new DataTableQuery();
+        List key = new LinkedList();
 
-public:
-    
+        for (String keyField : keyFields) {
+          Object value = record.getValue(keyField);
+          key.add(value);
+          query.addCondition(new QueryCondition(keyField, value));
+        }
 
-private:
-    ::java::lang::Class* getClass0();
+        DataRecord* rec = table->select(query);
+        if (rec != null && rec != record) {
+          throw new ValidationException(MessageFormat.format(Cres.get().getString("dtKeyFieldViolation"), key, StringUtils.print(keyFields)));
+        }
+        */
+    }
+
+    KeyFieldsValidator() {
+
+    }
+
+    KeyFieldsValidator(const std::string& source) {
+
+    }
 };
+#endif  //_KeyFieldsValidator_H_

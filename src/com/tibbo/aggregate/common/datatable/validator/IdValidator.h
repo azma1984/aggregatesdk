@@ -1,38 +1,37 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/validator/IdValidator.java
+#ifndef _IdValidator_H_
+#define _IdValidator_H_
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.h"
+#include "datatable/validator/AbstractFieldValidator.h"
+#include "datatable/FieldFormat.h"
 
 
-
-class com::tibbo::aggregate::common::datatable::validator::IdValidator
-    : public AbstractFieldValidator
+class IdValidator : public AbstractFieldValidator
 {
-
 public:
-    typedef AbstractFieldValidator super;
-protected:
-    void ctor();
+    virtual bool shouldEncode() {
+        return true;
+    }
 
-public:
-    bool shouldEncode();
-    std::string* encode();
-    ::java::lang::Character* getType();
-    void* validate(void* value) /* throws(ValidationException) */;
+    virtual std::string encode() {
+        return "";
+    }
 
-    // Generated
-    IdValidator();
-protected:
-    IdValidator(const ::default_init_tag&);
+    virtual char getType() {
+        return FieldFormat::VALIDATOR_ID;
+    }
 
+    void* validate(void* value) {// throws(ValidationException)
+        if (value != NULL) {
+            std::string* obj = dynamic_cast<std::string*>(value);
+            if (obj)
+                return Util::descriptionToName(*obj);
+        }
 
-public:
-    
+        return value;
+    }
 
-private:
-    ::java::lang::Class* getClass0();
+    IdValidator() {
+
+    }
 };
+#endif  //IdValidator

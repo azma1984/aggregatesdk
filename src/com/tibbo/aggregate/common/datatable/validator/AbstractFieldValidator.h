@@ -1,22 +1,50 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.java
+#ifndef _AbstractFieldValidator_H_
+#define _AbstractFieldValidator_H_
 
-#pragma once
+#include <string>
+#include "datatable/validator/FieldValidator.h"
+#include "util/Util.h"
 
-#include <com/tibbo/aggregate/common/datatable/validator/FieldValidator.h"
-
-
-
-class AbstractFieldValidator
+class AbstractFieldValidator : public FieldValidator
 {
-
 public:
-    bool shouldEncode();
-    std::string encode();
-    bool equals(void* obj);
-    void* getType();
-    void* clone();
+    virtual bool shouldEncode() {
+        return false;
+    }
 
-    // Generated
-    AbstractFieldValidator();
+    virtual std::string encode() {
+        return "";
+    }
 
+    //TODO: instanceof
+    virtual bool equals(AbstractFieldValidator* obj) {
+        if (obj == NULL) {
+            return false;
+        }
+        /*
+        if (!(obj instanceof FieldValidator)) {
+            return false;
+        }
+        */
+
+        return Util::equals(getType(), obj->getType());
+    }
+
+    virtual char getType() {
+        return '';
+    }
+
+    //TODO: исключение
+    virtual AbstractFieldValidator* clone() {
+        return FieldValidator::clone();
+//        try
+//        {
+//            return super.clone();
+//        }
+//        catch (CloneNotSupportedException ex)
+//        {
+//            throw new IllegalStateException(ex);
+//        }
+    }
 };
+#endif  //AbstractFieldValidator

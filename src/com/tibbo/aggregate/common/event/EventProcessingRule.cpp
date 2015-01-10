@@ -6,6 +6,7 @@
 #include "datatable/validator/TableKeyFieldsValidator.h"
 #include "Cres.h"
 #include "datatable/DataTableBindingProvider.h"
+#include "datatable/converter/DefaultFormatConverter.h"
 
 #include <limits>
 

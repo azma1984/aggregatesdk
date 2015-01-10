@@ -2,7 +2,8 @@
 #include <util/SString.h>
 
 
-template <class left, class right> static bool equals(left& l, right& r)
+template <class left, class right>
+bool Util::equals(left& l, right& r)
 {
 	return left == right;
 }
@@ -18,7 +19,7 @@ static Throwable getRootCause(Throwable& th)
 }
 */
 
-static std::vector<char> readStream(std::iostream& is)
+std::vector<char> Util::readStream(std::iostream& is)
 {
     typedef std::istream_iterator<char> istream_iterator;
 
@@ -29,7 +30,7 @@ static std::vector<char> readStream(std::iostream& is)
 }
 
 //TODO:
-static Number convertToNumber(void* value, bool validate, bool allowNull)
+int/*Number*/ Util::convertToNumber(void* value, bool validate, bool allowNull)
 {
 /*
 if (value == null)
@@ -93,7 +94,7 @@ if (value == null)
 }
 
 //TODO:
-static bool convertToBoolean(void* value, bool validate, bool allowNull)
+static bool Util::convertToBoolean(void* value, bool validate, bool allowNull)
 {
     /*
     if (value == null)
@@ -156,7 +157,7 @@ static bool isFloatingPoint(Number& n)
 */
 
 //TODO:
-static std::string getObjectDescription(void* obj) const
+std::string Util::getObjectDescription(void* obj) const
 {
     /*
     if (o == null)
@@ -202,7 +203,7 @@ static Class* getMapKeyType(Type* mapType)
 }
 */
 
-static int parseVersion(const std::string& version)
+int Util::parseVersion(const std::string& version)
 {
     int major = SString(version.substr(0, 1)).toInteger();
     int minor = SString(version.substr(2, 4)).toInteger();
@@ -211,7 +212,7 @@ static int parseVersion(const std::string& version)
     return major * 10000 + minor * 100 + build;
 }
 
-static std::string nameToDescription(const std::string& name)
+std::string Util::nameToDescription(const std::string& name)
 {
     std::stringstream ss;
 
@@ -250,7 +251,7 @@ static std::string nameToDescription(const std::string& name)
 }
 
 //TODO:
-static std::string descriptionToName(const std::string& value)
+std::string Util::descriptionToName(const std::string& value)
 {
     std::stringstream ss;
     /*
