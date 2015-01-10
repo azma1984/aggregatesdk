@@ -1,6 +1,13 @@
 #include "event/EventProcessingRule.h"
+#include "data/Event.h"
 #include "datatable/DataTableConversion.h"
+#include "datatable/field/StringFieldFormat.h"
+#include "datatable/field/LongFieldFormat.h"
 #include "datatable/validator/TableKeyFieldsValidator.h"
+#include "Cres.h"
+#include "datatable/DataTableBindingProvider.h"
+
+#include <limits>
 
 const std::string EventProcessingRule::FIELD_MASK = "mask";
 const std::string EventProcessingRule::FIELD_EVENT = "event";
@@ -28,39 +35,48 @@ boost::shared_ptr<TableFormat>& EventProcessingRule::FORMAT()
     if (FORMAT_.get() == NULL) {
         FORMAT_->addTableValidator(new TableKeyFieldsValidator());
 
-        FORMAT.addField(FieldFormat.create("<" + FIELD_MASK + "><S><F=NK><D=" + Cres.get().getString("conContextMask") + "><E=contextmask>"));
-        FORMAT.addField(FieldFormat.create("<" + FIELD_EVENT + "><S><F=EK><V=<L=1 " + Integer.MAX_VALUE + ">><D=" + Cres.get().getString("efEventName") + ">"));
-        FORMAT.addField(FieldFormat.create("<" + FIELD_PREFILTER + "><S><D=" + Cres.get().getString("efPrefilter") + "><H=" + Cres.get().getString("efPrefilterHelp") + "><E="
-            + StringFieldFormat.EDITOR_EXPRESSION + ">"));
-        FORMAT.addField(FieldFormat.create("<" + FIELD_DEDUPLICATOR + "><S><D=" + Cres.get().getString("efDeduplicator") + "><E=" + StringFieldFormat.EDITOR_EXPRESSION + ">"));
-        FORMAT.addField(FieldFormat.create("<" + FIELD_QUEUE + "><I><A=100><D=" + Cres.get().getString("efMemoryQueue") + ">"));
-        FORMAT.addField(FieldFormat.create("<" + FIELD_DUPLICATE_DISPATCHING + "><B><D=" + Cres.get().getString("efDuplicateDispatching") + ">"));
-        FORMAT.addField(FieldFormat.create("<" + FIELD_PERIOD + "><L><A=" + Event.DEFAULT_EVENT_EXPIRATION_PERIOD + "><D=" + Cres.get().getString("confExpirationPeriod") + "><E="
-            + LongFieldFormat.EDITOR_PERIOD + "><O=" + LongFieldFormat.encodePeriodEditorOptions(TimeHelper.HOUR, TimeHelper.YEAR) + ">"));
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_MASK_).append("><S><F=NK><D=").append(Cres::get().getString("conContextMask")).append("><E=contextmask>") );
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_EVENT_).append("><S><F=EK><V=<L=1 ").append( INT_MAX )
+                                               .append(">><D=").append(Cres::get().getString("efEventName")).append(">") );
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_PREFILTER_).append("><S><D=").append(Cres::get().getString("efPrefilter"))
+                                               .append("><H=").append(Cres.get().getString("efPrefilterHelp")).append("><E=")
+                                               .append(StringFieldFormat::EDITOR_EXPRESSION).append(">"));
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_DEDUPLICATOR_).append("><S><D=").append(Cres::get().getString("efDeduplicator"))
+                                               .append("><E=").append(StringFieldFormat::EDITOR_EXPRESSION).append(">"));
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_QUEUE_).append("><I><A=100><D=").append(Cres::get().getString("efMemoryQueue")).append(">"));
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_DUPLICATE_DISPATCHING_).append("><B><D=").append(Cres::get().getString("efDuplicateDispatching")).append(">"));
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_PERIOD_).append("><L><A=").append(Event::DEFAULT_EVENT_EXPIRATION_PERIOD)
+                                               .append("><D=").append(Cres::get().getString("confExpirationPeriod")).append("><E=")
+                                               .append(LongFieldFormat::EDITOR_PERIOD).append("><O=")
+                                               .append(LongFieldFormat::encodePeriodEditorOptions(TimeHelper::HOUR, TimeHelper::YEAR)).append(">") );
 
-        FieldFormat ff = FieldFormat.create("<" + FIELD_ENRICHMENTS + "><T><D=" + Cres.get().getString("enrichments") + ">");
-        ff.setDefault(new DataTable(EventEnrichmentRule.FORMAT));
-        FORMAT.addField(ff);
+        FieldFormat* ff = FieldFormat::create( std::string("<").append(FIELD_ENRICHMENTS_).append("><T><D=")
+                                               .append(Cres::get().getString("enrichments")).append(">") );
+        ff->setDefault(new DataTable(EventEnrichmentRule::FORMAT()) );
+        FORMAT_->addField( ff );
 
-        String ref = FIELD_EVENT + "#" + DataTableBindingProvider.PROPERTY_CHOICES;
-        String exp = "{" + Contexts.CTX_UTILITIES + ":" + UtilitiesContextConstants.F_EVENTS_BY_MASK + "('{" + FIELD_MASK + "}')}";
-        FORMAT.addBinding(ref, exp);
+        std::string ref = std::string(FIELD_EVENT_).append("#").append(DataTableBindingProvider::PROPERTY_CHOICES);
+        std::string exp = std::string("{").append(Contexts::CTX_UTILITIES).append(":").append(UtilitiesContextConstants::F_EVENTS_BY_MASK)
+                                    .append("('{").append(FIELD_MASK_).append("}')}");
+        FORMAT_->addBinding(ref, exp);
 
-        ref = FIELD_PREFILTER + "#" + DataTableBindingProvider.PROPERTY_OPTIONS;
-        exp = Functions.EXPRESSION_EDITOR_OPTIONS + "({" + FIELD_MASK + "}, {" + FIELD_EVENT + "}, " + ContextUtils.ENTITY_EVENT + ")";
-        FORMAT.addBinding(ref, exp);
+        ref = std::string(FIELD_PREFILTER_).append("#").append(DataTableBindingProvider::PROPERTY_OPTIONS);
+        exp = std::string(Functions::EXPRESSION_EDITOR_OPTIONS).append("({").append(FIELD_MASK_).append("}, {").append(FIELD_EVENT_)
+                        .append("}, ").append(ContextUtils::ENTITY_EVENT).append(")");
+        FORMAT_->addBinding(ref, exp);
 
-        ref = FIELD_DEDUPLICATOR + "#" + DataTableBindingProvider.PROPERTY_OPTIONS;
-        exp = Functions.EXPRESSION_EDITOR_OPTIONS + "({" + FIELD_MASK + "}, {" + FIELD_EVENT + "}, " + ContextUtils.ENTITY_EVENT + ")";
-        FORMAT.addBinding(ref, exp);
+        ref = std::string(FIELD_DEDUPLICATOR_).append("#").append(DataTableBindingProvider::PROPERTY_OPTIONS);
+        exp = std::string(Functions::EXPRESSION_EDITOR_OPTIONS).append("({").append(FIELD_MASK_).append("}, {").append(FIELD_EVENT_)
+                        .append("}, " ).append(ContextUtils::ENTITY_EVENT).append(")");
+        FORMAT->addBinding(ref, exp);
 
-        ref = FIELD_QUEUE + "#" + DataTableBindingProvider.PROPERTY_ENABLED;
-        exp = "length({" + FIELD_DEDUPLICATOR + "}) > 0";
-        FORMAT.addBinding(ref, exp);
+        ref = std::string(FIELD_QUEUE_).append("#").append(DataTableBindingProvider::PROPERTY_ENABLED);
+        exp = std::string("length({").append(FIELD_DEDUPLICATOR_).append("}) > 0");
+        FORMAT_->addBinding(ref, exp);
 
-        FORMAT.setReorderable(true);
+        FORMAT->setReorderable(true);
 
-        DataTableConversion::registerFormatConverter(new DefaultFormatConverter(EventProcessingRule.class, FORMAT));
+        DataTableConversion::registerFormatConverter(new DefaultFormatConverter(EventProcessingRule.class, FORMAT())));
     }
 }
 
