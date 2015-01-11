@@ -2,7 +2,8 @@
 #define _TableKeyFieldsValidator_H_
 
 #include "datatable/validator/AbstractTableValidator.h"
-
+#include <boost/shared_ptr.hpp>
+#include <string>
 
 class TableKeyFieldsValidator : public AbstractTableValidator
 {
