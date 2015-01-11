@@ -1,41 +1,21 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/validator/TableExpressionValidator.java
+#ifndef _TableExpressionValidator_H_
+#define _TableExpressionValidator_H_
 
-#pragma once
+#include "datatable/validator/AbstractTableValidator.h"
+#include <boost/shared_ptr.hpp>
+#include <string>
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/AbstractTableValidator.h"
-
-
-
-class com::tibbo::aggregate::common::datatable::validator::TableExpressionValidator
-    : public AbstractTableValidator
+class TableExpressionValidator : public AbstractTableValidator
 {
 
-public:
-    typedef AbstractTableValidator super;
-
 private:
-    ::com::tibbo::aggregate::common::expression::Expression* expression;
-protected:
-    void ctor(std::string* expression);
+    boost::shared_ptr<Expression> expression;
 
 public:
-    ::java::lang::Character* getType();
-    std::string* encode();
-    void validate(::com::tibbo::aggregate::common::datatable::DataTable* table) /* throws(ValidationException) */;
+    virtual char getType();
+    virtual std::string encode();
+    virtual void validate(boost::shared_ptr<DataTable> table) /* throws(ValidationException) */;
 
-    // Generated
-    TableExpressionValidator(std::string* expression);
-protected:
-    TableExpressionValidator(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
+    TableExpressionValidator(const std::string& expression);
 };
+#endif  //_TableExpressionValidator_H_

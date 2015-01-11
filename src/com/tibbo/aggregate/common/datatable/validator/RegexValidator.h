@@ -6,29 +6,22 @@
 
 class RegexValidator : public AbstractFieldValidator
 {
-
-public:
-    typedef AbstractFieldValidator super;
-
 private:
     static const std::string SEPARATOR_;
     static const std::string SEPARATOR_REGEX_;
-    std::string* regex;
-    std::string* message;
-protected:
-    void ctor(std::string* source);
-    void ctor(std::string* regex, std::string* message);
+    std::string regex;
+    std::string message;
 
 public:
-    bool shouldEncode();
-    std::string* encode();
-    ::java::lang::Character* getType();
-    void* validate(void* value) /* throws(ValidationException) */;
+    virtual bool shouldEncode();
+    virtual std::string encode();
+    virtual char getType();
+    virtual void* validate(void* value) /* throws(ValidationException) */;
+    virtual bool equals(void* obj);
     int hashCode();
-    bool equals(void* obj);
 
     // Generated
-    RegexValidator(std::string* source);
-    RegexValidator(std::string* regex, std::string* message);
+    RegexValidator(const std::string& source);
+    RegexValidator(const std::string& regex, const std::string& message);
 };
 #endif  //_RegexValidator_H_

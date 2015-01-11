@@ -4,6 +4,8 @@
 #include "util/Cloneable.h"
 #include "util/Interface.h"
 
+#include <string>
+
 template <class T>
 class FieldValidator : public Cloneable, public Interface
 {

@@ -6,25 +6,14 @@
 
 class TableKeyFieldsValidator : public AbstractTableValidator
 {
-/*
 public:
-    typedef AbstractTableValidator super;
-protected:
-    void ctor();
-    void ctor(std::string* source);
+    virtual std::string encode();
+    virtual char getType();
+    virtual void validate(boost::shared_ptr<DataTable> table); // throws(ValidationException);
+    void validate(boost::shared_ptr<DataTable> table, boost::shared_ptr<DataRecord> record); // throws(ValidationException);
 
-public:
-    std::string* encode();
-    ::java::lang::Character* getType();
-    void validate(::com::tibbo::aggregate::common::datatable::DataTable* table); // throws(ValidationException);
-    void validate(::com::tibbo::aggregate::common::datatable::DataTable* table, ::com::tibbo::aggregate::common::datatable::DataRecord* record) // throws(ValidationException);
-
-    // Generated
     TableKeyFieldsValidator();
-    TableKeyFieldsValidator(std::string* source);
-protected:
-    TableKeyFieldsValidator(const ::default_init_tag&);
-*/
+    TableKeyFieldsValidator(const std::string& source);
 };
 
 #endif

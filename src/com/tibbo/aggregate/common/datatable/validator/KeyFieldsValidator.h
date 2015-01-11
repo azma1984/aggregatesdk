@@ -16,7 +16,7 @@ public:
     }
 
     //TODO:
-    virtual void validate(DataTable* table, DataRecord* record) { /* throws(ValidationException) */
+    virtual void validate(boost::shared_ptr<DataTable> table, boost::shared_ptr<DataRecord> record) { /* throws(ValidationException) */
         std::list<std::string> keyFields = table->getFormat()->getKeyFields();
 
         if (keyFields.size() == 0) {

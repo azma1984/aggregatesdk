@@ -2,6 +2,7 @@
 #define _AbstractFieldValidator_H_
 
 #include <string>
+#include <boost/shared_ptr.hpp>
 #include "datatable/validator/FieldValidator.h"
 #include "util/Util.h"
 
@@ -17,7 +18,7 @@ public:
     }
 
     //TODO: instanceof
-    virtual bool equals(AbstractFieldValidator* obj) {
+    virtual bool equals(boost::shared_ptr<AbstractFieldValidator> obj) {
         if (obj == NULL) {
             return false;
         }

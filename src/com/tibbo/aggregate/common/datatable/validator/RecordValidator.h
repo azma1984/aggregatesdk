@@ -6,6 +6,7 @@
 #include "datatable/DataTable.h"
 #include "datatable/DataRecord.h"
 #include <string>
+#include <boost/shared_ptr.hpp>
 
 
 class RecordValidator : public Interface, public Cloneable
@@ -13,6 +14,6 @@ class RecordValidator : public Interface, public Cloneable
 public:
     virtual char /*Character* */ getType() = 0;
     virtual std::string encode() = 0;
-    virtual void validate(DataTable* table, DataRecord* record) = 0; /* throws(ValidationException) */
+    virtual void validate(boost::shared_ptr<DataTable> table, boost::shared_ptr<DataRecord> record) = 0; /* throws(ValidationException) */
 };
 #endif 
