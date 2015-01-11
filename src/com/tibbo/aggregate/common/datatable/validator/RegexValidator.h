@@ -1,16 +1,10 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/validator/RegexValidator.java
+#ifndef _RegexValidator_H_
+#define _RegexValidator_H_
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.h"
+#include "datatable/validator/AbstractFieldValidator.h"
 
 
-
-class com::tibbo::aggregate::common::datatable::validator::RegexValidator
-    : public AbstractFieldValidator
+class RegexValidator : public AbstractFieldValidator
 {
 
 public:
@@ -36,16 +30,5 @@ public:
     // Generated
     RegexValidator(std::string* source);
     RegexValidator(std::string* regex, std::string* message);
-protected:
-    RegexValidator(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-
-private:
-    static const std::string& SEPARATOR();
-    static const std::string& SEPARATOR_REGEX();
-    ::java::lang::Class* getClass0();
 };
+#endif  //_RegexValidator_H_

@@ -17,8 +17,8 @@ public:
     virtual bool shouldEncode();
     virtual char getType();
     //TODO: Comparable
-    Comparable* getMin();
-    Comparable* getMax();
+    boost::shared_ptr<Comparable> getMin();
+    boost::shared_ptr<Comparable> getMax();
     virtual std::string encode();
     virtual void* validate(void* value) /* throws(ValidationException) */;
 
@@ -26,7 +26,7 @@ private:
     void compare(boost::shared_ptr<Comparable> cv, const std::string& smallMessage, const std::string& bigMessage) /* throws(ValidationException) */;
 
 public:
-    int hashCode();
+//    int hashCode();
     virtual bool equals(void* obj);
 
     // Generated

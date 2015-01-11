@@ -47,7 +47,7 @@ public:
     void setDeduplicator(const std::string& deduplicator);
     boost::shared_ptr<Expression> getDeduplicatorExpression();
     std::list<boost::shared_ptr<EventEnrichmentRule>>  getEnrichments();
-    void setEnrichments(std::list  enrichments);
+    void setEnrichments(std::list<boost::shared_ptr<EventEnrichmentRule>  enrichments);
     int getQueue();
     void setQueue(int queue);
     bool isDuplicateDispatching();
