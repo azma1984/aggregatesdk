@@ -1,67 +1,45 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/discovery/DiscoverableServiceDefinition.java
+#ifndef _DiscoverableServiceDefinition_H_
 
-#pragma once
+#include "util/Cloneable.h"
+#include "discovery/DiscoveryProvider.h"
+#include "discovery/DiscoveryResultItem.h"
+#include <string>
+#include <boost/shared_ptr.hpp>
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/discovery/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Cloneable.h"
-
-
-
-class com::tibbo::aggregate::common::discovery::DiscoverableServiceDefinition
-    
-    , public ::java::lang::Cloneable
+class DiscoverableServiceDefinition : public Cloneable
 {
-
-public:
-    typedef void super;
-
 private:
-    DiscoveryProvider* discoveryProvider;
-    std::string* name;
-    std::string* description;
-    ::com::tibbo::aggregate::common::datatable::DataTable* connectionOptions;
+    boost::shared_ptr<DiscoveryProvider> discoveryProvider;
+    std::string name;
+    std::string description;
+    boost::shared_ptr<DataTable> connectionOptions;
     long discoveryTimeout;
     int discoveryRetries;
     bool useService;
     bool isEnabledByDefault_;
-protected:
-    void ctor(DiscoveryProvider* discoveryProvider, std::string* name, std::string* description, ::com::tibbo::aggregate::common::datatable::DataTable* connectionOptions, int defaultDiscoveryTimeout, int defaultDiscoveryRetries, bool isEnabledByDefault);
 
 public:
-    DiscoverableService* createServiceInstance();
-    std::string* getName();
-    ::com::tibbo::aggregate::common::datatable::DataTable* getConnectionOptions();
-    void setConnectionOptions(::com::tibbo::aggregate::common::datatable::DataTable* connectionOptions);
-    std::string* getDescription();
+    boost::shared_ptr<DiscoverableService> createServiceInstance();
+    std::string getName();
+    boost::shared_ptr<DataTable> getConnectionOptions();
+    void setConnectionOptions(boost::shared_ptr<DataTable> connectionOptions);
+    std::string getDescription();
     long getDiscoveryTimeout();
     void setDiscoveryTimeout(long defaultDiscoveryTimeoutInt);
     int getDiscoveryRetries();
     void setDiscoveryRetries(int defaultDiscoveryRetries);
-    DiscoveryProvider* getDiscoveryProvider();
-    std::string* deviceType(std::string* addressStrings);
-    ::java::lang::Integer* priority();
-    DiscoverableServiceDefinition* clone();
-    void setUseService(::java::lang::Boolean* useService);
+    boost::shared_ptr<DiscoveryProvider> getDiscoveryProvider();
+    std::string deviceType(const std::string& addressStrings);
+    int priority();
+    boost::shared_ptr<DiscoverableServiceDefinition> clone();
+    void setUseService(bool useService);
     bool isUseService();
     bool isEnabledByDefault();
-    std::list  check(std::string* addressString, long timeoutMilliseconds, int triesCountInt);
-    std::string* toString();
+    std::list<DiscoveryResultItem>  check(const std::string& addressString, long timeoutMilliseconds, int triesCountInt);
+    std::string toString();
 
-    // Generated
-    DiscoverableServiceDefinition(DiscoveryProvider* discoveryProvider, std::string* name, std::string* description, ::com::tibbo::aggregate::common::datatable::DataTable* connectionOptions, int defaultDiscoveryTimeout, int defaultDiscoveryRetries, bool isEnabledByDefault);
-protected:
-    DiscoverableServiceDefinition(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+    DiscoverableServiceDefinition(boost::shared_ptr<DiscoveryProvider> discoveryProvider, const std::string& name, const std::string& description,
+                                  boost::shared_ptr<DataTable> connectionOptions, int defaultDiscoveryTimeout, int defaultDiscoveryRetries,
+                                  bool isEnabledByDefault);
 };
+#endif  //DiscoverableServiceDefinition

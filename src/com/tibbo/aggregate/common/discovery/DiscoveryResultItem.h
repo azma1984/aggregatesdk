@@ -1,54 +1,36 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/discovery/DiscoveryResultItem.java
+#ifndef _DiscoveryResultItem_H_
+#define _DiscoveryResultItem_H_
 
-#pragma once
+#include <boost/shared_ptr.hpp>
+#include "discovery/DiscoverableServiceDefinition.h"
+#include "discovery/DeviceRecommendation.h"
+#include "discovery/DiscoveryProvider.h"
+#include "datatable/DataRecord.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/discovery/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::discovery::DiscoveryResultItem
-    
+class DiscoveryResultItem
 {
-
-public:
-    typedef void super;
-
 private:
-    DiscoverableServiceDefinition* serviceDefinition;
-    DeviceRecommendation* deviceRecommendation;
-    ::com::tibbo::aggregate::common::datatable::DataRecord* parameters;
-protected:
-    void ctor(DiscoverableServiceDefinition* aDiscoverableServiceDefinition, ::com::tibbo::aggregate::common::datatable::DataRecord* parametersDataRecord);
-    void ctor(DiscoverableServiceDefinition* aDiscoverableServiceDefinition, ::com::tibbo::aggregate::common::datatable::DataRecord* parametersDataRecord, DeviceRecommendation* aDeviceRecommendation);
+    boost::shared_ptr<DiscoverableServiceDefinition> serviceDefinition;
+    boost::shared_ptr<DeviceRecommendation> deviceRecommendation;
+    boost::shared_ptr<DataRecord> parameters;
 
 public:
-    DiscoverableServiceDefinition* getServiceDefinition();
-    ::com::tibbo::aggregate::common::datatable::DataRecord* getParameters();
-    void setParameters(::com::tibbo::aggregate::common::datatable::DataRecord* parametersDataRecord);
-    std::string* getDeviceName();
-    std::string* getDeviceDescription();
-    DiscoveryProvider* getDiscoveryProvider();
-    std::string* getServiceName();
-    std::string* getServiceDescription();
+    boost::shared_ptr<DiscoverableServiceDefinition> getServiceDefinition();
+    boost::shared_ptr<DataRecord> getParameters();
+    void setParameters(boost::shared_ptr<DataRecord> parametersDataRecord);
+    std::string getDeviceName();
+    std::string getDeviceDescription();
+    boost::shared_ptr<DiscoveryProvider> getDiscoveryProvider();
+    std::string getServiceName();
+    std::string getServiceDescription();
     bool isEnabledByDefault();
-    ::com::tibbo::aggregate::common::datatable::DataTable* getParametersTable();
-    DeviceRecommendation* getDeviceRecommendation();
-    std::string* toString();
+    boost::shared_ptr<DataTable> getParametersTable();
+    boost::shared_ptr<DeviceRecommendation> getDeviceRecommendation();
+    std::string toString();
 
     // Generated
-    DiscoveryResultItem(DiscoverableServiceDefinition* aDiscoverableServiceDefinition, ::com::tibbo::aggregate::common::datatable::DataRecord* parametersDataRecord);
-    DiscoveryResultItem(DiscoverableServiceDefinition* aDiscoverableServiceDefinition, ::com::tibbo::aggregate::common::datatable::DataRecord* parametersDataRecord, DeviceRecommendation* aDeviceRecommendation);
-protected:
-    DiscoveryResultItem(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
+    DiscoveryResultItem(boost::shared_ptr<DiscoverableServiceDefinition> aDiscoverableServiceDefinition,
+                        boost::shared_ptr<DataRecord> parametersDataRecord);
+    DiscoveryResultItem(boost::shared_ptr<DiscoverableServiceDefinition> aDiscoverableServiceDefinition,
+                        boost::shared_ptr<DataRecord> parametersDataRecord, boost::shared_ptr<DeviceRecommendation> aDeviceRecommendation);
 };

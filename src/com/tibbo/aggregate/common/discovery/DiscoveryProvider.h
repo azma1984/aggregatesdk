@@ -2,28 +2,27 @@
 
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/device/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/discovery/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "discovery/DiscoverableServiceDefinition.h"
+#include "context/CallerController.h"
+#include "device/DeviceContext.h"
+#include "datatable/DataTable.h"
+#include "util/Interface.h"
+#include <string>
+#include <list>
 
-struct com::tibbo::aggregate::common::discovery::DiscoveryProvider
-    
+struct DiscoveryProvider : public Interface
 {
-    std::string* getName();
-    std::string* getDescription();
-    std::string* getDriver();
-    ::java::util::Collection* getDiscoverySettingsVariableDefinitions();
-    ::com::tibbo::aggregate::common::datatable::DataTable* getDiscoverySettings(std::string* settingsVariable);
-    std::list  getAvailableServices();
-    ::com::tibbo::aggregate::common::device::DeviceContext* createDevice(std::string* username, std::string* deviceName, std::string* description, std::string* address, ::com::tibbo::aggregate::common::context::CallerController* caller) /* throws(ContextException) */;
-    DiscoverableServiceDefinition* getDiscoverableServiceDefinition(std::string* name);
-    void configureService(std::string* name, bool enable, ::com::tibbo::aggregate::common::device::DeviceContext* deviceContext, ::com::tibbo::aggregate::common::datatable::DataTable* parameters, ::com::tibbo::aggregate::common::context::CallerController* callerController) /* throws(ContextException) */;
-
-    // Generated
-    
+//TODO: not usage ?
+//    virtual std::string getName() = 0;
+//    virtual std::string getDescription() = 0;
+//    virtual std::string getDriver() = 0;
+////    virtual ::java::util::Collection* getDiscoverySettingsVariableDefinitions();
+//    virtual DataTable* getDiscoverySettings(const std::string& settingsVariable) = 0;
+//    virtual std::list<DiscoverableServiceDefinition>  getAvailableServices() = 0;
+//    virtual DeviceContext* createDevice(const std::string& username, const std::string& deviceName,
+//                                        const std::string& description, const std::string& address,
+//                                        CallerController* caller) /* throws(ContextException) */ = 0;
+//    virtual DiscoverableServiceDefinition* getDiscoverableServiceDefinition(const std::string& name) = 0;
+//    virtual void configureService(std::string* name, bool enable, DeviceContext* deviceContext,
+//                                  DataTable* parameters, CallerController* callerController) /* throws(ContextException) */;
 };

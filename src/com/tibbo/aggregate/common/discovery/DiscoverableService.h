@@ -1,18 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/discovery/DiscoverableService.java
+#ifndef _DiscoverableService_H_
+#define _DiscoverableService_H_
 
-#pragma once
+#include "discovery/DiscoverableServiceDefinition.h"
+#include "discovery/DiscoveryResultItem.h"
+#include "util/Interface.h"
+#include <list>
+#include <boost/shared_ptr.hpp>
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/discovery/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::discovery::DiscoverableService
-    
+struct DiscoverableService :  public Interface
 {
-    std::list  check(DiscoverableServiceDefinition* definition, std::string* address, long timeout, int retriesCount);
-
-    // Generated
-    
+    virtual std::list<boost::shared_ptr<DiscoveryResultItem>>  check(boost::shared_ptr<DiscoverableServiceDefinition> definition,
+                                                  const std::string& address, long timeout, int retriesCount) = 0;
 };
+#endif  //_DiscoverableService_H_
