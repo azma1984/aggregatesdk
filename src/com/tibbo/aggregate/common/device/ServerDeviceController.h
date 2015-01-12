@@ -2,28 +2,23 @@
 
 #pragma once
 
-#include <com/tibbo/aggregate/common/device/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::device::ServerDeviceController
-    
+struct ServerDeviceController
 {
 
-private:
-    static const std::string TYPE_GENERIC_;
+//private:
+//    static const std::string TYPE_GENERIC_;
 
-public:
-    std::string* getType();
-    std::string* getTypeName();
-    void install(DeviceContext* deviceContext) /* throws(ContextException) */;
-    void uninstall() /* throws(ContextException) */;
-    void start();
-    void stop();
-    std::string* getDeviceIconId();
-    std::string* getGroupName();
+//public:
+//    std::string* getType();
+//    std::string* getTypeName();
+//    void install(DeviceContext* deviceContext) /* throws(ContextException) */;
+//    void uninstall() /* throws(ContextException) */;
+//    void start();
+//    void stop();
+//    std::string* getDeviceIconId();
+//    std::string* getGroupName();
 
-    // Generated
+//    // Generated
     
-    static const std::string& TYPE_GENERIC();
+//    static const std::string& TYPE_GENERIC();
 };

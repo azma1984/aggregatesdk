@@ -4,6 +4,7 @@
 #include "discovery/DiscoveryProvider.h"
 #include "discovery/DiscoveryResultItem.h"
 #include <string>
+#include <list>
 #include <boost/shared_ptr.hpp>
 
 class DiscoverableServiceDefinition : public Cloneable
@@ -19,7 +20,7 @@ private:
     bool isEnabledByDefault_;
 
 public:
-    boost::shared_ptr<DiscoverableService> createServiceInstance();
+    virtual boost::shared_ptr<DiscoverableService> createServiceInstance();
     std::string getName();
     boost::shared_ptr<DataTable> getConnectionOptions();
     void setConnectionOptions(boost::shared_ptr<DataTable> connectionOptions);

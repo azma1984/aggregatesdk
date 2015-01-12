@@ -1,76 +1,138 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/plugin/AggreGatePlugin.java
+#ifndef _AggreGatePlugin_H_
+#define _AggreGatePlugin_H_
 
-#pragma once
+#include <string>
+#include <boost/shared_ptr.hpp>
+#include "util/Interface.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-template<typename ComponentType, typename... Bases> struct SubArray;
-namespace com
-{
-    namespace tibbo
-    {
-        namespace aggregate
-        {
-            namespace common
-            {
-                namespace context
-                {
-typedef ::SubArray< ::com::tibbo::aggregate::common::context::EntityDefinition, voidArray > EntityDefinitionArray;
-typedef ::SubArray< ::com::tibbo::aggregate::common::context::AbstractEntityDefinition, voidArray, EntityDefinitionArray > AbstractEntityDefinitionArray;
-                } // context
-            } // common
-        } // aggregate
-    } // tibbo
-} // com
-
-namespace java
-{
-    namespace lang
-    {
-typedef ::SubArray< ::java::lang::Cloneable, ObjectArray > CloneableArray;
-typedef ::SubArray< ::java::lang::Comparable, ObjectArray > ComparableArray;
-    } // lang
-} // java
-
-namespace com
-{
-    namespace tibbo
-    {
-        namespace aggregate
-        {
-            namespace common
-            {
-                namespace context
-                {
-typedef ::SubArray< ::com::tibbo::aggregate::common::context::VariableDefinition, AbstractEntityDefinitionArray, ::java::lang::CloneableArray, ::java::lang::ComparableArray > VariableDefinitionArray;
-                } // context
-            } // common
-        } // aggregate
-    } // tibbo
-} // com
-
-struct com::tibbo::aggregate::common::plugin::AggreGatePlugin
+class AggreGatePlugin : public Interface
     
 {
-    std::string* getId();
-    std::string* getShortId();
-    std::string* getDescription();
-    int getSortIndex();
-    void globalInit(::com::tibbo::aggregate::common::context::Context* rootContext) /* throws(PluginException) */;
-    void userInit(::com::tibbo::aggregate::common::context::Context* userContext) /* throws(PluginException) */;
-    void globalDeinit(::com::tibbo::aggregate::common::context::Context* rootContext) /* throws(PluginException) */;
-    void userDeinit(::com::tibbo::aggregate::common::context::Context* userContext) /* throws(PluginException) */;
-    void globalStart() /* throws(PluginException) */;
-    void globalStop() /* throws(PluginException) */;
-    ::com::tibbo::aggregate::common::context::Context* createGlobalConfigContext(::com::tibbo::aggregate::common::context::Context* rootContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray*/*...*/ properties);
-    ::com::tibbo::aggregate::common::context::Context* createUserConfigContext(::com::tibbo::aggregate::common::context::Context* userContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray*/*...*/ properties);
-    ::com::tibbo::aggregate::common::context::Context* getGlobalConfigContext();
-    ::com::tibbo::aggregate::common::context::Context* getUserConfigContext(std::string* username);
+    /**
+    * Returns plugin ID
+    *
+    * @return Plugin ID
+    */
+    virtual std::string getId() = 0;
 
-    // Generated
-    
+    /**
+    * Returns plugin short ID (last "segment" of full ID).
+    *
+    * @return Plugin short ID
+    */
+    virtual std::string getShortId() = 0;
+
+    /**
+    * Returns plugin description
+    *
+    * @return Plugin description
+    */
+    virtual std::string getDescription() = 0;
+
+    /**
+    * Returns sort index used to sort plugins in the list. Plugins with zero sort index are used according to their descriptions.
+    *
+    * @return Plugin sort index
+    */
+    virtual int getSortIndex() = 0;
+
+    /**
+    * This method is called once during server startup. Its implementation will in most cases call createGlobalConfigContext() to create plugin global configuration. Another typical use is opening some
+    * listening server socket to accept connections or receive network datagrams.
+    *
+    * Note, that this method is called during server context tree initialization. Not all server contexts may be available at the time of its call. To access any server context during plugin startup,
+    * override globalStart() method.
+    *
+    * @throws PluginException
+    *           If an error occurred during initialization
+    */
+    virtual void globalInit(boost::shared_ptr<Context> rootContext) = 0;// throws PluginException;
+
+    /**
+    * This method is called once for every system user upon its creation or server startup. Its implementation will in most cases call createUserConfigContext() to create plugin user-level
+    * configuration.
+    *
+    * This method won't be called if user-level configuration is disabled for the user.
+    *
+    * @throws PluginException
+    *           If an error occurred during initialization
+    */
+    virtual void userInit(boost::shared_ptr<Context> userContext) = 0;// throws PluginException;
+
+    /**
+    * This method is called once during server shutdown. It's usually used to terminate any threads created by the plugin and close all server sockets opened by it.
+    *
+    * @throws PluginException
+    *           If an error occurred during de-initialization
+    */
+    virtual void globalDeinit(boost::shared_ptr<Context> rootContext) = 0;//throws PluginException;
+
+    /**
+    * This method is called once for every system user upon its deletion or server shutdown. The method will be called even if user-level configuration is disabled for the user.
+    *
+    * @throws PluginException
+    *           If an error occurred during de-initialization
+    */
+    virtual void userDeinit(boost::shared_ptr<Context> userContext) = 0;//throws PluginException;
+
+    /**
+    * This method is called once for every plugin at the moment when server context tree is fully initialized and all contexts are available.
+    *
+    * @throws PluginException
+    *           If an error occurred during plugin startup
+    */
+    virtual void globalStart() = 0;//throws PluginException;
+
+    /**
+    * This method is called once for every plugin upon server shutdown.
+    *
+    * @throws PluginException
+    *           If an error occurred during plugin shutdown
+    */
+    virtual void globalStop() = 0;//throws PluginException;
+
+    /**
+    * This method creates and returns context containing plugin's global configuration. There is no need to keep reference to this context for future use as it may be accessed via
+    * getGlobalConfigContext() method.
+    *
+    * @param rootContext
+    *          Server root context
+    * @param requestReboot
+    *          Prompt an operator to reboot server after a global plugin property change
+    * @param properties
+    *          List of global plugin properties
+    * @return Plugin global config context
+    */
+    virtual Context createGlobalConfigContext(boost::shared_ptr<Context> rootContext, bool requestReboot,
+                                              boost::shared_ptr<VariableDefinition> properties, ...) = 0;
+
+    /**
+    * This method creates and returns context containing plugin's user-level configuration. There is no need to keep reference to this context for future use as it may be accessed via
+    * getUserConfigContext() method.
+    *
+    * @param userContext
+    *          Context of user to associate the configuration with
+    * @param requestReboot
+    *          Prompt an operator to reboot server after a global plugin property change
+    * @param properties
+    *          List of user-level plugin properties
+    * @return Plugin user-level config context
+    */
+    virtual Context createUserConfigContext(boost::shared_ptr<Context> userContext, bool requestReboot,
+                                            boost::shared_ptr<VariableDefinition>... properties) = 0;
+
+    /**
+    * Returns plugin's global configuration context
+    *
+    * @return Global configuration context
+    */
+    virtual Context getGlobalConfigContext() = 0;
+
+    /**
+    * Returns plugin's user-level configuration context or NULL if user-level configuration is disabled for the user.
+    *
+    * @return User-level configuration context
+    */
+    virtual Context getUserConfigContext(const std::string& username) = 0;
 };
+#endif  //_AggreGatePlugin_H_

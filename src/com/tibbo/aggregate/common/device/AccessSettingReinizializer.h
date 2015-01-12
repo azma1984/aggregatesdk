@@ -1,18 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/AccessSettingReinizializer.java
+#ifndef _AccessSettingReinizializer_H_
+#define _AccessSettingReinizializer_H_
 
-#pragma once
+#include <boost/shared_ptr.hpp>
+#include "util/Interface.h"
+#include "context/VariableDefinition.h"
+#include "context/CallerController.h"
+#include "datatable/DataTable.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/device/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::device::AccessSettingReinizializer
-    
+class AccessSettingReinizializer : public Interface
 {
-    bool reinitialize(::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::datatable::DataTable* value) /* throws(ContextException) */;
-
-    // Generated
-    
+    virtual bool reinitialize(boost::shared_ptr<VariableDefinition> def, boost::shared_ptr<CallerController> caller,
+                      boost::shared_ptr<DataTable> value) /* throws(ContextException) */ = 0;
 };
+#endif  //_AccessSettingReinizializer_H_
