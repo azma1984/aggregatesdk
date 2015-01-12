@@ -1,29 +1,31 @@
 #ifndef _Permission_H_
 #define _Permission_H_
 
+#include "util/Cloneable.h"
+#include <string>
+#include <boost/shared_ptr.hpp>
 
-#include "list"
-
-class Permission
+class Permission : public Cloneable
 {
-public:
-  static const char PERMISSION_SEPARATOR= ',';
 private:
-	std::list<Permission> permissions;
+    static const char PERMISSION_SEPARATOR;
 	std::mutex permissionsLock;
+    std::string context;
+    std::string level;
 
 public:
-   Permission(std::string *data, PermissionChecker* checker);
-   Permission(std::string* context, std::string* type);
-   Permission(std::string* data);
-   std::string encode();
-   std::string toString();
-   int size();
-   void add(Permission *permission);
+    Permission(const std::string& data, boost::shared_ptr<PermissionChecker> checker);
+    Permission(const std::string& context, std::string& level);
 
-   //todo
-  // Iterator<Permission> *iterator();
-	int hashCode();
-	bool equals(void* obj);
+    std::string getContext();
+    std::string getLevel();
+    void Permission::setContext(const std::string& entity);
+    void Permission::setLevel(const std::string& level);
+    std::string encode();
+    Permission* clone();
+
+    //int hashCode();
+    bool equals(Permission* obj);
+    std::string toString();
 };
 #endif

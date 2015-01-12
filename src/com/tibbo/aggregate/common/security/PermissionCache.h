@@ -1,41 +1,20 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/security/PermissionCache.java
+#ifndef _PermissionCache_H_
+#define _PermissionCache_H_
 
-#pragma once
+#include <string>
+#include <map>
 
-//#include <com/tibbo/aggregate/common/security/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/locks/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::security::PermissionCache
-    
+class PermissionCache
 {
-
-public:
-    typedef void super;
-
 private:
-    std::map effectiveLevels;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* lock;
+    std::map<std::string, std::string> effectiveLevels;
+    ReentrantReadWriteLock lock;
 
 public:
-    std::string* getLevel(std::string* context);
-    void cacheLevel(std::string* context, std::string* level);
+    std::string getLevel(const std::string& context);
+    void cacheLevel(const std::string& context, const std::string& level);
 
-    // Generated
     PermissionCache();
-protected:
-    void ctor();
-    PermissionCache(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
 };
+#endif  //_PermissionCache_H_
+
