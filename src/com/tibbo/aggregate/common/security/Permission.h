@@ -1,6 +1,6 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/security/Permission.java
-#ifndef PermissionH
-#define PermissionH
+#ifndef _Permission_H_
+#define _Permission_H_
+
 
 #include "list"
 
@@ -26,6 +26,4 @@ public:
 	int hashCode();
 	bool equals(void* obj);
 };
-
-
 #endif

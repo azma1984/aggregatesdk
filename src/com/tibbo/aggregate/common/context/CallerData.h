@@ -1,9 +1,10 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/CallerData.java
+#ifndef _CallerData_H_
 
-#pragma once
-
+#include "util/Interface.h"
+#include "action/ActionManager.h"
 
 class CallerData
 {
-  ActionManager* getActionManager();
+    virtual ActionManager* getActionManager() = 0;
 };
+#endif  //_CallerData_H_

@@ -2,6 +2,7 @@
 #define _DeviceDriver_H_
 
 #include "plugin/AggreGatePlugin.h"
+#include "device/DeviceContext.h"
 #include <string>
 #include <list>
 #include <set>
@@ -273,7 +274,7 @@ class DeviceDriver : public AggreGatePlugin
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual Date getVariableModificationTime(String name) = 0;//throws DeviceException, DisconnectionException;
+    virtual Date getVariableModificationTime(const std::string& name) = 0;//throws DeviceException, DisconnectionException;
 
     /**
     * This method should update device-side modification time of a setting pointed by name argument or do nothing if modification-time-based synchronization is not supported.
@@ -283,12 +284,12 @@ class DeviceDriver : public AggreGatePlugin
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual void updateVariableModificationTime(String name, Date value) = 0;//throws DeviceException, DisconnectionException;
+    virtual void updateVariableModificationTime(const std::string& name, Date value) = 0;//throws DeviceException, DisconnectionException;
 
     /**
     * This method allows the driver to report custom variable status to the system core. It should return null if no custom status should be used.
     */
-    virtual VariableStatus getCustomVariableStatus(String name) = 0;//throws DeviceException, DisconnectionException;
+    virtual VariableStatus getCustomVariableStatus(const std::string& name) = 0;//throws DeviceException, DisconnectionException;
 
     /**
     * This method is called in the end of every synchronization. Its implementations may perform some cleanup.
