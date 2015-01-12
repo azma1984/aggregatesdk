@@ -1,63 +1,36 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/GenericPropertiesConstants.java
+#ifndef _GenericPropertiesConstants_H_
+#define _GenericPropertiesConstants_H_
 
-#pragma once
+#include <string>
+#include "server/DeviceContextConstants.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/device/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::device::GenericPropertiesConstants
-    
+namespace GenericPropertiesConstants
 {
-    static const int METADATA_NONE) };
-    static const int METADATA_NORMAL = 1) };
-    static const int METADATA_FULL = 2) };
-    static const int CACHE_DATABASE) };
-    static const int CACHE_MEMORY = 1) };
+  static const int METADATA_NONE = 0;
+  static const int METADATA_NORMAL = 1;
+  static const int METADATA_FULL = 2;
 
-private:
-    static const std::string FIELD_NAME_;
-    static const std::string FIELD_DESCRIPTION_;
-    static const std::string FIELD_TYPE_;
-    static const std::string FIELD_SYNC_PERIOD_;
-    static const std::string FIELD_INTERRUPT_ON_ERROR_;
-    static const std::string FIELD_SUSPEND_;
-    static const std::string FIELD_EXTENDED_STATUS_;
-    static const std::string FIELD_TIME_ZONE_;
-    static const std::string FIELD_METADATA_;
-    static const std::string FIELD_CACHE_;
-    static const std::string FIELD_EVENT_STORAGE_PERIOD_;
-    static const std::string FIELD_DEPENDENCY_;
-    static const std::string FIELD_STATUS_;
-    static const std::string FIELD_COLOR_;
-    static const std::string FIELD_LATITUDE_;
-    static const std::string FIELD_LONGITUDE_;
-    static const std::string FIELD_LOCATION_STORAGE_PERIOD_;
-    static const std::string FIELD_OFFLINE_ALERT_;
-    static const std::string FIELD_VIRTUAL_NETWORK_;
+  static const int CACHE_DATABASE = 0;
+  static const int CACHE_MEMORY = 1;
 
-    // Generated
-
-public:
-    
-    static const std::string& FIELD_NAME();
-    static const std::string& FIELD_DESCRIPTION();
-    static const std::string& FIELD_TYPE();
-    static const std::string& FIELD_SYNC_PERIOD();
-    static const std::string& FIELD_INTERRUPT_ON_ERROR();
-    static const std::string& FIELD_SUSPEND();
-    static const std::string& FIELD_EXTENDED_STATUS();
-    static const std::string& FIELD_TIME_ZONE();
-    static const std::string& FIELD_METADATA();
-    static const std::string& FIELD_CACHE();
-    static const std::string& FIELD_EVENT_STORAGE_PERIOD();
-    static const std::string& FIELD_DEPENDENCY();
-    static const std::string& FIELD_STATUS();
-    static const std::string& FIELD_COLOR();
-    static const std::string& FIELD_LATITUDE();
-    static const std::string& FIELD_LONGITUDE();
-    static const std::string& FIELD_LOCATION_STORAGE_PERIOD();
-    static const std::string& FIELD_OFFLINE_ALERT();
-    static const std::string& FIELD_VIRTUAL_NETWORK();
-};
+  static const std::string FIELD_NAME = "name";
+  static const std::string FIELD_DESCRIPTION = "description";
+  static const std::string FIELD_TYPE = DeviceContextConstants::VF_GENERIC_PROPERTIES_TYPE;
+  static const std::string FIELD_SYNC_PERIOD = "syncPeriod";
+  static const std::string FIELD_INTERRUPT_ON_ERROR = "interruptOnError";
+  static const std::string FIELD_SUSPEND = "suspend";
+  static const std::string FIELD_EXTENDED_STATUS = "extendedStatus";
+  static const std::string FIELD_TIME_ZONE = "timeZone";
+  static const std::string FIELD_METADATA = "metadata";
+  static const std::string FIELD_CACHE = "cache";
+  static const std::string FIELD_EVENT_STORAGE_PERIOD = "eventStoragePeriod";
+  static const std::string FIELD_DEPENDENCY = "dependency";
+  static const std::string FIELD_STATUS = "status";
+  static const std::string FIELD_COLOR = "color";
+  static const std::string FIELD_LATITUDE = "latitude";
+  static const std::string FIELD_LONGITUDE = "longitude";
+  static const std::string FIELD_LOCATION_STORAGE_PERIOD = "locationStoragePeriod";
+  static const std::string FIELD_OFFLINE_ALERT = "offlineAlert";
+  static const std::string FIELD_VIRTUAL_NETWORK = "virtualNetwork";
+}
+#endif  //_GenericPropertiesConstants_H_

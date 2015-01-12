@@ -1,18 +1,20 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/ServiceFunction.java
+#ifndef _ServiceFunction_H_
+#define _ServiceFunction_H_
 
-#pragma once
+#include "util/Interface.h"
+#include "context/FunctionDefinition.h"
+#include "datatable/DataTable.h"
+#include <boost/shared_ptr.hpp>
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/device/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::device::ServiceFunction
-    
+/**
+ * Simple way to define service functions.
+ * For example may be used as
+ *   Map<String, ServiceFunction> functionsByName;
+ */
+class ServiceFunction : public Interface
 {
-    ::com::tibbo::aggregate::common::context::FunctionDefinition* getFunctionDefinition();
-    ::com::tibbo::aggregate::common::datatable::DataTable* execute(::com::tibbo::aggregate::common::datatable::DataTable* parametersDataTable) /* throws(DeviceException) */;
+    virtual FunctionDefinition getFunctionDefinition() = 0;
 
-    // Generated
-    
+    virtual boost::shared_ptr<DataTable> execute(boost::shared_ptr<DataTable> parametersDataTable) = 0;//throws DeviceException;
 };
+#endif  //_ServiceFunction_H_

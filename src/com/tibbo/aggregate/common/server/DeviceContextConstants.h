@@ -1,15 +1,12 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/DeviceContextConstants.java
+#ifndef _DeviceContextConstants_H_
+#define _DeviceContextConstants_H_
 
-#pragma once
+#include <string>
 
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-class DeviceContextConstants
+namespace DeviceContextConstants
 {
- public:
-   static const std::stringV_GENERIC_PROPERTIES = "genericProperties";
-   static const std::string V_CONNECTION_PROPERTIES = "connectionProperties";
+    static const std::string V_GENERIC_PROPERTIES = "genericProperties";
+    static const std::string V_CONNECTION_PROPERTIES = "connectionProperties";
     static const std::string V_STATUS_EXPRESSIONS =  "statusExpressions";
     static const std::string V_STATUS =  "status";
     static const std::string V_LOCATION =  "location";
@@ -49,4 +46,5 @@ class DeviceContextConstants
     static const std::string EF_FUNCTION_CALLED_INPUT = "input";
     static const std::string EF_FUNCTION_CALLED_OUTPUT =  "output";
     static const std::string EF_FUNCTION_CALLED_USER = "user";
-};
+}
+#endif  //_DeviceContextConstants_H_
