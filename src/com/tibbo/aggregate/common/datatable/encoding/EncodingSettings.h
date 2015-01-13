@@ -5,6 +5,7 @@
 
 class EncodingSettings
 {
+	/*
 private:
     bool        encodeFormat;
     boost::shared_ptr<TableFormat> format;
@@ -35,5 +36,5 @@ public:
     {
         this->encodeFormat = encodeFormat;
     }
-
+*/
 };

@@ -1,9 +1,9 @@
 #ifndef _DATA_H_
 #define _DATA_H_
 
-#include <util/Cloneable.h>
-#include <context/ContextManager.h>
-#include <context/CallerController.h>
+#include <Cloneable.h>
+#include <ContextManager.h>
+#include <CallerController.h>
 
 #include <string>
 #include <vector>
@@ -29,7 +29,7 @@ public:
 	std::vector<char> getData();
 	std::vector<char> getBlob();
     std::map<std::string, void*> getAttachments();
-	std::vector<char> fetchData(ContextManager* cm, CallerController* cc);// throws ContextException  
+	std::vector<char> fetchData(ContextManager<Data>* cm, CallerController* cc); 
 	std::string toDetailedString();
     void setAttachments(std::map<std::string, void*>& attachments);
 

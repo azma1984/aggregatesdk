@@ -1,5 +1,6 @@
 #include "datatable/TableFormat.h"
 
+/*
 #include "util/ElementList.h"
 #include "AggreGateException.h"
 
@@ -148,15 +149,15 @@ void TableFormat::ctor(int minRecords, int maxRecords, boost::shared_ptr<FieldFo
     ctor(minRecords, maxRecords);
     addField(fieldFormat);
 }
-/*
-TableFormat* TableFormat::addFields(FieldFormatArray* fieldFormats)
-{
-    for(auto each : *fieldFormats)) {
-        this->addField(each);
-    }
-    return this;
-}
-*/
+
+//TableFormat* TableFormat::addFields(FieldFormatArray* fieldFormats)
+//{
+//    for(auto each : *fieldFormats)) {
+//        this->addField(each);
+//    }
+//    return this;
+//}
+
 
 TableFormat* TableFormat::addFields(std::list<FieldFormat>& fieldFormats)
 {
@@ -268,13 +269,12 @@ TableFormat* TableFormat::removeField(const std::string& name)
         int index = it->second();
         fieldLookup.erase( it );
         //TODO: удаление по индексу
-        /*
-        fields.remove(index.intValue());
-        for (int i = index; i < fields->size(); i++) {
-            std::string fn = fields->get(i)->getName();
-            getFieldLookup().put(fn, getFieldLookup().get(fn) - 1);
-        }
-        */
+         //fields.remove(index.intValue());
+        //for (int i = index; i < fields->size(); i++) {
+        //    std::string fn = fields->get(i)->getName();
+        //    getFieldLookup().put(fn, getFieldLookup().get(fn) - 1);
+        //}
+      
     }
 
     return this;
@@ -331,19 +331,22 @@ int TableFormat::getFieldCount()
 
 std::list<FieldFormat> TableFormat::getFields()
 {
-    return /*immutable ? unmodifiableList(fields) :*/ fields;
+   // return immutable ? unmodifiableList(fields) : fields;
+	return fields;
 }
 
 //TODO:
 std::list<RecordValidator> TableFormat::getRecordValidators()
 {    
-    return /*immutable ? unmodifiableList(recordValidators) :*/ recordValidators;
+  //  return immutable ? unmodifiableList(recordValidators) :recordValidators;
+	return recordValidators;
 }
 
 //TODO:
 std::list<TableValidator> TableFormat::getTableValidators()
 {
-    return /*immutable ? unmodifiableList(tableValidators) :*/ tableValidators;
+  //  return immutable ? unmodifiableList(tableValidators) : tableValidators;
+	return tableValidators;
 }
 
 int TableFormat::getMaxRecords()
@@ -387,7 +390,8 @@ void TableFormat::setBindingsEditable(bool bindingsEditable)
 //TODO:
 std::list<Binding> TableFormat::getBindings()
 {
-    return /*immutable ? unmodifiableList(bindings) :*/ bindings;
+  //  return immutable ? unmodifiableList(bindings) : bindings;
+	 return  bindings;
 }
 
 void TableFormat::addBinding(Binding* binding)
@@ -416,24 +420,24 @@ void TableFormat::removeBinding(Binding* binding)
     }
 
     bindings.remove( binding );
-    /*
-    for (std::list<boost::shared_ptr<Binding>>::iterator it = bindings.begin(); it!= bindings.end(); ++it) {
-        if (static_cast<Binding*>(*it)->equals(binding)) {
-            bindings.erase( it );
-        }
-    }
-    */
+   
+    //for (std::list<boost::shared_ptr<Binding>>::iterator it = bindings.begin(); it!= bindings.end(); ++it) {
+    //    if (static_cast<Binding*>(*it)->equals(binding)) {
+    //        bindings.erase( it );
+    //    }
+    //}
+    
 }
-/*
- * //TODO:: no usage
-void TableFormat::setBindings(std::list  in_bindings)
-{
-    if(immutable) {
-        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
-    }
-    bindings = in_bindings;
-}
-*/
+
+ //TODO:: no usage
+//void TableFormat::setBindings(std::list  in_bindings)
+//{
+//    if(immutable) {
+//        throw new ::java::lang::IllegalStateException(u"Immutable"_j);
+//    }
+//    bindings = in_bindings;
+//}
+
 com::tibbo::aggregate::common::expression::Expression* TableFormat::getNamingExpression()
 {
     return namingExpression;
@@ -1044,3 +1048,4 @@ struct clinit_ {
         static clinit_ clinit_instance;
     }
 }
+*/

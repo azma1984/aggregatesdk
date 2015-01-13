@@ -3,8 +3,8 @@
 
 
 //#include <Cres.h>
-#include <data/Data.h>
-#include <datatable/DataTable.h>
+#include <Data.h>
+//#include <datatable/DataTable.h>
 //#include <datatable/FieldFormat.h>
 //#include <datatable/QueryCondition.h>
 #include <datatable/TableFormat.h>
@@ -15,14 +15,17 @@
 //#include <util/ElementList.h>
 //#include <util/StringUtils.h>
 //#include <util/Util.h>
-#include "util/Cloneable.h"
+#include "Cloneable.h"
 #include "util/Date.h"
 
 #include <string>
 #include <map>
 
+class DataTable;
+
 class DataRecord //:Cloneable//, PublicCloneable
-{     
+{   
+	/*
 public:
 	// Generated
     DataRecord();
@@ -124,7 +127,7 @@ private:
     void checkNumberOfDataFieldsSet(void* value);
     DataRecord* setValue(int index, void* value, bool validate);   
     int findIndex(std::string* name);
-    void* getValue(FieldFormat* ff);
+    void* getValue(FieldFormat* ff);*/
 };
 
 #endif //_DATARECORD_H_

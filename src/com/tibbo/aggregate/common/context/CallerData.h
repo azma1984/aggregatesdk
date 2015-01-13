@@ -1,7 +1,7 @@
 #ifndef _CallerData_H_
 
-#include "util/Interface.h"
-#include "action/ActionManager.h"
+#include "Interface.h"
+#include "ActionManager.h"
 
 class CallerData
 {

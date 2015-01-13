@@ -3,8 +3,8 @@
 
 #include "ActionResponse.h"
 #include "RequestIdentifier.h"
-#include "util/Interface.h"
-#include "util/Cloneable.h"
+#include "Interface.h"
+#include "Cloneable.h"
 
 class ActionCommand : /*public Cloneable,*/ public Interface
 {

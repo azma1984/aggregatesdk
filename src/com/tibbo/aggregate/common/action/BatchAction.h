@@ -16,6 +16,7 @@
 
 class BatchAction:public Action<InitialRequest,ActionCommand,ActionResponse>
 {
+	/*
 private:
     ActionManager* actionManager;
     ActionContext* actionContext;
@@ -29,7 +30,7 @@ public:
 	ActionCommand* service(ActionResponse* actionRequest);
 
 	void destroy();
-
+*/
 };
 
 

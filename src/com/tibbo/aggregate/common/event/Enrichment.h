@@ -8,7 +8,7 @@
 
 class Enrichment
 {
-
+	/*
 private:
     static const std::string FIELD_NAME;
     static const std::string FIELD_VALUE;
@@ -39,6 +39,6 @@ public:
     Enrichment(const std::string& name, const std::string& value, boost::shared_ptr<Date> date, const std::string& author);
 
 private:
-    static boost::shared_ptr<TableFormat> FORMAT_;
+    static boost::shared_ptr<TableFormat> FORMAT_;*/
 };
 #endif  //_Enrichment_H_

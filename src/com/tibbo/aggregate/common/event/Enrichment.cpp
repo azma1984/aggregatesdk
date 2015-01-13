@@ -1,5 +1,5 @@
 #include "event/Enrichment.h"
-
+/*
 #include "AggreGateException.h"
 #include "Cres.h"
 #include "context/ContextUtils.h"
@@ -35,11 +35,11 @@ Enrichment::Enrichment()
 Enrichment::Enrichment(const std::string& name, const std::string& value, boost::shared_ptr<Date> date, const std::string& author)
 {
     //TODO: ContextUtils
-    /*
-    if (!ContextUtils::isValidContextName(name)) {
-        throw AggreGateException(std::string("Illegal enrichment name: ").append(name));
-    }
-    */
+
+    //if (!ContextUtils::isValidContextName(name)) {
+    //    throw AggreGateException(std::string("Illegal enrichment name: ").append(name));
+    //}
+
 
     this->name = name;
     this->value = value;
@@ -86,3 +86,4 @@ void Enrichment::setAuthor(const std::string& author)
 {
    this->author = author;
 }
+*/

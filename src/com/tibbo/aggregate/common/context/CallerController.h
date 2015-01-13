@@ -2,15 +2,15 @@
 
 #ifndef CallerControllerH
 #define CallerControllerH
-
-#include "context/CallerData.h"
-#include "security/Permission.h"
-#include "util/Date.h"
+#include "CallerData.h"
+#include "Permission.h"
+#include "Date.h"
 #include <string>
 #include <boost/shared_ptr.hpp>
 
 class CallerController : public CallerData
 {
+	/*
     virtual std::string getUsername();
     virtual std::string getInheritedUsername();
     virtual std::string getEffectiveUsername();
@@ -27,5 +27,6 @@ class CallerController : public CallerData
     virtual boost::shared_ptr<CallerData> getCallerData();
     virtual std::map<std::string, std::string> getProperties();
     virtual void sendFeedback(int level, const std::string& message);
+	*/
 };
 #endif

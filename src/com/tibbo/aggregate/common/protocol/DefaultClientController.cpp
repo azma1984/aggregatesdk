@@ -181,9 +181,11 @@ void DefaultClientController::processMessageStart(IncomingAggreGateCommand* cmd,
         ans)->constructReply(cmd)->getId(), AggreGateCommand::REPLY_CODE_DENIED());
     }
 }
-
+*/
 void DefaultClientController::processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) 
 {
+//todo - It is not defined
+	/*
     auto operation = cmd)->getParameter(AggreGateCommand::INDEX_OPERATION_CODE);
     auto context = cmd)->getParameter(AggreGateCommand::INDEX_OPERATION_CONTEXT);
     auto target = cmd)->getParameter(AggreGateCommand::INDEX_OPERATION_TARGET);
@@ -265,9 +267,9 @@ void DefaultClientController::processMessageOperation(IncomingAggreGateCommand* 
 
         }
     }
-
+	*/
 }
-
+/*
 void DefaultClientController::addCustomListeners(::com::tibbo::aggregate::common::context::Context* con)
 {
 }

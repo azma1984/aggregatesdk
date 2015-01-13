@@ -1,12 +1,13 @@
 #ifndef _Permission_H_
 #define _Permission_H_
 
-#include "util/Cloneable.h"
+#include "Cloneable.h"
 #include <string>
-#include <boost/shared_ptr.hpp>
+#include <shared_ptr.hpp>
 
 class Permission : public Cloneable
 {
+	/*
 private:
     static const char PERMISSION_SEPARATOR;
 	std::mutex permissionsLock;
@@ -26,6 +27,6 @@ public:
 
     //int hashCode();
     bool equals(Permission* obj);
-    std::string toString();
+    std::string toString();*/
 };
 #endif

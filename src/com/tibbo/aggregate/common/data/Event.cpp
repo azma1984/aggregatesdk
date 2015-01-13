@@ -1,9 +1,8 @@
 #include "Event.h"
-
+/*
 #include "datatable/DataTableException.h"
 
 const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD = 100 * TimeHelper.DAY_IN_MS; // Milliseconds
-
 
 
 Event::Event(const std::string& context, boost::shared_ptr<EventDefinition> def, int level,
@@ -248,10 +247,10 @@ boost::shared_ptr<Event> Event::clone()
 {
 //    try {
         boost::shared_ptr<Event> clone = new Event(this);
-        /*
-        clone->acknowledgements = java_cast< std::list  >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(acknowledgements));
-        clone->enrichments = java_cast< std::list  >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(enrichments));
-        */
+      
+        //clone->acknowledgements = java_cast< std::list  >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(acknowledgements));
+        //clone->enrichments = java_cast< std::list  >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(enrichments));
+       
         return clone;
 //    } catch (::java::lang::CloneNotSupportedException* ex) {
 //        throw new ::java::lang::IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
@@ -289,3 +288,4 @@ std::string Event::toString()
 
     return ss.str();
 }
+*/
