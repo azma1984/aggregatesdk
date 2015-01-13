@@ -2,6 +2,7 @@
 #define _STRING_H_
 
 #include <string>
+#include <vector>
 
 /**
  * std::string wrapper/helper.
@@ -242,6 +243,11 @@ public:
 	 * @return a cleaned string
 	 */
 	std::string trim();
+
+    /**
+     * Split string
+     */
+    static std::vector<std::string> split(const std::string &s, char delim);
 };
 
 #endif	//_STRING_H_

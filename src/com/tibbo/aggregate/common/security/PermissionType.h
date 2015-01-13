@@ -1,45 +1,41 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/security/PermissionType.java
+#ifndef _PermissionType_H_
+#define _PermissionType_H_
 
-#pragma once
+#include <string>
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/security/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::security::PermissionType
-    
+class PermissionType
 {
-
-public:
-    typedef void super;
-
 private:
-    int pattern;
-    std::string* name;
-    std::string* description;
-protected:
-    void ctor(int pattern, std::string* name, std::string* description);
+    int pattern_;
+    std::string name_;
+    std::string description_;
 
 public:
-    int getPattern();
-    void setPattern(int pattern);
-    std::string* getName();
-    void setName(std::string* name);
-    std::string* getDescription();
-    void setDescription(std::string* description);
+    PermissionType(int pattern, const std::string& name, const std::string& description) :
+        pattern_(pattern), name_(name), description_(description) {}
 
-    // Generated
-    PermissionType(int pattern, std::string* name, std::string* description);
-protected:
-    PermissionType(const ::default_init_tag&);
+    int getPattern() {
+        return pattern_;
+    }
 
+    void setPattern(int pattern) {
+        this->pattern_ = pattern;
+    }
 
-public:
-    
+    std::string getName() {
+        return name_;
+    }
 
-private:
-    ::java::lang::Class* getClass0();
+    void setName(const std::string& name) {
+        this->name_ = name;
+    }
+
+    std::string getDescription() {
+        return description_;
+    }
+
+    void setDescription(const std::string& description) {
+        this->description_ = description;
+    }
 };
+#endif  //_PermissionType_H_

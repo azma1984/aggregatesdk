@@ -8,7 +8,7 @@ class PermissionCache
 {
 private:
     std::map<std::string, std::string> effectiveLevels;
-    ReentrantReadWriteLock lock;
+    ReentrantReadWriteLock* lock;
 
 public:
     std::string getLevel(const std::string& context);
