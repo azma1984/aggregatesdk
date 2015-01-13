@@ -7,7 +7,7 @@
 
 void AgentImplementationController::processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) 
 {
-    this->processMessageOperation(cmd, ans);
+    DefaultClientController::processMessageOperation(cmd, ans);
     std::string context = cmd->getParameter(AggreGateCommand::INDEX_OPERATION_CONTEXT);
     Context* con = getContext(context);
     if(con != 0) 

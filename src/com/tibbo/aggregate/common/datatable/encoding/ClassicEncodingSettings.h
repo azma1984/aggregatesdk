@@ -8,6 +8,7 @@
 
 class ClassicEncodingSettings : public EncodingSettings
 {
+	/*
 private:
     bool useVisibleSeparators;
     boost::shared_ptr<FormatCache> formatCache;
@@ -81,5 +82,6 @@ public:
     {
         this->encodeFieldNames = encodeFieldNames;
     }
+	*/
 };
 #endif

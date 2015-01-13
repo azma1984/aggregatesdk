@@ -4,7 +4,7 @@
 #ifndef AggreGateCommandH
 #define AggreGateCommandH
 
-#include "Command.h"
+#include "communication/Command.h"
 
 //#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
 

@@ -21,6 +21,7 @@
 
 class Event: public Cloneable
 {
+	/*
  public:
   
   static const long DEFAULT_EVENT_EXPIRATION_PERIOD; // Milliseconds
@@ -78,7 +79,7 @@ public:
     int getLevel();
     boost::shared_ptr<Permissions> getPermissions();
     void setPermissions(boost::shared_ptr<Permissions> permissions);
-    void*/*Object*/ getOriginator();
+    void* getOriginator();
     int getCount();
     void setCount(int count);
     std::string getDeduplicationId();
@@ -86,6 +87,6 @@ public:
     boost::shared_ptr<Event> clone();
 //    int hashCode();
     bool equals(boost::shared_ptr<this> obj);
-    std::string toString();
+    std::string toString();*/
 };
 #endif //_EVENT_H_

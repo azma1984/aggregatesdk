@@ -26,6 +26,7 @@
 
 class ActionManager
 {
+	/*
 private:
 	ActionDirectory<ActionLocator>* actionDirectory;
 
@@ -47,6 +48,7 @@ public:
 	ActionContext* getActionContext(ActionIdentifier* actionId);
 	ActionDirectory* getActionDirectory();
 	ActionIdentifier* registerAction(ActionContext* actionContext, Action* action, ActionExecutionMode* mode);
+	*/
 };
 
 #endif

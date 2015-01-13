@@ -9,6 +9,7 @@
 #include "datatable/validator/TableValidator.h"
 #include "datatable/validator/RecordValidator.h"
 #include "datatable/encoding/ClassicEncodingSettings.h"
+#include "datatable/DataTable.h"
 
 #include <string>
 #include <list>
@@ -18,6 +19,7 @@
 
 class TableFormat: public Cloneable
 {    
+	/*
 public:
     static boost::shared_ptr<TableFormat> EMPTY_FORMAT;
     static const int DEFAULT_MIN_RECORDS;
@@ -166,7 +168,8 @@ public:
     TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat);
 
 private:
-    void init();    
+    void init();  
+	*/
 };
 
 #endif  //_TABLE_FORMAT_H_

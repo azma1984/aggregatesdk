@@ -36,15 +36,15 @@
 #include <com/tibbo/aggregate/common/protocol/AggreGateCommandUtils.h"
 #include <com/tibbo/aggregate/common/protocol/DefaultClientController_ForwardingEventListener.h"
 #include <com/tibbo/aggregate/common/protocol/DefaultClientController_ProcessCommandTask.h"
-#include <com/tibbo/aggregate/common/protocol/IncomingAggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/OutgoingAggreGateCommand.h"
+
 #include <com/tibbo/aggregate/common/server/RootContextConstants.h"
 
 #include <com/tibbo/aggregate/common/util/SyntaxErrorException.h"*/
 #include "BlockingChannel.h"
 #include "ContextManager.h"
-#include "ContextEventListener.h"
-
+#include "event/ContextEventListener.h"
+#include "protocol/IncomingAggreGateCommand.h"
+#include "protocol/OutgoingAggreGateCommand.h"
 #include <string>
 
 class DefaultClientController : public AbstractClientController
@@ -93,10 +93,11 @@ public:
     void processOperationAddEventListener(std::string* id, std::string* context, std::string* name, ::java::lang::Integer* listener, std::string* filter, OutgoingAggreGateCommand* ans) ;
     void processOperationRemoveEventListener(std::string* id, std::string* context, std::string* name, ::java::lang::Integer* listenerHashCode, std::string* filter, OutgoingAggreGateCommand* ans) ;
     void processMessageStart(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
-
-public: 
-    void processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) ;
-    void addCustomListeners(::com::tibbo::aggregate::common::context::Context* con);
+*/
+protected: 
+    static void processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) ;
+ /*
+	void addCustomListeners(::com::tibbo::aggregate::common::context::Context* con);
     void processMessage(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
 
 public:

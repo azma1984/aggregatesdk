@@ -1,39 +1,12 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/ContextUtils.java
 
-#pragma once
+#ifndef ContextUtilsH
+#define ContextUtilsH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/action/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/io/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-template<typename ComponentType, typename... Bases> struct SubArray;
-namespace java
+//todo - So far the class is not described
+class ContextUtils
 {
-    namespace io
-    {
-typedef ::SubArray< ::java::io::Serializable, voidArray > SerializableArray;
-    } // io
-
-    namespace lang
-    {
-typedef ::SubArray< ::java::lang::CharSequence, ObjectArray > CharSequenceArray;
-typedef ::SubArray< ::java::lang::Comparable, ObjectArray > ComparableArray;
-typedef ::SubArray< std::string, ObjectArray, ::java::io::SerializableArray, ComparableArray, CharSequenceArray > StringArray;
-    } // lang
-} // java
-
-
-
-class com::tibbo::aggregate::common::context::ContextUtils
-    
-{
-
-public:
-    typedef void super;
+/*
 
 private:
     static const std::string CONTEXT_NAME_PATTERN_;
@@ -68,8 +41,8 @@ private:
     static const std::string VARIABLES_GROUP_DS_SETTINGS_;
 
 public:
-    static const std::string createName(std::stringArray*/*...*/ parts);
-    static const std::string createGroup(std::stringArray*/*...*/ parts);
+    static const std::string createName(std::stringArray* parts);
+    static const std::string createGroup(std::stringArray* parts);
     static const std::string userContextPath(std::string* username);
     static const std::string deviceServersContextPath(std::string* owner);
     static const std::string dsGroupsContextPath(std::string* owner);
@@ -135,7 +108,7 @@ public:
     static std::list  findChildren(std::string* rootsMask, std::string* type, ContextManager* manager, CallerController* caller, bool resolveGroups);
 
 private:
-    static void acceptFinder(Context* context, ContextVisitor* visitor, CallerController* caller, bool resolveGroups) /* throws(ContextException) */;
+    static void acceptFinder(Context* context, ContextVisitor* visitor, CallerController* caller, bool resolveGroups) ;
 
 public:
     static bool matchesToMask(std::string* mask, std::string* name);
@@ -201,4 +174,7 @@ public:
 private:
     ::java::lang::Class* getClass0();
     friend class ContextUtils_findChildren_1;
+	*/
 };
+
+#endif

@@ -4,10 +4,11 @@
 #define ContextsH
 
 #include <string>
+#include "context/ContextUtils.h"
 
-namespace Contexts
+class Contexts
 {
-    static const std::string CURRENT = ContextUtils::CONTEXT_NAME_SEPARATOR;
+//    static const std::string CURRENT = ContextUtils::CONTEXT_NAME_SEPARATOR;
 
     static const std::string CTX_ADMINISTRATION = "administration";
     static const std::string CTX_ALERTS = "alerts";

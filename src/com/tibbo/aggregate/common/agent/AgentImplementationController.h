@@ -4,15 +4,16 @@
 #define AgentImplementationControllerH
 
 #include "AbstractContext.h"
-#include "Context.h"
+#include "context/Context.h"
 #include "AggreGateCommand.h"
 #include "IncomingAggreGateCommand.h"
 #include "OutgoingAggreGateCommand.h"
 #include "DefaultClientController.h"
 #include "Event.h"
-#include "ContextEventListener.h"
+#include "event/ContextEventListener.h"
 #include "BlockingChannel.h"
 #include "ContextManager.h"
+#include <string>
 
 
 class AgentImplementationController : public DefaultClientController

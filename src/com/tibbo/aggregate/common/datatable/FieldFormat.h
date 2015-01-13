@@ -1,9 +1,11 @@
-#ifndef FieldFormatH
-#define FieldFormatH
+#pragma once
 
-/*template <typename T>*/ class FieldFormat
+#include <string>
+#include <boost/shared_ptr.hpp>
+#include "../util/Cloneable.h"
+
+class FieldFormat : public Cloneable
 {
-/*
 public:
     static const char INTEGER_FIELD = 'I';
     static const char STRING_FIELD = 'S';
@@ -15,6 +17,11 @@ public:
     static const char DATATABLE_FIELD = 'T';
     static const char COLOR_FIELD = 'C';
     static const char DATA_FIELD = 'A';
+
+    static const char VALIDATOR_LIMITS = 'L';
+    static const char VALIDATOR_REGEX = 'R';
+    static const char VALIDATOR_NON_NULL = 'N';
+    static const char VALIDATOR_ID = 'I';
 
 private:
     static std::string ELEMENT_FLAGS;
@@ -39,11 +46,6 @@ private:
     static const char READ_ONLY_FLAG = 'R';
     static const char  DEFAULT_OVERRIDE = 'D';
 
-public:
-    static const char VALIDATOR_LIMITS = 'L';
-    static const char VALIDATOR_REGEX = 'R';
-    static const char VALIDATOR_NON_NULL = 'N';
-    static const char VALIDATOR_ID = 'I';
 
 private:
     std::string name;
@@ -57,7 +59,7 @@ private:
     bool inlineData;
     bool advanced;
     bool defaultOverride;
-    T    defaultValue;
+    //T    defaultValue;
     std::string description;
     std::string help;
     std::string group;
@@ -68,28 +70,25 @@ private:
     std::string icon;
 
 protected:
-    FieldFormat(const std::string &name)
-    {
-        this->name = name;
-    }
+    FieldFormat(const std::string &name);
 
 public:
-    //static FieldFormat create(const std::string &name, char type);
-*/
+    static boost::shared_ptr<FieldFormat> create(const std::string &name, bool value);
+    static boost::shared_ptr<FieldFormat> create(const std::string &name, int value);
+    static boost::shared_ptr<FieldFormat> create(const std::string &name, long value);
+
+    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type);
+
+
+
+
+    virtual Cloneable * clone() const
+    {
+        return new FieldFormat("dsdsf");
+    }
+
 
 };
 
-/*
-template<typename T> double FieldFormat<T>::ELEMENT_FLAGS = "F";
-template<typename T> double FieldFormat<T>::ELEMENT_DEFAULT_VALUE = "A";
-template<typename T> double FieldFormat<T>::ELEMENT_DESCRIPTION = "D";
-template<typename T> double FieldFormat<T>::ELEMENT_HELP = "H";
-template<typename T> double FieldFormat<T>::ELEMENT_SELECTION_VALUES = "S";
-template<typename T> double FieldFormat<T>::ELEMENT_VALIDATORS = "V";
-template<typename T> double FieldFormat<T>::ELEMENT_EDITOR = "E";
-template<typename T> double FieldFormat<T>::ELEMENT_EDITOR_OPTIONS = "O";
-template<typename T> double FieldFormat<T>::ELEMENT_ICON = "I";
-template<typename T> double FieldFormat<T>::ELEMENT_GROUP = "G";
-*/
 
-#endif
+

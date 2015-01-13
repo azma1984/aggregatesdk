@@ -15,6 +15,7 @@
 
 
 
+
 enum ActionState
 	{
 	 CREATED, INITIALIZED, WORKING, DESTROYED
@@ -23,7 +24,7 @@ enum ActionState
 
 class ActionContext
 {
-
+	/*
  private:
 	ActionDefinition *actionDefinition;
 	BatchContext* batchContext;
@@ -59,6 +60,6 @@ class ActionContext
 
 	void setActionState(ActionState* actionState);
 	void setActionManager(ActionManager* actionManager);
-
+	*/
 };
 #endif
