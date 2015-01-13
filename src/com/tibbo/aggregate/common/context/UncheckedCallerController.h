@@ -2,47 +2,41 @@
 
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/data/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/security/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/context/AbstractCallerController.h"
+#include "context/AbstractCallerController.h"
 
 
 
-class com::tibbo::aggregate::common::context::UncheckedCallerController
-    : public AbstractCallerController
+class UncheckedCallerController : public AbstractCallerController
 {
 
-public:
-    typedef AbstractCallerController super;
+//public:
+//    typedef AbstractCallerController super;
 
-private:
-    ::com::tibbo::aggregate::common::security::Permissions* permissions;
-protected:
-    void ctor();
-    void ctor(std::string* username);
+//private:
+//    ::com::tibbo::aggregate::common::security::Permissions* permissions;
+//protected:
+//    void ctor();
+//    void ctor(std::string* username);
 
-public:
-    ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
-    bool isPermissionCheckingEnabled();
-    bool isLoggedIn();
-    void logout();
-    bool isHeadless();
-    void handleContextEvent(::com::tibbo::aggregate::common::data::Event* event) /* throws(EventHandlingException) */;
+//public:
+//    ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
+//    bool isPermissionCheckingEnabled();
+//    bool isLoggedIn();
+//    void logout();
+//    bool isHeadless();
+//    void handleContextEvent(::com::tibbo::aggregate::common::data::Event* event) /* throws(EventHandlingException) */;
 
-    // Generated
-    UncheckedCallerController();
-    UncheckedCallerController(std::string* username);
-protected:
-    UncheckedCallerController(const ::default_init_tag&);
+//    // Generated
+//    UncheckedCallerController();
+//    UncheckedCallerController(std::string* username);
+//protected:
+//    UncheckedCallerController(const ::default_init_tag&);
 
 
-public:
+//public:
     
 
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+//private:
+//    void init();
+//    ::java::lang::Class* getClass0();
 };
