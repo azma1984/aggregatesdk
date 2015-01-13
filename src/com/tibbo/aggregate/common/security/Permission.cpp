@@ -1,31 +1,33 @@
 #include "security/Permission.h"
+#include "util/SString.h"
 
 static const char Permission::PERMISSION_SEPARATOR= ',';
 
 Permission::Permission(const std::string& data, boost::shared_ptr<PermissionChecker> checker)
 {
 
-    List<String> spd = StringUtils.split(data, Permission.PERMISSION_FIELDS_SEPARATOR);
+    std::vector<std::string> spd = SString::split(data, Permission.PERMISSION_FIELDS_SEPARATOR);
 
     switch (spd.size())
     {
         case 1:
-            setLevel(spd.get(0));
+            setLevel(spd[0]);
         break;
 
         case 2:
-            setContext(spd.get(0));
-            setLevel(spd.get(1));
+            setContext(spd[0]);
+            setLevel(spd[1]);
         break;
 
         default:
         throw new IllegalArgumentException("Invalid permission: '" + data + "'");
     }
 
-    if (checker != null)
+    if (checker != NULL)
     {
-        if (!checker.isValid(getLevel()))
+        if (!checker->isValid(getLevel()))
         {
+            //TODO: IllegalArgumentException
             throw new IllegalArgumentException("Invalid permission type: '" + level + "'");
         }
     }
@@ -51,7 +53,7 @@ std::string Permission::encode()
 {
     std::string enc;
 
-    lock.readLock().lock();
+    permissionsLock.lock();// readLock().lock();
 
     if (!context.empty()) {
         enc.append(context);
@@ -60,7 +62,7 @@ std::string Permission::encode()
 
     enc.append(level);
 
-    lock.readLock().unlock();
+    permissionsLock.unlock();// readLock().unlock();
 
     return enc;
 }
@@ -122,7 +124,7 @@ std::string Permission::toString()
 
 void Permission::setContext(const std::string& entity)
 {
-    lock.writeLock().lock();
+    permissionsLock.lock();// writeLock().lock();
 
     try
     {
@@ -130,13 +132,13 @@ void Permission::setContext(const std::string& entity)
     }
     catch(...)
     {
-        lock.writeLock().unlock();
+        permissionsLock.unlock();// writeLock().unlock();
     }
 }
 
 void Permission::setLevel(const std::string& level)
 {
-    lock.writeLock().lock();
+    permissionsLock.lock();// writeLock().lock();
 
     try
     {
@@ -144,6 +146,6 @@ void Permission::setLevel(const std::string& level)
     }
     catch(...)
     {
-        lock.writeLock().unlock();
+        permissionsLock.unlock();// writeLock().unlock();
     }
 }

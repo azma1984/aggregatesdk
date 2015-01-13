@@ -2,14 +2,16 @@
 #define _Permission_H_
 
 #include "util/Cloneable.h"
+#include "security/PermissionChecker.h"
 #include <string>
 #include <boost/shared_ptr.hpp>
+#include <boost/thread/mutex.hpp>
 
 class Permission : public Cloneable
 {
 private:
     static const char PERMISSION_SEPARATOR;
-	std::mutex permissionsLock;
+    boost::mutex permissionsLock;
     std::string context;
     std::string level;
 

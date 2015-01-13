@@ -18,20 +18,20 @@ public:
 
     static const std::string NULL_PERMISSIONS();
 
-    void setPermissionTypes(boost::shared_ptr<PermissionType> perms);
+    void setPermissionTypes(std::vector<boost::shared_ptr<PermissionType> > perms);
     static boost::shared_ptr<Permissions> getNullPermissions();
     virtual bool has(boost::shared_ptr<CallerController> caller, boost::shared_ptr<Permissions> requiredPermissions,
                      boost::shared_ptr<Context> accessedContext);
     virtual std::string getLevel(boost::shared_ptr<Permissions> perms, const std::string& context, boost::shared_ptr<ContextManager> cm);
     virtual bool canSee(Permissions perms, const std::string& context, boost::shared_ptr<ContextManager> cm);
-    virtual std::string canActivate(boost::shared_ptr<Permissions> has, boost::shared_ptr<Permissions> need,
+    virtual std::string canActivate(boost::shared_ptr<Permissions> has, boost::shared_ptr<Permissions> requiredPermissions,
                                     boost::shared_ptr<ContextManager> cm);
     virtual bool isValid(const std::string& permissionLevel);
     virtual std::map<std::string, std::string> getPermissionLevels();
 
 private:
     bool hasNecessaryLevel(const std::string& existingLevel, const std::string& requiredLevel);
-    int findPattern(std::string* level) /* throws(SecurityException) */;
+    int findPattern(const std::string& level) /* throws(SecurityException) */;
     bool contextMatches(boost::shared_ptr<Permission> existingPermission, boost::shared_ptr<Permission> requiredPermission,
                         boost::shared_ptr<Context> accessedContext);
     std::list<std::string> getAllowedPaths(boost::shared_ptr<Permission> permission, boost::shared_ptr<ContextManager> cm);

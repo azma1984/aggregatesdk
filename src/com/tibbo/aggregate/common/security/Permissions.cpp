@@ -43,7 +43,7 @@ std::string Permissions::encode()
     typedef std::list<boost::shared_ptr<Permission>>::iterator permisionIter;
     std::stringstream enc;
 
-    permissionsLock.readLock().lock();
+    permissionsLock.lock();//readLock().lock();
     try
     {
         int i = 0;
@@ -57,7 +57,7 @@ std::string Permissions::encode()
             i++;
         }
     }catch(...) {
-        permissionsLock.readLock().unlock();
+        permissionsLock.unlock();// readLock().unlock();
     }
 
     return enc.toString();
@@ -75,14 +75,14 @@ int Permissions::size()
 
 boost::shared_ptr<Permissions> Permissions::add(boost::shared_ptr<Permission> permission)
 {
-    permissionsLock.writeLock().lock();
+    permissionsLock.lock();// writeLock().lock();
     try
     {
         permissions.push_back(permission);
     }
     catch(...)
     {
-        permissionsLock.writeLock().unlock();
+        permissionsLock.unlock();// writeLock().unlock();
     }
 
     return this;

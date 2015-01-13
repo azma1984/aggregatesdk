@@ -3,12 +3,14 @@
 
 #include <string>
 #include <map>
+#include <boost/thread/mutex.hpp>
 
 class PermissionCache
 {
 private:
     std::map<std::string, std::string> effectiveLevels;
-    ReentrantReadWriteLock* lock;
+    //TODO: mutex
+    boost::mutex lock;//ReentrantReadWriteLock*
 
 public:
     std::string getLevel(const std::string& context);

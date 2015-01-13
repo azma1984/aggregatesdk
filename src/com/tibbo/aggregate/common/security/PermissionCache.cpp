@@ -7,7 +7,7 @@ PermissionCache::PermissionCache()
 
 std::string PermissionCache::getLevel(const std::string& context)
 {
-    lock.readLock().lock();
+    lock.lock();
 
     try
     {
@@ -19,13 +19,13 @@ std::string PermissionCache::getLevel(const std::string& context)
     }
     catch(...)  //TODO: скорее всего исключение нужно пробросить дальше
     {
-        lock.readLock().unlock();
+        lock.unlock();
     }
 }
 
 void PermissionCache::cacheLevel(const std::string& context, const std::string& level)
 {
-    lock.writeLock().lock();
+    lock.lock();
 
     try
     {
@@ -33,6 +33,6 @@ void PermissionCache::cacheLevel(const std::string& context, const std::string& 
     }
     catch(...)
     {
-        lock.writeLock().unlock();
+        lock.unlock();
     }
 }

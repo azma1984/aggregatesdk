@@ -4,12 +4,13 @@
 #include <string>
 #include <list>
 #include <boost/shared_ptr.hpp>
+#include <boost/thread/mutex.hpp>
 
 class Permissions //TODO: : public ::java::lang::Iterable
 {
 private:
     std::list<boost::shared_ptr<Permission>>  permissions;
-    boost::shared_ptr<ReentrantReadWriteLock> permissionsLock;  //TODO: mutex?
+    boost::mutex permissionsLock;
 
 public:
     std::string encode();
