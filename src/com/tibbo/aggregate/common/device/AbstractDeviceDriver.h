@@ -4,23 +4,21 @@
 #include "plugin/BasePlugin.h"
 #include "device/DeviceDriver.h"
 #include "context/CallerController.h"
+#include "datatable/TableFormat.h"
 #include <string>
 
 class AbstractDeviceDriver : public BasePlugin , public DeviceDriver
 {
 
 private:
-    DeviceContext* deviceContext;
+    boost::shared_ptr<DeviceContext> deviceContext;
     bool connected;
     std::string protocol;
-    TableFormat* connectionPropertiesFormat;
-//protected:
-//    void ctor(std::string* description, ::com::tibbo::aggregate::common::datatable::TableFormat* connectionPropertiesFormat);
-//    void ctor(std::string* description, std::string* protocol, ::com::tibbo::aggregate::common::datatable::TableFormat* connectionProperties);
+    boost::shared_ptr<TableFormat> connectionPropertiesFormat;
 
 public:
-    AbstractDeviceDriver(const std::string& description, TableFormat* connectionPropertiesFormat);
-    AbstractDeviceDriver(const std::string& description, const std::string& protocol, TableFormat* connectionProperties);
+    AbstractDeviceDriver(const std::string& description, boost::shared_ptr<TableFormat> connectionPropertiesFormat);
+    AbstractDeviceDriver(const std::string& description, const std::string& protocol, boost::shared_ptr<TableFormat> connectionProperties);
 
     std::string getPrimaryAddress();
     Set* getAddresses();

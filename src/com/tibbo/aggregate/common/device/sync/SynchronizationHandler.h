@@ -1,25 +1,8 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/sync/SynchronizationHandler.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/device/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/device/sync/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
 
-
-
-class com::tibbo::aggregate::common::device::sync::SynchronizationHandler
-    
+class SynchronizationHandler
 {
-
-public:
-    typedef void super;
-
 private:
     SettingSynchronizationOptions* synchronizationOptions;
     ::com::tibbo::aggregate::common::device::DeviceContext* deviceContext;
@@ -60,16 +43,4 @@ public:
 
     // Generated
     SynchronizationHandler();
-protected:
-    SynchronizationHandler(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
-    friend class SynchronizationHandler_createServerWriter_1;
-    friend class SynchronizationHandler_createServerReader_2;
 };

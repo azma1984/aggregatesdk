@@ -18,7 +18,7 @@ class DeviceDriver : public AggreGatePlugin
     * <p>
     * This method is defined in AtestbstractDeviceDriver and should not be overridden in most cases.
     */
-    virtual TableFormat createConnectionPropertiesFormat() = 0;
+    virtual boost::shared_ptr<TableFormat> createConnectionPropertiesFormat() = 0;
 
     /**
     * <p>
@@ -28,13 +28,13 @@ class DeviceDriver : public AggreGatePlugin
     * <p>
     * Variable definitions representing device communication settings should belong to ContextUtils.GROUP_ACCESS variable group.
     */
-    virtual void setupDeviceContext(DeviceContext deviceContext) = 0;// throws ContextException;
+    virtual void setupDeviceContext(boost::shared_ptr<DeviceContext> deviceContext) = 0;// throws ContextException;
 
     /**
     * In contrast to {@link #setupDeviceContext(DeviceContext)}, this method it called only once in the end of initial device account creation. Its implementation can correct necessary default values
     * of device context variables, such as metadata reading mode or device settings caching mode. Overriding this method is not necessary for most drivers.
     */
-    virtual void configureDeviceAccount(DeviceContext deviceContext, CallerController caller) = 0 ;//throws ContextException;
+    virtual void configureDeviceAccount(boost::shared_ptr<DeviceContext> deviceContext, boost::shared_ptr<CallerController> caller) = 0 ;//throws ContextException;
 
     /**
     * <p>
@@ -62,7 +62,7 @@ class DeviceDriver : public AggreGatePlugin
     *           Should be thrown by the driver to force generating Info event in addition to skipping the synchronization. This Info event contains exception message that is supposed to describe the
     *           reason of synchronization skip, e.g. "device address not specified". In order to avoid event flooding, driver should throw an exception only if full synchronization is performed.
     */
-    virtual bool shouldSynchronize(SynchronizationParameters parameters) = 0;//throws ContextException;
+    virtual bool shouldSynchronize(boost::shared_ptr<SynchronizationParameters> parameters) = 0;//throws ContextException;
 
     /**
     * Called in the beginning of every synchronization cycle. Driver implementations may read communication settings from device context at this point.
@@ -221,7 +221,7 @@ class DeviceDriver : public AggreGatePlugin
     * @throws DisconnectionException
     *           If device connection was interrupted during metadata reading
     */
-    virtual std::list<EventDefinition> readEventDefinitions(List<DeviceAssetDefinition> assets) = 0;//throws ContextException, DeviceException, DisconnectionException;
+    virtual std::list<EventDefinition> readEventDefinitions(std::list<DeviceAssetDefinition> assets) = 0;//throws ContextException, DeviceException, DisconnectionException;
 
     /**
     * Implementation of this method should read value of device setting pointed by the argument, convert it to the form of Data Table and return it.
@@ -233,7 +233,7 @@ class DeviceDriver : public AggreGatePlugin
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual DataTable readVariableValue(VariableDefinition vd) =0;//throws ContextException, DeviceException, DisconnectionException;
+    virtual boost::shared_ptr<DataTable> readVariableValue(boost::shared_ptr<VariableDefinition> vd) =0;//throws ContextException, DeviceException, DisconnectionException;
 
     /**
     * Implementation of this method should write server-side value of device setting into a hardware. This method will be called only if device setting definition is writable (e.g server-side changes
@@ -250,7 +250,8 @@ class DeviceDriver : public AggreGatePlugin
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual void writeVariableValue(VariableDefinition vd, DataTable value, DataTable deviceValue) = 0;//throws ContextException, DeviceException, DisconnectionException;
+    virtual void writeVariableValue(boost::shared_ptr<VariableDefinition> vd, boost::shared_ptr<DataTable> value,
+                                    boost::shared_ptr<DataTable> deviceValue) = 0;//throws ContextException, DeviceException, DisconnectionException;
 
     /**
     * This method should implement the call of the device-side operation (function). It should decode parameters Data Table to a device native format, pass this input to the device and call requested
@@ -263,7 +264,7 @@ class DeviceDriver : public AggreGatePlugin
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual DataTable executeFunction(FunctionDefinition fd, DataTable parameters) = 0;//throws ContextException, DeviceException, DisconnectionException;
+    virtual DataTable executeFunction(boost::shared_ptr<FunctionDefinition> fd, boost::shared_ptr<DataTable> parameters) = 0;//throws ContextException, DeviceException, DisconnectionException;
 
     /**
     * This method should return timestamp of device setting last modification time as reported by the hardware. If modification-time-based synchronization is not supported, the method should return
@@ -284,7 +285,7 @@ class DeviceDriver : public AggreGatePlugin
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual void updateVariableModificationTime(const std::string& name, Date value) = 0;//throws DeviceException, DisconnectionException;
+    virtual void updateVariableModificationTime(const std::string& name, boost::shared_ptr<Date> value) = 0;//throws DeviceException, DisconnectionException;
 
     /**
     * This method allows the driver to report custom variable status to the system core. It should return null if no custom status should be used.
@@ -344,20 +345,20 @@ class DeviceDriver : public AggreGatePlugin
     *
     * @return Variable definition or null if nothing was found
     */
-    virtual VariableDefinition discoverVariable(const std::string& name, Object helper);
+    virtual boost::shared_ptr<VariableDefinition> discoverVariable(const std::string& name, Object helper);
 
     /**
     * Tries to discover device variable that was not found during automatic metadata reading.
     *
     * @return Variable definition or null if nothing was found
     */
-    virtual FunctionDefinition discoverFunction(const std::string& name, Object helper);
+    virtual boost::shared_ptr<FunctionDefinition> discoverFunction(const std::string& name, Object helper);
 
     /**
     * Tries to discover device event that was not found during automatic metadata reading.
     *
     * @return Event definition or null if nothing was found
     */
-    virtual EventDefinition discoverEvent(const std::string& name, Object helper);
+    virtual boost::shared_ptr<EventDefinition> discoverEvent(const std::string& name, Object helper);
 };
 #endif  //_DeviceDriver_H_
