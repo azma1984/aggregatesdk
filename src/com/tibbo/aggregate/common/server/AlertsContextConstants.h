@@ -2,6 +2,8 @@
 #ifndef AlertsContextConstantsH
 #define AlertsContextConstantsH
 
+#include <string>
+
 class AlertsContextConstants
 {
 

@@ -4,6 +4,7 @@
 #include "plugin/BasePlugin.h"
 #include "device/DeviceDriver.h"
 #include "context/CallerController.h"
+#include "context/VariableDefinition.h"
 #include "datatable/TableFormat.h"
 #include <string>
 
@@ -21,9 +22,9 @@ public:
     AbstractDeviceDriver(const std::string& description, const std::string& protocol, boost::shared_ptr<TableFormat> connectionProperties);
 
     std::string getPrimaryAddress();
-    Set* getAddresses();
+    set<std::string> getAddresses();
     std::string getStatus();
-    std::list  getStatusExpressions(CallerController* aCallerController);
+    std::list<Expression>  getStatusExpressions(CallerController* aCallerController);
     void setupDeviceContext(DeviceContext* deviceContext) /* throws(ContextException) */;
     void configureDeviceAccount(DeviceContext* deviceContext, CallerController* caller) /* throws(ContextException) */;
     void accessSettingUpdated(const std::string& name);

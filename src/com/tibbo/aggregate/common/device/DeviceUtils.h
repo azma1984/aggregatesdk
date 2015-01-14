@@ -1,45 +1,18 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/DeviceUtils.java
-
 #pragma once
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/device/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "datatable/FieldFormat.h"
+#include <string>
 
-
-
-class com::tibbo::aggregate::common::device::DeviceUtils
-    
+class DeviceUtils
 {
+private:    
+    static boost::shared_ptr<FieldFormat> NAME_FIELD_;
+    static boost::shared_ptr<FieldFormat> DESCRIPTION_FIELD_;
 
 public:
-    typedef void super;
-
-private:
-    static const std::string FIELD_DEVICE_DRIVER_;
-    static const std::string FIELD_DEVICE_DESCRIPTION_;
-    static const std::string FIELD_DEVICE_NAME_;
-    static ::com::tibbo::aggregate::common::datatable::FieldFormat* NAME_FIELD_;
-    static ::com::tibbo::aggregate::common::datatable::FieldFormat* DESCRIPTION_FIELD_;
-
-    // Generated
-
-public:
-    DeviceUtils();
-protected:
-    DeviceUtils(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-    static const std::string& FIELD_DEVICE_DRIVER();
-    static const std::string& FIELD_DEVICE_DESCRIPTION();
-    static const std::string& FIELD_DEVICE_NAME();
-    static ::com::tibbo::aggregate::common::datatable::FieldFormat*& NAME_FIELD();
-    static ::com::tibbo::aggregate::common::datatable::FieldFormat*& DESCRIPTION_FIELD();
-
-private:
-    ::java::lang::Class* getClass0();
+    static const std::string FIELD_DEVICE_DRIVER;
+    static const std::string FIELD_DEVICE_DESCRIPTION;
+    static const std::string FIELD_DEVICE_NAME;
+    static boost::shared_ptr<FieldFormat> NAME_FIELD();
+    static boost::shared_ptr<FieldFormat> DESCRIPTION_FIELD();
 };

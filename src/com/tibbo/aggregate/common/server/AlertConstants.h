@@ -3,7 +3,7 @@
 #ifndef AlertConstantsH
 #define AlertConstantsH
 
-
+#include <string>
 
 class AlertConstants
 {
@@ -15,7 +15,8 @@ class AlertConstants
     static const std::string VF_ALERTS_CONFIG_POPUP_MODE;
 
 };
-  const std::string AlertConstants::V_ALERTS_CONFIG = "alertsConfig";
-  const std::string AlertConstants::VF_ALERTS_CONFIG_POPUP_MODE = "mode";
 
-  #endif
+const std::string AlertConstants::V_ALERTS_CONFIG = "alertsConfig";
+const std::string AlertConstants::VF_ALERTS_CONFIG_POPUP_MODE = "mode";
+
+#endif
