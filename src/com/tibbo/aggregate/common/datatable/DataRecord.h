@@ -3,11 +3,11 @@
 
 
 //#include <Cres.h>
-#include <Data.h>
+#include "data/Data.h"
 //#include <datatable/DataTable.h>
 //#include <datatable/FieldFormat.h>
 //#include <datatable/QueryCondition.h>
-#include <datatable/TableFormat.h>
+#include "datatable/TableFormat.h"
 //#include <datatable/ValidationException.h>
 //#include <datatable/encoding/ClassicEncodingSettings.h>
 //#include <util/CloneUtils.h>
@@ -15,7 +15,7 @@
 //#include <util/ElementList.h>
 //#include <util/StringUtils.h>
 //#include <util/Util.h>
-#include "Cloneable.h"
+#include "util/Cloneable.h"
 #include "util/Date.h"
 
 #include <string>

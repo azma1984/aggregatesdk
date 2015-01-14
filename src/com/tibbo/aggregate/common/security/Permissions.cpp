@@ -73,7 +73,7 @@ int Permissions::size()
     return permissions.size();
 }
 
-boost::shared_ptr<Permissions> Permissions::add(boost::shared_ptr<Permission> permission)
+boost::shared_ptr<Permission> Permissions::add(boost::shared_ptr<Permission> permission)
 {
     permissionsLock.lock();// writeLock().lock();
     try

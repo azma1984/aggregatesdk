@@ -3,32 +3,24 @@
 #include "device/sync/ValueReader.h"
 
 
-
 class AbstractValueReader : public ValueReader
 {
+private:
+    std::string name;
 
-//public:
-//    typedef void super;
+public:
+    AbstractValueReader()
+    {
+        name = "Custom Synchronization Handler";
+    }
 
-//private:
-//    std::string* name;
-//protected:
-//    void ctor();
-//    void ctor(std::string* name);
+    AbstractValueReader(std::string* name)
+    {
+        this->name = name;
+    }
 
-//public:
-//    std::string* toString();
-
-//    // Generated
-//    AbstractValueReader();
-//    AbstractValueReader(std::string* name);
-//protected:
-//    AbstractValueReader(const ::default_init_tag&);
-
-
-//public:
-    
-
-//private:
-//    ::java::lang::Class* getClass0();
+    std::string toString()
+    {
+        return name;
+    }
 };

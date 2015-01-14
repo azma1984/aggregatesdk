@@ -1,27 +1,25 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionManager.java
-#ifndef ActionManagerH
-#define ActionManagerH
+#pragma once
 
-#include "ActionDirectory.h"
-#include "ActionIdGenerator.h"
+//#include "ActionDirectory.h"
+//#include "ActionIdGenerator.h"
 
-#include "Action.h"
-#include "ActionCommand.h"
-#include "ActionContext.h"
-#include "ActionDefinition.h"
+//#include "Action.h"
+//#include "ActionCommand.h"
+//#include "ActionContext.h"
+//#include "ActionDefinition.h"
 
-#include "ActionExecutionMode.h"
+//#include "ActionExecutionMode.h"
 
-#include "ActionIdentifier.h"
-#include "ActionLocator.h"
-#include "ActionResponse.h"
-#include "ActionResult.h"
-#include "BatchAction.h"
-#include "BatchContext.h"
-#include "BatchEntry.h"
-#include "InitialRequest.h"
-#include "RequestCache.h"
-#include "RequestIdentifier.h"
+//#include "ActionIdentifier.h"
+//#include "ActionLocator.h"
+//#include "ActionResponse.h"
+//#include "ActionResult.h"
+//#include "BatchAction.h"
+//#include "BatchContext.h"
+//#include "BatchEntry.h"
+//#include "InitialRequest.h"
+//#include "RequestCache.h"
+//#include "RequestIdentifier.h"
 
 
 class ActionManager
@@ -50,5 +48,3 @@ public:
 	ActionIdentifier* registerAction(ActionContext* actionContext, Action* action, ActionExecutionMode* mode);
 	*/
 };
-
-#endif

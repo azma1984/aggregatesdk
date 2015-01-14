@@ -1,6 +1,7 @@
 #pragma once
 
 #include "security/Permission.h"
+#include "security/PermissionChecker.h"
 #include <string>
 #include <list>
 #include <boost/shared_ptr.hpp>
@@ -32,4 +33,3 @@ public:
 protected:
     void ctor(const std::string& data, boost::shared_ptr<PermissionChecker> checker);
 };
-#endif

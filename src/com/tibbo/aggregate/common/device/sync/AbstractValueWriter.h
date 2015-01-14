@@ -5,32 +5,24 @@
 #include "device/sync/ValueWriter.h"
 
 
-
 class AbstractValueWriter : public ValueWriter
 {
+private:
+    std::string name;
 
-//public:
-//    typedef void super;
+public:
+    AbstractValueWriter(const std::string& name)
+    {
+        this->name = name;
+    }
 
-//private:
-//    std::string* name;
-//protected:
-//    void ctor(std::string* name);
-//    void ctor();
+    AbstractValueWriter()
+    {
+        this->name = "Custom Synchronization Handler";
+    }
 
-//public:
-//    std::string* toString();
-
-//    // Generated
-//    AbstractValueWriter(std::string* name);
-//    AbstractValueWriter();
-//protected:
-//    AbstractValueWriter(const ::default_init_tag&);
-
-
-//public:
-    
-
-//private:
-//    ::java::lang::Class* getClass0();
+    std::string toString()
+    {
+        return name;
+    }
 };

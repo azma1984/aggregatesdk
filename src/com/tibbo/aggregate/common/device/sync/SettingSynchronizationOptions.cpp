@@ -146,7 +146,7 @@ void SettingSynchronizationOptions::incrementSynchronizationsCounter()
     incrementSynchronizationsCounter++;
 }
 
-SettingSynchronizationOptions* clone()
+SettingSynchronizationOptions* SettingSynchronizationOptions::clone()
 {
 //    try
 //    {

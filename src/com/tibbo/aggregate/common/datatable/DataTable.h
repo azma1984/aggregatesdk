@@ -2,8 +2,8 @@
 #define DataTableH
 
 #include <list>
-#include "Cloneable.h"
-#include "DataRecord.h"
+#include "util/Cloneable.h"
+#include "datatable/DataRecord.h"
 /*
  #include <com/tibbo/aggregate/common/Cres.h"
 #include <com/tibbo/aggregate/common/Log.h"

@@ -1,5 +1,4 @@
-#ifndef _Permission_H_
-#define _Permission_H_
+#pragma once
 
 #include "util/Cloneable.h"
 #include "security/PermissionChecker.h"
@@ -17,12 +16,12 @@ private:
 
 public:
     Permission(const std::string& data, boost::shared_ptr<PermissionChecker> checker);
-    Permission(const std::string& context, std::string& level);
+    Permission(const std::string& context, const std::string& level);
 
     std::string getContext();
     std::string getLevel();
-    void Permission::setContext(const std::string& entity);
-    void Permission::setLevel(const std::string& level);
+    void setContext(const std::string& entity);
+    void setLevel(const std::string& level);
     std::string encode();
     Permission* clone();
 
@@ -30,4 +29,3 @@ public:
     bool equals(Permission* obj);
     std::string toString();
 };
-#endif
