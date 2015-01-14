@@ -1,24 +1,22 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/GroupContext.java
 
-#pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
+#ifndef GroupContextH
+#define GroupContextH
 
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/server/ServerContext.h"
-#include <com/tibbo/aggregate/common/server/GroupContextConstants.h"
+#include "servercontext.h"
+#include "GroupContextConstants.h"
 
-struct com::tibbo::aggregate::common::server::GroupContext
-    : public ServerContext
-    , public GroupContextConstants
+
+class GroupContext : public ServerContext, public GroupContextConstants
 {
-    bool isHidesMembers();
-    void addMember(std::string* path) /* throws(ContextException) */;
-    void removeMember(std::string* path, bool failIfDynamic) /* throws(ContextException) */;
-    void renameMember(std::string* oldPath, std::string* newPath) /* throws(ContextException) */;
-    void memberAdded(ServerContext* recursiveMember) /* throws(ContextException) */;
-    void memberRemoved(ServerContext* recursiveMember) /* throws(ContextException) */;
-
-    // Generated
-    
+    virtual bool isHidesMembers();
+    virtual void addMember(std::string* path);
+    virtual void removeMember(std::string* path, bool failIfDynamic);
+    virtual void renameMember(std::string* oldPath, std::string* newPath);
+    virtual void memberAdded(ServerContext* recursiveMember);
+    virtual void memberRemoved(ServerContext* recursiveMember);
 };
+
+
+  #endif

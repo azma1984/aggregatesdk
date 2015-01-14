@@ -1,27 +1,18 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/QueryContextConstants.java
 
-#pragma once
+#ifndef QueryContextConstantsH
+#define QueryContextConstantsH
 
 
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::server::QueryContextConstants
-    
+namespace QueryContextConstants
 {
-
-private:
-    static const std::string V_DATA_;
-    static const std::string F_EXECUTE_;
-    static const std::string A_DEBUG_;
-    static const std::string A_EXECUTE_;
-
-    // Generated
-
-public:
+ public:
     
-    static const std::string& V_DATA();
-    static const std::string& F_EXECUTE();
-    static const std::string& A_DEBUG();
-    static const std::string& A_EXECUTE();
+  static const std::string V_DATA = "data";
+  
+  static const std::string F_EXECUTE = "execute";
+  
+  static const std::string A_DEBUG = "debug";
+  static const std::string A_EXECUTE = "execute";
 };
+  #endif

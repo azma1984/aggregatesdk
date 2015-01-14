@@ -5,6 +5,7 @@
 
 #include "TimeHelper.h";
 
+
 class AggreGateDevice
 {
  protected:

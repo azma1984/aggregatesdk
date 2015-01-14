@@ -6,9 +6,12 @@
 #include <string>
 #include "context/ContextUtils.h"
 
-class Contexts
+
+
+namespace Contexts
 {
-//    static const std::string CURRENT = ContextUtils::CONTEXT_NAME_SEPARATOR;
+
+//   static const std::string CURRENT = ContextUtils::CONTEXT_NAME_SEPARATOR;
 
     static const std::string CTX_ADMINISTRATION = "administration";
     static const std::string CTX_ALERTS = "alerts";
@@ -81,6 +84,7 @@ class Contexts
     static const std::string TYPE_WIDGET = "widget";
     static const std::string TYPE_MODELS = "models";
     static const std::string TYPE_MODEL = "model";
-}
+};
 
+   
 #endif

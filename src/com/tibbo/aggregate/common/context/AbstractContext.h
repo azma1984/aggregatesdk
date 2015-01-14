@@ -7,105 +7,105 @@
 
 
 
-template <class C> class AbstractContext : public Context//<C>
+/*template <class C>*/ class AbstractContext : public Context//<C>
 {
 private:
-	std::string IMPLEMENTATION_METHOD_PREFIX;
-	std::string SETTER_METHOD_PREFIX;
-	std::string GETTER_METHOD_PREFIX;
+	static const std::string IMPLEMENTATION_METHOD_PREFIX;
+	static const std::string SETTER_METHOD_PREFIX;
+	static const std::string GETTER_METHOD_PREFIX;
 public:
-	std::string V_INFO;
-	std::string V_CHILDREN;
-	std::string V_VARIABLES;
-	std::string V_FUNCTIONS;
-	std::string V_EVENTS;
-	std::string V_ACTIONS;
-	std::string V_VARIABLE_STATUSES;
-	std::string F_GET_COPY_DATA;
-	std::string F_COPY;
-	std::string F_COPY_TO_CHILDREN;
-	std::string E_INFO;
-	static std::string E_UPDATED;
-	std::string E_CHANGE;
-	std::string E_DESTROYED;
-	std::string E_INFO_CHANGED;
-	std::string E_VARIABLE_ADDED;
-	std::string E_VARIABLE_REMOVED;
-	std::string E_FUNCTION_ADDED;
-	std::string E_FUNCTION_REMOVED;
-	std::string E_EVENT_ADDED;
-	std::string E_EVENT_REMOVED;
-	std::string E_ACTION_ADDED;
-    std::string E_ACTION_REMOVED;
-	std::string E_ACTION_STATE_CHANGED;
-    std::string E_CHILD_REMOVED;
-    std::string E_CHILD_ADDED;
-	std::string E_VARIABLE_STATUS_CHANGED;
-	std::string VF_INFO_DESCRIPTION;
-    std::string VF_INFO_TYPE;
-	std::string VF_INFO_GROUP;
-    std::string VF_INFO_ICON;
-    std::string VF_INFO_LOCAL_ROOT;
-	std::string VF_INFO_REMOTE_ROOT;
-    std::string VF_INFO_REMOTE_PATH;
-    std::string VF_INFO_REMOTE_PRIMARY_ROOT;
-	std::string VF_INFO_MAPPED;
-    std::string VF_CHILDREN_NAME;
-    std::string VF_VARIABLE_STATUSES_COMMENT;
-	std::string VF_VARIABLE_STATUSES_STATUS;
-    std::string VF_VARIABLE_STATUSES_NAME;
-    std::string FIF_COPY_DATA_RECIPIENTS;
-	std::string FIF_COPY_DATA_GROUP;
-    std::string FOF_COPY_DATA_NAME;
-    std::string FOF_COPY_DATA_DESCRIPTION;
-	std::string FOF_COPY_DATA_REPLICATE;
-    std::string FOF_COPY_DATA_FIELDS;
-    std::string FOF_COPY_DATA_VALUE;
-	std::string FIF_REPLICATE_FIELDS_NAME;
-    std::string FIF_REPLICATE_FIELDS_DESCRIPTION;
-    std::string FIF_REPLICATE_FIELDS_REPLICATE;
-	std::string FIF_COPY_DATA_RECIPIENTS_RECIPIENT;
-    std::string EF_INFO_INFO;
-    std::string EF_EVENT_REMOVED_NAME;
-	std::string EF_FUNCTION_REMOVED_NAME;
-    std::string EF_VARIABLE_REMOVED_NAME;
-    std::string EF_ACTION_REMOVED_NAME;
-	std::string EF_CHILD_REMOVED_CHILD;
-    std::string EF_CHILD_ADDED_CHILD;
-    std::string FIELD_REPLICATE_CONTEXT;
-	std::string FIELD_REPLICATE_VARIABLE;
-    std::string FIELD_REPLICATE_SUCCESSFUL;
-    std::string FIELD_REPLICATE_ERRORS;
-	std::string EF_UPDATED_VARIABLE;
-    std::string EF_UPDATED_VALUE;
-    std::string EF_UPDATED_USER;
-	std::string EF_CHANGE_VARIABLE;
-    std::string EF_CHANGE_VALUE;
-    std::string EF_CHANGE_DATA;
-	std::string FIELD_VD_NAME;
-    std::string FIELD_VD_FORMAT;
-    std::string FIELD_VD_DESCRIPTION;
-	std::string FIELD_VD_READABLE;
-    std::string FIELD_VD_WRITABLE;
-    std::string FIELD_VD_HELP;
-	std::string FIELD_VD_GROUP;
-    std::string FIELD_VD_ICON_ID;
-    std::string FIELD_VD_HELP_ID;
-	std::string FIELD_VD_CACHE_TIME;
-    std::string FIELD_FD_NAME;
-    std::string FIELD_FD_INPUTFORMAT;
-	std::string FIELD_FD_OUTPUTFORMAT;
-    std::string FIELD_FD_DESCRIPTION;
-    std::string FIELD_FD_HELP;
-	std::string FIELD_FD_GROUP;
-    std::string FIELD_FD_ICON_ID;
-    std::string FIELD_ED_NAME;
-	std::string FIELD_ED_FORMAT;
-    std::string FIELD_ED_DESCRIPTION;
-    std::string FIELD_ED_HELP;
-	std::string FIELD_ED_LEVEL;
-    std::string FIELD_ED_GROUP;
-	std::string FIELD_ED_ICON_ID;
+	static const std::string V_INFO;
+	static const std::string V_CHILDREN;
+	static const std::string V_VARIABLES;
+	static const std::string V_FUNCTIONS;
+	static const std::string V_EVENTS;
+	static const std::string V_ACTIONS;
+	static const std::string V_VARIABLE_STATUSES;
+	static const std::string F_GET_COPY_DATA;
+	static const std::string F_COPY;
+	static const std::string F_COPY_TO_CHILDREN;
+	static const std::string E_INFO;
+	static const std::string E_UPDATED;
+	static const std::string E_CHANGE;
+	static const std::string E_DESTROYED;
+	static const std::string E_INFO_CHANGED;
+	static const std::string E_VARIABLE_ADDED;
+	static const std::string E_VARIABLE_REMOVED;
+	static const std::string E_FUNCTION_ADDED;
+	static const std::string E_FUNCTION_REMOVED;
+	static const std::string E_EVENT_ADDED;
+	static const std::string E_EVENT_REMOVED;
+	static const std::string E_ACTION_ADDED;
+    static const std::string E_ACTION_REMOVED;
+	static const std::string E_ACTION_STATE_CHANGED;
+    static const std::string E_CHILD_REMOVED;
+    static const std::string E_CHILD_ADDED;
+	static const std::string E_VARIABLE_STATUS_CHANGED;
+	static const std::string VF_INFO_DESCRIPTION;
+    static const std::string VF_INFO_TYPE;
+	static const std::string VF_INFO_GROUP;
+    static const std::string VF_INFO_ICON;
+    static const std::string VF_INFO_LOCAL_ROOT;
+	static const std::string VF_INFO_REMOTE_ROOT;
+    static const std::string VF_INFO_REMOTE_PATH;
+    static const std::string VF_INFO_REMOTE_PRIMARY_ROOT;
+	static const std::string VF_INFO_MAPPED;
+    static const std::string VF_CHILDREN_NAME;
+    static const std::string VF_VARIABLE_STATUSES_COMMENT;
+	static const std::string VF_VARIABLE_STATUSES_STATUS;
+    static const std::string VF_VARIABLE_STATUSES_NAME;
+    static const std::string FIF_COPY_DATA_RECIPIENTS;
+	static const std::string FIF_COPY_DATA_GROUP;
+    static const std::string FOF_COPY_DATA_NAME;
+    static const std::string FOF_COPY_DATA_DESCRIPTION;
+	static const std::string FOF_COPY_DATA_REPLICATE;
+    static const std::string FOF_COPY_DATA_FIELDS;
+    static const std::string FOF_COPY_DATA_VALUE;
+	static const std::string FIF_REPLICATE_FIELDS_NAME;
+    static const std::string FIF_REPLICATE_FIELDS_DESCRIPTION;
+    static const std::string FIF_REPLICATE_FIELDS_REPLICATE;
+	static const std::string FIF_COPY_DATA_RECIPIENTS_RECIPIENT;
+    static const std::string EF_INFO_INFO;
+    static const std::string EF_EVENT_REMOVED_NAME;
+	static const std::string EF_FUNCTION_REMOVED_NAME;
+    static const std::string EF_VARIABLE_REMOVED_NAME;
+    static const std::string EF_ACTION_REMOVED_NAME;
+	static const std::string EF_CHILD_REMOVED_CHILD;
+    static const std::string EF_CHILD_ADDED_CHILD;
+    static const std::string FIELD_REPLICATE_CONTEXT;
+	static const std::string FIELD_REPLICATE_VARIABLE;
+    static const std::string FIELD_REPLICATE_SUCCESSFUL;
+    static const std::string FIELD_REPLICATE_ERRORS;
+	static const std::string EF_UPDATED_VARIABLE;
+    static const std::string EF_UPDATED_VALUE;
+    static const std::string EF_UPDATED_USER;
+	static const std::string EF_CHANGE_VARIABLE;
+    static const std::string EF_CHANGE_VALUE;
+    static const std::string EF_CHANGE_DATA;
+	static const std::string FIELD_VD_NAME;
+    static const std::string FIELD_VD_FORMAT;
+    static const std::string FIELD_VD_DESCRIPTION;
+	static const std::string FIELD_VD_READABLE;
+    static const std::string FIELD_VD_WRITABLE;
+    static const std::string FIELD_VD_HELP;
+	static const std::string FIELD_VD_GROUP;
+    static const std::string FIELD_VD_ICON_ID;
+    static const std::string FIELD_VD_HELP_ID;
+	static const std::string FIELD_VD_CACHE_TIME;
+    static const std::string FIELD_FD_NAME;
+    static const std::string FIELD_FD_INPUTFORMAT;
+	static const std::string FIELD_FD_OUTPUTFORMAT;
+    static const std::string FIELD_FD_DESCRIPTION;
+    static const std::string FIELD_FD_HELP;
+	static const std::string FIELD_FD_GROUP;
+    static const std::string FIELD_FD_ICON_ID;
+    static const std::string FIELD_ED_NAME;
+	static const std::string FIELD_ED_FORMAT;
+    static const std::string FIELD_ED_DESCRIPTION;
+    static const std::string FIELD_ED_HELP;
+	static const std::string FIELD_ED_LEVEL;
+    static const std::string FIELD_ED_GROUP;
+	static const std::string FIELD_ED_ICON_ID;
 	/*
 	static ::com::tibbo::aggregate::common::datatable::TableFormat* VARIABLE_DEFINITION_FORMAT;
 	static ::com::tibbo::aggregate::common::datatable::TableFormat* EF_VARIABLE_ADDED;
@@ -161,10 +161,10 @@ public:
     static const int DEFAULT_EVENT_LEVEL = -1) };
     static ::com::tibbo::aggregate::common::security::Permissions* DEFAULT_PERMISSIONS;*/
 	
-public:	
-    std::string CALLER_CONTROLLER_PROPERTY_DEBUG;
-    std::string CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS;
-	std::string CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS;
+
+    static const std::string CALLER_CONTROLLER_PROPERTY_DEBUG;
+    static const std::string CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS;
+	static const std::string CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS;
 /*
 
     static const int INDEX_HIGHEST = 400) };
@@ -197,15 +197,20 @@ private:
     ::java::util::concurrent::locks::ReentrantReadWriteLock* eventDataLock;
     std::list  actionDefinitions;
     ::java::util::concurrent::locks::ReentrantReadWriteLock* actionDefinitionsLock;
-    std::string* name;
-    std::string* description;
-    std::string* type;
-    std::string* group;
-    std::string* iconId;
-    Context* parent;
+	*/
+    std::string name;
+    std::string description;
+   
+	std::string type;
+    std::string group;
+    std::string iconId;
+    //Context* parent;
+	
     bool setupComplete;
+	
     bool started;
-    ::java::lang::Integer* index;
+    int index;
+	/*
     bool permissionCheckingEnabled;
     ::com::tibbo::aggregate::common::security::Permissions* permissions;
     ::com::tibbo::aggregate::common::security::Permissions* childrenViewPermissions;
@@ -221,7 +226,9 @@ private:
     std::map variableStatuses;
     bool variableStatusesUpdated;
     ::java::util::concurrent::locks::ReentrantReadWriteLock* variableStatusesLock;
-    std::string* path;
+	*/
+    std::string path;
+	/*
 protected:
     void ctor(std::string* name);
 
@@ -230,15 +237,17 @@ public:
 
 public:
     void setup();
+	*/
 
-public:
+
     void setupPermissions();
-	void setupMyself() ;
+	void setupMyself();
+
 	void setupChildren() ;
     void teardown();
     void start();
     void stop();
-    int compareTo(Context* context);
+ /*   int compareTo(Context* context);
     std::list  getChildren(CallerController* caller);
 
 private:
@@ -252,9 +261,11 @@ public:
     bool isMapped();
     std::list  getMappedChildren(CallerController* caller);
     std::list  getMappedChildren();
-    std::string* getName();
-    std::string* getDescription();
-    void setDescription(std::string* description);
+	*/
+    std::string getName();
+    std::string getDescription();
+   /*
+	void setDescription(std::string* description);
     Context* getParent();
     bool hasParent(Context* parentContext);
     Context* getRoot();
@@ -262,9 +273,9 @@ public:
     Context* get(std::string* contextName);
     ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
 
-public:
-    void setName(std::string* name);
-
+public:*/
+    void setName(const std::string &name);
+	/*
 public:
     void setParent(Context* parent);
 
@@ -333,10 +344,9 @@ public:
 
 private:
     Context* getChildWithoutCheckingPerms(std::string* name);
-
-public:
-    std::string* getPath();
-
+*/
+    std::string getPath();
+	/*
 private:
     std::string* createPath();
 
@@ -352,13 +362,16 @@ public:
     ::com::tibbo::aggregate::common::security::PermissionChecker* getPermissionChecker();
     ::com::tibbo::aggregate::common::security::Permissions* getChildrenViewPermissions();
     ContextManager* getContextManager();
+	*/
     bool isSetupComplete();
-    bool isStarted();
+ 
+	bool isStarted();
     bool isInitializedInfo();
     bool isInitializedChildren();
     bool isInitializedVariables();
     bool isInitializedFunctions();
     bool isInitializedEvents();
+	/*
     std::list  getFunctionDefinitions(CallerController* caller);
     std::list  getFunctionDefinitions(CallerController* caller, bool includeHidden);
     std::list  getFunctionDefinitions();
@@ -368,18 +381,22 @@ public:
 public:
     ::java::util::concurrent::locks::ReentrantReadWriteLock* getChildrenLock();
 
-public:
-    std::string* getType();
-    bool isPermissionCheckingEnabled();
-    std::string* getIconId();
-    ::java::lang::Integer* getIndex();
-    std::string* getGroup();
-    std::string* getLocalRoot();
+public:*/
+    std::string getType();
+    /*
+	bool isPermissionCheckingEnabled();*/
+    std::string getIconId();
+    int getIndex();
+	
+    std::string getGroup();
+    //std::string* getLocalRoot();
     bool isProxy();
     bool isDistributed();
-    std::string* getRemoteRoot();
-    std::string* getRemotePath();
-    std::string* getRemotePrimaryRoot();
+	
+    std::string getRemoteRoot();
+    std::string getRemotePath();
+    /*
+	std::string* getRemotePrimaryRoot();
     void setType(std::string* type);
 
 public:
@@ -580,8 +597,10 @@ private:
 
 public:
     std::string* toString();
-    std::string* toDetailedString();
-    void accept(ContextVisitor* visitor) ;
+	*/
+    std::string toDetailedString();
+    /*
+	void accept(ContextVisitor* visitor) ;
 
 public:
     EventDefinition* getChangeEventDefinition();
@@ -764,40 +783,6 @@ public:
 private:
     std::string& FIELD_REPLICATE_CONTEXT();
 
-public:
-    std::string& FIELD_REPLICATE_VARIABLE();
-    std::string& FIELD_REPLICATE_SUCCESSFUL();
-    std::string& FIELD_REPLICATE_ERRORS();
-    std::string& EF_UPDATED_VARIABLE();
-    std::string& EF_UPDATED_VALUE();
-    std::string& EF_UPDATED_USER();
-    std::string& EF_CHANGE_VARIABLE();
-    std::string& EF_CHANGE_VALUE();
-    std::string& EF_CHANGE_DATA();
-    std::string& FIELD_VD_NAME();
-    std::string& FIELD_VD_FORMAT();
-    std::string& FIELD_VD_DESCRIPTION();
-    std::string& FIELD_VD_READABLE();
-    std::string& FIELD_VD_WRITABLE();
-    std::string& FIELD_VD_HELP();
-    std::string& FIELD_VD_GROUP();
-    std::string& FIELD_VD_ICON_ID();
-    std::string& FIELD_VD_HELP_ID();
-    std::string& FIELD_VD_CACHE_TIME();
-    std::string& FIELD_FD_NAME();
-    std::string& FIELD_FD_INPUTFORMAT();
-    std::string& FIELD_FD_OUTPUTFORMAT();
-    std::string& FIELD_FD_DESCRIPTION();
-    std::string& FIELD_FD_HELP();
-    std::string& FIELD_FD_GROUP();
-    std::string& FIELD_FD_ICON_ID();
-    std::string& FIELD_ED_NAME();
-    std::string& FIELD_ED_FORMAT();
-    std::string& FIELD_ED_DESCRIPTION();
-    std::string& FIELD_ED_HELP();
-    std::string& FIELD_ED_LEVEL();
-    std::string& FIELD_ED_GROUP();
-    std::string& FIELD_ED_ICON_ID();
     static ::com::tibbo::aggregate::common::datatable::TableFormat*& VARIABLE_DEFINITION_FORMAT();
 
 private:
@@ -871,14 +856,12 @@ public:
 	std::string& CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS();
 
 private:
-    ::java::lang::Class* getClass0();
     friend class AbstractContext_start_1;
     friend class AbstractContext_stop_2;
     friend class AbstractContext_removeChild_3;
 	friend class AbstractContext_enableVariableStatuses_4;
 	*/
-
-
-	AbstractContext();
+AbstractContext();
+	AbstractContext(const std::string &name);
 };
 #endif

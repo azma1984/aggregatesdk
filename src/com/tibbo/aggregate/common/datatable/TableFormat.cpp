@@ -1,4 +1,4 @@
-#include "datatable/TableFormat.h"
+#include "TableFormat.h"
 
 /*
 #include "util/ElementList.h"
@@ -24,22 +24,22 @@ const char TableFormat::REORDERABLE_FLAG = 'R';
 const char TableFormat::UNRESIZEBLE_FLAG = 'U';
 const char TableFormat::BINDINGS_EDITABLE_FLAG = 'B';
 
-
+*/
 TableFormat::TableFormat() 
 {
-    ctor();
+   // ctor();
 }
-
+/*
 TableFormat::TableFormat(bool reorderable) 
 {
     ctor(reorderable);
 }
-
+*/
 TableFormat::TableFormat(int minRecords, int maxRecords)
 {
-    ctor(minRecords,maxRecords);
+  //  ctor(minRecords,maxRecords);
 }
-
+/*
 TableFormat::TableFormat(FieldFormat* ff) 
 {
     ctor(ff);
@@ -54,12 +54,12 @@ TableFormat::TableFormat(const std::string& format, ClassicEncodingSettings* set
 {
     ctor(format, settings, validate);
 }
-
+*/
 TableFormat::TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat)
 {
-    ctor(minRecords,maxRecords,fieldFormat);
+   // ctor(minRecords,maxRecords,fieldFormat);
 }
-
+/*
 TableFormat::TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat)     
 {
     ctor(minRecords,maxRecords,fieldFormat);
@@ -172,12 +172,13 @@ TableFormat* TableFormat::addField(FieldFormat* ff)
 {
     return addField(ff, fields->size());
 }
-
-TableFormat* TableFormat::addField(std::string* encodedFormat)
+*/
+TableFormat* TableFormat::addField(const std::string &encodedFormat)
 {
-    return addField(static_cast<FieldFormat*>(&FieldFormat::create(encodedFormat)) );
+ return 0;
+  //  return addField(static_cast<FieldFormat*>(&FieldFormat::create(encodedFormat)) );
 }
-
+/*
 void TableFormat::addField(char type, const std::string& name)
 {
     addField(type, name, fields.size());
@@ -452,30 +453,30 @@ std::string TableFormat::encode(bool useVisibleSeparators)
 std::string TableFormat::encode(ClassicEncodingSettings* settings)
 {
     std::stringstream formatString;
-    /*
-    for (auto i = int(0); i < fields)->size(); i++) {
-        formatString)->append((new Element(0, getField(i))->encode(settings)))->encode(settings)->isUseVisibleSeparators()));
-    }
-    if(minRecords != DEFAULT_MIN_RECORDS) {
-        formatString)->append((new Element(ELEMENT_MIN_RECORDS_, std::string::valueOf(minRecords)))->encode(settings)->isUseVisibleSeparators()));
-    }
-    if(maxRecords != DEFAULT_MAX_RECORDS) {
-        formatString)->append((new Element(ELEMENT_MAX_RECORDS_, std::string::valueOf(maxRecords)))->encode(settings)->isUseVisibleSeparators()));
-    }
-    if(tableValidators)->size() > 0) {
-        formatString)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_TABLE_VALIDATORS_, getEncodedTableValidators(settings)))->encode(settings)->isUseVisibleSeparators()));
-    }
-    if(recordValidators)->size() > 0) {
-        formatString)->append((new Element(ELEMENT_RECORD_VALIDATORS_, getEncodedRecordValidators(settings)))->encode(settings)->isUseVisibleSeparators()));
-    }
-    if(bindings)->size() > 0) {
-        formatString)->append((new Element(ELEMENT_BINDINGS_, getEncodedBindings(settings)))->encode(settings)->isUseVisibleSeparators()));
-    }
-    if(namingExpression != 0) {
-        formatString)->append((new Element(ELEMENT_NAMING_, namingExpression == 0 ? u""_j : namingExpression)->getText()))->encode(settings)->isUseVisibleSeparators()));
-    }
-    encAppend(formatString, ELEMENT_FLAGS_, getEncodedFlags(), settings);
-    */
+
+    //for (auto i = int(0); i < fields)->size(); i++) {
+    //    formatString)->append((new Element(0, getField(i))->encode(settings)))->encode(settings)->isUseVisibleSeparators()));
+    //}
+    //if(minRecords != DEFAULT_MIN_RECORDS) {
+    //    formatString)->append((new Element(ELEMENT_MIN_RECORDS_, std::string::valueOf(minRecords)))->encode(settings)->isUseVisibleSeparators()));
+    //}
+    //if(maxRecords != DEFAULT_MAX_RECORDS) {
+    //    formatString)->append((new Element(ELEMENT_MAX_RECORDS_, std::string::valueOf(maxRecords)))->encode(settings)->isUseVisibleSeparators()));
+    //}
+    //if(tableValidators)->size() > 0) {
+    //    formatString)->append((new ::com::tibbo::aggregate::common::util::Element(ELEMENT_TABLE_VALIDATORS_, getEncodedTableValidators(settings)))->encode(settings)->isUseVisibleSeparators()));
+    //}
+    //if(recordValidators)->size() > 0) {
+    //    formatString)->append((new Element(ELEMENT_RECORD_VALIDATORS_, getEncodedRecordValidators(settings)))->encode(settings)->isUseVisibleSeparators()));
+    //}
+    //if(bindings)->size() > 0) {
+    //    formatString)->append((new Element(ELEMENT_BINDINGS_, getEncodedBindings(settings)))->encode(settings)->isUseVisibleSeparators()));
+    //}
+    //if(namingExpression != 0) {
+    //    formatString)->append((new Element(ELEMENT_NAMING_, namingExpression == 0 ? u""_j : namingExpression)->getText()))->encode(settings)->isUseVisibleSeparators()));
+    //}
+    //encAppend(formatString, ELEMENT_FLAGS_, getEncodedFlags(), settings);
+
     return formatString.str();
 }
 

@@ -7,6 +7,7 @@
 
 class EntityDefinition
 {
+public:
 	virtual std::string getName();
 	virtual std::string getDescription();
 	virtual std::string getHelp();

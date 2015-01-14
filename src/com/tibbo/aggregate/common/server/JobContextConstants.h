@@ -1,36 +1,22 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/JobContextConstants.java
+#ifndef H
+#define H
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::server::JobContextConstants
-    
+namespace JobContextConstants
 {
-    static const int STATUS_ENABLED) };
-    static const int STATUS_DISABLED = 1) };
+ public:
+    static const int STATUS_ENABLED=0;
+    static const int STATUS_DISABLED = 1;
 
-private:
-    static const std::string V_ADVANCED_TRIGGERS_;
-    static const std::string V_SIMPLE_TRIGGERS_;
-    static const std::string V_STATUS_;
-    static const std::string F_EXECUTE_;
-    static const std::string A_EXECUTE_;
-    static const std::string VF_STATUS_PREVIOUS_FIRE_TIME_;
-    static const std::string VF_STATUS_NEXT_FIRE_TIME_;
-
-    // Generated
-
-public:
-    
-    static const std::string& V_ADVANCED_TRIGGERS();
-    static const std::string& V_SIMPLE_TRIGGERS();
-    static const std::string& V_STATUS();
-    static const std::string& F_EXECUTE();
-    static const std::string& A_EXECUTE();
-    static const std::string& VF_STATUS_PREVIOUS_FIRE_TIME();
-    static const std::string& VF_STATUS_NEXT_FIRE_TIME();
+static const std::string V_ADVANCED_TRIGGERS = "cronTriggersView";
+  static const std::string V_SIMPLE_TRIGGERS = "triggersView";
+  static const std::string V_STATUS = "status";
+  
+  static const std::string F_EXECUTE = "execute";
+  
+  static const std::string A_EXECUTE = "execute";
+  
+  static const std::string VF_STATUS_PREVIOUS_FIRE_TIME = "previousFireTime";
+  static const std::string VF_STATUS_NEXT_FIRE_TIME = "nextFireTime";
 };
+  #endif

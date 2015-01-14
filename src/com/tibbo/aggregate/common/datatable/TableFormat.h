@@ -17,10 +17,11 @@
 #include <vector>
 
 
-class TableFormat: public Cloneable
-{    
+class TableFormat//: public Cloneable
+{ 
+public:   
 	/*
-public:
+
     static boost::shared_ptr<TableFormat> EMPTY_FORMAT;
     static const int DEFAULT_MIN_RECORDS;
     static const int DEFAULT_MAX_RECORDS;
@@ -87,7 +88,9 @@ public:
     TableFormat* addFields(std::list<FieldFormat>& fieldFormats);
 //    TableFormat* addFields(std::list  fieldFormats);
     TableFormat* addField(FieldFormat* ff);
+	*/
     TableFormat* addField(const std::string& encodedFormat);
+	/*
     void addField(char type, const std::string& name);
     TableFormat* addField(char type, const std::string& name, const std::string& description);
     TableFormat* addField(char type, const std::string& name, const std::string& description, void* defaultValue);
@@ -147,7 +150,6 @@ public:
     TableFormat* setMinRecords(int minRecords);
     void fixRecords(DataTable* table);
 
-public:
     TableFormat* setReorderable(bool reorderable);
     TableFormat* setNamingExpression(Expression* namingExpression);
     TableFormat* setNamingExpression(const std::string& namingExpression);
@@ -156,20 +158,19 @@ public:
     void makeImmutable(DataTable* immutabilizer);
 
     bool operator==(const TableFormat& tableFormat) const;//equals(void* obj);
-
-    // Generated
-    TableFormat();
-    TableFormat(bool reorderable);
-    TableFormat(int minRecords, int maxRecords);
-    TableFormat(FieldFormat* ff);
-    TableFormat(const std::string& format, ClassicEncodingSettings* settings);
-    TableFormat(const std::string& format, ClassicEncodingSettings* settings, bool validate);
-    TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat);
-    TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat);
-
-private:
-    void init();  
 	*/
+
+    TableFormat();
+   // TableFormat(bool reorderable);
+    TableFormat(int minRecords, int maxRecords);
+   // TableFormat(FieldFormat* ff);
+   // TableFormat(const std::string& format, ClassicEncodingSettings* settings);
+  //  TableFormat(const std::string& format, ClassicEncodingSettings* settings, bool validate);
+    TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat);
+    //TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat);
+	
+
+
 };
 
 #endif  //_TABLE_FORMAT_H_

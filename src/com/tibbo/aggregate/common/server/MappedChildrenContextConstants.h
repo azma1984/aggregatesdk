@@ -1,36 +1,18 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/MappedChildrenContextConstants.java
 
-#pragma once
-
-
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#ifndef MappedChildrenContextConstantsH
+#define MappedChildrenContextConstantsH
 
 
 
-class com::tibbo::aggregate::common::server::MappedChildrenContextConstants
+namespace MappedChildrenContextConstants
     
 {
 
 public:
-    typedef void super;
 
-private:
-    static const std::string V_PROPAGATED_ACTIONS_;
-
-    // Generated
-
-public:
-    MappedChildrenContextConstants();
-protected:
-    MappedChildrenContextConstants(const ::default_init_tag&);
+    static const std::string V_PROPAGATED_ACTIONS="propagatedActions";
 
 
-public:
-    
-    static void 
-    static const std::string& V_PROPAGATED_ACTIONS();
-
-private:
-    ::java::lang::Class* getClass0();
 };
+  #endif

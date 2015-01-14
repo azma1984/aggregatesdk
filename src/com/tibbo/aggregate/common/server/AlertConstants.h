@@ -1,26 +1,21 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/AlertConstants.java
 
-#pragma once
+#ifndef AlertConstantsH
+#define AlertConstantsH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
 
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
 
-struct com::tibbo::aggregate::common::server::AlertConstants
-    
+class AlertConstants
 {
-    static const int POPUP_MODE_OWN) };
-    static const int POPUP_MODE_ALL = 1) };
+ public:
+    static const int POPUP_MODE_OWN = 0;
+    static const int POPUP_MODE_ALL = 1;
 
-private:
-    static const std::string V_ALERTS_CONFIG_;
-    static const std::string VF_ALERTS_CONFIG_POPUP_MODE_;
+    static const std::string V_ALERTS_CONFIG;
+    static const std::string VF_ALERTS_CONFIG_POPUP_MODE;
 
-    // Generated
-
-public:
-    
-    static const std::string& V_ALERTS_CONFIG();
-    static const std::string& VF_ALERTS_CONFIG_POPUP_MODE();
 };
+  const std::string AlertConstants::V_ALERTS_CONFIG = "alertsConfig";
+  const std::string AlertConstants::VF_ALERTS_CONFIG_POPUP_MODE = "mode";
+
+  #endif

@@ -1,23 +1,14 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/ReportsContextConstants.java
 
-#pragma once
+#ifndef ReportsContextConstantsH
+#define ReportsContextConstantsH
 
-
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::server::ReportsContextConstants
-    
+namespace ReportsContextConstants
 {
+ public:
 
-private:
-    static const std::string A_REPORT_FOR_VARIABLE_;
-    static const std::string A_REPORT_FOR_EVENT_;
+    static const std::string A_REPORT_FOR_VARIABLE= "reportForVariable";
+    static const std::string A_REPORT_FOR_EVENT = "reportForEvent";
 
-    // Generated
-
-public:
-    
-    static const std::string& A_REPORT_FOR_VARIABLE();
-    static const std::string& A_REPORT_FOR_EVENT();
 };
+  #endif

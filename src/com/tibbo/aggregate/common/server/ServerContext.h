@@ -1,28 +1,60 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/ServerContext.java
 
-#pragma once
+#ifndef ServerContextH
+#define ServerContextH
 
 #include "context/Context.h"
 
-struct ServerContext
-    : public Context
+class ServerContext : public Context
 {
-//    void addVisibleChild(std::string* path);
-//    void removeVisibleChild(std::string* path);
-//    ::com::tibbo::aggregate::common::datatable::DataTable* getDefaultValue(::com::tibbo::aggregate::common::context::VariableDefinition* vd);
-//    void removeVariableValue(std::string* name);
-//    bool checkPermissions(::com::tibbo::aggregate::common::security::Permissions* needPermissions, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::Context* accessedContext);
-//    ::java::util::Collection* getMembers(bool includeSubgroups);
-//    void addedToGroup(GroupContext* groupContext);
-//    void removedFromGroup(GroupContext* groupContext);
-//    ::java::util::Set* getGroups();
-//    void alertActivated(::com::tibbo::aggregate::common::data::Event* alert, ::java::lang::Integer* type);
-//    void alertDeactivated(::com::tibbo::aggregate::common::data::Event* alert);
-//    bool shouldBeHidden();
-//    void setIndex(::java::lang::Integer* index);
-//    void createDefaultStatisticsChannels(::com::tibbo::aggregate::common::context::VariableDefinition* vd);
-//    std::string* getShortDescription();
+    /**
+   * Add new visible child to the context.
+   * 
+   * @param path
+   *          Full name of the context to add as visible child of the current one.
+   */
+	virtual  void addVisibleChild(const std::string &path);
 
-//    // Generated
+	  /**
+   * Remove visible child from the context.
+   * 
+   * @param path
+   *          Full name of the visible child to remove.
+   */
+    virtual void removeVisibleChild(const std::string &path);
+
+	  /**
+   * Returns default value of the variable. If it's not directly specified in the variable definition, an empty data table in the variable's format is created and returned.
+   * 
+   * @param vd
+   *          Definition of the variable those default value to return
+   * @return Default value of the variable
+   */
+    virtual DataTable* getDefaultValue(VariableDefinition* vd);
+	
+	/**
+   * Permanently deletes variable value from the database. This method should be used only before variable definition is going to be removed from the context.
+   * 
+   * @param name
+   *          Name of variable those value should be removed.
+   */
+    virtual void removeVariableValue(std::string* name);
+
+	 // The following methods should not be called via public API
+    virtual bool checkPermissions(Permissions* needPermissions, CallerController* caller, Context* accessedContext);
+
+  //  ::java::util::Collection* getMembers(bool includeSubgroups);
+    virtual void addedToGroup(GroupContext* groupContext);
+    virtual void removedFromGroup(GroupContext* groupContext);
+  //  ::java::util::Set* getGroups();
+    virtual void alertActivated(Event* alert, int type);
+    virtual void alertDeactivated(Event* alert);
+    virtual bool shouldBeHidden();
+    virtual void setIndex(int index);
+    virtual void createDefaultStatisticsChannels(VariableDefinition* vd);
+    virtual std::string getShortDescription();
+
+
     
 };
+  #endif

@@ -1,31 +1,25 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/DashboardContextConstants.java
+#ifndef DashboardContextConstantsH
+#define DashboardContextConstantsH
 
-#pragma once
-
-
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::server::DashboardContextConstants
-    
+class DashboardContextConstants
 {
-
-private:
-    static const std::string V_ELEMENTS_;
-    static const std::string F_DASHBOARD_PROPERTIES_;
-    static const std::string F_ELEMENT_PARAMETERS_;
-    static const std::string A_OPEN_;
-    static const std::string FIF_PARAMETERS_TYPE_;
-    static const std::string FIF_PARAMETERS_PARAMETERS_;
-
-    // Generated
-
-public:
-    
-    static const std::string& V_ELEMENTS();
-    static const std::string& F_DASHBOARD_PROPERTIES();
-    static const std::string& F_ELEMENT_PARAMETERS();
-    static const std::string& A_OPEN();
-    static const std::string& FIF_PARAMETERS_TYPE();
-    static const std::string& FIF_PARAMETERS_PARAMETERS();
+ public:
+    static const std::string V_ELEMENTS;
+    static const std::string F_DASHBOARD_PROPERTIES;
+    static const std::string F_ELEMENT_PARAMETERS;
+    static const std::string A_OPEN;
+    static const std::string FIF_PARAMETERS_TYPE;
+    static const std::string FIF_PARAMETERS_PARAMETERS;
 };
+
+  const std::string DashboardContextConstants::V_ELEMENTS = "elements";
+  
+  const std::string DashboardContextConstants::F_DASHBOARD_PROPERTIES = "dashboardProperties";
+  const std::string DashboardContextConstants::F_ELEMENT_PARAMETERS = "elementParameters";
+  
+  const std::string DashboardContextConstants::A_OPEN = "open";
+  
+  const std::string DashboardContextConstants::FIF_PARAMETERS_TYPE = "type";
+  const std::string DashboardContextConstants::FIF_PARAMETERS_PARAMETERS = "parameters";
+#endif

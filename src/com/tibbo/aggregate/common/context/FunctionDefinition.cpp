@@ -1,87 +1,54 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/FunctionDefinition.java
-//#include <com/tibbo/aggregate/common/context/FunctionDefinition.h"
+#include "context/FunctionDefinition.h"
 
-#include <com/tibbo/aggregate/common/context/FunctionImplementation.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/security/Permissions.h"
-////#include <java/lang/Class.h"
-////#include <java/lang/ClassCastException.h"
-////#include <java/lang/CloneNotSupportedException.h"
-////#include <java/lang/IllegalStateException.h"
-////#include <java/lang/Integer.h"
-////#include <java/lang/NullPointerException.h"
-////#include <java/lang/Object.h"
-////#include <java/lang/String.h"
 
-template<typename T, typename U>
-static T java_cast(U* u)
+
+
+FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat) 
 {
-    if(!u) return static_cast<T>(0);
-    auto t = dynamic_cast<T>(u);
-    if(!t) throw new ::java::lang::ClassCastException();
-    return t;
+//    ctor(name,inputFormat,outputFormat);
 }
 
-template<typename T>
-static T* T* t)
+FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat,  const std::string &description) 
 {
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
+ //   ctor(name,inputFormat,outputFormat,description);
 }
 
-com::tibbo::aggregate::common::context::FunctionDefinition::FunctionDefinition(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
+FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group) 
 {
-    
+  //  ctor(name,inputFormat,outputFormat,description,group);
 }
+/*
 
-com::tibbo::aggregate::common::context::FunctionDefinition::FunctionDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat) 
-    : FunctionDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(name,inputFormat,outputFormat);
-}
-
-com::tibbo::aggregate::common::context::FunctionDefinition::FunctionDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description) 
-    : FunctionDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(name,inputFormat,outputFormat,description);
-}
-
-com::tibbo::aggregate::common::context::FunctionDefinition::FunctionDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description, std::string* group) 
-    : FunctionDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(name,inputFormat,outputFormat,description,group);
-}
-
-void com::tibbo::aggregate::common::context::FunctionDefinition::init()
+void FunctionDefinition::init()
 {
     hidden = false;
     permissions;
     concurrent = false;
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat)
+void FunctionDefinition::ctor(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat)
 {
     super::ctor();
     init();
     init_(name, inputFormat, outputFormat, 0, 0);
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description)
+void FunctionDefinition::ctor(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat, std::string* description)
 {
     super::ctor();
     init();
     init_(name, inputFormat, outputFormat, description, 0);
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description, std::string* group)
+void FunctionDefinition::ctor(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat, std::string* description, std::string* group)
 {
     super::ctor();
     init();
     init_(name, inputFormat, outputFormat, description, group);
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::init_(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description, std::string* group)
+void FunctionDefinition::init_(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat, std::string* description, std::string* group)
 {
     setName(name);
     setInputFormat(inputFormat);
@@ -90,32 +57,32 @@ void com::tibbo::aggregate::common::context::FunctionDefinition::init_(std::stri
     setGroup(group);
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::context::FunctionDefinition::getInputFormat()
+com::tibbo::aggregate::common::datatable::TableFormat* FunctionDefinition::getInputFormat()
 {
     return inputFormat;
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::context::FunctionDefinition::getOutputFormat()
+com::tibbo::aggregate::common::datatable::TableFormat* FunctionDefinition::getOutputFormat()
 {
     return outputFormat;
 }
 
-bool com::tibbo::aggregate::common::context::FunctionDefinition::isHidden()
+bool FunctionDefinition::isHidden()
 {
     return hidden;
 }
 
-com::tibbo::aggregate::common::security::Permissions* com::tibbo::aggregate::common::context::FunctionDefinition::getPermissions()
+com::tibbo::aggregate::common::security::Permissions* FunctionDefinition::getPermissions()
 {
     return permissions;
 }
 
-com::tibbo::aggregate::common::context::FunctionImplementation* com::tibbo::aggregate::common::context::FunctionDefinition::getImplementation()
+FunctionImplementation* FunctionDefinition::getImplementation()
 {
     return implementation;
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::setInputFormat(::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat)
+void FunctionDefinition::setInputFormat(TableFormat* inputFormat)
 {
     if(inputFormat != 0) {
         inputFormat)->makeImmutable(0);
@@ -123,7 +90,7 @@ void com::tibbo::aggregate::common::context::FunctionDefinition::setInputFormat(
     this->inputFormat = inputFormat;
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::setOutputFormat(::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat)
+void FunctionDefinition::setOutputFormat(TableFormat* outputFormat)
 {
     if(outputFormat != 0) {
         outputFormat)->makeImmutable(0);
@@ -131,32 +98,32 @@ void com::tibbo::aggregate::common::context::FunctionDefinition::setOutputFormat
     this->outputFormat = outputFormat;
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::setHidden(bool hidden)
+void FunctionDefinition::setHidden(bool hidden)
 {
     this->hidden = hidden;
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::setPermissions(::com::tibbo::aggregate::common::security::Permissions* perms)
+void FunctionDefinition::setPermissions(::com::tibbo::aggregate::common::security::Permissions* perms)
 {
     this->permissions = perms;
 }
 
-bool com::tibbo::aggregate::common::context::FunctionDefinition::isConcurrent()
+bool FunctionDefinition::isConcurrent()
 {
     return concurrent;
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::setConcurrent(bool concurrent)
+void FunctionDefinition::setConcurrent(bool concurrent)
 {
     this->concurrent = concurrent;
 }
 
-void com::tibbo::aggregate::common::context::FunctionDefinition::setImplementation(FunctionImplementation* implementation)
+void FunctionDefinition::setImplementation(FunctionImplementation* implementation)
 {
     this->implementation = implementation;
 }
 
-com::tibbo::aggregate::common::context::FunctionDefinition* com::tibbo::aggregate::common::context::FunctionDefinition::clone()
+FunctionDefinition* FunctionDefinition::clone()
 {
     try {
         return java_cast< FunctionDefinition* >(super::clone());
@@ -165,7 +132,7 @@ com::tibbo::aggregate::common::context::FunctionDefinition* com::tibbo::aggregat
     }
 }
 
-int com::tibbo::aggregate::common::context::FunctionDefinition::compareTo(FunctionDefinition* d)
+int FunctionDefinition::compareTo(FunctionDefinition* d)
 {
     if(getIndex() != 0 || d)->getIndex() != 0) {
         auto my = getIndex() != 0 ? getIndex() : new ::java::lang::Integer(int(0));
@@ -175,12 +142,12 @@ int com::tibbo::aggregate::common::context::FunctionDefinition::compareTo(Functi
     return 0;
 }
 
-int com::tibbo::aggregate::common::context::FunctionDefinition::compareTo(void* arg0)
+int FunctionDefinition::compareTo(void* arg0)
 { 
     return compareTo(dynamic_cast< FunctionDefinition* >(arg0));
 }
 
-int com::tibbo::aggregate::common::context::FunctionDefinition::hashCode()
+int FunctionDefinition::hashCode()
 {
     auto const prime = int(31);
     auto result = int(1);
@@ -197,7 +164,7 @@ int com::tibbo::aggregate::common::context::FunctionDefinition::hashCode()
     return result;
 }
 
-bool com::tibbo::aggregate::common::context::FunctionDefinition::equals(void* obj)
+bool FunctionDefinition::equals(void* obj)
 {
     if(this) == obj) {
         return true;
@@ -278,16 +245,5 @@ bool com::tibbo::aggregate::common::context::FunctionDefinition::equals(void* ob
     return true;
 }
 
-
-
-java::lang::Class* com::tibbo::aggregate::common::context::FunctionDefinition::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.FunctionDefinition", 53);
-    return c;
-}
-
-java::lang::Class* com::tibbo::aggregate::common::context::FunctionDefinition::getClass0()
-{
-    return class_();
-}
+*/
 

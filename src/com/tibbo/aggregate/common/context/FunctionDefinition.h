@@ -5,36 +5,36 @@
 
 #include "AbstractEntityDefinition.h"
 
+//#include <com/tibbo/aggregate/common/context/FunctionImplementation.h"
+#include "datatable/TableFormat.h"
+//#include <com/tibbo/aggregate/common/security/Permissions.h"
+#include "context/entitydefinition.h"
+
+
 
 class FunctionDefinition : public AbstractEntityDefinition
 {
-/*
 public:
-    typedef AbstractEntityDefinition super;
-
+/*
 private:
-    ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat;
-    ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat;
+    TableFormat* inputFormat;
+    TableFormat* outputFormat;
     bool hidden;
     ::com::tibbo::aggregate::common::security::Permissions* permissions;
     FunctionImplementation* implementation;
     bool concurrent;
-protected:
-    void ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat);
-    void ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description);
-    void ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description, std::string* group);
 
 private:
-    void init_(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description, std::string* group);
+    void init_(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat, std::string* description, std::string* group);
 
 public:
-    ::com::tibbo::aggregate::common::datatable::TableFormat* getInputFormat();
-    ::com::tibbo::aggregate::common::datatable::TableFormat* getOutputFormat();
+    TableFormat* getInputFormat();
+    TableFormat* getOutputFormat();
     bool isHidden();
     ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
     FunctionImplementation* getImplementation();
-    void setInputFormat(::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat);
-    void setOutputFormat(::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat);
+    void setInputFormat(TableFormat* inputFormat);
+    void setOutputFormat(TableFormat* outputFormat);
     void setHidden(bool hidden);
     void setPermissions(::com::tibbo::aggregate::common::security::Permissions* perms);
     bool isConcurrent();
@@ -44,14 +44,12 @@ public:
     int compareTo(FunctionDefinition* d);
     int hashCode();
     bool equals(void* obj);
+*/
 
-    // Generated
-    FunctionDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat);
-    FunctionDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description);
-    FunctionDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* inputFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, std::string* description, std::string* group);
-protected:
-    FunctionDefinition(const ::default_init_tag&);
-
+    FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat);
+    FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description);
+    FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group);
+/*
 
 public:
     

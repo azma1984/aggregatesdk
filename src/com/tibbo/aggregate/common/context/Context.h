@@ -35,7 +35,7 @@
    @param contextManager
    ContextManager, возглавляющий текущее дерево контекста
   */
-	virtual void teardown();
+	virtual void teardown()=0; 
 
 	/*
 	 Этот метод должен вернуть true, если контекст был уже инициализирован и
@@ -43,18 +43,18 @@
 	 Его внедрение по умолчанию в AbstractContext не должно быть отвергнуто.
 	 @return = true, если setupMyself () был уже закончен.
 	*/
-	virtual bool isSetupComplete();
+	virtual bool isSetupComplete()=0;
 
 
    /*Этот метод должен вернуть true, если контекст был уже инициализирован
 	 его основной информацией (описание, тип, и т.д.).
 	 @return = true, если основная информация о контексте была инициализирована.*/
-	virtual bool isInitializedInfo();
+	virtual bool isInitializedInfo()=0;
 
 	/*
 	Этот метод должен возвратить true, если контекст был уже инициализирован детьми.
 	@return = true, если дети контекста были инициализированы.*/
-	virtual bool isInitializedChildren();
+	virtual bool isInitializedChildren()=0;
 
 
    /*
@@ -62,7 +62,7 @@
    * @return верный, если переменные контекста были инициализированы.
    */
 
-	virtual bool isInitializedVariables();
+	virtual bool isInitializedVariables()=0;
 
    /*
    * Этот метод должен возвратиться верный, если контекст был уже инициализирован его функции.
@@ -71,7 +71,7 @@
    */
 
 
-	virtual bool isInitializedFunctions();
+	virtual bool isInitializedFunctions()=0;
 
 
 
@@ -80,7 +80,7 @@
    * @return верный, если события контекста были инициализированы.
    */
 
-	virtual bool isInitializedEvents();
+	virtual bool isInitializedEvents()=0;
 
 
 
@@ -88,7 +88,7 @@
    * Этот метод вызывают, когда дерево контекста запускается после его инициализации.
    * Все контексты в дереве должны быть доступными в момент вызова.
    */
-	virtual void start();
+	virtual void start()=0;
 
 
    /*
@@ -96,21 +96,21 @@
    перед его de-инициализацией. Все контексты в дереве должны быть доступными
 	в момент вызова.
    */
-	virtual void stop();
+	virtual void stop()=0;
 
 	/**
    * Возвращает истину, если контекст был начат, но еще не остановлен.
    */
-	virtual bool isStarted();
+	virtual bool isStarted()=0;
 
 	//Возвращает имя контекста
-	virtual std::string getName();
+	virtual std::string getName()=0;
 
 	//Возвращает путь к контексту (полное имя)
-	virtual std::string getPath();
+	virtual std::string getPath()=0;
 
 	//возращает путь контектста узла в сети
-	virtual std::string getRemotePath();
+	virtual std::string getRemotePath()=0;
 
    /*
    *Когда определенное поддерево контекста от одного сервера будет связано
@@ -118,38 +118,38 @@
 	корня этого поддерева. Если у текущего контекста нет отдаленного
    * узла сети, этот метод возвращает пустой указатель.
    */
-	virtual std::string getRemoteRoot();
+	virtual std::string getRemoteRoot()=0;
 
 	//Возвращает true, если контекст является proxy удаленного контекста
-	virtual bool isProxy();
+	virtual bool isProxy()=0;
 
    /*
    * Возвращает истину, если у контекста есть отдаленный узел сети
 	 в распределенной архитектуре.
    */
-	virtual bool isDistributed();
+	virtual bool isDistributed()=0;
 
    /*
    * Возвращает подробное описание контекста, которое включает описание и путь.
    */
-	virtual std::string toDetailedString();
+	virtual std::string toDetailedString()=0;
 
 
 	//Возвращает описание контекста
-	virtual std::string getDescription();
+	virtual std::string getDescription()=0;
 
 	//Возвращает тип контекста
-	virtual std::string getType();
+	virtual std::string getType()=0;
 
 	//Возвращает назавние группы контекста.
 	//NULL, если контекст не принадлежит к группе
-	virtual std::string getGroup();
+	virtual std::string getGroup()=0;
 
 	//Возвращает индекс сравнения контекста  или NULL, если индекс не определен.
-	virtual int getIndex();
+	virtual int getIndex()=0;
 
 	//Возвращает ID иконки контекста
-	virtual std::string getIconId();
+	virtual std::string getIconId()=0;
 
 	 /*
 	ContextStatus* getStatus();
