@@ -1,5 +1,4 @@
-#ifndef _PermissionChecker_H_
-#define _PermissionChecker_H_
+#pragma once
 
 #include "util/Interface.h"
 #include "context/Context.h"
@@ -34,13 +33,15 @@ class PermissionChecker : public Interface
     /**
     * Returns the effective permission level of the calling party (those permissions are identified by {@code perms}) in the {@code context}.
     */
-    virtual std::string getLevel(boost::shared_ptr<Permissions> perms, const std::string& context, boost::shared_ptr<ContextManager> cm) = 0;
+    //TODO: ContextManager шаблонный
+    virtual std::string getLevel(boost::shared_ptr<Permissions> perms,
+                                 const std::string& context, boost::shared_ptr<ContextManager> cm) = 0;
 
     /**
     * Returns true if the calling party (those permissions are identified by {@code perms}) can see {@code context} among children of its parent context because it has non-null permissions for one or
     * more direct/nested children of {@code context}.
     */
-    virtual bool canSee(Permissions perms, const std::string& context, boost::shared_ptr<ContextManager> cm) = 0;
+    virtual bool canSee(boost::shared_ptr<Permissions> perms, const std::string& context, boost::shared_ptr<ContextManager> cm) = 0;
 
     /**
     * Checks whether the calling party (those permissions are identified by {@code has}) can set permissions of some other party to {@code need}.
@@ -48,4 +49,3 @@ class PermissionChecker : public Interface
     virtual std::string canActivate(boost::shared_ptr<Permissions> has, boost::shared_ptr<Permissions> need,
                                     boost::shared_ptr<ContextManager> cm) = 0;
 };
-#endif  //_PermissionChecker_H_

@@ -19,7 +19,7 @@ ShowDiff::ShowDiff()
     ctor();
 }
 
-ShowDiff::ShowDiff(const std::string& title, DataTable* parameters)
+ShowDiff::ShowDiff(const std::string& title, boost::shared_ptr<DataTable> parameters)
 {
     clinit();
     ctor(title, parameters);
@@ -47,7 +47,7 @@ void ShowDiff::ctor(const std::string& title, const std::string& _firstFileTitle
     secondFile = _secondFile;
 }
 
-void ShowDiff::ctor(const std::string& title, DataTable* parameters)
+void ShowDiff::ctor(const std::string& title, boost::shared_ptr<DataTable> parameters)
 {
     ctor(ActionUtils::CMD_SHOW_DIFF, title, parameters, CFT_SHOW_DIFF);
 }

@@ -11,7 +11,7 @@ ServerPermissionChecker::ServerPermissionChecker()
 {
     std::vector<boost::shared_ptr<PermissionType>> permisType;
 
-    boost::shared_ptr<PermissionType> nullType = new PermissionType(0, NULL_PERMISSIONS, Cres.get().getString("secNoPerms"));
+    boost::shared_ptr<PermissionType> nullType = new PermissionType(0, NULL_PERMISSIONS, Cres::get()->getString("secNoPerms"));
     permisType.push_back( nullType );
 
     boost::shared_ptr<PermissionType> observerType = new PermissionType(0b00000001, OBSERVER_PERMISSIONS_, Cres::get()->getString("secObserverPerms"));

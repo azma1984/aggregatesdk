@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/ServerDeviceController.java
-
 #pragma once
 
 #include "device/DeviceContext.h"

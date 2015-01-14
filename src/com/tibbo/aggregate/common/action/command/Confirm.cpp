@@ -41,7 +41,7 @@ Confirm::Confirm(const std::string& title, DataTable* parameters)
 
 DataTable* Confirm::constructParameters()
 {
-    DataRecord* dr = new DataRecord(CFT_CONFIRM.get());
+    DataRecord* dr = new DataRecord(CFT_CONFIRM);
     dr->addString(message);
     dr->addInt(optionType);
     dr->addInt(messageType);
@@ -64,12 +64,12 @@ GenericActionResponse Confirm::createDefaultResponse()
 	} else if(ActionUtils::YES_NO_CANCEL_OPTION == optionType) {
         selectionValues.insert( std::pair<int, std::string>(ActionUtils::YES_OPTION, Cres::get()->getString("yes")) );
         selectionValues.insert(std::pair<int, std::string>(ActionUtils::NO_OPTION, Cres::get()->getString("no")) );
-        selectionValues.insert(std::pair<int, std::string>(ActionUtils::CANCEL_OPTION,Cres::get()->getString("cancel");
+        selectionValues.insert(std::pair<int, std::string>(ActionUtils::CANCEL_OPTION,Cres::get()->getString("cancel")) );
     } else {
       std::cout<<"Unsupported option type: ";
     }
-    responseFormat->getField(RF_OPTION_)->setSelectionValues(selectionValues);
-    return new GenericActionResponse(new ::DataTable(responseFormat, true));
+    responseFormat->getField(RF_OPTION)->setSelectionValues(selectionValues);
+    return new GenericActionResponse(new DataTable(responseFormat, true));
 }
 
 int Confirm::parseConfirm(GenericActionResponse* resp)
@@ -144,7 +144,7 @@ void Confirm::init()
     }
 
     if (RFT_CONFIRM) {
-        RFT_CONFIRM = new TableFormat(1, 1, std::string("<").append(RF_OPTION).append("><I><D=").append(Cres.get().getString("option")).append(">") );
+        RFT_CONFIRM = new TableFormat(1, 1, std::string("<").append(RF_OPTION).append("><I><D=").append(Cres::get()->getString("option")).append(">") );
     }
 }
 
