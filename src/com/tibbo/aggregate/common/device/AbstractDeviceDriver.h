@@ -7,6 +7,9 @@
 #include "context/VariableDefinition.h"
 #include "datatable/TableFormat.h"
 #include <string>
+#include <set>
+#include <list>
+#include <boost/shared_ptr.hpp>
 
 class AbstractDeviceDriver : public BasePlugin , public DeviceDriver
 {
@@ -22,22 +25,22 @@ public:
     AbstractDeviceDriver(const std::string& description, const std::string& protocol, boost::shared_ptr<TableFormat> connectionProperties);
 
     std::string getPrimaryAddress();
-    set<std::string> getAddresses();
+    std::set<std::string> getAddresses();
     std::string getStatus();
-    std::list<Expression>  getStatusExpressions(CallerController* aCallerController);
-    void setupDeviceContext(DeviceContext* deviceContext) /* throws(ContextException) */;
-    void configureDeviceAccount(DeviceContext* deviceContext, CallerController* caller) /* throws(ContextException) */;
+    std::list<boost::shared_ptr<Expression>>  getStatusExpressions(boost::shared_ptr<CallerController> aCallerController);
+    void setupDeviceContext(boost::shared_ptr<DeviceContext> deviceContext) /* throws(ContextException) */;
+    void configureDeviceAccount(boost::shared_ptr<DeviceContext> deviceContext, CallerController* caller) /* throws(ContextException) */;
     void accessSettingUpdated(const std::string& name);
-    bool shouldSynchronize(SynchronizationParameters* parameters) /* throws(ContextException) */;
+    bool shouldSynchronize(boost::shared_ptr<SynchronizationParameters> parameters) /* throws(ContextException) */;
     void startSynchronization() /* throws(DeviceException) */;
     bool isUsesConnections();
     bool isConnected();
     void connect() /* throws(DeviceException) */;
     bool isUsesAssets();
-    std::list  readAssets() /* throws(ContextException, DeviceException, DisconnectionException) */;
+    std::list<boost::shared_ptr<DeviceAssetDefinition>>  readAssets() /* throws(ContextException, DeviceException, DisconnectionException) */;
     bool isUseDeviceSideValuesCache();
     std::list  readVariableDefinitions() /* throws(ContextException, DeviceException, DisconnectionException) */;
-    std::list  readVariableDefinitions(std::list  groups) /* throws(ContextException, DeviceException, DisconnectionException) */;
+    std::list  readVariableDefinitions(std::list<boost::shared_ptr<DeviceAssetDefinition>> groups) /* throws(ContextException, DeviceException, DisconnectionException) */;
     std::list  readFunctionDefinitions() /* throws(ContextException, DeviceException, DisconnectionException) */;
     std::list  readFunctionDefinitions(std::list  groups) /* throws(ContextException, DeviceException, DisconnectionException) */;
     std::list  readEventDefinitions() /* throws(ContextException, DeviceException, DisconnectionException) */;
