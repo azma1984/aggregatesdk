@@ -7,6 +7,7 @@
 #include "context/VariableDefinition.h"
 #include "context/VariableStatus.h"
 #include <boost/shared_ptr.hpp>
+#include <string>
 
 class SynchronizationHandler
 {
