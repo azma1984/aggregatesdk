@@ -79,7 +79,11 @@ int DeviceAssetDefinition::compareTo(ptrDeviceAssetDefinition other)
 
 std::string DeviceAssetDefinition::toString()
 {
-    return "GroupDefinition [id=" + id + ", description=" + description + ", enabled=" + enabled + ", children=" + (children != null ? children.size() : 0) + "]";
+    std::stringstream ss;
+    ss <<"GroupDefinition [id=" <<id <<", description=" <<description <<", enabled=" <<enabled
+       <<", children=" <<(children != NULL ? children.size() : 0) <<"]";
+
+    return ss.str();
 }
 
 //    int DeviceAssetDefinition::hashCode()
@@ -93,18 +97,17 @@ std::string DeviceAssetDefinition::toString()
 bool DeviceAssetDefinition::equals(DeviceAssetDefinition* obj)
 {
     if (this == obj)
-          return true;
-        if (obj == null)
-          return false;
-        if (getClass() != obj.getClass())
-          return false;
-        DeviceAssetDefinition other = (DeviceAssetDefinition) obj;
-        if (description == null)
-        {
-          if (other.description != null)
-            return false;
-        }
-        else if (!description.equals(other.description))
-          return false;
         return true;
+
+    if (obj == NULL)
+        return false;
+
+    DeviceAssetDefinition* other = dynamic_cast<DeviceAssetDefinition>(obj);
+    if (other == NULL)
+        return false;
+
+    if (other->description != description)
+        return false;
+
+    return true;
 }
