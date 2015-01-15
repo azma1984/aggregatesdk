@@ -41,7 +41,7 @@ public:
     void* getContent();
     BindingProcessor* getBindingProcessor();
     EvaluationOptions* getEvaluationOptions();
-    std::string* toString();
+    const std::string & toString();
 
     // Generated
     DefaultBindingProcessor_BindingReferenceListener(DefaultBindingProcessor *DefaultBindingProcessor_this, Binding* binding, EvaluationOptions* options);

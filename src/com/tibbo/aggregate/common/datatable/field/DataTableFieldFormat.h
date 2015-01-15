@@ -13,34 +13,34 @@
 
 
 class com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat
-    : public ::com::tibbo::aggregate::common::datatable::FieldFormat
+    : public FieldFormat
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::FieldFormat super;
+    typedef FieldFormat super;
 protected:
-    void ctor(std::string* name);
+    void ctor(const std::string & name);
 
 public:
     char16_t getType();
     ::java::lang::Class* getFieldClass();
     ::java::lang::Class* getFieldWrappedClass();
-    ::com::tibbo::aggregate::common::datatable::DataTable* getNotNullDefault();
-    ::com::tibbo::aggregate::common::datatable::DataTable* valueFromString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-    std::string* valueToString(::com::tibbo::aggregate::common::datatable::DataTable* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    DataTable* getNotNullDefault();
+    DataTable* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+    const std::string & valueToString(DataTable* value, encoding::ClassicEncodingSettings* settings);
     static const std::string encodeEditorOptions(bool showTableData);
 
     // Generated
-    DataTableFieldFormat(std::string* name);
+    DataTableFieldFormat(const std::string & name);
 protected:
     DataTableFieldFormat(const ::default_init_tag&);
 
 
 public:
     
-    std::string* valueToString(void* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void* valueFromString(std::string* value);
-    std::string* valueToString(void* value);
+    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
+    void* valueFromString(const std::string & value);
+    const std::string & valueToString(void* value);
 
 private:
     ::java::lang::Class* getClass0();

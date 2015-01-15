@@ -27,17 +27,17 @@ private:
 
 public:
     static void validateSyntax(Expression* expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */;
-    static std::list  getFunctionParameters(std::string* paramsString, bool allowExpressions);
+    static std::list  getFunctionParameters(const std::string & paramsString, bool allowExpressions);
 
 private:
-    static const std::string prepareParameter(std::string* parameter);
+    static const std::string prepareParameter(const std::string & parameter);
 
 public:
     static const std::string getFunctionParameters(std::list  params);
-    static void dump(std::string* expression) /* throws(SyntaxErrorException) */;
+    static void dump(const std::string & expression) /* throws(SyntaxErrorException) */;
     static ::ASTStart* parse(Expression* expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */;
     static std::list  findReferences(Expression* expression) /* throws(SyntaxErrorException) */;
-    static const std::string escapeStringLiteral(std::string* text);
+    static const std::string escapeStringLiteral(const std::string & text);
     static long generateBindingId();
 
     // Generated

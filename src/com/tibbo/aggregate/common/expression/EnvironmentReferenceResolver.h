@@ -23,8 +23,8 @@ protected:
 
 public:
     void* resolveReference(Reference* ref, EvaluationEnvironment* resolvingEnvironment) /* throws(SyntaxErrorException, ContextException, EvaluationException) */;
-    void set(std::string* variable, void* value);
-    void* get(std::string* variable);
+    void set(const std::string & variable, void* value);
+    void* get(const std::string & variable);
     void setEnvironment(std::map environment);
     std::map getEnvironment();
 

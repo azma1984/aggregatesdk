@@ -67,9 +67,9 @@ public:
     void jjtSetLastToken(Token* token);
     void* jjtAccept(ExpressionParserVisitor* visitor, void* data);
     void* childrenAccept(ExpressionParserVisitor* visitor, void* data);
-    std::string* toString();
-    std::string* toString(std::string* prefix);
-    void dump(std::string* prefix);
+    const std::string & toString();
+    const std::string & toString(const std::string & prefix);
+    void dump(const std::string & prefix);
 
     // Generated
     SimpleNode(int i);

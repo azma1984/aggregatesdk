@@ -13,13 +13,13 @@
 
 
 class com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat
-    : public ::com::tibbo::aggregate::common::datatable::FieldFormat
+    : public FieldFormat
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::FieldFormat super;
+    typedef FieldFormat super;
 protected:
-    void ctor(std::string* name);
+    void ctor(const std::string & name);
 
 public:
     char16_t getType();
@@ -31,8 +31,8 @@ public: /* protected */
     void* convertValue(void* value) /* throws(ValidationException) */;
 
 public:
-    ::java::lang::Double* valueFromString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-    std::string* valueToString(::java::lang::Double* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    ::java::lang::Double* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+    const std::string & valueToString(::java::lang::Double* value, encoding::ClassicEncodingSettings* settings);
 
 public: /* protected */
     std::list  getSuitableEditors();
@@ -40,16 +40,16 @@ public: /* protected */
     // Generated
 
 public:
-    DoubleFieldFormat(std::string* name);
+    DoubleFieldFormat(const std::string & name);
 protected:
     DoubleFieldFormat(const ::default_init_tag&);
 
 
 public:
     
-    std::string* valueToString(void* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void* valueFromString(std::string* value);
-    std::string* valueToString(void* value);
+    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
+    void* valueFromString(const std::string & value);
+    const std::string & valueToString(void* value);
 
 private:
     ::java::lang::Class* getClass0();

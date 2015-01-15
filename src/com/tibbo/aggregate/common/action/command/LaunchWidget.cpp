@@ -23,19 +23,19 @@ LaunchWidget::LaunchWidget()
     ctor();
 }
 
-LaunchWidget::LaunchWidget(std::string* title, std::string* widgetContext, std::string* defaultContext)
+LaunchWidget::LaunchWidget(const std::string & title, const std::string & widgetContext, const std::string & defaultContext)
     : LaunchWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,widgetContext,defaultContext);
 }
 
-LaunchWidget::LaunchWidget(std::string* title, std::string* widgetContext, std::string* defaultContext, std::string* template_)
+LaunchWidget::LaunchWidget(const std::string & title, const std::string & widgetContext, const std::string & defaultContext, const std::string & template_)
     : LaunchWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,widgetContext,defaultContext,template_);
 }
 
-LaunchWidget::LaunchWidget(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+LaunchWidget::LaunchWidget(const std::string & title, DataTable* parameters)
     : LaunchWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -86,30 +86,30 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 
 void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), CFT_LAUNCH_WIDGET_, static_cast< ::com::tibbo::aggregate::common::datatable::TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), CFT_LAUNCH_WIDGET_, static_cast< TableFormat* >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(std::string* title, std::string* widgetContext, std::string* defaultContext)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, const std::string & widgetContext, const std::string & defaultContext)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), title);
     this->widgetContext = widgetContext;
     this->defaultContext = defaultContext;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(std::string* title, std::string* widgetContext, std::string* defaultContext, std::string* template_)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, const std::string & widgetContext, const std::string & defaultContext, const std::string & template_)
 {
     ctor(title, widgetContext, defaultContext);
     this->template_ = template_;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, DataTable* parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), title, parameters, CFT_LAUNCH_WIDGET_);
 }
 
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::LaunchWidget::constructParameters()
 {
-    return new ::com::tibbo::aggregate::common::datatable::DataTable(CFT_LAUNCH_WIDGET_, new voidArray({widgetContext), defaultContext), template_), location != 0 ? location)->toDataTable()) : 0), dashboard != 0 ? dashboard)->toDataTable()) : 0), input)}));
+    return new DataTable(CFT_LAUNCH_WIDGET_, new voidArray({widgetContext), defaultContext), template_), location != 0 ? location)->toDataTable()) : 0), dashboard != 0 ? dashboard)->toDataTable()) : 0), input)}));
 }
 
 std::string com::tibbo::aggregate::common::action::command::LaunchWidget::getDefaultContext()
@@ -117,7 +117,7 @@ std::string com::tibbo::aggregate::common::action::command::LaunchWidget::getDef
     return defaultContext;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setDefaultContext(std::string* defaultContext)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::setDefaultContext(const std::string & defaultContext)
 {
     this->defaultContext = defaultContext;
 }
@@ -127,7 +127,7 @@ std::string com::tibbo::aggregate::common::action::command::LaunchWidget::getWid
     return widgetContext;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setWidgetContext(std::string* widgetContext)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::setWidgetContext(const std::string & widgetContext)
 {
     this->widgetContext = widgetContext;
 }
@@ -137,7 +137,7 @@ std::string com::tibbo::aggregate::common::action::command::LaunchWidget::getTem
     return template_;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setTemplate(std::string* encodedWidgetTemplate)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::setTemplate(const std::string & encodedWidgetTemplate)
 {
     this->template_ = encodedWidgetTemplate;
 }
@@ -167,7 +167,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return input;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setInput(::com::tibbo::aggregate::common::datatable::DataTable* input)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::setInput(DataTable* input)
 {
     this->input = input;
 }
@@ -200,19 +200,19 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        CFT_LAUNCH_WIDGET_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        CFT_LAUNCH_WIDGET_ = new TableFormat(int(1), int(1));
         {
             CFT_LAUNCH_WIDGET_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_WIDGET_CONTEXT_)
                 ->append(u"><S><F=N><D="_j)
                 ->append(Cres::get())->getString(u"widget"_j))
                 ->append(u"><E="_j)
-                ->append(::com::tibbo::aggregate::common::datatable::field::StringFieldFormat::EDITOR_CONTEXT())
+                ->append(field::StringFieldFormat::EDITOR_CONTEXT())
                 ->append(u">"_j)->toString());
             CFT_LAUNCH_WIDGET_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_DEFAULT_CONTEXT_)
                 ->append(u"><S><F=N><D="_j)
                 ->append(Cres::get())->getString(u"conDefaultContext"_j))
                 ->append(u"><E="_j)
-                ->append(::com::tibbo::aggregate::common::datatable::field::StringFieldFormat::EDITOR_CONTEXT())
+                ->append(field::StringFieldFormat::EDITOR_CONTEXT())
                 ->append(u">"_j)->toString());
             CFT_LAUNCH_WIDGET_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_TEMPLATE_)
                 ->append(u"><S><F=N>"_j)->toString());

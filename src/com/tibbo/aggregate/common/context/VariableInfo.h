@@ -16,10 +16,10 @@ public:
     typedef void super;
 
 private:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_;
+    static TableFormat* FORMAT_;
 
 public:
-    static ::com::tibbo::aggregate::common::datatable::DataTable* createInfoTable(VariableDefinition* vd);
+    static DataTable* createInfoTable(VariableDefinition* vd);
 
     // Generated
     VariableInfo();
@@ -30,7 +30,7 @@ protected:
 public:
     
     static void 
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT();
+    static TableFormat*& FORMAT();
 
 private:
     ::java::lang::Class* getClass0();

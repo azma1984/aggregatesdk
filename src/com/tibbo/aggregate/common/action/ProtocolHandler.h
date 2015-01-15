@@ -21,17 +21,17 @@ private:
     static const std::string FIELD_ACTION_COMMAND_BATCH_MEMBER_;
     static const std::string FIELD_ACTION_COMMAND_REQUEST_ID_;
     static const std::string FIELD_ACTION_ID_ACTION_ID_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_ACTION_ID_FORMAT_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_ACTION_COMMAND_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_ACTION_RESPONSE_;
+    static TableFormat* FORMAT_ACTION_ID_FORMAT_;
+    static TableFormat* FORMAT_ACTION_COMMAND_;
+    static TableFormat* FORMAT_ACTION_RESPONSE_;
 
 public:
-    static ::com::tibbo::aggregate::common::datatable::DataTable* actionIdToDataTable(ActionIdentifier* id);
-    static ActionIdentifier* actionIdFromDataTable(::com::tibbo::aggregate::common::datatable::DataTable* table);
-    static ::com::tibbo::aggregate::common::datatable::DataTable* actionCommandToDataTable(GenericActionCommand* cmd);
-    static GenericActionCommand* actionCommandFromDataTable(::com::tibbo::aggregate::common::datatable::DataTable* table);
-    static ::com::tibbo::aggregate::common::datatable::DataTable* actionResponseToDataTable(GenericActionResponse* response);
-    static GenericActionResponse* actionResponseFromDataTable(::com::tibbo::aggregate::common::datatable::DataTable* table);
+    static DataTable* actionIdToDataTable(ActionIdentifier* id);
+    static ActionIdentifier* actionIdFromDataTable(DataTable* table);
+    static DataTable* actionCommandToDataTable(GenericActionCommand* cmd);
+    static GenericActionCommand* actionCommandFromDataTable(DataTable* table);
+    static DataTable* actionResponseToDataTable(GenericActionResponse* response);
+    static GenericActionResponse* actionResponseFromDataTable(DataTable* table);
 
     // Generated
     ProtocolHandler();
@@ -54,9 +54,9 @@ private:
     static const std::string& FIELD_ACTION_COMMAND_BATCH_MEMBER();
     static const std::string& FIELD_ACTION_COMMAND_REQUEST_ID();
     static const std::string& FIELD_ACTION_ID_ACTION_ID();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT_ACTION_ID_FORMAT();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT_ACTION_COMMAND();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT_ACTION_RESPONSE();
+    static TableFormat*& FORMAT_ACTION_ID_FORMAT();
+    static TableFormat*& FORMAT_ACTION_COMMAND();
+    static TableFormat*& FORMAT_ACTION_RESPONSE();
     ::java::lang::Class* getClass0();
 };
 #endif//_PROTOCOL_HANDLER_H_

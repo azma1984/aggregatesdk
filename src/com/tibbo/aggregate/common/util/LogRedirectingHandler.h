@@ -23,10 +23,10 @@ public:
     void publish(::java::util::logging::LogRecord* record);
 
 private:
-    std::string* digRecordMessage(::java::util::logging::LogRecord* record);
+    const std::string & digRecordMessage(::java::util::logging::LogRecord* record);
 
 public:
-    static ::org::apache::log4j::Logger* findCorrespondingLogger(std::string* name, std::string* fullName);
+    static ::org::apache::log4j::Logger* findCorrespondingLogger(const std::string & name, const std::string & fullName);
     static ::org::apache::log4j::Level* convertLogLevel(::java::util::logging::Level* level) /* throws(LogLevelFormatException) */;
 
     // Generated

@@ -22,15 +22,15 @@ private:
     static ::java::util::concurrent::atomic::AtomicInteger* poolNumber_;
     ::java::lang::ThreadGroup* group;
     ::java::util::concurrent::atomic::AtomicInteger* threadNumber;
-    std::string* namePrefix;
+    const std::string & namePrefix;
 protected:
-    void ctor(::java::lang::ThreadGroup* group, std::string* name);
+    void ctor(::java::lang::ThreadGroup* group, const std::string & name);
 
 public:
     ::java::lang::Thread* newThread(::java::lang::Runnable* r);
 
     // Generated
-    ThreadGroupPoolFactory(::java::lang::ThreadGroup* group, std::string* name);
+    ThreadGroupPoolFactory(::java::lang::ThreadGroup* group, const std::string & name);
 protected:
     ThreadGroupPoolFactory(const ::default_init_tag&);
 

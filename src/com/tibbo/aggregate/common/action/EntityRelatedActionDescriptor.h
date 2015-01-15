@@ -10,11 +10,11 @@
 
 
 class com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor
-    : public ::com::tibbo::aggregate::common::datatable::AggreGateBean
+    : public AggreGateBean
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::AggreGateBean super;
+    typedef AggreGateBean super;
 
 private:
     static const std::string FIELD_MASK_;
@@ -23,35 +23,35 @@ private:
     static const std::string FIELD_ACTION_;
     static const std::string FIELD_DESCRIPTION_;
     static const std::string FIELD_ICON_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_;
-    std::string* mask;
-    std::string* entity;
-    std::string* target;
-    std::string* action;
-    std::string* description;
-    std::string* icon;
+    static TableFormat* FORMAT_;
+    const std::string & mask;
+    const std::string & entity;
+    const std::string & target;
+    const std::string & action;
+    const std::string & description;
+    const std::string & icon;
 protected:
-    void ctor(std::string* mask, std::string* entity, std::string* target, std::string* action, std::string* description, std::string* iconId);
-    void ctor(::com::tibbo::aggregate::common::datatable::DataRecord* data);
+    void ctor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId);
+    void ctor(DataRecord* data);
     void ctor();
 
 public:
-    std::string* getMask();
-    void setMask(std::string* mask);
-    std::string* getEntity();
-    std::string* getTarget();
-    void setTarget(std::string* target);
-    std::string* getAction();
-    void setAction(std::string* action);
-    std::string* getDescription();
-    std::string* getIcon();
-    void setEntity(std::string* group);
-    void setDescription(std::string* description);
-    void setIcon(std::string* icon);
+    const std::string & getMask();
+    void setMask(const std::string & mask);
+    const std::string & getEntity();
+    const std::string & getTarget();
+    void setTarget(const std::string & target);
+    const std::string & getAction();
+    void setAction(const std::string & action);
+    const std::string & getDescription();
+    const std::string & getIcon();
+    void setEntity(const std::string & group);
+    void setDescription(const std::string & description);
+    void setIcon(const std::string & icon);
 
     // Generated
-    EntityRelatedActionDescriptor(std::string* mask, std::string* entity, std::string* target, std::string* action, std::string* description, std::string* iconId);
-    EntityRelatedActionDescriptor(::com::tibbo::aggregate::common::datatable::DataRecord* data);
+    EntityRelatedActionDescriptor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId);
+    EntityRelatedActionDescriptor(DataRecord* data);
     EntityRelatedActionDescriptor();
 protected:
     EntityRelatedActionDescriptor(const ::default_init_tag&);
@@ -66,7 +66,7 @@ public:
     static const std::string& FIELD_ACTION();
     static const std::string& FIELD_DESCRIPTION();
     static const std::string& FIELD_ICON();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT();
+    static TableFormat*& FORMAT();
 
 private:
     ::java::lang::Class* getClass0();

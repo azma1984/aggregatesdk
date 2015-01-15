@@ -5,11 +5,11 @@
 
 #include "DataTable.h"
 
-#include "FunctionDefinition.h"
+//#include "FunctionDefinition.h"
 #include "CallerController.h"
 #include "RequestController.h"
 
-
+class FunctionDefinition;
 
 class FunctionImplementation
 {

@@ -27,7 +27,7 @@ private:
 
 public:
     static ::java::text::SimpleDateFormat* createDateFormatter();
-    static const std::string getDateTimePattern(std::string* datePattern, std::string* timePattern);
+    static const std::string getDateTimePattern(const std::string & datePattern, const std::string & timePattern);
     static std::map dateTimeFormats();
     static std::map timeFormats();
 

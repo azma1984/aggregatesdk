@@ -18,7 +18,7 @@ private:
 	::com::tibbo::aggregate::common::context::CallerController* callerController;
 	::com::tibbo::aggregate::common::util::UserSettings* userSettings;
 	bool avoidSendingFormats;
-	::com::tibbo::aggregate::common::datatable::encoding::FormatCache* formatCache;
+	encoding::FormatCache* formatCache;
 	::java::util::concurrent::ExecutorService* eventPreprocessor;
 protected:
 	void ctor(AggreGateDevice* device, ::org::apache::log4j::Logger* logger);
@@ -36,9 +36,9 @@ public:
     void setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController);
 
 public:
-    ::com::tibbo::aggregate::common::datatable::encoding::FormatCache* getFormatCache();
+    encoding::FormatCache* getFormatCache();
     ::com::tibbo::aggregate::common::util::UserSettings* getSettings();
-    ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* createClassicEncodingSettings(bool forSending);
+    encoding::ClassicEncodingSettings* createClassicEncodingSettings(bool forSending);
 
 public:
     void setAvoidSendingFormats(bool avoidSendingFormats);
@@ -54,7 +54,7 @@ public:
 
 public:
     void disconnectImpl();
-    std::list  getProxyContexts(std::string* path);
+    std::list  getProxyContexts(const std::string & path);
     ::java::util::concurrent::ExecutorService* getEventPreprocessor();
 
 public:
@@ -67,15 +67,15 @@ private:
     void processEvent(IncomingAggreGateCommand* cmd);
 
 public:
-	void confirmEvent(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::EventDefinition* def, ::com::tibbo::aggregate::common::data::Event* event);
+	void confirmEvent(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::EventDefinition* def, Event* event);
     void setCommandParser(::com::tibbo::aggregate::common::communication::CommandParser* commandBuffer);
 
 public:
-    std::string* toString();
-	::com::tibbo::aggregate::common::datatable::DataTable* callRemoteFunction(std::string* context, std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* outputFormat, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    const std::string & toString();
+	DataTable* callRemoteFunction(const std::string & context, const std::string & name, TableFormat* outputFormat, DataTable* parameters);
 
 public:
-    ::com::tibbo::aggregate::common::datatable::DataTable* decodeRemoteDataTable(::com::tibbo::aggregate::common::datatable::TableFormat* format, std::string* encodedReply);
+    DataTable* decodeRemoteDataTable(TableFormat* format, const std::string & encodedReply);
 
 
 

@@ -32,10 +32,10 @@ public:
     typedef void super;
 
 private:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_STACK_;
+    static TableFormat* FORMAT_STACK_;
 
 public:
-    static ::com::tibbo::aggregate::common::datatable::DataTable* createStackTraceTable(::java::lang::StackTraceElementArray* elements);
+    static DataTable* createStackTraceTable(::java::lang::StackTraceElementArray* elements);
 
     // Generated
     ThreadUtils();
@@ -46,7 +46,7 @@ protected:
 public:
     
     static void 
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT_STACK();
+    static TableFormat*& FORMAT_STACK();
 
 private:
     ::java::lang::Class* getClass0();

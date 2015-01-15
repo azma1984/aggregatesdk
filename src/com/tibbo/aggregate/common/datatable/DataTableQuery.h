@@ -16,7 +16,7 @@ namespace com
             {
                 namespace datatable
                 {
-typedef ::SubArray< ::com::tibbo::aggregate::common::datatable::QueryCondition, voidArray > QueryConditionArray;
+typedef ::SubArray< QueryCondition, voidArray > QueryConditionArray;
                 } // datatable
             } // common
         } // aggregate

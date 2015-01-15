@@ -2,169 +2,106 @@
 
 #include "AbstractContext.h"
 
-//#include <com/tibbo/aggregate/common/Cres.h"
-//#include <com/tibbo/aggregate/common/action/ActionDefinition.h"
-//#include <com/tibbo/aggregate/common/action/BasicActionDefinition.h"
-//#include <com/tibbo/aggregate/common/action/GroupIdentifier.h"
-//#include <com/tibbo/aggregate/common/action/KeyStroke.h"
-//#include <com/tibbo/aggregate/common/action/ResourceMask.h"
-//#include <com/tibbo/aggregate/common/action/TreeMask.h"
-//#include <com/tibbo/aggregate/common/context/AbstractContext_enableVariableStatuses_4.h"
-//#include <com/tibbo/aggregate/common/context/AbstractContext_start_1.h"
-//#include <com/tibbo/aggregate/common/context/AbstractContext_stop_2.h"
-//#include <com/tibbo/aggregate/common/context/AbstractContext_removeChild_3.h"
-//#include <com/tibbo/aggregate/common/context/ActionConstants.h"
-//#include <com/tibbo/aggregate/common/context/CallerController.h"
-//#include <com/tibbo/aggregate/common/context/CompatibilityConverter.h"
-//#include <com/tibbo/aggregate/common/context/Context.h"
-//#include <com/tibbo/aggregate/common/context/ContextException.h"
-//#include <com/tibbo/aggregate/common/context/ContextManager.h"
-//#include <com/tibbo/aggregate/common/context/ContextRuntimeException.h"
-//#include <com/tibbo/aggregate/common/context/ContextSecurityException.h"
-//#include <com/tibbo/aggregate/common/context/ContextStatus.h"
-//#include <com/tibbo/aggregate/common/context/ContextUtils.h"
-//#include <com/tibbo/aggregate/common/context/ContextVisitor.h"
-//#include <com/tibbo/aggregate/common/context/Contexts.h"
-//#include <com/tibbo/aggregate/common/context/EventData.h"
-//#include <com/tibbo/aggregate/common/context/EventDefinition.h"
-//#include <com/tibbo/aggregate/common/context/FireChangeEventRequestController.h"
-//#include <com/tibbo/aggregate/common/context/FunctionData.h"
-//#include <com/tibbo/aggregate/common/context/FunctionDefinition.h"
-//#include <com/tibbo/aggregate/common/context/FunctionImplementation.h"
-//#include <com/tibbo/aggregate/common/context/RequestController.h"
-//#include <com/tibbo/aggregate/common/context/VariableData.h"
-//#include <com/tibbo/aggregate/common/context/VariableDefinition.h"
-//#include <com/tibbo/aggregate/common/context/VariableGetter.h"
-//#include <com/tibbo/aggregate/common/context/VariableSetter.h"
-//#include <com/tibbo/aggregate/common/context/VariableStatus.h"
-//#include <com/tibbo/aggregate/common/data/Event.h"
-//#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableReplication.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
-//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/ValidationException.h"
-//#include <com/tibbo/aggregate/common/datatable/encoding/ClassicEncodingSettings.h"
-//#include <com/tibbo/aggregate/common/event/ContextEventListener.h"
-//#include <com/tibbo/aggregate/common/event/Enrichment.h"
-//#include <com/tibbo/aggregate/common/event/EventEnrichmentRule.h"
-//#include <com/tibbo/aggregate/common/event/EventLevel.h"
-//#include <com/tibbo/aggregate/common/event/EventProcessingRule.h"
-//#include <com/tibbo/aggregate/common/event/EventUtils.h"
-//#include <com/tibbo/aggregate/common/event/FireEventRequestController.h"
-//#include <com/tibbo/aggregate/common/event/PersistenceOptions.h"
-//#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-//#include <com/tibbo/aggregate/common/expression/Expression.h"
-//#include <com/tibbo/aggregate/common/security/DefaultPermissionChecker.h"
-//#include <com/tibbo/aggregate/common/security/NullPermissionChecker.h"
-//#include <com/tibbo/aggregate/common/security/PermissionChecker.h"
-//#include <com/tibbo/aggregate/common/security/Permissions.h"
-//#include <com/tibbo/aggregate/common/util/Icons.h"
-//#include <com/tibbo/aggregate/common/util/StringUtils.h"
-//#include <com/tibbo/aggregate/common/util/Util.h"
+const std::string AbstractContext::IMPLEMENTATION_METHOD_PREFIX = "callF";
+const std::string AbstractContext::SETTER_METHOD_PREFIX = "setV";
+const std::string AbstractContext::GETTER_METHOD_PREFIX = "getV";
+const std::string AbstractContext::V_INFO= "info";
+const std::string AbstractContext::V_CHILDREN= "children";
+const std::string AbstractContext::V_VARIABLES= "variables";
+const std::string AbstractContext::V_FUNCTIONS= "functions";
+const std::string AbstractContext::V_EVENTS= "events";
+const std::string AbstractContext::V_ACTIONS= "actions";
+const std::string AbstractContext::V_VARIABLE_STATUSES= "variableStatuses";
+const std::string AbstractContext::F_GET_COPY_DATA= "getCopyData";
+const std::string AbstractContext::F_COPY= "copy";
+const std::string AbstractContext::F_COPY_TO_CHILDREN= "copyToChildren";
+const std::string AbstractContext::E_INFO= "info";
+const std::string AbstractContext::E_UPDATED= "updated";
+const std::string AbstractContext::E_CHANGE= "change";
+const std::string AbstractContext::E_DESTROYED= "destroyed";
+const std::string AbstractContext::E_INFO_CHANGED= "infoChanged";
+const std::string AbstractContext::E_VARIABLE_ADDED= "variableAdded";
+const std::string AbstractContext::E_VARIABLE_REMOVED= "variableRemoved";
+const std::string AbstractContext::E_FUNCTION_ADDED= "functionAdded";
+const std::string AbstractContext::E_FUNCTION_REMOVED= "functionRemoved";
+const std::string AbstractContext::E_EVENT_ADDED= "eventAdded";
+const std::string AbstractContext::E_EVENT_REMOVED= "eventRemoved";
+const std::string AbstractContext::E_ACTION_ADDED= "actionAdded";
+const std::string AbstractContext::E_ACTION_REMOVED= "actionRemoved";
+const std::string AbstractContext::E_ACTION_STATE_CHANGED= "actionStateChanged";
+const std::string AbstractContext::E_CHILD_REMOVED= "childRemoved";
+const std::string AbstractContext::E_CHILD_ADDED= "childAdded";
+const std::string AbstractContext::E_VARIABLE_STATUS_CHANGED= "variableStatusChanged";
+const std::string AbstractContext::VF_INFO_DESCRIPTION= "description";
+const std::string AbstractContext::VF_INFO_TYPE= "type";
+const std::string AbstractContext::VF_INFO_GROUP= "group";
+const std::string AbstractContext::VF_INFO_ICON= "icon";
+const std::string AbstractContext::VF_INFO_LOCAL_ROOT= "localRoot";
+const std::string AbstractContext::VF_INFO_REMOTE_ROOT= "remoteRoot";
+const std::string AbstractContext::VF_INFO_REMOTE_PATH= "remotePath";
+const std::string AbstractContext::VF_INFO_REMOTE_PRIMARY_ROOT= "remotePrimaryRoot";
+const std::string AbstractContext::VF_INFO_MAPPED= "mapped";
+const std::string AbstractContext::VF_CHILDREN_NAME= "name";
+const std::string AbstractContext::VF_VARIABLE_STATUSES_COMMENT= "comment";
+const std::string AbstractContext::VF_VARIABLE_STATUSES_STATUS= "status";
+const std::string AbstractContext::VF_VARIABLE_STATUSES_NAME= "name";
+const std::string AbstractContext::FIF_COPY_DATA_RECIPIENTS= "recipients";
+const std::string AbstractContext::FIF_COPY_DATA_GROUP= "group";
+const std::string AbstractContext::FOF_COPY_DATA_NAME= "name";
+const std::string AbstractContext::FOF_COPY_DATA_DESCRIPTION= "description";
+const std::string AbstractContext::FOF_COPY_DATA_REPLICATE= "replicate";
+const std::string AbstractContext::FOF_COPY_DATA_FIELDS= "fields";
+const std::string AbstractContext::FOF_COPY_DATA_VALUE= "value";
+const std::string AbstractContext::FIF_REPLICATE_FIELDS_NAME= "name";
+const std::string AbstractContext::FIF_REPLICATE_FIELDS_DESCRIPTION= "description";
+const std::string AbstractContext::FIF_REPLICATE_FIELDS_REPLICATE= "replicate";
+const std::string AbstractContext::FIF_COPY_DATA_RECIPIENTS_RECIPIENT= "recipient";
+const std::string AbstractContext::EF_INFO_INFO= "info";
+const std::string AbstractContext::EF_EVENT_REMOVED_NAME= "name";
+const std::string AbstractContext::EF_FUNCTION_REMOVED_NAME= "name";
+const std::string AbstractContext::EF_VARIABLE_REMOVED_NAME= "name";
+const std::string AbstractContext::EF_ACTION_REMOVED_NAME= "name";
+const std::string AbstractContext::EF_CHILD_REMOVED_CHILD= "child";
+const std::string AbstractContext::EF_CHILD_ADDED_CHILD= "child";
+const std::string AbstractContext::FIELD_REPLICATE_CONTEXT= "context";
+const std::string AbstractContext::FIELD_REPLICATE_VARIABLE= "variable";
+const std::string AbstractContext::FIELD_REPLICATE_SUCCESSFUL= "successful";
+const std::string AbstractContext::FIELD_REPLICATE_ERRORS= "errors";
+const std::string AbstractContext::EF_UPDATED_VARIABLE= "variable";
+const std::string AbstractContext::EF_UPDATED_VALUE= "value";
+const std::string AbstractContext::EF_UPDATED_USER= "user";
+const std::string AbstractContext::EF_CHANGE_VARIABLE= "variable";
+const std::string AbstractContext::EF_CHANGE_VALUE= "value";
+const std::string AbstractContext::EF_CHANGE_DATA= "data";
+const std::string AbstractContext::FIELD_VD_NAME= "name";
+const std::string AbstractContext::FIELD_VD_FORMAT= "format";
+const std::string AbstractContext::FIELD_VD_DESCRIPTION= "description";
+const std::string AbstractContext::FIELD_VD_READABLE= "readable";
+const std::string AbstractContext::FIELD_VD_WRITABLE= "writable";
+const std::string AbstractContext::FIELD_VD_HELP= "help";
+const std::string AbstractContext::FIELD_VD_GROUP= "group";
+const std::string AbstractContext::FIELD_VD_ICON_ID= "iconId";
+const std::string AbstractContext::FIELD_VD_HELP_ID= "helpId";
+const std::string AbstractContext::FIELD_VD_CACHE_TIME= "cacheTime";
+const std::string AbstractContext::FIELD_FD_NAME= "name";
+const std::string AbstractContext::FIELD_FD_INPUTFORMAT= "inputformat";
+const std::string AbstractContext::FIELD_FD_OUTPUTFORMAT= "outputformat";
+const std::string AbstractContext::FIELD_FD_DESCRIPTION= "description";
+const std::string AbstractContext::FIELD_FD_HELP= "help";
+const std::string AbstractContext::FIELD_FD_GROUP= "group";
+const std::string AbstractContext::FIELD_FD_ICON_ID= "iconId";
+const std::string AbstractContext::FIELD_ED_NAME= "name";
+const std::string AbstractContext::FIELD_ED_FORMAT= "format";
+const std::string AbstractContext::FIELD_ED_DESCRIPTION= "description";
+const std::string AbstractContext::FIELD_ED_HELP= "help";
+const std::string AbstractContext::FIELD_ED_LEVEL= "level";
+const std::string AbstractContext::FIELD_ED_GROUP= "group";
+const std::string AbstractContext::FIELD_ED_ICON_ID= "iconId";
+const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_DEBUG= "debug";
+const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS= "no_updated_events";
+const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS= "no_change_events";    
 
-    const std::string AbstractContext::IMPLEMENTATION_METHOD_PREFIX = "callF";
-	const std::string AbstractContext::SETTER_METHOD_PREFIX = "setV";
-	const std::string AbstractContext::GETTER_METHOD_PREFIX = "getV";
-	const std::string AbstractContext::V_INFO= "info";
-	const std::string AbstractContext::V_CHILDREN= "children";
-    const std::string AbstractContext::V_VARIABLES= "variables";
-	const std::string AbstractContext::V_FUNCTIONS= "functions";
-	const std::string AbstractContext::V_EVENTS= "events";
-	const std::string AbstractContext::V_ACTIONS= "actions";
-	const std::string AbstractContext::V_VARIABLE_STATUSES= "variableStatuses";
-	const std::string AbstractContext::F_GET_COPY_DATA= "getCopyData";
-    const std::string AbstractContext::F_COPY= "copy";
-	const std::string AbstractContext::F_COPY_TO_CHILDREN= "copyToChildren";
-	const std::string AbstractContext::E_INFO= "info";
-	const std::string AbstractContext::E_UPDATED= "updated";
-    const std::string AbstractContext::E_CHANGE= "change";
-	const std::string AbstractContext::E_DESTROYED= "destroyed";
-	const std::string AbstractContext::E_INFO_CHANGED= "infoChanged";
-	const std::string AbstractContext::E_VARIABLE_ADDED= "variableAdded";
-    const std::string AbstractContext::E_VARIABLE_REMOVED= "variableRemoved";
-	const std::string AbstractContext::E_FUNCTION_ADDED= "functionAdded";
-	const std::string AbstractContext::E_FUNCTION_REMOVED= "functionRemoved";
-	const std::string AbstractContext::E_EVENT_ADDED= "eventAdded";
-    const std::string AbstractContext::E_EVENT_REMOVED= "eventRemoved";
-	const std::string AbstractContext::E_ACTION_ADDED= "actionAdded";
-	const std::string AbstractContext::E_ACTION_REMOVED= "actionRemoved";
-	const std::string AbstractContext::E_ACTION_STATE_CHANGED= "actionStateChanged";
-    const std::string AbstractContext::E_CHILD_REMOVED= "childRemoved";
-	const std::string AbstractContext::E_CHILD_ADDED= "childAdded";
-	const std::string AbstractContext::E_VARIABLE_STATUS_CHANGED= "variableStatusChanged";
-	const std::string AbstractContext::VF_INFO_DESCRIPTION= "description";
-    const std::string AbstractContext::VF_INFO_TYPE= "type";
-	const std::string AbstractContext::VF_INFO_GROUP= "group";
-	const std::string AbstractContext::VF_INFO_ICON= "icon";
-    const std::string AbstractContext::VF_INFO_LOCAL_ROOT= "localRoot";
-	const std::string AbstractContext::VF_INFO_REMOTE_ROOT= "remoteRoot";
-	const std::string AbstractContext::VF_INFO_REMOTE_PATH= "remotePath";
-	const std::string AbstractContext::VF_INFO_REMOTE_PRIMARY_ROOT= "remotePrimaryRoot";
-    const std::string AbstractContext::VF_INFO_MAPPED= "mapped";
-    const std::string AbstractContext::VF_CHILDREN_NAME= "name";
-	const std::string AbstractContext::VF_VARIABLE_STATUSES_COMMENT= "comment";
-    const std::string AbstractContext::VF_VARIABLE_STATUSES_STATUS= "status";
-    const std::string AbstractContext::VF_VARIABLE_STATUSES_NAME= "name";
-	const std::string AbstractContext::FIF_COPY_DATA_RECIPIENTS= "recipients";
-	const std::string AbstractContext::FIF_COPY_DATA_GROUP= "group";
-	const std::string AbstractContext::FOF_COPY_DATA_NAME= "name";
-	const std::string AbstractContext::FOF_COPY_DATA_DESCRIPTION= "description";
-	const std::string AbstractContext::FOF_COPY_DATA_REPLICATE= "replicate";
-	const std::string AbstractContext::FOF_COPY_DATA_FIELDS= "fields";
-	const std::string AbstractContext::FOF_COPY_DATA_VALUE= "value";
-	const std::string AbstractContext::FIF_REPLICATE_FIELDS_NAME= "name";
-	const std::string AbstractContext::FIF_REPLICATE_FIELDS_DESCRIPTION= "description";
-	const std::string AbstractContext::FIF_REPLICATE_FIELDS_REPLICATE= "replicate";
-	const std::string AbstractContext::FIF_COPY_DATA_RECIPIENTS_RECIPIENT= "recipient";
-	const std::string AbstractContext::EF_INFO_INFO= "info";
-	const std::string AbstractContext::EF_EVENT_REMOVED_NAME= "name";
-	const std::string AbstractContext::EF_FUNCTION_REMOVED_NAME= "name";
-    const std::string AbstractContext::EF_VARIABLE_REMOVED_NAME= "name";
-    const std::string AbstractContext::EF_ACTION_REMOVED_NAME= "name";
-    const std::string AbstractContext::EF_CHILD_REMOVED_CHILD= "child";
-	const std::string AbstractContext::EF_CHILD_ADDED_CHILD= "child";
-	const std::string AbstractContext::FIELD_REPLICATE_CONTEXT= "context";
-    const std::string AbstractContext::FIELD_REPLICATE_VARIABLE= "variable";
-    const std::string AbstractContext::FIELD_REPLICATE_SUCCESSFUL= "successful";
-	const std::string AbstractContext::FIELD_REPLICATE_ERRORS= "errors";
-	const std::string AbstractContext::EF_UPDATED_VARIABLE= "variable";
-	const std::string AbstractContext::EF_UPDATED_VALUE= "value";
-    const std::string AbstractContext::EF_UPDATED_USER= "user";
-	const std::string AbstractContext::EF_CHANGE_VARIABLE= "variable";
-	const std::string AbstractContext::EF_CHANGE_VALUE= "value";
-	const std::string AbstractContext::EF_CHANGE_DATA= "data";
-	const std::string AbstractContext::FIELD_VD_NAME= "name";
-	const std::string AbstractContext::FIELD_VD_FORMAT= "format";
-	const std::string AbstractContext::FIELD_VD_DESCRIPTION= "description";
-	const std::string AbstractContext::FIELD_VD_READABLE= "readable";
-	const std::string AbstractContext::FIELD_VD_WRITABLE= "writable";
-	const std::string AbstractContext::FIELD_VD_HELP= "help";
-	const std::string AbstractContext::FIELD_VD_GROUP= "group";
-	const std::string AbstractContext::FIELD_VD_ICON_ID= "iconId";
-	const std::string AbstractContext::FIELD_VD_HELP_ID= "helpId";
-	const std::string AbstractContext::FIELD_VD_CACHE_TIME= "cacheTime";
-	const std::string AbstractContext::FIELD_FD_NAME= "name";
-	const std::string AbstractContext::FIELD_FD_INPUTFORMAT= "inputformat";
-	const std::string AbstractContext::FIELD_FD_OUTPUTFORMAT= "outputformat";
-	const std::string AbstractContext::FIELD_FD_DESCRIPTION= "description";
-	const std::string AbstractContext::FIELD_FD_HELP= "help";
-	const std::string AbstractContext::FIELD_FD_GROUP= "group";
-	const std::string AbstractContext::FIELD_FD_ICON_ID= "iconId";
-	const std::string AbstractContext::FIELD_ED_NAME= "name";
-	const std::string AbstractContext::FIELD_ED_FORMAT= "format";
-	const std::string AbstractContext::FIELD_ED_DESCRIPTION= "description";
-	const std::string AbstractContext::FIELD_ED_HELP= "help";
-	const std::string AbstractContext::FIELD_ED_LEVEL= "level";
-	const std::string AbstractContext::FIELD_ED_GROUP= "group";
-	const std::string AbstractContext::FIELD_ED_ICON_ID= "iconId";
-	const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_DEBUG= "debug";
-	const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS= "no_updated_events";
-	const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS= "no_change_events";
-
-	/*template <class C> */AbstractContext/*<C> */::AbstractContext()
+/*template <class C> */AbstractContext/*<C> */::AbstractContext()
 {
 	
 	}
@@ -187,7 +124,7 @@
 	actionDefinitions = ::java::util::Collections::synchronizedList(new ::java::util::ArrayList());
 	actionDefinitionsLock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
 	permissionCheckingEnabled = true;
-	permissionChecker = new ::com::tibbo::aggregate::common::security::NullPermissionChecker();
+	permissionChecker = new NullPermissionChecker();
 	children = new ::java::util::ArrayList();
 	childrenMap = new ::java::util::HashMap();
 	childrenLock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
@@ -457,32 +394,32 @@
         VD_INFO= new VariableDefinition(V_INFO(), INFO_DEFINITION_FORMAT(), true, false, Cres::get())->getString("conContextProps"_j), ContextUtils::GROUP_SYSTEM());
         {
             VD_INFO())->setHidden(true);
-			VD_INFO())->setReadPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			VD_INFO())->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         VD_VARIABLES= new VariableDefinition(V_VARIABLES(), VARIABLE_DEFINITION_FORMAT(), true, false, Cres::get())->getString("conVarList"_j));
         {
             VD_VARIABLES())->setHidden(true);
-			VD_VARIABLES())->setReadPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			VD_VARIABLES())->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         VD_FUNCTIONS= new VariableDefinition(V_FUNCTIONS(), FUNCTION_DEFINITION_FORMAT(), true, false, Cres::get())->getString("conFuncList"_j));
         {
             VD_FUNCTIONS())->setHidden(true);
-			VD_FUNCTIONS())->setReadPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			VD_FUNCTIONS())->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         VD_EVENTS= new VariableDefinition(V_EVENTS(), EVENT_DEFINITION_FORMAT(), true, false, Cres::get())->getString("conEvtList"_j));
         {
             VD_EVENTS())->setHidden(true);
-			VD_EVENTS())->setReadPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			VD_EVENTS())->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         VD_ACTIONS= new VariableDefinition(AbstractContext::V_ACTIONS(), ACTION_DEF_FORMAT(), true, false, Cres::get())->getString("conActionList"_j));
         {
             VD_ACTIONS())->setHidden(true);
-			VD_ACTIONS())->setReadPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			VD_ACTIONS())->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         VD_CHILDREN= new VariableDefinition(V_CHILDREN(), VFT_CHILDREN(), true, false, Cres::get())->getString("conChildList"_j));
         {
             VD_CHILDREN())->setHidden(true);
-			VD_CHILDREN())->setReadPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			VD_CHILDREN())->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         FD_GET_COPY_DATA= new FunctionDefinition(F_GET_COPY_DATA(), FIFT_GET_COPY_DATA(), REPLICATE_INPUT_FORMAT());
         {
@@ -498,7 +435,7 @@
         }
         ED_INFO= new EventDefinition(E_INFO(), EFT_INFO(), Cres::get())->getString("info"_j), ContextUtils::GROUP_DEFAULT());
 		{
-            ED_INFO())->setLevel(::com::tibbo::aggregate::common::event::EventLevel::INFO);
+            ED_INFO())->setLevel(EventLevel::INFO);
             ED_INFO())->setIconId(::com::tibbo::aggregate::common::util::Icons::EVT_INFO());
             ED_INFO())->getPersistenceOptions())->setDedicatedTablePreferred(true);
         }
@@ -506,63 +443,63 @@
         {
             ED_CHILD_ADDED())->setSynchronous(true);
             ED_CHILD_ADDED())->setHidden(true);
-            ED_CHILD_ADDED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+            ED_CHILD_ADDED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
 		}
         ED_CHILD_REMOVED= new EventDefinition(E_CHILD_REMOVED(), EFT_CHILD_REMOVED(), Cres::get())->getString("conChildRemoved"_j), ContextUtils::GROUP_SYSTEM());
         {
             ED_CHILD_REMOVED())->setSynchronous(true);
             ED_CHILD_REMOVED())->setHidden(true);
-			ED_CHILD_REMOVED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_CHILD_REMOVED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_VARIABLE_ADDED= new EventDefinition(E_VARIABLE_ADDED(), EF_VARIABLE_ADDED(), Cres::get())->getString("conVarAdded"_j), ContextUtils::GROUP_SYSTEM());
         {
             ED_VARIABLE_ADDED())->setHidden(true);
-			ED_VARIABLE_ADDED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_VARIABLE_ADDED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_VARIABLE_REMOVED= new EventDefinition(E_VARIABLE_REMOVED(), EFT_VARIABLE_REMOVED(), Cres::get())->getString("conVarRemoved"_j), ContextUtils::GROUP_SYSTEM());
         {
             ED_VARIABLE_REMOVED())->setHidden(true);
-			ED_VARIABLE_REMOVED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_VARIABLE_REMOVED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_FUNCTION_ADDED= new EventDefinition(E_FUNCTION_ADDED(), EF_FUNCTION_ADDED(), Cres::get())->getString("conFuncAdded"_j), ContextUtils::GROUP_SYSTEM());
         {
             ED_FUNCTION_ADDED())->setHidden(true);
-			ED_FUNCTION_ADDED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_FUNCTION_ADDED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_FUNCTION_REMOVED= new EventDefinition(E_FUNCTION_REMOVED(), EFT_FUNCTION_REMOVED(), Cres::get())->getString("conFuncRemoved"_j), ContextUtils::GROUP_SYSTEM());
         {
             ED_FUNCTION_REMOVED())->setHidden(true);
-			ED_FUNCTION_REMOVED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_FUNCTION_REMOVED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_EVENT_ADDED= new EventDefinition(E_EVENT_ADDED(), EF_EVENT_ADDED(), Cres::get())->getString("conEvtAdded"_j), ContextUtils::GROUP_SYSTEM());
         {
             ED_EVENT_ADDED())->setHidden(true);
-			ED_EVENT_ADDED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_EVENT_ADDED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_EVENT_REMOVED= new EventDefinition(E_EVENT_REMOVED(), EFT_EVENT_REMOVED(), Cres::get())->getString("conEvtRemoved"_j), ContextUtils::GROUP_SYSTEM());
         {
             ED_EVENT_REMOVED())->setHidden(true);
-			ED_EVENT_REMOVED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_EVENT_REMOVED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_ACTION_ADDED= new EventDefinition(AbstractContext::E_ACTION_ADDED(), ACTION_DEF_FORMAT())->clone())->setMinRecords(1))->setMaxRecords(1), Cres::get())->getString("conActionAdded"_j));
         {
             ED_ACTION_ADDED())->setHidden(true);
-			ED_ACTION_ADDED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_ACTION_ADDED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_ACTION_REMOVED= new EventDefinition(AbstractContext::E_ACTION_REMOVED(), EFT_ACTION_REMOVED(), Cres::get())->getString("conActionRemoved"_j));
         {
             ED_ACTION_REMOVED())->setHidden(true);
-			ED_ACTION_REMOVED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_ACTION_REMOVED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_ACTION_STATE_CHANGED= new EventDefinition(AbstractContext::E_ACTION_STATE_CHANGED(), ACTION_DEF_FORMAT(), Cres::get())->getString("conActionStateChanged"_j));
         {
             ED_ACTION_STATE_CHANGED())->setHidden(true);
-			ED_ACTION_STATE_CHANGED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_ACTION_STATE_CHANGED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_INFO_CHANGED= new EventDefinition(E_INFO_CHANGED(), INFO_DEFINITION_FORMAT(), Cres::get())->getString("conInfoChanged"_j), ContextUtils::GROUP_SYSTEM());
         {
             ED_INFO_CHANGED())->setHidden(true);
-			ED_INFO_CHANGED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_INFO_CHANGED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
         }
         ED_UPDATED= new EventDefinition(E_UPDATED(), EF_UPDATED(), Cres::get())->getString("conUpdated"_j), ContextUtils::GROUP_SYSTEM());
         {
@@ -577,7 +514,7 @@
 		{
 			ED_DESTROYED())->setSynchronous(true);
 			ED_DESTROYED())->setHidden(true);
-			ED_DESTROYED())->setPermissions(::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions());
+			ED_DESTROYED())->setPermissions(DefaultPermissionChecker::getNullPermissions());
 		}
 		VFT_VARIABLE_STATUSES= new ::TableFormat();
 		{
@@ -588,7 +525,7 @@
 			VFT_VARIABLE_STATUSES())->addField(std::stringBuilder().append("<"_j)->append(VF_VARIABLE_STATUSES_COMMENT())
                 ->append("><S><F=N>"_j)->toString());
 		}
-		DEFAULT_PERMISSIONS= ::com::tibbo::aggregate::common::security::DefaultPermissionChecker::getNullPermissions();
+		DEFAULT_PERMISSIONS= DefaultPermissionChecker::getNullPermissions();
 	*/
 }
 
@@ -1097,7 +1034,6 @@
     addEventDefinition(ED_UPDATED);
     addEventDefinition(getChangeEventDefinition);
     addEventDefinition(ED_DESTROYED);*/
-
 }
 //
 ///*/*template <class C> */*/void AbstractContext/*<C> */::setupChildren()
@@ -1201,7 +1137,7 @@ void /*template <class C> */AbstractContext/*<C>*/::stop()
 //    if(!permissionCheckingEnabled) {
 //        return true;
 //    }
-//    return getPermissionChecker())->canSee(caller != 0 ? caller)->getPermissions() : static_cast< ::com::tibbo::aggregate::common::security::Permissions* >(0), con)->getPath(), getContextManager());
+//    return getPermissionChecker())->canSee(caller != 0 ? caller)->getPermissions() : static_cast< Permissions* >(0), con)->getPath(), getContextManager());
 //}
 //
 //java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getChildren()
@@ -1244,7 +1180,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getDescription()
     return description;
 }
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::setDescription(std::string* description)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::setDescription(const std::string & description)
 //{
 //    auto old = this->description;
 //    this->description = description;
@@ -1279,7 +1215,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getDescription()
 //    return java_cast< Context* >(root);
 //}
 //
-//Context* /*/*template <class C> */*/AbstractContext/*<C> */::get(std::string* contextPath, CallerController* caller)
+//Context* /*/*template <class C> */*/AbstractContext/*<C> */::get(const std::string & contextPath, CallerController* caller)
 //{
 //    if(contextPath == 0) {
 //        return 0;
@@ -1295,7 +1231,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getDescription()
 //    auto lastName = java_cast< Context* >(getRoot()))->getName();
 //    auto names = ::com::tibbo::aggregate::common::util::StringUtils::split(contextPath, ContextUtils::CONTEXT_NAME_SEPARATOR())->charAt(int(0)));
 //    for (auto _i = names)->iterator(); _i->hasNext(); ) {
-//        std::string* child = java_cast< std::string* >(_i->next());
+//        const std::string & child = java_cast< const std::string & >(_i->next());
 //        {
 //            if(child)->length() == 0) {
 //                return 0;
@@ -1318,7 +1254,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getDescription()
 //    return cur;
 //}
 //
-//Context* /*/*template <class C> */*/AbstractContext/*<C> */::get(std::string* contextName)
+//Context* /*/*template <class C> */*/AbstractContext/*<C> */::get(const std::string & contextName)
 //{
 //    return java_cast< Context* >(get(contextName, static_cast< CallerController* >(0)));
 //}
@@ -1352,12 +1288,12 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    this->parent = parent;
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::setPermissions(::com::tibbo::aggregate::common::security::Permissions* permissions)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::setPermissions(Permissions* permissions)
 //{
 //    this->permissions = permissions;
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::setPermissionChecker(::com::tibbo::aggregate::common::security::PermissionChecker* permissionChecker)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::setPermissionChecker(PermissionChecker* permissionChecker)
 //{
 //    this->permissionChecker = permissionChecker;
 //}
@@ -1380,7 +1316,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    this->contextManager = contextManager;
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::setChildrenViewPermissions(::com::tibbo::aggregate::common::security::Permissions* childrenViewPermissions)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::setChildrenViewPermissions(Permissions* childrenViewPermissions)
 //{
 //    this->childrenViewPermissions = childrenViewPermissions;
 //}
@@ -1410,14 +1346,14 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    this->childrenConcurrencyEnabled = childrenConcurrencyEnabled;
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::checkPermissions(::com::tibbo::aggregate::common::security::Permissions* needPermissions, CallerController* caller)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::checkPermissions(Permissions* needPermissions, CallerController* caller)
 //{
 //    if(!checkPermissions(needPermissions, caller, this)) {
 //        throw new ContextSecurityException(::java::text::MessageFormat::format(Cres::get())->getString("conAccessDenied"_j), new voidArray({getPath()), caller != 0 ? caller)->getPermissions()) : ""_j), needPermissions)})));
 //    }
 //}
 //
-//bool /*/*template <class C> */*/AbstractContext/*<C> */::checkPermissions(::com::tibbo::aggregate::common::security::Permissions* needPermissions, CallerController* caller, Context* accessedContext)
+//bool /*/*template <class C> */*/AbstractContext/*<C> */::checkPermissions(Permissions* needPermissions, CallerController* caller, Context* accessedContext)
 //{
 //    if(!permissionCheckingEnabled) {
 //        return true;
@@ -1430,7 +1366,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    addChild(child, 0);
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::addChild(Context* child, ::java::lang::Integer* index)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::addChild(Context* child, int  index)
 //{
 //    auto startTime = ::java::lang::System::currentTimeMillis();
 //    childrenLock)->writeLock())->lock();
@@ -1586,7 +1522,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::removeChild(std::string* name)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::removeChild(const std::string & name)
 //{
 //    auto con = java_cast< Context* >(getChildWithoutCheckingPerms(name));
 //    if(con != 0) {
@@ -1623,7 +1559,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    child)->destroy(moving);
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::destroyChild(std::string* name, bool moving)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::destroyChild(const std::string & name, bool moving)
 //{
 //    auto con = java_cast< Context* >(getChildWithoutCheckingPerms(name));
 //    if(con != 0) {
@@ -1654,11 +1590,11 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::movePrepare(std::string* oldPath, std::string* oldName, std::string* newPath, std::string* newName)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::movePrepare(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
 //{
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::moveInternal(std::string* oldPath, std::string* oldName, std::string* newPath, std::string* newName)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::moveInternal(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
 //{
 //    setName(newName);
 //    childrenLock)->readLock())->lock();
@@ -1678,16 +1614,16 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::moveFinalize(std::string* oldPath, std::string* oldName, std::string* newPath, std::string* newName)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::moveFinalize(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
 //{
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::move(Context* newParent, std::string* newName)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::move(Context* newParent, const std::string & newName)
 //{
 //    move(getPath(), newParent, newName);
 //}
 //
-//void /*/*template <class C> */*/AbstractContext/*<C> */::move(std::string* oldPath, Context* newParent, std::string* newName)
+//void /*/*template <class C> */*/AbstractContext/*<C> */::move(const std::string & oldPath, Context* newParent, const std::string & newName)
 //{
 //    Log::CONTEXT())->debug(std::stringBuilder().append("Moving context "_j)->append(getPath())
 //        ->append(" to "_j)
@@ -1703,7 +1639,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    moveFinalize(oldPath, oldName, newPath, newName);
 //}
 //
-//Context* /*/*template <class C> */*/AbstractContext/*<C> */::getChild(std::string* name, CallerController* caller)
+//Context* /*/*template <class C> */*/AbstractContext/*<C> */::getChild(const std::string & name, CallerController* caller)
 //{
 //    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
 //        return 0;
@@ -1715,12 +1651,12 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    return 0;
 //}
 //
-//Context* /*/*template <class C> */*/AbstractContext/*<C> */::getChild(std::string* name)
+//Context* /*/*template <class C> */*/AbstractContext/*<C> */::getChild(const std::string & name)
 //{
 //    return java_cast< Context* >(getChild(name, static_cast< CallerController* >(0)));
 //}
 //
-//Context* /*/*template <class C> */*/AbstractContext/*<C> */::getChildWithoutCheckingPerms(std::string* name)
+//Context* /*/*template <class C> */*/AbstractContext/*<C> */::getChildWithoutCheckingPerms(const std::string & name)
 //{
 //    return java_cast< Context* >(childrenMap)->get(name));
 //}
@@ -1752,12 +1688,12 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    return nm;
 //}
 //
-//bool /*/*template <class C> */*/AbstractContext/*<C> */::addEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener)
+//bool /*/*template <class C> */*/AbstractContext/*<C> */::addEventListener(const std::string & name, ContextEventListener* listener)
 //{
 //    return addEventListener(name, listener, false);
 //}
 //
-//bool /*/*template <class C> */*/AbstractContext/*<C> */::addEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool weak)
+//bool /*/*template <class C> */*/AbstractContext/*<C> */::addEventListener(const std::string & name, ContextEventListener* listener, bool weak)
 //{
 //    auto ed = getEventData(name);
 //    if(ed == 0) {
@@ -1792,7 +1728,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    }
 //}
 //
-//bool /*/*template <class C> */*/AbstractContext/*<C> */::removeEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener)
+//bool /*/*template <class C> */*/AbstractContext/*<C> */::removeEventListener(const std::string & name, ContextEventListener* listener)
 //{
 //    auto ed = getEventData(name);
 //    if(ed == 0) {
@@ -1867,7 +1803,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    return getVariableDefinitions(static_cast< CallerController* >(0));
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(CallerController* caller, std::string* group)
+//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(CallerController* caller, const std::string & group)
 //{
 //    std::list  defs = new ::java::util::LinkedList();
 //    for (auto _i = getVariableDefinitions(caller))->iterator(); _i->hasNext(); ) {
@@ -1881,7 +1817,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    return defs;
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(std::string* group)
+//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(const std::string & group)
 //{
 //    return getVariableDefinitions(static_cast< CallerController* >(0), group);
 //}
@@ -1975,7 +1911,7 @@ bool /*template <class C> */AbstractContext/*<C> */::isInitializedEvents()
 //    return getFunctionDefinitions(static_cast< CallerController* >(0));
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(CallerController* caller, std::string* group)
+//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(CallerController* caller, const std::string & group)
 //{
 //    std::list  defs = new ::java::util::LinkedList();
 //    for (auto _i = getFunctionDefinitions(caller))->iterator(); _i->hasNext(); ) {
@@ -1989,7 +1925,7 @@ bool /*template <class C> */AbstractContext/*<C> */::isInitializedEvents()
 //    return defs;
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(std::string* group)
+//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(const std::string & group)
 //{
 //    return getFunctionDefinitions(static_cast< CallerController* >(0), group);
 //}
@@ -2055,7 +1991,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return 0;
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setType(std::string* type)
+//void /*template <class C> */AbstractContext/*<C> */::setType(const std::string & type)
 //{
 //    if(!ContextUtils::isValidContextType(type)) {
 //        throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(Cres::get())->getString("conIllegalType"_j))->append(type)->toString());
@@ -2072,7 +2008,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    this->permissionCheckingEnabled = permissionCheckingEnabled;
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setIconId(std::string* iconId)
+//void /*template <class C> */AbstractContext/*<C> */::setIconId(const std::string & iconId)
 //{
 //    auto old = this->iconId;
 //    this->iconId = iconId;
@@ -2097,12 +2033,12 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    }
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setIndex(::java::lang::Integer* index)
+//void /*template <class C> */AbstractContext/*<C> */::setIndex(int  index)
 //{
 //    this->index = index;
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setGroup(std::string* group)
+//void /*template <class C> */AbstractContext/*<C> */::setGroup(const std::string & group)
 //{
 //    auto old = this->group;
 //    this->group = group;
@@ -2149,7 +2085,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return getEventDefinitions(static_cast< CallerController* >(0));
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(CallerController* caller, std::string* group)
+//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(CallerController* caller, const std::string & group)
 //{
 //    std::list  res = new ::java::util::LinkedList();
 //    for (auto _i = getEventDefinitions(caller))->iterator(); _i->hasNext(); ) {
@@ -2163,12 +2099,12 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return res;
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(std::string* group)
+//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(const std::string & group)
 //{
 //    return getEventDefinitions(static_cast< CallerController* >(0), group);
 //}
 //
-//com::tibbo::aggregate::common::action::ActionDefinition* /*template <class C> */AbstractContext/*<C> */::getActionDefinition(std::string* name)
+//com::tibbo::aggregate::common::action::ActionDefinition* /*template <class C> */AbstractContext/*<C> */::getActionDefinition(const std::string & name)
 //{
 //    actionDefinitionsLock)->readLock())->lock();
 //    {
@@ -2190,7 +2126,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return 0;
 //}
 //
-//com::tibbo::aggregate::common::action::ActionDefinition* /*template <class C> */AbstractContext/*<C> */::getActionDefinition(std::string* name, CallerController* caller)
+//com::tibbo::aggregate::common::action::ActionDefinition* /*template <class C> */AbstractContext/*<C> */::getActionDefinition(const std::string & name, CallerController* caller)
 //{
 //    for (auto _i = getActionDefinitions(caller, true))->iterator(); _i->hasNext(); ) {
 //        ::com::tibbo::aggregate::common::action::ActionDefinition* ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
@@ -2284,7 +2220,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return getActionDefinitions(static_cast< CallerController* >(0));
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::removeActionDefinition(std::string* name)
+//void /*template <class C> */AbstractContext/*<C> */::removeActionDefinition(const std::string & name)
 //{
 //    auto def = getActionDefinition(name);
 //    actionDefinitionsLock)->writeLock())->lock();
@@ -2488,17 +2424,17 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return 0;
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::executeDefaultGetter(std::string* name, CallerController* caller)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::executeDefaultGetter(const std::string & name, CallerController* caller)
 //{
 //    return executeDefaultGetter(name, caller, true);
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::executeDefaultGetter(std::string* name, CallerController* caller, bool check)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::executeDefaultGetter(const std::string & name, CallerController* caller, bool check)
 //{
 //    return executeDefaultGetter(name, caller, check, true);
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::executeDefaultGetter(std::string* name, CallerController* caller, bool check, bool createDefault)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::executeDefaultGetter(const std::string & name, CallerController* caller, bool check, bool createDefault)
 //{
 //    auto def = getVariableDefinition(name);
 //    if(def == 0) {
@@ -2554,17 +2490,17 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return true;
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::getVariable(std::string* name, CallerController* caller, RequestController* request)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::getVariable(const std::string & name, CallerController* caller, RequestController* request)
 //{
 //    return getVariable(getAndCheckVariableDefinition(name), caller, request);
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::getVariable(std::string* name, CallerController* caller)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::getVariable(const std::string & name, CallerController* caller)
 //{
 //    return getVariable(getAndCheckVariableDefinition(name), caller, static_cast< RequestController* >(0));
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::getVariable(std::string* name)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::getVariable(const std::string & name)
 //{
 //    return getVariable(getAndCheckVariableDefinition(name), static_cast< CallerController* >(0), static_cast< RequestController* >(0));
 //}
@@ -2574,7 +2510,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return 0;
 //}
 //
-//void* /*template <class C> */AbstractContext/*<C> */::getVariableObject(std::string* name, CallerController* caller)
+//void* /*template <class C> */AbstractContext/*<C> */::getVariableObject(const std::string & name, CallerController* caller)
 //{
 //    try {
 //        auto def = getAndCheckVariableDefinition(name);
@@ -2712,9 +2648,9 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    if(setupComplete && fireUpdateEvents && def)->isAllowUpdateEvents()&& callerAllowsChangeEvents) {
 //        auto ed = getEventDefinition(E_CHANGE());
 //        if(ed != 0) {
-//            ::com::tibbo::aggregate::common::event::FireEventRequestController* fer = new FireChangeEventRequestController(def)->getChangeEventsExpirationPeriod(), def, value);
+//            FireEventRequestController* fer = new FireChangeEventRequestController(def)->getChangeEventsExpirationPeriod(), def, value);
 //            auto eventData = new ::DataTable(ed)->getFormat(), new voidArray({def)->getName())}));
-//            fireEvent(ed, eventData, ::com::tibbo::aggregate::common::event::EventLevel::NONE, 0, timestamp, 0, caller, fer, 0);
+//            fireEvent(ed, eventData, EventLevel::NONE, 0, timestamp, 0, caller, fer, 0);
 //        }
 //    }
 //}
@@ -2786,7 +2722,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return new ::DataTable(def)->getFormat(), true);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::executeDefaultSetter(std::string* name, CallerController* caller, ::DataTable* value)
+//void /*template <class C> */AbstractContext/*<C> */::executeDefaultSetter(const std::string & name, CallerController* caller, ::DataTable* value)
 //{
 //    auto def = getVariableDefinition(name);
 //    if(def == 0) {
@@ -2805,29 +2741,29 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    getVariableData(vd)->getName()))->setValue(value);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setVariable(std::string* name, CallerController* caller, RequestController* request, ::DataTable* value)
+//void /*template <class C> */AbstractContext/*<C> */::setVariable(const std::string & name, CallerController* caller, RequestController* request, ::DataTable* value)
 //{
 //    auto def = getAndCheckVariableDefinition(name);
 //    setVariable(def, caller, request, value);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setVariable(std::string* name, CallerController* caller, ::DataTable* value)
+//void /*template <class C> */AbstractContext/*<C> */::setVariable(const std::string & name, CallerController* caller, ::DataTable* value)
 //{
 //    setVariable(name, caller, static_cast< RequestController* >(0), value);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setVariable(std::string* name, ::DataTable* value)
+//void /*template <class C> */AbstractContext/*<C> */::setVariable(const std::string & name, ::DataTable* value)
 //{
 //    setVariable(name, static_cast< CallerController* >(0), static_cast< RequestController* >(0), value);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setVariable(std::string* name, CallerController* caller, voidArray* value)
+//void /*template <class C> */AbstractContext/*<C> */::setVariable(const std::string & name, CallerController* caller, voidArray* value)
 //{
 //    auto def = getAndCheckVariableDefinition(name);
 //    setVariable(name, caller, static_cast< RequestController* >(0), new ::DataTable(def)->getFormat(), value));
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setVariable(std::string* name, voidArray* value)
+//void /*template <class C> */AbstractContext/*<C> */::setVariable(const std::string & name, voidArray* value)
 //{
 //    setVariable(name, static_cast< CallerController* >(0), value);
 //}
@@ -2837,7 +2773,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return false;
 //}
 //
-//VariableDefinition* /*template <class C> */AbstractContext/*<C> */::getAndCheckVariableDefinition(std::string* name)
+//VariableDefinition* /*template <class C> */AbstractContext/*<C> */::getAndCheckVariableDefinition(const std::string & name)
 //{
 //    setupVariables();
 //    auto def = getVariableDefinition(name);
@@ -2847,12 +2783,12 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return def;
 //}
 //
-//bool /*template <class C> */AbstractContext/*<C> */::setVariableField(std::string* variable, std::string* field, void* value, CallerController* cc)
+//bool /*template <class C> */AbstractContext/*<C> */::setVariableField(const std::string & variable, const std::string & field, void* value, CallerController* cc)
 //{
 //    return setVariableField(variable, field, int(0), value, cc);
 //}
 //
-//bool /*template <class C> */AbstractContext/*<C> */::setVariableField(std::string* variable, std::string* field, int record, void* value, CallerController* cc)
+//bool /*template <class C> */AbstractContext/*<C> */::setVariableField(const std::string & variable, const std::string & field, int record, void* value, CallerController* cc)
 //{
 //    auto tab = getVariable(variable, cc);
 //    auto old = tab)->getRecord(record))->getValue(field);
@@ -2861,7 +2797,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return old == 0 ? value != 0 : !old)->equals(value);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setVariableField(std::string* variable, std::string* field, void* value, std::string* compareField, void* compareValue, CallerController* cc)
+//void /*template <class C> */AbstractContext/*<C> */::setVariableField(const std::string & variable, const std::string & field, void* value, const std::string & compareField, void* compareValue, CallerController* cc)
 //{
 //    auto tab = getVariable(variable, cc);
 //    auto rec = tab)->select(compareField, compareValue);
@@ -2876,14 +2812,14 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    setVariable(variable, cc, tab);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::addVariableRecord(std::string* variable, CallerController* cc, ::DataRecord* record)
+//void /*template <class C> */AbstractContext/*<C> */::addVariableRecord(const std::string & variable, CallerController* cc, ::DataRecord* record)
 //{
 //    auto tab = getVariable(variable, cc);
 //    tab)->addRecord(record);
 //    setVariable(variable, cc, tab);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::addVariableRecord(std::string* variable, CallerController* cc, voidArray* recordData)
+//void /*template <class C> */AbstractContext/*<C> */::addVariableRecord(const std::string & variable, CallerController* cc, voidArray* recordData)
 //{
 //    auto tab = getVariable(variable, cc);
 //    auto rec = tab)->addRecord();
@@ -2893,7 +2829,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    setVariable(variable, cc, tab);
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::removeVariableRecords(std::string* variable, CallerController* cc, std::string* field, void* value)
+//void /*template <class C> */AbstractContext/*<C> */::removeVariableRecords(const std::string & variable, CallerController* cc, const std::string & field, void* value)
 //{
 //    auto tab = getVariable(variable, cc);
 //    for (auto *i = tab)->iterator(); i)->hasNext(); ) {
@@ -3062,41 +2998,41 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //{
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(std::string* name, CallerController* caller, RequestController* request, ::DataTable* parameters)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(const std::string & name, CallerController* caller, RequestController* request, ::DataTable* parameters)
 //{
 //    auto def = getAndCheckFunctionDefinition(name);
 //    return callFunction(def, caller, request, parameters);
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(std::string* name, CallerController* caller, ::DataTable* parameters)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(const std::string & name, CallerController* caller, ::DataTable* parameters)
 //{
 //    return callFunction(name, caller, static_cast< RequestController* >(0), parameters);
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(std::string* name, ::DataTable* parameters)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(const std::string & name, ::DataTable* parameters)
 //{
 //    return callFunction(getAndCheckFunctionDefinition(name), static_cast< CallerController* >(0), static_cast< RequestController* >(0), parameters);
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(std::string* name)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(const std::string & name)
 //{
 //    auto def = getAndCheckFunctionDefinition(name);
 //    return callFunction(def, static_cast< CallerController* >(0), static_cast< RequestController* >(0), new ::DataTable(def)->getInputFormat(), true));
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(std::string* name, CallerController* caller)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(const std::string & name, CallerController* caller)
 //{
 //    auto def = getAndCheckFunctionDefinition(name);
 //    return callFunction(def, caller, static_cast< RequestController* >(0), new ::DataTable(def)->getInputFormat(), true));
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(std::string* name, CallerController* caller, voidArray* parameters)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(const std::string & name, CallerController* caller, voidArray* parameters)
 //{
 //    auto def = getAndCheckFunctionDefinition(name);
 //    return callFunction(name, caller, new ::DataTable(def)->getInputFormat(), parameters));
 //}
 //
-//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(std::string* name, voidArray* parameters)
+//DataTable* /*template <class C> */AbstractContext/*<C> */::callFunction(const std::string & name, voidArray* parameters)
 //{
 //    return callFunction(name, static_cast< CallerController* >(0), parameters);
 //}
@@ -3106,7 +3042,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return 0;
 //}
 //
-//FunctionDefinition* /*template <class C> */AbstractContext/*<C> */::getAndCheckFunctionDefinition(std::string* name)
+//FunctionDefinition* /*template <class C> */AbstractContext/*<C> */::getAndCheckFunctionDefinition(const std::string & name)
 //{
 //    setupFunctions();
 //    auto def = getFunctionDefinition(name);
@@ -3145,7 +3081,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::removeVariableDefinition(std::string* name)
+//void /*template <class C> */AbstractContext/*<C> */::removeVariableDefinition(const std::string & name)
 //{
 //    removeVariableDefinition(getVariableDefinition(name));
 //}
@@ -3198,36 +3134,36 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::addFunctionDefinition(FunctionDefinition* def)
-//{
-//    if(getFunctionDefinition(def)->getName()) != 0) {
-//        throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append("Function '"_j)->append(def)->getName())
-//            ->append("' already defined in context '"_j)
-//            ->append(getPath())
-//            ->append("'"_j)->toString());
-//    }
-//    functionDataLock)->writeLock())->lock();
-//    {
-//        auto finally28 = finally([&] {
-//            functionDataLock)->writeLock())->unlock();
-//        });
-//        {
-//            functionData)->put(def)->getName(), new FunctionData(def));
-//            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
-//                auto ed = getEventDefinition(E_FUNCTION_ADDED());
-//                if(ed != 0) {
-//                    fireEvent(ed)->getName(), new ::DataTable(funcDefToDataRecord(def, 0)));
-//                }
-//            }
-//            if(getContextManager() != 0) {
-//                getContextManager())->functionAdded(java_cast< Context* >(this), def);
-//            }
-//        }
-//    }
+void /*template <class C> */AbstractContext/*<C> */::addFunctionDefinition(FunctionDefinition* def)
+{
+    /*if(getFunctionDefinition(def)->getName()) != 0) {
+        throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append("Function '"_j)->append(def)->getName())
+            ->append("' already defined in context '"_j)
+            ->append(getPath())
+            ->append("'"_j)->toString());
+    }
+    functionDataLock)->writeLock())->lock();
+    {
+        auto finally28 = finally([&] {
+            functionDataLock)->writeLock())->unlock();
+        });
+        {
+            functionData)->put(def)->getName(), new FunctionData(def));
+            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
+                auto ed = getEventDefinition(E_FUNCTION_ADDED());
+                if(ed != 0) {
+                    fireEvent(ed)->getName(), new ::DataTable(funcDefToDataRecord(def, 0)));
+                }
+            }
+            if(getContextManager() != 0) {
+                getContextManager())->functionAdded(java_cast< Context* >(this), def);
+            }
+        }
+    }*/
+
+}
 //
-//}
-//
-//void /*template <class C> */AbstractContext/*<C> */::removeFunctionDefinition(std::string* name)
+//void /*template <class C> */AbstractContext/*<C> */::removeFunctionDefinition(const std::string & name)
 //{
 //    removeFunctionDefinition(getFunctionDefinition(name));
 //}
@@ -3268,8 +3204,8 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::addEventDefinition(EventDefinition* def)
-//{
+void /*template <class C> */AbstractContext/*<C> */::addEventDefinition(EventDefinition* def)
+{
 //    if(getEventDefinition(def)->getName()) != 0) {
 //        throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append("Event '"_j)->append(def)->getName())
 //            ->append("' already defined in context '"_j)
@@ -3294,10 +3230,10 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //            }
 //        }
 //    }
+
+}
 //
-//}
-//
-//void /*template <class C> */AbstractContext/*<C> */::removeEventDefinition(std::string* name)
+//void /*template <class C> */AbstractContext/*<C> */::removeEventDefinition(const std::string & name)
 //{
 //    removeEventDefinition(getEventDefinition(name));
 //}
@@ -3329,7 +3265,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //
 //}
 //
-//VariableData* /*template <class C> */AbstractContext/*<C> */::getVariableData(std::string* name)
+//VariableData* /*template <class C> */AbstractContext/*<C> */::getVariableData(const std::string & name)
 //{
 //    variableDataLock)->readLock())->lock();
 //    {
@@ -3343,13 +3279,13 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //
 //}
 //
-//VariableDefinition* /*template <class C> */AbstractContext/*<C> */::getVariableDefinition(std::string* name)
+//VariableDefinition* /*template <class C> */AbstractContext/*<C> */::getVariableDefinition(const std::string & name)
 //{
 //    auto data = getVariableData(name);
 //    return data != 0 ? data)->getDefinition() : static_cast< VariableDefinition* >(0);
 //}
 //
-//VariableDefinition* /*template <class C> */AbstractContext/*<C> */::getVariableDefinition(std::string* name, CallerController* caller)
+//VariableDefinition* /*template <class C> */AbstractContext/*<C> */::getVariableDefinition(const std::string & name, CallerController* caller)
 //{
 //    auto def = getVariableDefinition(name);
 //    if(def == 0) {
@@ -3360,7 +3296,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return (readAccessGranted || writeAccessGranted) ? def : static_cast< VariableDefinition* >(0);
 //}
 //
-//FunctionData* /*template <class C> */AbstractContext/*<C> */::getFunctionData(std::string* name)
+//FunctionData* /*template <class C> */AbstractContext/*<C> */::getFunctionData(const std::string & name)
 //{
 //    functionDataLock)->readLock())->lock();
 //    {
@@ -3374,13 +3310,13 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //
 //}
 //
-//FunctionDefinition* /*template <class C> */AbstractContext/*<C> */::getFunctionDefinition(std::string* name)
+//FunctionDefinition* /*template <class C> */AbstractContext/*<C> */::getFunctionDefinition(const std::string & name)
 //{
 //    auto data = getFunctionData(name);
 //    return data != 0 ? data)->getDefinition() : static_cast< FunctionDefinition* >(0);
 //}
 //
-//FunctionDefinition* /*template <class C> */AbstractContext/*<C> */::getFunctionDefinition(std::string* name, CallerController* caller)
+//FunctionDefinition* /*template <class C> */AbstractContext/*<C> */::getFunctionDefinition(const std::string & name, CallerController* caller)
 //{
 //    auto def = getFunctionDefinition(name);
 //    if(def == 0) {
@@ -3390,7 +3326,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return accessGranted ? def : static_cast< FunctionDefinition* >(0);
 //}
 //
-//EventData* /*template <class C> */AbstractContext/*<C> */::getEventData(std::string* name)
+//EventData* /*template <class C> */AbstractContext/*<C> */::getEventData(const std::string & name)
 //{
 //    eventDataLock)->readLock())->lock();
 //    {
@@ -3404,13 +3340,15 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //
 //}
 //
-//EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinition(std::string* name)
-//{
+EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinition(const std::string & name)
+{
 //    auto ed = getEventData(name);
 //    return ed != 0 ? ed)->getDefinition() : static_cast< EventDefinition* >(0);
-//}
+
+	return 0;
+}
 //
-//EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinition(std::string* name, CallerController* caller)
+//EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinition(const std::string & name, CallerController* caller)
 //{
 //    auto def = getEventDefinition(name);
 //    if(def == 0) {
@@ -3420,7 +3358,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return accessGranted ? def : static_cast< EventDefinition* >(0);
 //}
 //
-//EventDefinition* /*template <class C> */AbstractContext/*<C> */::getAndCheckEventDefinition(std::string* name)
+//EventDefinition* /*template <class C> */AbstractContext/*<C> */::getAndCheckEventDefinition(const std::string & name)
 //{
 //    setupEvents();
 //    auto def = getEventDefinition(name);
@@ -3434,29 +3372,29 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //{
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::postEvent(::com::tibbo::aggregate::common::data::Event* ev, EventDefinition* ed, CallerController* caller, ::com::tibbo::aggregate::common::event::FireEventRequestController* request)
+//void /*template <class C> */AbstractContext/*<C> */::postEvent(Event* ev, EventDefinition* ed, CallerController* caller, FireEventRequestController* request)
 //{
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::updateEvent(::com::tibbo::aggregate::common::data::Event* ev, EventDefinition* ed, CallerController* caller, ::com::tibbo::aggregate::common::event::FireEventRequestController* request)
+//void /*template <class C> */AbstractContext/*<C> */::updateEvent(Event* ev, EventDefinition* ed, CallerController* caller, FireEventRequestController* request)
 //{
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(EventDefinition* ed, ::DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, ::java::lang::Integer* listener, CallerController* caller, ::com::tibbo::aggregate::common::event::FireEventRequestController* request, ::com::tibbo::aggregate::common::security::Permissions* permissions)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(EventDefinition* ed, ::DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions)
 //{
 //    if(id == 0) {
-//        id = ::java::lang::Long::valueOf(::com::tibbo::aggregate::common::event::EventUtils::generateEventId());
+//        id = ::java::lang::Long::valueOf(EventUtils::generateEventId());
 //    }
-//    auto event = new ::com::tibbo::aggregate::common::data::Event(getPath(), ed, level == DEFAULT_EVENT_LEVEL ? ed)->getLevel() : level, data, id, creationtime, permissions);
+//    auto event = new Event(getPath(), ed, level == DEFAULT_EVENT_LEVEL ? ed)->getLevel() : level, data, id, creationtime, permissions);
 //    return fireEvent(ed, event, listener, caller, request);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(::com::tibbo::aggregate::common::data::Event* event)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(Event* event)
 //{
 //    return fireEvent(getAndCheckEventDefinition(event)->getName()), event, 0, 0, 0);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(EventDefinition* ed, ::com::tibbo::aggregate::common::data::Event* event, ::java::lang::Integer* listener, CallerController* caller, ::com::tibbo::aggregate::common::event::FireEventRequestController* request)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(EventDefinition* ed, Event* event, int  listener, CallerController* caller, FireEventRequestController* request)
 //{
 //    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
 //    if(caller != 0) {
@@ -3548,7 +3486,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //            event)->setExpirationtime(new ::java::util::Date(::java::lang::System::currentTimeMillis() + (userDefinedExpirationPeriod))->longValue()));
 //        }
 //    }
-//    auto const customMemoryStorageSize = rule != 0 ? ((rule)->getDeduplicator() != 0 && rule)->getDeduplicator())->length() > 0) ? rule)->getQueue()) : static_cast< ::java::lang::Integer* >(0)) : static_cast< ::java::lang::Integer* >(0);
+//    auto const customMemoryStorageSize = rule != 0 ? ((rule)->getDeduplicator() != 0 && rule)->getDeduplicator())->length() > 0) ? rule)->getQueue()) : static_cast< int  >(0)) : static_cast< int  >(0);
 //    auto processed = request != 0 ? request)->process(event) : event;
 //    if(processed == 0) {
 //        return 0;
@@ -3575,72 +3513,73 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return event;
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name, int level, CallerController* caller, ::com::tibbo::aggregate::common::event::FireEventRequestController* request, ::com::tibbo::aggregate::common::security::Permissions* permissions, ::DataTable* data)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, int level, CallerController* caller, FireEventRequestController* request, Permissions* permissions, ::DataTable* data)
 //{
 //    auto ed = getAndCheckEventDefinition(name);
 //    return fireEvent(ed, data, level, 0, 0, 0, caller, request, permissions);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name, ::DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, ::java::lang::Integer* listener, CallerController* caller, ::com::tibbo::aggregate::common::event::FireEventRequestController* request)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, ::DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request)
 //{
 //    return fireEvent(getAndCheckEventDefinition(name), data, level, id, creationtime, listener, caller, request, 0);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name, ::DataTable* data)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, ::DataTable* data)
 //{
 //    return fireEvent(getAndCheckEventDefinition(name), data, DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name, CallerController* caller, ::DataTable* data)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, CallerController* caller, ::DataTable* data)
 //{
 //    return fireEvent(getAndCheckEventDefinition(name), data, DEFAULT_EVENT_LEVEL, 0, 0, 0, caller, 0, 0);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name, int level, ::DataTable* data)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, int level, ::DataTable* data)
 //{
 //    return fireEvent(getAndCheckEventDefinition(name), data, level, 0, 0, 0, 0, 0, 0);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name, int level, CallerController* caller, ::DataTable* data)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, int level, CallerController* caller, ::DataTable* data)
 //{
 //    return fireEvent(getAndCheckEventDefinition(name), data, level, 0, 0, 0, caller, 0, 0);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name)
 //{
 //    auto ed = getAndCheckEventDefinition(name);
 //    return fireEvent(ed, new ::DataTable(ed)->getFormat(), true), DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name, CallerController* caller)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, CallerController* caller)
 //{
 //    auto ed = getAndCheckEventDefinition(name);
 //    return fireEvent(ed, new ::DataTable(ed)->getFormat(), true), DEFAULT_EVENT_LEVEL, 0, 0, 0, caller, 0, 0);
 //}
 //
-//com::tibbo::aggregate::common::data::Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(std::string* name, voidArray* data)
-//{
+Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, void* data)
+{
 //    auto ed = getAndCheckEventDefinition(name);
 //    return fireEvent(ed, new ::DataTable(ed)->getFormat(), data), DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
-//}
+	return 0;
+}
 //
-//com::tibbo::aggregate::common::event::EventProcessingRule* /*template <class C> */AbstractContext/*<C> */::getEventProcessingRule(::com::tibbo::aggregate::common::data::Event* event)
+//com::tibbo::aggregate::common::event::EventProcessingRule* /*template <class C> */AbstractContext/*<C> */::getEventProcessingRule(Event* event)
 //{
 //    return 0;
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::processBindings(::com::tibbo::aggregate::common::data::Event* event)
+//void /*template <class C> */AbstractContext/*<C> */::processBindings(Event* event)
 //{
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::processEnrichments(::com::tibbo::aggregate::common::data::Event* event, ::com::tibbo::aggregate::common::event::EventProcessingRule* rule, CallerController* caller)
+//void /*template <class C> */AbstractContext/*<C> */::processEnrichments(Event* event, EventProcessingRule* rule, CallerController* caller)
 //{
 //    if(rule == 0 || rule)->getEnrichments() == 0) {
 //        return;
 //    }
 //    auto evaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
 //    for (auto _i = rule)->getEnrichments())->iterator(); _i->hasNext(); ) {
-//        ::com::tibbo::aggregate::common::event::EventEnrichmentRule* enrichmentRule = java_cast< ::com::tibbo::aggregate::common::event::EventEnrichmentRule* >(_i->next());
+//        EventEnrichmentRule* enrichmentRule = java_cast< EventEnrichmentRule* >(_i->next());
 //        {
 //            auto name = enrichmentRule)->getName();
 //            try {
@@ -3648,7 +3587,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //                if(result == 0) {
 //                    continue;
 //                }
-//                event)->addEnrichment(new ::com::tibbo::aggregate::common::event::Enrichment(name, result)->toString(), new ::java::util::Date(), caller != 0 ? caller)->getUsername() : static_cast< std::string* >(0)));
+//                event)->addEnrichment(new Enrichment(name, result)->toString(), new ::java::util::Date(), caller != 0 ? caller)->getUsername() : static_cast< const std::string & >(0)));
 //            } catch (::java::lang::Exception* ex) {
 //                Log::CONTEXT_EVENTS())->error(std::stringBuilder().append("Error adding enrichment '"_j)->append(name)
 //                    ->append("' to event '"_j)
@@ -3665,7 +3604,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return getContextManager())->getCallerController();
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventHistory(std::string* name)
+//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventHistory(const std::string & name)
 //{
 //    auto ed = getEventData(name);
 //    if(ed == 0) {
@@ -3746,10 +3685,10 @@ std::string /*template <class C> */AbstractContext/*<C> */::toDetailedString()
 //
 //std::string /*template <class C> */AbstractContext/*<C> */::encodeFormat(::TableFormat* format, CallerController* caller)
 //{
-//    return format != 0 ? format)->encode(false) : static_cast< std::string* >(0);
+//    return format != 0 ? format)->encode(false) : static_cast< const std::string & >(0);
 //}
 //
-//TableFormat* /*template <class C> */AbstractContext/*<C> */::decodeFormat(std::string* source, CallerController* caller)
+//TableFormat* /*template <class C> */AbstractContext/*<C> */::decodeFormat(const std::string & source, CallerController* caller)
 //{
 //    return source != 0 ? new ::TableFormat(source, new ::encoding::ClassicEncodingSettings(false)) : static_cast< ::TableFormat* >(0);
 //}
@@ -3918,13 +3857,13 @@ std::string /*template <class C> */AbstractContext/*<C> */::toDetailedString()
 //    rec)->addString(def)->getName());
 //    rec)->addString(def)->getDescription());
 //    rec)->addString(def)->getHelp());
-//    rec)->addString(def)->getAccelerator() == 0 ? static_cast< std::string* >(0) : def)->getAccelerator())->toString());
+//    rec)->addString(def)->getAccelerator() == 0 ? static_cast< const std::string & >(0) : def)->getAccelerator())->toString());
 //    rec)->addDataTable(resourceMasks);
 //    rec)->addBoolean(::java::lang::Boolean::valueOf(def)->isHidden()));
 //    rec)->addBoolean(::java::lang::Boolean::valueOf(def)->isEnabled()));
 //    rec)->addString(def)->getIconId());
 //    rec)->addString(def)->getGroup());
-//    rec)->addString(def)->getExecutionGroup() == 0 ? static_cast< std::string* >(0) : def)->getExecutionGroup())->toString());
+//    rec)->addString(def)->getExecutionGroup() == 0 ? static_cast< const std::string & >(0) : def)->getExecutionGroup())->toString());
 //    rec)->addBoolean(::java::lang::Boolean::valueOf(def)->isDefault()));
 //    return rec;
 //}
@@ -3957,7 +3896,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::toDetailedString()
 //    return status;
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::setStatus(int status, std::string* comment)
+//void /*template <class C> */AbstractContext/*<C> */::setStatus(int status, const std::string & comment)
 //{
 //    auto statusChanged = this->status)->getStatus() != status;
 //    auto commentChanged = !::com::tibbo::aggregate::common::util::Util::equals(this->status)->getComment(), comment);
@@ -3969,7 +3908,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::toDetailedString()
 //    }
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::fireStatusChanged(int status, std::string* comment, int oldStatus)
+//void /*template <class C> */AbstractContext/*<C> */::fireStatusChanged(int status, const std::string & comment, int oldStatus)
 //{
 //}
 //
@@ -3995,7 +3934,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::toDetailedString()
 //            auto table = new ::DataTable(VFT_VARIABLE_STATUSES());
 //            auto statuses = getVariableStatuses();
 //            for (auto _i = statuses)->keySet())->iterator(); _i->hasNext(); ) {
-//                std::string* name = java_cast< std::string* >(_i->next());
+//                const std::string & name = java_cast< const std::string & >(_i->next());
 //                {
 //                    auto vs = java_cast< VariableStatus* >(statuses)->get(name));
 //                    table)->addRecord())->addString(name))->addString(vs)->getStatus()))->addString(vs)->getComment());
@@ -4032,7 +3971,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::toDetailedString()
 //    return new ::DataTable(VFT_VARIABLE_STATUSES());
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::updateVariableStatus(std::string* variable, VariableStatus* status, bool persistent)
+//void /*template <class C> */AbstractContext/*<C> */::updateVariableStatus(const std::string & variable, VariableStatus* status, bool persistent)
 //{
 //    VariableStatus* old;
 //    variableStatusesLock)->writeLock())->lock();
@@ -4084,7 +4023,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::toDetailedString()
 //{
 //}
 //
-//VariableStatus* /*template <class C> */AbstractContext/*<C> */::getVariableStatus(std::string* name)
+//VariableStatus* /*template <class C> */AbstractContext/*<C> */::getVariableStatus(const std::string & name)
 //{
 //    variableStatusesLock)->readLock())->lock();
 //    {

@@ -10,7 +10,7 @@
 struct com::tibbo::aggregate::common::protocol::ServerConnectorProvider
     
 {
-    ::com::tibbo::aggregate::common::util::RemoteConnector* getConnector(std::string* name);
+    ::com::tibbo::aggregate::common::util::RemoteConnector* getConnector(const std::string & name);
 
     // Generated
     

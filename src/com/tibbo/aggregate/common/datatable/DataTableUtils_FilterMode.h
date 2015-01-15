@@ -36,7 +36,7 @@ namespace com
             {
                 namespace datatable
                 {
-typedef ::SubArray< ::com::tibbo::aggregate::common::datatable::DataTableUtils_FilterMode, ::java::lang::EnumArray > DataTableUtils_FilterModeArray;
+typedef ::SubArray< DataTableUtils_FilterMode, ::java::lang::EnumArray > DataTableUtils_FilterModeArray;
                 } // datatable
             } // common
         } // aggregate
@@ -60,14 +60,14 @@ public: /* package */
     // Generated
 
 public:
-    DataTableUtils_FilterMode(std::string* name, int ordinal);
+    DataTableUtils_FilterMode(const std::string & name, int ordinal);
 protected:
     DataTableUtils_FilterMode(const ::default_init_tag&);
 
 
 public:
     
-    static DataTableUtils_FilterMode* valueOf(std::string* a0);
+    static DataTableUtils_FilterMode* valueOf(const std::string & a0);
     static DataTableUtils_FilterModeArray* values();
 
 private:

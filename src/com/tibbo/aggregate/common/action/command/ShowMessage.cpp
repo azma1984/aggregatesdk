@@ -31,13 +31,13 @@ com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(std::string* title, std::string* message, int level) 
+com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(const std::string & title, const std::string & message, int level) 
     : ShowMessage(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,message,level);
 }
 
-com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(const std::string & title, DataTable* parameters) 
     : ShowMessage(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -66,24 +66,24 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 
 void com::tibbo::aggregate::common::action::command::ShowMessage::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), CFT_SHOW_MESSAGE_, static_cast< ::com::tibbo::aggregate::common::datatable::TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), CFT_SHOW_MESSAGE_, static_cast< TableFormat* >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(std::string* title, std::string* message, int level)
+void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std::string & title, const std::string & message, int level)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), title);
     this->message = message;
     this->level = level;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std::string & title, DataTable* parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), title, parameters, CFT_SHOW_MESSAGE_);
 }
 
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowMessage::constructParameters()
 {
-    return new ::com::tibbo::aggregate::common::datatable::DataTable(CFT_SHOW_MESSAGE_, new voidArray({message), level))}));
+    return new DataTable(CFT_SHOW_MESSAGE_, new voidArray({message), level))}));
 }
 
 std::string com::tibbo::aggregate::common::action::command::ShowMessage::getMessage()
@@ -96,7 +96,7 @@ int com::tibbo::aggregate::common::action::command::ShowMessage::getLevel()
     return level;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowMessage::setMessage(std::string* message)
+void com::tibbo::aggregate::common::action::command::ShowMessage::setMessage(const std::string & message)
 {
     this->message = message;
 }
@@ -130,7 +130,7 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        CFT_SHOW_MESSAGE_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        CFT_SHOW_MESSAGE_ = new TableFormat(int(1), int(1));
         {
             CFT_SHOW_MESSAGE_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_MESSAGE_)
                 ->append(u"><S>"_j)->toString());

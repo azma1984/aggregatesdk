@@ -17,7 +17,7 @@ class com::tibbo::aggregate::common::expression::function::other::XPathFunction_
 
 public:
     typedef void super;
-    ::org::xml::sax::InputSource* resolveEntity(std::string* publicId, std::string* systemId);
+    ::org::xml::sax::InputSource* resolveEntity(const std::string & publicId, const std::string & systemId);
 
     // Generated
     XPathFunction_execute_1(XPathFunction *XPathFunction_this);

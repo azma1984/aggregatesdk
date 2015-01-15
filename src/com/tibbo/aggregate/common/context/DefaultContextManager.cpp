@@ -1,39 +1,40 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/DefaultContextManager.java
 #include "DefaultContextManager.h"
 
+
+
+ template <class T> void DefaultContextManager<T>::init()
+{
+  //  rootContext;
+  //  callerController = new UncheckedCallerController();
+ //   eventListeners = ::java::util::Collections::synchronizedMap(new ::java::util::Hashtable());
+ //   maskListeners = new ::java::util::Hashtable();
+ //   maskListenersLock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
+}
+
+template <class T> DefaultContextManager<T>::DefaultContextManager(bool async)
+{
+   // init();
+	//DefaultContextManager(async,MAX_VALUE);
+}
+
+template <class T> DefaultContextManager<T>::DefaultContextManager(bool async, int eventQueueLength)
+{
+  //  init();
+   // this->async = async;
+  //  if(async) 
+//	{
+  //    ensureDispatcher(eventQueueLength);
+  //  }
+}
+
+ template <class T> DefaultContextManager<T>::DefaultContextManager(Context* rootContext, bool async)
+{
+   // DefaultContextManager(async);
+  //  setRoot(rootContext);
+  //  start();
+}
 /*
-
-void DefaultContextManager::init()
-{
-    rootContext;
-    callerController = new UncheckedCallerController();
-    eventListeners = ::java::util::Collections::synchronizedMap(new ::java::util::Hashtable());
-    maskListeners = new ::java::util::Hashtable();
-    maskListenersLock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
-}
-
-void DefaultContextManager::ctor(bool async)
-{
-    ctor(async, ::java::lang::Integer::MAX_VALUE);
-}
-
-void DefaultContextManager::ctor(bool async, int eventQueueLength)
-{
-    super::ctor();
-    init();
-    this->async = async;
-    if(async) {
-        ensureDispatcher(eventQueueLength);
-    }
-}
-
-void DefaultContextManager::ctor(Context* rootContext, bool async)
-{
-    ctor(async);
-    setRoot(rootContext);
-    start();
-}
-
 void DefaultContextManager::start()
 {
     if(async) {
@@ -83,23 +84,23 @@ void DefaultContextManager::setRoot(Context* newRoot)
     contextAdded(newRoot);
 }
 
-Context* DefaultContextManager::get(std::string* contextName, CallerController* caller)
+Context* DefaultContextManager::get(const std::string & contextName, CallerController* caller)
 {
     auto root = java_cast< Context* >(getRoot());
     return root != 0 ? java_cast< Context* >(java_cast< Context* >(root)->get(contextName, caller))) : static_cast< Context* >(0);
 }
 
-Context* DefaultContextManager::get(std::string* contextName)
+Context* DefaultContextManager::get(const std::string & contextName)
 {
     auto root = java_cast< Context* >(getRoot());
     return root != 0 ? java_cast< Context* >(java_cast< Context* >(root)->get(contextName))) : static_cast< Context* >(0);
 }
 
-void DefaultContextManager::addEventListener(std::string* context, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask, bool weak)
+void DefaultContextManager::addEventListener(const std::string & context, const std::string & event, ContextEventListener* listener, bool mask, bool weak)
 {
     auto con = java_cast< Context* >(get(context, listener)->getCallerController()));
     if(con != 0) {
-        auto events = ::com::tibbo::aggregate::common::event::EventUtils::getEvents(con, event, listener)->getCallerController());
+        auto events = EventUtils::getEvents(con, event, listener)->getCallerController());
         for (auto _i = events)->iterator(); _i->hasNext(); ) {
             EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
             {
@@ -116,7 +117,7 @@ void DefaultContextManager::addEventListener(std::string* context, std::string* 
     }
 }
 
-void DefaultContextManager::addListenerToContext(Context* con, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask, bool weak)
+void DefaultContextManager::addListenerToContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak)
 {
     auto ed = con)->getEventDefinition(event, listener)->getCallerController());
     if(ed != 0) {
@@ -124,7 +125,7 @@ void DefaultContextManager::addListenerToContext(Context* con, std::string* even
     }
 }
 
-void DefaultContextManager::removeEventListener(std::string* context, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask)
+void DefaultContextManager::removeEventListener(const std::string & context, const std::string & event, ContextEventListener* listener, bool mask)
 {
     auto con = java_cast< Context* >(get(context, listener)->getCallerController()));
     if(con != 0) {
@@ -141,21 +142,21 @@ void DefaultContextManager::removeEventListener(std::string* context, std::strin
     }
 }
 
-void DefaultContextManager::removeListenerFromContext(Context* con, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask)
+void DefaultContextManager::removeListenerFromContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask)
 {
     con)->removeEventListener(event, listener);
 }
 
-void DefaultContextManager::addMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener)
+void DefaultContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener)
 {
     addMaskEventListener(mask, event, listener, false);
 }
 
-void DefaultContextManager::addMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool weak)
+void DefaultContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener, bool weak)
 {
     auto contexts = ContextUtils::expandMaskToPaths(mask, this, listener)->getCallerController());
     for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-        std::string* con = java_cast< std::string* >(_i->next());
+        const std::string & con = java_cast< const std::string & >(_i->next());
         {
             addEventListener(con, event, listener, true, weak);
         }
@@ -164,7 +165,7 @@ void DefaultContextManager::addMaskEventListener(std::string* mask, std::string*
     listeners)->addListener(listener, weak);
 }
 
-void DefaultContextManager::removeMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener)
+void DefaultContextManager::removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener)
 {
     auto contexts = ContextUtils::expandMaskToContexts(mask, this, listener)->getCallerController());
     for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
@@ -173,7 +174,7 @@ void DefaultContextManager::removeMaskEventListener(std::string* mask, std::stri
             if(!con)->isInitializedEvents()) {
                 continue;
             }
-            auto events = ::com::tibbo::aggregate::common::event::EventUtils::getEvents(con, event, listener)->getCallerController());
+            auto events = EventUtils::getEvents(con, event, listener)->getCallerController());
             for (auto _i = events)->iterator(); _i->hasNext(); ) {
                 EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
                 {
@@ -186,18 +187,18 @@ void DefaultContextManager::removeMaskEventListener(std::string* mask, std::stri
     listeners)->removeListener(listener);
 }
 
-com::tibbo::aggregate::common::event::ContextEventListenerSet* DefaultContextManager::getListeners(std::string* context, std::string* event)
+com::tibbo::aggregate::common::event::ContextEventListenerSet* DefaultContextManager::getListeners(const std::string & context, const std::string & event)
 {
     auto cel = getContextListeners(context);
-    auto cels = java_cast< ::com::tibbo::aggregate::common::event::ContextEventListenerSet* >(cel)->get(event));
+    auto cels = java_cast< ContextEventListenerSet* >(cel)->get(event));
     if(cels == 0) {
-        cels = new ::com::tibbo::aggregate::common::event::ContextEventListenerSet();
+        cels = new ContextEventListenerSet();
         cel)->put(event, cels);
     }
     return cels;
 }
 
-java::util::Map* DefaultContextManager::getContextListeners(std::string* context)
+java::util::Map* DefaultContextManager::getContextListeners(const std::string & context)
 {
     auto cel = java_cast< std::map >(eventListeners)->get(context));
     if(cel == 0) {
@@ -207,18 +208,18 @@ java::util::Map* DefaultContextManager::getContextListeners(std::string* context
     return cel;
 }
 
-com::tibbo::aggregate::common::event::ContextEventListenerSet* DefaultContextManager::getMaskListeners(std::string* mask, std::string* event)
+com::tibbo::aggregate::common::event::ContextEventListenerSet* DefaultContextManager::getMaskListeners(const std::string & mask, const std::string & event)
 {
     auto cel = getContextMaskListeners(mask);
-    auto eel = java_cast< ::com::tibbo::aggregate::common::event::ContextEventListenerSet* >(cel)->get(event));
+    auto eel = java_cast< ContextEventListenerSet* >(cel)->get(event));
     if(eel == 0) {
-        eel = new ::com::tibbo::aggregate::common::event::ContextEventListenerSet();
+        eel = new ContextEventListenerSet();
         cel)->put(event, eel);
     }
     return eel;
 }
 
-java::util::Map* DefaultContextManager::getContextMaskListeners(std::string* mask)
+java::util::Map* DefaultContextManager::getContextMaskListeners(const std::string & mask)
 {
     std::map cel;
     maskListenersLock)->readLock())->lock();
@@ -252,14 +253,14 @@ void DefaultContextManager::contextAdded(Context* con)
     auto cel = java_cast< std::map >(eventListeners)->get(con)->getPath()));
     if(cel != 0) {
         for (auto _i = cel)->keySet())->iterator(); _i->hasNext(); ) {
-            std::string* event = java_cast< std::string* >(_i->next());
+            const std::string & event = java_cast< const std::string & >(_i->next());
             {
-                auto cels = java_cast< ::com::tibbo::aggregate::common::event::ContextEventListenerSet* >(cel)->get(event));
+                auto cels = java_cast< ContextEventListenerSet* >(cel)->get(event));
                 {
                     synchronized synchronized_0(cels);
                     {
                         for (auto _i = cels)->getListenersInfo())->iterator(); _i->hasNext(); ) {
-                            ::com::tibbo::aggregate::common::event::ContextEventListenerInfo* celi = java_cast< ::com::tibbo::aggregate::common::event::ContextEventListenerInfo* >(_i->next());
+                            ContextEventListenerInfo* celi = java_cast< ContextEventListenerInfo* >(_i->next());
                             {
                                 if(con)->getEventData(event) != 0) {
                                     con)->addEventListener(event, celi)->getListener(), celi)->isWeak());
@@ -278,21 +279,21 @@ void DefaultContextManager::contextAdded(Context* con)
         });
         {
             for (auto _i = maskListeners)->keySet())->iterator(); _i->hasNext(); ) {
-                std::string* mask = java_cast< std::string* >(_i->next());
+                const std::string & mask = java_cast< const std::string & >(_i->next());
                 {
                     if(ContextUtils::matchesToMask(mask, con)->getPath())) {
                         auto mcel = getContextMaskListeners(mask);
                         for (auto _i = mcel)->keySet())->iterator(); _i->hasNext(); ) {
-                            std::string* event = java_cast< std::string* >(_i->next());
+                            const std::string & event = java_cast< const std::string & >(_i->next());
                             {
-                                auto listeners = java_cast< ::com::tibbo::aggregate::common::event::ContextEventListenerSet* >(mcel)->get(event));
+                                auto listeners = java_cast< ContextEventListenerSet* >(mcel)->get(event));
                                 {
                                     synchronized synchronized_1(listeners);
                                     {
                                         for (auto _i = listeners)->getListenersInfo())->iterator(); _i->hasNext(); ) {
-                                            ::com::tibbo::aggregate::common::event::ContextEventListenerInfo* li = java_cast< ::com::tibbo::aggregate::common::event::ContextEventListenerInfo* >(_i->next());
+                                            ContextEventListenerInfo* li = java_cast< ContextEventListenerInfo* >(_i->next());
                                             {
-                                                auto events = ::com::tibbo::aggregate::common::event::EventUtils::getEvents(con, event, li)->getListener())->getCallerController());
+                                                auto events = EventUtils::getEvents(con, event, li)->getListener())->getCallerController());
                                                 for (auto _i = events)->iterator(); _i->hasNext(); ) {
                                                     EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
                                                     {
@@ -352,20 +353,20 @@ void DefaultContextManager::eventAdded(Context* con, EventDefinition* ed)
         });
         {
             for (auto _i = maskListeners)->keySet())->iterator(); _i->hasNext(); ) {
-                std::string* mask = java_cast< std::string* >(_i->next());
+                const std::string & mask = java_cast< const std::string & >(_i->next());
                 {
                     if(ContextUtils::matchesToMask(mask, con)->getPath())) {
                         auto cel = getContextMaskListeners(mask);
                         for (auto _i = cel)->keySet())->iterator(); _i->hasNext(); ) {
-                            std::string* event = java_cast< std::string* >(_i->next());
+                            const std::string & event = java_cast< const std::string & >(_i->next());
                             {
-                                if(::com::tibbo::aggregate::common::event::EventUtils::matchesToMask(event, ed)) {
-                                    auto listeners = java_cast< ::com::tibbo::aggregate::common::event::ContextEventListenerSet* >(cel)->get(event));
+                                if(EventUtils::matchesToMask(event, ed)) {
+                                    auto listeners = java_cast< ContextEventListenerSet* >(cel)->get(event));
                                     {
                                         synchronized synchronized_2(listeners);
                                         {
                                             for (auto _i = listeners)->getListenersInfo())->iterator(); _i->hasNext(); ) {
-                                                ::com::tibbo::aggregate::common::event::ContextEventListenerInfo* li = java_cast< ::com::tibbo::aggregate::common::event::ContextEventListenerInfo* >(_i->next());
+                                                ContextEventListenerInfo* li = java_cast< ContextEventListenerInfo* >(_i->next());
                                                 {
                                                     addListenerToContext(java_cast< Context* >(con), ed)->getName(), li)->getListener(), true, li)->isWeak());
                                                 }
@@ -387,7 +388,7 @@ void DefaultContextManager::eventRemoved(Context* con, EventDefinition* ed)
 {
 }
 
-void DefaultContextManager::queue(EventData* ed, ::com::tibbo::aggregate::common::data::Event* ev)
+void DefaultContextManager::queue(EventData* ed, Event* ev)
 {
     if(!async || ed)->getDefinition())->isSynchronous()) {
         ed)->dispatch(ev);
@@ -443,16 +444,4 @@ bool DefaultContextManager::isStarted()
     return started;
 }
 
-
-
-java::lang::Class* DefaultContextManager::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.DefaultContextManager", 56);
-    return c;
-}
-
-java::lang::Class* DefaultContextManager::getClass0()
-{
-    return class_();
-}
-	   */
+*/

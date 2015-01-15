@@ -11,16 +11,16 @@
 
 
 class com::tibbo::aggregate::common::datatable::FCBigDecimal
-    : public ::com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter
+    : public converter::SimpleFormatConverter
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter super;
+    typedef converter::SimpleFormatConverter super;
 protected:
     void ctor();
 
 public:
-    FieldFormat* createFieldFormat(std::string* name);
+    FieldFormat* createFieldFormat(const std::string & name);
     ::java::math::BigDecimal* simpleToBean(void* value);
     void* convertToTable(::java::math::BigDecimal* value, TableFormat* format);
 

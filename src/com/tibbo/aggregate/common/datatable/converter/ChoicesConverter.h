@@ -24,18 +24,18 @@ protected:
     void ctor(::java::lang::Class* valueClass);
 
 public:
-    ::com::tibbo::aggregate::common::datatable::FieldFormat* createFieldFormat(std::string* name);
-    ::com::tibbo::aggregate::common::datatable::FieldFormat* createFieldFormat(std::string* name, std::string* description);
-    ::com::tibbo::aggregate::common::datatable::FieldFormat* createFieldFormat(std::string* name, std::string* description, void* defaultValue);
+    FieldFormat* createFieldFormat(const std::string & name);
+    FieldFormat* createFieldFormat(const std::string & name, const std::string & description);
+    FieldFormat* createFieldFormat(const std::string & name, const std::string & description, void* defaultValue);
     void add(Choice* c);
-    void add(std::string* description, void* object);
-    void add(std::string* name, std::string* description, void* object);
+    void add(const std::string & description, void* object);
+    void add(const std::string & name, const std::string & description, void* object);
     void setDefault(Choice* defaultChoice);
-    void setDefault(std::string* name);
+    void setDefault(const std::string & name);
     void* convertToBean(void* value);
     void* convertToBean(void* value, void* originalValue);
-    void* convertToTable(void* value, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
-    ::com::tibbo::aggregate::common::datatable::DataTable* createTable(void* value, ::com::tibbo::aggregate::common::datatable::TableFormat* format) /* throws(DataTableException) */;
+    void* convertToTable(void* value, TableFormat* format);
+    DataTable* createTable(void* value, TableFormat* format) /* throws(DataTableException) */;
 
     // Generated
     ChoicesConverter(::java::lang::Class* valueClass);

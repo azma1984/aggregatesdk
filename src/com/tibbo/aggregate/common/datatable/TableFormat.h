@@ -9,20 +9,22 @@
 #include "datatable/validator/TableValidator.h"
 #include "datatable/validator/RecordValidator.h"
 #include "datatable/encoding/ClassicEncodingSettings.h"
-#include "datatable/DataTable.h"
+#include "DataTable.h"
 
 #include <string>
 #include <list>
 #include <map>
 #include <vector>
 
+class DataTable;
 
 class TableFormat//: public Cloneable
 { 
 public:   
-	/*
+	
 
-    static boost::shared_ptr<TableFormat> EMPTY_FORMAT;
+    static /*boost::shared_ptr<TableFormat>*/TableFormat *EMPTY_FORMAT;
+	/*
     static const int DEFAULT_MIN_RECORDS;
     static const int DEFAULT_MAX_RECORDS;
 
@@ -55,9 +57,11 @@ private:
     std::list<boost::shared_ptr<TableValidator>>  tableValidators;
     std::list<boost::shared_ptr<Binding>>  bindings;
     boost::shared_ptr<Expression> namingExpression;
+	*/
     bool immutable;
-    boost::shared_ptr<DataTable> immutabilizer;
-
+    
+	boost::shared_ptr<DataTable> immutabilizer;
+	/*
 protected:
     void ctor();
     void ctor(bool reorderable);
@@ -155,10 +159,11 @@ public:
     TableFormat* setNamingExpression(const std::string& namingExpression);
     int hashCode();    
     TableFormat* clone();
+	*/
     void makeImmutable(DataTable* immutabilizer);
 
-    bool operator==(const TableFormat& tableFormat) const;//equals(void* obj);
-	*/
+   // bool operator==(const TableFormat& tableFormat) const;//equals(void* obj);
+	
 
     TableFormat();
    // TableFormat(bool reorderable);

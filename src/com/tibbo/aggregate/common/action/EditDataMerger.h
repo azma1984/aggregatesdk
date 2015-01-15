@@ -9,7 +9,7 @@
 struct com::tibbo::aggregate::common::action::EditDataMerger
     
 {
-    ::com::tibbo::aggregate::common::datatable::DataTable* merge(::com::tibbo::aggregate::common::datatable::DataTable* preset, ::com::tibbo::aggregate::common::datatable::DataTable* original);
+    DataTable* merge(DataTable* preset, DataTable* original);
 
     // Generated
     

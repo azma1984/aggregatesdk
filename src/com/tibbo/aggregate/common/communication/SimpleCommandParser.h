@@ -37,7 +37,7 @@ public: /* protected */
     Command* createCommandFromBufferContent() /* throws(SyntaxErrorException) */;
 
 private:
-    void init_(::java::nio::channels::ReadableByteChannel* channel, ::java::lang::Byte* startChar, int8_t endChar);
+    void init(::java::nio::channels::ReadableByteChannel* channel, ::java::lang::Byte* startChar, int8_t endChar);
 
 public:
     void clearCommand();

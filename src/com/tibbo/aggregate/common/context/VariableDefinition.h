@@ -24,13 +24,13 @@ class VariableDefinition
 //    typedef AbstractEntityDefinition super;
 
 //private:
-//    ::com::tibbo::aggregate::common::datatable::TableFormat* format;
+//    TableFormat* format;
 //    bool readable;
 //    bool writable;
 //    bool hidden;
-//    ::com::tibbo::aggregate::common::security::Permissions* readPermissions;
-//    ::com::tibbo::aggregate::common::security::Permissions* writePermissions;
-//    std::string* helpId;
+//    Permissions* readPermissions;
+//    Permissions* writePermissions;
+//    const std::string & helpId;
 //    VariableGetter* getter;
 //    VariableSetter* setter;
 //    bool allowUpdateEvents;
@@ -40,35 +40,35 @@ class VariableDefinition
 //    ::java::lang::Class* valueClass;
 //    std::list  compatibilityConverters;
 //    bool persistent;
-//    ::com::tibbo::aggregate::common::datatable::DataTable* defaultValue;
+//    DataTable* defaultValue;
 //protected:
-//    void ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool readable, bool writable);
-//    void ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool readable, bool writable, std::string* description);
-//    void ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool readable, bool writable, std::string* description, std::string* group);
+//    void ctor(const std::string & name, TableFormat* format, bool readable, bool writable);
+//    void ctor(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
+//    void ctor(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description, const std::string & group);
 
 //private:
-//    void init_(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool readable, bool writable, std::string* description);
+//    void init(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
 
 //public:
-//    void setFormat(::com::tibbo::aggregate::common::datatable::TableFormat* format);
+//    void setFormat(TableFormat* format);
 //    void setReadable(bool readable);
 //    void setWritable(bool writable);
 //    void setHidden(bool hidden);
-//    void setGroup(std::string* group);
-//    void setReadPermissions(::com::tibbo::aggregate::common::security::Permissions* readPermissions);
-//    void setWritePermissions(::com::tibbo::aggregate::common::security::Permissions* writePermissions);
+//    void setGroup(const std::string & group);
+//    void setReadPermissions(Permissions* readPermissions);
+//    void setWritePermissions(Permissions* writePermissions);
 //    void setSetter(VariableSetter* setter);
 //    void setGetter(VariableGetter* getter);
-//    ::com::tibbo::aggregate::common::datatable::TableFormat* getFormat();
+//    TableFormat* getFormat();
 //    bool isReadable();
 //    bool isWritable();
 //    bool isHidden();
-//    ::com::tibbo::aggregate::common::security::Permissions* getReadPermissions();
-//    ::com::tibbo::aggregate::common::security::Permissions* getWritePermissions();
+//    Permissions* getReadPermissions();
+//    Permissions* getWritePermissions();
 //    VariableSetter* getSetter();
 //    VariableGetter* getGetter();
-//    std::string* getHelpId();
-//    void setHelpId(std::string* helpId);
+//    const std::string & getHelpId();
+//    void setHelpId(const std::string & helpId);
 //    ::java::lang::Class* getValueClass();
 //    void setValueClass(::java::lang::Class* valueClass);
 //    ::java::lang::Long* getChangeEventsExpirationPeriod();
@@ -77,8 +77,8 @@ class VariableDefinition
 //    void setLocalCachingEnabled(bool valueCachingEnabled);
 //    ::java::lang::Long* getRemoteCacheTime();
 //    void setRemoteCacheTime(::java::lang::Long* remoteCacheTime);
-//    ::com::tibbo::aggregate::common::datatable::DataTable* getDefaultValue();
-//    void setDefaultValue(::com::tibbo::aggregate::common::datatable::DataTable* defaultValue);
+//    DataTable* getDefaultValue();
+//    void setDefaultValue(DataTable* defaultValue);
 //    bool isPersistent();
 //    void setPersistent(bool persistent);
 //    bool isAllowUpdateEvents();
@@ -91,9 +91,9 @@ class VariableDefinition
 //    int compareTo(VariableDefinition* d);
 
 //    // Generated
-//    VariableDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool readable, bool writable);
-//    VariableDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool readable, bool writable, std::string* description);
-//    VariableDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool readable, bool writable, std::string* description, std::string* group);
+//    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable);
+//    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
+//    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description, const std::string & group);
 //protected:
 //    VariableDefinition(const ::default_init_tag&);
 

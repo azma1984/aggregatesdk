@@ -38,7 +38,7 @@ public:
     bool waitReply(long timeout) /* throws(InterruptedException) */;
     long getTime();
     long getStartTime();
-    std::string* toString();
+    const std::string & toString();
 
     // Generated
     ReplyMonitor(Command* command);

@@ -21,7 +21,7 @@ Command::Command()
     ctor();
 }
 
-Command::Command(std::string* data)
+Command::Command(const std::string & data)
     : Command(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
@@ -38,7 +38,7 @@ void Command::ctor()
     super::ctor();
 }
 
-void Command::ctor(std::string* data)
+void Command::ctor(const std::string & data)
 {
     super::ctor();
     add(data);
@@ -69,7 +69,7 @@ std::string Command::getContent()
     }
 }
 
-void Command::add(std::string* data)
+void Command::add(const std::string & data)
 {
     try {
         write(data)->getBytes(::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET()));
@@ -89,8 +89,8 @@ void Command::send(::java::nio::channels::ByteChannel* byteChannel, bool encapsu
         throw new ::com::tibbo::aggregate::common::device::DisconnectionException(Cres::get())->getString(u"disconnected"_j));
     }
     try {
-        auto header = encapsulate ? this->header() : static_cast< std::string* >(0);
-        auto footer = encapsulate ? this->footer() : static_cast< std::string* >(0);
+        auto header = encapsulate ? this->header() : static_cast< const std::string & >(0);
+        auto footer = encapsulate ? this->footer() : static_cast< const std::string & >(0);
         auto size = (header != 0 ? header)->length() : int(0)) + static_cast< ::java::io::ByteArrayOutputStream* >(this)->size() + (footer != 0 ? footer)->length() : int(0));
         auto buff = ::java::nio::ByteBuffer::allocate(size);
         buff)->clear();

@@ -1,115 +1,89 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/AbstractEntityDefinition.java
-#include <com/tibbo/aggregate/common/context/AbstractEntityDefinition.h"
+#include "context/AbstractEntityDefinition.h"
 
-////#include <java/lang/Integer.h"
-////#include <java/lang/Object.h"
-////#include <java/lang/String.h"
-////#include <java/lang/StringBuilder.h"
 
-com::tibbo::aggregate::common::context::AbstractEntityDefinition::AbstractEntityDefinition(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
-{
-    
-}
 
-com::tibbo::aggregate::common::context::AbstractEntityDefinition::AbstractEntityDefinition()
-    : AbstractEntityDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor();
-}
-
-std::string com::tibbo::aggregate::common::context::AbstractEntityDefinition::getName()
+std::string AbstractEntityDefinition::getName()
 {
     return name;
 }
 
-void com::tibbo::aggregate::common::context::AbstractEntityDefinition::setName(std::string* name)
+void AbstractEntityDefinition::setName(const std::string & name)
 {
     this->name = name;
 }
 
-void com::tibbo::aggregate::common::context::AbstractEntityDefinition::setDescription(std::string* description)
+void AbstractEntityDefinition::setDescription(const std::string & description)
 {
     this->description = description;
 }
 
-void com::tibbo::aggregate::common::context::AbstractEntityDefinition::setHelp(std::string* help)
+void AbstractEntityDefinition::setHelp(const std::string & help)
 {
     this->help = help;
 }
 
-void com::tibbo::aggregate::common::context::AbstractEntityDefinition::setGroup(std::string* group)
+void AbstractEntityDefinition::setGroup(const std::string & group)
 {
     this->group = group;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractEntityDefinition::getDescription()
+std::string AbstractEntityDefinition::getDescription()
 {
     return description;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractEntityDefinition::getHelp()
+std::string AbstractEntityDefinition::getHelp()
 {
     return help;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractEntityDefinition::getGroup()
+std::string AbstractEntityDefinition::getGroup()
 {
     return group;
 }
 
-java::lang::Integer* com::tibbo::aggregate::common::context::AbstractEntityDefinition::getIndex()
+int AbstractEntityDefinition::getIndex()
 {
     return index;
 }
 
-void com::tibbo::aggregate::common::context::AbstractEntityDefinition::setIndex(::java::lang::Integer* index)
+void AbstractEntityDefinition::setIndex(int index)
 {
     this->index = index;
 }
 
-void com::tibbo::aggregate::common::context::AbstractEntityDefinition::setIconId(std::string* iconId)
+void AbstractEntityDefinition::setIconId(const std::string & iconId)
 {
     this->iconId = iconId;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractEntityDefinition::getIconId()
+std::string AbstractEntityDefinition::getIconId()
 {
     return iconId;
 }
 
-void* com::tibbo::aggregate::common::context::AbstractEntityDefinition::getOwner()
+void* AbstractEntityDefinition::getOwner()
 {
     return owner;
 }
 
-void com::tibbo::aggregate::common::context::AbstractEntityDefinition::setOwner(void* owner)
+void AbstractEntityDefinition::setOwner(void* owner)
 {
     this->owner = owner;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractEntityDefinition::toString()
+std::string AbstractEntityDefinition::toString()
 {
-    return description != 0 ? description : name;
+  return description.empty() == false ? description : name;
+  
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractEntityDefinition::toDetailedString()
+std::string AbstractEntityDefinition::toDetailedString()
 {
-    return description != 0 ? std::stringBuilder().append(description)->append(u" ("_j)
-        ->append(name)
-        ->append(u")"_j)->toString() : name;
+   return description.empty() == false ? description + " (" + name + ")" : name;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::AbstractEntityDefinition::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.AbstractEntityDefinition", 59);
-    return c;
-}
-
-java::lang::Class* com::tibbo::aggregate::common::context::AbstractEntityDefinition::getClass0()
-{
-    return class_();
-}
 

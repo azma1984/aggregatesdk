@@ -11,12 +11,12 @@ class LongFieldFormat : public FieldFormat
 {
 
 //public:
-//    typedef ::com::tibbo::aggregate::common::datatable::FieldFormat super;
+//    typedef FieldFormat super;
 
 //private:
 //    static const std::string EDITOR_PERIOD_;
 //protected:
-//    void ctor(std::string* name);
+//    void ctor(const std::string & name);
 
 //public:
 //    char16_t getType();
@@ -28,8 +28,8 @@ class LongFieldFormat : public FieldFormat
 //    void* convertValue(void* value) /* throws(ValidationException) */;
 
 //public:
-//    ::java::lang::Long* valueFromString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-//    std::string* valueToString(::java::lang::Long* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+//    ::java::lang::Long* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+//    const std::string & valueToString(::java::lang::Long* value, encoding::ClassicEncodingSettings* settings);
 
 //public: /* protected */
 //    std::list  getSuitableEditors();
@@ -38,7 +38,7 @@ class LongFieldFormat : public FieldFormat
 //    static const std::string encodePeriodEditorOptions(int minUnit, int maxUnit);
 
 //    // Generated
-//    LongFieldFormat(std::string* name);
+//    LongFieldFormat(const std::string & name);
 //protected:
 //    LongFieldFormat(const ::default_init_tag&);
 
@@ -46,9 +46,9 @@ class LongFieldFormat : public FieldFormat
 //public:
     
 //    static void
-//    std::string* valueToString(void* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-//    void* valueFromString(std::string* value);
-//    std::string* valueToString(void* value);
+//    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
+//    void* valueFromString(const std::string & value);
+//    const std::string & valueToString(void* value);
 //    static const std::string& EDITOR_PERIOD();
 
 //private:

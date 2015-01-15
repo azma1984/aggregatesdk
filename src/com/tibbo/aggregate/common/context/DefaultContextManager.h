@@ -4,33 +4,35 @@
 #define DefaultContextManagerH
 
 #include "ContextManager.h"
-/*
-#include <com/tibbo/aggregate/common/context/CallerController.h"
-#include <com/tibbo/aggregate/common/context/Context.h"
-#include <com/tibbo/aggregate/common/context/ContextException.h"
-#include <com/tibbo/aggregate/common/context/ContextUtils.h"
-#include <com/tibbo/aggregate/common/context/DefaultContextManager_contextRemoved_2.h"
-#include <com/tibbo/aggregate/common/context/DefaultContextManager_contextRemoved_1.h"
-#include <com/tibbo/aggregate/common/context/DefaultContextManager_EventDispatcher.h"
-#include <com/tibbo/aggregate/common/context/DefaultContextManager_QueuedEvent.h"
-#include <com/tibbo/aggregate/common/context/EventData.h"
-#include <com/tibbo/aggregate/common/context/EventDefinition.h"
-#include <com/tibbo/aggregate/common/context/UncheckedCallerController.h"
-#include <com/tibbo/aggregate/common/data/Event.h"
-#include <com/tibbo/aggregate/common/event/ContextEventListener.h"
-#include <com/tibbo/aggregate/common/event/ContextEventListenerInfo.h"
-#include <com/tibbo/aggregate/common/event/ContextEventListenerSet.h"
-#include <com/tibbo/aggregate/common/event/EventUtils.h"
-*/
+
+//#include <com/tibbo/aggregate/common/context/CallerController.h"
+#include "context/Context.h"
+//#include <com/tibbo/aggregate/common/context/ContextException.h"
+//#include <com/tibbo/aggregate/common/context/ContextUtils.h"
+//#include <com/tibbo/aggregate/common/context/DefaultContextManager_contextRemoved_2.h"
+//#include <com/tibbo/aggregate/common/context/DefaultContextManager_contextRemoved_1.h"
+//#include <com/tibbo/aggregate/common/context/DefaultContextManager_EventDispatcher.h"
+//#include <com/tibbo/aggregate/common/context/DefaultContextManager_QueuedEvent.h"
+//#include <com/tibbo/aggregate/common/context/EventData.h"
+#include "context/EventDefinition.h"
+//#include <com/tibbo/aggregate/common/context/UncheckedCallerController.h"
+//#include <com/tibbo/aggregate/common/data/Event.h"
+//#include <com/tibbo/aggregate/common/event/ContextEventListener.h"
+//#include <com/tibbo/aggregate/common/event/ContextEventListenerInfo.h"
+//#include <com/tibbo/aggregate/common/event/ContextEventListenerSet.h"
+//#include <com/tibbo/aggregate/common/event/EventUtils.h"
+
 
 
 template <class T> class DefaultContextManager: public ContextManager<T>
 {
-   /*
-public:
-    typedef void super;
+  private:
+	void init();
 
-private:
+  public:
+   /*
+
+
     bool async;
 	Context* rootContext;
     CallerController* callerController;
@@ -45,7 +47,7 @@ protected:
     void ctor(bool async, int eventQueueLength);
     void ctor(Context* rootContext, bool async);
 
-public:
+
     void start();
     void stop();
     void restart();
@@ -56,33 +58,33 @@ private:
 public:
     Context* getRoot();
     void setRoot(Context* newRoot);
-    Context* get(std::string* contextName, CallerController* caller);
-    Context* get(std::string* contextName);
+    Context* get(const std::string & contextName, CallerController* caller);
+    Context* get(const std::string & contextName);
 
 private:
-    void addEventListener(std::string* context, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask, bool weak);
+    void addEventListener(const std::string & context, const std::string & event, ContextEventListener* listener, bool mask, bool weak);
 
 public:
-    void addListenerToContext(Context* con, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask, bool weak);
+    void addListenerToContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak);
 
 private:
-    void removeEventListener(std::string* context, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask);
+    void removeEventListener(const std::string & context, const std::string & event, ContextEventListener* listener, bool mask);
 
 public:
-    void removeListenerFromContext(Context* con, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask);
+    void removeListenerFromContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask);
 
 public:
-    void addMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
-    void addMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool weak);
-    void removeMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
+    void addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener);
+    void addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener, bool weak);
+    void removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener);
 
 public:
-    ::com::tibbo::aggregate::common::event::ContextEventListenerSet* getListeners(std::string* context, std::string* event);
+    ContextEventListenerSet* getListeners(const std::string & context, const std::string & event);
 
 private:
-    std::map getContextListeners(std::string* context);
-    ::com::tibbo::aggregate::common::event::ContextEventListenerSet* getMaskListeners(std::string* mask, std::string* event);
-    std::map getContextMaskListeners(std::string* mask);
+    std::map getContextListeners(const std::string & context);
+    ContextEventListenerSet* getMaskListeners(const std::string & mask, const std::string & event);
+    std::map getContextMaskListeners(const std::string & mask);
 
 public:
     void contextAdded(Context* con);
@@ -91,34 +93,32 @@ public:
     void variableAdded(Context* con, VariableDefinition* vd);
     void variableRemoved(Context* con, VariableDefinition* vd);
     void functionAdded(Context* con, FunctionDefinition* fd);
-    void functionRemoved(Context* con, FunctionDefinition* fd);
-    void eventAdded(Context* con, EventDefinition* ed);
+    void functionRemoved(Context* con, FunctionDefinition* fd);*/
+    void eventAdded(Context* con, EventDefinition* ed);/*
     void eventRemoved(Context* con, EventDefinition* ed);
-    void queue(EventData* ed, ::com::tibbo::aggregate::common::data::Event* ev);
+    void queue(EventData* ed, Event* ev);
 
-public:
+
     void setExecutorService(::java::util::concurrent::ThreadPoolExecutor* executorService);
 
-public:
+
     ::java::util::concurrent::ThreadPoolExecutor* getExecutorService();
     CallerController* getCallerController();
     int getEventQueueLength();
     bool isStarted();
-
-
+	*/
+public:
     DefaultContextManager(bool async);
     DefaultContextManager(bool async, int eventQueueLength);
-    DefaultContextManager(Context* rootContext, bool async);
-protected:
-    DefaultContextManager(const ::default_init_tag&);
+    DefaultContextManager(Context *rootContext, bool async);
 
+	/*
 
 public:
     
 
 private:
-    void init();
-    ::java::lang::Class* getClass0();
+    
     friend class DefaultContextManager_contextRemoved_1;
     friend class DefaultContextManager_contextRemoved_2;
     friend class DefaultContextManager_EventDispatcher;

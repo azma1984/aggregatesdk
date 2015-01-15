@@ -18,20 +18,20 @@ public:
 
 private:
     int status;
-    std::string* comment;
+    const std::string & comment;
 protected:
     void ctor();
-    void ctor(int status, std::string* comment);
+    void ctor(int status, const std::string & comment);
 
 public:
-    std::string* getComment();
+    const std::string & getComment();
     int getStatus();
-    void setComment(std::string* comment);
+    void setComment(const std::string & comment);
     void setStatus(int status);
 
     // Generated
     ContextStatus();
-    ContextStatus(int status, std::string* comment);
+    ContextStatus(int status, const std::string & comment);
 protected:
     ContextStatus(const ::default_init_tag&);
 

@@ -20,24 +20,24 @@ public:
     typedef void super;
 
 private:
-    std::string* name;
-    ::java::lang::Integer* priority;
+    const std::string & name;
+    int  priority;
     ::java::util::concurrent::ThreadFactory* threadFactory;
 protected:
     void ctor();
-    void ctor(std::string* name);
-    void ctor(std::string* name, int priority);
+    void ctor(const std::string & name);
+    void ctor(const std::string & name, int priority);
 
 public: /* protected */
-    std::string* getName();
+    const std::string & getName();
 
 public:
     ::java::lang::Thread* newThread(::java::lang::Runnable* r);
 
     // Generated
     NamedThreadFactory();
-    NamedThreadFactory(std::string* name);
-    NamedThreadFactory(std::string* name, int priority);
+    NamedThreadFactory(const std::string & name);
+    NamedThreadFactory(const std::string & name, int priority);
 protected:
     NamedThreadFactory(const ::default_init_tag&);
 

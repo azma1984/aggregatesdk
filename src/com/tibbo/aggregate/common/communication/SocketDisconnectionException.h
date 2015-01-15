@@ -16,17 +16,17 @@ public:
     typedef std::exception super;
 protected:
     void ctor();
-    void ctor(std::string* message);
+    void ctor(const std::string & message);
     void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
+    void ctor(const std::string & message, ::java::lang::Throwable* cause);
 
     // Generated
 
 public:
     SocketDisconnectionException();
-    SocketDisconnectionException(std::string* message);
+    SocketDisconnectionException(const std::string & message);
     SocketDisconnectionException(::java::lang::Throwable* cause);
-    SocketDisconnectionException(std::string* message, ::java::lang::Throwable* cause);
+    SocketDisconnectionException(const std::string & message, ::java::lang::Throwable* cause);
 protected:
     SocketDisconnectionException(const ::default_init_tag&);
 

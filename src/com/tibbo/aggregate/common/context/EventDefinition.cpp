@@ -1,70 +1,37 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/EventDefinition.java
 #include "EventDefinition.h"
 
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/event/PersistenceOptions.h"
-#include <com/tibbo/aggregate/common/security/Permissions.h"
+
+
+
+
+EventDefinition::EventDefinition(const std::string & name, TableFormat* format) 
+{
+   init(name, format, 0);
+}
+
+EventDefinition::EventDefinition(const std::string & name, TableFormat* format, const std::string & description) 
+{
+  init(name, format, description);
+}
+
+EventDefinition::EventDefinition(const std::string & name, TableFormat* format, const std::string & description, const std::string & group) 
+{
+  init(name, format, description);
+  setGroup(group);
+}
+
+void EventDefinition::init(const std::string & name, TableFormat* format, const std::string & description)
+{
+  // persistenceOptions = new PersistenceOptions();
+  
+   setName(name);
+//   setFormat(format);
+   setDescription(description);
+}
 
 /*
-EventDefinition::EventDefinition(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
-{
-    
-}
-
-EventDefinition::EventDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format) 
-    : EventDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(name,format);
-}
-
-EventDefinition::EventDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, std::string* description) 
-    : EventDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(name,format,description);
-}
-
-EventDefinition::EventDefinition(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, std::string* description, std::string* group) 
-    : EventDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(name,format,description,group);
-}
-
-void EventDefinition::init()
-{
-    persistenceOptions = new ::com::tibbo::aggregate::common::event::PersistenceOptions();
-}
-
-void EventDefinition::ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format)
-{
-    super::ctor();
-    init();
-    init_(name, format, 0);
-}
-
-void EventDefinition::ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, std::string* description)
-{
-    super::ctor();
-    init();
-    init_(name, format, description);
-}
-
-void EventDefinition::ctor(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, std::string* description, std::string* group)
-{
-    super::ctor();
-    init();
-    init_(name, format, description);
-    setGroup(group);
-}
-
-void EventDefinition::init_(std::string* name, ::com::tibbo::aggregate::common::datatable::TableFormat* format, std::string* description)
-{
-    setName(name);
-    setFormat(format);
-    setDescription(description);
-}
-
-void EventDefinition::setFormat(::com::tibbo::aggregate::common::datatable::TableFormat* format)
+void EventDefinition::setFormat(TableFormat* format)
 {
     if(format != 0) {
         format)->makeImmutable(0);
@@ -77,7 +44,7 @@ void EventDefinition::setHidden(bool hidden)
     this->hidden = hidden;
 }
 
-void EventDefinition::setPermissions(::com::tibbo::aggregate::common::security::Permissions* perms)
+void EventDefinition::setPermissions(Permissions* perms)
 {
     this->permissions = perms;
 }
@@ -127,7 +94,7 @@ com::tibbo::aggregate::common::security::Permissions* EventDefinition::getFirePe
     return firePermissions;
 }
 
-void EventDefinition::setFirePermissions(::com::tibbo::aggregate::common::security::Permissions* firePermissions)
+void EventDefinition::setFirePermissions(Permissions* firePermissions)
 {
     this->firePermissions = firePermissions;
 }
@@ -147,7 +114,7 @@ java::lang::Integer* EventDefinition::getMemoryStorageSize()
     return memoryStorageSize;
 }
 
-void EventDefinition::setMemoryStorageSize(::java::lang::Integer* memoryStorageSize)
+void EventDefinition::setMemoryStorageSize(int  memoryStorageSize)
 {
     this->memoryStorageSize = memoryStorageSize;
 }

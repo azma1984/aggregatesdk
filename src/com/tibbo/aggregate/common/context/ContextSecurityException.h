@@ -15,14 +15,14 @@ class com::tibbo::aggregate::common::context::ContextSecurityException
 public:
     typedef ContextException super;
 protected:
-    void ctor(std::string* message);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
+    void ctor(const std::string & message);
+    void ctor(const std::string & message, ::java::lang::Throwable* cause);
 
     // Generated
 
 public:
-    ContextSecurityException(std::string* message);
-    ContextSecurityException(std::string* message, ::java::lang::Throwable* cause);
+    ContextSecurityException(const std::string & message);
+    ContextSecurityException(const std::string & message, ::java::lang::Throwable* cause);
 protected:
     ContextSecurityException(const ::default_init_tag&);
 

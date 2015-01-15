@@ -10,7 +10,7 @@ class StringFieldFormat : public FieldFormat
 {
 
 //public:
-//    typedef ::com::tibbo::aggregate::common::datatable::FieldFormat super;
+//    typedef FieldFormat super;
 
 //private:
 //    static const std::string EDITOR_CONTEXT_MASK_;
@@ -30,11 +30,11 @@ class StringFieldFormat : public FieldFormat
 //    static const std::string CONTEXT_EDITOR_TYPES_SEPARATOR_;
 //    static const std::string FIELD_ADDITIONAL_REFERENCES_REFERENCE_;
 //    static const std::string FIELD_ADDITIONAL_REFERENCES_DESCRIPTION_;
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat* ADDITIONAL_REFERENCES_FORMAT_;
+//    static TableFormat* ADDITIONAL_REFERENCES_FORMAT_;
 //    static const std::string FIELD_DEFAULT_TABLE_;
 //    static const std::string FIELD_DEFAULT_CONTEXT_;
 //    static const std::string FIELD_REFERENCES_;
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat* EXPRESSION_BUILDER_OPTIONS_FORMAT_;
+//    static TableFormat* EXPRESSION_BUILDER_OPTIONS_FORMAT_;
 //    static const std::string TEXT_EDITOR_MODE_AGGREGATE_;
 //    static const std::string TEXT_EDITOR_MODE_JAVA_;
 //    static const std::string TEXT_EDITOR_MODE_XML_;
@@ -45,34 +45,34 @@ class StringFieldFormat : public FieldFormat
 //    static const std::string CODE_EDITOR_MODE_JAVA_;
 //    static const std::string EDITOR_TARGET_MODE_MODELS_;
 //protected:
-//    void ctor(std::string* name);
+//    void ctor(const std::string & name);
 
 //public:
 //    char16_t getType();
 //    ::java::lang::Class* getFieldClass();
 //    ::java::lang::Class* getFieldWrappedClass();
-//    std::string* getNotNullDefault();
+//    const std::string & getNotNullDefault();
 
 //public: /* protected */
 //    void* convertValue(void* value) /* throws(ValidationException) */;
 
 //public:
-//    std::string* valueFromString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-//    std::string* valueToString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+//    const std::string & valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+//    const std::string & valueToString(const std::string & value, encoding::ClassicEncodingSettings* settings);
 
 //public: /* protected */
 //    std::list  getSuitableEditors();
 
 //public:
 //    static const std::string encodeExpressionEditorOptions(std::map references);
-//    static const std::string encodeExpressionEditorOptions(::com::tibbo::aggregate::common::context::Context* defaultContext, ::com::tibbo::aggregate::common::datatable::DataTable* defaultTable, std::map references);
+//    static const std::string encodeExpressionEditorOptions(::com::tibbo::aggregate::common::context::Context* defaultContext, DataTable* defaultTable, std::map references);
 //    static const std::string encodeMaskEditorOptions(std::list  contextTypes);
-//    static const std::string encodeMaskEditorOptions(std::string* contextType);
+//    static const std::string encodeMaskEditorOptions(const std::string & contextType);
 //    static const std::string encodeMaskEditorOptions(::java::lang::Class* contextClass);
-//    static std::list  decodeMaskEditorOptions(std::string* options);
+//    static std::list  decodeMaskEditorOptions(const std::string & options);
 
 //    // Generated
-//    StringFieldFormat(std::string* name);
+//    StringFieldFormat(const std::string & name);
 //protected:
 //    StringFieldFormat(const ::default_init_tag&);
 
@@ -80,9 +80,9 @@ class StringFieldFormat : public FieldFormat
 //public:
     
 //    static void
-//    std::string* valueToString(void* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-//    void* valueFromString(std::string* value);
-//    std::string* valueToString(void* value);
+//    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
+//    void* valueFromString(const std::string & value);
+//    const std::string & valueToString(void* value);
 //    static const std::string& EDITOR_CONTEXT_MASK();
 //    static const std::string& EDITOR_CONTEXT();
 //    static const std::string& EDITOR_EXPRESSION();
@@ -104,11 +104,11 @@ class StringFieldFormat : public FieldFormat
 //public:
 //    static const std::string& FIELD_ADDITIONAL_REFERENCES_REFERENCE();
 //    static const std::string& FIELD_ADDITIONAL_REFERENCES_DESCRIPTION();
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat*& ADDITIONAL_REFERENCES_FORMAT();
+//    static TableFormat*& ADDITIONAL_REFERENCES_FORMAT();
 //    static const std::string& FIELD_DEFAULT_TABLE();
 //    static const std::string& FIELD_DEFAULT_CONTEXT();
 //    static const std::string& FIELD_REFERENCES();
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat*& EXPRESSION_BUILDER_OPTIONS_FORMAT();
+//    static TableFormat*& EXPRESSION_BUILDER_OPTIONS_FORMAT();
 //    static const std::string& TEXT_EDITOR_MODE_AGGREGATE();
 //    static const std::string& TEXT_EDITOR_MODE_JAVA();
 //    static const std::string& TEXT_EDITOR_MODE_XML();

@@ -27,25 +27,25 @@ class BasePlugin
 
 //private:
 //    PluginDirector* pluginDirector;
-//    std::string* id;
-//    std::string* description;
+//    const std::string & id;
+//    const std::string & description;
 //    int index;
 //protected:
 //    void ctor();
-//    void ctor(std::string* description);
+//    void ctor(const std::string & description);
 
 //public:
-//    std::string* getId();
-//    void setId(std::string* id);
-//    std::string* getShortId();
-//    std::string* getDescription();
-//    void setDescription(std::string* description);
+//    const std::string & getId();
+//    void setId(const std::string & id);
+//    const std::string & getShortId();
+//    const std::string & getDescription();
+//    void setDescription(const std::string & description);
 //    PluginDirector* getPluginDirector();
 //    void setPluginDirector(PluginDirector* pluginDirector);
 //    ::com::tibbo::aggregate::common::context::Context* createGlobalConfigContext(::com::tibbo::aggregate::common::context::Context* rootContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray*/*...*/ properties);
 //    ::com::tibbo::aggregate::common::context::Context* createUserConfigContext(::com::tibbo::aggregate::common::context::Context* userContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray*/*...*/ properties);
 //    ::com::tibbo::aggregate::common::context::Context* getGlobalConfigContext();
-//    ::com::tibbo::aggregate::common::context::Context* getUserConfigContext(std::string* username);
+//    ::com::tibbo::aggregate::common::context::Context* getUserConfigContext(const std::string & username);
 //    int getSortIndex();
 
 //public: /* protected */
@@ -68,7 +68,7 @@ class BasePlugin
 
 //    // Generated
 //    BasePlugin();
-//    BasePlugin(std::string* description);
+//    BasePlugin(const std::string & description);
 //protected:
 //    BasePlugin(const ::default_init_tag&);
 

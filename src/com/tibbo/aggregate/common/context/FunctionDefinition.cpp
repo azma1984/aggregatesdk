@@ -6,63 +6,43 @@
 
 FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat) 
 {
-//    ctor(name,inputFormat,outputFormat);
+  init(name, inputFormat, outputFormat, 0, 0);
 }
 
 FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat,  const std::string &description) 
 {
- //   ctor(name,inputFormat,outputFormat,description);
+  init(name, inputFormat, outputFormat, description, 0);
 }
 
 FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group) 
 {
-  //  ctor(name,inputFormat,outputFormat,description,group);
+  init(name, inputFormat, outputFormat, description, group);
 }
-/*
 
-void FunctionDefinition::init()
+
+
+
+void FunctionDefinition::init(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group)
 {
     hidden = false;
-    permissions;
+    permissions=0;
     concurrent = false;
-}
 
-void FunctionDefinition::ctor(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat)
-{
-    super::ctor();
-    init();
-    init_(name, inputFormat, outputFormat, 0, 0);
-}
-
-void FunctionDefinition::ctor(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat, std::string* description)
-{
-    super::ctor();
-    init();
-    init_(name, inputFormat, outputFormat, description, 0);
-}
-
-void FunctionDefinition::ctor(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat, std::string* description, std::string* group)
-{
-    super::ctor();
-    init();
-    init_(name, inputFormat, outputFormat, description, group);
-}
-
-void FunctionDefinition::init_(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat, std::string* description, std::string* group)
-{
     setName(name);
+
     setInputFormat(inputFormat);
     setOutputFormat(outputFormat);
+
     setDescription(description);
     setGroup(group);
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* FunctionDefinition::getInputFormat()
+TableFormat* FunctionDefinition::getInputFormat()
 {
     return inputFormat;
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* FunctionDefinition::getOutputFormat()
+TableFormat* FunctionDefinition::getOutputFormat()
 {
     return outputFormat;
 }
@@ -72,7 +52,7 @@ bool FunctionDefinition::isHidden()
     return hidden;
 }
 
-com::tibbo::aggregate::common::security::Permissions* FunctionDefinition::getPermissions()
+Permissions* FunctionDefinition::getPermissions()
 {
     return permissions;
 }
@@ -84,16 +64,18 @@ FunctionImplementation* FunctionDefinition::getImplementation()
 
 void FunctionDefinition::setInputFormat(TableFormat* inputFormat)
 {
-    if(inputFormat != 0) {
-        inputFormat)->makeImmutable(0);
+    if(inputFormat != 0) 
+	{
+       inputFormat->makeImmutable(0);
     }
     this->inputFormat = inputFormat;
 }
 
 void FunctionDefinition::setOutputFormat(TableFormat* outputFormat)
 {
-    if(outputFormat != 0) {
-        outputFormat)->makeImmutable(0);
+    if(outputFormat != 0) 
+	{
+        outputFormat->makeImmutable(0);
     }
     this->outputFormat = outputFormat;
 }
@@ -103,7 +85,7 @@ void FunctionDefinition::setHidden(bool hidden)
     this->hidden = hidden;
 }
 
-void FunctionDefinition::setPermissions(::com::tibbo::aggregate::common::security::Permissions* perms)
+void FunctionDefinition::setPermissions(Permissions* perms)
 {
     this->permissions = perms;
 }
@@ -125,32 +107,36 @@ void FunctionDefinition::setImplementation(FunctionImplementation* implementatio
 
 FunctionDefinition* FunctionDefinition::clone()
 {
+	/*
     try {
         return java_cast< FunctionDefinition* >(super::clone());
     } catch (::java::lang::CloneNotSupportedException* ex) {
         throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
     }
+	*/
+
+	return 0;
 }
 
 int FunctionDefinition::compareTo(FunctionDefinition* d)
 {
-    if(getIndex() != 0 || d)->getIndex() != 0) {
+   /*
+	if(getIndex() != 0 || d)->getIndex() != 0) 
+	{
         auto my = getIndex() != 0 ? getIndex() : new ::java::lang::Integer(int(0));
         auto other = d)->getIndex() != 0 ? d)->getIndex() : new ::java::lang::Integer(int(0));
         return other)->compareTo(my);
     }
+	*/
     return 0;
 }
 
-int FunctionDefinition::compareTo(void* arg0)
-{ 
-    return compareTo(dynamic_cast< FunctionDefinition* >(arg0));
-}
 
 int FunctionDefinition::hashCode()
 {
-    auto const prime = int(31);
-    auto result = int(1);
+    const int prime = 31;
+    int result = 1;
+	/*
     result = prime * result + ((getDescription() == 0) ? int(0) : getDescription())->hashCode());
     result = prime * result + ((getGroup() == 0) ? int(0) : getGroup())->hashCode());
     result = prime * result + ((getHelp() == 0) ? int(0) : getHelp())->hashCode());
@@ -161,18 +147,20 @@ int FunctionDefinition::hashCode()
     result = prime * result + ((outputFormat == 0) ? int(0) : outputFormat)->hashCode());
     result = prime * result + ((implementation == 0) ? int(0) : implementation)->hashCode());
     result = prime * result + ((permissions == 0) ? int(0) : permissions)->hashCode());
+	*/
     return result;
 }
 
 bool FunctionDefinition::equals(void* obj)
 {
-    if(this) == obj) {
+    /*
+	if(this) == obj) {
         return true;
     }
     if(obj == 0) {
         return false;
     }
-    if(getClass()) != obj)->getClass())) {
+    if(getClass() != obj->getClass()) {
         return false;
     }
     auto other = java_cast< FunctionDefinition* >(obj);
@@ -242,8 +230,9 @@ bool FunctionDefinition::equals(void* obj)
     } else if(!permissions)->equals(other)->permissions))) {
         return false;
     }
+	*/
     return true;
 }
 
-*/
+
 

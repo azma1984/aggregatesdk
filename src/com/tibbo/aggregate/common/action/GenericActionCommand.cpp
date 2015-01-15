@@ -61,7 +61,7 @@ void GenericActionCommand::ctor(const std::string& type, const std::string& titl
     }
 }
 
-void GenericActionCommand::ctor(std::string* requestId, std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void GenericActionCommand::ctor(const std::string & requestId, const std::string & title, DataTable* parameters)
 {
     ctor(requestId, title);
     setParameters(parameters);

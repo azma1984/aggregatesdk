@@ -25,19 +25,19 @@ com::tibbo::aggregate::common::action::command::EditData::EditData()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::EditData::EditData(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::EditData::EditData(const std::string & title, DataTable* parameters) 
     : EditData(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
 }
 
-com::tibbo::aggregate::common::action::command::EditData::EditData(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* data, bool readonly) 
+com::tibbo::aggregate::common::action::command::EditData::EditData(const std::string & title, DataTable* data, bool readonly) 
     : EditData(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,data,readonly);
 }
 
-com::tibbo::aggregate::common::action::command::EditData::EditData(std::string* title, std::string* iconId, std::string* expression, ::java::lang::Long* period) 
+com::tibbo::aggregate::common::action::command::EditData::EditData(const std::string & title, const std::string & iconId, const std::string & expression, ::java::lang::Long* period) 
     : EditData(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,iconId,expression,period);
@@ -129,25 +129,25 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 
 void com::tibbo::aggregate::common::action::command::EditData::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_DATA(), CFT_EDIT_DATA_, static_cast< ::com::tibbo::aggregate::common::datatable::TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_DATA(), CFT_EDIT_DATA_, static_cast< TableFormat* >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::EditData::ctor(const std::string & title, DataTable* parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_DATA(), title, parameters, CFT_EDIT_DATA_);
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* data, bool readonly)
+void com::tibbo::aggregate::common::action::command::EditData::ctor(const std::string & title, DataTable* data, bool readonly)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_DATA(), title);
     this->data = data;
     this->readOnly = readonly;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::ctor(std::string* title, std::string* iconId, std::string* expression, ::java::lang::Long* period)
+void com::tibbo::aggregate::common::action::command::EditData::ctor(const std::string & title, const std::string & iconId, const std::string & expression, ::java::lang::Long* period)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_DATA(), title);
-    this->data = new ::com::tibbo::aggregate::common::datatable::DataTable();
+    this->data = new DataTable();
     this->iconId = iconId;
     this->expression = expression;
     this->period = period;
@@ -155,7 +155,7 @@ void com::tibbo::aggregate::common::action::command::EditData::ctor(std::string*
 
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditData::constructParameters()
 {
-    auto rec = new ::com::tibbo::aggregate::common::datatable::DataRecord(CFT_EDIT_DATA_);
+    auto rec = new DataRecord(CFT_EDIT_DATA_);
     rec)->addDataTable(data);
     rec)->addBoolean(::java::lang::Boolean::valueOf(useDockableFrame));
     rec)->addBoolean(::java::lang::Boolean::valueOf(readOnly));
@@ -163,8 +163,8 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     rec)->addString(helpId);
     rec)->addString(help);
     rec)->addString(defaultContext);
-    rec)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< ::com::tibbo::aggregate::common::datatable::DataTable* >(0));
-    rec)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< ::com::tibbo::aggregate::common::datatable::DataTable* >(0));
+    rec)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTable* >(0));
+    rec)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTable* >(0));
     rec)->addString(expression);
     rec)->addLong(period);
     return rec)->wrap();
@@ -181,7 +181,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return data;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::setData(::com::tibbo::aggregate::common::datatable::DataTable* data)
+void com::tibbo::aggregate::common::action::command::EditData::setData(DataTable* data)
 {
     this->data = data;
 }
@@ -211,7 +211,7 @@ std::string com::tibbo::aggregate::common::action::command::EditData::getIconId(
     return iconId;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::setIconId(std::string* iconId)
+void com::tibbo::aggregate::common::action::command::EditData::setIconId(const std::string & iconId)
 {
     this->iconId = iconId;
 }
@@ -221,7 +221,7 @@ std::string com::tibbo::aggregate::common::action::command::EditData::getHelpId(
     return helpId;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::setHelpId(std::string* helpId)
+void com::tibbo::aggregate::common::action::command::EditData::setHelpId(const std::string & helpId)
 {
     this->helpId = helpId;
 }
@@ -231,7 +231,7 @@ std::string com::tibbo::aggregate::common::action::command::EditData::getHelp()
     return help;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::setHelp(std::string* help)
+void com::tibbo::aggregate::common::action::command::EditData::setHelp(const std::string & help)
 {
     this->help = help;
 }
@@ -241,7 +241,7 @@ std::string com::tibbo::aggregate::common::action::command::EditData::getDefault
     return defaultContext;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::setDefaultContext(std::string* defaultContext)
+void com::tibbo::aggregate::common::action::command::EditData::setDefaultContext(const std::string & defaultContext)
 {
     this->defaultContext = defaultContext;
 }
@@ -271,7 +271,7 @@ std::string com::tibbo::aggregate::common::action::command::EditData::getExpress
     return expression;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::setExpression(std::string* expression)
+void com::tibbo::aggregate::common::action::command::EditData::setExpression(const std::string & expression)
 {
     this->expression = expression;
 }
@@ -329,7 +329,7 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        CFT_EDIT_DATA_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        CFT_EDIT_DATA_ = new TableFormat(int(1), int(1));
         {
             CFT_EDIT_DATA_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_DATA_)
                 ->append(u"><T>"_j)->toString());
@@ -361,13 +361,13 @@ struct clinit_ {
                 ->append(u"><S><F=N><D="_j)
                 ->append(Cres::get())->getString(u"expression"_j))
                 ->append(u"><E="_j)
-                ->append(::com::tibbo::aggregate::common::datatable::field::StringFieldFormat::EDITOR_EXPRESSION())
+                ->append(field::StringFieldFormat::EDITOR_EXPRESSION())
                 ->append(u">"_j)->toString());
             CFT_EDIT_DATA_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_PERIOD_)
                 ->append(u"><L><F=N><D="_j)
                 ->append(Cres::get())->getString(u"acRefreshPeriod"_j))
                 ->append(u"><E="_j)
-                ->append(::com::tibbo::aggregate::common::datatable::field::LongFieldFormat::EDITOR_PERIOD())
+                ->append(field::LongFieldFormat::EDITOR_PERIOD())
                 ->append(u">"_j)->toString());
         }
     }

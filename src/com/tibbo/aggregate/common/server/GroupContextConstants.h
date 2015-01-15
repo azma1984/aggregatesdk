@@ -5,7 +5,6 @@
 
 namespace GroupContextConstants
 {
- public:
     
   static const std::string V_REPLICATION = "replication";
   static const std::string V_MEMBERS = "members";

@@ -66,7 +66,7 @@ public:
     typedef BasePlugin super;
 protected:
     void ctor();
-    void ctor(std::string* name);
+    void ctor(const std::string & name);
 
 public:
     void initialize() /* throws(PluginException) */;
@@ -80,7 +80,7 @@ public:
 
     // Generated
     AbstractContextPlugin();
-    AbstractContextPlugin(std::string* name);
+    AbstractContextPlugin(const std::string & name);
 protected:
     AbstractContextPlugin(const ::default_init_tag&);
 
@@ -89,12 +89,12 @@ public:
     
     ::com::tibbo::aggregate::common::context::Context* createGlobalConfigContext(::com::tibbo::aggregate::common::context::Context* rootContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray* properties);
     ::com::tibbo::aggregate::common::context::Context* createUserConfigContext(::com::tibbo::aggregate::common::context::Context* userContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray* properties);
-    std::string* getDescription();
+    const std::string & getDescription();
     ::com::tibbo::aggregate::common::context::Context* getGlobalConfigContext();
-    std::string* getId();
-    std::string* getShortId();
+    const std::string & getId();
+    const std::string & getShortId();
     int getSortIndex();
-    ::com::tibbo::aggregate::common::context::Context* getUserConfigContext(std::string* username);
+    ::com::tibbo::aggregate::common::context::Context* getUserConfigContext(const std::string & username);
     void globalDeinit(::com::tibbo::aggregate::common::context::Context* rootContext);
     void globalInit(::com::tibbo::aggregate::common::context::Context* rootContext);
     void globalStart();

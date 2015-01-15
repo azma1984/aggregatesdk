@@ -20,7 +20,7 @@ class com::tibbo::aggregate::common::action::DefaultActionInitializer
 
 public:
     typedef void super;
-    ActionIdentifier* initAction(::com::tibbo::aggregate::common::context::Context* context, std::string* actionName, ServerActionInput* initialParametrs, ::com::tibbo::aggregate::common::datatable::DataTable* inputData, std::map environment, ActionExecutionMode* mode, ::com::tibbo::aggregate::common::context::CallerController* callerController, ::com::tibbo::aggregate::common::util::ErrorCollector* collector) /* throws(ContextException) */;
+    ActionIdentifier* initAction(::com::tibbo::aggregate::common::context::Context* context, const std::string & actionName, ServerActionInput* initialParametrs, DataTable* inputData, std::map environment, ActionExecutionMode* mode, ::com::tibbo::aggregate::common::context::CallerController* callerController, ::com::tibbo::aggregate::common::util::ErrorCollector* collector) /* throws(ContextException) */;
 
     // Generated
     DefaultActionInitializer();

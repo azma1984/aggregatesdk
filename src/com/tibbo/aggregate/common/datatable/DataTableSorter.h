@@ -19,7 +19,7 @@ namespace com
             {
                 namespace datatable
                 {
-typedef ::SubArray< ::com::tibbo::aggregate::common::datatable::SortOrder, voidArray > SortOrderArray;
+typedef ::SubArray< SortOrder, voidArray > SortOrderArray;
                 } // datatable
             } // common
         } // aggregate

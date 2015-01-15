@@ -8,13 +8,13 @@ QueryCondition::QueryCondition(const ::default_init_tag&)
     
 }
 
-QueryCondition::QueryCondition(std::string* field, void* value, int operator_) 
+QueryCondition::QueryCondition(const std::string & field, void* value, int operator_) 
     : QueryCondition(*static_cast< ::default_init_tag* >(0))
 {
     ctor(field,value,operator_);
 }
 
-QueryCondition::QueryCondition(std::string* field, void* value) 
+QueryCondition::QueryCondition(const std::string & field, void* value) 
     : QueryCondition(*static_cast< ::default_init_tag* >(0))
 {
     ctor(field,value);
@@ -37,7 +37,7 @@ const int QueryCondition::GE;
 
 const int QueryCondition::LE;
 
-void QueryCondition::ctor(std::string* field, void* value, int operator_)
+void QueryCondition::ctor(const std::string & field, void* value, int operator_)
 {
     super::ctor();
     init();
@@ -46,7 +46,7 @@ void QueryCondition::ctor(std::string* field, void* value, int operator_)
     this->operator_ = operator_;
 }
 
-void QueryCondition::ctor(std::string* field, void* value)
+void QueryCondition::ctor(const std::string & field, void* value)
 {
     ctor(field, value, EQ);
 }

@@ -26,8 +26,8 @@ protected:
 public:
     ::com::tibbo::aggregate::common::context::CallerController* getCallerController();
     void setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController);
-    void addMaskListener(std::string* context, std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* cel, bool weak);
-    void removeMaskListener(std::string* context, std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* cel);
+    void addMaskListener(const std::string & context, const std::string & name, ContextEventListener* cel, bool weak);
+    void removeMaskListener(const std::string & context, const std::string & name, ContextEventListener* cel);
     ::com::tibbo::aggregate::common::context::ContextManager* getContextManager();
     void shutdown();
 

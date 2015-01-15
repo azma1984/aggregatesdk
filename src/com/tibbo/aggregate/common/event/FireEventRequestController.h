@@ -29,7 +29,7 @@ public:
     void setCustomExpirationPeriod(::java::lang::Long* customExpirationPeriod);
     bool isIgnoreStorageErrors();
     void setIgnoreStorageErrors(bool ignoreStorageErrors);
-    ::com::tibbo::aggregate::common::data::Event* process(::com::tibbo::aggregate::common::data::Event* event);
+    Event* process(Event* event);
 
     // Generated
     FireEventRequestController(::java::lang::Long* customExpirationPeriod);

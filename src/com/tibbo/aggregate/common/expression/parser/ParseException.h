@@ -44,7 +44,7 @@ private:
 protected:
     void ctor(Token* currentTokenVal, ::intArrayArray* expectedTokenSequencesVal, std::stringArray* tokenImageVal);
     void ctor();
-    void ctor(std::string* message);
+    void ctor(const std::string & message);
 
 public:
     Token* currentToken;
@@ -55,17 +55,17 @@ private:
     static const std::string initialise(Token* currentToken, ::intArrayArray* expectedTokenSequences, std::stringArray* tokenImage);
 
 public: /* protected */
-    std::string* eol;
+    const std::string & eol;
 
 public: /* package */
-    static const std::string add_escapes(std::string* str);
+    static const std::string add_escapes(const std::string & str);
 
     // Generated
 
 public:
     ParseException(Token* currentTokenVal, ::intArrayArray* expectedTokenSequencesVal, std::stringArray* tokenImageVal);
     ParseException();
-    ParseException(std::string* message);
+    ParseException(const std::string & message);
 protected:
     ParseException(const ::default_init_tag&);
 

@@ -137,16 +137,16 @@ public:
     //It is not used anywhere!
    //TableFormat* getActionCommandFormat(std::string type);
 
-	void checkResponseCode(std::string* result);
+	void checkResponseCode(const std::string & result);
    //	DataTable* createDndActionParameters(Context* acceptedContext); // todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
-	//DataTable* createDndActionParameters(std::string* accepterContextPath);// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+	//DataTable* createDndActionParameters(const std::string & accepterContextPath);// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 
    //	ServerActionInput* createActionInput(DataTable* executionParameters);
 
 
-  //	ActionIdentifier* initAction(Context* context, std::string* actionName, ServerActionInput* initialParameters, DataTable* inputData, ActionExecutionMode* mode, CallerController* callerController);
-  //	ActionIdentifier* initAction(Context* context, std::string* actionName, ServerActionInput* initialParameters, DataTable* inputData, std::map<std::string,void*> environment, ActionExecutionMode* mode, CallerController* callerController, ErrorCollector* collector);
+  //	ActionIdentifier* initAction(Context* context, const std::string & actionName, ServerActionInput* initialParameters, DataTable* inputData, ActionExecutionMode* mode, CallerController* callerController);
+  //	ActionIdentifier* initAction(Context* context, const std::string & actionName, ServerActionInput* initialParameters, DataTable* inputData, std::map<std::string,void*> environment, ActionExecutionMode* mode, CallerController* callerController, ErrorCollector* collector);
   //	GenericActionCommand* stepAction(Context* context, ActionIdentifier* actionId, GenericActionResponse* actionResponse, CallerController* callerController);
 
 

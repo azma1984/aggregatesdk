@@ -3,7 +3,7 @@
 
 /*
 
-KeyStroke::KeyStroke(std::string* keyStroke)
+KeyStroke::KeyStroke(const std::string & keyStroke)
 {
 	this->keyStroke = ::javax::swing::KeyStroke::getKeyStroke(keyStroke);
 }
@@ -39,7 +39,7 @@ KeyStroke* KeyStroke::getKeyStroke(int keyCode, int modifiers)
     return new KeyStroke(::javax::swing::KeyStroke::getKeyStroke(keyCode, modifiers));
 }
 
-KeyStroke* KeyStroke::getKeyStroke(std::string* s)
+KeyStroke* KeyStroke::getKeyStroke(const std::string & s)
 {
 
     auto k = ::javax::swing::KeyStroke::getKeyStroke(s);

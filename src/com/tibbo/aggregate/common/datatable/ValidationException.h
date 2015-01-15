@@ -13,16 +13,16 @@ class ValidationException: public DataTableException
 public:
     typedef DataTableException super;
 protected:
-    void ctor(std::string* message);
+    void ctor(const std::string & message);
     void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
+    void ctor(const std::string & message, ::java::lang::Throwable* cause);
 
     // Generated
 
 public:
-    ValidationException(std::string* message);
+    ValidationException(const std::string & message);
     ValidationException(::java::lang::Throwable* cause);
-    ValidationException(std::string* message, ::java::lang::Throwable* cause);
+    ValidationException(const std::string & message, ::java::lang::Throwable* cause);
 protected:
     ValidationException(const ::default_init_tag&);
 

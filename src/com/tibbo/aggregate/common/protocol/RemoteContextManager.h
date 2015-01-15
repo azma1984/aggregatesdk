@@ -25,16 +25,16 @@ public:
     AbstractAggreGateDeviceController* getController();
 
 private:
-    void sendAddListener(std::string* context, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
-    void sendRemoveListener(std::string* context, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
+    void sendAddListener(const std::string & context, const std::string & event, ContextEventListener* listener);
+    void sendRemoveListener(const std::string & context, const std::string & event, ContextEventListener* listener);
 
 public:
-    void addListenerToContext(ProxyContext* con, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask, bool weak);
-    void removeListenerFromContext(ProxyContext* con, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask);
+    void addListenerToContext(ProxyContext* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak);
+    void removeListenerFromContext(ProxyContext* con, const std::string & event, ContextEventListener* listener, bool mask);
 
 public:
-    void addMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
-    void removeMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
+    void addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener);
+    void removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener);
     void contextRemoved(ProxyContext* con);
 
 
@@ -46,16 +46,16 @@ private:
     void init();
 
 public:
-    void addListenerToContext(::com::tibbo::aggregate::common::context::Context* con, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask, bool weak);
+    void addListenerToContext(::com::tibbo::aggregate::common::context::Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak);
 
 public:
     void contextRemoved(::com::tibbo::aggregate::common::context::Context* con);
 
 public:
-    void removeListenerFromContext(::com::tibbo::aggregate::common::context::Context* con, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool mask);
+    void removeListenerFromContext(::com::tibbo::aggregate::common::context::Context* con, const std::string & event, ContextEventListener* listener, bool mask);
 
 public:
-    void addMaskEventListener(std::string* mask, std::string* event, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool weak);
+    void addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener, bool weak);
 
    */
 };

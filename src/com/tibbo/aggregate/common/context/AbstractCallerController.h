@@ -15,11 +15,11 @@ class AbstractCallerController : public CallerController
 
 //private:
 //    static ::java::util::Set* CONTROLLERS_;
-//    std::string* username;
+//    const std::string & username;
 //    CallerData* callerData;
 //    bool loggedIn;
-//    std::string* type;
-//    std::string* address;
+//    const std::string & type;
+//    const std::string & address;
 //    ::java::util::Date* creationTime;
 //    std::map properties;
 //protected:
@@ -28,7 +28,7 @@ class AbstractCallerController : public CallerController
 //public:
 //    bool isLoggedIn();
 //    bool isPermissionCheckingEnabled();
-//    ::com::tibbo::aggregate::common::security::PermissionCache* getPermissionCache();
+//    PermissionCache* getPermissionCache();
 //    CallerData* getCallerData();
 //    std::map getProperties();
 
@@ -36,23 +36,23 @@ class AbstractCallerController : public CallerController
 //    void setLoggedIn(bool loggedIn);
 
 //public:
-//    void sendFeedback(int level, std::string* message);
+//    void sendFeedback(int level, const std::string & message);
 //    static std::list  getControllers();
-//    std::string* toString();
-//    ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
-//    std::string* getUsername();
+//    const std::string & toString();
+//    Permissions* getPermissions();
+//    const std::string & getUsername();
 
 //public: /* protected */
-//    void setUsername(std::string* username);
+//    void setUsername(const std::string & username);
 
 //public:
-//    std::string* getInheritedUsername();
-//    std::string* getEffectiveUsername();
-//    std::string* getType();
-//    void setType(std::string* type);
-//    std::string* getAddress();
-//    void setAddress(std::string* address);
-//    void login(std::string* username, std::string* inheritedUsername, ::com::tibbo::aggregate::common::security::Permissions* permissons) /* throws(ContextException) */;
+//    const std::string & getInheritedUsername();
+//    const std::string & getEffectiveUsername();
+//    const std::string & getType();
+//    void setType(const std::string & type);
+//    const std::string & getAddress();
+//    void setAddress(const std::string & address);
+//    void login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) /* throws(ContextException) */;
 //    ::java::util::Date* getCreationTime();
 //    void logout();
 

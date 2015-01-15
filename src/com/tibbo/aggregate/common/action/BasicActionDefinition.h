@@ -52,8 +52,8 @@ public:
 private:
     ::java::util::concurrent::locks::std::mutex ** executionLock;
 protected:
-    void ctor(std::string* name);
-    void ctor(std::string* name, ::java::lang::Class* actionClass);
+    void ctor(const std::string & name);
+    void ctor(const std::string & name, ::java::lang::Class* actionClass);
 
 public:
     GroupIdentifier* getExecutionGroup();
@@ -61,16 +61,16 @@ public:
     bool isHidden();
     KeyStroke* getAccelerator();
     std::list  getDropSources();
-    void setIconId(std::string* iconId);
-    void setHelp(std::string* help);
-    void setDescription(std::string* description);
-    void setExecutionGroup(std::string* base);
+    void setIconId(const std::string & iconId);
+    void setHelp(const std::string & help);
+    void setDescription(const std::string & description);
+    void setExecutionGroup(const std::string & base);
     void setExecutionGroup(GroupIdentifier* groupId);
     void setEnabled(bool enabled);
     void setHidden(bool hidden);
     void setAccelerator(KeyStroke* accelerator);
     void setDropSources(std::list  dropSources);
-    void setName(std::string* name);
+    void setName(const std::string & name);
     bool isDefault();
     void setDefault(bool isDefault);
     bool isConcurrent();
@@ -82,19 +82,19 @@ public:
 public: /* protected */
     void registerCommands();
     void registerCommand(ActionCommand* cmd);
-    void unregisterCommand(std::string* id);
+    void unregisterCommand(const std::string & id);
 
 public:
     ::java::util::concurrent::locks::std::mutex ** getExecutionLock();
     void removePropertyChangeListener(::java::beans::PropertyChangeListener* l);
     void addPropertyChangeListener(::java::beans::PropertyChangeListener* l);
     bool isHeadless();
-    ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
+    Permissions* getPermissions();
     int compareTo(void* o);
 
     // Generated
-    BasicActionDefinition(std::string* name);
-    BasicActionDefinition(std::string* name, ::java::lang::Class* actionClass);
+    BasicActionDefinition(const std::string & name);
+    BasicActionDefinition(const std::string & name, ::java::lang::Class* actionClass);
 protected:
     BasicActionDefinition(const ::default_init_tag&);
 
@@ -107,14 +107,14 @@ private:
     void init();
 
 public:
-    std::string* getDescription();
-    std::string* getGroup();
-    std::string* getHelp();
-    std::string* getIconId();
-    ::java::lang::Integer* getIndex();
-    std::string* getName();
+    const std::string & getDescription();
+    const std::string & getGroup();
+    const std::string & getHelp();
+    const std::string & getIconId();
+    int  getIndex();
+    const std::string & getName();
     void* getOwner();
-    std::string* toDetailedString();
+    const std::string & toDetailedString();
 
 private:
     static const std::string& GROUP_ID_SEPARATOR();

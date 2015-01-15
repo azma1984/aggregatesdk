@@ -38,11 +38,11 @@ public:
 public: /* protected */
     void callReferenceChanged(::com::tibbo::aggregate::common::expression::Reference* cause, int method, ::com::tibbo::aggregate::common::binding::ReferenceListener* listener);
     ::com::tibbo::aggregate::common::binding::ReferenceWriter* getExternalReferenceWriter();
-    void setCellValue(void* value, int row, std::string* field);
-    void setEnabled(void* value, int row, std::string* field);
-    void setHidden(void* value, int row, std::string* field);
-    void setOptions(void* value, int row, std::string* field);
-    void setSelectionValues(void* value, int row, std::string* field);
+    void setCellValue(void* value, int row, const std::string & field);
+    void setEnabled(void* value, int row, const std::string & field);
+    void setHidden(void* value, int row, const std::string & field);
+    void setOptions(void* value, int row, const std::string & field);
+    void setSelectionValues(void* value, int row, const std::string & field);
     void setEditorEnabled(bool enabled);
 
 public:
@@ -51,7 +51,7 @@ public:
     void writeReference(int method, ::com::tibbo::aggregate::common::expression::Reference* ref, ::com::tibbo::aggregate::common::expression::Reference* cause, void* value, ::com::tibbo::aggregate::common::binding::ChangeCache* cache) /* throws(BindingException) */;
 
 public: /* protected */
-    FieldFormat* getFieldFormat(int row, std::string* field) /* throws(BindingException) */;
+    FieldFormat* getFieldFormat(int row, const std::string & field) /* throws(BindingException) */;
 
     // Generated
 

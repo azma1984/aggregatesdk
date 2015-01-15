@@ -10,7 +10,7 @@
 #include <string>
 #include <list>
 
-struct DiscoveryProvider : public Interface
+class DiscoveryProvider : public Interface
 {
 //TODO: not usage ?
 //    virtual std::string getName() = 0;
@@ -23,6 +23,6 @@ struct DiscoveryProvider : public Interface
 //                                        const std::string& description, const std::string& address,
 //                                        CallerController* caller) /* throws(ContextException) */ = 0;
 //    virtual DiscoverableServiceDefinition* getDiscoverableServiceDefinition(const std::string& name) = 0;
-//    virtual void configureService(std::string* name, bool enable, DeviceContext* deviceContext,
-//                                  DataTable* parameters, CallerController* callerController) /* throws(ContextException) */;
+//    virtual void configureService(const std::string & name, bool enable, DeviceContext* deviceContext,
+//                                  DataTable* parameters, CallerController* callerController)=0; /* throws(ContextException) */;
 };

@@ -23,13 +23,13 @@ com::tibbo::aggregate::common::action::command::ShowReport::ShowReport()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(std::string* title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard) 
+com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const std::string & title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard) 
     : ShowReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,reportData,location,dashboard);
 }
 
-com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const std::string & title, DataTable* parameters) 
     : ShowReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -65,10 +65,10 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 
 void com::tibbo::aggregate::common::action::command::ShowReport::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), CFT_SHOW_REPORT_, static_cast< ::com::tibbo::aggregate::common::datatable::TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), CFT_SHOW_REPORT_, static_cast< TableFormat* >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::ctor(std::string* title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
+void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std::string & title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), title);
     this->reportData = reportData;
@@ -76,18 +76,18 @@ void com::tibbo::aggregate::common::action::command::ShowReport::ctor(std::strin
     this->dashboard = dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std::string & title, DataTable* parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), title, parameters, CFT_SHOW_REPORT_);
 }
 
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowReport::constructParameters()
 {
-    auto t = new ::com::tibbo::aggregate::common::datatable::DataTable(CFT_SHOW_REPORT_);
+    auto t = new DataTable(CFT_SHOW_REPORT_);
     auto r = t)->addRecord();
-    r)->addData(new ::com::tibbo::aggregate::common::data::Data(reportData));
-    r)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< ::com::tibbo::aggregate::common::datatable::DataTable* >(0));
-    r)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< ::com::tibbo::aggregate::common::datatable::DataTable* >(0));
+    r)->addData(new Data(reportData));
+    r)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTable* >(0));
+    r)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTable* >(0));
     return t;
 }
 
@@ -146,7 +146,7 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        CFT_SHOW_REPORT_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        CFT_SHOW_REPORT_ = new TableFormat(int(1), int(1));
         {
             CFT_SHOW_REPORT_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_REPORT_DATA_)
                 ->append(u"><A>"_j)->toString());

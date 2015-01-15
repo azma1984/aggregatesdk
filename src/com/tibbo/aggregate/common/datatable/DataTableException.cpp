@@ -9,7 +9,7 @@ DataTableException::DataTableException(const ::default_init_tag&)
     
 }
 
-DataTableException::DataTableException(std::string* message) 
+DataTableException::DataTableException(const std::string & message) 
     : DataTableException(*static_cast< ::default_init_tag* >(0))
 {
     ctor(message);
@@ -21,13 +21,13 @@ DataTableException::DataTableException(::java::lang::Throwable* cause)
     ctor(cause);
 }
 
-DataTableException::DataTableException(std::string* message, ::java::lang::Throwable* cause) 
+DataTableException::DataTableException(const std::string & message, ::java::lang::Throwable* cause) 
     : DataTableException(*static_cast< ::default_init_tag* >(0))
 {
     ctor(message,cause);
 }
 
-void DataTableException::ctor(std::string* message)
+void DataTableException::ctor(const std::string & message)
 {
     super::ctor(message);
 }
@@ -37,7 +37,7 @@ void DataTableException::ctor(::java::lang::Throwable* cause)
     super::ctor(cause);
 }
 
-void DataTableException::ctor(std::string* message, ::java::lang::Throwable* cause)
+void DataTableException::ctor(const std::string & message, ::java::lang::Throwable* cause)
 {
     super::ctor(message, cause);
 }

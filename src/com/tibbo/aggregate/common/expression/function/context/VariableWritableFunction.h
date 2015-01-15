@@ -18,7 +18,7 @@ class com::tibbo::aggregate::common::expression::function::context::VariableWrit
 public:
     typedef EntityAvailableFunction super;
 protected:
-    void ctor(std::string* group);
+    void ctor(const std::string & group);
 
 public: /* protected */
     bool hasEntity(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
@@ -26,7 +26,7 @@ public: /* protected */
     // Generated
 
 public:
-    VariableWritableFunction(std::string* group);
+    VariableWritableFunction(const std::string & group);
 protected:
     VariableWritableFunction(const ::default_init_tag&);
 

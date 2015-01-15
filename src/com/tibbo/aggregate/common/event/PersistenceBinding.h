@@ -13,12 +13,12 @@
 
 
 class com::tibbo::aggregate::common::event::PersistenceBinding
-    : public ::com::tibbo::aggregate::common::datatable::AggreGateBean
+    : public AggreGateBean
     , public ::java::lang::Cloneable
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::AggreGateBean super;
+    typedef AggreGateBean super;
 
 private:
     static const std::string TYPE_BOOLEAN_;
@@ -28,36 +28,36 @@ private:
     static const std::string TYPE_FLOAT_;
     static const std::string TYPE_DOUBLE_;
     static const std::string TYPE_TIMESTAMP_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_;
-    std::string* name;
-    std::string* type;
-    std::string* index;
-    std::string* expression;
+    static TableFormat* FORMAT_;
+    const std::string & name;
+    const std::string & type;
+    const std::string & index;
+    const std::string & expression;
     ::com::tibbo::aggregate::common::expression::Expression* compiledExpression;
 protected:
     void ctor();
-    void ctor(::com::tibbo::aggregate::common::datatable::DataRecord* record);
-    void ctor(std::string* name, std::string* type, std::string* index, std::string* expression);
+    void ctor(DataRecord* record);
+    void ctor(const std::string & name, const std::string & type, const std::string & index, const std::string & expression);
 
 public:
-    std::string* getType();
-    std::string* getIndex();
-    std::string* getName();
-    std::string* getExpression();
+    const std::string & getType();
+    const std::string & getIndex();
+    const std::string & getName();
+    const std::string & getExpression();
     ::com::tibbo::aggregate::common::expression::Expression* getCompiledExpression();
-    void setName(std::string* name);
-    void setType(std::string* type);
-    void setIndex(std::string* index);
-    void setExpression(std::string* expression);
+    void setName(const std::string & name);
+    void setType(const std::string & type);
+    void setIndex(const std::string & index);
+    void setExpression(const std::string & expression);
     PersistenceBinding* clone();
     int hashCode();
     bool equals(void* obj);
-    std::string* toString();
+    const std::string & toString();
 
     // Generated
     PersistenceBinding();
-    PersistenceBinding(::com::tibbo::aggregate::common::datatable::DataRecord* record);
-    PersistenceBinding(std::string* name, std::string* type, std::string* index, std::string* expression);
+    PersistenceBinding(DataRecord* record);
+    PersistenceBinding(const std::string & name, const std::string & type, const std::string & index, const std::string & expression);
 protected:
     PersistenceBinding(const ::default_init_tag&);
 
@@ -72,7 +72,7 @@ public:
     static const std::string& TYPE_FLOAT();
     static const std::string& TYPE_DOUBLE();
     static const std::string& TYPE_TIMESTAMP();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT();
+    static TableFormat*& FORMAT();
 
 private:
     ::java::lang::Class* getClass0();

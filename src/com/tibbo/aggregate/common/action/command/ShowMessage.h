@@ -20,27 +20,27 @@ public:
 private:
     static const std::string CF_MESSAGE_;
     static const std::string CF_LEVEL_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_SHOW_MESSAGE_;
-    std::string* message;
+    static TableFormat* CFT_SHOW_MESSAGE_;
+    const std::string & message;
     int level;
 protected:
     void ctor();
-    void ctor(std::string* title, std::string* message, int level);
-    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    void ctor(const std::string & title, const std::string & message, int level);
+    void ctor(const std::string & title, DataTable* parameters);
 
 public: /* protected */
-    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+    DataTable* constructParameters();
 
 public:
-    std::string* getMessage();
+    const std::string & getMessage();
     int getLevel();
-    void setMessage(std::string* message);
+    void setMessage(const std::string & message);
     void setLevel(int level);
 
     // Generated
     ShowMessage();
-    ShowMessage(std::string* title, std::string* message, int level);
-    ShowMessage(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    ShowMessage(const std::string & title, const std::string & message, int level);
+    ShowMessage(const std::string & title, DataTable* parameters);
 protected:
     ShowMessage(const ::default_init_tag&);
 
@@ -50,7 +50,7 @@ public:
     static void 
     static const std::string& CF_MESSAGE();
     static const std::string& CF_LEVEL();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_SHOW_MESSAGE();
+    static TableFormat*& CFT_SHOW_MESSAGE();
 
 private:
     ::java::lang::Class* getClass0();

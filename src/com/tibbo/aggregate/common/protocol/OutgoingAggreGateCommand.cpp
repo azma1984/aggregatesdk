@@ -34,7 +34,7 @@ std::string com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::f
     return ::java::lang::Character::toString(static_cast< char16_t >(AggreGateCommand::END_CHAR));
 }
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::addParam(std::string* param)
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::addParam(const std::string & param)
 {
     if(paramCount != 0) {
         write(AggreGateCommand::CLIENT_COMMAND_SEPARATOR())->getBytes(), int(0), AggreGateCommand::CLIENT_COMMAND_SEPARATOR())->getBytes())->length);
@@ -52,7 +52,7 @@ std::string com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::g
     return id;
 }
 
-void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructReply(std::string* id, std::string* code)
+void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructReply(const std::string & id, const std::string & code)
 {
     if(paramCount > 0) {
         throw new ::java::lang::IllegalStateException(u"Can't construct reply - parameters already added to command"_j);
@@ -62,19 +62,19 @@ void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::construc
     addParam(code);
 }
 
-void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructReply(std::string* id, std::string* code, std::string* message)
+void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructReply(const std::string & id, const std::string & code, const std::string & message)
 {
     constructReply(id, code);
-    addParam(::com::tibbo::aggregate::common::datatable::DataTableUtils::transferEncode(message));
+    addParam(DataTableUtils::transferEncode(message));
 }
 
-void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructReply(std::string* id, std::string* code, std::string* message, std::string* details)
+void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructReply(const std::string & id, const std::string & code, const std::string & message, const std::string & details)
 {
     constructReply(id, code, message);
-    addParam(::com::tibbo::aggregate::common::datatable::DataTableUtils::transferEncode(details));
+    addParam(DataTableUtils::transferEncode(details));
 }
 
-void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructEvent(std::string* context, std::string* name, int level, std::string* encodedDataTable, ::java::lang::Long* eventId, ::java::util::Date* creationtime, ::java::lang::Integer* listener)
+void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, ::java::lang::Long* eventId, ::java::util::Date* creationtime, int  listener)
 {
     this->id = new std::string();
     addParam(std::string::valueOf(AggreGateCommand::COMMAND_CODE_MESSAGE));

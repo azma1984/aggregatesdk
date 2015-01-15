@@ -10,7 +10,7 @@
 struct com::tibbo::aggregate::common::context::VariableSetter
     
 {
-    bool set(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request, ::com::tibbo::aggregate::common::datatable::DataTable* value) /* throws(ContextException) */;
+    bool set(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request, DataTable* value) /* throws(ContextException) */;
 
     // Generated
     

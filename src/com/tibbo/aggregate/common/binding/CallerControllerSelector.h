@@ -11,7 +11,7 @@
 struct com::tibbo::aggregate::common::binding::CallerControllerSelector
     
 {
-    ::com::tibbo::aggregate::common::context::CallerController* select(::com::tibbo::aggregate::common::context::Context* context, std::string* entity, int entityType);
+    ::com::tibbo::aggregate::common::context::CallerController* select(::com::tibbo::aggregate::common::context::Context* context, const std::string & entity, int entityType);
 
     // Generated
     

@@ -23,13 +23,13 @@ class SelectEntities : public GenericActionCommand
 //    static const std::string CF_SINGLE_SELECTION_;
 //    static const std::string CF_TYPES_TYPE_;
 //    static const std::string RF_REFERENCE_;
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_SELECT_ENTITIES_;
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_SELECT_ENTITIES_TYPES_;
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat* RFT_SELECT_ENTITIES_;
+//    static TableFormat* CFT_SELECT_ENTITIES_;
+//    static TableFormat* CFT_SELECT_ENTITIES_TYPES_;
+//    static TableFormat* RFT_SELECT_ENTITIES_;
 //    ::java::util::Collection* contextTypes;
-//    std::string* rootContext;
-//    std::string* defaultContext;
-//    std::string* expandedContext;
+//    const std::string & rootContext;
+//    const std::string & defaultContext;
+//    const std::string & expandedContext;
 //    bool showChildren;
 //    bool allowMasks;
 //    bool showVars;
@@ -39,20 +39,20 @@ class SelectEntities : public GenericActionCommand
 //    bool singleSelection;
 //protected:
 //    void ctor();
-//    void ctor(std::string* title, ::java::util::Collection* contextTypes, std::string* rootContext, std::string* defaultContext, std::string* expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection);
+//    void ctor(const std::string & title, ::java::util::Collection* contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection);
 
 //public: /* protected */
-//    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+//    DataTable* constructParameters();
 
 //public:
 //    ::java::util::Collection* getContextTypes();
 //    void setContextTypes(::java::util::Collection* contextTypes);
-//    std::string* getRootContext();
-//    void setRootContext(std::string* rootContext);
-//    std::string* getDefaultContext();
-//    void setDefaultContext(std::string* defaultContext);
-//    std::string* getExpandedContext();
-//    void setExpandedContext(std::string* expandedContext);
+//    const std::string & getRootContext();
+//    void setRootContext(const std::string & rootContext);
+//    const std::string & getDefaultContext();
+//    void setDefaultContext(const std::string & defaultContext);
+//    const std::string & getExpandedContext();
+//    void setExpandedContext(const std::string & expandedContext);
 //    bool isShowChildren();
 //    void setShowChildren(bool showChildren);
 //    bool isAllowMasks();
@@ -70,7 +70,7 @@ class SelectEntities : public GenericActionCommand
 
 //    // Generated
 //    SelectEntities();
-//    SelectEntities(std::string* title, ::java::util::Collection* contextTypes, std::string* rootContext, std::string* defaultContext, std::string* expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection);
+//    SelectEntities(const std::string & title, ::java::util::Collection* contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection);
 //protected:
 //    SelectEntities(const ::default_init_tag&);
 
@@ -93,11 +93,11 @@ class SelectEntities : public GenericActionCommand
 //    static const std::string& RF_REFERENCE();
 
 //private:
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_SELECT_ENTITIES();
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_SELECT_ENTITIES_TYPES();
+//    static TableFormat*& CFT_SELECT_ENTITIES();
+//    static TableFormat*& CFT_SELECT_ENTITIES_TYPES();
 
 //public:
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat*& RFT_SELECT_ENTITIES();
+//    static TableFormat*& RFT_SELECT_ENTITIES();
 
 //private:
 //    ::java::lang::Class* getClass0();

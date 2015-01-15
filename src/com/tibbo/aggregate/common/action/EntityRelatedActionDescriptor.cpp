@@ -20,13 +20,13 @@ com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::EntityRela
     
 }
 
-com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::EntityRelatedActionDescriptor(std::string* mask, std::string* entity, std::string* target, std::string* action, std::string* description, std::string* iconId) 
+com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::EntityRelatedActionDescriptor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId) 
     : EntityRelatedActionDescriptor(*static_cast< ::default_init_tag* >(0))
 {
     ctor(mask,entity,target,action,description,iconId);
 }
 
-com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::EntityRelatedActionDescriptor(::com::tibbo::aggregate::common::datatable::DataRecord* data) 
+com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::EntityRelatedActionDescriptor(DataRecord* data) 
     : EntityRelatedActionDescriptor(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
@@ -87,7 +87,7 @@ com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::c
 }
 com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT_;
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(std::string* mask, std::string* entity, std::string* target, std::string* action, std::string* description, std::string* iconId)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId)
 {
     ctor();
     this->mask = mask;
@@ -98,7 +98,7 @@ void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(
     this->icon = iconId;
 }
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(::com::tibbo::aggregate::common::datatable::DataRecord* data)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(DataRecord* data)
 {
     super::ctor(FORMAT_, data);
 }
@@ -113,7 +113,7 @@ std::string com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor
     return mask;
 }
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setMask(std::string* mask)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setMask(const std::string & mask)
 {
     this->mask = mask;
 }
@@ -128,7 +128,7 @@ std::string com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor
     return target;
 }
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setTarget(std::string* target)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setTarget(const std::string & target)
 {
     this->target = target;
 }
@@ -138,7 +138,7 @@ std::string com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor
     return action;
 }
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setAction(std::string* action)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setAction(const std::string & action)
 {
     this->action = action;
 }
@@ -153,17 +153,17 @@ std::string com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor
     return icon;
 }
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setEntity(std::string* group)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setEntity(const std::string & group)
 {
     this->entity = group;
 }
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setDescription(std::string* description)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setDescription(const std::string & description)
 {
     this->description = description;
 }
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setIcon(std::string* icon)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setIcon(const std::string & icon)
 {
     this->icon = icon;
 }
@@ -196,7 +196,7 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        FORMAT_ = new ::com::tibbo::aggregate::common::datatable::TableFormat();
+        FORMAT_ = new TableFormat();
         {
             FORMAT_)->addField(std::stringBuilder().append(u"<"_j)->append(FIELD_MASK_)
                 ->append(u"><S><F=N>"_j)->toString());

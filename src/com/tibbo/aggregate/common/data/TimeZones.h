@@ -11,7 +11,7 @@ private:
     static std::map<std::string, std::string> ZONES;
     static std::map SELECTION_VALUES;
 
-    static const std::string getZoneDesc(std::string* zoneId);    
+    static const std::string getZoneDesc(const std::string & zoneId);    
 
 public:
 

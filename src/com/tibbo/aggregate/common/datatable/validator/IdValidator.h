@@ -22,7 +22,7 @@ public:
 
     void* validate(void* value) {// throws(ValidationException)
         if (value != NULL) {
-            std::string* obj = dynamic_cast<std::string*>(value);
+            const std::string & obj = dynamic_cast<const std::string &>(value);
             if (obj)
                 return Util::descriptionToName(*obj);
         }

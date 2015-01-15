@@ -20,9 +20,9 @@ protected:
     void ctor();
 
 public:
-    ::com::tibbo::aggregate::common::datatable::FieldFormat* createFieldFormat(std::string* name);
+    FieldFormat* createFieldFormat(const std::string & name);
     ::java::lang::Comparable* simpleToBean(void* value);
-    void* convertToTable(::java::lang::Comparable* value, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
+    void* convertToTable(::java::lang::Comparable* value, TableFormat* format);
 
     // Generated
     FCComparable();
@@ -32,7 +32,7 @@ protected:
 
 public:
     
-    void* convertToTable(void* value, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
+    void* convertToTable(void* value, TableFormat* format);
     void* convertToTable(void* value);
 
 private:

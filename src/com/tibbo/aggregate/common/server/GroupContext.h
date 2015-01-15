@@ -8,14 +8,14 @@
 #include "GroupContextConstants.h"
 
 
-class GroupContext : public ServerContext, public GroupContextConstants
+class GroupContext : public ServerContext//, public GroupContextConstants
 {
-    virtual bool isHidesMembers();
-    virtual void addMember(std::string* path);
-    virtual void removeMember(std::string* path, bool failIfDynamic);
-    virtual void renameMember(std::string* oldPath, std::string* newPath);
-    virtual void memberAdded(ServerContext* recursiveMember);
-    virtual void memberRemoved(ServerContext* recursiveMember);
+    virtual bool isHidesMembers()=0;
+    virtual void addMember(const std::string & path)=0;
+    virtual void removeMember(const std::string & path, bool failIfDynamic)=0;
+    virtual void renameMember(const std::string & oldPath, const std::string & newPath)=0;
+    virtual void memberAdded(ServerContext* recursiveMember)=0;
+    virtual void memberRemoved(ServerContext* recursiveMember)=0;
 };
 
 

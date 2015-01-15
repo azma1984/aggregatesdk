@@ -38,7 +38,7 @@ com::tibbo::aggregate::common::action::DefaultActionInitializer::DefaultActionIn
     ctor();
 }
 
-com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::common::action::DefaultActionInitializer::initAction(::com::tibbo::aggregate::common::context::Context* context, std::string* actionName, ServerActionInput* initialParametrs, ::com::tibbo::aggregate::common::datatable::DataTable* inputData, std::map environment, ActionExecutionMode* mode, ::com::tibbo::aggregate::common::context::CallerController* callerController, ::com::tibbo::aggregate::common::util::ErrorCollector* collector) /* throws(ContextException) */
+com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::common::action::DefaultActionInitializer::initAction(::com::tibbo::aggregate::common::context::Context* context, const std::string & actionName, ServerActionInput* initialParametrs, DataTable* inputData, std::map environment, ActionExecutionMode* mode, ::com::tibbo::aggregate::common::context::CallerController* callerController, ::com::tibbo::aggregate::common::util::ErrorCollector* collector) /* throws(ContextException) */
 {
     auto def = context)->getFunctionDefinition(::com::tibbo::aggregate::common::server::ServerContextConstants::F_INIT_ACTION());
     if(def == 0) {
@@ -47,7 +47,7 @@ com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::
             ->append(context)->toDetailedString())
             ->append(u")"_j)->toString());
     }
-    auto rec = new ::com::tibbo::aggregate::common::datatable::DataRecord(def)->getInputFormat());
+    auto rec = new DataRecord(def)->getInputFormat());
     rec)->addValue(actionName);
     rec)->addValue(initialParametrs)->getData());
     rec)->addValue(inputData);

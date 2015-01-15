@@ -56,7 +56,7 @@ com::tibbo::aggregate::common::util::WindowLocation::WindowLocation(int state, i
     ctor(state,side,index,size);
 }
 
-com::tibbo::aggregate::common::util::WindowLocation::WindowLocation(::com::tibbo::aggregate::common::datatable::DataRecord* data) 
+com::tibbo::aggregate::common::util::WindowLocation::WindowLocation(DataRecord* data) 
     : WindowLocation(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
@@ -224,7 +224,7 @@ void com::tibbo::aggregate::common::util::WindowLocation::ctor(int state, int si
     }
 }
 
-void com::tibbo::aggregate::common::util::WindowLocation::ctor(::com::tibbo::aggregate::common::datatable::DataRecord* data)
+void com::tibbo::aggregate::common::util::WindowLocation::ctor(DataRecord* data)
 {
     super::ctor(FORMAT_, data);
 }
@@ -274,7 +274,7 @@ java::lang::Integer* com::tibbo::aggregate::common::util::WindowLocation::getWid
     return width;
 }
 
-void com::tibbo::aggregate::common::util::WindowLocation::setWidth(::java::lang::Integer* width)
+void com::tibbo::aggregate::common::util::WindowLocation::setWidth(int  width)
 {
     this->width = width;
 }
@@ -284,7 +284,7 @@ java::lang::Integer* com::tibbo::aggregate::common::util::WindowLocation::getHei
     return height;
 }
 
-void com::tibbo::aggregate::common::util::WindowLocation::setHeight(::java::lang::Integer* height)
+void com::tibbo::aggregate::common::util::WindowLocation::setHeight(int  height)
 {
     this->height = height;
 }
@@ -354,7 +354,7 @@ std::string com::tibbo::aggregate::common::util::WindowLocation::getKey()
     return key;
 }
 
-void com::tibbo::aggregate::common::util::WindowLocation::setKey(std::string* key)
+void com::tibbo::aggregate::common::util::WindowLocation::setKey(const std::string & key)
 {
     this->key = key;
 }
@@ -407,9 +407,9 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        FORMAT_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        FORMAT_ = new TableFormat(int(1), int(1));
         {
-            auto ff = ::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_STATE_)
+            auto ff = FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_STATE_)
                 ->append(u"><I><A="_j)
                 ->append(STATE_DOCKED)
                 ->append(u"><D="_j)
@@ -419,7 +419,7 @@ struct clinit_ {
             ff)->addSelectionValue(STATE_FLOATING), Cres::get())->getString(u"clStateFloating"_j));
             ff)->addSelectionValue(STATE_SIDE_BAR), Cres::get())->getString(u"clStateSideBar"_j));
             FORMAT_)->addField(ff);
-            ff = ::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_SIDE_)
+            ff = FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_SIDE_)
                 ->append(u"><I><A="_j)
                 ->append(SIDE_TOP)
                 ->append(u"><D="_j)
@@ -430,65 +430,65 @@ struct clinit_ {
             ff)->addSelectionValue(SIDE_BOTTOM), Cres::get())->getString(u"clSideBottom"_j));
             ff)->addSelectionValue(SIDE_RIGHT), Cres::get())->getString(u"clSideRight"_j));
             FORMAT_)->addField(ff);
-            FORMAT_)->addField(static_cast< ::com::tibbo::aggregate::common::datatable::FieldFormat* >(::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_INDEX_)
+            FORMAT_)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_INDEX_)
                 ->append(u"><I><D="_j)
                 ->append(Cres::get())->getString(u"index"_j))
                 ->append(u">"_j)->toString())));
-            ff = ::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_WIDTH_)
+            ff = FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_WIDTH_)
                 ->append(u"><I><F=N><D="_j)
                 ->append(Cres::get())->getString(u"width"_j))
                 ->append(u">"_j)->toString());
-            ff)->addValidator(::com::tibbo::aggregate::common::datatable::validator::ValidatorHelper::NON_ZERO_LENGTH_VALIDATOR());
+            ff)->addValidator(validator::ValidatorHelper::NON_ZERO_LENGTH_VALIDATOR());
             FORMAT_)->addField(ff);
-            ff = ::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_HEIGHT_)
+            ff = FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_HEIGHT_)
                 ->append(u"><I><F=N><D="_j)
                 ->append(Cres::get())->getString(u"height"_j))
                 ->append(u">"_j)->toString());
-            ff)->addValidator(::com::tibbo::aggregate::common::datatable::validator::ValidatorHelper::NON_ZERO_LENGTH_VALIDATOR());
+            ff)->addValidator(validator::ValidatorHelper::NON_ZERO_LENGTH_VALIDATOR());
             FORMAT_)->addField(ff);
-            FORMAT_)->addField(static_cast< ::com::tibbo::aggregate::common::datatable::FieldFormat* >(::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_RESIZABLE_)
+            FORMAT_)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_RESIZABLE_)
                 ->append(u"><B><A=1><D="_j)
                 ->append(Cres::get())->getString(u"clWindowResizable"_j))
                 ->append(u">"_j)->toString())));
-            FORMAT_)->addField(static_cast< ::com::tibbo::aggregate::common::datatable::FieldFormat* >(::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_CLOSABLE_)
+            FORMAT_)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_CLOSABLE_)
                 ->append(u"><B><A=1><D="_j)
                 ->append(Cres::get())->getString(u"clWindowClosable"_j))
                 ->append(u">"_j)->toString())));
-            FORMAT_)->addField(static_cast< ::com::tibbo::aggregate::common::datatable::FieldFormat* >(::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_MOVABLE_)
+            FORMAT_)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_MOVABLE_)
                 ->append(u"><B><A=1><D="_j)
                 ->append(Cres::get())->getString(u"clWindowMovable"_j))
                 ->append(u">"_j)->toString())));
-            FORMAT_)->addField(static_cast< ::com::tibbo::aggregate::common::datatable::FieldFormat* >(::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_FLOATABLE_)
+            FORMAT_)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_FLOATABLE_)
                 ->append(u"><B><A=1><D="_j)
                 ->append(Cres::get())->getString(u"clWindowFloatable"_j))
                 ->append(u">"_j)->toString())));
-            FORMAT_)->addField(static_cast< ::com::tibbo::aggregate::common::datatable::FieldFormat* >(::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_MAXIMIZABLE_)
+            FORMAT_)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_MAXIMIZABLE_)
                 ->append(u"><B><A=1><D="_j)
                 ->append(Cres::get())->getString(u"clWindowMaximizable"_j))
                 ->append(u">"_j)->toString())));
-            FORMAT_)->addField(static_cast< ::com::tibbo::aggregate::common::datatable::FieldFormat* >(::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_AUTOHIDABLE_)
+            FORMAT_)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_AUTOHIDABLE_)
                 ->append(u"><B><A=1><D="_j)
                 ->append(Cres::get())->getString(u"clWindowAutohidable"_j))
                 ->append(u">"_j)->toString())));
-            FORMAT_)->addField(static_cast< ::com::tibbo::aggregate::common::datatable::FieldFormat* >(::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_KEY_)
+            FORMAT_)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_KEY_)
                 ->append(u"><S><F=A><D="_j)
                 ->append(Cres::get())->getString(u"key"_j))
                 ->append(u">"_j)->toString())));
             FORMAT_)->addBinding(std::stringBuilder().append(FIELD_SIDE_)->append(u"#"_j)
-                ->append(::com::tibbo::aggregate::common::datatable::DataTableBindingProvider::PROPERTY_ENABLED())->toString(), std::stringBuilder().append(u"{"_j)->append(FIELD_STATE_)
+                ->append(DataTableBindingProvider::PROPERTY_ENABLED())->toString(), std::stringBuilder().append(u"{"_j)->append(FIELD_STATE_)
                 ->append(u"} != "_j)
                 ->append(STATE_FLOATING)->toString());
             FORMAT_)->addBinding(std::stringBuilder().append(FIELD_FLOATABLE_)->append(u"#"_j)
-                ->append(::com::tibbo::aggregate::common::datatable::DataTableBindingProvider::PROPERTY_ENABLED())->toString(), std::stringBuilder().append(u"{"_j)->append(FIELD_MOVABLE_)
+                ->append(DataTableBindingProvider::PROPERTY_ENABLED())->toString(), std::stringBuilder().append(u"{"_j)->append(FIELD_MOVABLE_)
                 ->append(u"} && {"_j)
                 ->append(FIELD_STATE_)
                 ->append(u"} != "_j)
                 ->append(STATE_FLOATING)->toString());
             FORMAT_)->addBinding(std::stringBuilder().append(FIELD_MAXIMIZABLE_)->append(u"#"_j)
-                ->append(::com::tibbo::aggregate::common::datatable::DataTableBindingProvider::PROPERTY_ENABLED())->toString(), std::stringBuilder().append(u"{"_j)->append(FIELD_MOVABLE_)
+                ->append(DataTableBindingProvider::PROPERTY_ENABLED())->toString(), std::stringBuilder().append(u"{"_j)->append(FIELD_MOVABLE_)
                 ->append(u"}"_j)->toString());
             FORMAT_)->addBinding(std::stringBuilder().append(FIELD_AUTOHIDABLE_)->append(u"#"_j)
-                ->append(::com::tibbo::aggregate::common::datatable::DataTableBindingProvider::PROPERTY_ENABLED())->toString(), std::stringBuilder().append(u"{"_j)->append(FIELD_MOVABLE_)
+                ->append(DataTableBindingProvider::PROPERTY_ENABLED())->toString(), std::stringBuilder().append(u"{"_j)->append(FIELD_MOVABLE_)
                 ->append(u"}"_j)->toString());
             auto state = std::stringBuilder().append(u"{"_j)->append(FIELD_STATE_)
                 ->append(u"#"_j)

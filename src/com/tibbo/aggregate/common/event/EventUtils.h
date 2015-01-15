@@ -31,16 +31,16 @@ private:
     static const std::string FIELD_SEVERITY_STATS_COLOR_;
     static const std::string FIELD_SEVERITY_STATS_NUMBER_;
     static const std::string FIELD_SEVERITY_STATS_LEVEL_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* SEVERITY_STATS_FORMAT_;
+    static TableFormat* SEVERITY_STATS_FORMAT_;
     static ::java::util::Random* ID_GENERATOR_;
 
 public:
     static long generateEventId();
-    static std::list  getEventDefinitions(::com::tibbo::aggregate::common::context::ContextManager* cm, std::string* contextMask, std::string* eventsMask, ::com::tibbo::aggregate::common::context::CallerController* caller);
-    static std::list  getEvents(::com::tibbo::aggregate::common::context::Context* context, std::string* eventsMask, ::com::tibbo::aggregate::common::context::CallerController* caller);
-    static bool matchesToMask(std::string* eventMask, ::com::tibbo::aggregate::common::context::EventDefinition* ed);
-    static bool matchesToMask(std::string* eventMask, std::string* event);
-    static ::com::tibbo::aggregate::common::datatable::DataTable* createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal);
+    static std::list  getEventDefinitions(::com::tibbo::aggregate::common::context::ContextManager* cm, const std::string & contextMask, const std::string & eventsMask, ::com::tibbo::aggregate::common::context::CallerController* caller);
+    static std::list  getEvents(::com::tibbo::aggregate::common::context::Context* context, const std::string & eventsMask, ::com::tibbo::aggregate::common::context::CallerController* caller);
+    static bool matchesToMask(const std::string & eventMask, ::com::tibbo::aggregate::common::context::EventDefinition* ed);
+    static bool matchesToMask(const std::string & eventMask, const std::string & event);
+    static DataTable* createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal);
     static ::java::awt::Color* getEventColor(int level);
 
     // Generated
@@ -68,7 +68,7 @@ public:
     static const std::string& FIELD_SEVERITY_STATS_LEVEL();
 
 private:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& SEVERITY_STATS_FORMAT();
+    static TableFormat*& SEVERITY_STATS_FORMAT();
     static ::java::util::Random*& ID_GENERATOR();
     ::java::lang::Class* getClass0();
 };

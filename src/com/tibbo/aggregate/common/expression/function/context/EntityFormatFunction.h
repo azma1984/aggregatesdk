@@ -17,18 +17,18 @@ class com::tibbo::aggregate::common::expression::function::context::EntityFormat
 public:
     typedef ::com::tibbo::aggregate::common::expression::function::AbstractFunction super;
 protected:
-    void ctor(std::string* parametersFootprint);
+    void ctor(const std::string & parametersFootprint);
 
 public:
     void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
 public: /* protected */
-    std::string* getFormat(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
+    const std::string & getFormat(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
 
     // Generated
 
 public:
-    EntityFormatFunction(std::string* parametersFootprint);
+    EntityFormatFunction(const std::string & parametersFootprint);
 protected:
     EntityFormatFunction(const ::default_init_tag&);
 

@@ -22,31 +22,31 @@ private:
     static const std::string CF_WIDGET_;
     static const std::string RF_WIDGET_;
     static const std::string RF_RESULT_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_EDIT_WIDGET_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* RFT_EDIT_WIDGET_;
-    std::string* defaultContext;
-    std::string* widgetContext;
-    std::string* widget;
+    static TableFormat* CFT_EDIT_WIDGET_;
+    static TableFormat* RFT_EDIT_WIDGET_;
+    const std::string & defaultContext;
+    const std::string & widgetContext;
+    const std::string & widget;
 protected:
     void ctor();
-    void ctor(std::string* title, std::string* defaultContext, std::string* widgetContext, std::string* widget);
-    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    void ctor(const std::string & title, const std::string & defaultContext, const std::string & widgetContext, const std::string & widget);
+    void ctor(const std::string & title, DataTable* parameters);
 
 public: /* protected */
-    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+    DataTable* constructParameters();
 
 public:
-    std::string* getDefaultContext();
-    void setDefaultContext(std::string* defaultContext);
-    std::string* getWidgetContext();
-    void setWidgetContext(std::string* widgetContext);
-    std::string* getWidget();
-    void setWidget(std::string* widget);
+    const std::string & getDefaultContext();
+    void setDefaultContext(const std::string & defaultContext);
+    const std::string & getWidgetContext();
+    void setWidgetContext(const std::string & widgetContext);
+    const std::string & getWidget();
+    void setWidget(const std::string & widget);
 
     // Generated
     EditWidget();
-    EditWidget(std::string* title, std::string* defaultContext, std::string* widgetContext, std::string* widget);
-    EditWidget(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    EditWidget(const std::string & title, const std::string & defaultContext, const std::string & widgetContext, const std::string & widget);
+    EditWidget(const std::string & title, DataTable* parameters);
 protected:
     EditWidget(const ::default_init_tag&);
 
@@ -59,8 +59,8 @@ public:
     static const std::string& CF_WIDGET();
     static const std::string& RF_WIDGET();
     static const std::string& RF_RESULT();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_EDIT_WIDGET();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& RFT_EDIT_WIDGET();
+    static TableFormat*& CFT_EDIT_WIDGET();
+    static TableFormat*& RFT_EDIT_WIDGET();
 
 private:
     ::java::lang::Class* getClass0();

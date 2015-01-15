@@ -12,24 +12,24 @@ public:
 private:
     static const std::string REFERENCE_START_;
     static const std::string REFERENCE_END_;
-    std::string* text;
+    const std::string & text;
     ::ASTStart* rootNode;
 protected:
     void ctor(Reference* reference);
-    void ctor(std::string* text);
+    void ctor(const std::string & text);
 
 public:
-    std::string* getText();
+    const std::string & getText();
     ::ASTStart* getRootNode();
     void setRootNode(::ASTStart* rootNode);
-    std::string* toString();
+    const std::string & toString();
     int hashCode();
     bool equals(void* obj);
     Expression* clone();
 
     // Generated
     Expression(Reference* reference);
-    Expression(std::string* text);
+    Expression(const std::string & text);
 protected:
     Expression(const ::default_init_tag&);
 

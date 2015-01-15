@@ -18,7 +18,7 @@ class com::tibbo::aggregate::common::expression::function::context::FunctionAvai
 public:
     typedef EntityAvailableFunction super;
 protected:
-    void ctor(std::string* group);
+    void ctor(const std::string & group);
 
 public: /* protected */
     bool hasEntity(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
@@ -26,7 +26,7 @@ public: /* protected */
     // Generated
 
 public:
-    FunctionAvailableFunction(std::string* group);
+    FunctionAvailableFunction(const std::string & group);
 protected:
     FunctionAvailableFunction(const ::default_init_tag&);
 

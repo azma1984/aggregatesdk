@@ -35,7 +35,7 @@ ActivateDashboard::ActivateDashboard()
 }   */
 
 /*
-void ActivateDashboard::ActivateDashboard(std::string* title, DataTable* parameters)
+void ActivateDashboard::ActivateDashboard(const std::string & title, DataTable* parameters)
 {
   GenericActionCommand::GenericActionCommand(ActionUtils::CMD_ACTIVATE_DASHBOARD, title, parameters, CFT_ACTIVATE_DASHBOARD);
 }

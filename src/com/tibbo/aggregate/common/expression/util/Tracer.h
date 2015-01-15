@@ -9,7 +9,7 @@
 struct com::tibbo::aggregate::common::expression::util::Tracer
     
 {
-    void trace(void* value, std::string* message);
+    void trace(void* value, const std::string & message);
 
     // Generated
     

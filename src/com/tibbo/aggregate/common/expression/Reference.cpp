@@ -16,37 +16,37 @@ Reference()
     ctor();
 }
 
-Reference(std::string* source) 
+Reference(const std::string & source) 
     : Reference(*static_cast< ::default_init_tag* >(0))
 {
     ctor(source);
 }
 
-Reference(std::string* server, std::string* context) 
+Reference(const std::string & server, const std::string & context) 
     : Reference(*static_cast< ::default_init_tag* >(0))
 {
     ctor(server,context);
 }
 
-Reference(std::string* entity, int entityType, std::string* field) 
+Reference(const std::string & entity, int entityType, const std::string & field) 
     : Reference(*static_cast< ::default_init_tag* >(0))
 {
     ctor(entity,entityType,field);
 }
 
-Reference(std::string* context, std::string* entity, int entityType, std::string* field) 
+Reference(const std::string & context, const std::string & entity, int entityType, const std::string & field) 
     : Reference(*static_cast< ::default_init_tag* >(0))
 {
     ctor(context,entity,entityType,field);
 }
 
-Reference(std::string* context, std::string* entity, int entityType) 
+Reference(const std::string & context, const std::string & entity, int entityType) 
     : Reference(*static_cast< ::default_init_tag* >(0))
 {
     ctor(context,entity,entityType);
 }
 
-Reference(std::string* context, std::string* function, voidArray* parameters) 
+Reference(const std::string & context, const std::string & function, voidArray* parameters) 
     : Reference(*static_cast< ::default_init_tag* >(0))
 {
     ctor(context,function,parameters);
@@ -135,14 +135,14 @@ void ctor()
     init();
 }
 
-void ctor(std::string* source)
+void ctor(const std::string & source)
 {
     super::ctor();
     init();
     parse(source);
 }
 
-void ctor(std::string* server, std::string* context)
+void ctor(const std::string & server, const std::string & context)
 {
     super::ctor();
     init();
@@ -150,7 +150,7 @@ void ctor(std::string* server, std::string* context)
     this->context = context;
 }
 
-void ctor(std::string* entity, int entityType, std::string* field)
+void ctor(const std::string & entity, int entityType, const std::string & field)
 {
     super::ctor();
     init();
@@ -159,13 +159,13 @@ void ctor(std::string* entity, int entityType, std::string* field)
     this->field = field;
 }
 
-void ctor(std::string* context, std::string* entity, int entityType, std::string* field)
+void ctor(const std::string & context, const std::string & entity, int entityType, const std::string & field)
 {
     ctor(entity, entityType, field);
     this->context = context;
 }
 
-void ctor(std::string* context, std::string* entity, int entityType)
+void ctor(const std::string & context, const std::string & entity, int entityType)
 {
     super::ctor();
     init();
@@ -174,7 +174,7 @@ void ctor(std::string* context, std::string* entity, int entityType)
     this->entityType = entityType;
 }
 
-void ctor(std::string* context, std::string* function, voidArray* parameters)
+void ctor(const std::string & context, const std::string & function, voidArray* parameters)
 {
     super::ctor();
     init();
@@ -184,7 +184,7 @@ void ctor(std::string* context, std::string* function, voidArray* parameters)
     ::java::util::Collections::addAll(java_cast< std::list  >(this->parameters), parameters);
 }
 
-void parse(std::string* source)
+void parse(const std::string & source)
 {
     source = source)->trim();
     auto isFunction = false;
@@ -250,7 +250,7 @@ void parse(std::string* source)
     auto fieldBegin = src)->indexOf(static_cast< int >(FIELD_BEGIN));
     if(fieldBegin != -int(1)) {
         entity = src)->substring(0, fieldBegin);
-        field = (fieldBegin != src)->length() - int(1)) ? src)->substring(fieldBegin + int(1)) : static_cast< std::string* >(0);
+        field = (fieldBegin != src)->length() - int(1)) ? src)->substring(fieldBegin + int(1)) : static_cast< const std::string & >(0);
     } else if(src)->length() > 0) {
         if(context != 0 || isFunction || isEvent || isAction) {
             entity = src;
@@ -367,13 +367,13 @@ std::string toString()
     return getImage();
 }
 
-void setContext(std::string* context)
+void setContext(const std::string & context)
 {
     this->context = context;
     image;
 }
 
-void setEntity(std::string* entity)
+void setEntity(const std::string & entity)
 {
     this->entity = entity;
     image;
@@ -385,7 +385,7 @@ void setEntityType(int entityType)
     image;
 }
 
-void addParameter(std::string* parameter)
+void addParameter(const std::string & parameter)
 {
     parameters)->add(parameter));
 }
@@ -395,31 +395,31 @@ void addParameter(Expression* parameter)
     parameters)->add(parameter));
 }
 
-void setField(std::string* field)
+void setField(const std::string & field)
 {
     this->field = field;
     image;
 }
 
-void setProperty(std::string* property)
+void setProperty(const std::string & property)
 {
     this->property = property;
     image;
 }
 
-void setSchema(std::string* schema)
+void setSchema(const std::string & schema)
 {
     this->schema = schema;
     image;
 }
 
-void setRow(::java::lang::Integer* row)
+void setRow(int  row)
 {
     this->row = row;
     image;
 }
 
-void setServer(std::string* server)
+void setServer(const std::string & server)
 {
     this->server = server;
     image;

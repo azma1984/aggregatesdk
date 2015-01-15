@@ -43,12 +43,12 @@ public:
 
 private:
     static ::java::lang::ClassArrayArray* CONVERSIONS_;
-    std::string* clazz;
-    std::string* method;
+    const std::string & clazz;
+    const std::string & method;
     bool statical;
 protected:
-    void ctor(std::string* clazz, std::string* method, std::string* category, std::string* parametersFootprint, std::string* returnValue);
-    void ctor(std::string* clazz, std::string* method, bool statical, std::string* category, std::string* parametersFootprint, std::string* returnValue);
+    void ctor(const std::string & clazz, const std::string & method, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue);
+    void ctor(const std::string & clazz, const std::string & method, bool statical, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue);
 
 public:
     void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
@@ -63,8 +63,8 @@ public: /* protected */
     // Generated
 
 public:
-    JavaMethodFunction(std::string* clazz, std::string* method, std::string* category, std::string* parametersFootprint, std::string* returnValue);
-    JavaMethodFunction(std::string* clazz, std::string* method, bool statical, std::string* category, std::string* parametersFootprint, std::string* returnValue);
+    JavaMethodFunction(const std::string & clazz, const std::string & method, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue);
+    JavaMethodFunction(const std::string & clazz, const std::string & method, bool statical, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue);
 protected:
     JavaMethodFunction(const ::default_init_tag&);
 

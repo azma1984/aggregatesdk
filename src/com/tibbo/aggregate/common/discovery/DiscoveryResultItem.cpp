@@ -72,7 +72,7 @@ bool DiscoveryResultItem::isEnabledByDefault()
 
 boost::shared_ptr<DataTable> DiscoveryResultItem::getParametersTable()
 {
-    return parameters->wrap();
+    return (boost::shared_ptr<DataTable>)parameters->wrap();
 }
 
 boost::shared_ptr<DeviceRecommendation> DiscoveryResultItem::getDeviceRecommendation()

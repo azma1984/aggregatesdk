@@ -25,32 +25,32 @@ public:
 private:
     static const std::string FIELD_CONTEXT_;
     static const std::string FIELD_ENTITY_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_;
+    static TableFormat* FORMAT_;
     std::list  entities;
 protected:
     void ctor();
-    void ctor(::com::tibbo::aggregate::common::datatable::DataTable* data);
-    void ctor(std::string* context, std::string* entity);
+    void ctor(DataTable* data);
+    void ctor(const std::string & context, const std::string & entity);
     void ctor(EntityReference* ref);
 
 public:
     bool includes(EntityReference* ref);
-    bool includes(std::string* context, std::string* entity);
-    ::com::tibbo::aggregate::common::datatable::DataTable* toDataTable();
+    bool includes(const std::string & context, const std::string & entity);
+    DataTable* toDataTable();
     bool isEmpty();
-    void add(std::string* context, std::string* entity);
+    void add(const std::string & context, const std::string & entity);
     void add(EntityReference* ref);
     std::list  getEntities();
     ::java::util::Iterator* iterator();
-    std::string* toString();
+    const std::string & toString();
     EntityList* clone();
     int hashCode();
     bool equals(void* obj);
 
     // Generated
     EntityList();
-    EntityList(::com::tibbo::aggregate::common::datatable::DataTable* data);
-    EntityList(std::string* context, std::string* entity);
+    EntityList(DataTable* data);
+    EntityList(const std::string & context, const std::string & entity);
     EntityList(EntityReference* ref);
 protected:
     EntityList(const ::default_init_tag&);
@@ -66,7 +66,7 @@ private:
 public:
     static const std::string& FIELD_CONTEXT();
     static const std::string& FIELD_ENTITY();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT();
+    static TableFormat*& FORMAT();
 
 private:
     ::java::lang::Class* getClass0();

@@ -23,15 +23,15 @@ private:
     static const std::string E_TRACE_;
     static const std::string EF_TRACE_VALUE_;
     static const std::string EF_TRACE_MESSAGE_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* EFT_TRACE_;
+    static TableFormat* EFT_TRACE_;
     ::com::tibbo::aggregate::common::context::Context* context;
-    std::string* traceEventGroup;
+    const std::string & traceEventGroup;
 protected:
-    void ctor(::com::tibbo::aggregate::common::context::Context* context, std::string* traceEventGroup);
+    void ctor(::com::tibbo::aggregate::common::context::Context* context, const std::string & traceEventGroup);
 
 public:
     void install();
-    void trace(void* value, std::string* message);
+    void trace(void* value, const std::string & message);
 
 public: /* protected */
     ::com::tibbo::aggregate::common::context::Context* getContext();
@@ -39,7 +39,7 @@ public: /* protected */
     // Generated
 
 public:
-    ContextExpressionTracer(::com::tibbo::aggregate::common::context::Context* context, std::string* traceEventGroup);
+    ContextExpressionTracer(::com::tibbo::aggregate::common::context::Context* context, const std::string & traceEventGroup);
 protected:
     ContextExpressionTracer(const ::default_init_tag&);
 
@@ -52,6 +52,6 @@ public:
     static const std::string& EF_TRACE_MESSAGE();
 
 private:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& EFT_TRACE();
+    static TableFormat*& EFT_TRACE();
     ::java::lang::Class* getClass0();
 };

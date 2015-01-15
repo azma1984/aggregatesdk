@@ -15,17 +15,17 @@ class ShowReport : public GenericActionCommand
 //    static const std::string CF_REPORT_DATA_;
 //    static const std::string CF_LOCATION_;
 //    static const std::string CF_DASHBOARD_;
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_SHOW_REPORT_;
+//    static TableFormat* CFT_SHOW_REPORT_;
 //    ::int8_tArray* reportData;
 //    ::com::tibbo::aggregate::common::util::WindowLocation* location;
 //    ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard;
 //protected:
 //    void ctor();
-//    void ctor(std::string* title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
-//    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+//    void ctor(const std::string & title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
+//    void ctor(const std::string & title, DataTable* parameters);
 
 //public: /* protected */
-//    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+//    DataTable* constructParameters();
 
 //public:
 //    ::int8_tArray* getReportData();
@@ -37,8 +37,8 @@ class ShowReport : public GenericActionCommand
 
 //    // Generated
 //    ShowReport();
-//    ShowReport(std::string* title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
-//    ShowReport(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+//    ShowReport(const std::string & title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
+//    ShowReport(const std::string & title, DataTable* parameters);
 //protected:
 //    ShowReport(const ::default_init_tag&);
 
@@ -49,7 +49,7 @@ class ShowReport : public GenericActionCommand
 //    static const std::string& CF_REPORT_DATA();
 //    static const std::string& CF_LOCATION();
 //    static const std::string& CF_DASHBOARD();
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_SHOW_REPORT();
+//    static TableFormat*& CFT_SHOW_REPORT();
 
 };
 //#endif  /_ShowReport_H_

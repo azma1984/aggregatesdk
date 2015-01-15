@@ -10,20 +10,20 @@ class KeyStroke
 	KeyStroke* keyStroke;
 
 public:
-   KeyStroke* getKeyStroke(std::string* s);
+   KeyStroke* getKeyStroke(const std::string & s);
 
 public:
 	::javax::swing::KeyStroke* getKeyStroke();
 
 public:
-	std::string* toString();
+	const std::string & toString();
 
 
 public:
 	KeyStroke();
 
 public:
-	KeyStroke(std::string* keyStroke);
+	KeyStroke(const std::string & keyStroke);
 
 public:
 	KeyStroke(::javax::swing::KeyStroke* keyStroke);

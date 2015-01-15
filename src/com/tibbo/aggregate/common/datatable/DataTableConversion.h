@@ -31,13 +31,13 @@ class DataTableConversion
 //    static void* convertValueFromField(void* value);
 //    static void* convertValueFromField(void* value, ::java::lang::Class* requiredClass);
 //    static void* convertValueToField(FieldFormat* ff, void* value);
-//    static void registerFormatConverter(::com::tibbo::aggregate::common::datatable::converter::FormatConverter* converter);
-//    static ::com::tibbo::aggregate::common::datatable::converter::FormatConverter* getFormatConverter(::java::lang::Class* valueClass);
-//    static /* <S> */FieldFormat* createFieldFormat(std::string* name, void* value);
-//    static /* <S> */FieldFormat* createFieldFormat(std::string* name, std::string* valueClassName) /* throws(ClassNotFoundException) */;
-//    static /* <S> */FieldFormat* createFieldFormat(std::string* name, ::java::lang::Class* valueClass);
-//    static FieldFormat* createTableField(std::string* name, TableFormat* format);
-//    static FieldFormat* createTableField(std::string* name, std::string* description, TableFormat* format);
+//    static void registerFormatConverter(converter::FormatConverter* converter);
+//    static converter::FormatConverter* getFormatConverter(::java::lang::Class* valueClass);
+//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, void* value);
+//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, const std::string & valueClassName) /* throws(ClassNotFoundException) */;
+//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, ::java::lang::Class* valueClass);
+//    static FieldFormat* createTableField(const std::string & name, TableFormat* format);
+//    static FieldFormat* createTableField(const std::string & name, const std::string & description, TableFormat* format);
 //    static void* createAggreGateBean(void* value, ::java::lang::Class* requiredClass) /* throws(NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException) */;
 
 //private:

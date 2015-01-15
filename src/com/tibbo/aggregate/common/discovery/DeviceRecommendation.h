@@ -11,31 +11,12 @@ private:
     std::string description;
 
 public:
-    // Generated
-    DeviceRecommendation() {
+    static boost::shared_ptr<DeviceRecommendation> getBlank();
+    std::string getName();
+    std::string getDescription();
+    std::string toString(); 
 
-    }
-
-    DeviceRecommendation(const std::string& name, const std::string& description) {
-        this->name = name;
-        this->description = description;
-    }
-
-    static boost::shared_ptr<DeviceRecommendation> getBlank() {
-        boost::shared_ptr<DeviceRecommendation> blank = new DeviceRecommendation();
-        return blank;
-    }
-
-    std::string getName() {
-        return name;
-    }
-
-    std::string getDescription() {
-        return description;
-    }
-
-    std::string toString() {
-        return std::string("DeviceRecommendation [").append(name).append(", ").append(description).append("]");
-    }
+	DeviceRecommendation();
+    DeviceRecommendation(const std::string& name, const std::string& description);
 };
 #endif  //_DeviceRecommendation_H_

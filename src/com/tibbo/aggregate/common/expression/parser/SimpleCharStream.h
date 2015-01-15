@@ -58,20 +58,20 @@ public:
     void ReInit(std::ifstream* dstream, int startline, int startcolumn);
     void ReInit(std::ifstream* dstream);
 
-    void SimpleCharStream(std::iostream* dstream, std::string* encoding, int startline, int startcolumn, int buffersize) /* throws(java.io.UnsupportedEncodingException) */;
+    void SimpleCharStream(std::iostream* dstream, const std::string & encoding, int startline, int startcolumn, int buffersize) /* throws(java.io.UnsupportedEncodingException) */;
     void SimpleCharStream(std::iostream* dstream, int startline, int startcolumn, int buffersize);
-    void SimpleCharStream(std::iostream* dstream, std::string* encoding, int startline, int startcolumn) /* throws(java.io.UnsupportedEncodingException) */;
+    void SimpleCharStream(std::iostream* dstream, const std::string & encoding, int startline, int startcolumn) /* throws(java.io.UnsupportedEncodingException) */;
     void SimpleCharStream(std::iostream* dstream, int startline, int startcolumn);
-    void SimpleCharStream(std::iostream* dstream, std::string* encoding) /* throws(java.io.UnsupportedEncodingException) */;
+    void SimpleCharStream(std::iostream* dstream, const std::string & encoding) /* throws(java.io.UnsupportedEncodingException) */;
     void SimpleCharStream(std::iostream* dstream);
 
-    void ReInit(std::iostream* dstream, std::string* encoding, int startline, int startcolumn, int buffersize) /* throws(java.io.UnsupportedEncodingException) */;
+    void ReInit(std::iostream* dstream, const std::string & encoding, int startline, int startcolumn, int buffersize) /* throws(java.io.UnsupportedEncodingException) */;
     void ReInit(std::iostream* dstream, int startline, int startcolumn, int buffersize);
-    void ReInit(std::iostream* dstream, std::string* encoding) /* throws(java.io.UnsupportedEncodingException) */;
+    void ReInit(std::iostream* dstream, const std::string & encoding) /* throws(java.io.UnsupportedEncodingException) */;
     void ReInit(std::iostream* dstream);
-    void ReInit(std::iostream* dstream, std::string* encoding, int startline, int startcolumn) /* throws(java.io.UnsupportedEncodingException) */;
+    void ReInit(std::iostream* dstream, const std::string & encoding, int startline, int startcolumn) /* throws(java.io.UnsupportedEncodingException) */;
     void ReInit(std::iostream* dstream, int startline, int startcolumn);
-    std::string* GetImage();
+    const std::string & GetImage();
     std::string GetSuffix(int len);
     void Done();
     void adjustBeginLineColumn(int newLine, int newCol);
@@ -80,11 +80,11 @@ public:
     SimpleCharStream(std::ifstream* dstream, int startline, int startcolumn, int buffersize);
     SimpleCharStream(std::ifstream* dstream, int startline, int startcolumn);
     SimpleCharStream(std::ifstream* dstream);
-    SimpleCharStream(std::iostream* dstream, std::string* encoding, int startline, int startcolumn, int buffersize);
+    SimpleCharStream(std::iostream* dstream, const std::string & encoding, int startline, int startcolumn, int buffersize);
     SimpleCharStream(std::iostream* dstream, int startline, int startcolumn, int buffersize);
-    SimpleCharStream(std::iostream* dstream, std::string* encoding, int startline, int startcolumn);
+    SimpleCharStream(std::iostream* dstream, const std::string & encoding, int startline, int startcolumn);
     SimpleCharStream(std::iostream* dstream, int startline, int startcolumn);
-    SimpleCharStream(std::iostream* dstream, std::string* encoding);
+    SimpleCharStream(std::iostream* dstream, const std::string & encoding);
     SimpleCharStream(std::iostream* dstream);
 
 };

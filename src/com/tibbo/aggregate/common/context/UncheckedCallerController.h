@@ -13,22 +13,22 @@ class UncheckedCallerController : public AbstractCallerController
 //    typedef AbstractCallerController super;
 
 //private:
-//    ::com::tibbo::aggregate::common::security::Permissions* permissions;
+//    Permissions* permissions;
 //protected:
 //    void ctor();
-//    void ctor(std::string* username);
+//    void ctor(const std::string & username);
 
 //public:
-//    ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
+//    Permissions* getPermissions();
 //    bool isPermissionCheckingEnabled();
 //    bool isLoggedIn();
 //    void logout();
 //    bool isHeadless();
-//    void handleContextEvent(::com::tibbo::aggregate::common::data::Event* event) /* throws(EventHandlingException) */;
+//    void handleContextEvent(Event* event) /* throws(EventHandlingException) */;
 
 //    // Generated
 //    UncheckedCallerController();
-//    UncheckedCallerController(std::string* username);
+//    UncheckedCallerController(const std::string & username);
 //protected:
 //    UncheckedCallerController(const ::default_init_tag&);
 

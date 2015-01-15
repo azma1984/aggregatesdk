@@ -21,50 +21,50 @@ class EditData : public GenericActionCommand
 //    static const std::string CF_DASHBOARD_;
 //    static const std::string CF_EXPRESSION_;
 //    static const std::string CF_PERIOD_;
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_EDIT_DATA_;
+//    static TableFormat* CFT_EDIT_DATA_;
 //    ::com::tibbo::aggregate::common::action::EditDataMerger* merger;
-//    ::com::tibbo::aggregate::common::datatable::DataTable* data;
+//    DataTable* data;
 //    bool useDockableFrame;
 //    bool readOnly;
-//    std::string* iconId;
-//    std::string* helpId;
-//    std::string* help;
-//    std::string* defaultContext;
+//    const std::string & iconId;
+//    const std::string & helpId;
+//    const std::string & help;
+//    const std::string & defaultContext;
 //    ::com::tibbo::aggregate::common::util::WindowLocation* location;
 //    ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard;
-//    std::string* expression;
+//    const std::string & expression;
 //    ::java::lang::Long* period;
 //protected:
 //    void ctor();
-//    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
-//    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* data, bool readonly);
-//    void ctor(std::string* title, std::string* iconId, std::string* expression, ::java::lang::Long* period);
+//    void ctor(const std::string & title, DataTable* parameters);
+//    void ctor(const std::string & title, DataTable* data, bool readonly);
+//    void ctor(const std::string & title, const std::string & iconId, const std::string & expression, ::java::lang::Long* period);
 
 //public: /* protected */
-//    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+//    DataTable* constructParameters();
 
 //public:
 //    ::com::tibbo::aggregate::common::action::GenericActionResponse* createDefaultResponse();
-//    ::com::tibbo::aggregate::common::datatable::DataTable* getData();
-//    void setData(::com::tibbo::aggregate::common::datatable::DataTable* data);
+//    DataTable* getData();
+//    void setData(DataTable* data);
 //    bool isUseDockableFrame();
 //    void setUseDockableFrame(bool useDockableFrame);
 //    bool isReadOnly();
 //    void setReadOnly(bool readonly);
-//    std::string* getIconId();
-//    void setIconId(std::string* iconId);
-//    std::string* getHelpId();
-//    void setHelpId(std::string* helpId);
-//    std::string* getHelp();
-//    void setHelp(std::string* help);
-//    std::string* getDefaultContext();
-//    void setDefaultContext(std::string* defaultContext);
+//    const std::string & getIconId();
+//    void setIconId(const std::string & iconId);
+//    const std::string & getHelpId();
+//    void setHelpId(const std::string & helpId);
+//    const std::string & getHelp();
+//    void setHelp(const std::string & help);
+//    const std::string & getDefaultContext();
+//    void setDefaultContext(const std::string & defaultContext);
 //    ::com::tibbo::aggregate::common::util::WindowLocation* getLocation();
 //    void setLocation(::com::tibbo::aggregate::common::util::WindowLocation* location);
 //    ::com::tibbo::aggregate::common::util::DashboardProperties* getDashboard();
 //    void setDashboard(::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
-//    std::string* getExpression();
-//    void setExpression(std::string* expression);
+//    const std::string & getExpression();
+//    void setExpression(const std::string & expression);
 //    ::java::lang::Long* getPeriod();
 //    void setPeriod(::java::lang::Long* period);
 //    ::com::tibbo::aggregate::common::action::EditDataMerger* getMerger();
@@ -72,9 +72,9 @@ class EditData : public GenericActionCommand
 
 //    // Generated
 //    EditData();
-//    EditData(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
-//    EditData(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* data, bool readonly);
-//    EditData(std::string* title, std::string* iconId, std::string* expression, ::java::lang::Long* period);
+//    EditData(const std::string & title, DataTable* parameters);
+//    EditData(const std::string & title, DataTable* data, bool readonly);
+//    EditData(const std::string & title, const std::string & iconId, const std::string & expression, ::java::lang::Long* period);
 //protected:
 //    EditData(const ::default_init_tag&);
 
@@ -93,7 +93,7 @@ class EditData : public GenericActionCommand
 //    static const std::string& CF_DASHBOARD();
 //    static const std::string& CF_EXPRESSION();
 //    static const std::string& CF_PERIOD();
-//    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_EDIT_DATA();
+//    static TableFormat*& CFT_EDIT_DATA();
 };
 
 #ifndef //_EDIT_DATA_H_

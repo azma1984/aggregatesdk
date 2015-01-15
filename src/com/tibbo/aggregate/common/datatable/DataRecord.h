@@ -3,11 +3,11 @@
 
 
 //#include <Cres.h>
-#include "data/Data.h"
-//#include <datatable/DataTable.h>
+#include <Data.h>
+#include "datatable/DataTable.h"
 //#include <datatable/FieldFormat.h>
 //#include <datatable/QueryCondition.h>
-#include "datatable/TableFormat.h"
+#include <datatable/TableFormat.h>
 //#include <datatable/ValidationException.h>
 //#include <datatable/encoding/ClassicEncodingSettings.h>
 //#include <util/CloneUtils.h>
@@ -15,7 +15,7 @@
 //#include <util/ElementList.h>
 //#include <util/StringUtils.h>
 //#include <util/Util.h>
-#include "util/Cloneable.h"
+#include "Cloneable.h"
 #include "util/Date.h"
 
 #include <string>
@@ -25,9 +25,10 @@ class DataTable;
 
 class DataRecord //:Cloneable//, PublicCloneable
 {   
-	/*
+	
 public:
-	// Generated
+	/*
+
     DataRecord();
     DataRecord(TableFormat* tableFormat);
     DataRecord(TableFormat* tableFormat, voidArray* data);
@@ -38,9 +39,10 @@ public:
 
     void cloneFormatFromTable();
     std::string dataAsString(bool showFieldNames, bool showHiddenFields);
-    std::string valueAsString(const std::string& name);
+    std::string valueAsString(const std::string& name);*/
     std::string toString();
     DataTable* wrap();
+	/*
     virtual DataRecord* clone() const;    
 	//TODO:
 	DataRecord* setValue(const std::string& name, void* value);
@@ -113,7 +115,7 @@ protected:
     void ctor(TableFormat* tableFormat);
 	void ctor(TableFormat* tableFormat, voidArray* data);
 	void ctor(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
-	void ctor(TableFormat* tableFormat, std::string* dataString);
+	void ctor(TableFormat* tableFormat, const std::string & dataString);
 
 private:
     static int INITIAL_DATA_SIZE;
@@ -123,10 +125,10 @@ private:
     std::string id;
     DataTable* table;
 
-	void setData(std::string* dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
+	void setData(const std::string & dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
     void checkNumberOfDataFieldsSet(void* value);
     DataRecord* setValue(int index, void* value, bool validate);   
-    int findIndex(std::string* name);
+    int findIndex(const std::string & name);
     void* getValue(FieldFormat* ff);*/
 };
 

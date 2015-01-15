@@ -23,7 +23,7 @@ public:
 	Context* get(std::string contextName);
 	void addMaskEventListener(std::string mask, std::string event, ContextEventListener* listener);
 	void addMaskEventListener(std::string mask, std::string event, ContextEventListener* listener, bool weak);
-	void removeMaskEventListener(std::string* mask, std::string* event, ContextEventListener* listener);
+	void removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener);
 
    void contextAdded(Context* con);
 	void contextRemoved(Context* con);
@@ -34,7 +34,7 @@ public:
     void functionRemoved(Context* con, FunctionDefinition* fd);
     void eventAdded(Context* con, EventDefinition* ed);
     void eventRemoved(Context* con, EventDefinition* ed);
-    void queue(EventData* ed, ::com::tibbo::aggregate::common::data::Event* ev);
+    void queue(EventData* ed, Event* ev);
    // ::java::util::concurrent::ExecutorService* getExecutorService();
     CallerController* getCallerController();   */
 };

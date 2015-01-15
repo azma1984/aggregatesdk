@@ -34,7 +34,7 @@ com::tibbo::aggregate::common::action::command::ShowError::ShowError()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowError::ShowError(std::string* title, std::string* message, int level, ::java::lang::Throwable* exception) 
+com::tibbo::aggregate::common::action::command::ShowError::ShowError(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception) 
     : ShowError(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,message,level,exception);
@@ -70,10 +70,10 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 
 void com::tibbo::aggregate::common::action::command::ShowError::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_ERROR(), CFT_SHOW_ERROR_, static_cast< ::com::tibbo::aggregate::common::datatable::TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_ERROR(), CFT_SHOW_ERROR_, static_cast< TableFormat* >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::ShowError::ctor(std::string* title, std::string* message, int level, ::java::lang::Throwable* exception)
+void com::tibbo::aggregate::common::action::command::ShowError::ctor(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_ERROR(), title);
     this->message = message;
@@ -83,7 +83,7 @@ void com::tibbo::aggregate::common::action::command::ShowError::ctor(std::string
 
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowError::constructParameters()
 {
-    auto t = new ::com::tibbo::aggregate::common::datatable::DataTable(CFT_SHOW_ERROR_);
+    auto t = new DataTable(CFT_SHOW_ERROR_);
     auto exTrace = new ::java::io::StringWriter();
     auto pw = new ::java::io::PrintWriter(static_cast< ::java::io::Writer* >(exTrace));
     exception)->printStackTrace(pw);
@@ -107,7 +107,7 @@ std::string com::tibbo::aggregate::common::action::command::ShowError::getMessag
     return message;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowError::setMessage(std::string* message)
+void com::tibbo::aggregate::common::action::command::ShowError::setMessage(const std::string & message)
 {
     this->message = message;
 }
@@ -147,7 +147,7 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        CFT_SHOW_ERROR_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        CFT_SHOW_ERROR_ = new TableFormat(int(1), int(1));
         {
             CFT_SHOW_ERROR_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_LEVEL_)
                 ->append(u"><I>"_j)->toString());

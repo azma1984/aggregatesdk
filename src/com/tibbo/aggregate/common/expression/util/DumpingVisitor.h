@@ -21,7 +21,7 @@ public:
 
 private:
     int indent;
-    std::string* indentString();
+    const std::string & indentString();
 
 public:
     void* visit(::SimpleNode* node, void* data);

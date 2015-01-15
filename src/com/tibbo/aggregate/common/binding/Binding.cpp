@@ -43,7 +43,7 @@ com::tibbo::aggregate::common::binding::Binding::Binding(::com::tibbo::aggregate
     ctor(reference,expression);
 }
 
-com::tibbo::aggregate::common::binding::Binding::Binding(std::string* reference, std::string* expression) 
+com::tibbo::aggregate::common::binding::Binding::Binding(const std::string & reference, const std::string & expression) 
     : Binding(*static_cast< ::default_init_tag* >(0))
 {
     ctor(reference,expression);
@@ -56,7 +56,7 @@ void com::tibbo::aggregate::common::binding::Binding::ctor(::com::tibbo::aggrega
     this->expression = expression;
 }
 
-void com::tibbo::aggregate::common::binding::Binding::ctor(std::string* reference, std::string* expression)
+void com::tibbo::aggregate::common::binding::Binding::ctor(const std::string & reference, const std::string & expression)
 {
     super::ctor();
     this->reference = new ::com::tibbo::aggregate::common::expression::Reference(reference);

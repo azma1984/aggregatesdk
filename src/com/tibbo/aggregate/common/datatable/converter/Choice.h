@@ -17,21 +17,21 @@ public:
 
 private:
     static const std::string WHITESPACE_PATTERN_;
-    std::string* name;
-    std::string* description;
+    const std::string & name;
+    const std::string & description;
     void* object;
 protected:
-    void ctor(std::string* description, void* object);
-    void ctor(std::string* name, std::string* description, void* object);
+    void ctor(const std::string & description, void* object);
+    void ctor(const std::string & name, const std::string & description, void* object);
 
 public:
-    std::string* getName();
-    std::string* getDescription();
+    const std::string & getName();
+    const std::string & getDescription();
     void* getObject();
 
     // Generated
-    Choice(std::string* description, void* object);
-    Choice(std::string* name, std::string* description, void* object);
+    Choice(const std::string & description, void* object);
+    Choice(const std::string & name, const std::string & description, void* object);
 protected:
     Choice(const ::default_init_tag&);
 

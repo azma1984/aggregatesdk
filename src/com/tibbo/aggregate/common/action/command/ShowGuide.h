@@ -19,27 +19,27 @@ public:
 private:
     static const std::string CF_INVOKER_CONTEXT_;
     static const std::string CF_MACRO_NAME_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_SHOW_GUIDE_;
-    std::string* invokerContext;
-    std::string* macroName;
+    static TableFormat* CFT_SHOW_GUIDE_;
+    const std::string & invokerContext;
+    const std::string & macroName;
 protected:
     void ctor();
-    void ctor(std::string* title, std::string* invokerContext, std::string* macroName);
-    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    void ctor(const std::string & title, const std::string & invokerContext, const std::string & macroName);
+    void ctor(const std::string & title, DataTable* parameters);
 
 public: /* protected */
-    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+    DataTable* constructParameters();
 
 public:
-    std::string* getInvokerContext();
-    void setInvokerContext(std::string* invokerContext);
-    std::string* getMacroName();
-    void setMacroName(std::string* macroName);
+    const std::string & getInvokerContext();
+    void setInvokerContext(const std::string & invokerContext);
+    const std::string & getMacroName();
+    void setMacroName(const std::string & macroName);
 
     // Generated
     ShowGuide();
-    ShowGuide(std::string* title, std::string* invokerContext, std::string* macroName);
-    ShowGuide(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    ShowGuide(const std::string & title, const std::string & invokerContext, const std::string & macroName);
+    ShowGuide(const std::string & title, DataTable* parameters);
 protected:
     ShowGuide(const ::default_init_tag&);
 
@@ -49,7 +49,7 @@ public:
     static void 
     static const std::string& CF_INVOKER_CONTEXT();
     static const std::string& CF_MACRO_NAME();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_SHOW_GUIDE();
+    static TableFormat*& CFT_SHOW_GUIDE();
 
 private:
     ::java::lang::Class* getClass0();

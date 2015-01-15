@@ -19,21 +19,21 @@ public:
     static const int LE = 5) };
 
 private:
-    std::string* field;
+    const std::string & field;
     void* value;
     int operator_;
 protected:
-    void ctor(std::string* field, void* value, int operator_);
-    void ctor(std::string* field, void* value);
+    void ctor(const std::string & field, void* value, int operator_);
+    void ctor(const std::string & field, void* value);
 
 public:
-    std::string* getField();
+    const std::string & getField();
     void* getValue();
     int getOperator();
 
     // Generated
-    QueryCondition(std::string* field, void* value, int operator_);
-    QueryCondition(std::string* field, void* value);
+    QueryCondition(const std::string & field, void* value, int operator_);
+    QueryCondition(const std::string & field, void* value);
 protected:
     QueryCondition(const ::default_init_tag&);
 

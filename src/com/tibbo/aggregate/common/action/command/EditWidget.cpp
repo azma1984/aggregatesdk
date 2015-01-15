@@ -30,13 +30,13 @@ com::tibbo::aggregate::common::action::command::EditWidget::EditWidget()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::EditWidget::EditWidget(std::string* title, std::string* defaultContext, std::string* widgetContext, std::string* widget) 
+com::tibbo::aggregate::common::action::command::EditWidget::EditWidget(const std::string & title, const std::string & defaultContext, const std::string & widgetContext, const std::string & widget) 
     : EditWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,defaultContext,widgetContext,widget);
 }
 
-com::tibbo::aggregate::common::action::command::EditWidget::EditWidget(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::EditWidget::EditWidget(const std::string & title, DataTable* parameters) 
     : EditWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -96,7 +96,7 @@ void com::tibbo::aggregate::common::action::command::EditWidget::ctor()
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_WIDGET(), CFT_EDIT_WIDGET_, RFT_EDIT_WIDGET_);
 }
 
-void com::tibbo::aggregate::common::action::command::EditWidget::ctor(std::string* title, std::string* defaultContext, std::string* widgetContext, std::string* widget)
+void com::tibbo::aggregate::common::action::command::EditWidget::ctor(const std::string & title, const std::string & defaultContext, const std::string & widgetContext, const std::string & widget)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_WIDGET(), title);
     this->defaultContext = defaultContext;
@@ -104,14 +104,14 @@ void com::tibbo::aggregate::common::action::command::EditWidget::ctor(std::strin
     this->widget = widget;
 }
 
-void com::tibbo::aggregate::common::action::command::EditWidget::ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::EditWidget::ctor(const std::string & title, DataTable* parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_WIDGET(), title, parameters, CFT_EDIT_WIDGET_);
 }
 
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditWidget::constructParameters()
 {
-    return new ::com::tibbo::aggregate::common::datatable::DataTable(CFT_EDIT_WIDGET_, new voidArray({defaultContext), widgetContext), widget)}));
+    return new DataTable(CFT_EDIT_WIDGET_, new voidArray({defaultContext), widgetContext), widget)}));
 }
 
 std::string com::tibbo::aggregate::common::action::command::EditWidget::getDefaultContext()
@@ -119,7 +119,7 @@ std::string com::tibbo::aggregate::common::action::command::EditWidget::getDefau
     return defaultContext;
 }
 
-void com::tibbo::aggregate::common::action::command::EditWidget::setDefaultContext(std::string* defaultContext)
+void com::tibbo::aggregate::common::action::command::EditWidget::setDefaultContext(const std::string & defaultContext)
 {
     this->defaultContext = defaultContext;
 }
@@ -129,7 +129,7 @@ std::string com::tibbo::aggregate::common::action::command::EditWidget::getWidge
     return widgetContext;
 }
 
-void com::tibbo::aggregate::common::action::command::EditWidget::setWidgetContext(std::string* widgetContext)
+void com::tibbo::aggregate::common::action::command::EditWidget::setWidgetContext(const std::string & widgetContext)
 {
     this->widgetContext = widgetContext;
 }
@@ -139,7 +139,7 @@ std::string com::tibbo::aggregate::common::action::command::EditWidget::getWidge
     return widget;
 }
 
-void com::tibbo::aggregate::common::action::command::EditWidget::setWidget(std::string* widget)
+void com::tibbo::aggregate::common::action::command::EditWidget::setWidget(const std::string & widget)
 {
     this->widget = widget;
 }
@@ -171,7 +171,7 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        CFT_EDIT_WIDGET_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        CFT_EDIT_WIDGET_ = new TableFormat(int(1), int(1));
         {
             CFT_EDIT_WIDGET_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_DEFAULT_CONTEXT_)
                 ->append(u"><S><F=N>"_j)->toString());
@@ -180,7 +180,7 @@ struct clinit_ {
             CFT_EDIT_WIDGET_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_WIDGET_)
                 ->append(u"><S><F=N>"_j)->toString());
         }
-        RFT_EDIT_WIDGET_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        RFT_EDIT_WIDGET_ = new TableFormat(int(1), int(1));
         {
             RFT_EDIT_WIDGET_)->addField(std::stringBuilder().append(u"<"_j)->append(RF_RESULT_)
                 ->append(u"><S>"_j)->toString());

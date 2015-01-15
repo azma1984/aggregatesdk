@@ -23,7 +23,7 @@ public:
 
 private:
     EventDefinition* definition;
-    ::com::tibbo::aggregate::common::event::ContextEventListenerSet* listeners;
+    ContextEventListenerSet* listeners;
     std::list  history;
     long fireCount;
 protected:
@@ -35,13 +35,13 @@ public:
     ::java::util::Set* getListeners();
     ::java::util::Set* getListenersInfo();
     long getFireCount();
-    bool addListener(::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool weak);
-    bool removeListener(::com::tibbo::aggregate::common::event::ContextEventListener* listener);
+    bool addListener(ContextEventListener* listener, bool weak);
+    bool removeListener(ContextEventListener* listener);
     void clearListeners();
-    void dispatch(::com::tibbo::aggregate::common::data::Event* event);
-    ::com::tibbo::aggregate::common::data::Event* store(::com::tibbo::aggregate::common::data::Event* event, ::java::lang::Integer* customMemoryStorageSize);
+    void dispatch(Event* event);
+    Event* store(Event* event, int  customMemoryStorageSize);
     std::list  getHistory();
-    std::string* toString();
+    const std::string & toString();
     int compareTo(EventData* d);
 
     // Generated

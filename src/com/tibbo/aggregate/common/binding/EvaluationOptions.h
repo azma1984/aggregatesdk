@@ -34,8 +34,8 @@ protected:
     void ctor(bool startup, bool event);
     void ctor(bool startup, bool event, long period);
     void ctor(int pattern);
-    void ctor(bool startup, std::string* activator, std::string* condition);
-    void ctor(bool startup, std::string* activator);
+    void ctor(bool startup, const std::string & activator, const std::string & condition);
+    void ctor(bool startup, const std::string & activator);
 
 public:
     int getPattern();
@@ -53,15 +53,15 @@ public:
     void setProcessOnEvent(bool processOnEvent);
     void setProcessPeriodically(bool processPeriodically);
     EvaluationOptions* clone();
-    std::string* toString();
+    const std::string & toString();
 
     // Generated
     EvaluationOptions();
     EvaluationOptions(bool startup, bool event);
     EvaluationOptions(bool startup, bool event, long period);
     EvaluationOptions(int pattern);
-    EvaluationOptions(bool startup, std::string* activator, std::string* condition);
-    EvaluationOptions(bool startup, std::string* activator);
+    EvaluationOptions(bool startup, const std::string & activator, const std::string & condition);
+    EvaluationOptions(bool startup, const std::string & activator);
 protected:
     EvaluationOptions(const ::default_init_tag&);
 

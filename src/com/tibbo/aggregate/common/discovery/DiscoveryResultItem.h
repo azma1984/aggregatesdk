@@ -2,10 +2,12 @@
 #define _DiscoveryResultItem_H_
 
 #include <boost/shared_ptr.hpp>
-#include "discovery/DiscoverableServiceDefinition.h"
+//#include "discovery/DiscoverableServiceDefinition.h"
 #include "discovery/DeviceRecommendation.h"
 #include "discovery/DiscoveryProvider.h"
 #include "datatable/DataRecord.h"
+
+class DiscoverableServiceDefinition;
 
 class DiscoveryResultItem
 {
@@ -34,3 +36,5 @@ public:
     DiscoveryResultItem(boost::shared_ptr<DiscoverableServiceDefinition> aDiscoverableServiceDefinition,
                         boost::shared_ptr<DataRecord> parametersDataRecord, boost::shared_ptr<DeviceRecommendation> aDeviceRecommendation);
 };
+
+#endif 

@@ -12,12 +12,12 @@ struct com::tibbo::aggregate::common::datatable::converter::FormatConverter
     
 {
     ::java::lang::Class* getValueClass();
-    ::com::tibbo::aggregate::common::datatable::TableFormat* getFormat();
-    ::com::tibbo::aggregate::common::datatable::FieldFormat* createFieldFormat(std::string* name);
-    void* instantiate(::com::tibbo::aggregate::common::datatable::DataRecord* source) /* throws(InstantiationException) */;
+    TableFormat* getFormat();
+    FieldFormat* createFieldFormat(const std::string & name);
+    void* instantiate(DataRecord* source) /* throws(InstantiationException) */;
     void* clone(void* value, bool useConversion);
     void* convertToTable(void* value);
-    void* convertToTable(void* value, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
+    void* convertToTable(void* value, TableFormat* format);
     void* convertToBean(void* value, void* originalValue);
 
     // Generated

@@ -39,7 +39,7 @@ DataTable::DataTable(DataRecord* record)
     ctor(record);
 }
 
-DataTable::DataTable(TableFormat* format, std::string* dataString, ::encoding::ClassicEncodingSettings* settings)
+DataTable::DataTable(TableFormat* format, const std::string & dataString, ::encoding::ClassicEncodingSettings* settings)
     : DataTable(*static_cast< ::default_init_tag* >(0))
 {
     ctor(format,dataString,settings);
@@ -51,19 +51,19 @@ DataTable::DataTable(TableFormat* format, voidArray* firstRowData)
     ctor(format,firstRowData);
 }
 
-DataTable::DataTable(std::string* data)
+DataTable::DataTable(const std::string & data)
     : DataTable(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
 }
 
-DataTable::DataTable(std::string* data, bool validate)
+DataTable::DataTable(const std::string & data, bool validate)
     : DataTable(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data,validate);
 }
 
-DataTable::DataTable(std::string* data, ::encoding::ClassicEncodingSettings* settings, bool validate)
+DataTable::DataTable(const std::string & data, ::encoding::ClassicEncodingSettings* settings, bool validate)
     : DataTable(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data,settings,validate);
@@ -150,7 +150,7 @@ void DataTable::ctor(DataRecord* record)
     addRecord(record);
 }
 
-void DataTable::ctor(TableFormat* format, std::string* dataString, ::encoding::ClassicEncodingSettings* settings)
+void DataTable::ctor(TableFormat* format, const std::string & dataString, ::encoding::ClassicEncodingSettings* settings)
 {
     super::ctor();
     init();
@@ -185,17 +185,17 @@ void DataTable::ctor(TableFormat* format, voidArray* firstRowData)
     }
 }
 
-void DataTable::ctor(std::string* data)
+void DataTable::ctor(const std::string & data)
 {
     ctor(data, true);
 }
 
-void DataTable::ctor(std::string* data, bool validate)
+void DataTable::ctor(const std::string & data, bool validate)
 {
     ctor(data, new ::encoding::ClassicEncodingSettings(false), validate);
 }
 
-void DataTable::ctor(std::string* data, ::encoding::ClassicEncodingSettings* settings, bool validate)
+void DataTable::ctor(const std::string & data, ::encoding::ClassicEncodingSettings* settings, bool validate)
 {
     super::ctor();
     init();
@@ -203,7 +203,7 @@ void DataTable::ctor(std::string* data, ::encoding::ClassicEncodingSettings* set
         return;
     }
     auto found = false;
-    std::string* encodedFormat;
+    const std::string & encodedFormat;
     std::list  fieldNames;
     auto recs = ::com::tibbo::aggregate::common::util::StringUtils::elements(data, settings != 0 ? settings)->isUseVisibleSeparators() : false);
     for (auto _i = recs)->iterator(); _i->hasNext(); ) {
@@ -274,7 +274,7 @@ FieldFormat* DataTable::getFormat(int field)
     return getFormat())->getField(field);
 }
 
-FieldFormat* DataTable::getFormat(std::string* name)
+FieldFormat* DataTable::getFormat(const std::string & name)
 {
     return getFormat())->getField(name);
 }
@@ -298,12 +298,12 @@ void DataTable::setId(::java::lang::Long* id)
     this->id = id;
 }
 
-bool DataTable::hasField(std::string* field)
+bool DataTable::hasField(const std::string & field)
 {
     return format)->hasField(field);
 }
 
-void DataTable::setInvalidationMessage(std::string* invalidationMessage)
+void DataTable::setInvalidationMessage(const std::string & invalidationMessage)
 {
     this->invalidationMessage = invalidationMessage;
 }
@@ -359,7 +359,7 @@ DataRecord* DataTable::addRecord()
     return record;
 }
 
-void DataTable::addRecordImpl(::java::lang::Integer* index, DataRecord* record)
+void DataTable::addRecordImpl(int  index, DataRecord* record)
 {
     if(getRecordCount() >= format)->getMaxRecords()) {
         throw new ::java::lang::IllegalStateException(std::stringBuilder().append(Cres::get())->getString(u"dtCannotAddRecord"_j))->append(u"maximum number of records is reached: "_j)
@@ -455,7 +455,7 @@ DataRecord* DataTable::getRecord(int number)
     return java_cast< DataRecord* >(records)->get(number));
 }
 
-DataRecord* DataTable::getRecordById(std::string* id)
+DataRecord* DataTable::getRecordById(const std::string & id)
 {
     if(id == 0) {
         return 0;
@@ -554,7 +554,7 @@ std::string DataTable::encode(bool useVisibleSeparators)
 
 std::string DataTable::encode(::encoding::ClassicEncodingSettings* settings)
 {
-    ::java::lang::Integer* formatId;
+    int  formatId;
     auto res = new std::stringBuffer(getFieldCount() * getRecordCount() * int(3) + getFieldCount() * int(7));
     auto needToInsertFormat = settings != 0 && settings)->isEncodeFormat();
     if(needToInsertFormat) {
@@ -623,7 +623,7 @@ std::string DataTable::getDescription()
             ->append(u"'"_j)->toString(), ex);
         return toDefaultString();
     }
-    return name == 0 ? static_cast< std::string* >(0) : name)->toString();
+    return name == 0 ? static_cast< const std::string & >(0) : name)->toString();
 }
 
 std::string DataTable::toDefaultString()
@@ -765,17 +765,17 @@ DataRecord* DataTable::select(DataTableQuery* query)
     return 0;
 }
 
-DataRecord* DataTable::select(std::string* field, void* value)
+DataRecord* DataTable::select(const std::string & field, void* value)
 {
     return select(new DataTableQuery(new QueryConditionArray({new QueryCondition(field, value)})));
 }
 
-java::lang::Integer* DataTable::findIndex(std::string* field, void* value)
+java::lang::Integer* DataTable::findIndex(const std::string & field, void* value)
 {
     return findIndex(new DataTableQuery(new QueryConditionArray({new QueryCondition(field, value)})));
 }
 
-void DataTable::sort(std::string* field, bool ascending)
+void DataTable::sort(const std::string & field, bool ascending)
 {
     sort(new DataTableSorter(new SortOrderArray({new SortOrder(field, ascending)})));
 }
