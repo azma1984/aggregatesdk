@@ -1,18 +1,32 @@
 #ifndef _DiscoverableServiceDefinition_H_
+#define _DiscoverableServiceDefinition_H_
 
 #include "util/Cloneable.h"
-#include "discovery/DiscoveryProvider.h"
+//#include "discovery/DiscoveryProvider.h"
 #include "discovery/DiscoveryResultItem.h"
+#include "device/ServerDeviceController.h"
+#include "discovery/DiscoverableService.h"
 #include <string>
 #include <list>
 #include <boost/shared_ptr.hpp>
+#include "datatable.h"
 
-class DiscoverableServiceDefinition : public Cloneable
+
+class DiscoveryProvider;
+
+class DiscoverableServiceDefinition //: public Cloneable
 {
 private:
     boost::shared_ptr<DiscoveryProvider> discoveryProvider;
     std::string name;
     std::string description;
+
+ /**
+   * In most cases, every record in this table defines an instance of connection and authentication "credentials".
+   * 
+   * Some services, such as TCP port checker, use the whole table for a single check.
+   */
+
     boost::shared_ptr<DataTable> connectionOptions;
     long discoveryTimeout;
     int discoveryRetries;
@@ -33,6 +47,8 @@ public:
     std::string deviceType(const std::string& addressStrings);
     int priority();
     boost::shared_ptr<DiscoverableServiceDefinition> clone();
+	DiscoverableServiceDefinition(DiscoverableServiceDefinition&); //copy constructor
+
     void setUseService(bool useService);
     bool isUseService();
     bool isEnabledByDefault();
@@ -41,6 +57,7 @@ public:
 
     DiscoverableServiceDefinition(boost::shared_ptr<DiscoveryProvider> discoveryProvider, const std::string& name, const std::string& description,
                                   boost::shared_ptr<DataTable> connectionOptions, int defaultDiscoveryTimeout, int defaultDiscoveryRetries,
-                                  bool isEnabledByDefault);
+                                  bool isEnabledByDefault1);
+	
 };
 #endif  //DiscoverableServiceDefinition

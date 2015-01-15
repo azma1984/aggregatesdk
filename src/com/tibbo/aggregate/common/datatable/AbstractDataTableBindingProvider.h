@@ -32,8 +32,8 @@ public:
     void writeReference(::com::tibbo::aggregate::common::expression::Reference* ref, void* value) /* throws(BindingException) */;
 
 private:
-    void writeToEditor(std::string* property, void* value);
-    void writeToField(int row, std::string* field, std::string* property, void* value) /* throws(BindingException) */;
+    void writeToEditor(const std::string & property, void* value);
+    void writeToField(int row, const std::string & field, const std::string & property, void* value) /* throws(BindingException) */;
 
 public:
     int getListenerCount();
@@ -44,14 +44,14 @@ public:
     bool isLocalReference(::com::tibbo::aggregate::common::expression::Reference* ref);
 
 public: /* protected */
-    void processBindings(std::string* field, int record, bool startup);
+    void processBindings(const std::string & field, int record, bool startup);
     ::com::tibbo::aggregate::common::binding::ReferenceWriter* getExternalReferenceWriter();
     void callReferenceChanged(::com::tibbo::aggregate::common::expression::Reference* cause, int method, ::com::tibbo::aggregate::common::binding::ReferenceListener* listener);
-    void setEnabled(void* value, int row, std::string* field) /* throws(BindingException) */;
-    void setCellValue(void* value, int row, std::string* field) /* throws(BindingException) */;
-    void setOptions(void* value, int row, std::string* field) /* throws(BindingException) */;
-    void setSelectionValues(void* value, int row, std::string* field) /* throws(BindingException) */;
-    void setHidden(void* value, int row, std::string* field) /* throws(BindingException) */;
+    void setEnabled(void* value, int row, const std::string & field) /* throws(BindingException) */;
+    void setCellValue(void* value, int row, const std::string & field) /* throws(BindingException) */;
+    void setOptions(void* value, int row, const std::string & field) /* throws(BindingException) */;
+    void setSelectionValues(void* value, int row, const std::string & field) /* throws(BindingException) */;
+    void setHidden(void* value, int row, const std::string & field) /* throws(BindingException) */;
     void setEditorEnabled(bool enabled);
 
     // Generated

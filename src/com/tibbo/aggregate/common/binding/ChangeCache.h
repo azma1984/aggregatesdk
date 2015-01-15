@@ -22,7 +22,7 @@ private:
     std::map variableChanges;
 
 public:
-    void setVariableField(::com::tibbo::aggregate::common::context::Context* context, std::string* variable, std::string* field, int record, void* value, ::com::tibbo::aggregate::common::context::CallerController* cc) /* throws(ContextException) */;
+    void setVariableField(::com::tibbo::aggregate::common::context::Context* context, const std::string & variable, const std::string & field, int record, void* value, ::com::tibbo::aggregate::common::context::CallerController* cc) /* throws(ContextException) */;
     void commit(BindingProvider* provider, CallerControllerSelector* selector);
 
     // Generated

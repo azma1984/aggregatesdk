@@ -2,54 +2,77 @@
 
 #pragma once
 
-#include "device/sync/SynchronizationHandler.h"
-#include "util/Cloneable.h"
-#include <boost/shared_ptr.hpp>
-#include <string>
+//#include <fwd-aggregate_sdk_5.11.00.h"
+#include <com/tibbo/aggregate/common/device/sync/fwd-aggregate_sdk_5.11.00.h"
+//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
+//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
+//#include <java/lang/Object.h"
+//#include <java/lang/Cloneable.h"
 
-class SettingSynchronizationOptions : public Cloneable
+
+
+class com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions
+    
+    , public ::java::lang::Cloneable
 {
+
+public:
+    typedef void super;
+
 private:
     int mode;
-    long updateHistoryStorageTime;
-    long syncPeriod;
+    ::java::lang::Long* updateHistoryStorageTime;
+    ::java::lang::Long* syncPeriod;
     int historyRate;
-    std::string filter;
-    std::string master;
-    std::string condition;
-    boost::shared_ptr<Expression> filterExpression;
-    boost::shared_ptr<Expression> conditionExpression;
-    boost::shared_ptr<SynchronizationHandler> synchronizationHandler;
+    const std::string & filter;
+    const std::string & master;
+    const std::string & condition;
+    ::com::tibbo::aggregate::common::expression::Expression* filterExpression;
+    ::com::tibbo::aggregate::common::expression::Expression* conditionExpression;
+    SynchronizationHandler* synchronizationHandler;
     int synchronizationsCounter;
-
 protected:
     void ctor();
+    void ctor(::java::lang::Long* syncPeriod);
+    void ctor(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod);
+    void ctor(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod, int historyRate);
 
 public:
     int getMode();
     void setMode(int mode);
-    long getSyncPeriod();
-    void setSyncPeriod(long syncPeriod);
-    std::string getMaster();
-    void setMaster(const std::string& master);
-    long getUpdateHistoryStorageTime();
-    void setUpdateHistoryStorageTime(long updateHistoryStorageTime);
+    ::java::lang::Long* getSyncPeriod();
+    void setSyncPeriod(::java::lang::Long* syncPeriod);
+    const std::string & getMaster();
+    void setMaster(const std::string & master);
+    ::java::lang::Long* getUpdateHistoryStorageTime();
+    void setUpdateHistoryStorageTime(::java::lang::Long* updateHistoryStorageTime);
     int getHistoryRate();
     void setHistoryRate(int historyRate);
-    std::string getFilter();
-    boost::shared_ptr<Expression> getFilterExpression();
-    void setFilter(const std::string& filter);
-    std::string getCondition();
-    boost::shared_ptr<Expression> getConditionExpression();
-    void setCondition(const std::string& condition);
-    boost::shared_ptr<SynchronizationHandler> getSynchronizationHandler();
-    void setSynchronizationHandler(boost::shared_ptr<SynchronizationHandler> synchronizationHandler);
+    const std::string & getFilter();
+    ::com::tibbo::aggregate::common::expression::Expression* getFilterExpression();
+    void setFilter(const std::string & filter);
+    const std::string & getCondition();
+    ::com::tibbo::aggregate::common::expression::Expression* getConditionExpression();
+    void setCondition(const std::string & condition);
+    SynchronizationHandler* getSynchronizationHandler();
+    void setSynchronizationHandler(SynchronizationHandler* synchronizationHandler);
     int getSynchronizationsCounter();
     void incrementSynchronizationsCounter();
     SettingSynchronizationOptions* clone();
 
+    // Generated
     SettingSynchronizationOptions();
-    SettingSynchronizationOptions(long syncPeriod);
-    SettingSynchronizationOptions(long updateHistoryStorageTime, long syncPeriod);
-    SettingSynchronizationOptions(long updateHistoryStorageTime, long syncPeriod, int historyRate);
+    SettingSynchronizationOptions(::java::lang::Long* syncPeriod);
+    SettingSynchronizationOptions(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod);
+    SettingSynchronizationOptions(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod, int historyRate);
+protected:
+    SettingSynchronizationOptions(const ::default_init_tag&);
+
+
+public:
+    
+
+private:
+    void init();
+    ::java::lang::Class* getClass0();
 };

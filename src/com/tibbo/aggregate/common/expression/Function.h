@@ -9,9 +9,9 @@
 struct com::tibbo::aggregate::common::expression::Function
     
 {
-    std::string* getCategory();
-    std::string* getReturnValue();
-    std::string* getParametersFootprint();
+    const std::string & getCategory();
+    const std::string & getReturnValue();
+    const std::string & getParametersFootprint();
     void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
     // Generated

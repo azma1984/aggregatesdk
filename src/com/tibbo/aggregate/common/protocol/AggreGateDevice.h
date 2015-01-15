@@ -3,7 +3,7 @@
 #ifndef AggreGateDeviceH
 #define AggreGateDeviceH
 
-#include "TimeHelper.h";
+#include "TimeHelper.h"
 
 
 class AggreGateDevice

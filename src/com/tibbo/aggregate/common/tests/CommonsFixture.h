@@ -28,7 +28,7 @@ public:
     void setUp() /* throws(Exception) */;
     void tearDown() /* throws(Exception) */;
     static ::com::tibbo::aggregate::common::expression::Evaluator* createTestEvaluator();
-    static ::com::tibbo::aggregate::common::datatable::DataTable* createTestTable();
+    static DataTable* createTestTable();
 
     // Generated
     CommonsFixture();

@@ -11,7 +11,7 @@ private:
 	std::string password;
 protected:
 	void ctor();
-	void ctor(std::string* address, int port, std::string* username, std::string* password);
+	void ctor(const std::string & address, int port, const std::string & username, const std::string & password);
 
 public:
 	typedef AggreGateNetworkDevice super;

@@ -102,7 +102,7 @@ void DataRecord::setData(const std::string& dataString, ClassicEncodingSettings*
 //                 }
 //             } else {
 //                 if(fieldNamesInData != 0 && fieldNamesInData)->size() > i) {
-//                     auto fieldName = java_cast< std::string* >(fieldNamesInData)->get(i));
+//                     auto fieldName = java_cast< const std::string & >(fieldNamesInData)->get(i));
 //                     if(getFormat())->hasField(fieldName)) {
 //                         auto value = java_cast< void* >(format)->getField(fieldName))->valueFromEncodedString(el)->getValue(), settings, validate));
 //                         setValue(fieldName, value, validate);
@@ -137,7 +137,7 @@ FieldFormat* DataRecord::getFormat(int index)
     return format->getField(index);
 }
 
-FieldFormat* DataRecord::getFormat(std::string* name)
+FieldFormat* DataRecord::getFormat(const std::string & name)
 {
     return format->getField(name);
 }
@@ -393,7 +393,7 @@ long DataRecord::getLong(int index)
     return reinterpret_cast<long>(getValue(index));
 }
 
-float DataRecord::getFloat(std::string* name)
+float DataRecord::getFloat(const std::string & name)
 {
     return getFloat(findIndex(name));
 }
@@ -483,7 +483,7 @@ void* DataRecord::getValueDescription(const std::string& name)
 //     auto value = getValue(name);
 //     auto const ff = getFormat(name);
 //     auto sv = ff)->getSelectionValues();
-//     auto description = sv != 0 ? java_cast< std::string* >(sv)->get(value)) : static_cast< std::string* >(0);
+//     auto description = sv != 0 ? java_cast< const std::string & >(sv)->get(value)) : static_cast< const std::string & >(0);
 //     return description != 0 ? description) : ff)->valueToString(value));
 	
 }
@@ -639,17 +639,26 @@ std::string DataRecord::valueAsString(const std::string& name)
     }
     return value;
 }
-
+*/
 std::string DataRecord::toString()
 {
-    return dataAsString(true, true);
+ //return dataAsString(true, true);
+std::string str;
+ return str;
 }
 
-DataTable* DataRecord::wrap()
+  /**
+   * Constructs new <code>DataTable</code> and adds this record to it.
+   */
+DataTable *DataRecord::wrap()
 {
-    return new DataTable(this);
+    //return new DataTable(*(DataTable*)this);
+
+DataTable *dt=0;
+return dt;
 }
 
+/*
 DataRecord* DataRecord::clone()
 {
 	//TODO: копирование

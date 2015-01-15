@@ -15,16 +15,16 @@ class com::tibbo::aggregate::common::script::ScriptException
 public:
     typedef ::com::tibbo::aggregate::common::AggreGateException super;
 protected:
-    void ctor(std::string* message);
+    void ctor(const std::string & message);
     void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
+    void ctor(const std::string & message, ::java::lang::Throwable* cause);
 
     // Generated
 
 public:
-    ScriptException(std::string* message);
+    ScriptException(const std::string & message);
     ScriptException(::java::lang::Throwable* cause);
-    ScriptException(std::string* message, ::java::lang::Throwable* cause);
+    ScriptException(const std::string & message, ::java::lang::Throwable* cause);
 protected:
     ScriptException(const ::default_init_tag&);
 

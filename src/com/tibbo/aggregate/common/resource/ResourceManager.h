@@ -40,13 +40,13 @@ private:
     static void processCustomizationFile(::java::net::URI* customizationUrl) /* throws(IOException, CertificateException) */;
 
 public:
-    static ::javax::swing::ImageIcon* getImageIcon(std::string* id);
+    static ::javax::swing::ImageIcon* getImageIcon(const std::string & id);
 
 private:
-    static ::javax::swing::ImageIcon* getImageIcon(std::string* id, std::string* extension);
+    static ::javax::swing::ImageIcon* getImageIcon(const std::string & id, const std::string & extension);
 
 public:
-    static ::int8_tArray* getResource(std::string* name);
+    static ::int8_tArray* getResource(const std::string & name);
     static void process(WrappingResourceBundle* bundle);
     static void add(WrappingResourceBundle* bundle);
     static ::java::util::Locale* getLocale();

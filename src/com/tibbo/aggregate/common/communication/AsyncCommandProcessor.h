@@ -43,7 +43,7 @@ public:
     void run();
 
 private:
-    void processError(::org::apache::log4j::Level* priority, std::string* message, ::java::lang::Exception* ex);
+    void processError(::org::apache::log4j::Level* priority, const std::string & message, ::java::lang::Exception* ex);
 
 public:
     bool isActive();

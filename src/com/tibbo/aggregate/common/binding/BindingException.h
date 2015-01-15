@@ -15,16 +15,16 @@ class com::tibbo::aggregate::common::binding::BindingException
 public:
     typedef ::com::tibbo::aggregate::common::AggreGateException super;
 protected:
-    void ctor(std::string* message);
+    void ctor(const std::string & message);
     void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
+    void ctor(const std::string & message, ::java::lang::Throwable* cause);
 
     // Generated
 
 public:
-    BindingException(std::string* message);
+    BindingException(const std::string & message);
     BindingException(::java::lang::Throwable* cause);
-    BindingException(std::string* message, ::java::lang::Throwable* cause);
+    BindingException(const std::string & message, ::java::lang::Throwable* cause);
 protected:
     BindingException(const ::default_init_tag&);
 

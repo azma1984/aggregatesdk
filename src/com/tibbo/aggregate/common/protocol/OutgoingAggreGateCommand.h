@@ -11,21 +11,21 @@ class OutgoingAggreGateCommand : public AggreGateCommand
  /*
 private:
     int paramCount;
-    std::string* id;
+    const std::string & id;
 protected:
     void ctor();
 
 public:
-    std::string* header();
-    std::string* footer();
+    const std::string & header();
+    const std::string & footer();
 
 public:
-    OutgoingAggreGateCommand* addParam(std::string* param);
-    std::string* getId();
-    void constructReply(std::string* id, std::string* code);
-    void constructReply(std::string* id, std::string* code, std::string* message);
-    void constructReply(std::string* id, std::string* code, std::string* message, std::string* details);
-    void constructEvent(std::string* context, std::string* name, int level, std::string* encodedDataTable, ::java::lang::Long* eventId, ::java::util::Date* creationtime, ::java::lang::Integer* listener);
+    OutgoingAggreGateCommand* addParam(const std::string & param);
+    const std::string & getId();
+    void constructReply(const std::string & id, const std::string & code);
+    void constructReply(const std::string & id, const std::string & code, const std::string & message);
+    void constructReply(const std::string & id, const std::string & code, const std::string & message, const std::string & details);
+    void constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, ::java::lang::Long* eventId, ::java::util::Date* creationtime, int  listener);
 
     // Generated
     OutgoingAggreGateCommand();

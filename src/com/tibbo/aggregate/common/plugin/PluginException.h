@@ -15,16 +15,16 @@ class com::tibbo::aggregate::common::plugin::PluginException
 public:
     typedef ::com::tibbo::aggregate::common::AggreGateException super;
 protected:
-    void ctor(std::string* message);
+    void ctor(const std::string & message);
     void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
+    void ctor(const std::string & message, ::java::lang::Throwable* cause);
 
     // Generated
 
 public:
-    PluginException(std::string* message);
+    PluginException(const std::string & message);
     PluginException(::java::lang::Throwable* cause);
-    PluginException(std::string* message, ::java::lang::Throwable* cause);
+    PluginException(const std::string & message, ::java::lang::Throwable* cause);
 protected:
     PluginException(const ::default_init_tag&);
 

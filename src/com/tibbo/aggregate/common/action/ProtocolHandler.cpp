@@ -128,13 +128,13 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionIdToDataTable(ActionIdentifier* id)
 {
     
-    auto stringId = id != 0 ? id)->toString() : static_cast< std::string* >(0);
-    auto dataTable = new ::com::tibbo::aggregate::common::datatable::DataTable(FORMAT_ACTION_ID_FORMAT_);
+    auto stringId = id != 0 ? id)->toString() : static_cast< const std::string & >(0);
+    auto dataTable = new DataTable(FORMAT_ACTION_ID_FORMAT_);
     dataTable)->addRecord())->addString(stringId);
     return dataTable;
 }
 
-com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::common::action::ProtocolHandler::actionIdFromDataTable(::com::tibbo::aggregate::common::datatable::DataTable* table)
+com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::common::action::ProtocolHandler::actionIdFromDataTable(DataTable* table)
 {
     
     if(table == 0) {
@@ -150,7 +150,7 @@ com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandToDataTable(GenericActionCommand* cmd)
 {
     
-    auto table = new ::com::tibbo::aggregate::common::datatable::DataTable(FORMAT_ACTION_COMMAND_);
+    auto table = new DataTable(FORMAT_ACTION_COMMAND_);
     if(cmd == 0) {
         return table;
     }
@@ -164,7 +164,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return table;
 }
 
-com::tibbo::aggregate::common::action::GenericActionCommand* com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandFromDataTable(::com::tibbo::aggregate::common::datatable::DataTable* table)
+com::tibbo::aggregate::common::action::GenericActionCommand* com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandFromDataTable(DataTable* table)
 {
     
     if(table == 0) {
@@ -186,7 +186,7 @@ com::tibbo::aggregate::common::action::GenericActionCommand* com::tibbo::aggrega
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseToDataTable(GenericActionResponse* response)
 {
     
-    auto table = new ::com::tibbo::aggregate::common::datatable::DataTable(FORMAT_ACTION_RESPONSE_);
+    auto table = new DataTable(FORMAT_ACTION_RESPONSE_);
     if(response == 0) {
         return table;
     }
@@ -197,7 +197,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return table;
 }
 
-com::tibbo::aggregate::common::action::GenericActionResponse* com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseFromDataTable(::com::tibbo::aggregate::common::datatable::DataTable* table)
+com::tibbo::aggregate::common::action::GenericActionResponse* com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseFromDataTable(DataTable* table)
 {
     
     if(table == 0 || table)->getRecordCount() == 0) {
@@ -247,9 +247,9 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        FORMAT_ACTION_ID_FORMAT_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1), std::stringBuilder().append(u"<"_j)->append(FIELD_ACTION_ID_ACTION_ID_)
+        FORMAT_ACTION_ID_FORMAT_ = new TableFormat(int(1), int(1), std::stringBuilder().append(u"<"_j)->append(FIELD_ACTION_ID_ACTION_ID_)
             ->append(u"><S>"_j)->toString());
-        FORMAT_ACTION_COMMAND_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        FORMAT_ACTION_COMMAND_ = new TableFormat(int(1), int(1));
         {
             FORMAT_ACTION_COMMAND_)->addField(std::stringBuilder().append(u"<"_j)->append(FIELD_ACTION_COMMAND_TYPE_)
                 ->append(u"><S>"_j)->toString());
@@ -264,7 +264,7 @@ struct clinit_ {
             FORMAT_ACTION_COMMAND_)->addField(std::stringBuilder().append(u"<"_j)->append(FIELD_ACTION_COMMAND_REQUEST_ID_)
                 ->append(u"><S><F=N>"_j)->toString());
         }
-        FORMAT_ACTION_RESPONSE_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        FORMAT_ACTION_RESPONSE_ = new TableFormat(int(1), int(1));
         {
             FORMAT_ACTION_RESPONSE_)->addField(std::stringBuilder().append(u"<"_j)->append(FIELD_ACTION_RESPONSE_PARAMETERS_)
                 ->append(u"><T><F=N>"_j)->toString());

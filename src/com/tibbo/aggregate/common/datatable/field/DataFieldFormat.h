@@ -15,11 +15,11 @@
 
 
 class com::tibbo::aggregate::common::datatable::field::DataFieldFormat
-    : public ::com::tibbo::aggregate::common::datatable::FieldFormat
+    : public FieldFormat
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::FieldFormat super;
+    typedef FieldFormat super;
     static const int TRANSCODER_VERSION) };
 
 private:
@@ -34,29 +34,29 @@ private:
     static const std::string EXTENSIONS_FIELD_;
     static const std::string EXTENSION_FIELD_;
     static const std::string FOLDER_FIELD_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* EXTENSIONS_FORMAT_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* DATA_EDITOR_OPTIONS_FORMAT_;
+    static TableFormat* EXTENSIONS_FORMAT_;
+    static TableFormat* DATA_EDITOR_OPTIONS_FORMAT_;
 protected:
-    void ctor(std::string* name);
+    void ctor(const std::string & name);
 
 public:
     char16_t getType();
     ::java::lang::Class* getFieldClass();
     ::java::lang::Class* getFieldWrappedClass();
-    ::com::tibbo::aggregate::common::data::Data* getNotNullDefault();
-    ::com::tibbo::aggregate::common::data::Data* valueFromString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-    std::string* valueToString(::com::tibbo::aggregate::common::data::Data* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    Data* getNotNullDefault();
+    Data* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+    const std::string & valueToString(Data* value, encoding::ClassicEncodingSettings* settings);
 
 public: /* protected */
     std::list  getSuitableEditors();
 
 public:
-    static const std::string encodeTextEditorOptions(std::string* mode);
-    static const std::string encodeTextEditorOptions(std::string* extensionsDescription, std::string* folder, std::list  extensions);
-    static const std::string encodeTextEditorOptions(std::string* mode, std::string* extensionsDescription, std::string* folder, std::list  extensions);
+    static const std::string encodeTextEditorOptions(const std::string & mode);
+    static const std::string encodeTextEditorOptions(const std::string & extensionsDescription, const std::string & folder, std::list  extensions);
+    static const std::string encodeTextEditorOptions(const std::string & mode, const std::string & extensionsDescription, const std::string & folder, std::list  extensions);
 
     // Generated
-    DataFieldFormat(std::string* name);
+    DataFieldFormat(const std::string & name);
 protected:
     DataFieldFormat(const ::default_init_tag&);
 
@@ -64,9 +64,9 @@ protected:
 public:
     
     static void 
-    std::string* valueToString(void* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void* valueFromString(std::string* value);
-    std::string* valueToString(void* value);
+    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
+    void* valueFromString(const std::string & value);
+    const std::string & valueToString(void* value);
     static const std::string& EDITOR_TEXT();
     static const std::string& EDITOR_IMAGE();
     static const std::string& EDITOR_SOUND();
@@ -77,8 +77,8 @@ public:
     static const std::string& EXTENSIONS_FIELD();
     static const std::string& EXTENSION_FIELD();
     static const std::string& FOLDER_FIELD();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& EXTENSIONS_FORMAT();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& DATA_EDITOR_OPTIONS_FORMAT();
+    static TableFormat*& EXTENSIONS_FORMAT();
+    static TableFormat*& DATA_EDITOR_OPTIONS_FORMAT();
 
 private:
     ::java::lang::Class* getClass0();

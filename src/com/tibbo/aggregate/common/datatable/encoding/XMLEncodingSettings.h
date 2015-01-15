@@ -19,18 +19,18 @@ public:
 
 private:
     bool getFormatFromDefaultValue;
-    ::com::tibbo::aggregate::common::datatable::FieldFormat* fieldFormat;
+    FieldFormat* fieldFormat;
     ::java::util::ResourceBundle* bundle;
     bool allFields;
 protected:
     void ctor(bool encodeFormat);
-    void ctor(bool encodeFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
-    void ctor(bool encodeFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool getFormatFromDefaultValue, ::com::tibbo::aggregate::common::datatable::FieldFormat* fieldFormat);
-    void ctor(bool encodeFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool getFormatFromDefaultValue, ::com::tibbo::aggregate::common::datatable::FieldFormat* fieldFormat, ::java::util::ResourceBundle* bundle);
+    void ctor(bool encodeFormat, TableFormat* format);
+    void ctor(bool encodeFormat, TableFormat* format, bool getFormatFromDefaultValue, FieldFormat* fieldFormat);
+    void ctor(bool encodeFormat, TableFormat* format, bool getFormatFromDefaultValue, FieldFormat* fieldFormat, ::java::util::ResourceBundle* bundle);
 
 public:
-    void setFieldFormat(::com::tibbo::aggregate::common::datatable::FieldFormat* fieldFormat);
-    ::com::tibbo::aggregate::common::datatable::FieldFormat* getFieldFormat();
+    void setFieldFormat(FieldFormat* fieldFormat);
+    FieldFormat* getFieldFormat();
     bool isGetFormatFromDefaultValue();
     void setGetFormatFromDefaultValue(bool getFormatFromDefaultValue);
     ::java::util::ResourceBundle* getBundle();
@@ -40,9 +40,9 @@ public:
 
     // Generated
     XMLEncodingSettings(bool encodeFormat);
-    XMLEncodingSettings(bool encodeFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
-    XMLEncodingSettings(bool encodeFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool getFormatFromDefaultValue, ::com::tibbo::aggregate::common::datatable::FieldFormat* fieldFormat);
-    XMLEncodingSettings(bool encodeFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* format, bool getFormatFromDefaultValue, ::com::tibbo::aggregate::common::datatable::FieldFormat* fieldFormat, ::java::util::ResourceBundle* bundle);
+    XMLEncodingSettings(bool encodeFormat, TableFormat* format);
+    XMLEncodingSettings(bool encodeFormat, TableFormat* format, bool getFormatFromDefaultValue, FieldFormat* fieldFormat);
+    XMLEncodingSettings(bool encodeFormat, TableFormat* format, bool getFormatFromDefaultValue, FieldFormat* fieldFormat, ::java::util::ResourceBundle* bundle);
 protected:
     XMLEncodingSettings(const ::default_init_tag&);
 

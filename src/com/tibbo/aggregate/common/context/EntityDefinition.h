@@ -8,14 +8,14 @@
 class EntityDefinition
 {
 public:
-	virtual std::string getName();
-	virtual std::string getDescription();
-	virtual std::string getHelp();
-	virtual std::string getGroup();
-	virtual int getIndex();
-	virtual std::string getIconId();
-	virtual std::string toDetailedString();
-	virtual void* getOwner();
+	virtual std::string getName()=0;
+	virtual std::string getDescription()=0;
+	virtual std::string getHelp()=0;
+	virtual std::string getGroup()=0;
+	virtual int getIndex()=0;
+	virtual std::string getIconId()=0;
+	virtual std::string toDetailedString()=0;
+	virtual void* getOwner()=0;
 };
 
 

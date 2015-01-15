@@ -18,9 +18,9 @@ public:
     void visit(Context* context);
 
     // Generated
-    ContextUtils_findChildren_1(std::string* type, std::list  res);
+    ContextUtils_findChildren_1(const std::string & type, std::list  res);
     
-    std::string* type;
+    const std::string & type;
     std::list  res;
 
 private:

@@ -16,8 +16,8 @@ class com::tibbo::aggregate::common::expression::util::DefaultTracer
 
 public:
     typedef void super;
-    void trace(void* value, std::string* message);
-    static void traceToLog(void* value, std::string* message);
+    void trace(void* value, const std::string & message);
+    static void traceToLog(void* value, const std::string & message);
 
     // Generated
     DefaultTracer();

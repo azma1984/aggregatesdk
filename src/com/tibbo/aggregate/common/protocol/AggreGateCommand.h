@@ -64,7 +64,7 @@ private:
     static const int MAX_PRINTED_LENGTH = 1000) };
 
 public:
-    std::string* toString();
+    const std::string & toString();
 
 public:
     static const std::string generateId();
@@ -80,8 +80,8 @@ protected:
 public:
     
     static void 
-    std::string* toString(std::string* arg0);
-    std::string* toString(int arg0);
+    const std::string & toString(const std::string & arg0);
+    const std::string & toString(int arg0);
     static const std::string& REPLY_CODE_OK();
     static const std::string& REPLY_CODE_DENIED();
     static const std::string& REPLY_CODE_ERROR();

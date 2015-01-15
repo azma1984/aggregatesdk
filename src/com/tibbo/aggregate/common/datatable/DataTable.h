@@ -2,8 +2,8 @@
 #define DataTableH
 
 #include <list>
-#include "util/Cloneable.h"
-#include "datatable/DataRecord.h"
+//#include "Cloneable.h"
+//#include "DataRecord.h"
 /*
  #include <com/tibbo/aggregate/common/Cres.h"
 #include <com/tibbo/aggregate/common/Log.h"
@@ -35,7 +35,8 @@
 #include <com/tibbo/aggregate/common/util/Util.h"
   */
 
-class DataTable: public Cloneable
+class DataRecord;
+class DataTable//: public Cloneable
 {
 
 private:
@@ -45,7 +46,7 @@ private:
 		static TableFormat* DEFAULT_FORMAT;
 	::java::lang::Long* id;
 	TableFormat* format;
-	std::string* invalidationMessage;
+	const std::string & invalidationMessage;
 	static const std::string ELEMENT_FORMAT_;
 	static const std::string ELEMENT_FORMAT_ID_;
 	static const std::string ELEMENT_RECORD_;
@@ -58,23 +59,23 @@ protected:
     void ctor(TableFormat* format, int emptyRecords);
     void ctor(TableFormat* format, bool createEmptyRecords);
     void ctor(DataRecord* record);
-	void ctor(TableFormat* format, std::string* dataString, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+	void ctor(TableFormat* format, const std::string & dataString, encoding::ClassicEncodingSettings* settings);
 	void ctor(TableFormat* format, voidArray* firstRowData);
-	void ctor(std::string* data) ;
-	void ctor(std::string* data, bool validate) ;
-	void ctor(std::string* data, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
+	void ctor(const std::string & data) ;
+	void ctor(const std::string & data, bool validate) ;
+	void ctor(const std::string & data, encoding::ClassicEncodingSettings* settings, bool validate);
 
 public:
     int getRecordCount();
     int getFieldCount();
     TableFormat* getFormat();
     FieldFormat* getFormat(int field);
-    FieldFormat* getFormat(std::string* name);
+    FieldFormat* getFormat(const std::string & name);
     ::java::lang::Long* getId();
     DataTable* setFormat(TableFormat* format);
     void setId(::java::lang::Long* id);
-    bool hasField(std::string* field);
-    void setInvalidationMessage(std::string* invalidationMessage);
+    bool hasField(const std::string & field);
+    void setInvalidationMessage(const std::string & invalidationMessage);
 
 public:
     void checkOrSetFormat(DataRecord* record);
@@ -86,7 +87,7 @@ public:
     DataRecord* addRecord();
 
 private:
-    void addRecordImpl(::java::lang::Integer* index, DataRecord* record);
+    void addRecordImpl(int  index, DataRecord* record);
 
 public:
 	void validate();
@@ -95,9 +96,9 @@ public:
     void swapRecords(int index1, int index2);
     std::list  getRecords();
     bool isInvalid();
-    std::string* getInvalidationMessage();
+    const std::string & getInvalidationMessage();
     DataRecord* getRecord(int number);
-    DataRecord* getRecordById(std::string* id);
+    DataRecord* getRecordById(const std::string & id);
 
 private:
     DataRecord* removeRecordImpl(int index);
@@ -107,31 +108,31 @@ public:
     void removeRecords(DataRecord* rec);
     void reorderRecord(DataRecord* record, int index);
     bool equals(void* obj);
-    std::string* getEncodedData(::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    std::string* encode();
-    std::string* encode(bool useVisibleSeparators);
-    std::string* encode(::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    std::string* toString();
-    std::string* getDescription();
+    const std::string & getEncodedData(encoding::ClassicEncodingSettings* settings);
+    const std::string & encode();
+    const std::string & encode(bool useVisibleSeparators);
+    const std::string & encode(encoding::ClassicEncodingSettings* settings);
+    const std::string & toString();
+    const std::string & getDescription();
 
 private:
-    std::string* toDefaultString();
+    const std::string & toDefaultString();
     ::com::tibbo::aggregate::common::expression::Expression* getNamingExpression();
     ::com::tibbo::aggregate::common::expression::Evaluator* ensureEvaluator();
 
 public:
     void fixRecords();
-    std::string* dataAsString();
-    std::string* dataAsString(bool showFieldNames, bool showHiddenFields);
+    const std::string & dataAsString();
+    const std::string & dataAsString(bool showFieldNames, bool showHiddenFields);
     bool isOneCellTable();
     bool conform(TableFormat* rf);
-    std::string* conformMessage(TableFormat* rf);
+    const std::string & conformMessage(TableFormat* rf);
     std::list  selectAll(DataTableQuery* query);
-    ::java::lang::Integer* findIndex(DataTableQuery* query);
+    int  findIndex(DataTableQuery* query);
     DataRecord* select(DataTableQuery* query);
-    DataRecord* select(std::string* field, void* value);
-    ::java::lang::Integer* findIndex(std::string* field, void* value);
-    void sort(std::string* field, bool ascending);
+    DataRecord* select(const std::string & field, void* value);
+    int  findIndex(const std::string & field, void* value);
+    void sort(const std::string & field, bool ascending);
     void sort(DataTableSorter* sorter);
     void sort(::java::util::Comparator* comparator);
     DataRecord* rec();
@@ -148,11 +149,11 @@ public:
     DataTable(TableFormat* format, int emptyRecords);
     DataTable(TableFormat* format, bool createEmptyRecords);
     DataTable(DataRecord* record);
-    DataTable(TableFormat* format, std::string* dataString, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    DataTable(TableFormat* format, const std::string & dataString, encoding::ClassicEncodingSettings* settings);
     DataTable(TableFormat* format, voidArray* firstRowData);
-    DataTable(std::string* data);
-    DataTable(std::string* data, bool validate);
-    DataTable(std::string* data, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
+    DataTable(const std::string & data);
+    DataTable(const std::string & data, bool validate);
+    DataTable(const std::string & data, encoding::ClassicEncodingSettings* settings, bool validate);
 protected:
     DataTable(const ::default_init_tag&);
 
@@ -177,7 +178,7 @@ private:
 	*/
 public:
 	DataTable* clone();
-	DataTable(DataTable&); //конструктор копии
+	DataTable(DataTable &table); //конструктор копии
 	void init();
 
 	DataTable();

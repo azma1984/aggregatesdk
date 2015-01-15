@@ -50,15 +50,15 @@ private:
 
 public:
     static TableFormat* createTableFormat(DataTable* formatTable) /* throws(ContextException) */;
-    static TableFormat* createTableFormat(DataTable* formatTable, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool allowNull) /* throws(ContextException) */;
-    static TableFormat* createTableFormat(int minRecords, int maxRecords, bool reorderable, DataTable* fields, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings) /* throws(ContextException) */;
+    static TableFormat* createTableFormat(DataTable* formatTable, encoding::ClassicEncodingSettings* settings, bool allowNull) /* throws(ContextException) */;
+    static TableFormat* createTableFormat(int minRecords, int maxRecords, bool reorderable, DataTable* fields, encoding::ClassicEncodingSettings* settings) /* throws(ContextException) */;
     static DataTable* formatToFieldsTable(TableFormat* tf, bool readOnly);
-    static DataTable* formatToFieldsTable(TableFormat* tf, bool readOnly, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    static DataTable* formatToFieldsTable(TableFormat* tf, bool readOnly, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields);
+    static DataTable* formatToFieldsTable(TableFormat* tf, bool readOnly, encoding::ClassicEncodingSettings* settings);
+    static DataTable* formatToFieldsTable(TableFormat* tf, bool readOnly, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields);
     static DataTable* formatToTable(TableFormat* tf, bool ignoreHiddenFields) /* throws(ContextException) */;
     static DataTable* formatToTable(TableFormat* tf) /* throws(ContextException) */;
-    static DataTable* formatToTable(TableFormat* tf, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings) /* throws(ContextException) */;
-    static DataTable* formatToTable(TableFormat* tf, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields) /* throws(ContextException) */;
+    static DataTable* formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings) /* throws(ContextException) */;
+    static DataTable* formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields) /* throws(ContextException) */;
 
     // Generated
     DataTableBuilding();

@@ -42,19 +42,19 @@ public:
 	static const int SIDE_RIGHT = 3;
 
 private:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_;
+    static TableFormat* FORMAT_;
     int state;
     int side;
     int index;
-    ::java::lang::Integer* width;
-    ::java::lang::Integer* height;
+    int  width;
+    int  height;
     bool resizable;
     bool closable;
     bool movable;
     bool floatable;
     bool maximizable;
     bool autohidable;
-    std::string* key;
+    const std::string & key;
 protected:
     void ctor();
     void ctor(int state);
@@ -64,7 +64,7 @@ protected:
     void ctor(int column, ::java::awt::Dimension* size);
     void ctor(int state, int side, int index);
     void ctor(int state, int side, int index, ::java::awt::Dimension* size);
-    void ctor(::com::tibbo::aggregate::common::datatable::DataRecord* data);
+    void ctor(DataRecord* data);
 
 public:
     void applyDefaultSize(::java::awt::Dimension* defaultSize);
@@ -74,10 +74,10 @@ public:
     void setSide(int side);
     int getIndex();
     void setIndex(int index);
-    ::java::lang::Integer* getWidth();
-    void setWidth(::java::lang::Integer* width);
-    ::java::lang::Integer* getHeight();
-    void setHeight(::java::lang::Integer* height);
+    int  getWidth();
+    void setWidth(int  width);
+    int  getHeight();
+    void setHeight(int  height);
     bool isResizable();
     void setResizable(bool resizable);
     bool isClosable();
@@ -90,9 +90,9 @@ public:
     void setMaximizable(bool maximizable);
     bool isAutohidable();
     void setAutohidable(bool autohidable);
-    std::string* getKey();
-    void setKey(std::string* key);
-    std::string* toString();
+    const std::string & getKey();
+    void setKey(const std::string & key);
+    const std::string & toString();
 
     // Generated
     WindowLocation();
@@ -103,7 +103,7 @@ public:
     WindowLocation(int column, ::java::awt::Dimension* size);
     WindowLocation(int state, int side, int index);
     WindowLocation(int state, int side, int index, ::java::awt::Dimension* size);
-    WindowLocation(::com::tibbo::aggregate::common::datatable::DataRecord* data);
+    WindowLocation(DataRecord* data);
 protected:
     WindowLocation(const ::default_init_tag&);
 
@@ -123,7 +123,7 @@ public:
     static const std::string& FIELD_MAXIMIZABLE();
     static const std::string& FIELD_AUTOHIDABLE();
     static const std::string& FIELD_KEY();
-	static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT();
+	static TableFormat*& FORMAT();
 */
 };
 

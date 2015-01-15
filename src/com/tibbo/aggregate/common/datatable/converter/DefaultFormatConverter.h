@@ -15,17 +15,17 @@ class DefaultFormatConverter: public AbstractFormatConverter
 //private:
 //    ::java::util::Set* constructorArguments;
 //protected:
-//    void ctor(::java::lang::Class* valueClass, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
+//    void ctor(::java::lang::Class* valueClass, TableFormat* format);
 
 //public:
 //    void* convertToBean(void* value, void* originalValue);
-//    void* convertToTable(void* value, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
-//    ::com::tibbo::aggregate::common::datatable::FieldFormat* createFieldFormat(std::string* name);
-//    void addConstructorField(std::string* field);
-//    void* instantiate(::com::tibbo::aggregate::common::datatable::DataRecord* source) /* throws(InstantiationException) */;
+//    void* convertToTable(void* value, TableFormat* format);
+//    FieldFormat* createFieldFormat(const std::string & name);
+//    void addConstructorField(const std::string & field);
+//    void* instantiate(DataRecord* source) /* throws(InstantiationException) */;
 
 //    // Generated
-//    DefaultFormatConverter(::java::lang::Class* valueClass, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
+//    DefaultFormatConverter(::java::lang::Class* valueClass, TableFormat* format);
 //protected:
 //    DefaultFormatConverter(const ::default_init_tag&);
 

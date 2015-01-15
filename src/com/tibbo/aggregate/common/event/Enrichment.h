@@ -21,7 +21,7 @@ private:
 
 protected:
     void ctor();
-    void ctor(std::string* name, std::string* value, ::java::util::Date* date, std::string* author);
+    void ctor(const std::string & name, const std::string & value, ::java::util::Date* date, const std::string & author);
 
 public:
     std::string getName();

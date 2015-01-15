@@ -5,38 +5,34 @@
 
 #include "AbstractEntityDefinition.h"
 
-//#include <com/tibbo/aggregate/common/context/FunctionImplementation.h"
+#include "context/FunctionImplementation.h"
 #include "datatable/TableFormat.h"
-//#include <com/tibbo/aggregate/common/security/Permissions.h"
+#include "security/Permissions.h"
 #include "context/entitydefinition.h"
-
 
 
 class FunctionDefinition : public AbstractEntityDefinition
 {
-public:
-/*
-private:
+ private:
     TableFormat* inputFormat;
     TableFormat* outputFormat;
     bool hidden;
-    ::com::tibbo::aggregate::common::security::Permissions* permissions;
+    Permissions* permissions;
     FunctionImplementation* implementation;
     bool concurrent;
 
-private:
-    void init_(std::string* name, TableFormat* inputFormat, TableFormat* outputFormat, std::string* description, std::string* group);
+    void init(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group);
 
 public:
     TableFormat* getInputFormat();
     TableFormat* getOutputFormat();
     bool isHidden();
-    ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
+    Permissions* getPermissions();
     FunctionImplementation* getImplementation();
     void setInputFormat(TableFormat* inputFormat);
     void setOutputFormat(TableFormat* outputFormat);
     void setHidden(bool hidden);
-    void setPermissions(::com::tibbo::aggregate::common::security::Permissions* perms);
+    void setPermissions(Permissions* perms);
     bool isConcurrent();
     void setConcurrent(bool concurrent);
     void setImplementation(FunctionImplementation* implementation);
@@ -44,22 +40,11 @@ public:
     int compareTo(FunctionDefinition* d);
     int hashCode();
     bool equals(void* obj);
-*/
 
     FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat);
     FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description);
     FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group);
-/*
 
-public:
-    
-
-private:
-    void init();
-
-public:
-    int compareTo(void* arg0);
-*/
 };
 
 #endif

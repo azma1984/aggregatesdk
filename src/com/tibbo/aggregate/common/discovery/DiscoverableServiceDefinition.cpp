@@ -1,7 +1,6 @@
 #include "discovery/DiscoverableServiceDefinition.h"
 
-#include "device/ServerDeviceController.h"
-#include "discovery/DiscoverableService.h"
+
 
 DiscoverableServiceDefinition::DiscoverableServiceDefinition(
         boost::shared_ptr<DiscoveryProvider> discoveryProvider,
@@ -10,7 +9,7 @@ DiscoverableServiceDefinition::DiscoverableServiceDefinition(
         boost::shared_ptr<DataTable> connectionOptions,
         int defaultDiscoveryTimeout,
         int defaultDiscoveryRetries,
-        bool isEnabledByDefault
+        bool isEnabledByDefault1
 ){
     this->discoveryProvider = discoveryProvider;
     this->name = name;
@@ -18,7 +17,7 @@ DiscoverableServiceDefinition::DiscoverableServiceDefinition(
     setConnectionOptions(connectionOptions);
     setDiscoveryTimeout(defaultDiscoveryTimeout);
     setDiscoveryRetries(defaultDiscoveryRetries);
-    this->isEnabledByDefault = isEnabledByDefault;
+    this->isEnabledByDefault_ = isEnabledByDefault1;
 }
 
 // TODO: abstarct?
@@ -82,18 +81,32 @@ int DiscoverableServiceDefinition::priority()
     return 0;
 }
 
-//TODO:
 boost::shared_ptr<DiscoverableServiceDefinition> DiscoverableServiceDefinition::clone()
 {
-//    try
-//    {
-//      return (DiscoverableServiceDefinition) super.clone();
-//    }
-//    catch (CloneNotSupportedException ex)
-//    {
-//      Log.CORE.error("Unable to clone DiscoverableServiceDescription", ex);
-//      return null;
-//    }
+
+   try
+    {
+      return (boost::shared_ptr<DiscoverableServiceDefinition>)(new DiscoverableServiceDefinition(*this));
+    }
+    catch (...)
+    {
+      std::cout <<"Unable to clone DiscoverableServiceDescription";
+      return 0;
+    }
+
+}
+//copy constructor
+DiscoverableServiceDefinition::DiscoverableServiceDefinition(DiscoverableServiceDefinition &dsd)
+{
+  this->discoveryProvider = dsd.discoveryProvider;
+  this->name        = dsd.name;
+  this->description = dsd.description;
+
+  this->connectionOptions   = dsd.connectionOptions;
+  this->discoveryTimeout    = dsd.discoveryTimeout;
+  this->discoveryRetries    = dsd.discoveryRetries;
+  this->useService          = dsd.useService;
+  this->isEnabledByDefault_ = dsd.isEnabledByDefault_;
 }
 
 void DiscoverableServiceDefinition::setUseService(bool useService)
@@ -113,8 +126,10 @@ bool DiscoverableServiceDefinition::isEnabledByDefault()
 
 std::list<DiscoveryResultItem>  DiscoverableServiceDefinition::check(const std::string& addressString, long timeoutMilliseconds, int triesCountInt)
 {
+	//todo - Where the virtual function is defined createServiceInstance()?
     std::list<DiscoveryResultItem> res = createServiceInstance()->check(this, addressString, timeoutMilliseconds, triesCountInt);
     return res;
+
 }
 
 std::string DiscoverableServiceDefinition::toString()

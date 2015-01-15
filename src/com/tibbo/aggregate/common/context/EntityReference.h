@@ -23,28 +23,28 @@ public:
     typedef void super;
 
 private:
-    std::string* context;
-    std::string* entity;
+    const std::string & context;
+    const std::string & entity;
 protected:
     void ctor();
-    void ctor(std::string* context, std::string* entity);
+    void ctor(const std::string & context, const std::string & entity);
 
 public:
-    std::string* getContext();
-    std::string* getEntity();
-    std::string* getProperty();
-    void setContext(std::string* context);
-    void setEntity(std::string* entity);
-    void setProperty(std::string* property);
+    const std::string & getContext();
+    const std::string & getEntity();
+    const std::string & getProperty();
+    void setContext(const std::string & context);
+    void setEntity(const std::string & entity);
+    void setProperty(const std::string & property);
     int hashCode();
     bool equals(void* obj);
     int compareTo(EntityReference* ref);
-    std::string* toString();
+    const std::string & toString();
     EntityReference* clone();
 
     // Generated
     EntityReference();
-    EntityReference(std::string* context, std::string* entity);
+    EntityReference(const std::string & context, const std::string & entity);
 protected:
     EntityReference(const ::default_init_tag&);
 

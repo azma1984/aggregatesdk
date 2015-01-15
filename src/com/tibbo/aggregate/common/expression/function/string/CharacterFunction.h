@@ -16,7 +16,7 @@ class com::tibbo::aggregate::common::expression::function::string::CharacterFunc
 public:
     typedef ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction super;
 protected:
-    void ctor(std::string* method);
+    void ctor(const std::string & method);
 
 public: /* protected */
     void* convertParameter(int i, void* value);
@@ -24,7 +24,7 @@ public: /* protected */
     // Generated
 
 public:
-    CharacterFunction(std::string* method);
+    CharacterFunction(const std::string & method);
 protected:
     CharacterFunction(const ::default_init_tag&);
 

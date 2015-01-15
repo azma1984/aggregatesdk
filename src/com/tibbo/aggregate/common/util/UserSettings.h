@@ -22,9 +22,9 @@ public:
     typedef void super;
 
 private:
-    std::string* datePattern;
-    std::string* timePattern;
-    std::string* timeZone;
+    const std::string & datePattern;
+    const std::string & timePattern;
+    const std::string & timeZone;
     int weekStartDay;
     std::list  variableActions;
     std::list  eventActions;
@@ -34,14 +34,14 @@ protected:
 
 public:
     ::java::text::SimpleDateFormat* createDateFormatter();
-    ::java::text::SimpleDateFormat* createDateFormatter(std::string* pattern, std::string* timezone);
-    std::string* getDatePattern();
-    void setDatePattern(std::string* datePattern);
-    std::string* getTimePattern();
-    void setTimePattern(std::string* timePattern);
-    std::string* getDateTimePattern();
-    std::string* getTimeZone();
-    void setTimeZone(std::string* timeZone);
+    ::java::text::SimpleDateFormat* createDateFormatter(const std::string & pattern, const std::string & timezone);
+    const std::string & getDatePattern();
+    void setDatePattern(const std::string & datePattern);
+    const std::string & getTimePattern();
+    void setTimePattern(const std::string & timePattern);
+    const std::string & getDateTimePattern();
+    const std::string & getTimeZone();
+    void setTimeZone(const std::string & timeZone);
     int getWeekStartDay();
     void setWeekStartDay(int weekStartDay);
     std::list  getVariableActions();

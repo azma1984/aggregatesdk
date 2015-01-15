@@ -27,22 +27,22 @@ public: /* package */
     int errorCode;
 
 public: /* protected */
-    static const std::string addEscapes(std::string* str);
-    static const std::string LexicalError(bool EOFSeen, int lexState, int errorLine, int errorColumn, std::string* errorAfter, char16_t curChar);
+    static const std::string addEscapes(const std::string & str);
+    static const std::string LexicalError(bool EOFSeen, int lexState, int errorLine, int errorColumn, const std::string & errorAfter, char16_t curChar);
 
 public:
-    std::string* getMessage();
+    const std::string & getMessage();
 protected:
     void ctor();
-    void ctor(std::string* message, int reason);
-    void ctor(bool EOFSeen, int lexState, int errorLine, int errorColumn, std::string* errorAfter, char16_t curChar, int reason);
+    void ctor(const std::string & message, int reason);
+    void ctor(bool EOFSeen, int lexState, int errorLine, int errorColumn, const std::string & errorAfter, char16_t curChar, int reason);
 
     // Generated
 
 public:
     TokenMgrError();
-    TokenMgrError(std::string* message, int reason);
-    TokenMgrError(bool EOFSeen, int lexState, int errorLine, int errorColumn, std::string* errorAfter, char16_t curChar, int reason);
+    TokenMgrError(const std::string & message, int reason);
+    TokenMgrError(bool EOFSeen, int lexState, int errorLine, int errorColumn, const std::string & errorAfter, char16_t curChar, int reason);
 protected:
     TokenMgrError(const ::default_init_tag&);
 

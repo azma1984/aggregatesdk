@@ -15,16 +15,16 @@ class com::tibbo::aggregate::common::expression::EvaluationException
 public:
     typedef ::com::tibbo::aggregate::common::AggreGateException super;
 protected:
-    void ctor(std::string* message);
+    void ctor(const std::string & message);
     void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
+    void ctor(const std::string & message, ::java::lang::Throwable* cause);
 
     // Generated
 
 public:
-    EvaluationException(std::string* message);
+    EvaluationException(const std::string & message);
     EvaluationException(::java::lang::Throwable* cause);
-    EvaluationException(std::string* message, ::java::lang::Throwable* cause);
+    EvaluationException(const std::string & message, ::java::lang::Throwable* cause);
 protected:
     EvaluationException(const ::default_init_tag&);
 

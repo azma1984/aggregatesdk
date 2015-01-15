@@ -18,7 +18,7 @@ class com::tibbo::aggregate::common::expression::function::context::EntityAvaila
 public:
     typedef ::com::tibbo::aggregate::common::expression::function::AbstractFunction super;
 protected:
-    void ctor(std::string* group, std::string* parametersFootprint);
+    void ctor(const std::string & group, const std::string & parametersFootprint);
 
 public:
     void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
@@ -29,7 +29,7 @@ public: /* protected */
     // Generated
 
 public:
-    EntityAvailableFunction(std::string* group, std::string* parametersFootprint);
+    EntityAvailableFunction(const std::string & group, const std::string & parametersFootprint);
 protected:
     EntityAvailableFunction(const ::default_init_tag&);
 

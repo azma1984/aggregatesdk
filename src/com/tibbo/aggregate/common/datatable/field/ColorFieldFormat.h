@@ -14,24 +14,24 @@
 
 
 class com::tibbo::aggregate::common::datatable::field::ColorFieldFormat
-    : public ::com::tibbo::aggregate::common::datatable::FieldFormat
+    : public FieldFormat
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::FieldFormat super;
+    typedef FieldFormat super;
 
 private:
     static const std::string EDITOR_BOX_;
 protected:
-    void ctor(std::string* name);
+    void ctor(const std::string & name);
 
 public:
     char16_t getType();
     ::java::lang::Class* getFieldClass();
     ::java::lang::Class* getFieldWrappedClass();
     ::java::awt::Color* getNotNullDefault();
-    ::java::awt::Color* valueFromString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-    std::string* valueToString(::java::awt::Color* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    ::java::awt::Color* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+    const std::string & valueToString(::java::awt::Color* value, encoding::ClassicEncodingSettings* settings);
 
 public: /* protected */
     std::list  getSuitableEditors();
@@ -39,7 +39,7 @@ public: /* protected */
     // Generated
 
 public:
-    ColorFieldFormat(std::string* name);
+    ColorFieldFormat(const std::string & name);
 protected:
     ColorFieldFormat(const ::default_init_tag&);
 
@@ -47,9 +47,9 @@ protected:
 public:
     
     static void 
-    std::string* valueToString(void* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void* valueFromString(std::string* value);
-    std::string* valueToString(void* value);
+    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
+    void* valueFromString(const std::string & value);
+    const std::string & valueToString(void* value);
     static const std::string& EDITOR_BOX();
 
 private:

@@ -30,13 +30,13 @@ com::tibbo::aggregate::common::action::command::ShowGuide::ShowGuide()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowGuide::ShowGuide(std::string* title, std::string* invokerContext, std::string* macroName) 
+com::tibbo::aggregate::common::action::command::ShowGuide::ShowGuide(const std::string & title, const std::string & invokerContext, const std::string & macroName) 
     : ShowGuide(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,invokerContext,macroName);
 }
 
-com::tibbo::aggregate::common::action::command::ShowGuide::ShowGuide(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::ShowGuide::ShowGuide(const std::string & title, DataTable* parameters) 
     : ShowGuide(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -65,24 +65,24 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 
 void com::tibbo::aggregate::common::action::command::ShowGuide::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_GUIDE(), CFT_SHOW_GUIDE_, static_cast< ::com::tibbo::aggregate::common::datatable::TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_GUIDE(), CFT_SHOW_GUIDE_, static_cast< TableFormat* >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(std::string* title, std::string* invokerContext, std::string* macroName)
+void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(const std::string & title, const std::string & invokerContext, const std::string & macroName)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_GUIDE(), title);
     this->invokerContext = invokerContext;
     this->macroName = macroName;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(const std::string & title, DataTable* parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_GUIDE(), title, parameters, CFT_SHOW_GUIDE_);
 }
 
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowGuide::constructParameters()
 {
-    return new ::com::tibbo::aggregate::common::datatable::DataTable(CFT_SHOW_GUIDE_, new voidArray({invokerContext), macroName)}));
+    return new DataTable(CFT_SHOW_GUIDE_, new voidArray({invokerContext), macroName)}));
 }
 
 std::string com::tibbo::aggregate::common::action::command::ShowGuide::getInvokerContext()
@@ -90,7 +90,7 @@ std::string com::tibbo::aggregate::common::action::command::ShowGuide::getInvoke
     return invokerContext;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowGuide::setInvokerContext(std::string* invokerContext)
+void com::tibbo::aggregate::common::action::command::ShowGuide::setInvokerContext(const std::string & invokerContext)
 {
     this->invokerContext = invokerContext;
 }
@@ -100,7 +100,7 @@ std::string com::tibbo::aggregate::common::action::command::ShowGuide::getMacroN
     return macroName;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowGuide::setMacroName(std::string* macroName)
+void com::tibbo::aggregate::common::action::command::ShowGuide::setMacroName(const std::string & macroName)
 {
     this->macroName = macroName;
 }
@@ -129,7 +129,7 @@ struct string_init_ {
 struct clinit_ {
     clinit_() {
         in_cl_init = true;
-        CFT_SHOW_GUIDE_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        CFT_SHOW_GUIDE_ = new TableFormat(int(1), int(1));
         {
             CFT_SHOW_GUIDE_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_INVOKER_CONTEXT_)
                 ->append(u"><S><F=N>"_j)->toString());

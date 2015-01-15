@@ -34,7 +34,7 @@ protected:
     void ctor(Evaluator* evaluator);
 
 private:
-    static void registerDefaultFunction(std::string* name, Function* impl);
+    static void registerDefaultFunction(const std::string & name, Function* impl);
 
 public: /* protected */
     Evaluator* getEvaluator();

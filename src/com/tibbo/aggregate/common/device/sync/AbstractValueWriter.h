@@ -2,27 +2,40 @@
 
 #pragma once
 
-#include "device/sync/ValueWriter.h"
+#include <com/tibbo/aggregate/common/device/sync/fwd-aggregate_sdk_5.11.00.h"
+//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
+//#include <java/lang/Object.h"
+#include <com/tibbo/aggregate/common/device/sync/ValueWriter.h"
 
 
-class AbstractValueWriter : public ValueWriter
+
+class com::tibbo::aggregate::common::device::sync::AbstractValueWriter
+    
+    , public ValueWriter
 {
-private:
-    std::string name;
 
 public:
-    AbstractValueWriter(const std::string& name)
-    {
-        this->name = name;
-    }
+    typedef void super;
 
-    AbstractValueWriter()
-    {
-        this->name = "Custom Synchronization Handler";
-    }
+private:
+    const std::string & name;
+protected:
+    void ctor(const std::string & name);
+    void ctor();
 
-    std::string toString()
-    {
-        return name;
-    }
+public:
+    const std::string & toString();
+
+    // Generated
+    AbstractValueWriter(const std::string & name);
+    AbstractValueWriter();
+protected:
+    AbstractValueWriter(const ::default_init_tag&);
+
+
+public:
+    
+
+private:
+    ::java::lang::Class* getClass0();
 };

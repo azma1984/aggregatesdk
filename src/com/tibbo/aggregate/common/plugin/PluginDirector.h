@@ -74,7 +74,7 @@ private:
     ::java::util::Collection* allowedPlugins;
     std::map pluginIdMap;
 protected:
-    void ctor(std::string* homeDir, std::string* additionalPluginDirs, ::java::util::Collection* allowedPlugins) /* throws(AggreGateException) */;
+    void ctor(const std::string & homeDir, const std::string & additionalPluginDirs, ::java::util::Collection* allowedPlugins) /* throws(AggreGateException) */;
 
 public:
     ::com::tibbo::aggregate::common::context::ContextManager* getContextManager();
@@ -83,25 +83,25 @@ public:
     ::com::tibbo::aggregate::common::context::Context* createUserConfigContext(BasePlugin* plugin, ::com::tibbo::aggregate::common::context::Context* userContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray*/*...*/ properties);
 
 private:
-    void loadPlugins(std::string* dirList) /* throws(AggreGateException) */;
-    std::string* integrityCheckReportToString(::org::java::plugin::registry::IntegrityCheckReport* report);
+    void loadPlugins(const std::string & dirList) /* throws(AggreGateException) */;
+    const std::string & integrityCheckReportToString(::org::java::plugin::registry::IntegrityCheckReport* report);
 
 public:
     void stop() /* throws(AggreGateException) */;
 
 public: /* protected */
-    std::string* convertId(std::string* id);
+    const std::string & convertId(const std::string & id);
 
 public:
-    BasePlugin* getExistingPlugin(std::string* id);
-    ::org::java::plugin::Plugin* createNewPlugin(std::string* id);
+    BasePlugin* getExistingPlugin(const std::string & id);
+    ::org::java::plugin::Plugin* createNewPlugin(const std::string & id);
 
 public: /* protected */
-    bool isPluginAllowed(std::string* id);
+    bool isPluginAllowed(const std::string & id);
 
 public:
     ::org::java::plugin::PluginManager* getPluginManager();
-    ::java::lang::ClassLoader* getPluginClassLoader(std::string* id) /* throws(PluginLifecycleException) */;
+    ::java::lang::ClassLoader* getPluginClassLoader(const std::string & id) /* throws(PluginLifecycleException) */;
 
 public: /* protected */
     ExtensionsPlugin* getExtensionsPlugin();
@@ -110,7 +110,7 @@ public:
     std::map getPluginIdMap();
 
     // Generated
-    PluginDirector(std::string* homeDir, std::string* additionalPluginDirs, ::java::util::Collection* allowedPlugins);
+    PluginDirector(const std::string & homeDir, const std::string & additionalPluginDirs, ::java::util::Collection* allowedPlugins);
 protected:
     PluginDirector(const ::default_init_tag&);
 

@@ -9,7 +9,7 @@
 struct com::tibbo::aggregate::common::context::VariableGetter
     
 {
-    ::com::tibbo::aggregate::common::datatable::DataTable* get(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request) /* throws(ContextException) */;
+    DataTable* get(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request) /* throws(ContextException) */;
 
     // Generated
     

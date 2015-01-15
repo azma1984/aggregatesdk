@@ -83,8 +83,8 @@ private:
 
 
 
-    std::string* jjimage;
-    std::string* image;
+    const std::string & jjimage;
+    const std::string & image;
     int jjimageLen;
     int lengthOfMatch;
 

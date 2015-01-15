@@ -16,7 +16,7 @@ class com::tibbo::aggregate::common::context::AbstractContext_enableVariableStat
 
 public:
     typedef void super;
-    ::com::tibbo::aggregate::common::datatable::DataTable* get(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request) /* throws(ContextException) */;
+    DataTable* get(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request) /* throws(ContextException) */;
 
     // Generated
     AbstractContext_enableVariableStatuses_4(AbstractContext *AbstractContext_this);

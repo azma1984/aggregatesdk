@@ -5,12 +5,12 @@
 
 #include "AbstractContext.h"
 #include "FunctionImplementation.h"
-/*
-#include <com/tibbo/aggregate/common/Cres.h"
 
-#include <com/tibbo/aggregate/common/context/EventDefinition.h"
+//#include <com/tibbo/aggregate/common/Cres.h"
 
-*/
+#include "context/EventDefinition.h"
+
+
 #include "context/FunctionDefinition.h"
 #include "context/Contexts.h"
 #include "RemoteServer.h"

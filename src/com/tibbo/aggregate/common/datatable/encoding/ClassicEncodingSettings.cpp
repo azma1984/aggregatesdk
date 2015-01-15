@@ -22,7 +22,7 @@ com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings::Cla
     ctor(useVisibleSeparators,encodeFieldNames);
 }
 
-com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings::ClassicEncodingSettings(bool useVisibleSeparators, ::com::tibbo::aggregate::common::datatable::TableFormat* format) 
+com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings::ClassicEncodingSettings(bool useVisibleSeparators, TableFormat* format) 
     : ClassicEncodingSettings(*static_cast< ::default_init_tag* >(0))
 {
     ctor(useVisibleSeparators,format);
@@ -47,7 +47,7 @@ void com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings
     this->encodeFieldNames = encodeFieldNames;
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings::ctor(bool useVisibleSeparators, ::com::tibbo::aggregate::common::datatable::TableFormat* format)
+void com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings::ctor(bool useVisibleSeparators, TableFormat* format)
 {
     super::ctor(true, format);
     init();

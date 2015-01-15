@@ -15,16 +15,16 @@ class com::tibbo::aggregate::common::context::ContextRuntimeException
 public:
     typedef ::java::lang::RuntimeException super;
 protected:
-    void ctor(std::string* message);
+    void ctor(const std::string & message);
     void ctor(::java::lang::Throwable* cause);
-    void ctor(std::string* message, ::java::lang::Throwable* cause);
+    void ctor(const std::string & message, ::java::lang::Throwable* cause);
 
     // Generated
 
 public:
-    ContextRuntimeException(std::string* message);
+    ContextRuntimeException(const std::string & message);
     ContextRuntimeException(::java::lang::Throwable* cause);
-    ContextRuntimeException(std::string* message, ::java::lang::Throwable* cause);
+    ContextRuntimeException(const std::string & message, ::java::lang::Throwable* cause);
 protected:
     ContextRuntimeException(const ::default_init_tag&);
 

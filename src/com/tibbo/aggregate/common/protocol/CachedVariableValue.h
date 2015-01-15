@@ -18,18 +18,18 @@ public:
 
 private:
     ::java::util::Date* timestamp;
-    ::com::tibbo::aggregate::common::datatable::DataTable* value;
+    DataTable* value;
 protected:
-    void ctor(::java::util::Date* timestamp, ::com::tibbo::aggregate::common::datatable::DataTable* value);
+    void ctor(::java::util::Date* timestamp, DataTable* value);
 
 public:
     ::java::util::Date* getTimestamp();
     void setTimestamp(::java::util::Date* timestamp);
-    ::com::tibbo::aggregate::common::datatable::DataTable* getValue();
-    void setValue(::com::tibbo::aggregate::common::datatable::DataTable* value);
+    DataTable* getValue();
+    void setValue(DataTable* value);
 
     // Generated
-    CachedVariableValue(::java::util::Date* timestamp, ::com::tibbo::aggregate::common::datatable::DataTable* value);
+    CachedVariableValue(::java::util::Date* timestamp, DataTable* value);
 protected:
     CachedVariableValue(const ::default_init_tag&);
 

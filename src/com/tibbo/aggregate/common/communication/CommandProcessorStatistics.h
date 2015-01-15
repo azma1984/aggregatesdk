@@ -18,7 +18,7 @@ public:
     typedef void super;
 
 private:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_;
+    static TableFormat* FORMAT_;
     ::java::lang::Long* startTime;
     long commandCount;
     float averageResponseTime;
@@ -28,7 +28,7 @@ private:
 
 public:
     void update(ReplyMonitor* monitor);
-    ::com::tibbo::aggregate::common::datatable::DataTable* toDataTable();
+    DataTable* toDataTable();
     ::java::lang::Long* getStartTime();
     ::java::lang::Long* getConnectionTime();
     long getCommandCount();
@@ -48,6 +48,6 @@ public:
     static void 
 
 private:
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT();
+    static TableFormat*& FORMAT();
     ::java::lang::Class* getClass0();
 };

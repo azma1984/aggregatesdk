@@ -9,11 +9,11 @@
 
 
 class com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat_DataTableFieldFormat_1
-    : public ::com::tibbo::aggregate::common::datatable::validator::AbstractFieldValidator
+    : public validator::AbstractFieldValidator
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::validator::AbstractFieldValidator super;
+    typedef validator::AbstractFieldValidator super;
     void* validate(void* value) /* throws(ValidationException) */;
 
     // Generated

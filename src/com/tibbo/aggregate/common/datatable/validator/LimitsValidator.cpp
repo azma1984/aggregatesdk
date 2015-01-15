@@ -86,8 +86,8 @@ void* LimitsValidator::validate(void* value) /* throws(ValidationException) */
             Comparable size = data->getData().size();
             compare(size, NULL, NULL);
         }
-    }else if (dynamic_cast<std::string*>(value) != NULL) {
-        std::string* string = dynamic_cast<std::string*>(value);
+    }else if (dynamic_cast<const std::string &>(value) != NULL) {
+        const std::string & string = dynamic_cast<const std::string &>(value);
         compare(string->length(), Cres::get()->getString("dtValueTooShort"), Cres::get()->getString("dtValueTooLong"));
     }else {
         if (!dynamic_cast<Comparable*>(value) != NULL) {

@@ -20,7 +20,7 @@ IncomingAggreGateCommand::IncomingAggreGateCommand(::int8_tArray* data)
     ctor(data);
 }
 
-IncomingAggreGateCommand::IncomingAggreGateCommand(std::string* str)
+IncomingAggreGateCommand::IncomingAggreGateCommand(const std::string & str)
     : IncomingAggreGateCommand(*static_cast< ::default_init_tag* >(0))
 {
     ctor(str);
@@ -52,7 +52,7 @@ void IncomingAggreGateCommand::ctor(::int8_tArray* data)
     parse();
 }
 
-void IncomingAggreGateCommand::ctor(std::string* str)
+void IncomingAggreGateCommand::ctor(const std::string & str)
 {
     super::ctor();
     init();

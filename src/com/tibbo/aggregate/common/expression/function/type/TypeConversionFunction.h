@@ -16,14 +16,14 @@ class com::tibbo::aggregate::common::expression::function::type::TypeConversionF
 public:
     typedef ::com::tibbo::aggregate::common::expression::function::AbstractFunction super;
 protected:
-    void ctor(std::string* returnValue);
+    void ctor(const std::string & returnValue);
 
 public:
     void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
     void* convert(void* parameter) /* throws(EvaluationException) */;
 
     // Generated
-    TypeConversionFunction(std::string* returnValue);
+    TypeConversionFunction(const std::string & returnValue);
 protected:
     TypeConversionFunction(const ::default_init_tag&);
 

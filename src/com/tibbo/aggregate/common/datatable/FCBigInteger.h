@@ -11,16 +11,16 @@
 
 
 class com::tibbo::aggregate::common::datatable::FCBigInteger
-    : public ::com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter
+    : public converter::SimpleFormatConverter
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter super;
+    typedef converter::SimpleFormatConverter super;
 protected:
     void ctor();
 
 public:
-    FieldFormat* createFieldFormat(std::string* name);
+    FieldFormat* createFieldFormat(const std::string & name);
     ::java::math::BigInteger* simpleToBean(void* value);
     void* convertToTable(::java::math::BigInteger* value, TableFormat* format);
 

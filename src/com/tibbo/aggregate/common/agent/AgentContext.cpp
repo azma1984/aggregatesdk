@@ -70,34 +70,35 @@ void AgentContext::setupMyself()
 {
     AbstractContext::setupMyself();
    
-   // FunctionDefinition *fd = new FunctionDefinition(F_LOGIN, FIFT_LOGIN, FOFT_LOGIN, ""/*Cres::get()->getString("login")*/);
-    /* fd->setImplementation(loginImpl);
+    FunctionDefinition *fd = new FunctionDefinition(F_LOGIN, FIFT_LOGIN, FOFT_LOGIN, ""/*Cres::get()->getString("login")*/);
+    fd->setImplementation(loginImpl);
     addFunctionDefinition(fd);
-    fd = new FunctionDefinition(F_REGISTER_, TableFormat::EMPTY_FORMAT(), FOFT_REGISTER_, Cres::get()->getString("register"));
+    fd = new FunctionDefinition(F_REGISTER, TableFormat::EMPTY_FORMAT, FOFT_REGISTER,""/* Cres::get()->getString("register")*/);
     fd->setImplementation(registerImpl);
     addFunctionDefinition(fd);
-    fd = new FunctionDefinition(F_SYNCHRONIZED_, TableFormat::EMPTY_FORMAT(), TableFormat::EMPTY_FORMAT(), Cres::get())->getString("register"));
+    fd = new FunctionDefinition(F_SYNCHRONIZED, TableFormat::EMPTY_FORMAT, TableFormat::EMPTY_FORMAT,""/* Cres::get())->getString("register")*/);
     fd->setImplementation(synchronizedImpl);
     addFunctionDefinition(fd);
-    fd = new FunctionDefinition(F_CONFIRM_EVENT_, FIFT_CONFIRM_EVENT_, TableFormat::EMPTY_FORMAT());
+    fd = new FunctionDefinition(F_CONFIRM_EVENT, FIFT_CONFIRM_EVENT, TableFormat::EMPTY_FORMAT);
     fd->setImplementation(confirmEventImpl);
     addFunctionDefinition(fd);
-    fd = new FunctionDefinition(F_GET_HISTORY_, TableFormat::EMPTY_FORMAT(), FOFT_GET_HISTORY_);
+    fd = new FunctionDefinition(F_GET_HISTORY, TableFormat::EMPTY_FORMAT, FOFT_GET_HISTORY);
     fd->setImplementation(getHistoryImpl);
     addFunctionDefinition(fd);
-    if(eventConfirmation) {
-      EventDefinition *ed = new EventDefinition(E_EVENT_CONFIRMED_, EFT_EVENT_CONFIRMED_);
-        addEventDefinition(ed);
+    if(eventConfirmation) 
+	{
+     EventDefinition *ed = new EventDefinition(E_EVENT_CONFIRMED, EFT_EVENT_CONFIRMED);
+     addEventDefinition(ed);
     }
-    */
+  
 }
 
 void AgentContext::confirmEvent(int id)
 {
-  //  if(getEventDefinition(E_EVENT_CONFIRMED) != 0) 
-  //  {
-       // fireEvent(E_EVENT_CONFIRMED,id);
-  //  }
+    if(getEventDefinition(E_EVENT_CONFIRMED) != 0) 
+    {
+      fireEvent(E_EVENT_CONFIRMED,(void*)id);
+    }
 }
 
 bool AgentContext::isSynchronized1()
@@ -116,10 +117,11 @@ RemoteServer* AgentContext::getServer()
 }
 
 
-//std::list<HistoricalValue> AgentContext::getHistory()
-//{
-//  return emptyList();
-//}
+std::list<HistoricalValue> AgentContext::getHistory()
+{
+ std::list<HistoricalValue> list;
+  return list; //emptyList();
+}
 
 
 

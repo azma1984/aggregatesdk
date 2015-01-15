@@ -35,67 +35,67 @@ public:
     static const char16_t PROPERTY_BEGIN { u'#' };
 
 private:
-    std::string* image;
-    std::string* schema;
-    std::string* server;
-    std::string* context;
-    std::string* entity;
+    const std::string & image;
+    const std::string & schema;
+    const std::string & server;
+    const std::string & context;
+    const std::string & entity;
     int entityType;
     std::list  parameters;
-    std::string* field;
-    ::java::lang::Integer* row;
-    std::string* property;
+    const std::string & field;
+    int  row;
+    const std::string & property;
 protected:
     void ctor();
-    void ctor(std::string* source);
-    void ctor(std::string* server, std::string* context);
-    void ctor(std::string* entity, int entityType, std::string* field);
-    void ctor(std::string* context, std::string* entity, int entityType, std::string* field);
-    void ctor(std::string* context, std::string* entity, int entityType);
-    void ctor(std::string* context, std::string* function, voidArray* parameters);
+    void ctor(const std::string & source);
+    void ctor(const std::string & server, const std::string & context);
+    void ctor(const std::string & entity, int entityType, const std::string & field);
+    void ctor(const std::string & context, const std::string & entity, int entityType, const std::string & field);
+    void ctor(const std::string & context, const std::string & entity, int entityType);
+    void ctor(const std::string & context, const std::string & function, voidArray* parameters);
 
 public:// protected
-    void parse(std::string* source);
+    void parse(const std::string & source);
 
 public:
-    std::string* getServer();
-    std::string* getContext();
-    std::string* getEntity();
+    const std::string & getServer();
+    const std::string & getContext();
+    const std::string & getEntity();
     int getEntityType();
-    std::string* getField();
+    const std::string & getField();
     std::list  getParameters();
     int getRow();
-    std::string* getSchema();
-    std::string* getProperty();
-    std::string* getImage();
+    const std::string & getSchema();
+    const std::string & getProperty();
+    const std::string & getImage();
 
 private:
-    std::string* createImage();
+    const std::string & createImage();
 
 public:
-    std::string* toString();
-    void setContext(std::string* context);
-    void setEntity(std::string* entity);
+    const std::string & toString();
+    void setContext(const std::string & context);
+    void setEntity(const std::string & entity);
     void setEntityType(int entityType);
-    void addParameter(std::string* parameter);
+    void addParameter(const std::string & parameter);
     void addParameter(Expression* parameter);
-    void setField(std::string* field);
-    void setProperty(std::string* property);
-    void setSchema(std::string* schema);
-    void setRow(::java::lang::Integer* row);
-    void setServer(std::string* server);
+    void setField(const std::string & field);
+    void setProperty(const std::string & property);
+    void setSchema(const std::string & schema);
+    void setRow(int  row);
+    void setServer(const std::string & server);
     Reference* clone();
     bool equals(void* obj);
     int hashCode();
 
     // Generated
     Reference();
-    Reference(std::string* source);
-    Reference(std::string* server, std::string* context);
-    Reference(std::string* entity, int entityType, std::string* field);
-    Reference(std::string* context, std::string* entity, int entityType, std::string* field);
-    Reference(std::string* context, std::string* entity, int entityType);
-    Reference(std::string* context, std::string* function, voidArray* parameters);
+    Reference(const std::string & source);
+    Reference(const std::string & server, const std::string & context);
+    Reference(const std::string & entity, int entityType, const std::string & field);
+    Reference(const std::string & context, const std::string & entity, int entityType, const std::string & field);
+    Reference(const std::string & context, const std::string & entity, int entityType);
+    Reference(const std::string & context, const std::string & function, voidArray* parameters);
 protected:
     Reference(const ::default_init_tag&);
 

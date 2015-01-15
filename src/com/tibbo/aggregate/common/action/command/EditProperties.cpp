@@ -53,19 +53,19 @@ com::tibbo::aggregate::common::action::command::EditProperties::EditProperties()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(std::string* title, std::string* contextName, std::string* propertiesGroup) 
+com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(const std::string & title, const std::string & contextName, const std::string & propertiesGroup) 
     : EditProperties(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,contextName,propertiesGroup);
 }
 
-com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(std::string* title, std::string* contextName, std::list  properties) 
+com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(const std::string & title, const std::string & contextName, std::list  properties) 
     : EditProperties(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,contextName,properties);
 }
 
-com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(const std::string & title, DataTable* parameters) 
     : EditProperties(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -209,21 +209,21 @@ void com::tibbo::aggregate::common::action::command::EditProperties::ctor()
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_PROPERTIES(), CFT_EDIT_PROPERTIES_, RFT_EDIT_PROPERTIES_);
 }
 
-void com::tibbo::aggregate::common::action::command::EditProperties::ctor(std::string* title, std::string* contextName, std::string* propertiesGroup)
+void com::tibbo::aggregate::common::action::command::EditProperties::ctor(const std::string & title, const std::string & contextName, const std::string & propertiesGroup)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_PROPERTIES(), title);
     this->context = contextName;
     this->propertiesGroup = propertiesGroup;
 }
 
-void com::tibbo::aggregate::common::action::command::EditProperties::ctor(std::string* title, std::string* contextName, std::list  properties)
+void com::tibbo::aggregate::common::action::command::EditProperties::ctor(const std::string & title, const std::string & contextName, std::list  properties)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_PROPERTIES(), title);
     this->context = contextName;
     this->properties = properties;
 }
 
-void com::tibbo::aggregate::common::action::command::EditProperties::ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::EditProperties::ctor(const std::string & title, DataTable* parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_PROPERTIES(), title, parameters, CFT_EDIT_PROPERTIES_);
 }
@@ -231,14 +231,14 @@ void com::tibbo::aggregate::common::action::command::EditProperties::ctor(std::s
 com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditProperties::constructParameters()
 {
     auto slavesTable = createSlavesTable(slaves);
-    auto table = new ::com::tibbo::aggregate::common::datatable::DataTable(CFT_EDIT_PROPERTIES_);
+    auto table = new DataTable(CFT_EDIT_PROPERTIES_);
     auto rec = table)->addRecord();
     rec)->addString(context);
     rec)->addString(propertiesGroup);
-    auto propertiesTable = new ::com::tibbo::aggregate::common::datatable::DataTable(FT_PROPERTIES_);
+    auto propertiesTable = new DataTable(FT_PROPERTIES_);
     if(properties != 0) {
         for (auto _i = properties)->iterator(); _i->hasNext(); ) {
-            std::string* property = java_cast< std::string* >(_i->next());
+            const std::string & property = java_cast< const std::string & >(_i->next());
             {
                 propertiesTable)->addRecord())->addString(property);
             }
@@ -251,8 +251,8 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     rec)->addBoolean(::java::lang::Boolean::valueOf(dynamic));
     rec)->addBoolean(::java::lang::Boolean::valueOf(async));
     rec)->addDataTable(slavesTable);
-    rec)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< ::com::tibbo::aggregate::common::datatable::DataTable* >(0));
-    rec)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< ::com::tibbo::aggregate::common::datatable::DataTable* >(0));
+    rec)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTable* >(0));
+    rec)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTable* >(0));
     return rec)->wrap();
 }
 
@@ -261,9 +261,9 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     if(slaves == 0) {
         return 0;
     }
-    auto slavesTable = new ::com::tibbo::aggregate::common::datatable::DataTable(CFT_SLAVES_);
+    auto slavesTable = new DataTable(CFT_SLAVES_);
     for (auto _i = slaves)->iterator(); _i->hasNext(); ) {
-        std::string* slave = java_cast< std::string* >(_i->next());
+        const std::string & slave = java_cast< const std::string & >(_i->next());
         {
             slavesTable)->addRecord())->addString(slave);
         }
@@ -280,7 +280,7 @@ java::util::List* com::tibbo::aggregate::common::action::command::EditProperties
     }
     std::list  slaves = new ::java::util::LinkedList();
     for (auto _i = slavesTable)->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::datatable::DataRecord* rec = java_cast< ::com::tibbo::aggregate::common::datatable::DataRecord* >(_i->next());
+        DataRecord* rec = java_cast< DataRecord* >(_i->next());
         {
             auto context = rec)->getString(CF_SLAVES_CONTEXT_);
             auto slave = java_cast< ::com::tibbo::aggregate::common::context::Context* >(base)->get(context, caller));
@@ -297,7 +297,7 @@ std::string com::tibbo::aggregate::common::action::command::EditProperties::getC
     return context;
 }
 
-void com::tibbo::aggregate::common::action::command::EditProperties::setContext(std::string* contextName)
+void com::tibbo::aggregate::common::action::command::EditProperties::setContext(const std::string & contextName)
 {
     this->context = contextName;
 }
@@ -307,7 +307,7 @@ std::string com::tibbo::aggregate::common::action::command::EditProperties::getP
     return propertiesGroup;
 }
 
-void com::tibbo::aggregate::common::action::command::EditProperties::setPropertiesGroup(std::string* propertiesGroup)
+void com::tibbo::aggregate::common::action::command::EditProperties::setPropertiesGroup(const std::string & propertiesGroup)
 {
     this->propertiesGroup = propertiesGroup;
 }
@@ -445,23 +445,23 @@ struct clinit_ {
             ->append(u"><S><D="_j)
             ->append(Cres::get())->getString(u"property"_j))
             ->append(u">"_j)->toString()))->wrap();
-        CFT_EDIT_PROPERTIES_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        CFT_EDIT_PROPERTIES_ = new TableFormat(int(1), int(1));
         {
             CFT_EDIT_PROPERTIES_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_CONTEXT_)
                 ->append(u"><S><D="_j)
                 ->append(Cres::get())->getString(u"context"_j))
                 ->append(u"><E="_j)
-                ->append(::com::tibbo::aggregate::common::datatable::field::StringFieldFormat::EDITOR_CONTEXT())
+                ->append(field::StringFieldFormat::EDITOR_CONTEXT())
                 ->append(u">"_j)->toString());
             CFT_EDIT_PROPERTIES_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_PROPERTIES_GROUP_)
                 ->append(u"><S><F=N><D="_j)
                 ->append(Cres::get())->getString(u"group"_j))
                 ->append(u">"_j)->toString());
-            auto properties = ::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(CF_PROPERTIES_)
+            auto properties = FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(CF_PROPERTIES_)
                 ->append(u"><T><D="_j)
                 ->append(Cres::get())->getString(u"properties"_j))
                 ->append(u">"_j)->toString());
-            properties)->setDefault(new ::com::tibbo::aggregate::common::datatable::DataTable(FT_PROPERTIES_, true));
+            properties)->setDefault(new DataTable(FT_PROPERTIES_, true));
             CFT_EDIT_PROPERTIES_)->addField(properties);
             CFT_EDIT_PROPERTIES_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_SINGLE_WINDOW_MODE_)
                 ->append(u"><B><D="_j)
@@ -484,18 +484,18 @@ struct clinit_ {
             CFT_EDIT_PROPERTIES_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_DASHBOARD_)
                 ->append(u"><T><F=N>"_j)->toString());
             auto ref = std::stringBuilder().append(CF_PROPERTIES_)->append(u"#"_j)
-                ->append(::com::tibbo::aggregate::common::datatable::DataTableBindingProvider::PROPERTY_ENABLED())->toString();
+                ->append(DataTableBindingProvider::PROPERTY_ENABLED())->toString();
             auto exp = std::stringBuilder().append(u"{"_j)->append(CF_PROPERTIES_GROUP_)
                 ->append(u"} == null"_j)->toString();
             CFT_EDIT_PROPERTIES_)->addBinding(ref, exp);
         }
-        RFT_EDIT_PROPERTIES_ = new ::com::tibbo::aggregate::common::datatable::TableFormat(int(1), int(1));
+        RFT_EDIT_PROPERTIES_ = new TableFormat(int(1), int(1));
         {
             RFT_EDIT_PROPERTIES_)->addField(std::stringBuilder().append(u"<"_j)->append(RF_EDIT_PROPERTIES_RESULT_)
                 ->append(u"><S>"_j)->toString());
-            auto changedProperties = ::com::tibbo::aggregate::common::datatable::FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(RF_EDIT_PROPERTIES_CHANGED_PROPERTIES_)
+            auto changedProperties = FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(RF_EDIT_PROPERTIES_CHANGED_PROPERTIES_)
                 ->append(u"><T>"_j)->toString());
-            changedProperties)->setDefault(new ::com::tibbo::aggregate::common::datatable::DataTable(FT_PROPERTIES_, true));
+            changedProperties)->setDefault(new DataTable(FT_PROPERTIES_, true));
             RFT_EDIT_PROPERTIES_)->addField(changedProperties);
         }
     }

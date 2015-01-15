@@ -1,161 +1,221 @@
-#include "device/sync/SettingSynchronizationOptions.h"
+// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/sync/SettingSynchronizationOptions.java
+#include <com/tibbo/aggregate/common/device/sync/SettingSynchronizationOptions.h"
 
+#include <com/tibbo/aggregate/common/device/DeviceContext.h"
+#include <com/tibbo/aggregate/common/device/sync/SynchronizationHandler.h"
+#include <com/tibbo/aggregate/common/expression/Expression.h"
+//#include <java/lang/ClassCastException.h"
+//#include <java/lang/CloneNotSupportedException.h"
+//#include <java/lang/IllegalStateException.h"
+//#include <java/lang/Long.h"
+//#include <java/lang/NullPointerException.h"
+//#include <java/lang/Object.h"
+//#include <java/lang/String.h"
 
-SettingSynchronizationOptions::SettingSynchronizationOptions()
+template<typename T, typename U>
+static T java_cast(U* u)
+{
+    if(!u) return static_cast<T>(0);
+    auto t = dynamic_cast<T>(u);
+    if(!t) throw new ::java::lang::ClassCastException();
+    return t;
+}
+
+template<typename T>
+static T* T* t)
+{
+    if(!t) std::exception("Pointer = NULL!");
+    return t;
+}
+
+com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::SettingSynchronizationOptions(const ::default_init_tag&)
+    : super(*static_cast< ::default_init_tag* >(0))
+{
+    
+}
+
+com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::SettingSynchronizationOptions() 
+    : SettingSynchronizationOptions(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-SettingSynchronizationOptions::SettingSynchronizationOptions(long syncPeriod)
+com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::SettingSynchronizationOptions(::java::lang::Long* syncPeriod) 
+    : SettingSynchronizationOptions(*static_cast< ::default_init_tag* >(0))
+{
+    ctor(syncPeriod);
+}
+
+com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::SettingSynchronizationOptions(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod) 
+    : SettingSynchronizationOptions(*static_cast< ::default_init_tag* >(0))
+{
+    ctor(updateHistoryStorageTime,syncPeriod);
+}
+
+com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::SettingSynchronizationOptions(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod, int historyRate) 
+    : SettingSynchronizationOptions(*static_cast< ::default_init_tag* >(0))
+{
+    ctor(updateHistoryStorageTime,syncPeriod,historyRate);
+}
+
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::init()
+{
+    mode = ::com::tibbo::aggregate::common::device::DeviceContext::SYNC_MODE_NORMAL;
+}
+
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::ctor()
+{
+    super::ctor();
+    init();
+}
+
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::ctor(::java::lang::Long* syncPeriod)
 {
     ctor();
     this->syncPeriod = syncPeriod;
 }
 
-SettingSynchronizationOptions::SettingSynchronizationOptions(long updateHistoryStorageTime, long syncPeriod)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::ctor(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod)
 {
-    ctor();
+    ctor(syncPeriod);
     this->updateHistoryStorageTime = updateHistoryStorageTime;
-    this->syncPeriod = syncPeriod;
 }
 
-SettingSynchronizationOptions::SettingSynchronizationOptions(long updateHistoryStorageTime, long syncPeriod, int historyRate)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::ctor(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod, int historyRate)
 {
-    ctor();
-    this->updateHistoryStorageTime = updateHistoryStorageTime;
-    this->syncPeriod = syncPeriod;
+    ctor(updateHistoryStorageTime, syncPeriod);
     this->historyRate = historyRate;
 }
 
-void SettingSynchronizationOptions::ctor()
-{
-    this->mode = DeviceContext::SYNC_MODE_NORMAL;
-
-    this->updateHistoryStorageTime = 0;
-    this->syncPeriod = 0;
-    this->historyRate = 0;
-    this->synchronizationsCounter = 0;
-}
-
-int SettingSynchronizationOptions::getMode()
+int com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getMode()
 {
     return mode;
 }
 
-void SettingSynchronizationOptions::setMode(int mode)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::setMode(int mode)
 {
     this->mode = mode;
 }
 
-long SettingSynchronizationOptions::getSyncPeriod()
+java::lang::Long* com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getSyncPeriod()
 {
     return syncPeriod;
 }
 
-void SettingSynchronizationOptions::setSyncPeriod(long syncPeriod)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::setSyncPeriod(::java::lang::Long* syncPeriod)
 {
     this->syncPeriod = syncPeriod;
 }
 
-std::string SettingSynchronizationOptions::getMaster()
+std::string com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getMaster()
 {
     return master;
 }
 
-void SettingSynchronizationOptions::setMaster(const std::string& master)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::setMaster(const std::string & master)
 {
     this->master = master;
 }
 
-long SettingSynchronizationOptions::getUpdateHistoryStorageTime()
+java::lang::Long* com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getUpdateHistoryStorageTime()
 {
     return updateHistoryStorageTime;
 }
 
-void SettingSynchronizationOptions::setUpdateHistoryStorageTime(long updateHistoryStorageTime)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::setUpdateHistoryStorageTime(::java::lang::Long* updateHistoryStorageTime)
 {
     this->updateHistoryStorageTime = updateHistoryStorageTime;
 }
 
-int SettingSynchronizationOptions::getHistoryRate()
+int com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getHistoryRate()
 {
     return historyRate;
 }
 
-void SettingSynchronizationOptions::setHistoryRate(int historyRate)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::setHistoryRate(int historyRate)
 {
     this->historyRate = historyRate;
 }
 
-std::string SettingSynchronizationOptions::getFilter()
+std::string com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getFilter()
 {
     return filter;
 }
 
-void SettingSynchronizationOptions::setFilter(const std::string& filter)
+com::tibbo::aggregate::common::expression::Expression* com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getFilterExpression()
 {
-    this->filter = filter;
-}
-
-boost::shared_ptr<Expression> SettingSynchronizationOptions::getFilterExpression()
-{
-    if (filterExpression == NULL && filter.length() > 0) {
-        filterExpression = new Expression(filter);
+    if(filterExpression == 0 && filter != 0 && filter)->length() > 0) {
+        filterExpression = new ::com::tibbo::aggregate::common::expression::Expression(filter);
     }
-
     return filterExpression;
 }
 
-std::string SettingSynchronizationOptions::getCondition()
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::setFilter(const std::string & filter)
+{
+    this->filter = filter;
+    filterExpression;
+}
+
+std::string com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getCondition()
 {
     return condition;
 }
 
-boost::shared_ptr<Expression> SettingSynchronizationOptions::getConditionExpression()
+com::tibbo::aggregate::common::expression::Expression* com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getConditionExpression()
 {
-    if (conditionExpression == NULL && condition.length() > 0) {
-        conditionExpression = new Expression(condition);
+    if(conditionExpression == 0 && condition != 0 && condition)->length() > 0) {
+        conditionExpression = new ::com::tibbo::aggregate::common::expression::Expression(condition);
     }
-
     return conditionExpression;
 }
 
-void SettingSynchronizationOptions::setCondition(const std::string& condition)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::setCondition(const std::string & condition)
 {
     this->condition = condition;
-    conditionExpression.reset();
+    conditionExpression;
 }
 
-boost::shared_ptr<SynchronizationHandler> SettingSynchronizationOptions::getSynchronizationHandler()
+com::tibbo::aggregate::common::device::sync::SynchronizationHandler* com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getSynchronizationHandler()
 {
     return synchronizationHandler;
 }
 
-void SettingSynchronizationOptions::setSynchronizationHandler(boost::shared_ptr<SynchronizationHandler> synchronizationHandler)
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::setSynchronizationHandler(SynchronizationHandler* synchronizationHandler)
 {
     this->synchronizationHandler = synchronizationHandler;
 }
 
-int SettingSynchronizationOptions::getSynchronizationsCounter()
+int com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getSynchronizationsCounter()
 {
     return synchronizationsCounter;
 }
 
-void SettingSynchronizationOptions::incrementSynchronizationsCounter()
+void com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::incrementSynchronizationsCounter()
 {
-    incrementSynchronizationsCounter++;
+    synchronizationsCounter++;
 }
 
-SettingSynchronizationOptions* SettingSynchronizationOptions::clone()
+com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions* com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::clone()
 {
-//    try
-//    {
-      SettingSynchronizationOptions* clone = new SettingSynchronizationOptions(this);
-      clone->setSynchronizationHandler(NULL);
-      return clone;
-//    }
-//    catch (CloneNotSupportedException ex)
-//    {
-//      throw new IllegalStateException(ex.getMessage(), ex);
-//    }
+    try {
+        auto clone = java_cast< SettingSynchronizationOptions* >(super::clone());
+        clone)->setSynchronizationHandler(0);
+        return clone;
+    } catch (::java::lang::CloneNotSupportedException* ex) {
+        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
+    }
 }
+
+
+
+java::lang::Class* com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::class_()
+{
+    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.device.sync.SettingSynchronizationOptions", 68);
+    return c;
+}
+
+java::lang::Class* com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions::getClass0()
+{
+    return class_();
+}
+

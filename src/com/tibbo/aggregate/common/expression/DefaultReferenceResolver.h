@@ -33,30 +33,30 @@ private:
     static const std::string SELECTION_VALUE_DESCRIPTION_;
 protected:
     void ctor();
-    void ctor(::com::tibbo::aggregate::common::datatable::DataTable* defaultTable);
+    void ctor(DataTable* defaultTable);
 
 public:
     void* resolveReference(Reference* ref, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */;
 
 public: /* protected */
-    void* getDefaultTableAggregate(::com::tibbo::aggregate::common::datatable::DataTable* table);
-    ::java::lang::Integer* getRow(Reference* ref, EvaluationEnvironment* environment);
+    void* getDefaultTableAggregate(DataTable* table);
+    int  getRow(Reference* ref, EvaluationEnvironment* environment);
 
 private:
-    std::string* resolveEntityDescription(Reference* ref, ::com::tibbo::aggregate::common::context::Context* con) /* throws(IllegalStateException) */;
+    const std::string & resolveEntityDescription(Reference* ref, ::com::tibbo::aggregate::common::context::Context* con) /* throws(IllegalStateException) */;
 
 public:
     std::list  getContexts(Reference* ref) /* throws(ContextException) */;
     ::com::tibbo::aggregate::common::context::Context* getContext(Reference* ref) /* throws(ContextException) */;
 
 public: /* protected */
-    ::com::tibbo::aggregate::common::datatable::DataTable* resolveEntity(Reference* ref, ::com::tibbo::aggregate::common::context::Context* con, EvaluationEnvironment* environment) /* throws(ContextException, SyntaxErrorException, EvaluationException) */;
+    DataTable* resolveEntity(Reference* ref, ::com::tibbo::aggregate::common::context::Context* con, EvaluationEnvironment* environment) /* throws(ContextException, SyntaxErrorException, EvaluationException) */;
 
     // Generated
 
 public:
     DefaultReferenceResolver();
-    DefaultReferenceResolver(::com::tibbo::aggregate::common::datatable::DataTable* defaultTable);
+    DefaultReferenceResolver(DataTable* defaultTable);
 protected:
     DefaultReferenceResolver(const ::default_init_tag&);
 

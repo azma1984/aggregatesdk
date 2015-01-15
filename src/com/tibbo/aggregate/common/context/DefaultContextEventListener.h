@@ -14,7 +14,7 @@
 
 class com::tibbo::aggregate::common::context::DefaultContextEventListener
     
-    , public ::com::tibbo::aggregate::common::event::ContextEventListener
+    , public ContextEventListener
 {
 
 public:
@@ -22,21 +22,21 @@ public:
 
 private:
     CallerController* callerController;
-    ::java::lang::Integer* listenerCode;
+    int  listenerCode;
     ::com::tibbo::aggregate::common::expression::Expression* filter;
     bool acceptEventsWithoutListenerCode;
     ::com::tibbo::aggregate::common::expression::Evaluator* evaluator;
 protected:
     void ctor();
     void ctor(CallerController* callerController);
-    void ctor(CallerController* callerController, ::java::lang::Integer* listenerCode);
-    void ctor(CallerController* callerController, ::java::lang::Integer* listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
-    void ctor(::java::lang::Integer* listenerCode);
+    void ctor(CallerController* callerController, int  listenerCode);
+    void ctor(CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    void ctor(int  listenerCode);
 
 public:
-    bool shouldHandle(::com::tibbo::aggregate::common::data::Event* ev) /* throws(EventHandlingException) */;
+    bool shouldHandle(Event* ev) /* throws(EventHandlingException) */;
     CallerController* getCallerController();
-    ::java::lang::Integer* getListenerCode();
+    int  getListenerCode();
     void setCallerController(CallerController* callerController);
 
 public: /* protected */
@@ -49,9 +49,9 @@ public:
     // Generated
     DefaultContextEventListener();
     DefaultContextEventListener(CallerController* callerController);
-    DefaultContextEventListener(CallerController* callerController, ::java::lang::Integer* listenerCode);
-    DefaultContextEventListener(CallerController* callerController, ::java::lang::Integer* listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
-    DefaultContextEventListener(::java::lang::Integer* listenerCode);
+    DefaultContextEventListener(CallerController* callerController, int  listenerCode);
+    DefaultContextEventListener(CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    DefaultContextEventListener(int  listenerCode);
 protected:
     DefaultContextEventListener(const ::default_init_tag&);
 

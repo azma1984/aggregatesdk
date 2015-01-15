@@ -4,6 +4,7 @@
 #define ContextH
 
 #include <string>
+//#include "event/ContextEventListener.h"
 
 /*
 Интерфейс Context используется, чтобы обеспечить объединенный способ получить доступ
@@ -151,107 +152,113 @@
 	//Возвращает ID иконки контекста
 	virtual std::string getIconId()=0;
 
-	 /*
-	ContextStatus* getStatus();
+	//ContextStatus* getStatus();
 
-	ContextManager* getContextManager();
-	std::list  getChildren(CallerController* caller);
-	std::list  getChildren();
-	std::list  getVisibleChildren(CallerController* caller);
-	std::list  getVisibleChildren();
-	bool isMapped();
-	std::list  getMappedChildren(CallerController* caller);
-	std::list  getMappedChildren();
-	Context* getRoot();
-	Context* get(std::string* path, CallerController* caller);
-	Context* get(std::string* path);
-	Context* getChild(std::string* name, CallerController* caller);
-	Context* getChild(std::string* name);
-	void addChild(Context* child);
-	void removeChild(Context* child);
-	void removeChild(std::string* name);
-	void destroyChild(Context* child, bool moving);
-	void destroyChild(std::string* name, bool moving);
-	void destroy(bool moving);
-	void move(Context* newParent, std::string* newName);
-	void setParent(Context* parent);
-	Context* getParent();
-	bool hasParent(Context* parentContext);
-	void addVariableDefinition(VariableDefinition* def);
-	void removeVariableDefinition(std::string* name);
-	VariableData* getVariableData(std::string* name);
-	VariableDefinition* getVariableDefinition(std::string* name);
-	VariableDefinition* getVariableDefinition(std::string* name, CallerController* caller);
-	std::list  getVariableDefinitions(CallerController* caller);
-	std::list  getVariableDefinitions();
-	std::list  getVariableDefinitions(CallerController* caller, std::string* group);
-	std::list  getVariableDefinitions(std::string* group);
-	std::list  getVariableDefinitions(CallerController* caller, bool includeHidden);
-	void addFunctionDefinition(FunctionDefinition* def);
-	void removeFunctionDefinition(std::string* name);
-	FunctionData* getFunctionData(std::string* name);
-	FunctionDefinition* getFunctionDefinition(std::string* name);
-	FunctionDefinition* getFunctionDefinition(std::string* name, CallerController* caller);
-	std::list  getFunctionDefinitions(CallerController* caller);
-	std::list  getFunctionDefinitions();
-	std::list  getFunctionDefinitions(CallerController* caller, std::string* group);
-	std::list  getFunctionDefinitions(std::string* group);
-	std::list  getFunctionDefinitions(CallerController* caller, bool includeHidden);
-	void addEventDefinition(EventDefinition* def);
-	void removeEventDefinition(std::string* name);
-	EventDefinition* getEventDefinition(std::string* name);
-	EventDefinition* getEventDefinition(std::string* name, CallerController* caller);
-	EventData* getEventData(std::string* name);
-	std::list  getEventDefinitions(CallerController* caller);
-	std::list  getEventDefinitions();
-	std::list  getEventDefinitions(CallerController* caller, std::string* group);
-	std::list  getEventDefinitions(std::string* group);
-	std::list  getEventDefinitions(CallerController* caller, bool includeHidden);
-	::com::tibbo::aggregate::common::datatable::DataTable* getVariable(std::string* name, CallerController* caller, RequestController* request);
-	::com::tibbo::aggregate::common::datatable::DataTable* getVariable(std::string* name, CallerController* caller);
-	::com::tibbo::aggregate::common::datatable::DataTable* getVariable(std::string* name);
-	void* getVariableObject(std::string* name, CallerController* caller);
-	void setVariable(std::string* name, CallerController* caller, ::com::tibbo::aggregate::common::datatable::DataTable* value);
-	void setVariable(std::string* name, CallerController* caller, RequestController* request, ::com::tibbo::aggregate::common::datatable::DataTable* value);
-	void setVariable(std::string* name, CallerController* caller, voidArray* value) ;
-	void setVariable(std::string* name, ::com::tibbo::aggregate::common::datatable::DataTable* value) ;
-	void setVariable(std::string* name, voidArray* value) ;
-	bool setVariableField(std::string* variable, std::string* field, void* value, CallerController* cc) ;
-	bool setVariableField(std::string* variable, std::string* field, int record, void* value, CallerController* cc) ;
-	void setVariableField(std::string* variable, std::string* field, void* value, std::string* compareField, void* compareValue, CallerController* cc) ;
-	::com::tibbo::aggregate::common::datatable::DataTable* callFunction(std::string* name, CallerController* caller, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) ;
-	::com::tibbo::aggregate::common::datatable::DataTable* callFunction(std::string* name, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) ;
-	::com::tibbo::aggregate::common::datatable::DataTable* callFunction(std::string* name) ;
-	::com::tibbo::aggregate::common::datatable::DataTable* callFunction(std::string* name, CallerController* caller, RequestController* request, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) ;
-    ::com::tibbo::aggregate::common::datatable::DataTable* callFunction(std::string* name, CallerController* caller, voidArray* parameters) ;
-    ::com::tibbo::aggregate::common::datatable::DataTable* callFunction(std::string* name, voidArray* parameters) ;
-    ::com::tibbo::aggregate::common::datatable::DataTable* callFunction(std::string* name, CallerController* caller) ;
-    ::com::tibbo::aggregate::common::data::Event* fireEvent(std::string* name);
-    ::com::tibbo::aggregate::common::data::Event* fireEvent(std::string* name, CallerController* caller);
-    ::com::tibbo::aggregate::common::data::Event* fireEvent(std::string* name, ::com::tibbo::aggregate::common::datatable::DataTable* data);
-    ::com::tibbo::aggregate::common::data::Event* fireEvent(std::string* name, CallerController* caller, ::com::tibbo::aggregate::common::datatable::DataTable* data);
-    ::com::tibbo::aggregate::common::data::Event* fireEvent(std::string* name, int level, ::com::tibbo::aggregate::common::datatable::DataTable* data);
-    ::com::tibbo::aggregate::common::data::Event* fireEvent(std::string* name, int level, CallerController* caller, ::com::tibbo::aggregate::common::datatable::DataTable* data);
-	::com::tibbo::aggregate::common::data::Event* fireEvent(std::string* name, voidArray* data);
-    ::com::tibbo::aggregate::common::data::Event* fireEvent(std::string* name, ::com::tibbo::aggregate::common::datatable::DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, ::java::lang::Integer* listener, CallerController* caller, ::com::tibbo::aggregate::common::event::FireEventRequestController* request);
-    void addActionDefinition(::com::tibbo::aggregate::common::action::ActionDefinition* def);
-    void removeActionDefinition(std::string* name);
-    ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(std::string* name);
-    ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(std::string* name, CallerController* caller);
-    ::com::tibbo::aggregate::common::action::ActionDefinition* getDefaultActionDefinition(CallerController* caller);
-    std::list  getActionDefinitions();
-    std::list  getActionDefinitions(CallerController* caller);
-    std::list  getActionDefinitions(CallerController* caller, bool includeHidden);
-    ::com::tibbo::aggregate::common::security::Permissions* getPermissions();
-    ::com::tibbo::aggregate::common::security::Permissions* getChildrenViewPermissions();
-    bool addEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
-    bool addEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener, bool weak);
-    bool removeEventListener(std::string* name, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
-    std::list  getEventHistory(std::string* name);
-	void accept(ContextVisitor* visitor) ;
+	//ContextManager* getContextManager();
+	//std::list  getChildren(CallerController* caller);
+	//std::list  getChildren();
+	//std::list  getVisibleChildren(CallerController* caller);
+	//std::list  getVisibleChildren();
+	//bool isMapped();
+	//std::list  getMappedChildren(CallerController* caller);
+	//std::list  getMappedChildren();
+	//Context* getRoot();
+	//Context* get(const std::string & path, CallerController* caller);
+	//Context* get(const std::string & path);
+	//Context* getChild(const std::string & name, CallerController* caller);
+	//Context* getChild(const std::string & name);
+	//void addChild(Context* child);
+	//void removeChild(Context* child);
+	//void removeChild(const std::string & name);
+	//void destroyChild(Context* child, bool moving);
+	//void destroyChild(const std::string & name, bool moving);
+	//void destroy(bool moving);
+	//void move(Context* newParent, const std::string & newName);
+	//void setParent(Context* parent);
+	//Context* getParent();
+	//bool hasParent(Context* parentContext);
+	//void addVariableDefinition(VariableDefinition* def);
+	//void removeVariableDefinition(const std::string & name);
+	//VariableData* getVariableData(const std::string & name);
+	//VariableDefinition* getVariableDefinition(const std::string & name);
+	//VariableDefinition* getVariableDefinition(const std::string & name, CallerController* caller);
+	//std::list  getVariableDefinitions(CallerController* caller);
+	//std::list  getVariableDefinitions();
+	//std::list  getVariableDefinitions(CallerController* caller, const std::string & group);
+	//std::list  getVariableDefinitions(const std::string & group);
+	//std::list  getVariableDefinitions(CallerController* caller, bool includeHidden);
+	//void addFunctionDefinition(FunctionDefinition* def);
+	//void removeFunctionDefinition(const std::string & name);
+	//FunctionData* getFunctionData(const std::string & name);
+	//FunctionDefinition* getFunctionDefinition(const std::string & name);
+	//FunctionDefinition* getFunctionDefinition(const std::string & name, CallerController* caller);
+	//std::list  getFunctionDefinitions(CallerController* caller);
+	//std::list  getFunctionDefinitions();
+	//std::list  getFunctionDefinitions(CallerController* caller, const std::string & group);
+	//std::list  getFunctionDefinitions(const std::string & group);
+	//std::list  getFunctionDefinitions(CallerController* caller, bool includeHidden);
+	//void addEventDefinition(EventDefinition* def);
+	//void removeEventDefinition(const std::string & name);
+	//EventDefinition* getEventDefinition(const std::string & name);
+	//EventDefinition* getEventDefinition(const std::string & name, CallerController* caller);
+	//EventData* getEventData(const std::string & name);
+	//std::list  getEventDefinitions(CallerController* caller);
+	//std::list  getEventDefinitions();
+	//std::list  getEventDefinitions(CallerController* caller, const std::string & group);
+	//std::list  getEventDefinitions(const std::string & group);
+	//std::list  getEventDefinitions(CallerController* caller, bool includeHidden);
+	//DataTable* getVariable(const std::string & name, CallerController* caller, RequestController* request);
+	//DataTable* getVariable(const std::string & name, CallerController* caller);
+	//DataTable* getVariable(const std::string & name);
+	//void* getVariableObject(const std::string & name, CallerController* caller);
+	//void setVariable(const std::string & name, CallerController* caller, DataTable* value);
+	//void setVariable(const std::string & name, CallerController* caller, RequestController* request, DataTable* value);
+	//void setVariable(const std::string & name, CallerController* caller, voidArray* value) ;
+	//void setVariable(const std::string & name, DataTable* value) ;
+	//void setVariable(const std::string & name, voidArray* value) ;
+	//bool setVariableField(const std::string & variable, const std::string & field, void* value, CallerController* cc) ;
+	//bool setVariableField(const std::string & variable, const std::string & field, int record, void* value, CallerController* cc) ;
+	//void setVariableField(const std::string & variable, const std::string & field, void* value, const std::string & compareField, void* compareValue, CallerController* cc) ;
+	//DataTable* callFunction(const std::string & name, CallerController* caller, DataTable* parameters) ;
+	//DataTable* callFunction(const std::string & name, DataTable* parameters) ;
+	//DataTable* callFunction(const std::string & name) ;
+	//DataTable* callFunction(const std::string & name, CallerController* caller, RequestController* request, DataTable* parameters) ;
+ //   DataTable* callFunction(const std::string & name, CallerController* caller, voidArray* parameters) ;
+ //   DataTable* callFunction(const std::string & name, voidArray* parameters) ;
+ //   DataTable* callFunction(const std::string & name, CallerController* caller) ;
+ //   Event* fireEvent(const std::string & name);
+ //   Event* fireEvent(const std::string & name, CallerController* caller);
+ //   Event* fireEvent(const std::string & name, DataTable* data);
+ //   Event* fireEvent(const std::string & name, CallerController* caller, DataTable* data);
+ //   Event* fireEvent(const std::string & name, int level, DataTable* data);
+ //   Event* fireEvent(const std::string & name, int level, CallerController* caller, DataTable* data);
+	//Event* fireEvent(const std::string & name, voidArray* data);
+ //   Event* fireEvent(const std::string & name, DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request);
+ //   void addActionDefinition(::com::tibbo::aggregate::common::action::ActionDefinition* def);
+ //   void removeActionDefinition(const std::string & name);
+ //   ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(const std::string & name);
+ //   ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(const std::string & name, CallerController* caller);
+ //   ::com::tibbo::aggregate::common::action::ActionDefinition* getDefaultActionDefinition(CallerController* caller);
+ //   std::list  getActionDefinitions();
+ //   std::list  getActionDefinitions(CallerController* caller);
+ //   std::list  getActionDefinitions(CallerController* caller, bool includeHidden);
+ //   Permissions* getPermissions();
+ //   Permissions* getChildrenViewPermissions();
 
- */
-    
+  /**
+   * Adds listener of event with specified name.
+   */
+  //  virtual bool addEventListener(const std::string & name, ContextEventListener* listener)=0;
+ 
+  /**
+   * Adds listener of event with specified name. This method allows to add auto-cleaned listeners by setting weak flag to true.
+   */
+   // virtual bool addEventListener(const std::string & name, ContextEventListener* listener, bool weak)=0;
+
+ //   bool removeEventListener(const std::string & name, ContextEventListener* listener);
+ //   std::list  getEventHistory(const std::string & name);
+	//void accept(ContextVisitor* visitor) ;
+
 };
 
 #endif

@@ -18,20 +18,20 @@ public:
     typedef ::java::util::ResourceBundle super;
 
 private:
-    std::string* baseName;
+    const std::string & baseName;
     ::java::util::PropertyResourceBundle* wrapped;
     std::map replacements;
 protected:
     void ctor(::java::util::PropertyResourceBundle* wrapped);
 
 public:
-    void addReplacement(std::string* key, std::string* value);
+    void addReplacement(const std::string & key, const std::string & value);
 
 public: /* protected */
-    void* handleGetObject(std::string* key);
+    void* handleGetObject(const std::string & key);
 
 private:
-    void* getEnglishValue(std::string* key);
+    void* getEnglishValue(const std::string & key);
 
 public:
     ::java::util::Enumeration* getKeys();

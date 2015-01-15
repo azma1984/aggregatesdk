@@ -32,14 +32,14 @@ private:
     static const std::string EF_BINDING_CAUSE_;
     static const std::string EF_BINDING_ERROR_;
     static const std::string EF_BINDING_ERROR_STACK_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* EFT_BINDING_EXECUTION_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* EFT_BINDING_EXECUTION_EXT_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* EFT_BINDING_ERROR_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* EFT_BINDING_ERROR_EXT_;
+    static TableFormat* EFT_BINDING_EXECUTION_;
+    static TableFormat* EFT_BINDING_EXECUTION_EXT_;
+    static TableFormat* EFT_BINDING_ERROR_;
+    static TableFormat* EFT_BINDING_ERROR_EXT_;
 
 public:
-    static ::com::tibbo::aggregate::common::datatable::DataTable* createBindingErrorEventData(::com::tibbo::aggregate::common::context::Context* con, Binding* binding, int method, std::string* activator, ::java::lang::Exception* error);
-    static ::com::tibbo::aggregate::common::datatable::DataTable* createBindingExecutionEventData(::com::tibbo::aggregate::common::context::Context* con, int method, Binding* binding, EvaluationOptions* options, ::com::tibbo::aggregate::common::expression::Reference* cause, void* result);
+    static DataTable* createBindingErrorEventData(::com::tibbo::aggregate::common::context::Context* con, Binding* binding, int method, const std::string & activator, ::java::lang::Exception* error);
+    static DataTable* createBindingExecutionEventData(::com::tibbo::aggregate::common::context::Context* con, int method, Binding* binding, EvaluationOptions* options, ::com::tibbo::aggregate::common::expression::Reference* cause, void* result);
 
 private:
     static const std::string executionTypeDescription(int method);
@@ -67,10 +67,10 @@ public:
     static const std::string& EF_BINDING_CAUSE();
     static const std::string& EF_BINDING_ERROR();
     static const std::string& EF_BINDING_ERROR_STACK();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& EFT_BINDING_EXECUTION();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& EFT_BINDING_EXECUTION_EXT();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& EFT_BINDING_ERROR();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& EFT_BINDING_ERROR_EXT();
+    static TableFormat*& EFT_BINDING_EXECUTION();
+    static TableFormat*& EFT_BINDING_EXECUTION_EXT();
+    static TableFormat*& EFT_BINDING_ERROR();
+    static TableFormat*& EFT_BINDING_ERROR_EXT();
 
 private:
     ::java::lang::Class* getClass0();

@@ -130,10 +130,10 @@ std::string AggreGateCommand::toString()
             ->append(u")"_j)->toString())->toString();
     }
     s = s)->replaceAll(std::string::valueOf(AggreGateCommand::CLIENT_COMMAND_SEPARATOR_)), u"/"_j);
-    s = s)->replaceAll(std::string::valueOf(::com::tibbo::aggregate::common::datatable::DataTableUtils::ELEMENT_START), std::string::valueOf(::com::tibbo::aggregate::common::datatable::DataTableUtils::ELEMENT_VISIBLE_START));
-    s = s)->replaceAll(std::string::valueOf(::com::tibbo::aggregate::common::datatable::DataTableUtils::ELEMENT_END), std::string::valueOf(::com::tibbo::aggregate::common::datatable::DataTableUtils::ELEMENT_VISIBLE_END));
-    s = s)->replaceAll(std::string::valueOf(::com::tibbo::aggregate::common::datatable::DataTableUtils::ELEMENT_NAME_VALUE_SEPARATOR), std::string::valueOf(::com::tibbo::aggregate::common::datatable::DataTableUtils::ELEMENT_VISIBLE_NAME_VALUE_SEPARATOR));
-    s = s)->replaceAll(std::string::valueOf(::com::tibbo::aggregate::common::datatable::DataTableUtils::DATA_TABLE_NULL())), ::com::tibbo::aggregate::common::datatable::DataTableUtils::DATA_TABLE_VISIBLE_NULL());
+    s = s)->replaceAll(std::string::valueOf(DataTableUtils::ELEMENT_START), std::string::valueOf(DataTableUtils::ELEMENT_VISIBLE_START));
+    s = s)->replaceAll(std::string::valueOf(DataTableUtils::ELEMENT_END), std::string::valueOf(DataTableUtils::ELEMENT_VISIBLE_END));
+    s = s)->replaceAll(std::string::valueOf(DataTableUtils::ELEMENT_NAME_VALUE_SEPARATOR), std::string::valueOf(DataTableUtils::ELEMENT_VISIBLE_NAME_VALUE_SEPARATOR));
+    s = s)->replaceAll(std::string::valueOf(DataTableUtils::DATA_TABLE_NULL())), DataTableUtils::DATA_TABLE_VISIBLE_NULL());
     return s;
 }
 
@@ -177,7 +177,7 @@ struct clinit_ {
     }
 }
 
-std::string AggreGateCommand::toString(std::string* arg0)
+std::string AggreGateCommand::toString(const std::string & arg0)
 {
     return super::toString(arg0);
 }

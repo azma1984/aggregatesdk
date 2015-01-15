@@ -27,24 +27,24 @@ public:
     int beginColumn;
     int endLine;
     int endColumn;
-    std::string* image;
+    const std::string & image;
     Token* next;
     Token* specialToken;
     void* getValue();
 protected:
     void ctor();
     void ctor(int kind);
-    void ctor(int kind, std::string* image);
+    void ctor(int kind, const std::string & image);
 
 public:
-    std::string* toString();
-    static Token* newToken(int ofKind, std::string* image);
+    const std::string & toString();
+    static Token* newToken(int ofKind, const std::string & image);
     static Token* newToken(int ofKind);
 
     // Generated
     Token();
     Token(int kind);
-    Token(int kind, std::string* image);
+    Token(int kind, const std::string & image);
 protected:
     Token(const ::default_init_tag&);
 

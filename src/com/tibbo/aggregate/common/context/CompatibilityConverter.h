@@ -9,7 +9,7 @@
 struct com::tibbo::aggregate::common::context::CompatibilityConverter
     
 {
-    ::com::tibbo::aggregate::common::datatable::DataTable* convert(::com::tibbo::aggregate::common::datatable::DataTable* oldValue, ::com::tibbo::aggregate::common::datatable::DataTable* newValue);
+    DataTable* convert(DataTable* oldValue, DataTable* newValue);
 
     // Generated
     

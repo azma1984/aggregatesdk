@@ -68,32 +68,36 @@ public:
    ContextEventListener *getDefaultEventListener();
 
  /*
-  void processOperationGetVar(std::string* id, ::com::tibbo::aggregate::common::context::Context* con, std::string* name, OutgoingAggreGateCommand* ans) ;
+  void processOperationGetVar(const std::string & id, ::com::tibbo::aggregate::common::context::Context* con, const std::string & name, OutgoingAggreGateCommand* ans) ;
 
 public: 
-    ::com::tibbo::aggregate::common::datatable::DataTable* getVariable(::com::tibbo::aggregate::common::context::Context* con, std::string* name) ;
+    DataTable* getVariable(::com::tibbo::aggregate::common::context::Context* con, const std::string & name) ;
 
 public:
-    void processOperationSetVar(std::string* id, ::com::tibbo::aggregate::common::context::Context* con, std::string* name, std::string* encodedValue, OutgoingAggreGateCommand* ans) ;
+    void processOperationSetVar(const std::string & id, ::com::tibbo::aggregate::common::context::Context* con, const std::string & name, const std::string & encodedValue, OutgoingAggreGateCommand* ans) ;
 
 public:
-    ::com::tibbo::aggregate::common::context::VariableDefinition* getVariableDefinition(::com::tibbo::aggregate::common::context::Context* con, std::string* name);
-    void setVariable(::com::tibbo::aggregate::common::context::Context* con, std::string* name, ::com::tibbo::aggregate::common::datatable::DataTable* value) ;
+    ::com::tibbo::aggregate::common::context::VariableDefinition* getVariableDefinition(::com::tibbo::aggregate::common::context::Context* con, const std::string & name);
+    void setVariable(::com::tibbo::aggregate::common::context::Context* con, const std::string & name, DataTable* value) ;
 
 public:
-    void processOperationCallFunction(std::string* id, ::com::tibbo::aggregate::common::context::Context* con, std::string* name, std::string* encodedParameters, OutgoingAggreGateCommand* ans) ;
+    void processOperationCallFunction(const std::string & id, ::com::tibbo::aggregate::common::context::Context* con, const std::string & name, const std::string & encodedParameters, OutgoingAggreGateCommand* ans) ;
 
 public: 
-    ::com::tibbo::aggregate::common::context::FunctionDefinition* getFunctionDefinition(::com::tibbo::aggregate::common::context::Context* con, std::string* name);
-    ::com::tibbo::aggregate::common::datatable::DataTable* callFunction(::com::tibbo::aggregate::common::context::Context* con, std::string* name, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) ;
+    ::com::tibbo::aggregate::common::context::FunctionDefinition* getFunctionDefinition(::com::tibbo::aggregate::common::context::Context* con, const std::string & name);
+    DataTable* callFunction(::com::tibbo::aggregate::common::context::Context* con, const std::string & name, DataTable* parameters) ;
   */
     bool addNormalListener(const std::string &context,const std::string &name, ContextEventListener* cel);
 /*
 public:
-    void processOperationAddEventListener(std::string* id, std::string* context, std::string* name, ::java::lang::Integer* listener, std::string* filter, OutgoingAggreGateCommand* ans) ;
-    void processOperationRemoveEventListener(std::string* id, std::string* context, std::string* name, ::java::lang::Integer* listenerHashCode, std::string* filter, OutgoingAggreGateCommand* ans) ;
+    void processOperationAddEventListener(const std::string & id, const std::string & context, const std::string & name, int  listener, const std::string & filter, OutgoingAggreGateCommand* ans) ;
+    void processOperationRemoveEventListener(const std::string & id, const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter, OutgoingAggreGateCommand* ans) ;
     void processMessageStart(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
 */
+	void shutdown();
+	bool run();
+    void runImpl() ;
+
 protected: 
     static void processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) ;
  /*
@@ -102,16 +106,17 @@ protected:
 
 public:
     OutgoingAggreGateCommand* processCommand(IncomingAggreGateCommand* cmd) ;
-    void shutdown();
-    bool run();
-    void runImpl() ;
-
+	*/
+    
+	
+   
+/*
 public: 
-    std::string* getErrorDetails(::java::lang::Throwable* error);
+    const std::string & getErrorDetails(::java::lang::Throwable* error);
 
 public:
     void sendCommand(OutgoingAggreGateCommand* cmd) ;
-    ::com::tibbo::aggregate::common::event::ContextEventListener* createListener(::java::lang::Integer* listenerHashCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    ContextEventListener* createListener(int  listenerHashCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
 
 private:
     void processPendingEvents();
@@ -120,16 +125,16 @@ private:
    Context* getContext(const std::string &path);
 /*
 
-    bool controllerShouldHandle(::com::tibbo::aggregate::common::data::Event* ev, ::com::tibbo::aggregate::common::event::ContextEventListener* listener);
-    ::com::tibbo::aggregate::common::event::ContextEventListener* getDefaultEventListener();
+    bool controllerShouldHandle(Event* ev, ContextEventListener* listener);
+    ContextEventListener* getDefaultEventListener();
 
 public: 
-    ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* createClassicEncodingSettings(bool useFormatCache);
+    encoding::ClassicEncodingSettings* createClassicEncodingSettings(bool useFormatCache);
 
 public:
-    OutgoingAggreGateCommand* constructEventCommand(::com::tibbo::aggregate::common::data::Event* event, ::java::lang::Integer* listenerCode);
+    OutgoingAggreGateCommand* constructEventCommand(Event* event, int  listenerCode);
     bool isConnected();
-    std::string* getAddress();
+    const std::string & getAddress();
 
 
     

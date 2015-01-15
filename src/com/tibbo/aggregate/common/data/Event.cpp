@@ -32,7 +32,7 @@ void Event::ctor()
     setCreationtime(new ::java::util::Date(::java::lang::System::currentTimeMillis()));
 }
 
-void Event::ctor(std::string* context, EventDefinition* def, int level, ::com::tibbo::aggregate::common::datatable::DataTable* data, ::java::lang::Long* id, ::java::util::Date* creationtime, ::com::tibbo::aggregate::common::security::Permissions* permissions)
+void Event::ctor(const std::string & context, EventDefinition* def, int level, DataTable* data, ::java::lang::Long* id, ::java::util::Date* creationtime, Permissions* permissions)
 {
     ctor();
     init_(context, def)->getName(), level, data, id);
@@ -46,13 +46,13 @@ void Event::ctor(std::string* context, EventDefinition* def, int level, ::com::t
     }
 }
 
-void Event::ctor(std::string* context, std::string* name, int level, ::com::tibbo::aggregate::common::datatable::DataTable* data, ::java::lang::Long* id)
+void Event::ctor(const std::string & context, const std::string & name, int level, DataTable* data, ::java::lang::Long* id)
 {
     ctor();
     init_(context, name, level, data, id);
 }
 
-void Event::init_(std::string* context, std::string* name, int level, ::com::tibbo::aggregate::common::datatable::DataTable* data, ::java::lang::Long* id)
+void Event::init_(const std::string & context, const std::string & name, int level, DataTable* data, ::java::lang::Long* id)
 {
     this->context = context;
     this->name = name;

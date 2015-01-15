@@ -11,23 +11,23 @@
 
 
 class com::tibbo::aggregate::common::context::FireChangeEventRequestController
-    : public ::com::tibbo::aggregate::common::event::FireEventRequestController
+    : public FireEventRequestController
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::event::FireEventRequestController super;
+    typedef FireEventRequestController super;
 
 private:
     VariableDefinition* def;
-    ::com::tibbo::aggregate::common::datatable::DataTable* value;
+    DataTable* value;
 protected:
-    void ctor(::java::lang::Long* customExpirationPeriod, VariableDefinition* def, ::com::tibbo::aggregate::common::datatable::DataTable* value);
+    void ctor(::java::lang::Long* customExpirationPeriod, VariableDefinition* def, DataTable* value);
 
 public:
-    ::com::tibbo::aggregate::common::data::Event* process(::com::tibbo::aggregate::common::data::Event* event);
+    Event* process(Event* event);
 
     // Generated
-    FireChangeEventRequestController(::java::lang::Long* customExpirationPeriod, VariableDefinition* def, ::com::tibbo::aggregate::common::datatable::DataTable* value);
+    FireChangeEventRequestController(::java::lang::Long* customExpirationPeriod, VariableDefinition* def, DataTable* value);
 protected:
     FireChangeEventRequestController(const ::default_init_tag&);
 

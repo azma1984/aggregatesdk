@@ -23,7 +23,7 @@ public:
     void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
 private:
-    ::com::tibbo::aggregate::common::datatable::TableFormat* joinTableFormats(::com::tibbo::aggregate::common::datatable::TableFormat* newFormat, ::com::tibbo::aggregate::common::datatable::TableFormat* tableFormat);
+    TableFormat* joinTableFormats(TableFormat* newFormat, TableFormat* tableFormat);
 
     // Generated
 

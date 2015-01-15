@@ -16,31 +16,31 @@ private:
     static const std::string DEFAULT_MAP_KEY_VALUE_SEPARATOR_;
 
 public:
-    static const std::string truncate(std::string* str, int maxLength);
-    static const std::string truncate(std::string* str, int maxLength, std::string* suffix);
+    static const std::string truncate(const std::string & str, int maxLength);
+    static const std::string truncate(const std::string & str, int maxLength, const std::string & suffix);
     static const std::string byteToHexString(int i);
     static const std::string colorToString(::java::awt::Color* color);
-    static ElementList* elements(std::string* source, bool useVisibleSeparators);
-    static const std::string escapeHtml(std::string* text);
+    static ElementList* elements(const std::string & source, bool useVisibleSeparators);
+    static const std::string escapeHtml(const std::string & text);
     static const std::string print(::java::util::Collection* col);
-    static const std::string print(::java::util::Collection* col, std::string* separator);
-    static const std::string print(::java::util::Collection* col, std::string* separator, bool skipNullElements);
-    static const std::string print(::java::util::Collection* col, std::string* separator, std::string* escaper, bool skipNullElements);
+    static const std::string print(::java::util::Collection* col, const std::string & separator);
+    static const std::string print(::java::util::Collection* col, const std::string & separator, bool skipNullElements);
+    static const std::string print(::java::util::Collection* col, const std::string & separator, const std::string & escaper, bool skipNullElements);
     static const std::string print(std::map map);
-    static const std::string print(std::map map, std::string* separator, std::string* keyValueSeparator, bool skipNullKeys);
+    static const std::string print(std::map map, const std::string & separator, const std::string & keyValueSeparator, bool skipNullKeys);
     static const std::string print(voidArray* array);
-    static const std::string print(voidArray* array, std::string* separator);
-    static const std::string remoteNonDigits(std::string* src);
-    static const std::string removeSuffix(std::string* src, std::string* suffix);
-    static std::list  split(std::string* str, char16_t ch);
-    static std::list  split(std::string* str, char16_t ch, int limit);
+    static const std::string print(voidArray* array, const std::string & separator);
+    static const std::string remoteNonDigits(const std::string & src);
+    static const std::string removeSuffix(const std::string & src, const std::string & suffix);
+    static std::list  split(const std::string & str, char16_t ch);
+    static std::list  split(const std::string & str, char16_t ch, int limit);
     static const std::string streamToString(std::iostream* is);
-    static std::list  wrapText(std::string* text, int len);
-    static const std::string wrapText(std::string* text, int len, std::string* separator);
-    static void appendLine(std::stringBuilder* sb, std::string* s);
-    static const std::string makeName(std::string* source, int maxLength);
-    static bool isPureAscii(std::string* v);
-    static bool isEmpty(std::string* text);
+    static std::list  wrapText(const std::string & text, int len);
+    static const std::string wrapText(const std::string & text, int len, const std::string & separator);
+    static void appendLine(std::stringBuilder* sb, const std::string & s);
+    static const std::string makeName(const std::string & source, int maxLength);
+    static bool isPureAscii(const std::string & v);
+    static bool isEmpty(const std::string & text);
 
     // Generated
     StringUtils();

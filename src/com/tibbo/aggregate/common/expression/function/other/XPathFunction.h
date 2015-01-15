@@ -30,10 +30,10 @@ public:
     void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
 private:
-    ::com::tibbo::aggregate::common::datatable::DataTable* tableFromNodes(std::list  nodes);
-    ::com::tibbo::aggregate::common::datatable::TableFormat* formatFromNodes(std::list  nodes);
+    DataTable* tableFromNodes(std::list  nodes);
+    TableFormat* formatFromNodes(std::list  nodes);
     std::list  nodesToList(::org::w3c::dom::NodeList* nodeList);
-    std::string* buildAttributeFieldName(::org::w3c::dom::Node* attribute);
+    const std::string & buildAttributeFieldName(::org::w3c::dom::Node* attribute);
 
     // Generated
 

@@ -10,7 +10,7 @@ ContextException::ContextException(const ::default_init_tag&)
     
 }
 
-ContextException::ContextException(std::string* message) 
+ContextException::ContextException(const std::string & message) 
     : ContextException(*static_cast< ::default_init_tag* >(0))
 {
     ctor(message);
@@ -22,19 +22,19 @@ ContextException::ContextException(::java::lang::Throwable* cause)
     ctor(cause);
 }
 
-ContextException::ContextException(std::string* message, ::java::lang::Throwable* cause) 
+ContextException::ContextException(const std::string & message, ::java::lang::Throwable* cause) 
     : ContextException(*static_cast< ::default_init_tag* >(0))
 {
     ctor(message,cause);
 }
 
-ContextException::ContextException(std::string* message, ::java::lang::Throwable* cause, std::string* details) 
+ContextException::ContextException(const std::string & message, ::java::lang::Throwable* cause, const std::string & details) 
     : ContextException(*static_cast< ::default_init_tag* >(0))
 {
     ctor(message,cause,details);
 }
 
-void ContextException::ctor(std::string* message)
+void ContextException::ctor(const std::string & message)
 {
     super::ctor(message);
 }
@@ -44,12 +44,12 @@ void ContextException::ctor(::java::lang::Throwable* cause)
     super::ctor(cause);
 }
 
-void ContextException::ctor(std::string* message, ::java::lang::Throwable* cause)
+void ContextException::ctor(const std::string & message, ::java::lang::Throwable* cause)
 {
     super::ctor(message, cause);
 }
 
-void ContextException::ctor(std::string* message, ::java::lang::Throwable* cause, std::string* details)
+void ContextException::ctor(const std::string & message, ::java::lang::Throwable* cause, const std::string & details)
 {
     super::ctor(message, cause, details);
 }

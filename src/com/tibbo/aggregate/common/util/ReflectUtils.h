@@ -14,10 +14,10 @@ class com::tibbo::aggregate::common::util::ReflectUtils
 
 public:
     typedef void super;
-    static void* getPrivateField(void* obj, std::string* fieldName);
-    static void* getPrivateField(void* obj, std::string* fieldName, ::java::lang::Class* c) /* throws(NoSuchFieldException, IllegalAccessException) */;
-    static void setPrivateField(void* obj, std::string* fieldName, void* value);
-    static void setPrivateField(void* obj, std::string* fieldName, void* value, ::java::lang::Class* c) /* throws(NoSuchFieldException, IllegalAccessException) */;
+    static void* getPrivateField(void* obj, const std::string & fieldName);
+    static void* getPrivateField(void* obj, const std::string & fieldName, ::java::lang::Class* c) /* throws(NoSuchFieldException, IllegalAccessException) */;
+    static void setPrivateField(void* obj, const std::string & fieldName, void* value);
+    static void setPrivateField(void* obj, const std::string & fieldName, void* value, ::java::lang::Class* c) /* throws(NoSuchFieldException, IllegalAccessException) */;
     static /* <F, T> */void copyProperties(void* from, ::java::lang::Class* stopFromClass, void* to, ::java::lang::Class* stopToClass);
 
     // Generated

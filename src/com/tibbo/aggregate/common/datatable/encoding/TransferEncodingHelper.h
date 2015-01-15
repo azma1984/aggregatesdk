@@ -23,8 +23,8 @@ private:
     static std::map REVERSE_;
 
 public:
-    static const std::string encode(std::string* s);
-    static const std::string decode(std::string* s);
+    static const std::string encode(const std::string & s);
+    static const std::string decode(const std::string & s);
 
     // Generated
     TransferEncodingHelper();

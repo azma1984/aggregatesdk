@@ -191,7 +191,7 @@ public:
 	        };
 
 public: /* package */
-    std::string* skip_to_matching_brace();
+    const std::string & skip_to_matching_brace();
 
     ASTStart* Start();
     void Expression();
@@ -235,11 +235,11 @@ private:
     static void jj_la1_init_1();
 protected:
     void ctor(std::iostream* stream);
-    void ctor(std::iostream* stream, std::string* encoding);
+    void ctor(std::iostream* stream, const std::string & encoding);
 
 public:
     void ReInit(std::iostream* stream);
-    void ReInit(std::iostream* stream, std::string* encoding);
+    void ReInit(std::iostream* stream, const std::string & encoding);
 protected:
     void ctor(std::ifstream* stream);
 
@@ -271,7 +271,7 @@ public:
 
     // Generated
     ExpressionParser(std::iostream* stream);
-    ExpressionParser(std::iostream* stream, std::string* encoding);
+    ExpressionParser(std::iostream* stream, const std::string & encoding);
     ExpressionParser(std::ifstream* stream);
     ExpressionParser(ExpressionParserTokenManager* tm);
 protected:

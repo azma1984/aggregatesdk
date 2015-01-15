@@ -1,132 +1,154 @@
-#include "device/sync/SynchronizationHandler.h"
+// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/sync/SynchronizationHandler.java
+#include <com/tibbo/aggregate/common/device/sync/SynchronizationHandler.h"
 
-#include "device/sync/AbstractValueReader.h"
-#include "device/sync/AbstractValueWriter.h"
-#include "device/sync/SettingSynchronizationOptions.h"
+#include <com/tibbo/aggregate/common/Cres.h"
+#include <com/tibbo/aggregate/common/context/VariableDefinition.h"
+#include <com/tibbo/aggregate/common/context/VariableStatus.h"
+#include <com/tibbo/aggregate/common/device/DeviceContext.h"
+#include <com/tibbo/aggregate/common/device/DeviceDriver.h"
+#include <com/tibbo/aggregate/common/device/DeviceSettingStatus.h"
+#include <com/tibbo/aggregate/common/device/sync/SettingSynchronizationOptions.h"
+#include <com/tibbo/aggregate/common/device/sync/SynchronizationHandler_createServerWriter_1.h"
+#include <com/tibbo/aggregate/common/device/sync/SynchronizationHandler_createServerReader_2.h"
+//#include <java/lang/NullPointerException.h"
+//#include <java/lang/String.h"
+//#include <java/util/Date.h"
+//#include <java/util/ResourceBundle.h"
 
+template<typename T>
+static T* T* t)
+{
+    if(!t) std::exception("Pointer = NULL!");
+    return t;
+}
 
-SynchronizationHandler::SynchronizationHandler()
+com::tibbo::aggregate::common::device::sync::SynchronizationHandler::SynchronizationHandler(const ::default_init_tag&)
+    : super(*static_cast< ::default_init_tag* >(0))
+{
+    
+}
+
+com::tibbo::aggregate::common::device::sync::SynchronizationHandler::SynchronizationHandler() 
+    : SynchronizationHandler(*static_cast< ::default_init_tag* >(0))
+{
+    ctor();
+}
+
+void com::tibbo::aggregate::common::device::sync::SynchronizationHandler::init()
 {
     synchronizationEnabled = true;
 }
 
-void SynchronizationHandler::initialize(
-    boost::shared_ptr<DeviceContext> deviceContext,
-    const std::string& variable,
-    boost::shared_ptr<SettingSynchronizationOptions> synchronizationOptions,
-    bool check
-){
+void com::tibbo::aggregate::common::device::sync::SynchronizationHandler::ctor()
+{
+    super::ctor();
+    init();
+}
+
+void com::tibbo::aggregate::common::device::sync::SynchronizationHandler::initialize(::com::tibbo::aggregate::common::device::DeviceContext* deviceContext, const std::string & variable, SettingSynchronizationOptions* synchronizationOptions, bool check) /* throws(ContextException) */
+{
     this->deviceContext = deviceContext;
     this->variable = variable;
     this->synchronizationOptions = synchronizationOptions;
 }
 
-void SynchronizationHandler::deinitialize()
+void com::tibbo::aggregate::common::device::sync::SynchronizationHandler::deinitialize()
 {
-
 }
 
-void SynchronizationHandler::startSynchronization() /* throws(DeviceException, ContextException) */
+void com::tibbo::aggregate::common::device::sync::SynchronizationHandler::startSynchronization() /* throws(DeviceException, ContextException) */
 {
-
 }
 
-bool SynchronizationHandler::isSynchronizationEnabled()
+bool com::tibbo::aggregate::common::device::sync::SynchronizationHandler::isSynchronizationEnabled()
 {
     return synchronizationEnabled;
 }
 
-
-void SynchronizationHandler::setSynchronizationEnabled(bool synchronizationEnabled)
+void com::tibbo::aggregate::common::device::sync::SynchronizationHandler::setSynchronizationEnabled(bool synchronizationEnabled)
 {
-    this->setSynchronizationEnabled = synchronizationEnabled;
+    this->synchronizationEnabled = synchronizationEnabled;
 }
 
-boost::shared_ptr<DataTable> SynchronizationHandler::readFromCache(
-    boost::shared_ptr<CallerController> caller,
-    boost::shared_ptr<RequestController> request) /* throws(ContextException) */
+com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::readFromCache(::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request) /* throws(ContextException) */
 {
-    return NULL;
+    return 0;
 }
 
-void SynchronizationHandler::writeToCache(
-    boost::shared_ptr<CallerController> caller,
-    boost::shared_ptr<RequestController> request,
-    boost::shared_ptr<DataTable> value) /* throws(ContextException) */
+void com::tibbo::aggregate::common::device::sync::SynchronizationHandler::writeToCache(::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* value) /* throws(ContextException) */
 {
-
 }
 
-boost::shared_ptr<ValueWriter> SynchronizationHandler::createServerWriter()
+com::tibbo::aggregate::common::device::sync::ValueWriter* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::createServerWriter()
 {
-    return new AbstractValueWriter(Cres::get()->getString("server"));
-    //TODO:
-//    {
-//      public void write(DataTable value, CallerController callerController, RequestController requestController) throws ContextException, DeviceException, DisconnectionException
-//      {
-//        deviceContext.setVariable(getVariable(), callerController, requestController, value);
-//      }
-//    };
+    return new SynchronizationHandler_createServerWriter_1(this, Cres::get())->getString(u"server"_j));
 }
 
-boost::shared_ptr<ValueReader> SynchronizationHandler::createServerReader()
+com::tibbo::aggregate::common::device::sync::ValueReader* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::createServerReader()
 {
-    return new AbstractValueReader(Cres::get()->getString("server"));
-    //TODO:
-//    {
-//      public DataTable read(CallerController callerController, RequestController requestController) throws ContextException, DeviceException, DisconnectionException
-//      {
-//        return deviceContext.getVariable(getVariable(), callerController, requestController);
-//      }
-//    };
+    return new SynchronizationHandler_createServerReader_2(this, Cres::get())->getString(u"server"_j));
 }
 
-boost::shared_ptr<Date> SynchronizationHandler::getServerModificationTime() /* throws(ContextException) */
+java::util::Date* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getServerModificationTime() /* throws(ContextException) */
 {
-     return deviceContext->getSettingStatus(variable)->getTime();
+    return deviceContext)->getSettingStatus(variable))->getTime();
 }
 
-boost::shared_ptr<Date> SynchronizationHandler::getDeviceModificationTime() /* throws(ContextException, DeviceException, DisconnectionException) */
+java::util::Date* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getDeviceModificationTime() /* throws(ContextException, DeviceException, DisconnectionException) */
 {
-    return deviceContext->getDriver()->getVariableModificationTime(getVariable());
+    return deviceContext)->getDriver())->getVariableModificationTime(getVariable());
 }
 
-bool SynchronizationHandler::isUpdatedOnTheServer(boost::shared_ptr<CallerController> caller) /* throws(ContextException) */
+bool com::tibbo::aggregate::common::device::sync::SynchronizationHandler::isUpdatedOnTheServer(::com::tibbo::aggregate::common::context::CallerController* caller) /* throws(ContextException) */
 {
-    return deviceContext->getSettingStatus(variable)->isUpdated();
+    return deviceContext)->getSettingStatus(variable))->isUpdated();
 }
 
-int SynchronizationHandler::getDirectionOverride()
+int com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getDirectionOverride()
 {
-    return DeviceContext::DIRECTION_AUTO;
+    return ::com::tibbo::aggregate::common::device::DeviceContext::DIRECTION_AUTO;
 }
 
-boost::shared_ptr<VariableDefinition> SynchronizationHandler::getPersistentDefinition(boost::shared_ptr<VariableDefinition> vd)
+com::tibbo::aggregate::common::context::VariableDefinition* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getPersistentDefinition(::com::tibbo::aggregate::common::context::VariableDefinition* vd)
 {
-    return vd->clone();
+    return vd)->clone();
 }
 
-boost::shared_ptr<SettingSynchronizationOptions> SynchronizationHandler::getSynchronizationOptions()
+com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getSynchronizationOptions()
 {
     return synchronizationOptions;
 }
 
-boost::shared_ptr<VariableStatus> SynchronizationHandler::getCustomStatus()
-{
-    return customStatus;
-}
-
-void SynchronizationHandler::setCustomStatus(boost::shared_ptr<VariableStatus> customStatus)
-{
-    this->customStatus = customStatus;
-}
-
-boost::shared_ptr<DeviceContext> SynchronizationHandler::getDeviceContext()
+com::tibbo::aggregate::common::device::DeviceContext* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getDeviceContext()
 {
     return deviceContext;
 }
 
-std::string SynchronizationHandler::getVariable()
+std::string com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getVariable()
 {
     return variable;
 }
+
+com::tibbo::aggregate::common::context::VariableStatus* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getCustomStatus()
+{
+    return customStatus;
+}
+
+void com::tibbo::aggregate::common::device::sync::SynchronizationHandler::setCustomStatus(::com::tibbo::aggregate::common::context::VariableStatus* customStatus)
+{
+    this->customStatus = customStatus;
+}
+
+
+
+java::lang::Class* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::class_()
+{
+    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.device.sync.SynchronizationHandler", 61);
+    return c;
+}
+
+java::lang::Class* com::tibbo::aggregate::common::device::sync::SynchronizationHandler::getClass0()
+{
+    return class_();
+}
+

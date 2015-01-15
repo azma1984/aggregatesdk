@@ -62,7 +62,7 @@ java::util::Map*& DataTableUtils::EDITOR_SELECTION_VALUES()
 }
 java::util::Map* DataTableUtils::EDITOR_SELECTION_VALUES_;
 
-std::string DataTableUtils::transferDecode(std::string* value)
+std::string DataTableUtils::transferDecode(const std::string & value)
 {
     
     try {
@@ -74,7 +74,7 @@ std::string DataTableUtils::transferDecode(std::string* value)
     }
 }
 
-std::string DataTableUtils::transferEncode(std::string* value)
+std::string DataTableUtils::transferEncode(const std::string & value)
 {
     
     return ::encoding::TransferEncodingHelper::encode(value);
@@ -135,7 +135,7 @@ DataTable* DataTableUtils::wrapToTable(std::map values)
     
     auto rf = new TableFormat();
     for (auto _i = values)->keySet())->iterator(); _i->hasNext(); ) {
-        std::string* field = java_cast< std::string* >(_i->next());
+        const std::string & field = java_cast< const std::string & >(_i->next());
         {
             auto value = java_cast< void* >(values)->get(field));
             rf)->addField(static_cast< FieldFormat* >(DataTableConversion::createFieldFormat(field, value)));
@@ -143,7 +143,7 @@ DataTable* DataTableUtils::wrapToTable(std::map values)
     }
     auto result = new DataRecord(rf);
     for (auto _i = values)->keySet())->iterator(); _i->hasNext(); ) {
-        std::string* field = java_cast< std::string* >(_i->next());
+        const std::string & field = java_cast< const std::string & >(_i->next());
         {
             result)->addValue(java_cast< void* >(values)->get(field)));
         }
@@ -179,7 +179,7 @@ DataTable* DataTableUtils::makeSubtable(DataTable* table, ::java::util::Collecti
     
     auto rf = new TableFormat(table)->getFormat())->getMinRecords(), table)->getFormat())->getMaxRecords());
     for (auto _i = fields)->iterator(); _i->hasNext(); ) {
-        std::string* field = java_cast< std::string* >(_i->next());
+        const std::string & field = java_cast< const std::string & >(_i->next());
         {
             auto ff = table)->getFormat(field);
             if(ff != 0) {
@@ -207,8 +207,8 @@ std::string DataTableUtils::fieldValueToString(FieldFormat* ff, void* value)
     if(ff)->hasSelectionValues()) {
         return value)->toString();
     }
-    if(dynamic_cast< ::com::tibbo::aggregate::common::data::Data* >(value) != 0) {
-        auto data = java_cast< ::com::tibbo::aggregate::common::data::Data* >(value);
+    if(dynamic_cast< Data* >(value) != 0) {
+        auto data = java_cast< Data* >(value);
         if(data)->getData() == 0) {
             return 0;
         } else {
@@ -228,7 +228,7 @@ java::nio::charset::Charset* DataTableUtils::detectCharset(::int8_tArray* data)
     return ::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET();
 }
 
-std::string DataTableUtils::createRecordKeyString(DataRecord* record, ::java::lang::Integer* rowNumber, std::string* keyField)
+std::string DataTableUtils::createRecordKeyString(DataRecord* record, int  rowNumber, const std::string & keyField)
 {
     
     auto keyFields = ::java::util::Collections::emptyList();
@@ -239,7 +239,7 @@ std::string DataTableUtils::createRecordKeyString(DataRecord* record, ::java::la
     if(keyFields)->isEmpty()) {
         return ::java::lang::Integer::toString((rowNumber))->intValue());
     }
-    return record)->getValueAsString(java_cast< std::string* >(keyFields)->get(0)));
+    return record)->getValueAsString(java_cast< const std::string & >(keyFields)->get(0)));
 }
 
 DataTable* DataTableUtils::processBindings(DataTable* table, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator)

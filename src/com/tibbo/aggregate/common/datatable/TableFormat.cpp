@@ -1,10 +1,11 @@
 #include "TableFormat.h"
 
-/*
+
 #include "util/ElementList.h"
 #include "AggreGateException.h"
 
-boost::shared_ptr<TableFormat> TableFormat::EMPTY_FORMAT = new TableFormat(0, 0);
+/*boost::shared_ptr<TableFormat> */TableFormat *TableFormat::EMPTY_FORMAT = new TableFormat(0, 0);
+/*
 const int TableFormat::DEFAULT_MIN_RECORDS = 0;
 const int TableFormat::DEFAULT_MAX_RECORDS = 0x7fffffff;
 
@@ -138,7 +139,7 @@ void TableFormat::ctor(const std::string& format, ClassicEncodingSettings* setti
     }
 }
 
-void TableFormat::ctor(int minRecords, int maxRecords, std::string* fieldFormat)
+void TableFormat::ctor(int minRecords, int maxRecords, const std::string & fieldFormat)
 {
     ctor(minRecords, maxRecords);
     addField(fieldFormat);
@@ -208,7 +209,7 @@ TableFormat* TableFormat::addField(char type, const std::string& name, const std
     return this;
 }
 
-TableFormat* TableFormat::addField(char type, std::string* name, std::string* description, void* defaultValue, bool nullable, std::string* group)
+TableFormat* TableFormat::addField(char type, const std::string & name, const std::string & description, void* defaultValue, bool nullable, const std::string & group)
 {
     addField(static_cast< FieldFormat* >(&FieldFormat::create(name, type, description, defaultValue, nullable, group)));
     return this;
@@ -249,7 +250,7 @@ TableFormat* TableFormat::addField(FieldFormat* ff, int index)
     return this;
 }
 
-TableFormat* TableFormat::addField(char16_t type, std::string* name, int index) 
+TableFormat* TableFormat::addField(char16_t type, const std::string & name, int index) 
 {
     if (immutable) {
         throw AggreGateException("Immutable", "TableFormat::addField");
@@ -409,7 +410,7 @@ void TableFormat::addBinding(Reference* target, Expression* expression)
     addBinding(new Binding(target, expression));
 }
 
-void TableFormat::addBinding(std::string* target, std::string* expression)
+void TableFormat::addBinding(const std::string & target, const std::string & expression)
 {
     addBinding(new Binding(new Reference(target), new Expression(expression)));
 }
@@ -480,7 +481,7 @@ std::string TableFormat::encode(ClassicEncodingSettings* settings)
     return formatString.str();
 }
 
-void TableFormat::encAppend(std::stringBuffer* buffer, std::string* name, std::string* value, ::encoding::ClassicEncodingSettings* settings)
+void TableFormat::encAppend(std::stringBuffer* buffer, const std::string & name, const std::string & value, ::encoding::ClassicEncodingSettings* settings)
 {
     
     if(value != 0 && value)->length() > 0) {
@@ -565,7 +566,7 @@ FieldFormat* TableFormat::getField(int index)
     return java_cast< FieldFormat* >(fields)->get(index));
 }
 
-FieldFormat* TableFormat::getField(std::string* fieldName)
+FieldFormat* TableFormat::getField(const std::string & fieldName)
 {
     auto index = getFieldIndex(fieldName);
     if(index != -int(1)) {
@@ -575,7 +576,7 @@ FieldFormat* TableFormat::getField(std::string* fieldName)
     }
 }
 
-bool TableFormat::hasField(std::string* name)
+bool TableFormat::hasField(const std::string & name)
 {
     return getFieldIndex(name) != -int(1);
 }
@@ -696,7 +697,7 @@ void TableFormat::addRecordValidator(::validator::RecordValidator* rv)
     recordValidators)->add(rv));
 }
 
-void TableFormat::createTableValidators(std::string* source, ::encoding::ClassicEncodingSettings* settings)
+void TableFormat::createTableValidators(const std::string & source, ::encoding::ClassicEncodingSettings* settings)
 {
     if(source == 0 || source)->length() == 0) {
         return;
@@ -720,7 +721,7 @@ void TableFormat::createTableValidators(std::string* source, ::encoding::Classic
     }
 }
 
-void TableFormat::createRecordValidators(std::string* source, ::encoding::ClassicEncodingSettings* settings)
+void TableFormat::createRecordValidators(const std::string & source, ::encoding::ClassicEncodingSettings* settings)
 {
     if(source == 0 || source)->length() == 0) {
         return;
@@ -741,7 +742,7 @@ void TableFormat::createRecordValidators(std::string* source, ::encoding::Classi
     }
 }
 
-void TableFormat::createBindings(std::string* source, ::encoding::ClassicEncodingSettings* settings)
+void TableFormat::createBindings(const std::string & source, ::encoding::ClassicEncodingSettings* settings)
 {
     if(source == 0 || source)->length() == 0) {
         return;
@@ -755,7 +756,7 @@ void TableFormat::createBindings(std::string* source, ::encoding::ClassicEncodin
     }
 }
 
-void TableFormat::createNaming(std::string* source, ::encoding::ClassicEncodingSettings* settings)
+void TableFormat::createNaming(const std::string & source, ::encoding::ClassicEncodingSettings* settings)
 {
     if(source == 0 || source)->length() == 0) {
         return;
@@ -900,7 +901,7 @@ TableFormat* TableFormat::setNamingExpression(::com::tibbo::aggregate::common::e
     return this;
 }
 
-TableFormat* TableFormat::setNamingExpression(std::string* namingExpression)
+TableFormat* TableFormat::setNamingExpression(const std::string & namingExpression)
 {
     setNamingExpression(new ::com::tibbo::aggregate::common::expression::Expression(namingExpression));
     return this;
@@ -1003,23 +1004,25 @@ TableFormat* TableFormat::clone()
     cl)->immutable = false;
     return cl;
 }
-
+*/
 void TableFormat::makeImmutable(DataTable* immutabilizer)
 {
-    if (immutable) {
+    if (immutable) 
+	{
         return;
     }
 
     immutable = true;
-    this->immutabilizer = immutabilizer;
+//    this->immutabilizer = immutabilizer;
 
-    for (std::list<FieldFormat>::iterator it = fields.begin(); it!=fields.end(); ++it ) {
-        //TODO:
-        *it->makeImmutable();
-    }
+//    for (std::list<FieldFormat>::iterator it = fields.begin(); it!=fields.end(); ++it ) 
+//	{
+       //TODO:
+ //      *it->makeImmutable();
+ //   }
 }
 
-
+/*
 void TableFormat::clinit()
 {
 struct string_init_ {

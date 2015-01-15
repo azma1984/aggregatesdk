@@ -35,6 +35,7 @@ public:
     bool equals(SynchronizationParameters* obj);
     SynchronizationParameters* clone();
 
+    // Generated
     SynchronizationParameters();
     SynchronizationParameters(const std::string& setting);
     SynchronizationParameters(bool connectOnly);

@@ -21,28 +21,28 @@ private:
     static const std::string CF_LEVEL_;
     static const std::string CF_MESSAGE_;
     static const std::string CF_EXCEPTION_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_SHOW_ERROR_;
+    static TableFormat* CFT_SHOW_ERROR_;
     ::java::lang::Throwable* exception;
     int level;
-    std::string* message;
+    const std::string & message;
 protected:
     void ctor();
-    void ctor(std::string* title, std::string* message, int level, ::java::lang::Throwable* exception);
+    void ctor(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception);
 
 public: /* protected */
-    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+    DataTable* constructParameters();
 
 public:
     int getLevel();
     void setLevel(int level);
-    std::string* getMessage();
-    void setMessage(std::string* message);
+    const std::string & getMessage();
+    void setMessage(const std::string & message);
     ::java::lang::Throwable* getException();
     void setException(::java::lang::Throwable* exception);
 
     // Generated
     ShowError();
-    ShowError(std::string* title, std::string* message, int level, ::java::lang::Throwable* exception);
+    ShowError(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception);
 protected:
     ShowError(const ::default_init_tag&);
 
@@ -53,7 +53,7 @@ public:
     static const std::string& CF_LEVEL();
     static const std::string& CF_MESSAGE();
     static const std::string& CF_EXCEPTION();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_SHOW_ERROR();
+    static TableFormat*& CFT_SHOW_ERROR();
 
 private:
     ::java::lang::Class* getClass0();

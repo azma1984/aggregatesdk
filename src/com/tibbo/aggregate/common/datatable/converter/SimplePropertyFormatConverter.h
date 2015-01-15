@@ -20,15 +20,15 @@ public:
 private:
     ::java::beans::PropertyDescriptor* propertyDescriptor;
 protected:
-    void ctor(::java::lang::Class* valueClass, std::string* field);
+    void ctor(::java::lang::Class* valueClass, const std::string & field);
 
 public:
-    ::com::tibbo::aggregate::common::datatable::FieldFormat* createFieldFormat(std::string* name);
+    FieldFormat* createFieldFormat(const std::string & name);
     void* simpleToBean(void* value);
-    void* convertToTable(void* value, ::com::tibbo::aggregate::common::datatable::TableFormat* format);
+    void* convertToTable(void* value, TableFormat* format);
 
     // Generated
-    SimplePropertyFormatConverter(::java::lang::Class* valueClass, std::string* field);
+    SimplePropertyFormatConverter(::java::lang::Class* valueClass, const std::string & field);
 protected:
     SimplePropertyFormatConverter(const ::default_init_tag&);
 

@@ -21,28 +21,28 @@ private:
     static const std::string CF_MODE_;
     static const std::string RF_RESULT_;
     static const std::string RF_TEXT_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* CFT_EDIT_TEXT_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* RFT_EDIT_TEXT_;
-    std::string* text;
-    std::string* mode;
+    static TableFormat* CFT_EDIT_TEXT_;
+    static TableFormat* RFT_EDIT_TEXT_;
+    const std::string & text;
+    const std::string & mode;
 protected:
     void ctor();
-    void ctor(std::string* title, std::string* text, std::string* mode);
-    void ctor(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    void ctor(const std::string & title, const std::string & text, const std::string & mode);
+    void ctor(const std::string & title, DataTable* parameters);
 
 public: /* protected */
-    ::com::tibbo::aggregate::common::datatable::DataTable* constructParameters();
+    DataTable* constructParameters();
 
 public:
-    std::string* getText();
-    void setText(std::string* text);
-    std::string* getMode();
-    void setMode(std::string* mode);
+    const std::string & getText();
+    void setText(const std::string & text);
+    const std::string & getMode();
+    void setMode(const std::string & mode);
 
     // Generated
     EditText();
-    EditText(std::string* title, std::string* text, std::string* mode);
-    EditText(std::string* title, ::com::tibbo::aggregate::common::datatable::DataTable* parameters);
+    EditText(const std::string & title, const std::string & text, const std::string & mode);
+    EditText(const std::string & title, DataTable* parameters);
 protected:
     EditText(const ::default_init_tag&);
 
@@ -54,8 +54,8 @@ public:
     static const std::string& CF_MODE();
     static const std::string& RF_RESULT();
     static const std::string& RF_TEXT();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& CFT_EDIT_TEXT();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& RFT_EDIT_TEXT();
+    static TableFormat*& CFT_EDIT_TEXT();
+    static TableFormat*& RFT_EDIT_TEXT();
 
 private:
     ::java::lang::Class* getClass0();

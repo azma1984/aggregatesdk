@@ -33,7 +33,7 @@ void EditReport::ctor(const std::string& title, const std::string& template_, Da
     *(this->data) = *data;
 }
 
-void EditReport::ctor(std::string* title, DataTable* parameters)
+void EditReport::ctor(const std::string & title, DataTable* parameters)
     : GenericActionCommand(ActionUtils::CMD_EDIT_REPORT(), title, parameters, CFT_EDIT_REPORT_)
 {    
 }
@@ -43,7 +43,7 @@ std::string EditReport::getTemplate()
     return template_;
 }
 
-void EditReport::setTemplate(std::string* template_)
+void EditReport::setTemplate(const std::string & template_)
 {
     this->template_ = template_;
 }

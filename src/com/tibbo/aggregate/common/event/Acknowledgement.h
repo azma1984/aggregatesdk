@@ -6,6 +6,8 @@
 #include "util/Cloneable.h"
 #include "datatable/TableFormat.h"
 
+class TableFormat;
+
 class Acknowledgement : public Cloneable
 {
 private:

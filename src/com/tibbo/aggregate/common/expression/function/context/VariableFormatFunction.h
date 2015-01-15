@@ -20,7 +20,7 @@ protected:
     void ctor();
 
 public: /* protected */
-    std::string* getFormat(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
+    const std::string & getFormat(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
 
     // Generated
 

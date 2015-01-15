@@ -14,11 +14,11 @@
 
 
 class com::tibbo::aggregate::common::datatable::field::DateFieldFormat
-    : public ::com::tibbo::aggregate::common::datatable::FieldFormat
+    : public FieldFormat
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::datatable::FieldFormat super;
+    typedef FieldFormat super;
 
 private:
     static const std::string EDITOR_TIME_;
@@ -26,15 +26,15 @@ private:
     static ::java::util::Date* DEFAULT_DATE_;
     ::java::text::SimpleDateFormat* dateFormatter;
 protected:
-    void ctor(std::string* name);
+    void ctor(const std::string & name);
 
 public:
     char16_t getType();
     ::java::lang::Class* getFieldClass();
     ::java::lang::Class* getFieldWrappedClass();
     ::java::util::Date* getNotNullDefault();
-    ::java::util::Date* valueFromString(std::string* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings, bool validate);
-    std::string* valueToString(::java::util::Date* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
+    ::java::util::Date* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+    const std::string & valueToString(::java::util::Date* value, encoding::ClassicEncodingSettings* settings);
 
 public: /* protected */
     std::list  getSuitableEditors();
@@ -42,7 +42,7 @@ public: /* protected */
     // Generated
 
 public:
-    DateFieldFormat(std::string* name);
+    DateFieldFormat(const std::string & name);
 protected:
     DateFieldFormat(const ::default_init_tag&);
 
@@ -55,9 +55,9 @@ private:
     void init();
 
 public:
-    std::string* valueToString(void* value, ::com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* settings);
-    void* valueFromString(std::string* value);
-    std::string* valueToString(void* value);
+    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
+    void* valueFromString(const std::string & value);
+    const std::string & valueToString(void* value);
     static const std::string& EDITOR_TIME();
     static const std::string& EDITOR_DATE();
 

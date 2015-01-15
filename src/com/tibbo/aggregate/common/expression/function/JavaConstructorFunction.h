@@ -17,15 +17,15 @@ public:
     typedef AbstractFunction super;
 
 private:
-    std::string* clazz;
+    const std::string & clazz;
 protected:
-    void ctor(std::string* clazz, std::string* category, std::string* returnValue);
+    void ctor(const std::string & clazz, const std::string & category, const std::string & returnValue);
 
 public:
     void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
     // Generated
-    JavaConstructorFunction(std::string* clazz, std::string* category, std::string* returnValue);
+    JavaConstructorFunction(const std::string & clazz, const std::string & category, const std::string & returnValue);
 protected:
     JavaConstructorFunction(const ::default_init_tag&);
 

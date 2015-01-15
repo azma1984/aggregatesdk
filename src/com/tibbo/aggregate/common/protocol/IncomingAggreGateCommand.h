@@ -4,7 +4,7 @@
 #define IncomingAggreGateCommandH
 
 #include "AggreGateCommand.h"
-
+#include "string"
 
 class IncomingAggreGateCommand : public AggreGateCommand
 {
@@ -17,7 +17,7 @@ public:
     std::list  parameters;
 protected:
     void ctor(::int8_tArray* data) ;
-    void ctor(std::string* str) ;
+    void ctor(const std::string & str) ;
     void ctor(::java::io::ByteArrayOutputStream* s) ;
 
 public:
@@ -30,18 +30,18 @@ public:
     std::list  getParameters(int number);
     bool isReply();
     bool isMessage();
-    std::string* getReplyCode();
-    std::string* getMessageCode();
-    std::string* getEncodedDataTable(int index) ;
-    std::string* getEncodedDataTableFromReply() ;
-    std::string* getEncodedDataTableFromOperationMessage() ;
-	std::string* getEncodedDataTableFromEventMessage() ;
-    std::string* getId();
+    const std::string & getReplyCode();
+    const std::string & getMessageCode();
+    const std::string & getEncodedDataTable(int index) ;
+    const std::string & getEncodedDataTableFromReply() ;
+    const std::string & getEncodedDataTableFromOperationMessage() ;
+	const std::string & getEncodedDataTableFromEventMessage() ;
+    const std::string & getId();
     bool isAsync();
 
     // Generated
     IncomingAggreGateCommand(::int8_tArray* data);
-    IncomingAggreGateCommand(std::string* str);
+    IncomingAggreGateCommand(const std::string & str);
     IncomingAggreGateCommand(::java::io::ByteArrayOutputStream* s);
 protected:
     IncomingAggreGateCommand(const ::default_init_tag&);

@@ -7,7 +7,8 @@ Agent::Agent(RemoteServer* server, const std::string &name, bool eventConfirmati
 {
  this->server = server;
  this->context = new AgentContext(server, name, eventConfirmation);
- //this->contextManager = new AgentContextManager((Context *)context, false); 
+ //todo
+// this->contextManager = new AgentContextManager((Context *)context, false); 
 }
 
 
@@ -15,6 +16,7 @@ Agent::Agent(AgentContext* context)
 {
    this->server = context->getServer();
    this->context = context;
+   //todo
 //   this->contextManager = new AgentContextManager((Context *)context, false);
 }
 
@@ -33,7 +35,7 @@ void Agent::connect()
         //"Connection with remote server established";
     //    contextManager->start();
     //    controller = new AgentImplementationController(dataChannel, contextManager,0 /*newCachedThreadPool()*/, maxEventQueueLength);
-      //  java_cast< ::com::tibbo::aggregate::common::context::Context* >(contextManager)->getRoot()))->accept(new Agent_connect_1(this));
+      //  contextManager->getRoot()->accept(new Agent_connect_1(this));
     } 
     catch (...) 
     {
@@ -45,19 +47,20 @@ void Agent::disconnect()
 {
     if(controller != 0) 
     {
-   //  controller->shutdown();
+     controller->shutdown();
     }
    
    if(contextManager != 0) 
     {
-     // contextManager->stop();
+	//todo - Where to define virtual function stop()?
+     //contextManager->stop();
     }
     context->setSynchronized(false);
 }
 
 void Agent::run() 
 {
-   // controller->runImpl();
+    controller->runImpl();
 }
 
 RemoteServer* Agent::getServer()

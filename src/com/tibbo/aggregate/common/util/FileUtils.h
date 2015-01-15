@@ -19,14 +19,14 @@ class com::tibbo::aggregate::common::util::FileUtils
 public:
     typedef void super;
     static bool deleteDirectory(::java::io::File* dir);
-    static const std::string readTextFile(std::string* filename) /* throws(IOException) */;
-    static const std::string readTextFile(std::string* filename, ::java::nio::charset::Charset* encoding) /* throws(IOException) */;
-    static void writeTextFile(std::string* filename, std::string* contents, bool append) /* throws(IOException) */;
+    static const std::string readTextFile(const std::string & filename) /* throws(IOException) */;
+    static const std::string readTextFile(const std::string & filename, ::java::nio::charset::Charset* encoding) /* throws(IOException) */;
+    static void writeTextFile(const std::string & filename, const std::string & contents, bool append) /* throws(IOException) */;
     static ::int8_tArray* readFile(::java::io::File* file) /* throws(IOException) */;
     static void writeFile(::java::io::File* file, ::int8_tArray* data) /* throws(IOException) */;
     static void copyFile(::java::io::File* source, ::java::io::File* destination) /* throws(IOException) */;
     static const std::string getExtension(::java::io::File* f);
-    static const std::string getExtension(std::string* fileName);
+    static const std::string getExtension(const std::string & fileName);
     static ::java::lang::Long* makeChecksumAdler32(::java::io::File* f) /* throws(FileNotFoundException) */;
     static ::java::lang::Long* makeChecksumAdler32(std::iostream* in);
 
