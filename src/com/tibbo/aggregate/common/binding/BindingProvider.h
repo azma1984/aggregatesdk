@@ -1,26 +1,23 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/binding/BindingProvider.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "binding/Binding.h"
+#include <map>
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::binding::BindingProvider
-    
+class BindingProvider
 {
-    std::map createBindings();
-    void start();
-    void stop();
-    void writeReference(int method, ::com::tibbo::aggregate::common::expression::Reference* destination, ::com::tibbo::aggregate::common::expression::Reference* cause, void* value, ChangeCache* cache) /* throws(BindingException) */;
-    void addReferenceListener(::com::tibbo::aggregate::common::expression::Reference* ref, ReferenceListener* listener) /* throws(BindingException) */;
-    void removeReferenceListener(ReferenceListener* listener);
-    void processExecution(int event, Binding* binding, EvaluationOptions* options, ::com::tibbo::aggregate::common::expression::Reference* cause, void* result);
-    void processError(Binding* binding, int method, ::com::tibbo::aggregate::common::expression::Reference* cause, ::java::lang::Exception* error);
+    using namespace boost;
 
-    // Generated
-    
+    virtual std::map<shared_ptr<Binding>, shared_ptr<EvaluationOptions>> createBindings() = 0;
+    virtual void start() = 0;
+    virtual void stop() = 0;
+    //TODO: void*
+    virtual void writeReference(int method, shared_ptr<Reference> destination, shared_ptr<Reference> cause,
+                                void* value, shared_ptr<ChangeCache> cache) = 0/* throws(BindingException) */ ;
+    virtual void addReferenceListener(shared_ptr<Reference> ref, shared_ptr<ReferenceListener> listener) = 0/* throws(BindingException) */;
+    virtual void removeReferenceListener(shared_ptr<ReferenceListener> listener) = 0;
+    //TODO:
+    virtual void processExecution(int event, shared_ptr<Binding> binding, shared_ptr<EvaluationOptions> options,
+                                  shared_ptr<Reference> cause, void* result) = 0;
+    virtual void processError(shared_ptr<Binding> binding, int method, shared_ptr<Reference> cause, shared_ptr<Exception> error) = 0;
 };

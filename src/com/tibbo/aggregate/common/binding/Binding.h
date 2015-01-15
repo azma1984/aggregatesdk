@@ -9,21 +9,17 @@
 class Binding : public Cloneable
 {
 public:
-    Binding(Reference* reference, Expression* expression);
+    Binding(boost::shared_ptr<Reference> reference, boost::shared_ptr<Expression> expression);
     Binding(const std::string& reference, const std::string& expression);
 
-    Expression* getExpression();
-    Reference* getReference();
+    boost::shared_ptr<Expression> getExpression();
+    boost::shared_ptr<Reference> getReference();
     int hashCode();
-    bool equals(void* obj);
+    bool equals(Binding* obj);
     Binding* clone();
     std::string toString();
     long getId() const;
     void setId(long id);
-
-protected:
-    void ctor(Reference* reference, Expression* expression);
-    void ctor(const std::string& reference, const std::string& expression);
 
 private:
     boost::shared_ptr<Reference> reference;
