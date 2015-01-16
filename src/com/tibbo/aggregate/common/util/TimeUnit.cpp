@@ -1,7 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/TimeUnit.java
-#include "TimeUnit.h"
-
-
+#include "util/TimeUnit.h"
 
 TimeUnit::TimeUnit(int unit, long length, std::string description, int calendarField, bool secondary)
 {
