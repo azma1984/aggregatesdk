@@ -19,14 +19,14 @@ class examples::api::ManageDevices_awaitDeviceSynchronization_2
 
 public:
     typedef ::com::tibbo::aggregate::common::context::DefaultContextEventListener super;
-    void handle(::com::tibbo::aggregate::common::data::Event* event) /* throws(EventHandlingException) */;
+    void handle(Event* event) /* throws(EventHandlingException) */;
 
     // Generated
     ManageDevices_awaitDeviceSynchronization_2(int statusSynchronized, ::java::util::concurrent::CountDownLatch* latch, ::com::tibbo::aggregate::common::context::Context* deviceContext);
     ManageDevices_awaitDeviceSynchronization_2(int statusSynchronized, ::java::util::concurrent::CountDownLatch* latch, ::com::tibbo::aggregate::common::context::Context* deviceContext, ::com::tibbo::aggregate::common::context::CallerController* callerController);
-    ManageDevices_awaitDeviceSynchronization_2(int statusSynchronized, ::java::util::concurrent::CountDownLatch* latch, ::com::tibbo::aggregate::common::context::Context* deviceContext, ::com::tibbo::aggregate::common::context::CallerController* callerController, ::java::lang::Integer* listenerCode);
-    ManageDevices_awaitDeviceSynchronization_2(int statusSynchronized, ::java::util::concurrent::CountDownLatch* latch, ::com::tibbo::aggregate::common::context::Context* deviceContext, ::com::tibbo::aggregate::common::context::CallerController* callerController, ::java::lang::Integer* listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
-    ManageDevices_awaitDeviceSynchronization_2(int statusSynchronized, ::java::util::concurrent::CountDownLatch* latch, ::com::tibbo::aggregate::common::context::Context* deviceContext, ::java::lang::Integer* listenerCode);
+    ManageDevices_awaitDeviceSynchronization_2(int statusSynchronized, ::java::util::concurrent::CountDownLatch* latch, ::com::tibbo::aggregate::common::context::Context* deviceContext, ::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode);
+    ManageDevices_awaitDeviceSynchronization_2(int statusSynchronized, ::java::util::concurrent::CountDownLatch* latch, ::com::tibbo::aggregate::common::context::Context* deviceContext, ::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    ManageDevices_awaitDeviceSynchronization_2(int statusSynchronized, ::java::util::concurrent::CountDownLatch* latch, ::com::tibbo::aggregate::common::context::Context* deviceContext, int  listenerCode);
     
     int statusSynchronized;
     ::java::util::concurrent::CountDownLatch* latch;

@@ -17,7 +17,7 @@ class examples::agent::DemoAgent_initializeAgentContext_4
 
 public:
     typedef void super;
-    ::com::tibbo::aggregate::common::datatable::DataTable* get(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request) /* throws(ContextException) */;
+    DataTable* get(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request) /* throws(ContextException) */;
 
     // Generated
     DemoAgent_initializeAgentContext_4();

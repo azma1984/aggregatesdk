@@ -17,14 +17,14 @@ class examples::api::ManageDevices_listenerForDeviceEvents_1
 
 public:
     typedef ::com::tibbo::aggregate::common::context::DefaultContextEventListener super;
-    void handle(::com::tibbo::aggregate::common::data::Event* event) /* throws(EventHandlingException) */;
+    void handle(Event* event) /* throws(EventHandlingException) */;
 
     // Generated
     ManageDevices_listenerForDeviceEvents_1();
     ManageDevices_listenerForDeviceEvents_1(::com::tibbo::aggregate::common::context::CallerController* callerController);
-    ManageDevices_listenerForDeviceEvents_1(::com::tibbo::aggregate::common::context::CallerController* callerController, ::java::lang::Integer* listenerCode);
-    ManageDevices_listenerForDeviceEvents_1(::com::tibbo::aggregate::common::context::CallerController* callerController, ::java::lang::Integer* listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
-    ManageDevices_listenerForDeviceEvents_1(::java::lang::Integer* listenerCode);
+    ManageDevices_listenerForDeviceEvents_1(::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode);
+    ManageDevices_listenerForDeviceEvents_1(::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    ManageDevices_listenerForDeviceEvents_1(int  listenerCode);
     
 
 private:

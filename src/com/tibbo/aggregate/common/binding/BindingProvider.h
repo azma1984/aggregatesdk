@@ -1,6 +1,8 @@
 #pragma once
 
 #include "binding/Binding.h"
+#include "binding/EvaluationOptions.h"
+#include "binding/ReferenceListener.h"
 #include <map>
 #include <boost/shared_ptr.hpp>
 
@@ -8,6 +10,7 @@ class BindingProvider
 {
     using namespace boost;
 
+public:
     virtual std::map<shared_ptr<Binding>, shared_ptr<EvaluationOptions>> createBindings() = 0;
     virtual void start() = 0;
     virtual void stop() = 0;

@@ -21,7 +21,7 @@ public:
 private:
     bool sentHistory;
 protected:
-    void ctor(::com::tibbo::aggregate::common::protocol::RemoteServer* server, std::string* name, bool eventConfirmation);
+    void ctor(::com::tibbo::aggregate::common::protocol::RemoteServer* server, const std::string & name, bool eventConfirmation);
 
 public: /* protected */
     std::list  getHistory();
@@ -29,7 +29,7 @@ public: /* protected */
     // Generated
 
 public:
-    DemoAgent_DemoAgentContext(::com::tibbo::aggregate::common::protocol::RemoteServer* server, std::string* name, bool eventConfirmation);
+    DemoAgent_DemoAgentContext(::com::tibbo::aggregate::common::protocol::RemoteServer* server, const std::string & name, bool eventConfirmation);
 protected:
     DemoAgent_DemoAgentContext(const ::default_init_tag&);
 

@@ -1,23 +1,22 @@
-#include <data/Data.h>
+#include "data/data.h"
+#include <sstream>
 
-#include <datatable/DataTable.h>
-
-Data::Data()
+Data::Data() : id(0)
 {
 }
 
-Data::Data(std::vector<char>& data) : id(0)
+Data::Data(const std::vector<char> &data) : id(0)
 {
 	this->data = data;
 }
 
-Data::Data(std::string name, std::vector<char>& data) : id(0)
+Data::Data(const std::string &name, const std::vector<char> &data) : id(0)
 {
 	this->data = data;
 	this->name = name;
 }
 
-void Data::setPreview(std::vector<char>& preview) : id(0)
+void Data::setPreview(const std::vector<char> &preview)
 {
 	this->preview = preview;
 }
@@ -27,17 +26,17 @@ void Data::setId(long id)
 	this->id = id;
 }
 
-void Data::setData(std::vector<char>& data)
+void Data::setData(const std::vector<char> &data)
 {
 	this->data = data;
 }
 
-void Data::setBlob(std::vector<char>& blob)
+void Data::setBlob(const std::vector<char> &blob)
 {
 	setData(blob);
 }
 
-void Data::setName(std::string name)
+void Data::setName(const std::string &name)
 {
 	this->name = name;
 }
@@ -67,22 +66,23 @@ std::vector<char> Data::getBlob()
 	return this->data;
 }
 
-std::map<String, void*> Data::getAttachments()
+std::map<std::string, boost::shared_ptr<AgObject>> Data::getAttachments()
 {
 	return this->attachments;
 }
 
-int checksum(std::vector<char>& bytes)
+int Data::checksum(const std::vector<char> &bytes)
 {
 	int sum = 0;
-    for (std::vector<char>::iterator it = data.begin(); it!= data.end(); ++it) {
+    for (std::vector<char>::const_iterator it = bytes.begin(); it!= bytes.end(); ++it) {
 		sum += *it;
     }
 	
     return sum;
 }
 
-std::vector<char> Data::fetchData(ContextManager* cm, CallerController* cc)// throws ContextException  
+//todo
+/*std::vector<char> Data::fetchData(ContextManager* cm, CallerController* cc)// throws ContextException
 {
 	if (!data.empty()) {
 		return getData();
@@ -101,26 +101,46 @@ std::vector<char> Data::fetchData(ContextManager* cm, CallerController* cc)// th
     data = dt.rec().getData(UtilitiesContextConstants.FOF_GET_DATA_DATA).getData();    
     
     return data;
-}
+}*/
 
 std::string Data::toDetailedString()
 {
-	stringstream ss;
+    std::stringstream ss;
 	std::locale cloc("C");
 	ss.imbue(cloc);
 
 	ss << "Data [id: " << id <<", name: " <<(!name.empty() ? name : "null")
-	   <<", preview: len=" << preview.size() <<" checksum=" << checksum(preview) <<", data: len=" <<data.size()<< " checksum=" << checksum(data) <<"]";
+       <<", preview: len=" << preview.size() <<" checksum=" << checksum(preview) <<", data: len=" << data.size() << " checksum=" << checksum(data) <<"]";
 	   
 	return ss.str();
 }
-//TODO: вохможно необходимо копирование void *
-void Data::setAttachments(std::map<std::string, void *> &attachments)
+
+std::string Data::toString()
+{
+    std::stringstream ss;
+    std::locale cloc("C");
+    ss.imbue(cloc);
+
+    ss << "Data [id: " << id <<", name: " <<(!name.empty() ? name : "null")
+       <<", preview: len=" << preview.size() <<", data: len=" <<data.size() <<"]";
+
+    return ss.str();
+}
+
+std::string Data::toCleanString()
+{
+    //TODO:
+    //return data != null ? new String(data, Charset.forName("ISO-8859-1")) : "null";
+    return std::string();
+}
+
+
+void Data::setAttachments(std::map<std::string, boost::shared_ptr<AgObject> > &attachments)
 {
 	this->attachments = attachments;
 }
 
-virtual Data* Data::clone() const
+Data* Data::clone() const
 {
 	Data* cl = new Data();
  
@@ -133,7 +153,7 @@ virtual Data* Data::clone() const
   //    throw new IllegalStateException(ex.getMessage(), ex);
   //  }
 	
-    c1->id = id;
+    cl->id = id;
     cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
     cl->data = data;//(byte[]) CloneUtils.deepClone(data);
     //TODO: копирование std::map<std::string, void*> attachments;
@@ -141,27 +161,7 @@ virtual Data* Data::clone() const
     return cl;
 }
 	
-//  public String toString()
-Data::operator std::string() const
+bool Data::equals(Data *data)
 {
-	stringstream ss;
-	std::locale cloc("C");
-	ss.imbue(cloc);
-
-	ss << "Data [id: " << id <<", name: " <<(!name.empty() ? name : "null")
-	   <<", preview: len=" << preview.size() <<", data: len=" <<data.size() <<"]";
-	   
-	return ss.str();
-}
-
-std::string Data::toCleanString()
-{
-	//TODO: 	
-	//return data != null ? new String(data, Charset.forName("ISO-8859-1")) : "null";
-	return this;
-}
-
-bool Data::operator ==(const Data& data) const
-{
-	return (this->id==data.id) && (this->name == data.name) && (this->preview == data.preview) && (this->data, data.data);
+    return (this->id == data->id) && (this->name == data->name) && (this->preview == data->preview) && (this->data == data->data);
 }

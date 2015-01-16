@@ -18,7 +18,7 @@ class examples::agent::DemoAgent_initializeAgentContext_5
 
 public:
     typedef void super;
-    bool set(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, ::com::tibbo::aggregate::common::datatable::DataTable* value) /* throws(ContextException) */;
+    bool set(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* value) /* throws(ContextException) */;
 
     // Generated
     DemoAgent_initializeAgentContext_5();

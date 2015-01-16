@@ -36,7 +36,7 @@ public: /* protected */
     CommandParserListener* getListener();
 
 public:
-    std::string* toString();
+    const std::string & toString();
 
     // Generated
     AbstractCommandParser();

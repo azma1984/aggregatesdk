@@ -1,7 +1,7 @@
-#pragma once
+#ifndef PermissionH
+#define PermissionH
 
 #include "security/Permission.h"
-#include "security/PermissionChecker.h"
 #include <string>
 #include <list>
 #include <boost/shared_ptr.hpp>
@@ -9,6 +9,7 @@
 
 class Permissions //TODO: : public ::java::lang::Iterable
 {
+	/*
 private:
     std::list<boost::shared_ptr<Permission>>  permissions;
     boost::mutex permissionsLock;
@@ -31,5 +32,6 @@ public:
     static const char PERMISSIONS_SEPARATOR;
 
 protected:
-    void ctor(const std::string& data, boost::shared_ptr<PermissionChecker> checker);
+    void ctor(const std::string& data, boost::shared_ptr<PermissionChecker> checker);*/
 };
+#endif

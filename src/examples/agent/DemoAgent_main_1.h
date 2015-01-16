@@ -22,17 +22,17 @@ public:
     // Generated
     DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent);
     DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::Runnable* arg0);
-    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, std::string* arg0);
+    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, const std::string & arg0);
 
 public: /* package */
     DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::Runnable* arg0, ::java::security::AccessControlContext* arg1);
 
 public:
     DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::ThreadGroup* arg0, ::java::lang::Runnable* arg1);
-    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::ThreadGroup* arg0, std::string* arg1);
-    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::Runnable* arg0, std::string* arg1);
-    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::ThreadGroup* arg0, ::java::lang::Runnable* arg1, std::string* arg2);
-    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::ThreadGroup* arg0, ::java::lang::Runnable* arg1, std::string* arg2, long arg3);
+    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::ThreadGroup* arg0, const std::string & arg1);
+    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::Runnable* arg0, const std::string & arg1);
+    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::ThreadGroup* arg0, ::java::lang::Runnable* arg1, const std::string & arg2);
+    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::ThreadGroup* arg0, ::java::lang::Runnable* arg1, const std::string & arg2, long arg3);
     
     ::com::tibbo::aggregate::common::agent::Agent* agent;
 

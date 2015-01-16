@@ -46,12 +46,12 @@ private:
     static const std::string FIF_OPERATION_LIMIT_;
     static const std::string FOF_OPERATION_RESULT_;
     static const std::string EF_EVENT_DATA_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* VFT_SETTING_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* VFT_PERIOD_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FIFT_OPERATION_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FOFT_OPERATION_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* EFT_EVENT_;
-    static ::com::tibbo::aggregate::common::datatable::DataTable* setting_;
+    static TableFormat* VFT_SETTING_;
+    static TableFormat* VFT_PERIOD_;
+    static TableFormat* FIFT_OPERATION_;
+    static TableFormat* FOFT_OPERATION_;
+    static TableFormat* EFT_EVENT_;
+    static DataTable* setting_;
     static long period_;
 
 public:
@@ -83,12 +83,12 @@ private:
     static const std::string& FIF_OPERATION_LIMIT();
     static const std::string& FOF_OPERATION_RESULT();
     static const std::string& EF_EVENT_DATA();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& VFT_SETTING();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& VFT_PERIOD();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FIFT_OPERATION();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FOFT_OPERATION();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& EFT_EVENT();
-    static ::com::tibbo::aggregate::common::datatable::DataTable*& setting();
+    static TableFormat*& VFT_SETTING();
+    static TableFormat*& VFT_PERIOD();
+    static TableFormat*& FIFT_OPERATION();
+    static TableFormat*& FOFT_OPERATION();
+    static TableFormat*& EFT_EVENT();
+    static DataTable*& setting();
     static long& period();
     ::java::lang::Class* getClass0();
     friend class DemoAgent_main_1;

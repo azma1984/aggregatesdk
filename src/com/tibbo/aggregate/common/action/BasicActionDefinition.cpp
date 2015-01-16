@@ -48,13 +48,13 @@ com::tibbo::aggregate::common::action::BasicActionDefinition::BasicActionDefinit
     
 }
 
-com::tibbo::aggregate::common::action::BasicActionDefinition::BasicActionDefinition(std::string* name) 
+com::tibbo::aggregate::common::action::BasicActionDefinition::BasicActionDefinition(const std::string & name) 
     : BasicActionDefinition(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name);
 }
 
-com::tibbo::aggregate::common::action::BasicActionDefinition::BasicActionDefinition(std::string* name, ::java::lang::Class* actionClass) 
+com::tibbo::aggregate::common::action::BasicActionDefinition::BasicActionDefinition(const std::string & name, ::java::lang::Class* actionClass) 
     : BasicActionDefinition(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name,actionClass);
@@ -145,12 +145,12 @@ std::string& com::tibbo::aggregate::common::action::BasicActionDefinition::PROPE
 }
 std::string com::tibbo::aggregate::common::action::BasicActionDefinition::PROPERTY_DEFAULT_;
 
-void com::tibbo::aggregate::common::action::BasicActionDefinition::ctor(std::string* name)
+void com::tibbo::aggregate::common::action::BasicActionDefinition::ctor(const std::string & name)
 {
     ctor(name, 0);
 }
 
-void com::tibbo::aggregate::common::action::BasicActionDefinition::ctor(std::string* name, ::java::lang::Class* actionClass)
+void com::tibbo::aggregate::common::action::BasicActionDefinition::ctor(const std::string & name, ::java::lang::Class* actionClass)
 {
     super::ctor();
     init();
@@ -190,28 +190,28 @@ java::util::List* com::tibbo::aggregate::common::action::BasicActionDefinition::
     }
 }
 
-void com::tibbo::aggregate::common::action::BasicActionDefinition::setIconId(std::string* iconId)
+void com::tibbo::aggregate::common::action::BasicActionDefinition::setIconId(const std::string & iconId)
 {
     auto oldIconId = getIconId();
     super::setIconId(iconId);
     propertyChangeListeners)->firePropertyChange(PROPERTY_ICON_ID_, oldIconId), iconId));
 }
 
-void com::tibbo::aggregate::common::action::BasicActionDefinition::setHelp(std::string* help)
+void com::tibbo::aggregate::common::action::BasicActionDefinition::setHelp(const std::string & help)
 {
     auto oldHelp = getHelp();
     super::setHelp(help);
     propertyChangeListeners)->firePropertyChange(PROPERTY_HELP_, oldHelp), help));
 }
 
-void com::tibbo::aggregate::common::action::BasicActionDefinition::setDescription(std::string* description)
+void com::tibbo::aggregate::common::action::BasicActionDefinition::setDescription(const std::string & description)
 {
     auto oldDescription = getDescription();
     super::setDescription(description);
     propertyChangeListeners)->firePropertyChange(PROPERTY_DESCRIPTION_, oldDescription), description));
 }
 
-void com::tibbo::aggregate::common::action::BasicActionDefinition::setExecutionGroup(std::string* base)
+void com::tibbo::aggregate::common::action::BasicActionDefinition::setExecutionGroup(const std::string & base)
 {
     setExecutionGroup(new GroupIdentifier(std::stringBuilder().append(getName())->append(GROUP_ID_SEPARATOR_)
         ->append(base)->toString()));
@@ -263,7 +263,7 @@ void com::tibbo::aggregate::common::action::BasicActionDefinition::setDropSource
     propertyChangeListeners)->firePropertyChange(PROPERTY_DROP_SOURCES_, oldDropSources), dropSources));
 }
 
-void com::tibbo::aggregate::common::action::BasicActionDefinition::setName(std::string* name)
+void com::tibbo::aggregate::common::action::BasicActionDefinition::setName(const std::string & name)
 {
     auto oldName = getName();
     super::setName(name);
@@ -353,7 +353,7 @@ void com::tibbo::aggregate::common::action::BasicActionDefinition::registerComma
     commandList)->add(cmd));
 }
 
-void com::tibbo::aggregate::common::action::BasicActionDefinition::unregisterCommand(std::string* id)
+void com::tibbo::aggregate::common::action::BasicActionDefinition::unregisterCommand(const std::string & id)
 {
     if(commandList == 0) {
         return;

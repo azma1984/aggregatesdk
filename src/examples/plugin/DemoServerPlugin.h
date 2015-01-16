@@ -23,7 +23,7 @@ private:
     static const std::string TRACKER_NAME_;
     static const std::string VARIABLE_CONFIG_;
     static const std::string FIELD_CREATE_TRACKERS_;
-    static ::com::tibbo::aggregate::common::datatable::TableFormat* FORMAT_CONFIG_;
+    static TableFormat* FORMAT_CONFIG_;
 
 public:
     void globalInit(::com::tibbo::aggregate::common::context::Context* rootContext) /* throws(PluginException) */;
@@ -45,6 +45,6 @@ private:
     static const std::string& TRACKER_NAME();
     static const std::string& VARIABLE_CONFIG();
     static const std::string& FIELD_CREATE_TRACKERS();
-    static ::com::tibbo::aggregate::common::datatable::TableFormat*& FORMAT_CONFIG();
+    static TableFormat*& FORMAT_CONFIG();
     ::java::lang::Class* getClass0();
 };

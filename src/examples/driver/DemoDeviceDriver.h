@@ -20,7 +20,7 @@ public:
     typedef ::com::tibbo::aggregate::common::device::AbstractDeviceDriver super;
 
 private:
-    std::string* demoSettingValue;
+    const std::string & demoSettingValue;
 protected:
     void ctor();
 
@@ -29,9 +29,9 @@ public:
     std::list  readVariableDefinitions() /* throws(ContextException, DeviceException, DisconnectionException) */;
     std::list  readFunctionDefinitions() /* throws(ContextException, DeviceException, DisconnectionException) */;
     std::list  readEventDefinitions() /* throws(ContextException, DeviceException, DisconnectionException) */;
-    ::com::tibbo::aggregate::common::datatable::DataTable* readVariableValue(::com::tibbo::aggregate::common::context::VariableDefinition* vd) /* throws(ContextException, DeviceException, DisconnectionException) */;
-    void writeVariableValue(::com::tibbo::aggregate::common::context::VariableDefinition* vd, ::com::tibbo::aggregate::common::datatable::DataTable* value, ::com::tibbo::aggregate::common::datatable::DataTable* deviceValue) /* throws(ContextException, DeviceException, DisconnectionException) */;
-    ::com::tibbo::aggregate::common::datatable::DataTable* executeFunction(::com::tibbo::aggregate::common::context::FunctionDefinition* fd, ::com::tibbo::aggregate::common::datatable::DataTable* parameters) /* throws(ContextException, DeviceException, DisconnectionException) */;
+    DataTable* readVariableValue(::com::tibbo::aggregate::common::context::VariableDefinition* vd) /* throws(ContextException, DeviceException, DisconnectionException) */;
+    void writeVariableValue(::com::tibbo::aggregate::common::context::VariableDefinition* vd, DataTable* value, DataTable* deviceValue) /* throws(ContextException, DeviceException, DisconnectionException) */;
+    DataTable* executeFunction(::com::tibbo::aggregate::common::context::FunctionDefinition* fd, DataTable* parameters) /* throws(ContextException, DeviceException, DisconnectionException) */;
     void finishSynchronization() /* throws(DeviceException) */;
 
     // Generated

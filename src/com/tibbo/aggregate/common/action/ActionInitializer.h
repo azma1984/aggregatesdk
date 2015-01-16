@@ -1,5 +1,7 @@
-#pragma once
+#ifndef ActionInitializerH
+#define ActionInitializerH
 
+#include <map>
 #include "action/ActionIdentifier.h"
 #include "action/ServerActionInput.h"
 #include "action/ActionExecutionMode.h"
@@ -8,17 +10,13 @@
 #include "context/CallerController.h"
 #include "util/ErrorCollector.h"
 
-#include <map>
-#include <boost/shared_ptr.hpp>
 
 
 class ActionInitializer : public Interface
 {
-    virtual ActionIdentifier* initAction(boost::shared_ptr<Context>context, const std::string& actionName,
-                                         boost::shared_ptr<ServerActionInput> initialParameters,
-                                         boost::shared_ptr<DataTable> inputData, std::map<std::string, void*> environment,
-                                         boost::shared_ptr<ActionExecutionMode>* mode,
-                                         boost::shared_ptr<CallerController> callerController,
-                                         boost::shared_ptr<ErrorCollector> collector) = 0;
+    virtual ActionIdentifier* initAction(Context<ActionInitializer>* context, const std::string& actionName, ServerActionInput* initialParameters,
+                                       DataTable* inputData, std::map<std::string, void*> environment, ActionExecutionMode* mode,
+                                       CallerController* callerController, ErrorCollector* collector) = 0;
 };
 
+#endif  //ActionInitializerH

@@ -1,25 +1,25 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/binding/ReferenceListener.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "binding/ChangeCache.h"
+#include "binding/BindingProcessor.h"
+#include "expression/Reference.h"
+#include "util/Interface.h"
+#include <map>
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::binding::ReferenceListener
-    
+// TODO: ReferenceListener<T> ?
+class ReferenceListener : public Interface
 {
-    void referenceChanged(::com::tibbo::aggregate::common::expression::Reference* cause, std::map environment, ChangeCache* cache) /* throws(BindingException) */;
-    void referenceChanged(::com::tibbo::aggregate::common::expression::Reference* cause, std::map environment, ChangeCache* cache, bool asynchronousProcessing) /* throws(BindingException) */;
-    BindingProcessor* getBindingProcessor();
-    Binding* getBinding();
-    EvaluationOptions* getEvaluationOptions();
-    void setContent(void* content);
-    void* getContent();
-
-    // Generated
-    
+public:
+    //TODO: void*
+    virtual void referenceChanged(boost::shared_ptr<Reference> cause, const std::map<std::string, void*>& environment,
+                                  boost::shared_ptr<ChangeCache> cache) = 0 /* throws(BindingException) */;
+    //TODO: void*
+    virtual void referenceChanged(boost::shared_ptr<Reference> cause, const std::map<std::string, void*>& environment,
+                                  boost::shared_ptr<ChangeCache> cache, bool asynchronousProcessing) = 0/* throws(BindingException) */;
+    virtual boost::shared_ptr<BindingProcessor> getBindingProcessor() = 0;
+    virtual boost::shared_ptr<Binding> getBinding() = 0;
+    virtual boost::shared_ptr<EvaluationOptions> getEvaluationOptions() = 0;
+    virtual void setContent(void*/*T*/ content) = 0; //TODO: T content
+    virtual void*/*T*/ getContent() = 0; // T
 };

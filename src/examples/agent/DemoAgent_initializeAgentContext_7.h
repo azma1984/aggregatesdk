@@ -17,14 +17,14 @@ class examples::agent::DemoAgent_initializeAgentContext_7
 
 public:
     typedef ::com::tibbo::aggregate::common::context::DefaultContextEventListener super;
-    void handle(::com::tibbo::aggregate::common::data::Event* event) /* throws(EventHandlingException) */;
+    void handle(Event* event) /* throws(EventHandlingException) */;
 
     // Generated
     DemoAgent_initializeAgentContext_7();
     DemoAgent_initializeAgentContext_7(::com::tibbo::aggregate::common::context::CallerController* callerController);
-    DemoAgent_initializeAgentContext_7(::com::tibbo::aggregate::common::context::CallerController* callerController, ::java::lang::Integer* listenerCode);
-    DemoAgent_initializeAgentContext_7(::com::tibbo::aggregate::common::context::CallerController* callerController, ::java::lang::Integer* listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
-    DemoAgent_initializeAgentContext_7(::java::lang::Integer* listenerCode);
+    DemoAgent_initializeAgentContext_7(::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode);
+    DemoAgent_initializeAgentContext_7(::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    DemoAgent_initializeAgentContext_7(int  listenerCode);
     
 
 private:

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _PermissionCache_H_
+#define _PermissionCache_H_
 
 #include <string>
 #include <map>
@@ -17,4 +18,5 @@ public:
 
     PermissionCache();
 };
+#endif  //_PermissionCache_H_
 

@@ -1,7 +1,7 @@
 #ifndef _INTERFACE_H
 #define _INTERFACE_H
 
-#include "util/NonCopyable.h"
+#include <NonCopyable.h>
 
 class Interface : NonCopyable {
 public:

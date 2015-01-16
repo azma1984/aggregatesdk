@@ -41,8 +41,8 @@ private:
     static void deleteDeviceAccount(::com::tibbo::aggregate::common::context::Context* deviceContext) /* throws(ContextException) */;
     static void listDeviceSettings(::com::tibbo::aggregate::common::context::Context* deviceContext) /* throws(ContextException) */;
     static void awaitDeviceSynchronization(::com::tibbo::aggregate::common::context::Context* deviceContext) /* throws(ContextException, InterruptedException) */;
-    static ::com::tibbo::aggregate::common::context::Context* createDeviceAccount(std::string* username, std::string* name, std::string* description, std::string* driverId, ::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
-    static void listDeviceAccounts(std::string* username, ::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
+    static ::com::tibbo::aggregate::common::context::Context* createDeviceAccount(const std::string & username, const std::string & name, const std::string & description, const std::string & driverId, ::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
+    static void listDeviceAccounts(const std::string & username, ::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
 
     // Generated
 
