@@ -1,50 +1,31 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/ContextEventListenerSet.java
 
-#pragma once
+#ifndef _ContextEventListenerSet_H_
+#define _ContextEventListenerSet_H_
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+//#include <com/tibbo/aggregate/common/context/ContextRuntimeException.h"
+#include "event/ContextEventListener.h"
+#include "event/ContextEventListenerInfo.h"
 
+#include <unordered_set>
 
-
-class com::tibbo::aggregate::common::event::ContextEventListenerSet
-    
+class ContextEventListenerSet
 {
 
-public:
-    typedef void super;
-
 private:
-    ::java::util::Set* listeners;
+    std::unordered_set<ContextEventListener> listeners;
+	std::unordered_set<ContextEventListener> listeners_info;
+	static ContextEventListenerInfo* getListenerInfo(void* ref);
 
 public:
-    ::java::util::Set* getListeners();
-    ::java::util::Set* getListenersInfo();
+  //  std::unordered_set<ContextEventListener>    getListeners();
+    std::unordered_set<ContextEventListenerInfo> getListenersInfo();
     bool addListener(ContextEventListener* listener, bool weak);
     bool removeListener(ContextEventListener* listener);
     bool contains(ContextEventListener* listener);
     void clear();
     int size();
 
-private:
-    static ContextEventListenerInfo* getListenerInfo(void* ref);
-
-    // Generated
-
-public:
-    ContextEventListenerSet();
-protected:
-    void ctor();
-    ContextEventListenerSet(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
 };
+
+#endif 

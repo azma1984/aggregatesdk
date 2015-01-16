@@ -5,7 +5,6 @@
 
 namespace EditableChildContextConstants
 {
- public:
 	
   static const std::string V_CHILD_INFO = "childInfo";
   static const std::string V_STATISTICS_PROPERTIES = "statisticsProperties";

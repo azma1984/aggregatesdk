@@ -27,3 +27,4 @@ private:
     static std::map<int, std::string>& LEVELS();
     static std::map<int, std::string>& SELECTION_VALUES();
 };
+#endif 

@@ -1,5 +1,5 @@
 #include "event/Enrichment.h"
-/*
+
 #include "AggreGateException.h"
 #include "Cres.h"
 #include "context/ContextUtils.h"
@@ -10,41 +10,39 @@ const std::string Enrichment::FIELD_DATE = "date";
 const std::string Enrichment::FIELD_AUTHOR = "author";
 
 
-boost::shared_ptr<TableFormat> Enrichment::FORMAT()
+void Enrichment::Init()
 {
-    if (!FORMAT_) {
-        FORMAT_ = new TableFormat();
+  FORMAT = boost::shared_ptr<TableFormat>(new TableFormat());
 
-        FORMAT->addField( std::string("<").append(FIELD_NAME).append("><S><D=").append(Cres::get().getString("name")).append(">") );
-        FORMAT->addField( std::string("<").append(FIELD_VALUE).append("><S><D=").append(Cres.get().getString("value")).append(">") );
-        FORMAT->addField( std::string("<").append(FIELD_DATE).append("><D><D=").append(Cres::get().getString("date")).append(">") );
-        FORMAT->addField( std::string("<").append(FIELD_AUTHOR).append("><S><F=N><D=").append(Cres.get().getString("author")).append(">") );
-
-        FORMAT->setNamingExpression( std::string("print({}, \"{").append(FIELD_NAME).append("} + '=' + {").append(FIELD_VALUE)
-                                     .append("} + ' (' + {").append(FIELD_DATE).append("} + ', ' + {").append(FIELD_AUTHOR).append("} + ')'\", \"; \")") );
-    }
+  FORMAT->addField("<"+FIELD_NAME+"><S><D="+Cres::get()->getString("name")+">");
+  FORMAT->addField("<"+FIELD_VALUE+"><S><D="+Cres::get()->getString("value")+">");
+  FORMAT->addField("<"+FIELD_DATE+"><D><D="+Cres::get()->getString("date")+">");
+  FORMAT->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
+  FORMAT->setNamingExpression(+"print({}, \"{"+FIELD_NAME+"} + '=' + {"+FIELD_VALUE+"} + ' (' + {"+FIELD_DATE+"} + ', ' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
+  
+  DataTableConversion::registerFormatConverter((FormatConverter*)(new DefaultFormatConverter(Enrichment::class_(), FORMAT)));
 }
 
-//TODO: зарегестрировать
-//DataTableConversion::registerFormatConverter(new DefaultFormatConverter(Enrichment.class, Acknowledgement::FORMAT()));
+
 
 Enrichment::Enrichment()
 {
+ Init();
 }
 
 Enrichment::Enrichment(const std::string& name, const std::string& value, boost::shared_ptr<Date> date, const std::string& author)
 {
-    //TODO: ContextUtils
-
-    //if (!ContextUtils::isValidContextName(name)) {
-    //    throw AggreGateException(std::string("Illegal enrichment name: ").append(name));
-    //}
-
-
-    this->name = name;
-    this->value = value;
-    this->date = date;
-    this->author = author;
+   Init();
+   
+   if (!ContextUtils::isValidContextName(name)) 
+	{
+      std::cout<<("Illegal enrichment name: "+name);
+    }
+	
+  this->name = name;
+  this->value = value;
+  this->date = date;
+  this->author = author;
 }
 
 std::string Enrichment::getName()
@@ -86,4 +84,3 @@ void Enrichment::setAuthor(const std::string& author)
 {
    this->author = author;
 }
-*/

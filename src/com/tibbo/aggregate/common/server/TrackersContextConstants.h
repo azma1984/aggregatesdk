@@ -4,10 +4,7 @@
 #define TrackersContextConstantsH
 
 namespace TrackersContextConstants
-    
 {
-
-public:
  static const std::string F_TRACKERS = "trackers";
   
   static const std::string E_TRACK = "track";

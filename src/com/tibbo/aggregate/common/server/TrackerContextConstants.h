@@ -5,8 +5,7 @@
 
 namespace TrackerContextConstants
 {
-public:
-    static const int STATUS_ENABLED=0;
+   static const int STATUS_ENABLED=0;
     static const int STATUS_DISABLED = 1;
 
  static const std::string V_STATUSES = "statuses";

@@ -4,14 +4,10 @@
 #define ScriptContextConstantsH
 
 namespace ScriptContextConstants
-    
 {
-public:
-
     static const std::string F_EXECUTE= "execute";
     static const std::string A_EDIT_SOURCE= "editSource";
     static const std::string A_EXECUTE= "execute";
-
  
 };
-  #endif
+#endif

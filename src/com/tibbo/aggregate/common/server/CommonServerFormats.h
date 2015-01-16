@@ -1,20 +1,23 @@
-#pragma once
+// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/CommonServerFormats.java
+#ifndef CommonServerFormatsH
+#define CommonServerFormatsH
+
 
 #include "datatable/TableFormat.h"
-#include <boost/shared_ptr.hpp>
+#include "server/RootContextConstants.h"
+#include "server/UtilitiesContextConstants.h"
 
 
 class CommonServerFormats
 {
-private:
-    static boost::shared_ptr<TableFormat> FIFT_LOGIN;
-    static boost::shared_ptr<TableFormat> FOFT_LOGIN;
-    static boost::shared_ptr<TableFormat> FIFT_GET_FORMAT;
-    static boost::shared_ptr<TableFormat> FOFT_GET_FORMAT;
+  public:
+   
+   static TableFormat* FIFT_LOGIN;
+   static TableFormat* FOFT_LOGIN;
+   static TableFormat* FIFT_GET_FORMAT;
+   static TableFormat* FOFT_GET_FORMAT;
 
-public:
-    static boost::shared_ptr<TableFormat> FIFT_LOGIN();
-    static boost::shared_ptr<TableFormat> FOFT_LOGIN();
-    static boost::shared_ptr<TableFormat> FIFT_GET_FORMAT();
-    static boost::shared_ptr<TableFormat> FOFT_GET_FORMAT();
+  CommonServerFormats();
+
 };
+  #endif

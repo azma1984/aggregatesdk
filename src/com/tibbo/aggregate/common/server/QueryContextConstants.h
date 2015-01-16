@@ -6,8 +6,6 @@
 
 namespace QueryContextConstants
 {
- public:
-    
   static const std::string V_DATA = "data";
   
   static const std::string F_EXECUTE = "execute";

@@ -5,8 +5,6 @@
 
 namespace FavouritesContextConstants
 {
- public:
-    
     static const std::string F_FAVOURITES = "favourites";
     static const std::string A_ADD = "add";
     static const std::string FIF_FAVOURITES_NAME= "name";

@@ -12,17 +12,11 @@ private:
     bool weak;   
 
 public:
-    boost::shared_ptr<ContextEventListener> getListener() {
-        return listener;
-    }
+    boost::shared_ptr<ContextEventListener> getListener(); 
 
-    bool isWeak() {
-        return weak;
-    }
+    bool isWeak(); 
 
-    ContextEventListenerInfo(boost::shared_ptr<ContextEventListener> listener, bool weak) {
-        this->listener = listener;
-        this->weak = weak;
-    }
+    ContextEventListenerInfo(boost::shared_ptr<ContextEventListener> listener, bool weak); 
+
 };
 #endif  //_ContextEventListenerInfo_H_

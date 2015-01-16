@@ -2,13 +2,37 @@
 #define _DataTableConversion_H_
 
 
+//#include <com/tibbo/aggregate/common/Log.h"
+//#include <com/tibbo/aggregate/common/datatable/AggreGateBean.h"
+//#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
+//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
+//#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
+//#include <com/tibbo/aggregate/common/datatable/FCBigDecimal.h"
+//#include <com/tibbo/aggregate/common/datatable/FCBigInteger.h"
+//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+//#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCByte.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCComparable.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCDouble.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCNumber.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCShort.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleBoolean.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleByte.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleDouble.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleFloat.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleInteger.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleLong.h"
+//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleShort.h"
+#include "datatable/converter/FormatConverter.h"
+//#include <com/tibbo/aggregate/common/util/Util.h"
+
 class DataTableConversion
 {
 //private:
 //    static std::list  FORMAT_CONVERTERS_;
 //    static ::java::util::concurrent::locks::ReentrantReadWriteLock* FORMAT_CONVERTERS_LOCK_;
 
-//public:
+public:
 //    static DataTable* beanToTable(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors) /* throws(DataTableException) */;
 //    static DataTable* beanToTable(void* bean, TableFormat* format) /* throws(DataTableException) */;
 //    static DataTable* beanToTable(void* bean, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
@@ -31,7 +55,7 @@ class DataTableConversion
 //    static void* convertValueFromField(void* value);
 //    static void* convertValueFromField(void* value, ::java::lang::Class* requiredClass);
 //    static void* convertValueToField(FieldFormat* ff, void* value);
-//    static void registerFormatConverter(converter::FormatConverter* converter);
+     static void registerFormatConverter(FormatConverter* converter);
 //    static converter::FormatConverter* getFormatConverter(::java::lang::Class* valueClass);
 //    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, void* value);
 //    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, const std::string & valueClassName) /* throws(ClassNotFoundException) */;

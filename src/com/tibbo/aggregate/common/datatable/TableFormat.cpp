@@ -891,21 +891,24 @@ TableFormat* TableFormat::setReorderable(bool reorderable)
     this->reorderable = reorderable;
     return this;
 }
-
-TableFormat* TableFormat::setNamingExpression(::com::tibbo::aggregate::common::expression::Expression* namingExpression)
-{
-    if(immutable) {
+*/
+//TableFormat* TableFormat::setNamingExpression(Expression* namingExpression)
+//
+  /*
+	if(immutable) {
         throw new ::java::lang::IllegalStateException(u"Immutable"_j);
     }
     this->namingExpression = namingExpression;
-    return this;
-}
+    */
+//	return this;
+//}
 
 TableFormat* TableFormat::setNamingExpression(const std::string & namingExpression)
 {
-    setNamingExpression(new ::com::tibbo::aggregate::common::expression::Expression(namingExpression));
+  //  setNamingExpression(new ::com::tibbo::aggregate::common::expression::Expression(namingExpression));
     return this;
 }
+/*
 
 int TableFormat::hashCode()
 {

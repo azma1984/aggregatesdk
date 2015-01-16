@@ -5,8 +5,7 @@
 
 namespace EventFiltersContextConstants
 {
- public:
-     static const std::string FILTER_ALL_EVENTS = "allevents";
+  static const std::string FILTER_ALL_EVENTS = "allevents";
   static const std::string FILTER_DEVICE_EVENTS = "deviceevents";
   static const std::string FILTER_ALERTS = "alerts";
   static const std::string FILTER_ACTIONS = "actions";

@@ -3,11 +3,8 @@
 #ifndef WidgetContextConstantsH
 #define WidgetContextConstantsH
 namespace WidgetContextConstants
-    
 {
-
-public:
-    static const std::string A_LAUNCH = "launch";
+  static const std::string A_LAUNCH = "launch";
   static const std::string A_EDIT_TEMPLATE = "editTemplate";
   
   static const std::string FIELD_WIDGET_NAME = "name";

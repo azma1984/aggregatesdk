@@ -1,195 +1,104 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/resource/ResourceManager.java
-#include <com/tibbo/aggregate/common/resource/ResourceManager.h"
+#include "resource/ResourceManager.h"
 
-#include <com/tibbo/aggregate/common/Log.h"
-#include <com/tibbo/aggregate/common/resource/JarVerifier.h"
-#include <com/tibbo/aggregate/common/resource/WrappingResourceBundle.h"
-//#include <java/awt/Toolkit.h"
-//#include <java/io/BufferedInputStream.h"
-//#include <java/io/BufferedReader.h"
-//#include <java/io/ByteArrayInputStream.h"
-//#include <java/io/ByteArrayOutputStream.h"
-//#include <java/io/FileNotFoundException.h"
-//#include <java/io/InputStream.h"
-//#include <java/io/InputStreamReader.h"
-//#include <java/io/Serializable.h"
-//#include <java/lang/ArrayStoreException.h"
-//#include <java/lang/CharSequence.h"
-//#include <java/lang/Class.h"
-//#include <java/lang/ClassCastException.h"
-//#include <java/lang/Comparable.h"
-//#include <java/lang/Exception.h"
-//#include <java/lang/IllegalStateException.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/SecurityException.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/lang/System.h"
-//#include <java/net/URI.h"
-//#include <java/net/URL.h"
-//#include <java/security/cert/Certificate.h"
-//#include <java/security/cert/CertificateFactory.h"
-//#include <java/security/cert/X509Certificate.h"
-//#include <java/security/cert/X509Extension.h"
-//#include <java/util/HashMap.h"
-//#include <java/util/Hashtable.h"
-//#include <java/util/Iterator.h"
-//#include <java/util/LinkedHashMap.h"
-//#include <java/util/LinkedList.h"
-//#include <java/util/List.h"
-//#include <java/util/Locale.h"
-//#include <java/util/Map_Entry.h"
-//#include <java/util/Map.h"
-//#include <java/util/Set.h"
-//#include <java/util/jar/JarEntry.h"
-//#include <java/util/jar/JarInputStream.h"
-//#include <java/util/jar/Manifest.h"
-#include <javax/swing/ImageIcon.h"
-//#include <org/apache/log4j/Logger.h"
-#include <Array.h"
-#include <SubArray.h"
-#include <ObjectArray.h"
-
-template<typename ComponentType, typename... Bases> struct SubArray;
-namespace java
-{
-    namespace io
-    {
-typedef ::SubArray< ::java::io::Serializable, voidArray > SerializableArray;
-    } // io
-
-    namespace lang
-    {
-typedef ::SubArray< ::java::lang::CharSequence, ObjectArray > CharSequenceArray;
-typedef ::SubArray< ::java::lang::Comparable, ObjectArray > ComparableArray;
-typedef ::SubArray< std::string, ObjectArray, ::java::io::SerializableArray, ComparableArray, CharSequenceArray > StringArray;
-    } // lang
-
-    namespace security
-    {
-        namespace cert
-        {
-typedef ::SubArray< ::java::security::cert::Certificate, voidArray, ::java::io::SerializableArray > CertificateArray;
-typedef ::SubArray< ::java::security::cert::X509Extension, voidArray > X509ExtensionArray;
-typedef ::SubArray< ::java::security::cert::X509Certificate, CertificateArray, X509ExtensionArray > X509CertificateArray;
-        } // cert
-    } // security
-} // java
-
-template<typename T, typename U>
-static T java_cast(U* u)
-{
-    if(!u) return static_cast<T>(0);
-    auto t = dynamic_cast<T>(u);
-    if(!t) throw new ::java::lang::ClassCastException();
-    return t;
-}
-
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
-
-com::tibbo::aggregate::common::resource::ResourceManager::ResourceManager(const ::default_init_tag&)
+/*
+ResourceManager::ResourceManager(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::resource::ResourceManager::ResourceManager()
+ResourceManager::ResourceManager()
     : ResourceManager(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-std::string& com::tibbo::aggregate::common::resource::ResourceManager::CERTIFICATE_FILE_NAME()
+std::string& ResourceManager::CERTIFICATE_FILE_NAME()
 {
     
     return CERTIFICATE_FILE_NAME_;
 }
-std::string com::tibbo::aggregate::common::resource::ResourceManager::CERTIFICATE_FILE_NAME_;
+std::string ResourceManager::CERTIFICATE_FILE_NAME_;
 
-std::string& com::tibbo::aggregate::common::resource::ResourceManager::ICON_FILE_EXTENSION()
+std::string& ResourceManager::ICON_FILE_EXTENSION()
 {
     
     return ICON_FILE_EXTENSION_;
 }
-std::string com::tibbo::aggregate::common::resource::ResourceManager::ICON_FILE_EXTENSION_;
+std::string ResourceManager::ICON_FILE_EXTENSION_;
 
-std::string& com::tibbo::aggregate::common::resource::ResourceManager::CUSTOMIZATION_RESOURCES_FILENAME()
+std::string& ResourceManager::CUSTOMIZATION_RESOURCES_FILENAME()
 {
     
     return CUSTOMIZATION_RESOURCES_FILENAME_;
 }
-std::string com::tibbo::aggregate::common::resource::ResourceManager::CUSTOMIZATION_RESOURCES_FILENAME_;
+std::string ResourceManager::CUSTOMIZATION_RESOURCES_FILENAME_;
 
-std::string& com::tibbo::aggregate::common::resource::ResourceManager::CLIENT_CUSTOMIZATION_RESOURCES_FILENAME()
+std::string& ResourceManager::CLIENT_CUSTOMIZATION_RESOURCES_FILENAME()
 {
     
     return CLIENT_CUSTOMIZATION_RESOURCES_FILENAME_;
 }
-std::string com::tibbo::aggregate::common::resource::ResourceManager::CLIENT_CUSTOMIZATION_RESOURCES_FILENAME_;
+std::string ResourceManager::CLIENT_CUSTOMIZATION_RESOURCES_FILENAME_;
 
-std::string& com::tibbo::aggregate::common::resource::ResourceManager::REPLACEMENTS_RESOURCE_NAME()
+std::string& ResourceManager::REPLACEMENTS_RESOURCE_NAME()
 {
     
     return REPLACEMENTS_RESOURCE_NAME_;
 }
-std::string com::tibbo::aggregate::common::resource::ResourceManager::REPLACEMENTS_RESOURCE_NAME_;
+std::string ResourceManager::REPLACEMENTS_RESOURCE_NAME_;
 
-java::lang::Class*& com::tibbo::aggregate::common::resource::ResourceManager::RESOURCE_CLASS()
+java::lang::Class*& ResourceManager::RESOURCE_CLASS()
 {
     
     return RESOURCE_CLASS_;
 }
-java::lang::Class* com::tibbo::aggregate::common::resource::ResourceManager::RESOURCE_CLASS_;
+java::lang::Class* ResourceManager::RESOURCE_CLASS_;
 
-java::util::Map*& com::tibbo::aggregate::common::resource::ResourceManager::RESOURCES()
+java::util::Map*& ResourceManager::RESOURCES()
 {
     
     return RESOURCES_;
 }
-java::util::Map* com::tibbo::aggregate::common::resource::ResourceManager::RESOURCES_;
+java::util::Map* ResourceManager::RESOURCES_;
 
-java::util::Map*& com::tibbo::aggregate::common::resource::ResourceManager::REPLACEMENTS()
+java::util::Map*& ResourceManager::REPLACEMENTS()
 {
     
     return REPLACEMENTS_;
 }
-java::util::Map* com::tibbo::aggregate::common::resource::ResourceManager::REPLACEMENTS_;
+java::util::Map* ResourceManager::REPLACEMENTS_;
 
-java::util::Map*& com::tibbo::aggregate::common::resource::ResourceManager::ICON_CACHE()
+java::util::Map*& ResourceManager::ICON_CACHE()
 {
     
     return ICON_CACHE_;
 }
-java::util::Map* com::tibbo::aggregate::common::resource::ResourceManager::ICON_CACHE_;
+java::util::Map* ResourceManager::ICON_CACHE_;
 
-java::util::List*& com::tibbo::aggregate::common::resource::ResourceManager::BUNDLES()
+java::util::List*& ResourceManager::BUNDLES()
 {
     
     return BUNDLES_;
 }
-java::util::List* com::tibbo::aggregate::common::resource::ResourceManager::BUNDLES_;
+java::util::List* ResourceManager::BUNDLES_;
 
-java::util::Locale*& com::tibbo::aggregate::common::resource::ResourceManager::LOCALE()
+java::util::Locale*& ResourceManager::LOCALE()
 {
     
     return LOCALE_;
 }
-java::util::Locale* com::tibbo::aggregate::common::resource::ResourceManager::LOCALE_;
+java::util::Locale* ResourceManager::LOCALE_;
 
-void com::tibbo::aggregate::common::resource::ResourceManager::initialize(::java::lang::Class* resClass)
+void ResourceManager::initialize(::java::lang::Class* resClass)
 {
     
     RESOURCE_CLASS_ = resClass;
     RESOURCES_ = new ::java::util::Hashtable();
 }
 
-void com::tibbo::aggregate::common::resource::ResourceManager::initialize(::java::net::URI* customizationUrl, ::java::lang::Class* resClass)
+void ResourceManager::initialize(::java::net::URI* customizationUrl, ::java::lang::Class* resClass)
 {
     
     initialize(resClass);
@@ -208,7 +117,7 @@ void com::tibbo::aggregate::common::resource::ResourceManager::initialize(::java
     }
 }
 
-void com::tibbo::aggregate::common::resource::ResourceManager::processCustomizationFile(::java::net::URI* customizationUrl) /* throws(IOException, CertificateException) */
+void ResourceManager::processCustomizationFile(::java::net::URI* customizationUrl) 
 {
     
     try {
@@ -264,7 +173,7 @@ void com::tibbo::aggregate::common::resource::ResourceManager::processCustomizat
     }
 }
 
-javax::swing::ImageIcon* com::tibbo::aggregate::common::resource::ResourceManager::getImageIcon(const std::string & id)
+javax::swing::ImageIcon* ResourceManager::getImageIcon(const std::string & id)
 {
     
     if(id == 0) {
@@ -273,7 +182,7 @@ javax::swing::ImageIcon* com::tibbo::aggregate::common::resource::ResourceManage
     return getImageIcon(id, ICON_FILE_EXTENSION_);
 }
 
-javax::swing::ImageIcon* com::tibbo::aggregate::common::resource::ResourceManager::getImageIcon(const std::string & id, const std::string & extension)
+javax::swing::ImageIcon* ResourceManager::getImageIcon(const std::string & id, const std::string & extension)
 {
     
     auto name = std::stringBuilder().append(id)->append(u"."_j)
@@ -302,13 +211,13 @@ javax::swing::ImageIcon* com::tibbo::aggregate::common::resource::ResourceManage
     }
 }
 
-int8_tArray* com::tibbo::aggregate::common::resource::ResourceManager::getResource(const std::string & name)
+int8_tArray* ResourceManager::getResource(const std::string & name)
 {
     
     return RESOURCES_ != 0 ? java_cast< ::int8_tArray* >(RESOURCES_)->get(name)) : static_cast< ::int8_tArray* >(0);
 }
 
-void com::tibbo::aggregate::common::resource::ResourceManager::process(WrappingResourceBundle* bundle)
+void ResourceManager::process(WrappingResourceBundle* bundle)
 {
     
     for (auto _i = REPLACEMENTS_)->entrySet())->iterator(); _i->hasNext(); ) {
@@ -319,27 +228,20 @@ void com::tibbo::aggregate::common::resource::ResourceManager::process(WrappingR
     }
 }
 
-void com::tibbo::aggregate::common::resource::ResourceManager::add(WrappingResourceBundle* bundle)
+void ResourceManager::add(WrappingResourceBundle* bundle)
 {
     
     BUNDLES_)->add(bundle));
 }
 
-java::util::Locale* com::tibbo::aggregate::common::resource::ResourceManager::getLocale()
+java::util::Locale* ResourceManager::getLocale()
 {
     
     return LOCALE_;
 }
 
 
-
-java::lang::Class* com::tibbo::aggregate::common::resource::ResourceManager::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.resource.ResourceManager", 51);
-    return c;
-}
-
-void com::tibbo::aggregate::common::resource::ResourceManager::clinit()
+void ResourceManager::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -379,9 +281,4 @@ struct clinit_ {
         static clinit_ clinit_instance;
     }
 }
-
-java::lang::Class* com::tibbo::aggregate::common::resource::ResourceManager::getClass0()
-{
-    return class_();
-}
-
+*/

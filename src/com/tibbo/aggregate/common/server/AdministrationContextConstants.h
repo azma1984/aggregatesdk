@@ -4,40 +4,25 @@
 
 #include <string>
 
-class AdministrationContextConstants
+namespace AdministrationContextConstants
 {
-public:
-    static const std::string E_LOG;
-    static const std::string E_ACTION;
-    static const std::string E_EMAIL;
-    static const std::string E_FAILOVER;
-    static const std::string EF_ACTION_USER;
-    static const std::string EF_ACTION_MODE;
-    static const std::string EF_ACTION_CONTEXT;
-    static const std::string EF_ACTION_NAME;
-    static const std::string EF_ACTION_DESCRIPTION;
-    static const std::string EF_LOG_CATEGORY;
-    static const std::string EF_LOG_LEVEL;
-    static const std::string EF_LOG_MESSAGE;
-    static const std::string EF_LOG_CAUSE;
-    static const std::string EF_LOG_THREAD;
-    static const std::string EF_LOG_LOCATION;
+  static const std::string  E_LOG = "log";
+  static const std::string  E_ACTION = "action";
+  static const std::string  E_EMAIL = "email";
+  static const std::string  E_FAILOVER = "failover";
+  static const std::string  EF_ACTION_USER = "user";
+  static const std::string  EF_ACTION_MODE = "mode";
+  static const std::string  EF_ACTION_CONTEXT = "context";
+  static const std::string  EF_ACTION_NAME = "name";
+  static const std::string  EF_ACTION_DESCRIPTION = "description";
+  static const std::string  EF_LOG_CATEGORY = "category";
+  static const std::string  EF_LOG_LEVEL = "level";
+  static const std::string  EF_LOG_MESSAGE = "message";
+  static const std::string  EF_LOG_CAUSE = "cause";
+  static const std::string  EF_LOG_THREAD = "thread";
+  static const std::string  EF_LOG_LOCATION = "location";
 };
 
-  const std::string AdministrationContextConstants::E_LOG = "log";
-  const std::string AdministrationContextConstants::E_ACTION = "action";
-  const std::string AdministrationContextConstants::E_EMAIL = "email";
-  const std::string AdministrationContextConstants::E_FAILOVER = "failover";
-  const std::string AdministrationContextConstants::EF_ACTION_USER = "user";
-  const std::string AdministrationContextConstants::EF_ACTION_MODE = "mode";
-  const std::string AdministrationContextConstants::EF_ACTION_CONTEXT = "context";
-  const std::string AdministrationContextConstants::EF_ACTION_NAME = "name";
-  const std::string AdministrationContextConstants::EF_ACTION_DESCRIPTION = "description";
-  const std::string AdministrationContextConstants::EF_LOG_CATEGORY = "category";
-  const std::string AdministrationContextConstants::EF_LOG_LEVEL = "level";
-  const std::string AdministrationContextConstants::EF_LOG_MESSAGE = "message";
-  const std::string AdministrationContextConstants::EF_LOG_CAUSE = "cause";
-  const std::string AdministrationContextConstants::EF_LOG_THREAD = "thread";
-  const std::string AdministrationContextConstants::EF_LOG_LOCATION = "location";
+ 
 
 #endif

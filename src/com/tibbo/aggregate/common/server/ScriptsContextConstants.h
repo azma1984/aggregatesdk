@@ -4,11 +4,8 @@
 #define ScriptsContextConstantsH
 
 namespace ScriptsContextConstants
-    
 {
-
-public:
-   static const std::string VF_CHILD_INFO_NAME = "name";
+  static const std::string VF_CHILD_INFO_NAME = "name";
   static const std::string VF_CHILD_INFO_DESCRIPTION = "description";
   static const std::string VF_CHILD_INFO_TEXT = "text";
   static const std::string VF_CHILD_INFO_AUTORUN = "autorun";   

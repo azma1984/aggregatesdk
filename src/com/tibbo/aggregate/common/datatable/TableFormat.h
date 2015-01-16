@@ -9,7 +9,7 @@
 #include "datatable/validator/TableValidator.h"
 #include "datatable/validator/RecordValidator.h"
 #include "datatable/encoding/ClassicEncodingSettings.h"
-#include "DataTable.h"
+#include "datatable/DataTable.h"
 
 #include <string>
 #include <list>
@@ -156,8 +156,10 @@ public:
 
     TableFormat* setReorderable(bool reorderable);
     TableFormat* setNamingExpression(Expression* namingExpression);
-    TableFormat* setNamingExpression(const std::string& namingExpression);
-    int hashCode();    
+	*/
+    TableFormat* setNamingExpression(const std::string &namingExpression);
+    /*
+	int hashCode();    
     TableFormat* clone();
 	*/
     void makeImmutable(DataTable* immutabilizer);

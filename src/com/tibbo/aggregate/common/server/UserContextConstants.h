@@ -5,10 +5,7 @@
 
 namespace UserContextConstants
 {
-
-public:
-    
-   static const std::string V_PERMISSIONS = "permissions";
+  static const std::string V_PERMISSIONS = "permissions";
   static const std::string V_SETTINGS = "settings";
   static const std::string V_RESOURCES = "resources";
   static const std::string V_PHOTO = "photo";

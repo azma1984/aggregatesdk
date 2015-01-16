@@ -1,24 +1,18 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/resource/ResourceManager.java
 
-#pragma once
+#ifndef ResourceManagerH
+#define ResourceManagerH
+/*
+#include <com/tibbo/aggregate/common/Log.h"
+#include <com/tibbo/aggregate/common/resource/JarVerifier.h"
+#include <com/tibbo/aggregate/common/resource/WrappingResourceBundle.h"
+*/
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/resource/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/net/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-#include <javax/swing/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::resource::ResourceManager
-    
+//todo - Class stub!
+class ResourceManager
 {
 
-public:
-    typedef void super;
-
+/*
 private:
     static const std::string CERTIFICATE_FILE_NAME_;
     static const std::string ICON_FILE_EXTENSION_;
@@ -37,7 +31,7 @@ public:
     static void initialize(::java::net::URI* customizationUrl, ::java::lang::Class* resClass);
 
 private:
-    static void processCustomizationFile(::java::net::URI* customizationUrl) /* throws(IOException, CertificateException) */;
+    static void processCustomizationFile(::java::net::URI* customizationUrl);
 
 public:
     static ::javax::swing::ImageIcon* getImageIcon(const std::string & id);
@@ -51,15 +45,8 @@ public:
     static void add(WrappingResourceBundle* bundle);
     static ::java::util::Locale* getLocale();
 
-    // Generated
+
     ResourceManager();
-protected:
-    ResourceManager(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
 
 private:
     static const std::string& CERTIFICATE_FILE_NAME();
@@ -77,5 +64,8 @@ private:
     static std::map& ICON_CACHE();
     static std::list & BUNDLES();
     static ::java::util::Locale*& LOCALE();
-    ::java::lang::Class* getClass0();
+	*/
+
 };
+
+#endif 

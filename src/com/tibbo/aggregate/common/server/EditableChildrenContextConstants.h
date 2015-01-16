@@ -5,7 +5,6 @@
 
 namespace EditableChildrenContextConstants
 {
- public:
   static const std::string V_CHILD_LIST = "childList";
   static const std::string V_RESOURCE_INFO = "resourceInfo";
   

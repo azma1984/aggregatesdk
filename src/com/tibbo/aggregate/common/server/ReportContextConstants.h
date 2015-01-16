@@ -4,12 +4,8 @@
 #define ReportContextConstantsH
 
 namespace ReportContextConstants
-    
 {
-
-
-public:
-static const std::string V_PARAMETERS = "parameters";
+  static const std::string V_PARAMETERS = "parameters";
   static const std::string V_HISTORY = "history";
   
   static const std::string F_EXPORT = "export";

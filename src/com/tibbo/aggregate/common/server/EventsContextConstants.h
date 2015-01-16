@@ -6,10 +6,7 @@
 
 namespace EventsContextConstants
 {
-
-
-public:
-    static const std::string F_ACKNOWLEDGE = "acknowledge";
+  static const std::string F_ACKNOWLEDGE = "acknowledge";
   static const std::string F_ENRICH = "enrich";
   static const std::string F_DELETE = "delete";
   static const std::string F_INIT_HISTORY = "initHistory";

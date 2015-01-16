@@ -6,7 +6,6 @@
 
 namespace DevicesContextConstants
 {
- public:
   static const std::string F_ADD = "add";
   static const std::string F_CREATION_PROPERTIES = "creationProperties";
   static const std::string A_GUIDE = "guide";

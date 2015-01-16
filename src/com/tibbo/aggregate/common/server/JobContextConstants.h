@@ -1,11 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/JobContextConstants.java
-#ifndef H
-#define H
+#ifndef JobContextConstantsH
+#define JobContextConstantsH
 
 namespace JobContextConstants
 {
- public:
-    static const int STATUS_ENABLED=0;
+   static const int STATUS_ENABLED=0;
     static const int STATUS_DISABLED = 1;
 
 static const std::string V_ADVANCED_TRIGGERS = "cronTriggersView";

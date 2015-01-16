@@ -1,15 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/EventFilterContextConstants.java
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#ifndef EventFilterContextConstantsH
+#define EventFilterContextConstantsH
 
 namespace EventFilterContextConstants
 {
- public:
   static const std::string V_RULES = "rules";
   static const std::string V_PRIMARY_FIELDS = "shownFields";
   static const std::string V_ADDITIONAL_FIELDS = "additionalFields";
@@ -36,7 +31,8 @@ namespace EventFilterContextConstants
   static const std::string FIF_ACTIVATE_REALTIME = "realtime";
   static const std::string FIF_ACTIVATE_LISTENER = "listener";
   static const std::string FIF_ACTIVATE_PARAMETERS = "parameters";
-      static const int STATUS_NORMAL=0;
-	  static const int STATUS_DEFAULT = 1;
-
+  static const int STATUS_NORMAL=0;
+  static const int STATUS_DEFAULT = 1;
 };
+
+#endif

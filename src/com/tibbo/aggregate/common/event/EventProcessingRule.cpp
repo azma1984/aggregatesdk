@@ -1,12 +1,5 @@
 #include "event/EventProcessingRule.h"
-#include "data/Event.h"
-#include "datatable/DataTableConversion.h"
-#include "datatable/field/StringFieldFormat.h"
-#include "datatable/field/LongFieldFormat.h"
-#include "datatable/validator/TableKeyFieldsValidator.h"
-#include "Cres.h"
-#include "datatable/DataTableBindingProvider.h"
-#include "datatable/converter/DefaultFormatConverter.h"
+
 
 #include <limits>
 

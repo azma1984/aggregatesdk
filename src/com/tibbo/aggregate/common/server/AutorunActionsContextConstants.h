@@ -4,17 +4,11 @@
 #ifndef AutorunActionsContextConstantsH
 #define AutorunActionsContextConstantsH
 
-class AutorunActionsContextConstants
+namespace AutorunActionsContextConstants
 {
-
-public:
-    static const std::string A_ADD;
-    static const std::string A_AUTORUN;
+ static const std::string A_ADD= "add";
+ static const std::string A_AUTORUN= "autorun";
 
 };
-
-
-static const std::string AutorunActionsContextConstants::A_ADD = "add";
-static const std::string AutorunActionsContextConstants::A_AUTORUN = "autorun";
 
 #endif

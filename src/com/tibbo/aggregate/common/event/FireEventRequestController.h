@@ -1,21 +1,17 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/FireEventRequestController.java
 
-#pragma once
+#ifndef _FireEventRequestController_H_
+#define _FireEventRequestController_H_
+//#include <com/tibbo/aggregate/common/context/DefaultRequestController.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/data/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/context/DefaultRequestController.h"
+//#include <com/tibbo/aggregate/common/data/Event.h"
 
 
-
-class com::tibbo::aggregate::common::event::FireEventRequestController
-    : public ::com::tibbo::aggregate::common::context::DefaultRequestController
+class FireEventRequestController  : public DefaultRequestController
 {
-
+/*
 public:
-    typedef ::com::tibbo::aggregate::common::context::DefaultRequestController super;
+    typedef DefaultRequestController super;
 
 private:
     ::java::lang::Long* customExpirationPeriod;
@@ -39,8 +35,8 @@ protected:
 
 
 public:
-    
+    */
 
-private:
-    ::java::lang::Class* getClass0();
 };
+
+#endif 

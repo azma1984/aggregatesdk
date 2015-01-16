@@ -5,8 +5,6 @@
 
 namespace WidgetsContextConstants
 {
- 
- public:
   static const std::string A_WIDGET_FOR_VARIABLE = "widgetForVariable";
   static const std::string A_CHART_FOR_EVENT = "chartForEvent";
   static const std::string A_CHART_FOR_VARIABLE = "chartForVariable";

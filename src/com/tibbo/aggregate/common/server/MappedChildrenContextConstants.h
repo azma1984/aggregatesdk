@@ -3,16 +3,8 @@
 #ifndef MappedChildrenContextConstantsH
 #define MappedChildrenContextConstantsH
 
-
-
 namespace MappedChildrenContextConstants
-    
 {
-
-public:
-
-    static const std::string V_PROPAGATED_ACTIONS="propagatedActions";
-
-
+  static const std::string V_PROPAGATED_ACTIONS="propagatedActions";
 };
-  #endif
+#endif

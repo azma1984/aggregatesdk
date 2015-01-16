@@ -1,158 +1,118 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/EventUtils.java
-#include <com/tibbo/aggregate/common/event/EventUtils.h"
+#include "event/EventUtils.h"
 
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/context/Context.h"
-#include <com/tibbo/aggregate/common/context/ContextUtils.h"
-#include <com/tibbo/aggregate/common/context/EventDefinition.h"
-#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/event/EventLevel.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
-//#include <java/awt/Color.h"
-//#include <java/lang/ClassCastException.h"
-//#include <java/lang/Integer.h"
-//#include <java/lang/Math.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/util/Collection.h"
-//#include <java/util/Hashtable.h"
-//#include <java/util/Iterator.h"
-//#include <java/util/LinkedList.h"
-//#include <java/util/List.h"
-//#include <java/util/Map.h"
-//#include <java/util/Random.h"
-//#include <java/util/ResourceBundle.h"
 
-template<typename T, typename U>
-static T java_cast(U* u)
-{
-    if(!u) return static_cast<T>(0);
-    auto t = dynamic_cast<T>(u);
-    if(!t) throw new ::java::lang::ClassCastException();
-    return t;
-}
+/*
 
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
-
-com::tibbo::aggregate::common::event::EventUtils::EventUtils(const ::default_init_tag&)
+EventUtils::EventUtils(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::event::EventUtils::EventUtils()
+EventUtils::EventUtils()
     : EventUtils(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-java::awt::Color*& com::tibbo::aggregate::common::event::EventUtils::COLOR_FATAL()
+java::awt::Color*& EventUtils::COLOR_FATAL()
 {
     
     return COLOR_FATAL_;
 }
-java::awt::Color* com::tibbo::aggregate::common::event::EventUtils::COLOR_FATAL_;
+java::awt::Color* EventUtils::COLOR_FATAL_;
 
-java::awt::Color*& com::tibbo::aggregate::common::event::EventUtils::COLOR_ERROR()
+java::awt::Color*& EventUtils::COLOR_ERROR()
 {
     
     return COLOR_ERROR_;
 }
-java::awt::Color* com::tibbo::aggregate::common::event::EventUtils::COLOR_ERROR_;
+java::awt::Color* EventUtils::COLOR_ERROR_;
 
-java::awt::Color*& com::tibbo::aggregate::common::event::EventUtils::COLOR_WARNING()
+java::awt::Color*& EventUtils::COLOR_WARNING()
 {
     
     return COLOR_WARNING_;
 }
-java::awt::Color* com::tibbo::aggregate::common::event::EventUtils::COLOR_WARNING_;
+java::awt::Color* EventUtils::COLOR_WARNING_;
 
-java::awt::Color*& com::tibbo::aggregate::common::event::EventUtils::COLOR_INFO()
+java::awt::Color*& EventUtils::COLOR_INFO()
 {
     
     return COLOR_INFO_;
 }
-java::awt::Color* com::tibbo::aggregate::common::event::EventUtils::COLOR_INFO_;
+java::awt::Color* EventUtils::COLOR_INFO_;
 
-java::awt::Color*& com::tibbo::aggregate::common::event::EventUtils::COLOR_NOTICE()
+java::awt::Color*& EventUtils::COLOR_NOTICE()
 {
     
     return COLOR_NOTICE_;
 }
-java::awt::Color* com::tibbo::aggregate::common::event::EventUtils::COLOR_NOTICE_;
+java::awt::Color* EventUtils::COLOR_NOTICE_;
 
-java::awt::Color*& com::tibbo::aggregate::common::event::EventUtils::COLOR_NONE()
+java::awt::Color*& EventUtils::COLOR_NONE()
 {
     
     return COLOR_NONE_;
 }
-java::awt::Color* com::tibbo::aggregate::common::event::EventUtils::COLOR_NONE_;
+java::awt::Color* EventUtils::COLOR_NONE_;
 
-java::util::Map*& com::tibbo::aggregate::common::event::EventUtils::COLORS()
+java::util::Map*& EventUtils::COLORS()
 {
     
     return COLORS_;
 }
-java::util::Map* com::tibbo::aggregate::common::event::EventUtils::COLORS_;
+java::util::Map* EventUtils::COLORS_;
 
-std::string& com::tibbo::aggregate::common::event::EventUtils::FIELD_SEVERITY_STATS_COLOR()
+std::string& EventUtils::FIELD_SEVERITY_STATS_COLOR()
 {
     
     return FIELD_SEVERITY_STATS_COLOR_;
 }
-std::string com::tibbo::aggregate::common::event::EventUtils::FIELD_SEVERITY_STATS_COLOR_;
+std::string EventUtils::FIELD_SEVERITY_STATS_COLOR_;
 
-std::string& com::tibbo::aggregate::common::event::EventUtils::FIELD_SEVERITY_STATS_NUMBER()
+std::string& EventUtils::FIELD_SEVERITY_STATS_NUMBER()
 {
     
     return FIELD_SEVERITY_STATS_NUMBER_;
 }
-std::string com::tibbo::aggregate::common::event::EventUtils::FIELD_SEVERITY_STATS_NUMBER_;
+std::string EventUtils::FIELD_SEVERITY_STATS_NUMBER_;
 
-std::string& com::tibbo::aggregate::common::event::EventUtils::FIELD_SEVERITY_STATS_LEVEL()
+std::string& EventUtils::FIELD_SEVERITY_STATS_LEVEL()
 {
     
     return FIELD_SEVERITY_STATS_LEVEL_;
 }
-std::string com::tibbo::aggregate::common::event::EventUtils::FIELD_SEVERITY_STATS_LEVEL_;
+std::string EventUtils::FIELD_SEVERITY_STATS_LEVEL_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::event::EventUtils::SEVERITY_STATS_FORMAT()
+com::tibbo::aggregate::common::datatable::TableFormat*& EventUtils::SEVERITY_STATS_FORMAT()
 {
     
     return SEVERITY_STATS_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::event::EventUtils::SEVERITY_STATS_FORMAT_;
+com::tibbo::aggregate::common::datatable::TableFormat* EventUtils::SEVERITY_STATS_FORMAT_;
 
-java::util::Random*& com::tibbo::aggregate::common::event::EventUtils::ID_GENERATOR()
+java::util::Random*& EventUtils::ID_GENERATOR()
 {
     
     return ID_GENERATOR_;
 }
-java::util::Random* com::tibbo::aggregate::common::event::EventUtils::ID_GENERATOR_;
+java::util::Random* EventUtils::ID_GENERATOR_;
 
-long com::tibbo::aggregate::common::event::EventUtils::generateEventId()
+long EventUtils::generateEventId()
 {
     
     return ::java::lang::Math::abs(ID_GENERATOR_)->nextLong());
 }
 
-java::util::List* com::tibbo::aggregate::common::event::EventUtils::getEventDefinitions(::com::tibbo::aggregate::common::context::ContextManager* cm, const std::string & contextMask, const std::string & eventsMask, ::com::tibbo::aggregate::common::context::CallerController* caller)
+java::util::List* EventUtils::getEventDefinitions(ContextManager* cm, const std::string & contextMask, const std::string & eventsMask, CallerController* caller)
 {
     
     std::list  events = new ::java::util::LinkedList();
-    auto contexts = ::com::tibbo::aggregate::common::context::ContextUtils::expandMaskToContexts(contextMask, cm, caller);
+    auto contexts = ContextUtils::expandMaskToContexts(contextMask, cm, caller);
     for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::context::Context* context = java_cast< ::com::tibbo::aggregate::common::context::Context* >(_i->next());
+        Context* context = java_cast< Context* >(_i->next());
         {
             events)->addAll(static_cast< ::java::util::Collection* >(getEvents(context, eventsMask, caller)));
         }
@@ -160,13 +120,13 @@ java::util::List* com::tibbo::aggregate::common::event::EventUtils::getEventDefi
     return events;
 }
 
-java::util::List* com::tibbo::aggregate::common::event::EventUtils::getEvents(::com::tibbo::aggregate::common::context::Context* context, const std::string & eventsMask, ::com::tibbo::aggregate::common::context::CallerController* caller)
+java::util::List* EventUtils::getEvents(Context* context, const std::string & eventsMask, CallerController* caller)
 {
     
     std::list  events = new ::java::util::LinkedList();
-    if(eventsMask)->equals(::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_GROUP_MASK()))) {
+    if(eventsMask)->equals(ContextUtils::ENTITY_GROUP_MASK()))) {
         for (auto _i = context)->getEventDefinitions(caller))->iterator(); _i->hasNext(); ) {
-            ::com::tibbo::aggregate::common::context::EventDefinition* ed = java_cast< ::com::tibbo::aggregate::common::context::EventDefinition* >(_i->next());
+            EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
             {
                 if(ed)->getGroup() != 0 && !context::ContextUtils::GROUP_SYSTEM())->equals(ed)->getGroup()))) {
                     events)->add(ed));
@@ -182,7 +142,7 @@ java::util::List* com::tibbo::aggregate::common::event::EventUtils::getEvents(::
     return events;
 }
 
-bool com::tibbo::aggregate::common::event::EventUtils::matchesToMask(const std::string & eventMask, ::com::tibbo::aggregate::common::context::EventDefinition* ed)
+bool EventUtils::matchesToMask(const std::string & eventMask, EventDefinition* ed)
 {
     
     if(context::ContextUtils::ENTITY_GROUP_MASK())->equals(eventMask))) {
@@ -191,7 +151,7 @@ bool com::tibbo::aggregate::common::event::EventUtils::matchesToMask(const std::
     return ed)->getName())->equals(eventMask));
 }
 
-bool com::tibbo::aggregate::common::event::EventUtils::matchesToMask(const std::string & eventMask, const std::string & event)
+bool EventUtils::matchesToMask(const std::string & eventMask, const std::string & event)
 {
     
     if(context::ContextUtils::ENTITY_GROUP_MASK())->equals(eventMask))) {
@@ -200,7 +160,7 @@ bool com::tibbo::aggregate::common::event::EventUtils::matchesToMask(const std::
     return ::com::tibbo::aggregate::common::util::Util::equals(event, eventMask);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::event::EventUtils::createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal)
+com::tibbo::aggregate::common::datatable::DataTable* EventUtils::createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal)
 {
     
     auto stats = new DataTable(SEVERITY_STATS_FORMAT_);
@@ -213,7 +173,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return stats;
 }
 
-java::awt::Color* com::tibbo::aggregate::common::event::EventUtils::getEventColor(int level)
+java::awt::Color* EventUtils::getEventColor(int level)
 {
     
     return java_cast< ::java::awt::Color* >(COLORS_)->get(level)));
@@ -221,13 +181,13 @@ java::awt::Color* com::tibbo::aggregate::common::event::EventUtils::getEventColo
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::event::EventUtils::class_()
+java::lang::Class* EventUtils::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.event.EventUtils", 43);
     return c;
 }
 
-void com::tibbo::aggregate::common::event::EventUtils::clinit()
+void EventUtils::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -283,8 +243,5 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::event::EventUtils::getClass0()
-{
-    return class_();
-}
+*/
 

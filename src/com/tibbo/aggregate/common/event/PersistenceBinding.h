@@ -1,25 +1,21 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/PersistenceBinding.java
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
+#ifndef _PersistenceBinding_H_
+#define _PersistenceBinding_H_
+/*
+#include <com/tibbo/aggregate/common/Cres.h"
+#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+#include <com/tibbo/aggregate/common/expression/Expression.h"
 #include <com/tibbo/aggregate/common/datatable/AggreGateBean.h"
-//#include <java/lang/Cloneable.h"
 
 
+*/
 
-class com::tibbo::aggregate::common::event::PersistenceBinding
-    : public AggreGateBean
-    , public ::java::lang::Cloneable
+class PersistenceBinding // : public AggreGateBean//   , public ::java::lang::Cloneable
 {
 
-public:
-    typedef AggreGateBean super;
-
+/*
 private:
     static const std::string TYPE_BOOLEAN_;
     static const std::string TYPE_STRING_;
@@ -73,7 +69,7 @@ public:
     static const std::string& TYPE_DOUBLE();
     static const std::string& TYPE_TIMESTAMP();
     static TableFormat*& FORMAT();
-
-private:
-    ::java::lang::Class* getClass0();
+*/
 };
+
+#endif 

@@ -5,9 +5,7 @@
 
 namespace ModelContextConstants
 {
-public:
-
-	static const int STATUS_DISABLED = 10;
+   static const int STATUS_DISABLED = 10;
     static const int STORAGE_DATABASE=0;
     static const int STORAGE_MEMORY = 1;
     static const int FUNCTION_TYPE_JAVA=0;

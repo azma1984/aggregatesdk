@@ -1,10 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/QueriesContextConstants.java
 
-#ifndef H
-#define H
+#ifndef QueriesContextConstantsH
+#define QueriesContextConstantsH
 
 namespace QueriesContextConstants
-    
 {
 
   static const std::string QUERY_ACTIVE_ALERTS = "activeAlerts";

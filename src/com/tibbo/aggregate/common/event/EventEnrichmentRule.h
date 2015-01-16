@@ -1,46 +1,39 @@
-#pragma once
 
-//TOOD:
-class EventEnrichmentRule// : public AggreGateBean
+#ifndef _EnrichmentRule_H_
+#define _EnrichmentRule_H_
+
+#include "Cres.h"
+//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include "datatable/TableFormat.h"
+//#include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
+//#include <com/tibbo/aggregate/common/datatable/validator/TableKeyFieldsValidator.h"
+//#include "validator/ValidatorHelper.h"
+#include "expression/Expression.h"
+#include "datatable/AggreGateBean.h"
+#include <string>
+
+class EventEnrichmentRule : public AggreGateBean
 {
-/*
-private:
-    static const std::string FIELD_NAME_;
-    static const std::string FIELD_EXPRESSION_;
-    static TableFormat* FORMAT_;
-    const std::string & name;
-    const std::string & expression;
-    ::com::tibbo::aggregate::common::expression::Expression* enrichmentExpression;
-protected:
-    void ctor();
-    void ctor(DataRecord* data);
+ private:
+    static const std::string FIELD_NAME;
+    static const std::string FIELD_EXPRESSION;
+  
+    std::string name;
+    std::string expression;
+    Expression* enrichmentExpression;
+
 
 public:
-    const std::string & getName();
+	static TableFormat* FORMAT;
+    std::string getName();
     void setName(const std::string & name);
-    const std::string & getExpression();
+    std::string getExpression();
     void setExpression(const std::string & expression);
-    ::com::tibbo::aggregate::common::expression::Expression* getEnrichmentExpression();
+    Expression* getEnrichmentExpression();
 
-    // Generated
+	void Init();
     EventEnrichmentRule();
     EventEnrichmentRule(DataRecord* data);
-protected:
-    EventEnrichmentRule(const ::default_init_tag&);
 
-
-public:
-    
-    static void 
-
-private:
-    static const std::string& FIELD_NAME();
-    static const std::string& FIELD_EXPRESSION();
-
-public:
-    static TableFormat*& FORMAT();
-
-private:
-    ::java::lang::Class* getClass0();
-*/
 };
+#endif

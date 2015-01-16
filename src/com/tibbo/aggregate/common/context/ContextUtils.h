@@ -3,6 +3,23 @@
 #ifndef ContextUtilsH
 #define ContextUtilsH
 
+//#include <com/tibbo/aggregate/common/action/ActionDefinition.h"
+//#include <com/tibbo/aggregate/common/context/Context.h"
+//#include <com/tibbo/aggregate/common/context/ContextManager.h"
+//#include <com/tibbo/aggregate/common/context/ContextRuntimeException.h"
+//#include <com/tibbo/aggregate/common/context/ContextUtils_findChildren_1.h"
+//#include <com/tibbo/aggregate/common/context/ContextVisitor.h"
+//#include <com/tibbo/aggregate/common/context/Contexts.h"
+//#include <com/tibbo/aggregate/common/context/EventData.h"
+//#include <com/tibbo/aggregate/common/context/EventDefinition.h"
+//#include <com/tibbo/aggregate/common/context/VariableDefinition.h"
+//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+//#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+//#include <com/tibbo/aggregate/common/util/StringUtils.h"
+
+#include <string>
+
+
 //todo - So far the class is not described
 class ContextUtils
 {
@@ -29,8 +46,9 @@ private:
     static const std::string GROUP_CUSTOM_;
     static const std::string GROUP_STATUS_;
     static const std::string GROUP_ACCESS_;
-
+*/
 public:
+	/*
     static const int ENTITY_VARIABLE = 1) };
     static const int ENTITY_FUNCTION = 2) };
     static const int ENTITY_EVENT = 4) };
@@ -118,8 +136,9 @@ public:
     static bool masksIntersect(const std::string & mask1, const std::string & mask2, bool mask2MayExtendMask1, bool mask1MayExtendMask2);
     static bool isRelative(const std::string & name);
     static bool isMask(const std::string & name);
-    static bool isValidContextType(const std::string & s);
+    static bool isValidContextType(const std::string & s);*/
     static bool isValidContextName(const std::string & s);
+	/*
     static bool isValidContextMask(const std::string & s);
     static bool isValidIdentifier(const std::string & s);
     static bool isDerivedFrom(const std::string & childType, const std::string & parentType);

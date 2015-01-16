@@ -1,127 +1,99 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/PersistenceBinding.java
-#include <com/tibbo/aggregate/common/event/PersistenceBinding.h"
+#include "event/PersistenceBinding.h"
 
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/expression/Expression.h"
-//#include <java/lang/Class.h"
-//#include <java/lang/ClassCastException.h"
-//#include <java/lang/CloneNotSupportedException.h"
-//#include <java/lang/IllegalStateException.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/util/ResourceBundle.h"
 
-template<typename T, typename U>
-static T java_cast(U* u)
-{
-    if(!u) return static_cast<T>(0);
-    auto t = dynamic_cast<T>(u);
-    if(!t) throw new ::java::lang::ClassCastException();
-    return t;
-}
-
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
-
-com::tibbo::aggregate::common::event::PersistenceBinding::PersistenceBinding(const ::default_init_tag&)
+/*
+PersistenceBinding::PersistenceBinding(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::event::PersistenceBinding::PersistenceBinding() 
+PersistenceBinding::PersistenceBinding() 
     : PersistenceBinding(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::event::PersistenceBinding::PersistenceBinding(DataRecord* record) 
+PersistenceBinding::PersistenceBinding(DataRecord* record) 
     : PersistenceBinding(*static_cast< ::default_init_tag* >(0))
 {
     ctor(record);
 }
 
-com::tibbo::aggregate::common::event::PersistenceBinding::PersistenceBinding(const std::string & name, const std::string & type, const std::string & index, const std::string & expression) 
+PersistenceBinding::PersistenceBinding(const std::string & name, const std::string & type, const std::string & index, const std::string & expression) 
     : PersistenceBinding(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name,type,index,expression);
 }
 
-std::string& com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_BOOLEAN()
+std::string& PersistenceBinding::TYPE_BOOLEAN()
 {
     
     return TYPE_BOOLEAN_;
 }
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_BOOLEAN_;
+std::string PersistenceBinding::TYPE_BOOLEAN_;
 
-std::string& com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_STRING()
+std::string& PersistenceBinding::TYPE_STRING()
 {
     
     return TYPE_STRING_;
 }
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_STRING_;
+std::string PersistenceBinding::TYPE_STRING_;
 
-std::string& com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_INT()
+std::string& PersistenceBinding::TYPE_INT()
 {
     
     return TYPE_INT_;
 }
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_INT_;
+std::string PersistenceBinding::TYPE_INT_;
 
-std::string& com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_LONG()
+std::string& PersistenceBinding::TYPE_LONG()
 {
     
     return TYPE_LONG_;
 }
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_LONG_;
+std::string PersistenceBinding::TYPE_LONG_;
 
-std::string& com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_FLOAT()
+std::string& PersistenceBinding::TYPE_FLOAT()
 {
     
     return TYPE_FLOAT_;
 }
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_FLOAT_;
+std::string PersistenceBinding::TYPE_FLOAT_;
 
-std::string& com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_DOUBLE()
+std::string& PersistenceBinding::TYPE_DOUBLE()
 {
     
     return TYPE_DOUBLE_;
 }
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_DOUBLE_;
+std::string PersistenceBinding::TYPE_DOUBLE_;
 
-std::string& com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_TIMESTAMP()
+std::string& PersistenceBinding::TYPE_TIMESTAMP()
 {
     
     return TYPE_TIMESTAMP_;
 }
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::TYPE_TIMESTAMP_;
+std::string PersistenceBinding::TYPE_TIMESTAMP_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::event::PersistenceBinding::FORMAT()
+com::tibbo::aggregate::common::datatable::TableFormat*& PersistenceBinding::FORMAT()
 {
     
     return FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::event::PersistenceBinding::FORMAT_;
+com::tibbo::aggregate::common::datatable::TableFormat* PersistenceBinding::FORMAT_;
 
-void com::tibbo::aggregate::common::event::PersistenceBinding::ctor()
+void PersistenceBinding::ctor()
 {
     super::ctor(FORMAT_);
 }
 
-void com::tibbo::aggregate::common::event::PersistenceBinding::ctor(DataRecord* record)
+void PersistenceBinding::ctor(DataRecord* record)
 {
     super::ctor(FORMAT_, record);
 }
 
-void com::tibbo::aggregate::common::event::PersistenceBinding::ctor(const std::string & name, const std::string & type, const std::string & index, const std::string & expression)
+void PersistenceBinding::ctor(const std::string & name, const std::string & type, const std::string & index, const std::string & expression)
 {
     ctor();
     if(index != 0 && index)->length() > 2) {
@@ -133,27 +105,27 @@ void com::tibbo::aggregate::common::event::PersistenceBinding::ctor(const std::s
     setExpression(expression);
 }
 
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::getType()
+std::string PersistenceBinding::getType()
 {
     return type;
 }
 
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::getIndex()
+std::string PersistenceBinding::getIndex()
 {
     return index;
 }
 
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::getName()
+std::string PersistenceBinding::getName()
 {
     return name;
 }
 
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::getExpression()
+std::string PersistenceBinding::getExpression()
 {
     return expression;
 }
 
-com::tibbo::aggregate::common::expression::Expression* com::tibbo::aggregate::common::event::PersistenceBinding::getCompiledExpression()
+com::tibbo::aggregate::common::expression::Expression* PersistenceBinding::getCompiledExpression()
 {
     if(compiledExpression == 0) {
         compiledExpression = expression != 0 ? new ::com::tibbo::aggregate::common::expression::Expression(expression) : static_cast< ::com::tibbo::aggregate::common::expression::Expression* >(0);
@@ -161,28 +133,28 @@ com::tibbo::aggregate::common::expression::Expression* com::tibbo::aggregate::co
     return compiledExpression;
 }
 
-void com::tibbo::aggregate::common::event::PersistenceBinding::setName(const std::string & name)
+void PersistenceBinding::setName(const std::string & name)
 {
     this->name = name;
 }
 
-void com::tibbo::aggregate::common::event::PersistenceBinding::setType(const std::string & type)
+void PersistenceBinding::setType(const std::string & type)
 {
     this->type = type;
 }
 
-void com::tibbo::aggregate::common::event::PersistenceBinding::setIndex(const std::string & index)
+void PersistenceBinding::setIndex(const std::string & index)
 {
     this->index = index;
 }
 
-void com::tibbo::aggregate::common::event::PersistenceBinding::setExpression(const std::string & expression)
+void PersistenceBinding::setExpression(const std::string & expression)
 {
     this->expression = expression;
     compiledExpression;
 }
 
-com::tibbo::aggregate::common::event::PersistenceBinding* com::tibbo::aggregate::common::event::PersistenceBinding::clone()
+PersistenceBinding* PersistenceBinding::clone()
 {
     try {
         return java_cast< PersistenceBinding* >(super::clone());
@@ -191,7 +163,7 @@ com::tibbo::aggregate::common::event::PersistenceBinding* com::tibbo::aggregate:
     }
 }
 
-int com::tibbo::aggregate::common::event::PersistenceBinding::hashCode()
+int PersistenceBinding::hashCode()
 {
     auto const prime = int(31);
     auto result = int(1);
@@ -202,7 +174,7 @@ int com::tibbo::aggregate::common::event::PersistenceBinding::hashCode()
     return result;
 }
 
-bool com::tibbo::aggregate::common::event::PersistenceBinding::equals(void* obj)
+bool PersistenceBinding::equals(void* obj)
 {
     if(this) == obj)
         return true;
@@ -245,7 +217,7 @@ bool com::tibbo::aggregate::common::event::PersistenceBinding::equals(void* obj)
     return true;
 }
 
-std::string com::tibbo::aggregate::common::event::PersistenceBinding::toString()
+std::string PersistenceBinding::toString()
 {
     return std::stringBuilder().append(u"PersistenceBinding [name="_j)->append(name)
         ->append(u", type="_j)
@@ -259,13 +231,7 @@ std::string com::tibbo::aggregate::common::event::PersistenceBinding::toString()
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::event::PersistenceBinding::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.event.PersistenceBinding", 51);
-    return c;
-}
-
-void com::tibbo::aggregate::common::event::PersistenceBinding::clinit()
+void PersistenceBinding::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -316,8 +282,4 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::event::PersistenceBinding::getClass0()
-{
-    return class_();
-}
-
+*/

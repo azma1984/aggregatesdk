@@ -1,33 +1,37 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/Cres.java
 
-#pragma once
+#ifndef CresH
+#define CresH
+
+
+#include "resource/ResourceManager.h"
+#include "util/ResourceAccessor.h"
+
+
+
+
+
+
+
+
 
 
 class Cres
 {
-/*
-public:
-	typedef void super;
+ private:
+	static ResourceBundle* BUNDLE; 
 
-private:
-	static ::java::util::ResourceBundle* BUNDLE_;
+ public:
+	static ResourceBundle* get();
+	
+	void reinit(Locale* locale);
 
-public:
-	static ::java::util::ResourceBundle* get();
-	void reinit(::java::util::Locale* locale);
+	Class *getClass();
 
-	// Generated
 	Cres();
-protected:
-	Cres(const ::default_init_tag&);
-
-
-public:
-
-	static void 
-
-private:
-	static ::java::util::ResourceBundle*& BUNDLE();
-	::java::lang::Class* getClass0();
-*/
 };
+
+
+
+
+#endif 

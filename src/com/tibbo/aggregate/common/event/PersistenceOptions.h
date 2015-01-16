@@ -1,23 +1,16 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/PersistenceOptions.java
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Cloneable.h"
+#ifndef _PersistenceOptions_H_
+#define _PersistenceOptions_H_
+//#include <com/tibbo/aggregate/common/event/PersistenceBinding.h"
+//#include <com/tibbo/aggregate/common/util/CloneUtils.h"
 
 
 
-class com::tibbo::aggregate::common::event::PersistenceOptions
-    
-    , public ::java::lang::Cloneable
+
+class PersistenceOptions//: public ::java::lang::Cloneable
 {
-
-public:
-    typedef void super;
-
+/*
 private:
     std::list  persistenceBindings;
     bool dedicatedTablePreferred;
@@ -71,9 +64,7 @@ protected:
 
 
 public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+*/
 };
+
+#endif 

@@ -1,24 +1,24 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/EventUtils.java
 
-#pragma once
+#ifndef _EventLevel_H_
+#define _EventLevel_H_
+// #include <com/tibbo/aggregate/common/Cres.h"
+// #include <com/tibbo/aggregate/common/context/Context.h"
+// #include <com/tibbo/aggregate/common/context/ContextUtils.h"
+// #include <com/tibbo/aggregate/common/context/EventDefinition.h"
+// #include <com/tibbo/aggregate/common/datatable/DataRecord.h"
+// #include <com/tibbo/aggregate/common/datatable/DataTable.h"
+// #include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+// #include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+// #include <com/tibbo/aggregate/common/event/EventLevel.h"
+// #include <com/tibbo/aggregate/common/util/Util.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/awt/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
 
 
-
-class com::tibbo::aggregate::common::event::EventUtils
-    
+class EventUtils
 {
+/*
 
-public:
-    typedef void super;
 
 private:
     static ::java::awt::Color* COLOR_FATAL_;
@@ -70,5 +70,6 @@ public:
 private:
     static TableFormat*& SEVERITY_STATS_FORMAT();
     static ::java::util::Random*& ID_GENERATOR();
-    ::java::lang::Class* getClass0();
+*/
 };
+#endif 
