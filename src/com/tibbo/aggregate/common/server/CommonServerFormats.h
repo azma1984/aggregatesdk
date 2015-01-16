@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/CommonServerFormats.java
 #ifndef CommonServerFormatsH
 #define CommonServerFormatsH
 
@@ -7,17 +6,32 @@
 #include "server/RootContextConstants.h"
 #include "server/UtilitiesContextConstants.h"
 
-
+//Singleton
 class CommonServerFormats
 {
-  public:
+  private:
+   CommonServerFormats();
+   ~CommonServerFormats();
    
-   static TableFormat* FIFT_LOGIN;
-   static TableFormat* FOFT_LOGIN;
-   static TableFormat* FIFT_GET_FORMAT;
-   static TableFormat* FOFT_GET_FORMAT;
-
-  CommonServerFormats();
-
+   CommonServerFormats(CommonServerFormats const&);
+   void operator=(CommonServerFormats const&);
+   TableFormat* FIFT_LOGIN;
+   TableFormat* FOFT_LOGIN;
+   TableFormat* FIFT_GET_FORMAT;
+   TableFormat* FOFT_GET_FORMAT;
+public:
+  
+   static CommonServerFormats& getInstance()
+    {
+     static CommonServerFormats instance;
+     return instance;
+    }
+ 
+   TableFormat& getFIFT_LOGIN();
+   TableFormat& getFOFT_LOGIN();
+   TableFormat& getFIFT_GET_FORMAT();
+   TableFormat& getFOFT_GET_FORMAT();
+ 
 };
-  #endif
+
+#endif
