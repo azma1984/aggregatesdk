@@ -1,20 +1,13 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/binding/BindingProcessor.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "util/Interface.h"
 
-struct com::tibbo::aggregate::common::binding::BindingProcessor
-    
+class BindingProcessor : public Interface
 {
-    bool start();
-    void stop();
-    void setEnabled(bool enabled);
-    void submit(::java::util::concurrent::Callable* task);
-
-    // Generated
-    
+public:
+    virtual bool start() = 0;
+    virtual void stop() = 0;
+    virtual void setEnabled(bool enabled) = 0;
+    //TODO: Callable?
+    //virtual void submit(Callable* task);
 };

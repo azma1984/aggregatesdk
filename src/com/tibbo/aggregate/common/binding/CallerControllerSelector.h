@@ -1,18 +1,12 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/binding/CallerControllerSelector.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "context/CallerController.h"
+#include <string>
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::binding::CallerControllerSelector
+struct CallerControllerSelector
     
 {
-    ::com::tibbo::aggregate::common::context::CallerController* select(::com::tibbo::aggregate::common::context::Context* context, const std::string & entity, int entityType);
-
-    // Generated
-    
+    virtual boost::shared_ptr<CallerController> select(boost::shared_ptr<Context> context,
+                                                       const std::string & entity, int entityType) = 0;
 };

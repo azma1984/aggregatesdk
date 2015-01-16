@@ -1,35 +1,19 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/binding/DefaultBindingProcessor.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-#include <com/tibbo/aggregate/common/binding/BindingProcessor.h"
+#include "binding/BindingProcessor.h"
+#include "binding/BindingProvider.h"
 
-
-
-class com::tibbo::aggregate::common::binding::DefaultBindingProcessor
-    
-    , public BindingProcessor
+class DefaultBindingProcessor : public BindingProcessor
 {
-
-public:
-    typedef void super;
-
 private:
     BindingProvider* provider;
-    ::com::tibbo::aggregate::common::expression::Evaluator* evaluator;
-    ::java::util::Timer* timer;
-    ::java::util::concurrent::ExecutorService* executionService;
+    Evaluator* evaluator;
+    Timer* timer;
+    ExecutorService* executionService;
     bool disableStartupConcurrency;
     bool shareConcurrency;
-    std::list  listeners;
-    std::list  timerTasks;
+    std::list<ReferenceListener>  listeners;
+    std::list<TimerTask>  timerTasks;
     ::java::util::Set* tasks;
     bool stopped;
     bool enabled;

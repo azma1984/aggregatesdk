@@ -1,17 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/binding/ReferenceWriter.java
-
 #pragma once
 
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "expression/Reference.h"
+#include "util/Interface.h"
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::binding::ReferenceWriter
-    
+class ReferenceWriter : public Interface
 {
-    void writeReference(::com::tibbo::aggregate::common::expression::Reference* ref, void* value) /* throws(BindingException) */;
-
-    // Generated
-    
+public:
+    virtual void writeReference(boost::shared_ptr<Reference> ref, void*/*Object*/ value) = 0/* throws(BindingException) */;
 };

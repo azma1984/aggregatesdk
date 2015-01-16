@@ -30,7 +30,7 @@ DataRecord::DataRecord(TableFormat* tableFormat, const std::string& dataString)
 
 DataRecord::DataRecord(DataRecord&)
 {
-	//TODO: конструктор копирования
+	//TODO: РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 }
 
 void DataRecord::init()
@@ -59,7 +59,7 @@ void DataRecord::ctor(TableFormat* tableFormat)
         format = tableFormat;
     }
 }
-//TODO: Object... data возможно стоит передавать списком
+//TODO: Object... data РІРѕР·РјРѕР¶РЅРѕ СЃС‚РѕРёС‚ РїРµСЂРµРґР°РІР°С‚СЊ СЃРїРёСЃРєРѕРј
 void DataRecord::ctor(TableFormat* tableFormat, voidArray* data)
 {
     ctor(tableFormat);
@@ -221,7 +221,7 @@ DataRecord* DataRecord::addDouble(double val)
     return setValue(data)->size(), val));
 }
 
-//TODD: Date класс был из java util
+//TODD: Date РєР»Р°СЃСЃ Р±С‹Р» РёР· java util
 DataRecord* DataRecord::addDate(Date* val)
 {
     checkNumberOfDataFieldsSet(val);
@@ -538,7 +538,7 @@ bool DataRecord::operator==(const DataRecord& dataRecord) const	;
     }
 	
     for (int i = 0; i < getFieldCount(); i++) {
-		//TODO: сравнение 
+		//TODO: СЃСЂР°РІРЅРµРЅРёРµ 
         auto field = getValue(i);
         auto value = rec)->getValue(i);
         if(field != 0 ? !field)->equals(value) : value != 0) {
@@ -592,11 +592,11 @@ bool DataRecord::meetToCondition(QueryCondition* cond)
 void DataRecord::cloneFormatFromTable()
 {
     if (table != 0) {
-		//TODO: возможна утечка памяти, необходим delete format
+		//TODO: РІРѕР·РјРѕР¶РЅР° СѓС‚РµС‡РєР° РїР°РјСЏС‚Рё, РЅРµРѕР±С…РѕРґРёРј delete format
         format = table->getFormat()->clone();
     }
     // else {
-		//TODO: возможна утечка памяти, необходим delete format
+		//TODO: РІРѕР·РјРѕР¶РЅР° СѓС‚РµС‡РєР° РїР°РјСЏС‚Рё, РЅРµРѕР±С…РѕРґРёРј delete format
   //      format = format->clone();
  //   }
 }
@@ -606,7 +606,7 @@ std::string DataRecord::dataAsString(bool showFieldNames, bool showHiddenFields)
     stringstream ss;
     bool needSeparator = false;
 	
-    for (ште j = 0; j < getFieldCount(); j++) {
+    for (С€С‚Рµ j = 0; j < getFieldCount(); j++) {
         FieldFormat ff = getFormat())->getField(j);
         if (ff->isHidden() && !showHiddenFields) {
             continue;
@@ -661,7 +661,7 @@ return dt;
 /*
 DataRecord* DataRecord::clone()
 {
-	//TODO: копирование
+	//TODO: РєРѕРїРёСЂРѕРІР°РЅРёРµ
     DataRecord* cl;
     try {
         cl = java_cast< DataRecord* >(super::clone());
