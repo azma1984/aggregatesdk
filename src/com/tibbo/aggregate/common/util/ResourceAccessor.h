@@ -28,7 +28,7 @@ class ResourceBundle
  public:
   std::string getString(const std::string &str)
   {
-   return "Empty";
+   return str;
   }
 
 };

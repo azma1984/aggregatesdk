@@ -1,12 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/CommonServerFormats.java
-
 #include "server/CommonServerFormats.h"
 
-
-TableFormat* CommonServerFormats::FIFT_LOGIN;
-TableFormat* CommonServerFormats::FOFT_LOGIN;
-TableFormat* CommonServerFormats::FIFT_GET_FORMAT;
-TableFormat* CommonServerFormats::FOFT_GET_FORMAT;
 
 CommonServerFormats::CommonServerFormats()
 {
@@ -24,6 +17,33 @@ CommonServerFormats::CommonServerFormats()
  FOFT_GET_FORMAT = new TableFormat(1,1, "<" + UtilitiesContextConstants::FOF_GET_FORMAT_DATA + "><S>");
 }
 
+CommonServerFormats::~CommonServerFormats()
+{
+ delete FIFT_LOGIN;
+ delete FOFT_LOGIN;
+  
+ delete FIFT_GET_FORMAT;
+ delete FOFT_GET_FORMAT;
+}
 
+CommonServerFormats::TableFormat & getFIFT_LOGIN()
+   { 
+    return *FIFT_LOGIN; 
+   }
+   
+CommonServerFormats::TableFormat & getFOFT_LOGIN()
+   { 
+    return *FOFT_LOGIN; 
+   }
+   
+CommonServerFormats::TableFormat & getFIFT_GET_FORMAT()
+   { 
+    return *FIFT_GET_FORMAT; 
+   }  
+   
+CommonServerFormats::TableFormat & getFOFT_GET_FORMAT()
+   { 
+    return *FOFT_GET_FORMAT; 
+   }
 
 
