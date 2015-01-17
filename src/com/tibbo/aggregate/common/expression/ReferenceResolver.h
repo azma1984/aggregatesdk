@@ -1,30 +1,30 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/ReferenceResolver.java
-
 #pragma once
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "context/Context.h"
+#include "context/ContextManager.h"
+#include "context/CallerController.h"
+#include "datatable/DataTable.h"
+#include "expression/Evaluator.h"
+#include "expression/EvaluationEnvironment.h"
+#include "expression/Reference.h"
+#include "util/Interface.h"
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::expression::ReferenceResolver
-    
+class ReferenceResolver : public Interface
 {
-    void* resolveReference(Reference* ref, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */;
-    void setContextManager(::com::tibbo::aggregate::common::context::ContextManager* cm);
-    ::com::tibbo::aggregate::common::context::ContextManager* getContextManager();
-    void setDefaultTable(DataTable* defaultTable);
-    DataTable* getDefaultTable();
-    void setDefaultContext(::com::tibbo::aggregate::common::context::Context* defaultContext);
-    ::com::tibbo::aggregate::common::context::Context* getDefaultContext();
-    void setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController);
-    ::com::tibbo::aggregate::common::context::CallerController* getCallerController();
-    void setEvaluator(Evaluator* evaluator);
-    Evaluator* getEvaluator();
-    void setDefaultRow(int  defaultRow);
-    int  getDefaultRow();
+public:
 
-    // Generated
-    
+    virtual void* resolveReference(boost::shared_ptr<Reference> ref, boost::shared_ptr<EvaluationEnvironment> environment) = 0/* throws(SyntaxErrorException, EvaluationException, ContextException) */;
+    virtual void setContextManager(boost::shared_ptr<ContextManager> cm) = 0;
+    virtual boost::shared_ptr<ContextManager> getContextManager() = 0;
+    virtual void setDefaultTable(boost::shared_ptr<DataTable> defaultTable) = 0;
+    virtual boost::shared_ptr<DataTable> getDefaultTable() = 0;
+    virtual void setDefaultContext(boost::shared_ptr<Context> defaultContext) = 0;
+    virtual boost::shared_ptr<Context> getDefaultContext() = 0;
+    virtual void setCallerController(boost::shared_ptr<CallerController> callerController) = 0;
+    virtual boost::shared_ptr<CallerController> getCallerController() = 0;
+    virtual void setEvaluator(boost::shared_ptr<Evaluator> evaluator) = 0;
+    virtual boost::shared_ptr<Evaluator> getEvaluator() = 0;
+    virtual void setDefaultRow(int  defaultRow) = 0;
+    virtual int  getDefaultRow() = 0;
 };

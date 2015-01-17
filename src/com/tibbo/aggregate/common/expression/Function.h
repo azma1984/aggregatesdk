@@ -1,19 +1,18 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/Function.java
-
 #pragma once
 
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "expression/Evaluator.h"
+#include "expression/EvaluationEnvironment.h"
+#include "util/Interface.h"
+#include <string>
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::expression::Function
-    
+class Function : public Interface
 {
-    const std::string & getCategory();
-    const std::string & getReturnValue();
-    const std::string & getParametersFootprint();
-    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
-
-    // Generated
-    
+public:
+    virtual std::string getCategory() = 0;
+    virtual std::string getReturnValue() = 0;
+    virtual std::string getParametersFootprint() = 0;
+    //TODO: Object
+    virtual void*/*Object*/ execute(boost::shared_ptr<Evaluator> evaluator, boost::shared_ptr<EvaluationEnvironment> environment,
+                            void* ... parameters) = 0/* throws(EvaluationException) */;
 };

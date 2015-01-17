@@ -11,40 +11,40 @@
 #include <string>
 
 class Reference : public Cloneable
-{/*
-private:
+{
+public:
     static const std::string SCHEMA_FORM;
     static const std::string SCHEMA_TABLE;
     static const std::string SCHEMA_STATISTICS;
     static const std::string SCHEMA_ENVIRONMENT;
     static const std::string SCHEMA_PARENT;
-    static const std::string SCHEMA_MENU_;
-    static const std::string SCHEMA_ACTION_;
+    static const std::string SCHEMA_MENU;
+    static const std::string SCHEMA_ACTION;
 
-public:
-    static const char16_t EVENT_SIGN { u'@' };
-    static const char16_t ACTION_SIGN { u'!' };
-    static const char16_t PARAMS_BEGIN { u'(' };
-    static const char16_t PARAMS_END { u')' };
-    static const char16_t SCHEMA_END { u'/' };
-    static const char16_t SERVER_END { u'^' };
-    static const char16_t CONTEXT_END { u':' };
-    static const char16_t FIELD_BEGIN { u'$' };
-    static const char16_t ROW_BEGIN { u'[' };
-    static const char16_t ROW_END { u']' };
-    static const char16_t PROPERTY_BEGIN { u'#' };
+    static const char EVENT_SIGN;
+    static const char ACTION_SIGN;
+    static const char PARAMS_BEGIN;
+    static const char PARAMS_END;
+    static const char SCHEMA_END;
+    static const char SERVER_END;
+    static const char CONTEXT_END;
+    static const char FIELD_BEGIN;
+    static const char ROW_BEGIN;
+    static const char ROW_END;
+    static const char PROPERTY_BEGIN;
 
 private:
-    const std::string & image;
-    const std::string & schema;
-    const std::string & server;
-    const std::string & context;
-    const std::string & entity;
+    const std::string image;
+    const std::string schema;
+    const std::string server;
+    const std::string context;
+    const std::string entity;
     int entityType;
-    std::list  parameters;
-    const std::string & field;
+    //std::list  parameters;
+    const std::string field;
+    const std::string property;
     int  row;
-    const std::string & property;
+
 protected:
     void ctor();
     void ctor(const std::string & source);
@@ -116,7 +116,6 @@ public:
     static const std::string& SCHEMA_MENU();
     static const std::string& SCHEMA_ACTION();
 
-*/
 };
 
 #endif  //_REFERENCE_H_

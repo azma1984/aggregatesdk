@@ -1,6 +1,28 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/Reference.java
 #include "Reference.h"
 
+
+const std::string Reference::SCHEMA_FORM = "form";
+const std::string Reference::SCHEMA_TABLE = "table";
+const std::string Reference::SCHEMA_STATISTICS = "statistics";
+const std::string Reference::SCHEMA_ENVIRONMENT = "env";
+const std::string Reference::SCHEMA_PARENT = "parent";
+const std::string Reference::SCHEMA_MENU = "menu";
+
+// Deprecated in favour of new action reference syntax: context.path:action!
+// Support should be terminated in AggreGate 6
+const std::string Reference::SCHEMA_ACTION = "action";
+
+const char Reference::EVENT_SIGN = '@';
+const char Reference::ACTION_SIGN = '!';
+const char Reference::PARAMS_BEGIN = '(';
+const char Reference::PARAMS_END = ')';
+const char Reference::SCHEMA_END = '/';
+const char Reference::SERVER_END = '^';
+const char Reference::CONTEXT_END = ':';
+const char Reference::FIELD_BEGIN = '$';
+const char Reference::ROW_BEGIN = '[';
+const char Reference::ROW_END = ']';
+const char Reference::PROPERTY_BEGIN = '#';
 
 
 /*
