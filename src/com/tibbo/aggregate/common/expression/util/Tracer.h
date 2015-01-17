@@ -1,16 +1,9 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/util/Tracer.java
-
 #pragma once
 
-#include <com/tibbo/aggregate/common/expression/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include <string>
 
-struct com::tibbo::aggregate::common::expression::util::Tracer
-    
+class Tracer
 {
-    void trace(void* value, const std::string & message);
-
-    // Generated
-    
+public:
+    virtual void trace(void* value, const std::string& message) = 0;
 };

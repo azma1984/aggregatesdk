@@ -1,17 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/ContextVisitor.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "context/Context.h"
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::context::ContextVisitor
-    
+class ContextVisitor : public Context
 {
-    bool shouldVisit(Context* context) /* throws(ContextException) */;
-    void visit(Context* context) /* throws(ContextException) */;
-
-    // Generated
-    
+public:
+    virtual bool shouldVisit(boost::shared_ptr<Context> context) = 0/* throws(ContextException) */;
+    virtual void visit(boost::shared_ptr<Context> context) = 0/* throws(ContextException) */;
 };

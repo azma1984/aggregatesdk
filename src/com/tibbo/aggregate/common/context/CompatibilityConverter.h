@@ -1,16 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/CompatibilityConverter.java
-
 #pragma once
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "util/Interface.h"
+#include "datatable/DataTable.h"
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::context::CompatibilityConverter
-    
+class CompatibilityConverter : public Interface
 {
-    DataTable* convert(DataTable* oldValue, DataTable* newValue);
-
-    // Generated
-    
+public:
+    virtual boost::shared_ptr<DataTable> convert(boost::shared_ptr<DataTable> oldValue, boost::shared_ptr<DataTable> newValue) = 0;
 };

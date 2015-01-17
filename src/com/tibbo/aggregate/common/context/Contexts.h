@@ -84,7 +84,7 @@ namespace Contexts
     static const std::string TYPE_WIDGET = "widget";
     static const std::string TYPE_MODELS = "models";
     static const std::string TYPE_MODEL = "model";
-};
+}
 
    
 #endif

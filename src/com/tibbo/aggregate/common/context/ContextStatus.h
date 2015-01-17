@@ -1,44 +1,38 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/ContextStatus.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include <string>
 
-
-
-class com::tibbo::aggregate::common::context::ContextStatus
-    
+class ContextStatus
 {
-
-public:
-    typedef void super;
-
 private:
     int status;
-    const std::string & comment;
-protected:
-    void ctor();
-    void ctor(int status, const std::string & comment);
+    std::string  comment;
 
 public:
-    const std::string & getComment();
-    int getStatus();
-    void setComment(const std::string & comment);
-    void setStatus(int status);
+    const std::string getComment() const
+    {
+        return comment;
+    }
 
-    // Generated
-    ContextStatus();
-    ContextStatus(int status, const std::string & comment);
-protected:
-    ContextStatus(const ::default_init_tag&);
+    int getStatus() const
+    {
+        return status;
+    }
 
+    void setComment(const std::string & comment)
+    {
+        this->comment = comment;
+    }
 
-public:
-    
+    void setStatus(int status)
+    {
+        this->status = status;
+    }
 
-private:
-    ::java::lang::Class* getClass0();
+    ContextStatus() {}
+    ContextStatus(int status, const std::string & comment)
+    {
+        this->status = status;
+        this->comment = comment;
+    }
 };

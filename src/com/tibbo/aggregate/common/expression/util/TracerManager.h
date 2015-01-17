@@ -1,37 +1,27 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/util/TracerManager.java
-
 #pragma once
 
-#include <com/tibbo/aggregate/common/expression/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "expression/util/Tracer.h"
+#include <boost/shared_ptr.hpp>
 
-
-
-class com::tibbo::aggregate::common::expression::util::TracerManager
-    
+class TracerManager
 {
-
-public:
-    typedef void super;
-
 private:
-    static Tracer* DEFAULT_TRACER_;
+    static boost::shared_ptr<Tracer> DEFAULT_TRACER_;
 
 public:
-    static Tracer* getDefaultTracer();
-    static void setDefaultTracer(Tracer* tracer);
+    static boost::shared_ptr<Tracer> getDefaultTracer()
+    {
+        return DEFAULT_TRACER_;
+    }
 
-    // Generated
-    TracerManager();
-protected:
-    TracerManager(const ::default_init_tag&);
+    static void setDefaultTracer(boost::shared_ptr<Tracer> tracer)
+    {
+        if (tracer == NULL) {
+            return;
+            //TODO: exception
+            //throw new NullPointerException("Default tracer cannot be NULL");
+        }
 
-
-public:
-    
-    static void 
-
-private:
-    static Tracer*& DEFAULT_TRACER();
-    ::java::lang::Class* getClass0();
+        DEFAULT_TRACER_ = tracer;
+    }
 };
