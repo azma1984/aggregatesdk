@@ -3,8 +3,8 @@
 #include "util/Cloneable.h"
 #include "util/AgObject.h"
 #include <boost/shared_ptr.hpp>
-//#include <context/ContextManager.h>
-//#include <context/CallerController.h>
+#include <context/ContextManager.h>
+#include <context/CallerController.h>
 
 #include <string>
 #include <vector>
