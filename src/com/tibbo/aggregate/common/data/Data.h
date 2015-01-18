@@ -31,8 +31,7 @@ public:
 	std::vector<char> getBlob();
     std::map<std::string,  boost::shared_ptr<AgObject>> getAttachments();
 
-    //todo
-    //std::vector<char> fetchData(ContextManager* cm, CallerController* cc);// throws ContextException
+    std::vector<char> fetchData(ContextManager* cm, CallerController* cc);
 
     std::string toDetailedString();
     std::string toString();
@@ -43,8 +42,6 @@ public:
     virtual Data* clone() const;
     bool equals(Data *data);
 		
-    /*bool operator ==(const Data& data) const;*/
-  
 private:
 	long id;
 	std::string name;
