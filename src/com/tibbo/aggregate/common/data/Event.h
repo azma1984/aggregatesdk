@@ -1,32 +1,16 @@
-#ifndef _EVENT_H_
-#define _EVENT_H_
+#pragma once
 
-/*
-#include <com/tibbo/aggregate/common/context/EventDefinition.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
-#include <com/tibbo/aggregate/common/event/Acknowledgement.h"
-#include <com/tibbo/aggregate/common/event/Enrichment.h"
-#include <com/tibbo/aggregate/common/security/Permissions.h"
-#include <com/tibbo/aggregate/common/util/CloneUtils.h"
-*/
-#include "event/Enrichment.h"
-#include "event/Acknowledgement.h"
-#include "datatable/DataTable.h"
 #include "util/Cloneable.h"
-#include "util/Date.h"
-#include <string>
-#include <list>
 #include <boost/shared_ptr.hpp>
 
 class Event: public Cloneable
 {
-	/*
- public:
+
+public:
   
-  static const long DEFAULT_EVENT_EXPIRATION_PERIOD; // Milliseconds
+    //static const long DEFAULT_EVENT_EXPIRATION_PERIOD; // Milliseconds
   
-private:  
+/*private:
     void init(const std::string& context, std::string& name, int level, boost::shared_ptr<DataTable> data, long id);
 	
 	long id;
@@ -89,4 +73,3 @@ public:
     bool equals(boost::shared_ptr<this> obj);
     std::string toString();*/
 };
-#endif //_EVENT_H_

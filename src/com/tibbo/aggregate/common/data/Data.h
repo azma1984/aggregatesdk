@@ -3,14 +3,14 @@
 #include "util/Cloneable.h"
 #include "util/AgObject.h"
 #include <boost/shared_ptr.hpp>
-//#include <context/ContextManager.h>
-//#include <context/CallerController.h>
+#include <context/ContextManager.h>
+#include <context/CallerController.h>
 
 #include <string>
 #include <vector>
 #include <map>
 
-class Data : public Cloneable
+class Data : public Cloneable, public AgObject
 {
 
 public:
@@ -31,8 +31,7 @@ public:
 	std::vector<char> getBlob();
     std::map<std::string,  boost::shared_ptr<AgObject>> getAttachments();
 
-    //todo
-    //std::vector<char> fetchData(ContextManager* cm, CallerController* cc);// throws ContextException
+    std::vector<char> fetchData(ContextManager* cm, CallerController* cc);
 
     std::string toDetailedString();
     std::string toString();
@@ -43,8 +42,6 @@ public:
     virtual Data* clone() const;
     bool equals(Data *data);
 		
-    /*bool operator ==(const Data& data) const;*/
-  
 private:
 	long id;
 	std::string name;

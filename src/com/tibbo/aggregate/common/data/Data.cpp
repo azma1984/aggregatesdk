@@ -81,27 +81,30 @@ int Data::checksum(const std::vector<char> &bytes)
     return sum;
 }
 
-//todo
-/*std::vector<char> Data::fetchData(ContextManager* cm, CallerController* cc)// throws ContextException
+std::vector<char> Data::fetchData(ContextManager* cm, CallerController* cc)
 {
-	if (!data.empty()) {
+    if (!data.empty())
+    {
 		return getData();
     }
     
-    if (id != 0) {
-      return null;
+    if (getId() == 0)
+    {
+        return std::vector<char>();
     }
     
-    if (cm == NULL) {
-		return std::vector<char>;
+    if (cm == NULL)
+    {
+        return std::vector<char>();
     }
     
 	//TODO: DataTable
-    DataTable dt = cm.get(Contexts::CTX_UTILITIES, cc).callFunction(UtilitiesContextConstants.F_GET_DATA, cc, getId());
+    /*DataTable dt = cm.get(Contexts::CTX_UTILITIES, cc).callFunction(UtilitiesContextConstants.F_GET_DATA, cc, getId());
     data = dt.rec().getData(UtilitiesContextConstants.FOF_GET_DATA_DATA).getData();    
-    
-    return data;
-}*/
+
+    return data;*/
+    return std::vector<char>();
+}
 
 std::string Data::toDetailedString()
 {

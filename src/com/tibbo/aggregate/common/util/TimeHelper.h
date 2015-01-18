@@ -1,85 +1,100 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/TimeHelper.java
-
 #pragma once
 
-//#include <Cres.h"
-#include <TimeUnit.h>
-//#include <Util.h"
+#include "util/TimeUnit.h"
+#include "util/AgObject.h"
 #include <map>
 #include <list>
 #include <string>
+#include <stdint.h>
+
 class TimeHelper
 {
- private:
-	std::map<void*,std::string> SELECTION_VALUES;
 
-	std::list<std::string> UNITS;
-	std::list<std::string> REVERSED_UNITS;
+private:
+    TimeHelper();
+    TimeHelper(TimeHelper const&);
+    void operator=(TimeHelper const&);
+    virtual ~TimeHelper();
 
-	std::map<std::string, TimeUnit>  NAMED_UNITS;
+    TimeUnit* MILLISECOND_UNIT;
+    TimeUnit* SECOND_UNIT;
+    TimeUnit* MINUTE_UNIT;
+    TimeUnit* HOUR_UNIT;
+    TimeUnit* DAY_UNIT;
+    TimeUnit* WEEK_UNIT;
+    TimeUnit* MONTH_UNIT;
+    TimeUnit* QUARTER_UNIT;
+    TimeUnit* YEAR_UNIT;
+
+    std::map<int, std::string> SELECTION_VALUES;
+    std::list<TimeUnit*> UNITS;
+    std::map<std::string, TimeUnit*>  NAMED_UNITS;
+    // TODO: REVERSED_UNITS
+    //std::list<std::string> REVERSED_UNITS;
 
 public:
 
-	long SECOND_IN_MS;
-    long MINUTE_IN_MS;
-    long HOUR_IN_MS;
-    long DAY_IN_MS;
-    long WEEK_IN_MS;
-    long MONTH_IN_MS;
-    long QUARTER_IN_MS;
-    long YEAR_IN_MS;
-    long MINUTE_IN_SECONDS;
-    long HOUR_IN_SECONDS;
-    long DAY_IN_SECONDS;
-    long WEEK_IN_SECONDS;
-    long MONTH_IN_SECONDS;
-    long QUARTER_IN_SECONDS;
-    long YEAR_IN_SECONDS;
-    int MILLISECOND;
-    int SECOND;
-    int MINUTE;
-    int HOUR;
-    int DAY;
-    int WEEK;
-    int MONTH;
-    int QUARTER;
-    int YEAR;
+    static const uint64_t SECOND_IN_MS;
+    static const uint64_t MINUTE_IN_MS;
+    static const uint64_t HOUR_IN_MS;
+    static const uint64_t DAY_IN_MS;
+    static const uint64_t WEEK_IN_MS;
+    static const uint64_t MONTH_IN_MS;
+    static const uint64_t QUARTER_IN_MS;
+    static const uint64_t YEAR_IN_MS;
+    static const uint64_t MINUTE_IN_SECONDS;
+    static const uint64_t HOUR_IN_SECONDS;
+    static const uint64_t DAY_IN_SECONDS;
+    static const uint64_t WEEK_IN_SECONDS;
+    static const uint64_t MONTH_IN_SECONDS;
+    static const uint64_t QUARTER_IN_SECONDS;
+    static const uint64_t YEAR_IN_SECONDS;
+    static const int MILLISECOND;
+    static const int SECOND;
+    static const int MINUTE;
+    static const int HOUR;
+    static const int DAY;
+    static const int WEEK;
+    static const int MONTH;
+    static const int QUARTER;
+    static const int YEAR;
     
-	std::string NAME_MILLISECOND;
-	std::string NAME_MS;
-	std::string NAME_SECOND;
-	std::string NAME_SEC;
-	std::string NAME_S;
-	std::string NAME_MINUTE;
-	std::string NAME_MIN;
-	std::string NAME_M;
-	std::string NAME_HOUR;
-	std::string NAME_HR;
-	std::string NAME_H;
-	std::string NAME_DAY;
-	std::string NAME_D;
-	std::string NAME_WEEK;
-	std::string NAME_W;
-	std::string NAME_MONTH;
-	std::string NAME_YEAR;
-	std::string NAME_Y;
-	static TimeUnit* MILLISECOND_UNIT;
-	static TimeUnit* SECOND_UNIT;
-	static TimeUnit* MINUTE_UNIT;
-	static TimeUnit* HOUR_UNIT;
-	static TimeUnit* DAY_UNIT;
-	static TimeUnit* WEEK_UNIT;
-	static TimeUnit* MONTH_UNIT;
-	static TimeUnit* QUARTER_UNIT;
-	static TimeUnit* YEAR_UNIT;
+    static const std::string NAME_MILLISECOND;
+    static const std::string NAME_MS;
+    static const std::string NAME_SECOND;
+    static const std::string NAME_SEC;
+    static const std::string NAME_S;
+    static const std::string NAME_MINUTE;
+    static const std::string NAME_MIN;
+    static const std::string NAME_M;
+    static const std::string NAME_HOUR;
+    static const std::string NAME_HR;
+    static const std::string NAME_H;
+    static const std::string NAME_DAY;
+    static const std::string NAME_D;
+    static const std::string NAME_WEEK;
+    static const std::string NAME_W;
+    static const std::string NAME_MONTH;
+    static const std::string NAME_YEAR;
+    static const std::string NAME_Y;
 
-	std::map<void*,std::string>* getSelectionValues();
-	std::list<std::string>* getUnits();
-        std::list<std::string>* getReversedUnits();
-	std::string getUnitDescription(int unit);
-	std::string getUnitDescriptionPlural(int unit);
-	TimeUnit* getTimeUnit(int unit);
-	TimeUnit* getTimeUnit(std::string name);
-	long convertToMillis(long period, int unit);
-	TimeHelper();
+    enum { CALENDAR_NULL, CALENDAR_MILLISECOND, CALENDAR_SECOND, CALENDAR_MINUTE, CALENDAR_HOUR,
+           CALENDAR_DAY_OF_MONTH, CALENDAR_WEEK_OF_YEAR, CALENDAR_MONTH, CALENDAR_YEAR };
+
+    static TimeHelper& getInstance()
+    {
+        static TimeHelper instance;
+        return instance;
+    }
+
+    std::map<int, std::string> getSelectionValues();
+    std::list<TimeUnit*> getUnits();
+
+    //TODO
+    //std::list<TimeUnit*> getReversedUnits();
+
+    std::string getUnitDescription(int unit);
+    std::string getUnitDescriptionPlural(int unit);
+    TimeUnit* getTimeUnit(int unit);
+    uint64_t convertToMillis(uint64_t period, int unit);
 };

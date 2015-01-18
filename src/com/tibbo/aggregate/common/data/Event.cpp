@@ -1,11 +1,10 @@
-#include "Event.h"
-/*
-#include "datatable/DataTableException.h"
+#include "data/Event.h"
+#include "util/TimeHelper.h"
 
-const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD = 100 * TimeHelper.DAY_IN_MS; // Milliseconds
+//const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD = 100 * TimeHelper::DAY_IN_MS; // Milliseconds
 
 
-Event::Event(const std::string& context, boost::shared_ptr<EventDefinition> def, int level,
+/*Event::Event(const std::string& context, boost::shared_ptr<EventDefinition> def, int level,
              boost::shared_ptr<DataTable> data, long id, boost::shared_ptr<Date> creationtime, boost::shared_ptr<Permissions> permissions)
 {
     ctor(context,def,level,data,id,creationtime,permissions);
