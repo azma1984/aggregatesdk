@@ -1,4 +1,6 @@
 #include "TimeHelper.h"
+#include "Cres.h"
+#include "AggreGateException.h"
 
 const uint64_t TimeHelper::SECOND_IN_MS = 1000;
 const uint64_t TimeHelper::MINUTE_IN_MS = SECOND_IN_MS * 60;
@@ -46,146 +48,146 @@ const std::string TimeHelper::NAME_Y = "y";
 
 TimeHelper::TimeHelper(void)
 {
-    //int unit, long length, std::string description, int calendarField, bool secondary
-    //MILLISECOND_UNIT = new TimeUnit(MILLISECOND, 1, Cres::get()->getString(u"tuMilliseconds"), CALENDAR_MILLISECOND, false);
-    /*SECOND_UNIT      = new TimeUnit(SECOND, SECOND_IN_MS, Cres::get()->getString(u"tuSeconds"), Calendar::SECOND, false);
-    MINUTE_UNIT      = new TimeUnit(MINUTE, MINUTE_IN_MS, Cres::get()->getString(u"tuMinutes"), Calendar::MINUTE, false);
-    HOUR_UNIT        = new TimeUnit(HOUR, HOUR_IN_MS, Cres::get()->getString(u"tuHours"), Calendar::HOUR, false);
-    DAY_UNIT         = new TimeUnit(DAY, DAY_IN_MS, Cres::get()->getString(u"tuDays"), Calendar::DAY_OF_MONTH, false);
-    WEEK_UNIT        = new TimeUnit(WEEK, WEEK_IN_MS, Cres::get()->getString(u"tuWeeks"), Calendar::WEEK_OF_YEAR, true);
-    MONTH_UNIT       = new TimeUnit(MONTH, MONTH_IN_MS, Cres::get()->getString(u"tuMonths"), Calendar::MONTH, false);
-    QUARTER_UNIT     = new TimeUnit(QUARTER, QUARTER_IN_MS, Cres::get()->getString(u"tuQuarters"), 0, true);
-    YEAR_UNIT        = new TimeUnit(YEAR, YEAR_IN_MS, Cres::get()->getString(u"tuYears"), Calendar::YEAR, false);*/
+    MILLISECOND_UNIT = new TimeUnit(MILLISECOND, 1, Cres::get()->getString("tuMilliseconds"), CALENDAR_MILLISECOND, false);
+    SECOND_UNIT      = new TimeUnit(SECOND, SECOND_IN_MS, Cres::get()->getString("tuSeconds"), CALENDAR_SECOND, false);
+    MINUTE_UNIT      = new TimeUnit(MINUTE, MINUTE_IN_MS, Cres::get()->getString("tuMinutes"), CALENDAR_MINUTE, false);
+    HOUR_UNIT        = new TimeUnit(HOUR, HOUR_IN_MS, Cres::get()->getString("tuHours"), CALENDAR_HOUR, false);
+    DAY_UNIT         = new TimeUnit(DAY, DAY_IN_MS, Cres::get()->getString("tuDays"), CALENDAR_DAY_OF_MONTH, false);
+    WEEK_UNIT        = new TimeUnit(WEEK, WEEK_IN_MS, Cres::get()->getString("tuWeeks"), CALENDAR_WEEK_OF_YEAR, true);
+    MONTH_UNIT       = new TimeUnit(MONTH, MONTH_IN_MS, Cres::get()->getString("tuMonths"), CALENDAR_MONTH, false);
+    QUARTER_UNIT     = new TimeUnit(QUARTER, QUARTER_IN_MS, Cres::get()->getString("tuQuarters"), CALENDAR_NULL, true);
+    YEAR_UNIT        = new TimeUnit(YEAR, YEAR_IN_MS, Cres::get()->getString("tuYears"), CALENDAR_YEAR, false);
+
+    SELECTION_VALUES.insert(std::make_pair(MILLISECOND, Cres::get()->getString("tuMilliseconds")));
+    SELECTION_VALUES.insert(std::make_pair(SECOND, Cres::get()->getString("tuSeconds")));
+    SELECTION_VALUES.insert(std::make_pair(MINUTE, Cres::get()->getString("tuMinutes")));
+    SELECTION_VALUES.insert(std::make_pair(HOUR, Cres::get()->getString("tuHours")));
+    SELECTION_VALUES.insert(std::make_pair(DAY, Cres::get()->getString("tuDays")));
+    SELECTION_VALUES.insert(std::make_pair(WEEK, Cres::get()->getString("tuWeeks")));
+    SELECTION_VALUES.insert(std::make_pair(MONTH, Cres::get()->getString("tuMonths")));
+    SELECTION_VALUES.insert(std::make_pair(QUARTER, Cres::get()->getString("tuQuarters")));
+    SELECTION_VALUES.insert(std::make_pair(YEAR, Cres::get()->getString("tuYears")));
+
+    UNITS.push_back(MILLISECOND_UNIT);
+    UNITS.push_back(SECOND_UNIT);
+    UNITS.push_back(MINUTE_UNIT);
+    UNITS.push_back(HOUR_UNIT);
+    UNITS.push_back(DAY_UNIT);
+    UNITS.push_back(WEEK_UNIT);
+    UNITS.push_back(MONTH_UNIT);
+    UNITS.push_back(QUARTER_UNIT);
+    UNITS.push_back(YEAR_UNIT);
+
+    NAMED_UNITS.insert(std::make_pair(NAME_MILLISECOND, MILLISECOND_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_MS, MILLISECOND_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_SECOND, SECOND_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_SEC, SECOND_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_S, SECOND_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_MINUTE, MINUTE_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_MIN, MINUTE_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_M, MINUTE_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_HOUR, HOUR_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_HR, HOUR_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_H, HOUR_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_DAY, DAY_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_D, DAY_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_WEEK, WEEK_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_W, WEEK_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_MONTH, MONTH_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_YEAR, YEAR_UNIT));
+    NAMED_UNITS.insert(std::make_pair(NAME_Y, YEAR_UNIT));
 }
 
-/*std::map<void*,std::string>* TimeHelper::getSelectionValues()
+TimeHelper::~TimeHelper()
 {
-  return &SELECTION_VALUES;
+    delete MILLISECOND_UNIT;
+    delete SECOND_UNIT;
+    delete MINUTE_UNIT;
+    delete HOUR_UNIT;
+    delete DAY_UNIT;
+    delete WEEK_UNIT;
+    delete MONTH_UNIT;
+    delete QUARTER_UNIT;
+    delete YEAR_UNIT;
 }
 
-std::std::list<std::string>* TimeHelper::getUnits()
+
+std::map<int,std::string> TimeHelper::getSelectionValues()
 {
-  return &UNITS;
+    return SELECTION_VALUES;
 }
 
-std::std::list<std::string>* TimeHelper::getReversedUnits()
+std::list<TimeUnit*> TimeHelper::getUnits()
 {
-  return &REVERSED_UNITS;
+    return UNITS;
 }
 
 std::string TimeHelper::getUnitDescription(int unit)
 {
-  return SELECTION_VALUES[(void*)unit];
+    std::map<int, std::string>::iterator it = SELECTION_VALUES.find(unit);
+    if (it == SELECTION_VALUES.end())
+    {
+        throw AggreGateException("Incorrect unit (TimeHelper::getUnitDescription)");
+    }
+    else
+    {
+        return SELECTION_VALUES[unit];
+    }
 }
 
 std::string TimeHelper::getUnitDescriptionPlural(int unit)
 {
-	return getTimeUnit(unit)->getDescription();
+    std::map<int, std::string>::iterator it = SELECTION_VALUES.find(unit);
+    if (it == SELECTION_VALUES.end())
+    {
+        throw AggreGateException("Incorrect unit  (TimeHelper::getUnitDescriptionPlural)");
+    }
+    else
+    {
+        return getTimeUnit(unit)->getDescription();
+    }
 }
 
 TimeUnit* TimeHelper::getTimeUnit(int unit)
 {
-/*
-	for (auto _i = UNITS_)->iterator(); _i->hasNext(); ) {
-		TimeUnit* tu = java_cast< TimeUnit* >(_i->next());
-		{
-			if(tu)->getUnit() == unit) {
-				return tu;
-			}
-		}
-	}
-	throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Unknown time unit: "_j)->append(unit)->toString());
- */
+    for (std::list<TimeUnit*>::iterator it = UNITS.begin(); it != UNITS.end(); ++it)
+    {
+        if ((*it)->getUnit() == unit)
+        {
+            return *it;
+        }
+    }
 
-/*  return 0;
- }
-
-TimeUnit* TimeHelper::getTimeUnit(std::string name)
-{
-/*
-	
-	auto unit = java_cast< TimeUnit* >(NAMED_UNITS_)->get(name));
-	if(unit != 0) {
-		return unit;
-	}
-	auto num = Util::convertToNumber(name, true, false);
-	return getTimeUnit(num)->intValue());
-	*/
-/*	  return 0;
+    throw AggreGateException("Incorrect unit description (TimeHelper::getUnitDescriptionPlural)");
+    return 0;
 }
 
-long TimeHelper::convertToMillis(long period, int unit)
+uint64_t TimeHelper::convertToMillis(uint64_t period, int unit)
 {
-	switch (unit) {
-	case MILLISECOND:
-		return period;
-	case SECOND:
-		return period * SECOND_IN_MS;
-	case MINUTE:
-		return period * MINUTE_IN_MS;
-	case HOUR:
-		return period * HOUR_IN_MS;
-	case DAY:
-		return period * DAY_IN_MS;
-	case WEEK:
-		return period * WEEK_IN_MS;
-	case MONTH:
-		return period * MONTH_IN_MS;
-	case QUARTER:
-		return period * QUARTER_IN_MS;
-	case YEAR:
-		return period * YEAR_IN_MS;
-   //	default:
-	  //	throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Unknown time unit: "_j)->append(unit)->toString());
-	}
-     return 0;
+    switch (unit)
+    {
+        case MILLISECOND:
+            return period;
+        case SECOND:
+            return period * SECOND_IN_MS;
+        case MINUTE:
+            return period * MINUTE_IN_MS;
+        case HOUR:
+            return period * HOUR_IN_MS;
+        case DAY:
+            return period * DAY_IN_MS;
+        case WEEK:
+            return period * WEEK_IN_MS;
+        case MONTH:
+            return period * MONTH_IN_MS;
+        case QUARTER:
+            return period * QUARTER_IN_MS;
+        case YEAR:
+            return period * YEAR_IN_MS;
+        default:
+            throw AggreGateException("Unknown time unit (TimeHelper::convertToMillis)");
+    }
+    return 0;
 }
-
-
-
-TimeHelper::TimeHelper(void)
-{
-    /*SELECTION_VALUES.insert(MILLISECOND, Cres::get()->getString(u"tuMillisecond"));
-	SELECTION_VALUES->put(SECOND, Cres::get()->getString(u"tuSecond"));
-	SELECTION_VALUES->put(MINUTE, Cres::get()->getString(u"tuMinute"));
-	SELECTION_VALUES->put(HOUR, Cres::get()->getString(u"tuHour"));
-	SELECTION_VALUES->put(DAY, Cres::get()->getString(u"tuDay"));
-	SELECTION_VALUES->put(WEEK, Cres::get()->getString(u"tuWeek"));
-	SELECTION_VALUES->put(MONTH, Cres::get()->getString(u"tuMonth"));
-	SELECTION_VALUES->put(QUARTER, Cres::get()->getString(u"tuQuarter"));
-	SELECTION_VALUES->put(YEAR, Cres::get()->getString(u"tuYear"));
-
-
-	UNITS->add(MILLISECOND_UNIT_));
-	UNITS->add(SECOND_UNIT_));
-	UNITS->add(MINUTE_UNIT_));
-	UNITS->add(HOUR_UNIT_));
-	UNITS->add(DAY_UNIT_));
-	UNITS->add(WEEK_UNIT_));
-	UNITS->add(MONTH_UNIT_));
-	UNITS->add(QUARTER_UNIT_));
-	UNITS->add(YEAR_UNIT_));
-
-
-	NAMED_UNITS->put(NAME_MILLISECOND_, MILLISECOND_UNIT_);
-	NAMED_UNITS->put(NAME_MS_, MILLISECOND_UNIT_);
-	NAMED_UNITS->put(NAME_SECOND_, SECOND_UNIT_);
-	NAMED_UNITS->put(NAME_SEC_, SECOND_UNIT_);
-	NAMED_UNITS->put(NAME_S_, SECOND_UNIT_);
-	NAMED_UNITS->put(NAME_MINUTE_, MINUTE_UNIT_);
-	NAMED_UNITS->put(NAME_MIN_, MINUTE_UNIT_);
-	NAMED_UNITS->put(NAME_M_, MINUTE_UNIT_);
-	NAMED_UNITS->put(NAME_HOUR_, HOUR_UNIT_);
-	NAMED_UNITS->put(NAME_HR_, HOUR_UNIT_);
-	NAMED_UNITS->put(NAME_H_, HOUR_UNIT_);
-	NAMED_UNITS->put(NAME_DAY_, DAY_UNIT_);
-	NAMED_UNITS->put(NAME_D_, DAY_UNIT_);
-	NAMED_UNITS->put(NAME_WEEK_, WEEK_UNIT_);
-	NAMED_UNITS->put(NAME_W_, WEEK_UNIT_);
-	NAMED_UNITS->put(NAME_MONTH_, MONTH_UNIT_);
-	NAMED_UNITS->put(NAME_YEAR_, YEAR_UNIT_);
-	NAMED_UNITS->put(NAME_Y_, YEAR_UNIT_);     */
-//}
-
 
 

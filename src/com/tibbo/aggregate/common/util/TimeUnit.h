@@ -1,19 +1,20 @@
 #pragma once
 
 #include <string>
+#include <stdint.h>
 
 class TimeUnit
 {
  private:
     int unit;
-    long length;
+    uint64_t length;
     std::string description;
     bool secondary;
     int calendarField;
 
  public:
     int getUnit();
-    long getLength();
+    uint64_t getLength();
     std::string getDescription();
     int getCalendarField();
     bool isSecondary();
@@ -21,5 +22,5 @@ class TimeUnit
     int hashCode();
     bool equals(void* obj);
 
-    TimeUnit(int unit, long length, std::string description, int calendarField, bool secondary);
+    TimeUnit(int unit, uint64_t length, std::string description, int calendarField, bool secondary);
 };

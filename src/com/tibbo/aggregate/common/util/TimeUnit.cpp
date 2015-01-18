@@ -1,6 +1,6 @@
 #include "util/TimeUnit.h"
 
-TimeUnit::TimeUnit(int unit, long length, std::string description, int calendarField, bool secondary)
+TimeUnit::TimeUnit(int unit, uint64_t length, std::string description, int calendarField, bool secondary)
 {
     this->unit = unit;
     this->length = length;
@@ -14,7 +14,7 @@ int TimeUnit::getUnit()
     return unit;
 }
 
-long TimeUnit::getLength()
+uint64_t TimeUnit::getLength()
 {
     return length;
 }

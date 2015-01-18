@@ -1,8 +1,7 @@
 #pragma once
 
-//#include <Cres.h"
 #include "util/TimeUnit.h"
-//#include <Util.h"
+#include "util/AgObject.h"
 #include <map>
 #include <list>
 #include <string>
@@ -10,18 +9,12 @@
 
 class TimeHelper
 {
- /*private:
-	std::map<void*,std::string> SELECTION_VALUES;
-
-	std::list<std::string> UNITS;
-	std::list<std::string> REVERSED_UNITS;
-
-    std::map<std::string, TimeUnit>  NAMED_UNITS;*/
 
 private:
     TimeHelper();
     TimeHelper(TimeHelper const&);
     void operator=(TimeHelper const&);
+    virtual ~TimeHelper();
 
     TimeUnit* MILLISECOND_UNIT;
     TimeUnit* SECOND_UNIT;
@@ -32,6 +25,12 @@ private:
     TimeUnit* MONTH_UNIT;
     TimeUnit* QUARTER_UNIT;
     TimeUnit* YEAR_UNIT;
+
+    std::map<int, std::string> SELECTION_VALUES;
+    std::list<TimeUnit*> UNITS;
+    std::map<std::string, TimeUnit*>  NAMED_UNITS;
+    // TODO: REVERSED_UNITS
+    //std::list<std::string> REVERSED_UNITS;
 
 public:
 
@@ -88,15 +87,14 @@ public:
         return instance;
     }
 
-    /*
+    std::map<int, std::string> getSelectionValues();
+    std::list<TimeUnit*> getUnits();
 
-	std::map<void*,std::string>* getSelectionValues();
-	std::list<std::string>* getUnits();
-        std::list<std::string>* getReversedUnits();
-	std::string getUnitDescription(int unit);
-	std::string getUnitDescriptionPlural(int unit);
-	TimeUnit* getTimeUnit(int unit);
-	TimeUnit* getTimeUnit(std::string name);
-	long convertToMillis(long period, int unit);
-    TimeHelper();*/
+    //TODO
+    //std::list<TimeUnit*> getReversedUnits();
+
+    std::string getUnitDescription(int unit);
+    std::string getUnitDescriptionPlural(int unit);
+    TimeUnit* getTimeUnit(int unit);
+    uint64_t convertToMillis(uint64_t period, int unit);
 };
