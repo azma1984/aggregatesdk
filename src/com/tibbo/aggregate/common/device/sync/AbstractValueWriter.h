@@ -1,41 +1,34 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/sync/AbstractValueWriter.java
-
-#pragma once
-
-#include <com/tibbo/aggregate/common/device/sync/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-#include <com/tibbo/aggregate/common/device/sync/ValueWriter.h"
+#ifndef AbstractValueWriterH
+#define AbstractValueWriterH
 
 
+#include "device/sync/ValueWriter.h"
+#include <string>
 
-class com::tibbo::aggregate::common::device::sync::AbstractValueWriter
-    
-    , public ValueWriter
+
+//Singleton               //todo - cannot instantiate abstract class in getInstance()
+class AbstractValueWriter //: public ValueWriter
 {
 
-public:
-    typedef void super;
+ private:
+	AbstractValueWriter();
+	AbstractValueWriter(const std::string & name);
+    ~AbstractValueWriter();
+    AbstractValueWriter(AbstractValueWriter const&);
+   void operator=(AbstractValueWriter const&);
+    std::string name;
 
-private:
-    const std::string & name;
-protected:
-    void ctor(const std::string & name);
-    void ctor();
-
-public:
-    const std::string & toString();
-
-    // Generated
-    AbstractValueWriter(const std::string & name);
-    AbstractValueWriter();
-protected:
-    AbstractValueWriter(const ::default_init_tag&);
-
-
-public:
+ public:
     
 
-private:
-    ::java::lang::Class* getClass0();
+	static AbstractValueWriter& getInstance()
+    {
+     static AbstractValueWriter instance;
+     return instance;
+    }
+    const std::string& toString();
+
+
 };
+
+#endif 
