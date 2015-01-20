@@ -1,6 +1,5 @@
-#include <util/Date.h>
-
-#include <util/String.h>
+#include "util/Date.h"
+#include "util/SString.h"
 
 Date::Date() {
 	std::time_t curTime = time(NULL);
@@ -68,8 +67,8 @@ void Date::setYear(unsigned year) {
 }
 
 std::string Date::toString() const {
-	std::string month = String::fromNumber(_month);
-	std::string day = String::fromNumber(_day);
+    std::string month = SString::fromNumber(_month);
+    std::string day = SString::fromNumber(_day);
 
 	if (month.size() == 1) {
 		month = "0" + month;
@@ -79,5 +78,5 @@ std::string Date::toString() const {
 		day = "0" + day;
 	}
 
-	return String::fromNumber(_year) + "-" + month + "-" + day;
+    return SString::fromNumber(_year) + "-" + month + "-" + day;
 }
