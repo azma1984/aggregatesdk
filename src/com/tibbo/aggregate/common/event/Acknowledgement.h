@@ -1,19 +1,17 @@
-#ifndef _Acknowledgement_H_
-#define _Acknowledgement_H_
+#pragma once
 
 #include <string>
 #include <boost/shared_ptr.hpp>
-#include <ctime>
 
 #include "util/Cloneable.h"
-//#include "datatable/TableFormat.h"
+#include "util/Date.h"
 #include "datatable/DataTableConversion.h"
 
 #include "datatable/converter/DefaultFormatConverter.h"
 
 class TableFormat;
 
-class Acknowledgement// : public Cloneable
+class Acknowledgement : public Cloneable
 {
 private:
     static const std::string FIELD_AUTHOR;
@@ -21,28 +19,22 @@ private:
     static const std::string FIELD_TEXT;
     static boost::shared_ptr<TableFormat> FORMAT;
     std::string author;
-    std::time_t time;
+    Date time;
     std::string text;
+
+    void initFormat();
 
 public:
     std::string getAuthor();
     std::string getText();
-    std::time_t getTime();
+    Date getTime();
     void setAuthor(const std::string& author);
     void setText(const std::string& text);
-    void setTime(std::time_t time);    
+    void setTime(Date time);
 	boost::shared_ptr<TableFormat> getFormat();
     
-	void Init();
-	static Class *class_()
-	{
-	 return 0;
-	}
-	virtual Acknowledgement *clone();
-
-	Acknowledgement(Acknowledgement &al);//Constructor copy
+    virtual Acknowledgement *clone() const;
 
     Acknowledgement();
-    Acknowledgement(const std::string& author, std::time_t time, const std::string& text);
+    Acknowledgement(const std::string& author, Date time, const std::string& text);
 };
-#endif  //_Acknowledgement_H_

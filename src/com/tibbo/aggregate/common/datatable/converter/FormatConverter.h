@@ -1,26 +1,22 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/FormatConverter.java
+#pragma once
+#include <string>
+#include <boost/shared_ptr.hpp>
+#include "util/AgObject.h"
 
-#ifndef FormatConverterH
-#define FormatConverterH
+class Class;
+class TableFormat;
+class FieldFormat;
+class DataRecord;
 
-
-class FormatConverter
+template <class T> class FormatConverter
 {
-	/*
-    ::java::lang::Class* getValueClass();
-    TableFormat* getFormat();
-    FieldFormat* createFieldFormat(const std::string & name);
-    void* instantiate(DataRecord* source);
-    void* clone(void* value, bool useConversion);
-    void* convertToTable(void* value);
-    void* convertToTable(void* value, TableFormat* format);
-    void* convertToBean(void* value, void* originalValue);
-
-
-public: 
-    void* clone();
-	*/
-
+public:
+    virtual boost::shared_ptr<Class> getValueClass() = 0;
+    virtual boost::shared_ptr<TableFormat> getFormat() = 0;
+    virtual boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name) = 0;
+    virtual boost::shared_ptr<AgObject> instantiate(boost::shared_ptr<DataRecord> source) = 0;
+    virtual boost::shared_ptr<T> clone(boost::shared_ptr<T> value, bool useConversion) = 0;
+    virtual boost::shared_ptr<AgObject> convertToTable(boost::shared_ptr<T> value) = 0;
+    virtual boost::shared_ptr<AgObject> convertToTable(boost::shared_ptr<T> value, boost::shared_ptr<TableFormat> format) = 0;
+    virtual boost::shared_ptr<T> convertToBean(boost::shared_ptr<AgObject> value, boost::shared_ptr<T> originalValue) = 0;
 };
-
-#endif 

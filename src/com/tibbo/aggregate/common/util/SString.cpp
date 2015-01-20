@@ -42,11 +42,11 @@ std::string SString::toLowerCase() const {
 	return tmp;
 }
 
-bool SString::beginsWith(const String & str) const {
+bool SString::beginsWith(const SString & str) const {
 	return (this->find(str) == 0);
 }
 
-bool SString::endsWith(const String & str) const {
+bool SString::endsWith(const SString & str) const {
 	if (size() < str.size()) {
 		return false;
 	} else {
@@ -76,7 +76,7 @@ bool SString::contains(char ch, bool caseSensitive) const {
 	return contains(str, caseSensitive);
 }
 
-void String::replace(const std::string & before, const std::string & after, bool caseSensitive) {
+void SString::replace(const std::string & before, const std::string & after, bool caseSensitive) {
 	//Copy this + before to tmp + before2
 	string tmp(c_str());
 	SString before2(before);
@@ -265,7 +265,7 @@ std::string SString::encodeUrl(const std::string & url) {
 	return newUrl;
 }
 
-StringList SString::split(const std::string & separator) const {
+/*StringList SString::split(const std::string & separator) const {
 	string str(c_str());
 
 	//Skip separator at beginning.
@@ -287,7 +287,7 @@ StringList SString::split(const std::string & separator) const {
 		pos = str.find_first_of(separator, lastPos);
 	}
 	return tokens;
-}
+}*/
 
 std::string SString::trim() {
 	string newstr;
