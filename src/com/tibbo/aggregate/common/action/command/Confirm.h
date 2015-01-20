@@ -25,7 +25,7 @@ public:
 	std::string getMessage();
 	int getOptionType();
 	int getMessageType();
-    void setMessage(std::string& message);
+    void setMessage(const std::string& message);
 	void setOptionType(int optionType);
 	void setMessageType(int messageType);
 

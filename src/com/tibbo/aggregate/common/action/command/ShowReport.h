@@ -1,5 +1,4 @@
-#ifndef _ShowReport_H_
-#define _ShowReport_H_
+#pragma once
 
 #include "action/GenericActionCommand.h"
 

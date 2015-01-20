@@ -24,29 +24,33 @@ class GenericActionCommand : public ActionCommand
     boost::shared_ptr<TableFormat> responseFormat;
 
 protected:
-    void ctor(const std::string& type, TableFormat* requestFormat, TableFormat* responseFormat);
+    void ctor(const std::string& type, boost::shared_ptr<TableFormat> requestFormat,
+              boost::shared_ptr<TableFormat> responseFormat);
     void ctor(const std::string& type, const std::string& title);
-    void ctor(const std::string& type, const std::string& title, DataTable* parameters, TableFormat* format);
-    void ctor(const std::string& requestId, const std::string& title, DataTable* parameters);
+    void ctor(const std::string& type, const std::string& title,
+              boost::shared_ptr<DataTable> parameters, boost::shared_ptr<TableFormat> format);
+    void ctor(const std::string& requestId, const std::string& title, boost::shared_ptr<DataTable> parameters);
 
 public:
     GenericActionCommand();
-    GenericActionCommand(const std::string& type, TableFormat* requestFormat, TableFormat* responseFormat);
+    GenericActionCommand(const std::string& type, boost::shared_ptr<TableFormat> requestFormat,
+                         boost::shared_ptr<TableFormat> responseFormat);
     GenericActionCommand(const std::string& type, const std::string& title);
-    GenericActionCommand(const std::string& type, const std::string& title, DataTable* parameters, TableFormat* format);
-    GenericActionCommand(const std::string& requestId, const std::string& title, DataTable* parameters);
+    GenericActionCommand(const std::string& type, const std::string& title,
+                         boost::shared_ptr<DataTable> parameters, boost::shared_ptr<TableFormat> format);
+    GenericActionCommand(const std::string& requestId, const std::string& title, boost::shared_ptr<DataTable> parameters);
 
     void setType(const std::string& type);
-    GenericActionResponse* createDefaultResponse();
-    void setParameters(DataTable* parameters);
+    boost::shared_ptr<GenericActionResponse> createDefaultResponse();
+    void setParameters(boost::shared_ptr<DataTable> parameters);
     void setTitle(const std::string& title);
     void setLast(bool last);    
-    void setRequestId(RequestIdentifier* requestId);
-    TableFormat* getResponseFormat();
+    void setRequestId(boost::shared_ptr<RequestIdentifier> requestId);
+    boost::shared_ptr<TableFormat> getResponseFormat();
     void setInteractive(bool interactive);
 
     std::string getType();
-    DataTable* getParameters();
+    boost::shared_ptr<DataTable> getParameters();
     std::string getTitle();
     bool isLast();
     virtual bool isBatchEntry();

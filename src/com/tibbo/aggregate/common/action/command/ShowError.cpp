@@ -1,10 +1,12 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/ShowError.java
-#include <com/tibbo/aggregate/common/action/command/ShowError.h"
+#include "action/command/ShowError.h"
 
+/*
 #include <com/tibbo/aggregate/common/action/ActionUtils.h"
 #include <com/tibbo/aggregate/common/datatable/DataRecord.h"
 #include <com/tibbo/aggregate/common/datatable/DataTable.h"
 #include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+*/
 /*
 //#include <java/io/PrintWriter.h"
 //#include <java/io/StringWriter.h"

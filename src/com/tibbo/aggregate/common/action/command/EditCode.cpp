@@ -4,173 +4,76 @@
 #include "datatable/DataTable.h"
 #include "datatable/TableFormat.h"
 
-/*
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
-*/
+const std::string EditCode::CF_CODE_ = "code";
+const std::string EditCode::CF_MODE_ = "mode";
+const std::string EditCode::RF_RESULT_ = "result";
+const std::string EditCode::RF_CODE_ = "code";
+
 
 EditCode::EditCode()
-    : GenericActionCommand(*static_cast< ::default_init_tag* >(0))
 {
-    
+    GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, CFT_EDIT_CODE(), RFT_EDIT_CODE());
 }
 
-com::tibbo::aggregate::common::action::command::EditCode::EditCode() 
-    : EditCode(*static_cast< ::default_init_tag* >(0))
+EditCode::EditCode(const std::string & title, const std::string & code, const std::string & mode)
 {
-    ctor();
-}
-
-com::tibbo::aggregate::common::action::command::EditCode::EditCode(const std::string & title, const std::string & code, const std::string & mode) 
-    : EditCode(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(title,code,mode);
-}
-
-com::tibbo::aggregate::common::action::command::EditCode::EditCode(const std::string & title, DataTable* parameters) 
-    : EditCode(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(title,parameters);
-}
-
-std::string& com::tibbo::aggregate::common::action::command::EditCode::CF_CODE()
-{
-    
-    return CF_CODE_;
-}
-std::string com::tibbo::aggregate::common::action::command::EditCode::CF_CODE_;
-
-std::string& com::tibbo::aggregate::common::action::command::EditCode::CF_MODE()
-{
-    
-    return CF_MODE_;
-}
-std::string com::tibbo::aggregate::common::action::command::EditCode::CF_MODE_;
-
-std::string& com::tibbo::aggregate::common::action::command::EditCode::RF_RESULT()
-{
-    
-    return RF_RESULT_;
-}
-std::string com::tibbo::aggregate::common::action::command::EditCode::RF_RESULT_;
-
-std::string& com::tibbo::aggregate::common::action::command::EditCode::RF_CODE()
-{
-    
-    return RF_CODE_;
-}
-std::string com::tibbo::aggregate::common::action::command::EditCode::RF_CODE_;
-
-DateTableFormat*& com::tibbo::aggregate::common::action::command::EditCode::CFT_EDIT_CODE()
-{
-    
-    return CFT_EDIT_CODE_;
-}
-DateTableFormat* com::tibbo::aggregate::common::action::command::EditCode::CFT_EDIT_CODE_;
-
-DateTableFormat*& com::tibbo::aggregate::common::action::command::EditCode::RFT_EDIT_CODE()
-{
-    
-    return RFT_EDIT_CODE_;
-}
-DateTableFormat* com::tibbo::aggregate::common::action::command::EditCode::RFT_EDIT_CODE_;
-
-void com::tibbo::aggregate::common::action::command::EditCode::ctor()
-{
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_TEXT(), CFT_EDIT_CODE_, RFT_EDIT_CODE_);
-}
-
-void com::tibbo::aggregate::common::action::command::EditCode::ctor(const std::string & title, const std::string & code, const std::string & mode)
-{
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_CODE(), title);
+    GenericActionCommand(ActionUtils::CMD_EDIT_CODE, title);
     this->code = code;
     this->mode = mode;
 }
 
-void com::tibbo::aggregate::common::action::command::EditCode::ctor(const std::string & title, DataTable* parameters)
+EditCode::EditCode(const std::string & title, boost::shared_ptr<DataTable> parameters)
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_CODE(), title, parameters, CFT_EDIT_CODE_);
+    GenericActionCommand(ActionUtils::CMD_EDIT_CODE, title, parameters, CFT_EDIT_CODE());
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::EditCode::constructParameters()
+boost::shared_ptr<TableFormat> EditCode::CFT_EDIT_CODE()
 {
-    return new DataTable(CFT_EDIT_CODE_, new voidArray({code), mode)}));
+    if (!CFT_EDIT_CODE_) {
+        CFT_EDIT_CODE_.reset(new TableFormat(1, 1));
+
+        CFT_EDIT_CODE_->addField( std::string("<").append(CF_CODE_).append("><S>") );
+        CFT_EDIT_CODE_->addField( std::string("<").append(CF_MODE_).append("><S><F=N>") );
+    }
+
+    return CFT_EDIT_CODE_;
 }
 
-std::string com::tibbo::aggregate::common::action::command::EditCode::getCode()
+boost::shared_ptr<TableFormat> EditCode::RFT_EDIT_CODE()
+{
+    if (!RFT_EDIT_CODE_) {
+        RFT_EDIT_CODE_.reset(new TableFormat(1, 1));
+
+        RFT_EDIT_CODE_->addField( std::string("<").append(RF_RESULT_).append("><S>") );
+        RFT_EDIT_CODE_->addField( std::string("<").append(RF_CODE_).append("><S><F=N>") );
+    }
+
+    return RFT_EDIT_CODE_;
+}
+
+
+
+boost::shared_ptr<DataTable> EditCode::constructParameters()
+{
+    return boost::shared_ptr<DataTable>(new DataTable(CFT_EDIT_CODE(), code, mode));
+}
+
+std::string EditCode::getCode()
 {
     return code;
 }
 
-void com::tibbo::aggregate::common::action::command::EditCode::setCode(const std::string & code)
+void EditCode::setCode(const std::string & code)
 {
     this->code = code;
 }
 
-std::string com::tibbo::aggregate::common::action::command::EditCode::getMode()
+std::string EditCode::getMode()
 {
     return mode;
 }
 
-void com::tibbo::aggregate::common::action::command::EditCode::setMode(const std::string & mode)
+void EditCode::setMode(const std::string & mode)
 {
     this->mode = mode;
 }
-
-
-
-java::lang::Class* com::tibbo::aggregate::common::action::command::EditCode::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.EditCode", 50);
-    return c;
-}
-
-void com::tibbo::aggregate::common::action::command::EditCode::clinit()
-{
-struct string_init_ {
-    string_init_() {
-    CF_CODE_ = u"code"_j;
-    CF_MODE_ = u"mode"_j;
-    RF_RESULT_ = u"result"_j;
-    RF_CODE_ = u"code"_j;
-    }
-};
-
-    static string_init_ string_init_instance;
-
-    super::
-    static bool in_cl_init = false;
-struct clinit_ {
-    clinit_() {
-        in_cl_init = true;
-        CFT_EDIT_CODE_ = new TableFormat(int(1), int(1));
-        {
-            CFT_EDIT_CODE_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_CODE_)
-                ->append(u"><S>"_j)->toString());
-            CFT_EDIT_CODE_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_MODE_)
-                ->append(u"><S><F=N>"_j)->toString());
-        }
-        RFT_EDIT_CODE_ = new TableFormat(int(1), int(1));
-        {
-            RFT_EDIT_CODE_)->addField(std::stringBuilder().append(u"<"_j)->append(RF_RESULT_)
-                ->append(u"><S>"_j)->toString());
-            RFT_EDIT_CODE_)->addField(std::stringBuilder().append(u"<"_j)->append(RF_CODE_)
-                ->append(u"><S><F=N>"_j)->toString());
-        }
-    }
-};
-
-    if(!in_cl_init) {
-        static clinit_ clinit_instance;
-    }
-}
-
-java::lang::Class* com::tibbo::aggregate::common::action::command::EditCode::getClass0()
-{
-    return class_();
-}
-

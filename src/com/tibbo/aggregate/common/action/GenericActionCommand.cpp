@@ -7,8 +7,11 @@ GenericActionCommand::GenericActionCommand()
     init();
 }
 
-GenericActionCommand::GenericActionCommand(const std::string& type, TableFormat* requestFormat, TableFormat* responseFormat)
-{
+GenericActionCommand::GenericActionCommand(
+    const std::string& type,
+    boost::shared_ptr<TableFormat> requestFormat,
+    boost::shared_ptr<TableFormat> responseFormat
+) {
     ctor(type,requestFormat,responseFormat);
 }
 
@@ -17,13 +20,20 @@ GenericActionCommand::GenericActionCommand(const std::string& type, const std::s
     ctor(type,title);
 }
 
-GenericActionCommand::GenericActionCommand(const std::string& type, const std::string& title, DataTable* parameters, TableFormat* format)
-{
+GenericActionCommand::GenericActionCommand(
+    const std::string& type,
+    const std::string& title,
+    boost::shared_ptr<DataTable> parameters,
+    boost::shared_ptr<TableFormat> format
+) {
     ctor(type,title,parameters,format);
 }
 
-GenericActionCommand::GenericActionCommand(const std::string& requestId, const std::string& title, DataTable* parameters)
-{
+GenericActionCommand::GenericActionCommand(
+    const std::string& requestId,
+    const std::string& title,
+    boost::shared_ptr<DataTable> parameters
+) {
     ctor(requestId,title,parameters);
 }
 
@@ -34,8 +44,11 @@ void GenericActionCommand::init()
     batchEntry = false;
 }
 
-void GenericActionCommand::ctor(const std::string& type, TableFormat* requestFormat, TableFormat* responseFormat)
-{
+void GenericActionCommand::ctor(
+    const std::string& type,
+    boost::shared_ptr<TableFormat> requestFormat,
+    boost::shared_ptr<TableFormat> responseFormat
+) {
     ctor();
     init();
     *(this->responseFormat) = *responseFormat;
@@ -51,8 +64,12 @@ void GenericActionCommand::ctor(const std::string& type, const std::string& titl
     this->title = title;
 }
 
-void GenericActionCommand::ctor(const std::string& type, const std::string& title, DataTable* parameters, TableFormat* format)
-{
+void GenericActionCommand::ctor(
+    const std::string& type,
+    const std::string& title,
+    boost::shared_ptr<DataTable> parameters,
+    boost::shared_ptr<TableFormat> format
+) {
     ctor(type, title);
     try {
         DataTableConversion::populateBeanFromRecord(this, parameters->rec(), format, true);
@@ -61,7 +78,7 @@ void GenericActionCommand::ctor(const std::string& type, const std::string& titl
     }
 }
 
-void GenericActionCommand::ctor(const std::string & requestId, const std::string & title, DataTable* parameters)
+void GenericActionCommand::ctor(const std::string & requestId, const std::string & title, boost::shared_ptr<DataTable> parameters)
 {
     ctor(requestId, title);
     setParameters(parameters);
@@ -78,7 +95,7 @@ void GenericActionCommand::setType(const std::string &type)
     this->type = type;
 }
 
-GenericActionResponse* GenericActionCommand::createDefaultResponse()
+boost::shared_ptr<GenericActionResponse> GenericActionCommand::createDefaultResponse()
 {    
     TableFormat* format = NULL;
 
@@ -91,7 +108,7 @@ GenericActionResponse* GenericActionCommand::createDefaultResponse()
     return new GenericActionResponse(responseTable);
 }
 
-void GenericActionCommand::setParameters(DataTable* parameters)
+void GenericActionCommand::setParameters(boost::shared_ptr<DataTable> parameters)
 {
     *this->parameters = *parameters;
 }
@@ -111,7 +128,7 @@ void GenericActionCommand::setBatchEntry(bool batchEntry)
     this->batchEntry = batchEntry;
 }
 
-void GenericActionCommand::setRequestId(RequestIdentifier* requestId)
+void GenericActionCommand::setRequestId(boost::shared_ptr<RequestIdentifier> requestId)
 {
     this->requestId = requestId;
 }
@@ -121,7 +138,7 @@ std::string GenericActionCommand::getType()
     return type;
 }
 
-DataTable* GenericActionCommand::getParameters()
+boost::shared_ptr<DataTable> GenericActionCommand::getParameters()
 {
     return parameters != 0 ? parameters : constructParameters();
 }
@@ -156,7 +173,7 @@ bool GenericActionCommand::isResponseValid(ActionResponse* actionRequest)
     return true;
 }
 
-TableFormat* GenericActionCommand::getResponseFormat()
+boost::shared_ptr<TableFormat> GenericActionCommand::getResponseFormat()
 {
     return responseFormat;
 }
