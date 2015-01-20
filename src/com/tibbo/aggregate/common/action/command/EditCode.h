@@ -1,28 +1,25 @@
-#ifndef _EDIT_CODE_H_
-#define _EDIT_CODE_H_
+#pragma once
 
 #include "action/GenericActionCommand.h"
 #include <string>
-
+#include <boost/shared_ptr.hpp>
 
 class EditCode : public GenericActionCommand
 {
-private:
+private:    
+    static boost::shared_ptr<TableFormat> CFT_EDIT_CODE_;
+    static boost::shared_ptr<TableFormat> RFT_EDIT_CODE_;
+    std::string code;
+    std::string mode;
+
+public:
     static const std::string CF_CODE_;
     static const std::string CF_MODE_;
     static const std::string RF_RESULT_;
     static const std::string RF_CODE_;
-    static TableFormat* CFT_EDIT_CODE_;
-    static TableFormat* RFT_EDIT_CODE_;
-    std::string code;
-    std::string mode;
-protected:
-    void ctor();
-    void ctor(const std::string& title, const std::string& code, const std::string& mode);
-    void ctor(const std::string& title, DataTable* parameters);
 
 public: /* protected */
-    DataTable* constructParameters();
+    boost::shared_ptr<DataTable> constructParameters();
 
 public:
     std::string getCode();
@@ -33,22 +30,9 @@ public:
     // Generated
     EditCode();
     EditCode(const std::string & title, const std::string & code, const std::string & mode);
-    EditCode(const std::string & title, DataTable* parameters);
-protected:
-    EditCode(const ::default_init_tag&);
-
+    EditCode(const std::string & title, boost::shared_ptr<DataTable> parameters);
 
 public:
-    
-    static void 
-    static const std::string& CF_CODE();
-    static const std::string& CF_MODE();
-    static const std::string& RF_RESULT();
-    static const std::string& RF_CODE();
-    static TableFormat*& CFT_EDIT_CODE();
-    static TableFormat*& RFT_EDIT_CODE();
-
-private:
-    ::java::lang::Class* getClass0();
+    static boost::shared_ptr<TableFormat> CFT_EDIT_CODE();
+    static boost::shared_ptr<TableFormat> RFT_EDIT_CODE();
 };
-#endif  //_EDIT_CODE_H_

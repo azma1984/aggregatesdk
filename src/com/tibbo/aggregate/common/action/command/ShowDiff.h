@@ -1,5 +1,4 @@
-#ifndef _ShowDiff_H_
-#define _ShowDiff_H_
+#pragma once
 
 #include <boost/shared_ptr.hpp>
 #include "action/GenericActionCommand.h"
@@ -36,4 +35,3 @@ public:
     ShowDiff(const std::string& title, DataTable* parameters);
 
 };
-#endif  //_ShowDiff_H_

@@ -4,7 +4,7 @@
 #define ActionResponseH
 
 #include "RequestIdentifier.h"
-#include "Interface.h"
+#include "util/Interface.h"
 
 class ActionResponse : public Interface
 {

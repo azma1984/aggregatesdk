@@ -1,6 +1,6 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/ShowSystemTree.java
-#include <com/tibbo/aggregate/common/action/command/ShowSystemTree.h"
-
+#include "action/command/ShowSystemTree.h"
+/*
 #include <com/tibbo/aggregate/common/Cres.h"
 #include <com/tibbo/aggregate/common/action/ActionUtils.h"
 #include <com/tibbo/aggregate/common/context/Context.h"
@@ -11,6 +11,8 @@
 #include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
 #include <com/tibbo/aggregate/common/util/DashboardProperties.h"
 #include <com/tibbo/aggregate/common/util/WindowLocation.h"
+*/
+
 /*
 //#include <java/io/Serializable.h"
 
