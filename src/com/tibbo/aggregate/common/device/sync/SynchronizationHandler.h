@@ -1,46 +1,56 @@
-#pragma once
+#ifndef SynchronizationHandlerH
+#define SynchronizationHandlerH
 
+#include "Cres.h"
+#include "context/VariableDefinition.h"
+//#include "context/VariableStatus.h"
+//#include "device/DeviceContext.h"
+//#include "device/DeviceDriver.h"
+//#include "device/DeviceSettingStatus.h"
+//#include "device/sync/SettingSynchronizationOptions.h"
 
+//todo Class stub
 class SynchronizationHandler
 {
-private:
-    SettingSynchronizationOptions* synchronizationOptions;
-    ::com::tibbo::aggregate::common::device::DeviceContext* deviceContext;
-    const std::string & variable;
-    ::com::tibbo::aggregate::common::context::VariableStatus* customStatus;
+ private:
+//    SettingSynchronizationOptions* synchronizationOptions;
+//    DeviceContext* deviceContext;
+//    const std::string & variable;
+//    VariableStatus* customStatus;
     bool synchronizationEnabled;
-protected:
-    void ctor();
 
-public:
-    void initialize(::com::tibbo::aggregate::common::device::DeviceContext* deviceContext, const std::string & variable, SettingSynchronizationOptions* synchronizationOptions, bool check) /* throws(ContextException) */;
-    void deinitialize();
-    void startSynchronization() /* throws(DeviceException, ContextException) */;
-    bool isSynchronizationEnabled();
-
-public: /* protected */
-    void setSynchronizationEnabled(bool synchronizationEnabled);
-
-public:
-    DataTable* readFromCache(::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request) /* throws(ContextException) */;
-    void writeToCache(::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* value) /* throws(ContextException) */;
-    ValueWriter* createServerWriter();
-    ValueReader* createServerReader();
-    ::java::util::Date* getServerModificationTime() /* throws(ContextException) */;
-    ::java::util::Date* getDeviceModificationTime() /* throws(ContextException, DeviceException, DisconnectionException) */;
-    bool isUpdatedOnTheServer(::com::tibbo::aggregate::common::context::CallerController* caller) /* throws(ContextException) */;
-    int getDirectionOverride();
-    ::com::tibbo::aggregate::common::context::VariableDefinition* getPersistentDefinition(::com::tibbo::aggregate::common::context::VariableDefinition* vd);
-    SettingSynchronizationOptions* getSynchronizationOptions();
-
-public: /* protected */
-    ::com::tibbo::aggregate::common::device::DeviceContext* getDeviceContext();
-    const std::string & getVariable();
-
-public:
-    ::com::tibbo::aggregate::common::context::VariableStatus* getCustomStatus();
-    void setCustomStatus(::com::tibbo::aggregate::common::context::VariableStatus* customStatus);
-
-    // Generated
+//public:
+//    void initialize(DeviceContext* deviceContext, const std::string & variable, SettingSynchronizationOptions* synchronizationOptions, bool check);
+//    void deinitialize();
+//    void startSynchronization();
+//    bool isSynchronizationEnabled();
+//
+//public: 
+//    void setSynchronizationEnabled(bool synchronizationEnabled);
+//
+//public:
+//    DataTable* readFromCache(CallerController* caller, RequestController* request);
+//    void writeToCache(CallerController* caller, RequestController* request, DataTable* value);
+//    ValueWriter* createServerWriter();
+//    ValueReader* createServerReader();
+//    Date* getServerModificationTime();
+//    Date* getDeviceModificationTime();
+//    bool isUpdatedOnTheServer(CallerController* caller);
+//    int getDirectionOverride();
+//    VariableDefinition* getPersistentDefinition(VariableDefinition* vd);
+//    SettingSynchronizationOptions* getSynchronizationOptions();
+//
+//public: 
+//    DeviceContext* getDeviceContext();
+//    const std::string & getVariable();
+//
+//public:
+//    VariableStatus* getCustomStatus();
+//    void setCustomStatus(VariableStatus* customStatus);
+//
+//
     SynchronizationHandler();
 };
+
+
+#endif 

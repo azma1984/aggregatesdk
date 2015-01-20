@@ -1,67 +1,101 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/AbstractFormatConverter.java
-
 #pragma once
 
+#include <boost/shared_ptr.hpp>
 #include "datatable/converter/FormatConverter.h"
+#include "datatable/DataTableConversion.h"
+#include "datatable/DataRecord.h"
+#include "util/Class.h"
 
 
-
-class AbstractFormatConverter : public FormatConverter
+template <class T> class AbstractFormatConverter : public FormatConverter<T>
 {
 
-//public:
-//    typedef void super;
+public:
+    static const std::string VF_IS_NULL;
 
-//private:
-//    static const std::string VF_IS_NULL_;
-//    static ::java::util::LinkedHashSet* FIELDS_TO_SKIP_;
+    /*static boost::shared_ptr<TableFormat> deriveNullable(boost::shared_ptr<TableFormat> format)
+    {
+        //boost::shared_ptr<TableFormat> format = format->clone();
+    }*/
 
-//public:
-//    static TableFormat* deriveNullable(TableFormat* format);
-//    static void addFiledToNullableFormat(TableFormat* format, FieldFormat* field);
-//    static void removeFiledFromNullableFormat(TableFormat* format, const std::string & fieldName);
+private:
+    boost::shared_ptr<Class> valueClass;
+    boost::shared_ptr<TableFormat> format;
+    static std::list<std::string> FIELDS_TO_SKIP;
+    static bool bInit_FIELDS_TO_SKIP;
 
-//private:
-//    static void addDisabledBinding(TableFormat* format, FieldFormat* field);
-//    ::java::lang::Class* valueClass;
-//    TableFormat* format;
-//protected:
-//    void ctor(::java::lang::Class* valueClass, TableFormat* format);
-//    void ctor(::java::lang::Class* valueClass);
+    static void init()
+    {
+        if (!bInit_FIELDS_TO_SKIP)
+        {
+            FIELDS_TO_SKIP.push_back(VF_IS_NULL);
+        }
+    }
 
-//public:
-//    ::java::lang::Class* getValueClass();
-//    void setValueClass(::java::lang::Class* valueClass);
-//    TableFormat* getFormat();
-//    FieldFormat* createFieldFormat(const std::string & name);
-//    void* instantiate(DataRecord* source) /* throws(InstantiationException) */;
-//    void* clone(void* value, bool useConversion);
-//    void* convertToTable(void* value);
+public:
+    AbstractFormatConverter(boost::shared_ptr<Class> valueClass, boost::shared_ptr<TableFormat> format)
+    {
+        this->valueClass = valueClass;
+        this->format = format;
+    }
 
-//public: /* protected */
-//    static void* simpleToTable(void* value, TableFormat* format);
+     AbstractFormatConverter(boost::shared_ptr<Class> valueClass)
+     {
+         this->valueClass = valueClass;
+     }
 
-//    // Generated
+     virtual boost::shared_ptr<Class> getValueClass()
+     {
+         return valueClass;
+     }
 
-//public:
-//    AbstractFormatConverter(::java::lang::Class* valueClass, TableFormat* format);
-//    AbstractFormatConverter(::java::lang::Class* valueClass);
-//protected:
-//    AbstractFormatConverter(const ::default_init_tag&);
+     void setValueClass(boost::shared_ptr<Class> valueClass)
+     {
+         this->valueClass = valueClass;
+     }
 
 
-//public:
-    
-//    static void
+     virtual boost::shared_ptr<TableFormat> getFormat()
+     {
+         return format;
+     }
 
-//public: /* protected */
-//    void* clone();
+     virtual boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name)
+     {
+         return DataTableConversion::createTableField(name, format);
+     }
 
-//public:
-//    void* convertToTable(void* value, TableFormat* format);
-//    static const std::string& VF_IS_NULL();
-//    static ::java::util::LinkedHashSet*& FIELDS_TO_SKIP();
+     virtual boost::shared_ptr<AgObject> instantiate(boost::shared_ptr<DataRecord> source)
+     {
+         boost::shared_ptr<DataRecord> dataRecord = convertToBean(source->wrap(), NULL);
+         return dataRecord;
+     }
 
-//private:
-//    ::java::lang::Class* getClass0();
+     virtual boost::shared_ptr<T> clone(boost::shared_ptr<T> value, bool useConversion)
+     {
+         if (useConversion)
+         {
+            boost::shared_ptr<AgObject> fieldValue = convertToTable(value);
+            return convertToBean(fieldValue, NULL);
+         }
+         else
+         {
+            return NULL;
+         }
+     }
+
+     virtual boost::shared_ptr<AgObject> convertToTable(boost::shared_ptr<T> value)
+     {
+          return convertToTable(value, NULL);
+     }
+
+protected:
+     static boost::shared_ptr<AgObject> simpleToTable(boost::shared_ptr<AgObject> value, boost::shared_ptr<TableFormat> format)
+     {
+         return DataTableConversion::beanToRecord(value, format, tru, false, FIELDS_TO_SKIP).wrap();
+     }
 };
+
+template<class T> const std::string AbstractFormatConverter<T>::VF_IS_NULL = "isNull";
+template<class T> bool AbstractFormatConverter<T>::bInit_FIELDS_TO_SKIP = false;
+template<class T> std::list<std::string> AbstractFormatConverter<T>::FIELDS_TO_SKIP;

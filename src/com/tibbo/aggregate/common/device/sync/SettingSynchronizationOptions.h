@@ -1,78 +1,59 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/sync/SettingSynchronizationOptions.java
+#ifndef SettingSynchronizationOptionsH
+#define SettingSynchronizationOptionsH
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/device/sync/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Cloneable.h"
+//#include "device/DeviceContext.h"
+//#include "device/sync/SynchronizationHandler.h"
+#include "expression/Expression.h"
+#include "util/Cloneable.h"
+#include <string>
 
 
-
-class com::tibbo::aggregate::common::device::sync::SettingSynchronizationOptions
-    
-    , public ::java::lang::Cloneable
+//todo Class stub
+class SettingSynchronizationOptions : public Cloneable
 {
-
-public:
-    typedef void super;
 
 private:
     int mode;
-    ::java::lang::Long* updateHistoryStorageTime;
-    ::java::lang::Long* syncPeriod;
+    long  updateHistoryStorageTime;
+    long  syncPeriod;
     int historyRate;
-    const std::string & filter;
-    const std::string & master;
-    const std::string & condition;
-    ::com::tibbo::aggregate::common::expression::Expression* filterExpression;
-    ::com::tibbo::aggregate::common::expression::Expression* conditionExpression;
-    SynchronizationHandler* synchronizationHandler;
-    int synchronizationsCounter;
-protected:
-    void ctor();
-    void ctor(::java::lang::Long* syncPeriod);
-    void ctor(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod);
-    void ctor(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod, int historyRate);
-
-public:
-    int getMode();
-    void setMode(int mode);
-    ::java::lang::Long* getSyncPeriod();
-    void setSyncPeriod(::java::lang::Long* syncPeriod);
-    const std::string & getMaster();
-    void setMaster(const std::string & master);
-    ::java::lang::Long* getUpdateHistoryStorageTime();
-    void setUpdateHistoryStorageTime(::java::lang::Long* updateHistoryStorageTime);
-    int getHistoryRate();
-    void setHistoryRate(int historyRate);
-    const std::string & getFilter();
-    ::com::tibbo::aggregate::common::expression::Expression* getFilterExpression();
-    void setFilter(const std::string & filter);
-    const std::string & getCondition();
-    ::com::tibbo::aggregate::common::expression::Expression* getConditionExpression();
-    void setCondition(const std::string & condition);
-    SynchronizationHandler* getSynchronizationHandler();
-    void setSynchronizationHandler(SynchronizationHandler* synchronizationHandler);
-    int getSynchronizationsCounter();
-    void incrementSynchronizationsCounter();
-    SettingSynchronizationOptions* clone();
-
-    // Generated
-    SettingSynchronizationOptions();
-    SettingSynchronizationOptions(::java::lang::Long* syncPeriod);
-    SettingSynchronizationOptions(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod);
-    SettingSynchronizationOptions(::java::lang::Long* updateHistoryStorageTime, ::java::lang::Long* syncPeriod, int historyRate);
-protected:
-    SettingSynchronizationOptions(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+    std::string filter;
+    std::string master;
+    std::string condition;
+    Expression* filterExpression;
+    Expression* conditionExpression;
+  //  SynchronizationHandler* synchronizationHandler;
+//    int synchronizationsCounter;
+//
+//
+//public:
+//    int getMode();
+//    void setMode(int mode);
+//    long  getSyncPeriod();
+//    void setSyncPeriod(long  syncPeriod);
+//    const std::string & getMaster();
+//    void setMaster(const std::string & master);
+//    long  getUpdateHistoryStorageTime();
+//    void setUpdateHistoryStorageTime(long  updateHistoryStorageTime);
+//    int getHistoryRate();
+//    void setHistoryRate(int historyRate);
+//    const std::string & getFilter();
+//   // Expression* getFilterExpression();
+//    void setFilter(const std::string & filter);
+//    const std::string & getCondition();
+//  //  Expression* getConditionExpression();
+//    void setCondition(const std::string & condition);
+//  //  SynchronizationHandler* getSynchronizationHandler();
+// //   void setSynchronizationHandler(SynchronizationHandler* synchronizationHandler);
+//    int getSynchronizationsCounter();
+//    void incrementSynchronizationsCounter();
+//  //  virtual SettingSynchronizationOptions* clone();
+//
+//    SettingSynchronizationOptions();
+//    SettingSynchronizationOptions(long  syncPeriod);
+//    SettingSynchronizationOptions(long  updateHistoryStorageTime, long  syncPeriod);
+//    SettingSynchronizationOptions(long  updateHistoryStorageTime, long  syncPeriod, int historyRate);
 };
+
+
+#endif 
