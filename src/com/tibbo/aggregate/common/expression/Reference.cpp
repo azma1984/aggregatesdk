@@ -76,7 +76,7 @@ Reference(const std::string & context, const std::string & function, voidArray* 
 
 void init()
 {
-    entityType = ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_VARIABLE;
+    entityType = ContextUtils::ENTITY_VARIABLE;
     parameters = new ::java::util::LinkedList();
 }
 
@@ -202,7 +202,7 @@ void ctor(const std::string & context, const std::string & function, voidArray* 
     init();
     this->context = context;
     this->entity = function;
-    this->entityType = ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_FUNCTION;
+    this->entityType = ContextUtils::ENTITY_FUNCTION;
     ::java::util::Collections::addAll(java_cast< std::list  >(this->parameters), parameters);
 }
 
@@ -223,19 +223,19 @@ void parse(const std::string & source)
         isFunction = true;
         auto paramsSrc = src)->substring(paramsBegin + int(1), paramsEnd);
         parameters = ExpressionUtils::getFunctionParameters(paramsSrc, true);
-        entityType = ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_FUNCTION;
+        entityType = ContextUtils::ENTITY_FUNCTION;
         src = std::stringBuilder().append(src)->substring(0, paramsBegin))->append(src)->substring(paramsEnd + int(1)))->toString();
     } else {
         auto eventSignPos = src)->lastIndexOf(static_cast< int >(EVENT_SIGN));
         if(eventSignPos != -int(1)) {
             isEvent = true;
-            entityType = ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_EVENT;
+            entityType = ContextUtils::ENTITY_EVENT;
             src = std::stringBuilder().append(src)->substring(0, eventSignPos))->append(src)->substring(eventSignPos + int(1)))->toString();
         } else {
             auto actionSignPos = src)->lastIndexOf(static_cast< int >(ACTION_SIGN));
             if(actionSignPos != -int(1)) {
                 isAction = true;
-                entityType = ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_ACTION;
+                entityType = ContextUtils::ENTITY_ACTION;
                 src = std::stringBuilder().append(src)->substring(0, actionSignPos))->append(src)->substring(actionSignPos + int(1)))->toString();
             }
         }
@@ -307,7 +307,7 @@ std::string getField()
     return field;
 }
 
-java::util::List* getParameters()
+std::list  getParameters()
 {
     return parameters;
 }
@@ -353,18 +353,18 @@ std::string createImage()
     }
     if(entity != 0) {
         sb)->append(entity);
-        if(entityType == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_FUNCTION) {
+        if(entityType == ContextUtils::ENTITY_FUNCTION) {
             sb)->append(PARAMS_BEGIN);
             sb)->append(ExpressionUtils::getFunctionParameters(parameters));
             sb)->append(PARAMS_END);
         }
-        if(entityType == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_EVENT) {
+        if(entityType == ContextUtils::ENTITY_EVENT) {
             sb)->append(EVENT_SIGN);
         }
-        if(entityType == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_ACTION) {
+        if(entityType == ContextUtils::ENTITY_ACTION) {
             sb)->append(ACTION_SIGN);
         }
-        if(field != 0 || (context == 0 && entityType == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_VARIABLE)) {
+        if(field != 0 || (context == 0 && entityType == ContextUtils::ENTITY_VARIABLE)) {
             sb)->append(FIELD_BEGIN);
         }
     }
@@ -447,7 +447,7 @@ void setServer(const std::string & server)
     image;
 }
 
-com::tibbo::aggregate::common::expression::Reference* clone()
+Reference* clone()
 {
     try {
         return java_cast< Reference* >(super::clone());

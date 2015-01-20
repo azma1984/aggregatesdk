@@ -43,7 +43,7 @@ com::tibbo::aggregate::common::action::command::ShowEventLog::ShowEventLog()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowEventLog::ShowEventLog(const std::string & title, ::com::tibbo::aggregate::common::context::EntityList* eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard) 
+com::tibbo::aggregate::common::action::command::ShowEventLog::ShowEventLog(const std::string & title, EntityList* eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard) 
     : ShowEventLog(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,eventList,showRealtime,showHistory,preloadHistory,showContexts,showNames,showLevels,showAcknowledgements,showEnrichments,customListenerCode,location,dashboard);
@@ -63,7 +63,7 @@ com::tibbo::aggregate::common::action::command::ShowEventLog::ShowEventLog(const
 
 void com::tibbo::aggregate::common::action::command::ShowEventLog::init()
 {
-    events = new ::com::tibbo::aggregate::common::context::EntityList();
+    events = new EntityList();
 }
 
 std::string& com::tibbo::aggregate::common::action::command::ShowEventLog::CF_EVENT_FILTER()
@@ -178,19 +178,19 @@ std::string& com::tibbo::aggregate::common::action::command::ShowEventLog::RF_LI
 }
 std::string com::tibbo::aggregate::common::action::command::ShowEventLog::RF_LISTENER_CODE_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::ShowEventLog::CFT_SHOW_EVENT_LOG()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowEventLog::CFT_SHOW_EVENT_LOG()
 {
     
     return CFT_SHOW_EVENT_LOG_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::ShowEventLog::CFT_SHOW_EVENT_LOG_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::ShowEventLog::CFT_SHOW_EVENT_LOG_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::ShowEventLog::RFT_SHOW_EVENT_LOG()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowEventLog::RFT_SHOW_EVENT_LOG()
 {
     
     return RFT_SHOW_EVENT_LOG_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::ShowEventLog::RFT_SHOW_EVENT_LOG_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::ShowEventLog::RFT_SHOW_EVENT_LOG_;
 
 void com::tibbo::aggregate::common::action::command::ShowEventLog::ctor()
 {
@@ -198,7 +198,7 @@ void com::tibbo::aggregate::common::action::command::ShowEventLog::ctor()
     init();
 }
 
-void com::tibbo::aggregate::common::action::command::ShowEventLog::ctor(const std::string & title, ::com::tibbo::aggregate::common::context::EntityList* eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
+void com::tibbo::aggregate::common::action::command::ShowEventLog::ctor(const std::string & title, EntityList* eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_EVENT_LOG(), title);
     init();
@@ -231,10 +231,10 @@ void com::tibbo::aggregate::common::action::command::ShowEventLog::ctor(const st
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_EVENT_LOG(), title, parameters, CFT_SHOW_EVENT_LOG_);
     init();
-    events = new ::com::tibbo::aggregate::common::context::EntityList(parameters)->rec())->getDataTable(CF_EVENT_LIST_));
+    events = new EntityList(parameters)->rec())->getDataTable(CF_EVENT_LIST_));
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowEventLog::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::ShowEventLog::constructParameters()
 {
     return new DataTable(ShowEventLog::CFT_SHOW_EVENT_LOG_, new voidArray({eventFilter), events)->toDataTable()), ::java::lang::Boolean::valueOf(showRealtime)), ::java::lang::Boolean::valueOf(showHistory)), ::java::lang::Boolean::valueOf(preloadHistory)), ::java::lang::Boolean::valueOf(showContexts)), ::java::lang::Boolean::valueOf(showNames)), ::java::lang::Boolean::valueOf(showLevels)), ::java::lang::Boolean::valueOf(showData)), ::java::lang::Boolean::valueOf(showAcknowledgements)), ::java::lang::Boolean::valueOf(showEnrichments)), filterParameters), customListenerCode), location != 0 ? location)->toDataTable()) : 0), dashboard != 0 ? dashboard)->toDataTable()) : 0)}));
 }
@@ -249,12 +249,12 @@ void com::tibbo::aggregate::common::action::command::ShowEventLog::setEventFilte
     this->eventFilter = eventFilter;
 }
 
-com::tibbo::aggregate::common::context::EntityList* com::tibbo::aggregate::common::action::command::ShowEventLog::getEvents()
+EntityList* com::tibbo::aggregate::common::action::command::ShowEventLog::getEvents()
 {
     return events;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowEventLog::setEvents(::com::tibbo::aggregate::common::context::EntityList* eventList)
+void com::tibbo::aggregate::common::action::command::ShowEventLog::setEvents(EntityList* eventList)
 {
     this->events = eventList;
 }
@@ -349,7 +349,7 @@ void com::tibbo::aggregate::common::action::command::ShowEventLog::setShowEnrich
     this->showEnrichments = showEnrichments;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowEventLog::getFilterParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::ShowEventLog::getFilterParameters()
 {
     return filterParameters;
 }
@@ -439,7 +439,7 @@ struct clinit_ {
                 ->append(u"><T><D="_j)
                 ->append(Cres::get())->getString(u"events"_j))
                 ->append(u">"_j)->toString());
-            ff)->setDefault(new DataTable(::com::tibbo::aggregate::common::context::EntityList::FORMAT(), true));
+            ff)->setDefault(new DataTable(EntityList::FORMAT(), true));
             CFT_SHOW_EVENT_LOG_)->addField(ff);
             CFT_SHOW_EVENT_LOG_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_SHOW_REALTIME_)
                 ->append(u"><B><A=1><D="_j)
@@ -495,7 +495,7 @@ struct clinit_ {
             ref = CF_FILTER_PARAMETERS_;
             exp = std::stringBuilder().append(u"{"_j)->append(CF_EVENT_FILTER_)
                 ->append(u"} != null ? "_j)
-                ->append(::com::tibbo::aggregate::common::expression::function::Functions::CALL_FUNCTION())
+                ->append(function::Functions::CALL_FUNCTION())
                 ->append(u"({"_j)
                 ->append(CF_EVENT_FILTER_)
                 ->append(u"}, '"_j)

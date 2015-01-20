@@ -1,33 +1,13 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/SynchronousRequestController.java
+#ifndef _SynchronousRequestController_H_
+#define _SynchronousRequestController_H_
 
-#pragma once
+#include "context/DefaultRequestController.h"
+#include <string>
 
-#include <com/tibbo/aggregate/common/device/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/context/DefaultRequestController.h"
-
-
-
-class com::tibbo::aggregate::common::device::SynchronousRequestController
-    : public ::com::tibbo::aggregate::common::context::DefaultRequestController
+class SynchronousRequestController : public DefaultRequestController
 {
-
 public:
-    typedef ::com::tibbo::aggregate::common::context::DefaultRequestController super;
-protected:
-    void ctor(::java::lang::Long* lockTimeout);
-
-    // Generated
-
-public:
-    SynchronousRequestController(::java::lang::Long* lockTimeout);
-protected:
-    SynchronousRequestController(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
+    SynchronousRequestController(long lockTimeout) : DefaultRequestController(lockTimeout) {}
 };
+
+#endif

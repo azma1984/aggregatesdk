@@ -1,16 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/discovery/DiscoveryProvider.java
+#ifndef _DiscoveryProvider_H_
+#define _DiscoveryProvider_H_
 
-#pragma once
+//#include "discovery/DiscoverableServiceDefinition.h"
+//#include "context/CallerController.h"
+//#include "device/DeviceContext.h"
+//#include "datatable/DataTable.h"
+//#include "util/Interface.h"
+//#include <string>
+//#include <list>
 
-#include "discovery/DiscoverableServiceDefinition.h"
-#include "context/CallerController.h"
-#include "device/DeviceContext.h"
-#include "datatable/DataTable.h"
-#include "util/Interface.h"
-#include <string>
-#include <list>
-
-class DiscoveryProvider : public Interface
+class DiscoveryProvider// : public Interface
 {
 //TODO: not usage ?
 //    virtual std::string getName() = 0;
@@ -21,8 +20,9 @@ class DiscoveryProvider : public Interface
 //    virtual std::list<DiscoverableServiceDefinition>  getAvailableServices() = 0;
 //    virtual DeviceContext* createDevice(const std::string& username, const std::string& deviceName,
 //                                        const std::string& description, const std::string& address,
-//                                        CallerController* caller) /* throws(ContextException) */ = 0;
+//                                        CallerController* caller)  = 0;
 //    virtual DiscoverableServiceDefinition* getDiscoverableServiceDefinition(const std::string& name) = 0;
 //    virtual void configureService(const std::string & name, bool enable, DeviceContext* deviceContext,
-//                                  DataTable* parameters, CallerController* callerController)=0; /* throws(ContextException) */;
+//                                  DataTable* parameters, CallerController* callerController)=0; ;
 };
+#endif 

@@ -1,29 +1,20 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/VariableDefinition.java
+#ifndef _VariableDefinition_H_
+#define _VariableDefinition_H_
 
-#pragma once
+#include "context/CompatibilityConverter.h"
+#include "context/VariableGetter.h"
+#include "context/VariableSetter.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
+#include "security/Permissions.h"
+#include "context/AbstractEntityDefinition.h" 
 
-////#include <fwd-aggregate_sdk_5.11.00.h"
-////#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-////#include <com/tibbo/aggregate/common/security/fwd-aggregate_sdk_5.11.00.h"
-////#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-////#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/AbstractEntityDefinition.h"
-////#include <java/lang/Cloneable.h"
-////#include <java/lang/Comparable.h"
-
-
-
-class VariableDefinition
-//    : public AbstractEntityDefinition
+class VariableDefinition //: public AbstractEntityDefinition
 //    , public ::java::lang::Cloneable
 //    , public ::java::lang::Comparable
 {
 
-//public:
-//    typedef AbstractEntityDefinition super;
-
-//private:
+private:
 //    TableFormat* format;
 //    bool readable;
 //    bool writable;
@@ -34,23 +25,19 @@ class VariableDefinition
 //    VariableGetter* getter;
 //    VariableSetter* setter;
 //    bool allowUpdateEvents;
-//    ::java::lang::Long* changeEventsExpirationPeriod;
+//    long  changeEventsExpirationPeriod;
 //    bool localCachingEnabled;
-//    ::java::lang::Long* remoteCacheTime;
+//    long  remoteCacheTime;
 //    ::java::lang::Class* valueClass;
 //    std::list  compatibilityConverters;
 //    bool persistent;
 //    DataTable* defaultValue;
-//protected:
-//    void ctor(const std::string & name, TableFormat* format, bool readable, bool writable);
-//    void ctor(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
-//    void ctor(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description, const std::string & group);
 
-//private:
-//    void init(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
 
-//public:
-//    void setFormat(TableFormat* format);
+   void init(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
+
+public:
+    void setFormat(TableFormat* format);
 //    void setReadable(bool readable);
 //    void setWritable(bool writable);
 //    void setHidden(bool hidden);
@@ -71,12 +58,12 @@ class VariableDefinition
 //    void setHelpId(const std::string & helpId);
 //    ::java::lang::Class* getValueClass();
 //    void setValueClass(::java::lang::Class* valueClass);
-//    ::java::lang::Long* getChangeEventsExpirationPeriod();
-//    void setChangeEventsExpirationPeriod(::java::lang::Long* changeEventsExpirationPeriod);
+//    long  getChangeEventsExpirationPeriod();
+//    void setChangeEventsExpirationPeriod(long  changeEventsExpirationPeriod);
 //    bool isLocalCachingEnabled();
 //    void setLocalCachingEnabled(bool valueCachingEnabled);
-//    ::java::lang::Long* getRemoteCacheTime();
-//    void setRemoteCacheTime(::java::lang::Long* remoteCacheTime);
+//    long  getRemoteCacheTime();
+//    void setRemoteCacheTime(long  remoteCacheTime);
 //    DataTable* getDefaultValue();
 //    void setDefaultValue(DataTable* defaultValue);
 //    bool isPersistent();
@@ -90,24 +77,14 @@ class VariableDefinition
 //    bool equals(void* obj);
 //    int compareTo(VariableDefinition* d);
 
-//    // Generated
-//    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable);
-//    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
-//    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description, const std::string & group);
-//protected:
-//    VariableDefinition(const ::default_init_tag&);
 
+    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable);
+    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
+    VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description, const std::string & group);
 
-//public:
-    
-
-//private:
-//    void init();
-
-//public:
+   
 //    int compareTo(void* arg0);
 
-//private:
-//    ::java::lang::Class* getClass0();
-//    friend class VariableDefinition_UpdateEventsPolicy;
+
 };
+#endif

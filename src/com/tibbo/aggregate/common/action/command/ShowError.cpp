@@ -61,12 +61,12 @@ std::string& com::tibbo::aggregate::common::action::command::ShowError::CF_EXCEP
 }
 std::string com::tibbo::aggregate::common::action::command::ShowError::CF_EXCEPTION_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::ShowError::CFT_SHOW_ERROR()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowError::CFT_SHOW_ERROR()
 {
     
     return CFT_SHOW_ERROR_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::ShowError::CFT_SHOW_ERROR_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::ShowError::CFT_SHOW_ERROR_;
 
 void com::tibbo::aggregate::common::action::command::ShowError::ctor()
 {
@@ -81,7 +81,7 @@ void com::tibbo::aggregate::common::action::command::ShowError::ctor(const std::
     this->exception = exception;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowError::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::ShowError::constructParameters()
 {
     auto t = new DataTable(CFT_SHOW_ERROR_);
     auto exTrace = new ::java::io::StringWriter();

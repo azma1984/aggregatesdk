@@ -1,159 +1,36 @@
 //// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/ContextUtils.java
 #include "context/ContextUtils.h"
-//
-//
-//
-//ContextUtils::ContextUtils(const ::default_init_tag&)
-//    : super(*static_cast< ::default_init_tag* >(0))
-//{
-//    
-//}
-//
-//ContextUtils::ContextUtils()
-//    : ContextUtils(*static_cast< ::default_init_tag* >(0))
-//{
-//    ctor();
-//}
-//
-//std::string& ContextUtils::CONTEXT_NAME_PATTERN()
-//{
-//    
-//    return CONTEXT_NAME_PATTERN_;
-//}
-//std::string ContextUtils::CONTEXT_NAME_PATTERN_;
-//
-//std::string& ContextUtils::CONTEXT_PATH_PATTERN()
-//{
-//    
-//    return CONTEXT_PATH_PATTERN_;
-//}
-//std::string ContextUtils::CONTEXT_PATH_PATTERN_;
-//
-//std::string& ContextUtils::CONTEXT_MASK_PATTERN()
-//{
-//    
-//    return CONTEXT_MASK_PATTERN_;
-//}
-//std::string ContextUtils::CONTEXT_MASK_PATTERN_;
-//
-//std::string& ContextUtils::CONTEXT_TYPE_PATTERN()
-//{
-//    
-//    return CONTEXT_TYPE_PATTERN_;
-//}
-//std::string ContextUtils::CONTEXT_TYPE_PATTERN_;
-//
-//std::string& ContextUtils::ENTITY_NAME_PATTERN()
-//{
-//    
-//    return ENTITY_NAME_PATTERN_;
-//}
-//std::string ContextUtils::ENTITY_NAME_PATTERN_;
-//
-//std::string& ContextUtils::IDENTIFIER_PATTERN()
-//{
-//    
-//    return IDENTIFIER_PATTERN_;
-//}
-//std::string ContextUtils::IDENTIFIER_PATTERN_;
-//
-//std::string& ContextUtils::CONTEXT_CLASS_SUFFIX()
-//{
-//    
-//    return CONTEXT_CLASS_SUFFIX_;
-//}
-//std::string ContextUtils::CONTEXT_CLASS_SUFFIX_;
-//
-//std::string& ContextUtils::CONTEXT_NAME_SEPARATOR()
-//{
-//    
-//    return CONTEXT_NAME_SEPARATOR_;
-//}
-//std::string ContextUtils::CONTEXT_NAME_SEPARATOR_;
-//
-//std::string& ContextUtils::CONTEXT_TYPE_SEPARATOR()
-//{
-//    
-//    return CONTEXT_TYPE_SEPARATOR_;
-//}
-//std::string ContextUtils::CONTEXT_TYPE_SEPARATOR_;
-//
-//std::string& ContextUtils::CONTEXT_GROUP_MASK()
-//{
-//    
-//    return CONTEXT_GROUP_MASK_;
-//}
-//std::string ContextUtils::CONTEXT_GROUP_MASK_;
-//
-//std::string& ContextUtils::ENTITY_GROUP_MASK()
-//{
-//    
-//    return ENTITY_GROUP_MASK_;
-//}
-//std::string ContextUtils::ENTITY_GROUP_MASK_;
-//
-//std::string& ContextUtils::CONTEXT_TYPE_ANY()
-//{
-//    
-//    return CONTEXT_TYPE_ANY_;
-//}
-//std::string ContextUtils::CONTEXT_TYPE_ANY_;
-//
-//std::string& ContextUtils::ENTITY_GROUP_SEPARATOR()
-//{
-//    
-//    return ENTITY_GROUP_SEPARATOR_;
-//}
-//std::string ContextUtils::ENTITY_GROUP_SEPARATOR_;
-//
-//std::string& ContextUtils::MASK_LIST_SEPARATOR()
-//{
-//    
-//    return MASK_LIST_SEPARATOR_;
-//}
-//std::string ContextUtils::MASK_LIST_SEPARATOR_;
-//
-//std::string& ContextUtils::GROUP_DEFAULT()
-//{
-//    
-//    return GROUP_DEFAULT_;
-//}
-//std::string ContextUtils::GROUP_DEFAULT_;
-//
-//std::string& ContextUtils::GROUP_SYSTEM()
-//{
-//    
-//    return GROUP_SYSTEM_;
-//}
-//std::string ContextUtils::GROUP_SYSTEM_;
-//
-//std::string& ContextUtils::GROUP_REMOTE()
-//{
-//    
-//    return GROUP_REMOTE_;
-//}
-//std::string ContextUtils::GROUP_REMOTE_;
-//
-//std::string& ContextUtils::GROUP_CUSTOM()
-//{
-//    
-//    return GROUP_CUSTOM_;
-//}
-//std::string ContextUtils::GROUP_CUSTOM_;
-//
-//std::string& ContextUtils::GROUP_STATUS()
-//{
-//    
-//    return GROUP_STATUS_;
-//}
-//std::string ContextUtils::GROUP_STATUS_;
-//
-//std::string& ContextUtils::GROUP_ACCESS()
-//{
-//    
-//    return GROUP_ACCESS_;
-//}
-//std::string ContextUtils::GROUP_ACCESS_;
+
+  const std::string ContextUtils::CONTEXT_CLASS_SUFFIX = "Context";
+  
+  const std::string ContextUtils::CONTEXT_NAME_PATTERN = "\\w*";
+  const std::string ContextUtils::CONTEXT_PATH_PATTERN = "[\\w|\\.]+";
+  const std::string ContextUtils::CONTEXT_MASK_PATTERN = "[\\w|\\.|\\*]+";
+  const std::string ContextUtils::CONTEXT_TYPE_PATTERN = "[\\w|\\.]+";
+  const std::string ContextUtils::ENTITY_NAME_PATTERN = "\\w+";
+  const std::string ContextUtils::IDENTIFIER_PATTERN = "\\w*";
+  
+   
+  const std::string ContextUtils::CONTEXT_NAME_SEPARATOR = ".";
+  const std::string ContextUtils::CONTEXT_TYPE_SEPARATOR = ".";
+  const std::string ContextUtils::CONTEXT_GROUP_MASK = "*";
+  const std::string ContextUtils::ENTITY_GROUP_MASK = "*";
+  const std::string ContextUtils::CONTEXT_TYPE_ANY = "*";
+  const std::string ContextUtils::ENTITY_GROUP_SEPARATOR = "|";
+  const std::string ContextUtils::MASK_LIST_SEPARATOR = " ";
+  
+  const std::string ContextUtils::GROUP_DEFAULT = "default";
+  const std::string ContextUtils::GROUP_SYSTEM = "system";
+  const std::string ContextUtils::GROUP_REMOTE = "remote";
+  const std::string ContextUtils::GROUP_CUSTOM = "custom";
+  const std::string ContextUtils::GROUP_STATUS = "status";
+  const std::string ContextUtils::GROUP_ACCESS = "access";
+  
+  
+  const std::string ContextUtils::USERNAME_PATTERN = "%";
+  
+  const std::string ContextUtils::VARIABLES_GROUP_DS_SETTINGS = "ds_settings";
+
 //
 //const int ContextUtils::ENTITY_VARIABLE;
 //
@@ -162,21 +39,8 @@
 //const int ContextUtils::ENTITY_EVENT;
 //
 //const int ContextUtils::ENTITY_ACTION;
-//
-//std::string& ContextUtils::USERNAME_PATTERN()
-//{
-//    
-//    return USERNAME_PATTERN_;
-//}
-//std::string ContextUtils::USERNAME_PATTERN_;
-//
-//std::string& ContextUtils::VARIABLES_GROUP_DS_SETTINGS()
-//{
-//    
-//    return VARIABLES_GROUP_DS_SETTINGS_;
-//}
-//std::string ContextUtils::VARIABLES_GROUP_DS_SETTINGS_;
-//
+
+
 //std::string ContextUtils::createName(std::stringArray*/*...*/ parts)
 //{
 //    
@@ -187,7 +51,7 @@
 //        }
 //        res)->append((*parts)[i]);
 //    }
-//    return res)->toString();
+//    return res)->tostd::string();
 //}
 //
 //std::string ContextUtils::createGroup(std::stringArray*/*...*/ parts)
@@ -203,7 +67,7 @@
 //        }
 //        res)->append((*parts)[i]);
 //    }
-//    return res)->toString();
+//    return res)->tostd::string();
 //}
 //
 //std::string ContextUtils::userContextPath(const std::string & username)
@@ -258,7 +122,7 @@
 //{
 //    
 //    return std::stringBuilder().append(containerContextName)->append(u"_"_j)
-//        ->append(Contexts::CTX_GROUPS())->toString();
+//        ->append(Contexts::CTX_GROUPS())->tostd::string();
 //}
 //
 //std::string ContextUtils::alertContextPath(const std::string & owner, const std::string & name)
@@ -484,7 +348,7 @@
 //        return childShortName;
 //    } else {
 //        return std::stringBuilder().append(parent)->append(CONTEXT_NAME_SEPARATOR_)
-//            ->append(childShortName)->toString();
+//            ->append(childShortName)->tostd::string();
 //    }
 //}
 //
@@ -494,23 +358,23 @@
 //    return path)->replace(CONTEXT_NAME_SEPARATOR_)->charAt(int(0)), u"_"_j)->charAt(int(0)));
 //}
 //
-//java::util::List* ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager)
+//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager)
 //{
 //    
 //    return expandMaskListToContexts(masks, contextManager, 0, false);
 //}
 //
-//java::util::List* ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager, CallerController* caller)
+//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager, CallerController* caller)
 //{
 //    
 //    return expandMaskListToContexts(masks, contextManager, caller, false);
 //}
 //
-//java::util::List* ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
+//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
 //{
 //    
 //    std::list  result = new ::java::util::LinkedList();
-//    auto maskList = ::com::tibbo::aggregate::common::util::StringUtils::split(masks, MASK_LIST_SEPARATOR_)->charAt(int(0)));
+//    auto maskList = ::com::tibbo::aggregate::common::util::std::stringUtils::split(masks, MASK_LIST_SEPARATOR_)->charAt(int(0)));
 //    for (auto _i = maskList)->iterator(); _i->hasNext(); ) {
 //        const std::string & mask = java_cast< const std::string & >(_i->next());
 //        {
@@ -521,19 +385,19 @@
 //    return result;
 //}
 //
-//java::util::List* ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager)
+//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager)
 //{
 //    
 //    return expandMaskToContexts(mask, contextManager, 0, false);
 //}
 //
-//java::util::List* ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager, CallerController* caller)
+//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager, CallerController* caller)
 //{
 //    
 //    return expandMaskToContexts(mask, contextManager, caller, false);
 //}
 //
-//java::util::List* ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
+//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
 //{
 //    
 //    std::list  res = new ::java::util::LinkedList();
@@ -550,23 +414,23 @@
 //    return res;
 //}
 //
-//java::util::List* ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager)
+//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager)
 //{
 //    
 //    return expandMaskToPaths(mask, contextManager, 0, false);
 //}
 //
-//java::util::List* ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller)
+//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller)
 //{
 //    
 //    return expandMaskToPaths(mask, contextManager, caller, false);
 //}
 //
-//java::util::List* ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
+//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
 //{
 //    
 //    std::list  result = new ::java::util::LinkedList();
-//    auto parts = ::com::tibbo::aggregate::common::util::StringUtils::split(mask, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto parts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(mask, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
 //    for (auto i = int(0); i < parts)->size(); i++) {
 //        if(java_cast< const std::string & >(parts)->get(i)))->equals(CONTEXT_GROUP_MASK_))) {
 //            auto head = new std::stringBuffer();
@@ -581,7 +445,7 @@
 //                tail)->append(CONTEXT_NAME_SEPARATOR_);
 //                tail)->append(java_cast< const std::string & >(parts)->get(j)));
 //            }
-//            auto res = expandMaskPart(head)->toString(), tail)->toString(), contextManager, caller, useVisibleChildren);
+//            auto res = expandMaskPart(head)->tostd::string(), tail)->tostd::string(), contextManager, caller, useVisibleChildren);
 //            result)->addAll(static_cast< ::java::util::Collection* >(res));
 //            return result;
 //        }
@@ -592,7 +456,7 @@
 //    return result;
 //}
 //
-//java::util::List* ContextUtils::expandMaskPart(const std::string & head, const std::string & tail, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
+//std::list  ContextUtils::expandMaskPart(const std::string & head, const std::string & tail, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
 //{
 //    
 //    std::list  result = new ::java::util::LinkedList();
@@ -616,27 +480,27 @@
 //                if(useVisibleChildren) {
 //                    auto realChild = java_cast< Context* >(con)->getChild(child)->getName()));
 //                    if(realChild == 0 || !realChild)->getPath())->equals(child)->getPath()))) {
-//                        auto res = expandMaskToPaths(std::stringBuilder().append(child)->getPath())->append(tail)->toString(), contextManager, caller, useVisibleChildren);
+//                        auto res = expandMaskToPaths(std::stringBuilder().append(child)->getPath())->append(tail)->tostd::string(), contextManager, caller, useVisibleChildren);
 //                        result)->addAll(static_cast< ::java::util::Collection* >(res));
 //                        continue;
 //                    }
 //                }
 //                result)->addAll(static_cast< ::java::util::Collection* >(expandMaskToPaths(std::stringBuilder().append(head)->append(CONTEXT_NAME_SEPARATOR_)
 //                    ->append(child)->getName())
-//                    ->append(tail)->toString(), contextManager, caller, useVisibleChildren)));
+//                    ->append(tail)->tostd::string(), contextManager, caller, useVisibleChildren)));
 //            }
 //        }
 //    }
 //    return result;
 //}
 //
-//java::util::List* ContextUtils::findChildren(const std::string & rootsMask, ::java::lang::Class* contextClass, ContextManager* manager, CallerController* caller, bool resolveGroups)
+//std::list  ContextUtils::findChildren(const std::string & rootsMask, ::java::lang::Class* contextClass, ContextManager* manager, CallerController* caller, bool resolveGroups)
 //{
 //    
 //    return findChildren(rootsMask, getTypeForClass(contextClass), manager, caller, resolveGroups);
 //}
 //
-//java::util::List* ContextUtils::findChildren(const std::string & rootsMask, const std::string & type, ContextManager* manager, CallerController* caller, bool resolveGroups)
+//std::list  ContextUtils::findChildren(const std::string & rootsMask, const std::string & type, ContextManager* manager, CallerController* caller, bool resolveGroups)
 //{
 //    
 //    std::list  const res = new ::java::util::ArrayList();
@@ -655,7 +519,7 @@
 //    return res;
 //}
 //
-//void ContextUtils::acceptFinder(Context* context, ContextVisitor* visitor, CallerController* caller, bool resolveGroups) /* throws(ContextException) */
+//void ContextUtils::acceptFinder(Context* context, ContextVisitor* visitor, CallerController* caller, bool resolveGroups) 
 //{
 //    
 //    visitor->visit(context);
@@ -716,7 +580,7 @@
 //    if(!isMask(mask)) {
 //        if(contextMayExtendMask && maskMayExtendContext) {
 //            auto length = ::java::lang::Math::max(mask)->length(), context)->length());
-//            return mask)->substring(0, length))->equals(context)->substring(0, length)));
+//            return mask)->substd::string(0, length))->equals(context)->substd::string(0, length)));
 //        } else {
 //            auto equals = mask)->equals(context));
 //            if(maskMayExtendContext) {
@@ -728,8 +592,8 @@
 //            }
 //        }
 //    }
-//    auto maskParts = ::com::tibbo::aggregate::common::util::StringUtils::split(mask, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
-//    auto nameParts = ::com::tibbo::aggregate::common::util::StringUtils::split(context, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto maskParts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(mask, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto nameParts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(context, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
 //    if(maskParts)->size() > nameParts)->size() && !maskMayExtendContext) {
 //        return false;
 //    }
@@ -751,8 +615,8 @@
 //bool ContextUtils::masksIntersect(const std::string & mask1, const std::string & mask2, bool mask2MayExtendMask1, bool mask1MayExtendMask2)
 //{
 //    
-//    auto mask1Parts = ::com::tibbo::aggregate::common::util::StringUtils::split(mask1, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
-//    auto mask2Parts = ::com::tibbo::aggregate::common::util::StringUtils::split(mask2, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto mask1Parts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(mask1, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto mask2Parts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(mask2, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
 //    if(mask1Parts)->size() > mask2Parts)->size() && !mask1MayExtendMask2) {
 //        return false;
 //    }
@@ -825,8 +689,8 @@ return false;
 //bool ContextUtils::isDerivedFrom(const std::string & childType, const std::string & parentType)
 //{
 //    
-//    auto pst = new ::java::util::StringTokenizer(parentType, CONTEXT_TYPE_SEPARATOR_);
-//    auto cst = new ::java::util::StringTokenizer(childType, CONTEXT_TYPE_SEPARATOR_);
+//    auto pst = new ::java::util::std::stringTokenizer(parentType, CONTEXT_TYPE_SEPARATOR_);
+//    auto cst = new ::java::util::std::stringTokenizer(childType, CONTEXT_TYPE_SEPARATOR_);
 //    if(cst)->countTokens() < pst)->countTokens()) {
 //        return false;
 //    }
@@ -842,10 +706,10 @@ return false;
 //{
 //    
 //    if(isRelative(path)) {
-//        std::cout <<"Cannot find parent of a relative path: "_j)->append(path)->toString());
+//        std::cout <<"Cannot find parent of a relative path: "_j)->append(path)->tostd::string());
 //    }
 //    auto index = path)->lastIndexOf(CONTEXT_NAME_SEPARATOR_);
-//    return index != -int(1) ? path)->substring(0, index) : static_cast< const std::string & >(0);
+//    return index != -int(1) ? path)->substd::string(0, index) : static_cast< const std::string & >(0);
 //}
 //
 //std::string ContextUtils::getBaseGroup(const std::string & group)
@@ -855,7 +719,7 @@ return false;
 //        return 0;
 //    }
 //    auto index = group)->indexOf(static_cast< int >(ENTITY_GROUP_SEPARATOR_)->charAt(int(0))));
-//    return index == -int(1) ? group : group)->substring(0, index);
+//    return index == -int(1) ? group : group)->substd::string(0, index);
 //}
 //
 //std::string ContextUtils::getVisualGroup(const std::string & group)
@@ -865,13 +729,13 @@ return false;
 //        return 0;
 //    }
 //    auto index = group)->indexOf(static_cast< int >(ENTITY_GROUP_SEPARATOR_)->charAt(int(0))));
-//    return index == -int(1) ? static_cast< const std::string & >(0) : group)->substring(index + int(1), group)->length());
+//    return index == -int(1) ? static_cast< const std::string & >(0) : group)->substd::string(index + int(1), group)->length());
 //}
 //
 //std::string ContextUtils::getBaseType(const std::string & type)
 //{
 //    
-//    auto st = new ::java::util::StringTokenizer(type, CONTEXT_TYPE_SEPARATOR_);
+//    auto st = new ::java::util::std::stringTokenizer(type, CONTEXT_TYPE_SEPARATOR_);
 //    return st)->nextToken();
 //}
 //
@@ -882,16 +746,16 @@ return false;
 //        return 0;
 //    }
 //    auto index = type)->lastIndexOf(static_cast< int >(CONTEXT_TYPE_SEPARATOR_)->charAt(int(0))));
-//    return index == -int(1) ? static_cast< const std::string & >(0) : type)->substring(index + int(1), type)->length());
+//    return index == -int(1) ? static_cast< const std::string & >(0) : type)->substd::string(index + int(1), type)->length());
 //}
 //
 //std::string ContextUtils::getTypeForClass(::java::lang::Class* clazz)
 //{
 //    
 //    auto name = clazz)->getSimpleName();
-//    name = std::stringBuilder().append(name)->substring(0, 1))->toLowerCase(::java::util::Locale::ENGLISH()))->append(name)->substring(1, name)->length()))->toString();
+//    name = std::stringBuilder().append(name)->substd::string(0, 1))->toLowerCase(::java::util::Locale::ENGLISH()))->append(name)->substd::string(1, name)->length()))->tostd::string();
 //    if(name)->endsWith(CONTEXT_CLASS_SUFFIX_)) {
-//        name = name)->substring(0, name)->length() - CONTEXT_CLASS_SUFFIX_)->length());
+//        name = name)->substd::string(0, name)->length() - CONTEXT_CLASS_SUFFIX_)->length());
 //    }
 //    return name;
 //}
@@ -911,7 +775,7 @@ return false;
 //                    for (auto _i = rf)->iterator(); _i->hasNext(); ) {
 //                        FieldFormat* ff = java_cast< FieldFormat* >(_i->next());
 //                        {
-//                            fields)->put(ff)->getName(), ff)->toString());
+//                            fields)->put(ff)->getName(), ff)->tostd::string());
 //                        }
 //                    }
 //                }
@@ -939,7 +803,7 @@ return false;
 //                            if(ff)->isHidden()) {
 //                                continue;
 //                            }
-//                            fields)->put(ff)->getName(), ff)->toString());
+//                            fields)->put(ff)->getName(), ff)->tostd::string());
 //                        }
 //                    }
 //                }
@@ -968,7 +832,7 @@ return false;
 //{
 //    
 //    return std::stringBuilder().append(getTypeForClass(clazz))->append(CONTEXT_TYPE_SEPARATOR_)
-//        ->append(deviceType)->toString();
+//        ->append(deviceType)->tostd::string();
 //}
 //
 //bool ContextUtils::isValidContextNameChar(char16_t c)
@@ -979,16 +843,11 @@ return false;
 //
 //
 //
-//java::lang::Class* ContextUtils::class_()
-//{
-//    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.ContextUtils", 47);
-//    return c;
-//}
-//
+
 //void ContextUtils::clinit()
 //{
-//struct string_init_ {
-//    string_init_() {
+//struct std::string_init_ {
+//    std::string_init_() {
 //    CONTEXT_NAME_PATTERN_ = u"\\w*"_j;
 //    CONTEXT_PATH_PATTERN_ = u"[\\w|\\.]+"_j;
 //    CONTEXT_MASK_PATTERN_ = u"[\\w|\\.|\\*]+"_j;
@@ -1014,7 +873,7 @@ return false;
 //    }
 //};
 //
-//    static string_init_ string_init_instance;
+//    static std::string_init_ std::string_init_instance;
 //
 //
 //}

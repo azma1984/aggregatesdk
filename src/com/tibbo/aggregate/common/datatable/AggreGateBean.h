@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/AggreGateBean.java
-
 #ifndef AggreGateBeanH
 #define AggreGateBeanH
  /*
@@ -9,7 +7,7 @@
 #include <com/tibbo/aggregate/common/datatable/DataTableException.h"*/
 #include "datatable/TableFormat.h"
 
-
+//todo - class stub
 class AggreGateBean
 {
 
@@ -25,8 +23,8 @@ public:
 //	TableFormat* getFormat();
 //
 //
-	AggreGateBean(TableFormat* format);
-//	AggreGateBean(TableFormat* format, DataRecord* data);
+	AggreGateBean(boost::shared_ptr<TableFormat> format);
+	AggreGateBean(boost::shared_ptr<TableFormat> format, boost::shared_ptr<DataRecord> data);
 //protected:
 //	AggreGateBean(const ::default_init_tag&);    
 

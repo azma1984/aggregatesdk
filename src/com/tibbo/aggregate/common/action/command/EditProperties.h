@@ -65,7 +65,7 @@ private:
     DataTable* createSlavesTable(std::list  slaves);
 
 public:
-    static std::list  getSlaves(::com::tibbo::aggregate::common::action::GenericActionCommand* cmd, ::com::tibbo::aggregate::common::context::Context* base, ::com::tibbo::aggregate::common::context::CallerController* caller);
+    static std::list  getSlaves(::com::tibbo::aggregate::common::action::GenericActionCommand* cmd, Context* base, CallerController* caller);
     const std::string & getContext();
     void setContext(const std::string & contextName);
     const std::string & getPropertiesGroup();

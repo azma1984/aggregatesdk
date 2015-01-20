@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _BooleanFieldFormat_H_
+#define _BooleanFieldFormat_H_
+
 #include "../FieldFormat.h"
 #include "../encoding/ClassicEncodingSettings.h"
 #include "SString.h"
@@ -55,3 +57,5 @@ public:
 
 
 };
+
+#endif

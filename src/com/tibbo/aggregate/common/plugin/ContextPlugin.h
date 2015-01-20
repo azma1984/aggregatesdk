@@ -82,4 +82,4 @@ struct ContextPlugin : public AggreGatePlugin
     */
     virtual void shutdown() = 0;// throws PluginException;
 };
-//#endif  /_ContextPlugin_H_
+#endif  /_ContextPlugin_H_

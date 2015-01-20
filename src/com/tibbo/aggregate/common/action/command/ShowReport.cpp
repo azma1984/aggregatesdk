@@ -56,12 +56,12 @@ std::string& com::tibbo::aggregate::common::action::command::ShowReport::CF_DASH
 }
 std::string com::tibbo::aggregate::common::action::command::ShowReport::CF_DASHBOARD_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT()
 {
     
     return CFT_SHOW_REPORT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT_;
 
 void com::tibbo::aggregate::common::action::command::ShowReport::ctor()
 {
@@ -81,7 +81,7 @@ void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std:
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), title, parameters, CFT_SHOW_REPORT_);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowReport::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::ShowReport::constructParameters()
 {
     auto t = new DataTable(CFT_SHOW_REPORT_);
     auto r = t)->addRecord();

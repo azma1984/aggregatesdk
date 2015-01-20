@@ -1,5 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/AggreGateBean.java
-#include "AggreGateBean.h"
+#include "datatable/AggreGateBean.h"
 
 
 //AggreGateBean::AggreGateBean(const ::default_init_tag&)
@@ -8,7 +7,7 @@
 //    
 //}
 //
-AggreGateBean::AggreGateBean(TableFormat* format) 
+AggreGateBean::AggreGateBean(boost::shared_ptr<TableFormat> format) 
 {
 //    this->format = format;
 //    if(format != 0) {
@@ -19,12 +18,11 @@ AggreGateBean::AggreGateBean(TableFormat* format)
 //        }
 //    }
 }
-//
-//AggreGateBean::AggreGateBean(TableFormat* format, DataRecord* data) 
-//    : AggreGateBean(*static_cast< ::default_init_tag* >(0))
-//{
-//    ctor(format,data);
-//}
+
+AggreGateBean::AggreGateBean(boost::shared_ptr<TableFormat> format, boost::shared_ptr<DataRecord> data) 
+{
+   // ctor(format,data);
+}
 //
 //void AggreGateBean::ctor(TableFormat* format)
 //{

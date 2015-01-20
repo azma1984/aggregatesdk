@@ -1,188 +1,131 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/DeviceAssetDefinition.java
-#include <com/tibbo/aggregate/common/device/DeviceAssetDefinition.h"
+#include "device/DeviceAssetDefinition.h"
+  
 
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableBindingProvider.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/expression/DefaultReferenceResolver.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-/*
-//#include <java/lang/Class.h"
-//#include <java/lang/ClassCastException.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/util/LinkedList.h"
-//#include <java/util/List.h"
-//#include <java/util/ResourceBundle.h"
-*/
-template<typename T, typename U>
-static T java_cast(U* u)
-{
-    if(!u) return static_cast<T>(0);
-    auto t = dynamic_cast<T>(u);
-    if(!t) throw new ::java::lang::ClassCastException();
-    return t;
-}
+ boost::shared_ptr<TableFormat> DeviceAssetDefinition::FORMAT;
 
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
 
-com::tibbo::aggregate::common::device::DeviceAssetDefinition::DeviceAssetDefinition(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
-{
+  const std::string DeviceAssetDefinition::FIELD_ID = "id";
+  const std::string DeviceAssetDefinition::FIELD_DESCRIPTION = "description";
+  const std::string DeviceAssetDefinition::FIELD_ENABLED = "enabled";
+  const std::string DeviceAssetDefinition::FIELD_CHILDREN = "children";
+
+DeviceAssetDefinition::DeviceAssetDefinition():AggreGateBean(FORMAT)
+{   
+	Init();
     
+    this->enabled = false;
 }
 
-com::tibbo::aggregate::common::device::DeviceAssetDefinition::DeviceAssetDefinition() 
-    : DeviceAssetDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor();
-}
-
-com::tibbo::aggregate::common::device::DeviceAssetDefinition::DeviceAssetDefinition(DataRecord* data) 
-    : DeviceAssetDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(data);
-}
-
-com::tibbo::aggregate::common::device::DeviceAssetDefinition::DeviceAssetDefinition(const std::string & id, const std::string & description) 
-    : DeviceAssetDefinition(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(id,description);
-}
-
-std::string& com::tibbo::aggregate::common::device::DeviceAssetDefinition::FIELD_ID()
-{
+DeviceAssetDefinition::DeviceAssetDefinition(boost::shared_ptr<DataRecord> data):AggreGateBean(FORMAT, data)
+{  
+	Init();
     
-    return FIELD_ID_;
+    this->enabled = false;
 }
-std::string com::tibbo::aggregate::common::device::DeviceAssetDefinition::FIELD_ID_;
 
-std::string& com::tibbo::aggregate::common::device::DeviceAssetDefinition::FIELD_DESCRIPTION()
-{
+DeviceAssetDefinition::DeviceAssetDefinition(const std::string& id, const std::string& description):AggreGateBean(FORMAT)
+{  
+	Init();
     
-    return FIELD_DESCRIPTION_;
-}
-std::string com::tibbo::aggregate::common::device::DeviceAssetDefinition::FIELD_DESCRIPTION_;
-
-std::string& com::tibbo::aggregate::common::device::DeviceAssetDefinition::FIELD_ENABLED()
-{
-    
-    return FIELD_ENABLED_;
-}
-std::string com::tibbo::aggregate::common::device::DeviceAssetDefinition::FIELD_ENABLED_;
-
-std::string& com::tibbo::aggregate::common::device::DeviceAssetDefinition::FIELD_CHILDREN()
-{
-    
-    return FIELD_CHILDREN_;
-}
-std::string com::tibbo::aggregate::common::device::DeviceAssetDefinition::FIELD_CHILDREN_;
-
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::device::DeviceAssetDefinition::FORMAT()
-{
-    
-    return FORMAT_;
-}
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::device::DeviceAssetDefinition::FORMAT_;
-
-void com::tibbo::aggregate::common::device::DeviceAssetDefinition::ctor()
-{
-    super::ctor(FORMAT_);
-}
-
-void com::tibbo::aggregate::common::device::DeviceAssetDefinition::ctor(DataRecord* data)
-{
-    super::ctor(FORMAT_, data);
-}
-
-void com::tibbo::aggregate::common::device::DeviceAssetDefinition::ctor(const std::string & id, const std::string & description)
-{
-    ctor();
+    this->enabled = false;
+	//DeviceAssetDefinition();
     this->id = id;
     this->description = description;
 }
 
-std::string com::tibbo::aggregate::common::device::DeviceAssetDefinition::getId()
+
+
+void DeviceAssetDefinition::Init()
+{
+   FORMAT =  boost::shared_ptr<TableFormat>(new TableFormat());
+ 
+   FORMAT->setUnresizable(true);
+    
+   FORMAT->addField("<" + FIELD_ID + "><S><F=HRK>");
+   FORMAT->addField("<" + FIELD_DESCRIPTION + "><S><F=R><D=" + Cres::get()->getString("description") + ">");
+   FORMAT->addField("<" + FIELD_ENABLED + "><B><A=1><D=" + Cres::get()->getString("enabled") + ">");
+    
+//   FORMAT->addField(FieldFormat<bool>::create("<" + FIELD_CHILDREN + "><T><F=N><D=" + Cres::get()->getString("devNestedAssets") + ">"));
+    
+  // todo - Functions::AGGREGATE define is "Expression/Function/functions.h"
+//   FORMAT->setNamingExpression(Functions::AGGREGATE + "({}, \"{env/previous} + ({" + FIELD_ENABLED + "} ? 1 : 0)\", 0) + '/' + {#" + DefaultReferenceResolver::RECORDS + "}");
+    
+   std::string ref = FIELD_CHILDREN + "#" + DataTableBindingProvider::PROPERTY_ENABLED;
+   std::string exp = "{" + FIELD_ENABLED + "}";
+   FORMAT->addBinding(ref, exp);
+}
+std::string DeviceAssetDefinition::getId()
 {
     return id;
 }
 
-void com::tibbo::aggregate::common::device::DeviceAssetDefinition::setId(const std::string & id)
+void DeviceAssetDefinition::setId(const std::string& id)
 {
     this->id = id;
 }
 
-std::string com::tibbo::aggregate::common::device::DeviceAssetDefinition::getDescription()
+std::string DeviceAssetDefinition::getDescription()
 {
     return description;
 }
 
-void com::tibbo::aggregate::common::device::DeviceAssetDefinition::setDescription(const std::string & description)
+void DeviceAssetDefinition::setDescription(const std::string& description)
 {
     this->description = description;
 }
 
-bool com::tibbo::aggregate::common::device::DeviceAssetDefinition::isEnabled()
+bool DeviceAssetDefinition::isEnabled()
 {
     return enabled;
 }
 
-void com::tibbo::aggregate::common::device::DeviceAssetDefinition::setEnabled(bool enabled)
+void DeviceAssetDefinition::setEnabled(bool enabled)
 {
     this->enabled = enabled;
 }
 
-java::util::List* com::tibbo::aggregate::common::device::DeviceAssetDefinition::getChildren()
+std::list<boost::shared_ptr<DeviceAssetDefinition>> DeviceAssetDefinition::getChildren()
 {
     return children;
 }
 
-void com::tibbo::aggregate::common::device::DeviceAssetDefinition::setChildren(std::list  children)
+void DeviceAssetDefinition::setChildren(std::list<boost::shared_ptr<DeviceAssetDefinition>>  children)
 {
-    this->children = children != 0 ? children : static_cast< std::list  >(new ::java::util::LinkedList());
+//    if (children)
+  //      this->children = children;
 }
 
-void com::tibbo::aggregate::common::device::DeviceAssetDefinition::addSubgroup(DeviceAssetDefinition* child)
+void DeviceAssetDefinition::addSubgroup(boost::shared_ptr<DeviceAssetDefinition> child)
 {
-    getChildren())->add(child));
+//    getChildren()->add(children);
 }
 
-int com::tibbo::aggregate::common::device::DeviceAssetDefinition::compareTo(DeviceAssetDefinition* other)
+int DeviceAssetDefinition::compareTo(boost::shared_ptr<DeviceAssetDefinition> other)
 {
-    return description)->compareTo(other)->description);
+//    return description->compareTo(other->description);
+	return 0;
 }
 
-int com::tibbo::aggregate::common::device::DeviceAssetDefinition::compareTo(void* arg0)
-{ 
-    return compareTo(dynamic_cast< DeviceAssetDefinition* >(arg0));
-}
-
-std::string com::tibbo::aggregate::common::device::DeviceAssetDefinition::toString()
+std::string DeviceAssetDefinition::toString()
 {
-    std::stringstream ss;
-    ss <<"GroupDefinition [id=" <<id <<", description=" <<description <<", enabled=" <<enabled
-       <<", children=" <<(children != NULL ? children.size() : 0) <<"]";
+ //   std::stringstream ss;
+//    ss <<"GroupDefinition [id=" <<id <<", description=" <<description <<", enabled=" <<enabled
+ //      <<", children=" <<(children != NULL ? children.size() : 0) <<"]";
 
-    return ss.str();
+//    return ss.str();
+
+return "";
 }
 
-int com::tibbo::aggregate::common::device::DeviceAssetDefinition::hashCode()
-{
-    auto const prime = int(31);
-    auto result = int(1);
-    result = prime * result + ((description == 0) ? int(0) : description)->hashCode());
-    return result;
-}
+//    int DeviceAssetDefinition::hashCode()
+//{
+//    final int prime = 31;
+//    int result = 1;
+//    result = prime * result + ((description == null) ? 0 : description.hashCode());
+//    return result;
+//}
 
-bool com::tibbo::aggregate::common::device::DeviceAssetDefinition::equals(void* obj)
+bool DeviceAssetDefinition::equals(DeviceAssetDefinition* obj)
 {
     if (this == obj)
         return true;
@@ -190,7 +133,7 @@ bool com::tibbo::aggregate::common::device::DeviceAssetDefinition::equals(void* 
     if (obj == NULL)
         return false;
 
-    DeviceAssetDefinition* other = dynamic_cast<DeviceAssetDefinition>(obj);
+    DeviceAssetDefinition* other = (DeviceAssetDefinition*)(obj);
     if (other == NULL)
         return false;
 
@@ -199,9 +142,3 @@ bool com::tibbo::aggregate::common::device::DeviceAssetDefinition::equals(void* 
 
     return true;
 }
-
-java::lang::Class* com::tibbo::aggregate::common::device::DeviceAssetDefinition::getClass0()
-{
-    return class_();
-}
-

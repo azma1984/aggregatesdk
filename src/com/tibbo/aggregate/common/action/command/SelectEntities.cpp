@@ -128,26 +128,26 @@ std::string& com::tibbo::aggregate::common::action::command::SelectEntities::RF_
 }
 std::string com::tibbo::aggregate::common::action::command::SelectEntities::RF_REFERENCE_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES()
 {
     
     return CFT_SELECT_ENTITIES_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES()
 {
     
     return CFT_SELECT_ENTITIES_TYPES_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES()
 {
     
     return RFT_SELECT_ENTITIES_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES_;
 
 void com::tibbo::aggregate::common::action::command::SelectEntities::ctor()
 {
@@ -170,7 +170,7 @@ void com::tibbo::aggregate::common::action::command::SelectEntities::ctor(const 
     this->singleSelection = singleSelection;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::SelectEntities::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::SelectEntities::constructParameters()
 {
     DataTable* types;
     if(contextTypes != 0) {

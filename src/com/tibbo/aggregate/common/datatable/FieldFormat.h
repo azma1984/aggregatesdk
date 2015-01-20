@@ -1,28 +1,17 @@
-#pragma once
+#ifndef _FieldFormat_H_
+#define _FieldFormat_H_
 
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include "../util/Cloneable.h"
+//#include "field/BooleanFieldFormat.h"
+#include "../AggreGateException.h"
 
-class FieldFormat : public Cloneable
+/**
+ * <code>FieldFormat</code> is a part of <code>TableFormat</code> that describes single <code>DataTable</code> field.
+ */
+template <typename T> class FieldFormat
 {
-public:
-    static const char INTEGER_FIELD = 'I';
-    static const char STRING_FIELD = 'S';
-    static const char BOOLEAN_FIELD = 'B';
-    static const char LONG_FIELD = 'L';
-    static const char FLOAT_FIELD = 'F';
-    static const char DOUBLE_FIELD = 'E';
-    static const char DATE_FIELD = 'D';
-    static const char DATATABLE_FIELD = 'T';
-    static const char COLOR_FIELD = 'C';
-    static const char DATA_FIELD = 'A';
-
-    static const char VALIDATOR_LIMITS = 'L';
-    static const char VALIDATOR_REGEX = 'R';
-    static const char VALIDATOR_NON_NULL = 'N';
-    static const char VALIDATOR_ID = 'I';
-
 private:
     static std::string ELEMENT_FLAGS;
     static std::string ELEMENT_DEFAULT_VALUE;
@@ -44,8 +33,27 @@ private:
     static const char NULLABLE_FLAG = 'N';
     static const char OPTIONAL_FLAG = 'O';
     static const char READ_ONLY_FLAG = 'R';
-    static const char  DEFAULT_OVERRIDE = 'D';
+    static const char DEFAULT_OVERRIDE = 'D';
 
+  //Map<T, String> selectionValues;
+  // List<FieldValidator> validators = new LinkedList<FieldValidator>();
+
+public:
+    static const char INTEGER_FIELD = 'I';
+    static const char STRING_FIELD = 'S';
+    static const char BOOLEAN_FIELD = 'B';
+    static const char LONG_FIELD = 'L';
+    static const char FLOAT_FIELD = 'F';
+    static const char DOUBLE_FIELD = 'E';
+    static const char DATE_FIELD = 'D';
+    static const char DATATABLE_FIELD = 'T';
+    static const char COLOR_FIELD = 'C';
+    static const char DATA_FIELD = 'A';
+
+    static const char VALIDATOR_LIMITS = 'L';
+    static const char VALIDATOR_REGEX = 'R';
+    static const char VALIDATOR_NON_NULL = 'N';
+    static const char VALIDATOR_ID = 'I';
 
 private:
     std::string name;
@@ -59,36 +67,28 @@ private:
     bool inlineData;
     bool advanced;
     bool defaultOverride;
-    //T    defaultValue;
+    T    defaultValue;
     std::string description;
     std::string help;
     std::string group;
     std::string editor;
     std::string editorOptions;
-    //private Map<T, String> selectionValues;
-    //private List<FieldValidator> validators = new LinkedList<FieldValidator>();
+
     std::string icon;
 
 protected:
     FieldFormat(const std::string &name);
 
-public:
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, bool value);
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, int value);
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, long value);
 
+public:
     static boost::shared_ptr<FieldFormat> create(const std::string &name, char type);
 
-
-
-
-    virtual Cloneable * clone() const
-    {
-        return new FieldFormat("dsdsf");
-    }
-
-
 };
+
+
+
+
+#endif
 
 
 

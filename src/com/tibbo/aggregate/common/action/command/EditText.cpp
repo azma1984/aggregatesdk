@@ -70,19 +70,19 @@ std::string& com::tibbo::aggregate::common::action::command::EditText::RF_TEXT()
 }
 std::string com::tibbo::aggregate::common::action::command::EditText::RF_TEXT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditText::CFT_EDIT_TEXT()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditText::CFT_EDIT_TEXT()
 {
     
     return CFT_EDIT_TEXT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditText::CFT_EDIT_TEXT_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditText::CFT_EDIT_TEXT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditText::RFT_EDIT_TEXT()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditText::RFT_EDIT_TEXT()
 {
     
     return RFT_EDIT_TEXT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditText::RFT_EDIT_TEXT_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditText::RFT_EDIT_TEXT_;
 
 void com::tibbo::aggregate::common::action::command::EditText::ctor()
 {
@@ -101,7 +101,7 @@ void com::tibbo::aggregate::common::action::command::EditText::ctor(const std::s
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_TEXT(), title, parameters, CFT_EDIT_TEXT_);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditText::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::EditText::constructParameters()
 {
     return new DataTable(CFT_EDIT_TEXT_, new voidArray({text), mode)}));
 }

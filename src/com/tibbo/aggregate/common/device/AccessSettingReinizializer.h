@@ -9,7 +9,11 @@
 
 class AccessSettingReinizializer : public Interface
 {
-    virtual bool reinitialize(boost::shared_ptr<VariableDefinition> def, boost::shared_ptr<CallerController> caller,
-                      boost::shared_ptr<DataTable> value) /* throws(ContextException) */ = 0;
+  /**
+   * This method is called when the value of the device access setting variable is changed.
+   * 
+   * @return True if reconnection to the device and its resynchronization is necessary, false otherwise
+   */
+   virtual bool reinitialize(boost::shared_ptr<VariableDefinition> def, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> value)  = 0;
 };
 #endif  //_AccessSettingReinizializer_H_

@@ -4,6 +4,8 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include "util/Interface.h"
+#include "context/Context.h"
+
 
 class AggreGatePlugin : public Interface
     
@@ -103,8 +105,8 @@ class AggreGatePlugin : public Interface
     *          List of global plugin properties
     * @return Plugin global config context
     */
-    virtual Context createGlobalConfigContext(boost::shared_ptr<Context> rootContext, bool requestReboot,
-                                              boost::shared_ptr<VariableDefinition> properties, ...) = 0;
+    virtual Context *createGlobalConfigContext(boost::shared_ptr<Context> rootContext, bool requestReboot,
+                                               boost::shared_ptr<VariableDefinition> properties) = 0;
 
     /**
     * This method creates and returns context containing plugin's user-level configuration. There is no need to keep reference to this context for future use as it may be accessed via
@@ -118,21 +120,21 @@ class AggreGatePlugin : public Interface
     *          List of user-level plugin properties
     * @return Plugin user-level config context
     */
-    virtual Context createUserConfigContext(boost::shared_ptr<Context> userContext, bool requestReboot,
-                                            boost::shared_ptr<VariableDefinition>... properties) = 0;
+    virtual Context *createUserConfigContext(boost::shared_ptr<Context> userContext, bool requestReboot,
+                                            boost::shared_ptr<VariableDefinition> properties) = 0;
 
     /**
     * Returns plugin's global configuration context
     *
     * @return Global configuration context
     */
-    virtual Context getGlobalConfigContext() = 0;
+    virtual Context *getGlobalConfigContext() = 0;
 
     /**
     * Returns plugin's user-level configuration context or NULL if user-level configuration is disabled for the user.
     *
     * @return User-level configuration context
     */
-    virtual Context getUserConfigContext(const std::string& username) = 0;
+    virtual Context *getUserConfigContext(const std::string& username) = 0;
 };
 #endif  //_AggreGatePlugin_H_

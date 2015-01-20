@@ -1,38 +1,27 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/plugin/BasePlugin.java
 
-#pragma once
+#ifndef _BasePlugin_H_
+#define _BasePlugin_H_
 
-//#include <org/java/plugin/Plugin.h"
-#include "plugin/AggreGatePlugin.h"
-//#include <java/lang/Comparable.h"
+//#include "plugin/AggreGatePlugin.h"
+////#include "Log.h"
+//#include "context/Context.h"
+//#include "context/ContextManager.h"
+//#include "context/ContextUtils.h"
+//#include "plugin/AggreGatePlugin.h"
+//#include "plugin/PluginDirector.h"
+#include <string>
 
-
-class BasePlugin
-//    : public ::org::javac::plugin::Plugin
-    : public AggreGatePlugin
-//    , public ::java::lang::Comparable
+//todo - class stub
+class BasePlugin //: public AggreGatePlugin
 {
 
-//public:
-//    typedef ::org::java::plugin::Plugin super;
-//    static const int INDEX_HIGHEST = 400) };
-//    static const int INDEX_VERY_HIGH = 300) };
-//    static const int INDEX_HIGH = 200) };
-//    static const int INDEX_HIGHER = 100) };
-//    static const int INDEX_NORMAL) };
-//    static const int INDEX_LOWER = -100) };
-//    static const int INDEX_LOW = -200) };
-//    static const int INDEX_VERY_LOW = -300) };
-//    static const int INDEX_LOWEST = -400) };
 
-//private:
+private:
 //    PluginDirector* pluginDirector;
-//    const std::string & id;
-//    const std::string & description;
+      std::string id;
+      std::string description;
 //    int index;
-//protected:
-//    void ctor();
-//    void ctor(const std::string & description);
 
 //public:
 //    const std::string & getId();
@@ -42,10 +31,10 @@ class BasePlugin
 //    void setDescription(const std::string & description);
 //    PluginDirector* getPluginDirector();
 //    void setPluginDirector(PluginDirector* pluginDirector);
-//    ::com::tibbo::aggregate::common::context::Context* createGlobalConfigContext(::com::tibbo::aggregate::common::context::Context* rootContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray*/*...*/ properties);
-//    ::com::tibbo::aggregate::common::context::Context* createUserConfigContext(::com::tibbo::aggregate::common::context::Context* userContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray*/*...*/ properties);
-//    ::com::tibbo::aggregate::common::context::Context* getGlobalConfigContext();
-//    ::com::tibbo::aggregate::common::context::Context* getUserConfigContext(const std::string & username);
+//    Context* createGlobalConfigContext(Context* rootContext, bool requestReboot, VariableDefinitionArray*/*...*/ properties);
+//    Context* createUserConfigContext(Context* userContext, bool requestReboot, VariableDefinitionArray*/*...*/ properties);
+//    Context* getGlobalConfigContext();
+//    Context* getUserConfigContext(const std::string & username);
 //    int getSortIndex();
 
 //public: /* protected */
@@ -58,23 +47,29 @@ class BasePlugin
 //    void doStart() /* throws(Exception) */;
 //    void doStop() /* throws(Exception) */;
 
-//public:
-//    void globalInit(::com::tibbo::aggregate::common::context::Context* rootContext) /* throws(PluginException) */;
-//    void globalDeinit(::com::tibbo::aggregate::common::context::Context* rootContext) /* throws(PluginException) */;
-//    void userInit(::com::tibbo::aggregate::common::context::Context* userContext) /* throws(PluginException) */;
-//    void userDeinit(::com::tibbo::aggregate::common::context::Context* userContext) /* throws(PluginException) */;
-//    void globalStart() /* throws(PluginException) */;
-//    void globalStop() /* throws(PluginException) */;
+public:
 
-//    // Generated
-//    BasePlugin();
-//    BasePlugin(const std::string & description);
-//protected:
-//    BasePlugin(const ::default_init_tag&);
+	    static const int INDEX_HIGHEST = 400;
+    static const int INDEX_VERY_HIGH = 300;
+    static const int INDEX_HIGH = 200;
+    static const int INDEX_HIGHER = 100;
+    static const int INDEX_NORMAL=0;
+    static const int INDEX_LOWER = -100;
+    static const int INDEX_LOW = -200;
+    static const int INDEX_VERY_LOW = -300;
+    static const int INDEX_LOWEST = -400;
+
+//    void globalInit(Context* rootContext) ;
+//    void globalDeinit(Context* rootContext) ;
+//    void userInit(Context* userContext) ;
+//    void userDeinit(Context* userContext) ;
+//    void globalStart() ;
+//    void globalStop() ;
 
 
-//public:
-    
+    BasePlugin();
+    BasePlugin(const std::string & description);
+
 
 //private:
 //    void init();
@@ -82,7 +77,5 @@ class BasePlugin
 //public:
 //    int compareTo(void* arg0);
 
-//private:
-//    ::java::lang::Class* getClass0();
 };
 #endif

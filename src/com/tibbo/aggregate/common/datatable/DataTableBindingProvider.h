@@ -1,42 +1,43 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTableBindingProvider.java
 
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/AbstractDataTableBindingProvider.h"
+#ifndef DataTableBindingProviderH
+#define DataTableBindingProviderH
 
 
+//#include "common/Cres.h"
+//#include "common/Log.h"
+//#include "common/binding/Binding.h"
+//#include "common/binding/BindingException.h"
+//#include "common/binding/EvaluationOptions.h"
+//#include "common/binding/ReferenceListener.h"
+//#include "common/datatable/DataRecord.h"
+//#include "common/datatable/DataTable.h"
+//#include "common/datatable/FieldFormat.h"
+//#include "common/datatable/TableFormat.h"
+//#include "common/expression/Reference.h"
+//
+//#include "datatable/AbstractDataTableBindingProvider.h"
 
-class com::tibbo::aggregate::common::datatable::DataTableBindingProvider
-    : public AbstractDataTableBindingProvider
+#include <string>
+
+//todo - class stub
+class DataTableBindingProvider //: public AbstractDataTableBindingProvider
 {
+ //private:
 
 public:
-    typedef AbstractDataTableBindingProvider super;
-
-private:
-    static const std::string PROPERTY_ENABLED_;
-    static const std::string PROPERTY_HIDDEN_;
-    static const std::string PROPERTY_CHOICES_;
-    static const std::string PROPERTY_OPTIONS_;
-    static ::com::tibbo::aggregate::common::binding::EvaluationOptions* EVALUATION_OPTIONS_;
+    static const std::string PROPERTY_ENABLED;
+    static const std::string PROPERTY_HIDDEN;
+    static const std::string PROPERTY_CHOICES;
+    static const std::string PROPERTY_OPTIONS;
+	/*
+    static EvaluationOptions* EVALUATION_OPTIONS;
     DataTable* table;
     bool headless;
-protected:
-    void ctor(DataTable* table);
-    void ctor(DataTable* table, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector);
 
-public:
     std::map createBindings();
 
-public: /* protected */
-    void callReferenceChanged(::com::tibbo::aggregate::common::expression::Reference* cause, int method, ::com::tibbo::aggregate::common::binding::ReferenceListener* listener);
+public: 
+    void callReferenceChanged(Reference* cause, int method, ReferenceListener* listener);
     ::com::tibbo::aggregate::common::binding::ReferenceWriter* getExternalReferenceWriter();
     void setCellValue(void* value, int row, const std::string & field);
     void setEnabled(void* value, int row, const std::string & field);
@@ -48,10 +49,10 @@ public: /* protected */
 public:
     void start();
     void stop();
-    void writeReference(int method, ::com::tibbo::aggregate::common::expression::Reference* ref, ::com::tibbo::aggregate::common::expression::Reference* cause, void* value, ::com::tibbo::aggregate::common::binding::ChangeCache* cache) /* throws(BindingException) */;
+    void writeReference(int method, Reference* ref, Reference* cause, void* value, ::com::tibbo::aggregate::common::binding::ChangeCache* cache);
 
-public: /* protected */
-    FieldFormat* getFieldFormat(int row, const std::string & field) /* throws(BindingException) */;
+public: 
+    FieldFormat* getFieldFormat(int row, const std::string & field);
 
     // Generated
 
@@ -65,7 +66,7 @@ protected:
 public:
     
     static void 
-    void writeReference(::com::tibbo::aggregate::common::expression::Reference* ref, void* value);
+    void writeReference(Reference* ref, void* value);
     static const std::string& PROPERTY_ENABLED();
     static const std::string& PROPERTY_HIDDEN();
     static const std::string& PROPERTY_CHOICES();
@@ -73,5 +74,8 @@ public:
 
 private:
     static ::com::tibbo::aggregate::common::binding::EvaluationOptions*& EVALUATION_OPTIONS();
-    ::java::lang::Class* getClass0();
+	*/
 };
+
+
+#endif

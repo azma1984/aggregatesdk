@@ -57,12 +57,12 @@ std::string& com::tibbo::aggregate::common::action::command::ShowMessage::CF_LEV
 }
 std::string com::tibbo::aggregate::common::action::command::ShowMessage::CF_LEVEL_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE()
 {
     
     return CFT_SHOW_MESSAGE_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE_;
 
 void com::tibbo::aggregate::common::action::command::ShowMessage::ctor()
 {
@@ -81,7 +81,7 @@ void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), title, parameters, CFT_SHOW_MESSAGE_);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowMessage::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::ShowMessage::constructParameters()
 {
     return new DataTable(CFT_SHOW_MESSAGE_, new voidArray({message), level))}));
 }

@@ -75,7 +75,7 @@ com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree(const std::string & title, ::com::tibbo::aggregate::common::context::Context* root) 
+com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree(const std::string & title, Context* root) 
     : ShowSystemTree(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,root);
@@ -140,19 +140,19 @@ std::string& com::tibbo::aggregate::common::action::command::ShowSystemTree::CF_
 }
 std::string com::tibbo::aggregate::common::action::command::ShowSystemTree::CF_ROOTS_ROOT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_ROOTS()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_ROOTS()
 {
     
     return CFT_SHOW_SYSTEM_TREE_ROOTS_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_ROOTS_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_ROOTS_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE()
 {
     
     return CFT_SHOW_SYSTEM_TREE_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_;
 
 void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor()
 {
@@ -160,7 +160,7 @@ void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor()
     init();
 }
 
-void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const std::string & title, ::com::tibbo::aggregate::common::context::Context* root)
+void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const std::string & title, Context* root)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_SYSTEM_TREE(), title);
     init();
@@ -199,7 +199,7 @@ void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const 
     }
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowSystemTree::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::ShowSystemTree::constructParameters()
 {
     auto res = new DataRecord(CFT_SHOW_SYSTEM_TREE_);
     res)->addString(root);

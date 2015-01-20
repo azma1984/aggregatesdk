@@ -77,19 +77,19 @@ std::string& com::tibbo::aggregate::common::action::command::EditWidget::RF_RESU
 }
 std::string com::tibbo::aggregate::common::action::command::EditWidget::RF_RESULT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditWidget::CFT_EDIT_WIDGET()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditWidget::CFT_EDIT_WIDGET()
 {
     
     return CFT_EDIT_WIDGET_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditWidget::CFT_EDIT_WIDGET_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditWidget::CFT_EDIT_WIDGET_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditWidget::RFT_EDIT_WIDGET()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditWidget::RFT_EDIT_WIDGET()
 {
     
     return RFT_EDIT_WIDGET_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditWidget::RFT_EDIT_WIDGET_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditWidget::RFT_EDIT_WIDGET_;
 
 void com::tibbo::aggregate::common::action::command::EditWidget::ctor()
 {
@@ -109,7 +109,7 @@ void com::tibbo::aggregate::common::action::command::EditWidget::ctor(const std:
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_WIDGET(), title, parameters, CFT_EDIT_WIDGET_);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditWidget::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::EditWidget::constructParameters()
 {
     return new DataTable(CFT_EDIT_WIDGET_, new voidArray({defaultContext), widgetContext), widget)}));
 }

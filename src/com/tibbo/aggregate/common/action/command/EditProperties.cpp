@@ -176,33 +176,33 @@ std::string& com::tibbo::aggregate::common::action::command::EditProperties::CF_
 }
 std::string com::tibbo::aggregate::common::action::command::EditProperties::CF_SLAVES_CONTEXT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::CFT_SLAVES()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::CFT_SLAVES()
 {
     
     return CFT_SLAVES_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditProperties::CFT_SLAVES_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditProperties::CFT_SLAVES_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::FT_PROPERTIES()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::FT_PROPERTIES()
 {
     
     return FT_PROPERTIES_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditProperties::FT_PROPERTIES_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditProperties::FT_PROPERTIES_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::CFT_EDIT_PROPERTIES()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::CFT_EDIT_PROPERTIES()
 {
     
     return CFT_EDIT_PROPERTIES_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditProperties::CFT_EDIT_PROPERTIES_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditProperties::CFT_EDIT_PROPERTIES_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::RFT_EDIT_PROPERTIES()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::RFT_EDIT_PROPERTIES()
 {
     
     return RFT_EDIT_PROPERTIES_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditProperties::RFT_EDIT_PROPERTIES_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditProperties::RFT_EDIT_PROPERTIES_;
 
 void com::tibbo::aggregate::common::action::command::EditProperties::ctor()
 {
@@ -228,7 +228,7 @@ void com::tibbo::aggregate::common::action::command::EditProperties::ctor(const 
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_PROPERTIES(), title, parameters, CFT_EDIT_PROPERTIES_);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditProperties::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::EditProperties::constructParameters()
 {
     auto slavesTable = createSlavesTable(slaves);
     auto table = new DataTable(CFT_EDIT_PROPERTIES_);
@@ -256,7 +256,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return rec)->wrap();
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditProperties::createSlavesTable(std::list  slaves)
+DateDataTable* com::tibbo::aggregate::common::action::command::EditProperties::createSlavesTable(std::list  slaves)
 {
     if(slaves == 0) {
         return 0;
@@ -271,7 +271,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return slavesTable;
 }
 
-java::util::List* com::tibbo::aggregate::common::action::command::EditProperties::getSlaves(::com::tibbo::aggregate::common::action::GenericActionCommand* cmd, ::com::tibbo::aggregate::common::context::Context* base, ::com::tibbo::aggregate::common::context::CallerController* caller)
+std::list  com::tibbo::aggregate::common::action::command::EditProperties::getSlaves(::com::tibbo::aggregate::common::action::GenericActionCommand* cmd, Context* base, CallerController* caller)
 {
     
     auto slavesTable = cmd)->getParameters())->rec())->getDataTable(CF_SLAVES_);
@@ -283,7 +283,7 @@ java::util::List* com::tibbo::aggregate::common::action::command::EditProperties
         DataRecord* rec = java_cast< DataRecord* >(_i->next());
         {
             auto context = rec)->getString(CF_SLAVES_CONTEXT_);
-            auto slave = java_cast< ::com::tibbo::aggregate::common::context::Context* >(base)->get(context, caller));
+            auto slave = java_cast< Context* >(base)->get(context, caller));
             if(slave != 0) {
                 slaves)->add(slave));
             }
@@ -312,7 +312,7 @@ void com::tibbo::aggregate::common::action::command::EditProperties::setProperti
     this->propertiesGroup = propertiesGroup;
 }
 
-java::util::List* com::tibbo::aggregate::common::action::command::EditProperties::getProperties()
+std::list  com::tibbo::aggregate::common::action::command::EditProperties::getProperties()
 {
     return properties;
 }
@@ -322,7 +322,7 @@ void com::tibbo::aggregate::common::action::command::EditProperties::setProperti
     this->properties = properties;
 }
 
-java::util::List* com::tibbo::aggregate::common::action::command::EditProperties::getSlaves()
+std::list  com::tibbo::aggregate::common::action::command::EditProperties::getSlaves()
 {
     return slaves;
 }

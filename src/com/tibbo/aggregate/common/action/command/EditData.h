@@ -33,12 +33,12 @@ class EditData : public GenericActionCommand
 //    ::com::tibbo::aggregate::common::util::WindowLocation* location;
 //    ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard;
 //    const std::string & expression;
-//    ::java::lang::Long* period;
+//    long  period;
 //protected:
 //    void ctor();
 //    void ctor(const std::string & title, DataTable* parameters);
 //    void ctor(const std::string & title, DataTable* data, bool readonly);
-//    void ctor(const std::string & title, const std::string & iconId, const std::string & expression, ::java::lang::Long* period);
+//    void ctor(const std::string & title, const std::string & iconId, const std::string & expression, long  period);
 
 //public: /* protected */
 //    DataTable* constructParameters();
@@ -65,8 +65,8 @@ class EditData : public GenericActionCommand
 //    void setDashboard(::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
 //    const std::string & getExpression();
 //    void setExpression(const std::string & expression);
-//    ::java::lang::Long* getPeriod();
-//    void setPeriod(::java::lang::Long* period);
+//    long  getPeriod();
+//    void setPeriod(long  period);
 //    ::com::tibbo::aggregate::common::action::EditDataMerger* getMerger();
 //    void setMerger(::com::tibbo::aggregate::common::action::EditDataMerger* merger);
 
@@ -74,7 +74,7 @@ class EditData : public GenericActionCommand
 //    EditData();
 //    EditData(const std::string & title, DataTable* parameters);
 //    EditData(const std::string & title, DataTable* data, bool readonly);
-//    EditData(const std::string & title, const std::string & iconId, const std::string & expression, ::java::lang::Long* period);
+//    EditData(const std::string & title, const std::string & iconId, const std::string & expression, long  period);
 //protected:
 //    EditData(const ::default_init_tag&);
 

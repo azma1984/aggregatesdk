@@ -56,12 +56,12 @@ std::string& com::tibbo::aggregate::common::action::command::ShowGuide::CF_MACRO
 }
 std::string com::tibbo::aggregate::common::action::command::ShowGuide::CF_MACRO_NAME_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::ShowGuide::CFT_SHOW_GUIDE()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowGuide::CFT_SHOW_GUIDE()
 {
     
     return CFT_SHOW_GUIDE_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::ShowGuide::CFT_SHOW_GUIDE_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::ShowGuide::CFT_SHOW_GUIDE_;
 
 void com::tibbo::aggregate::common::action::command::ShowGuide::ctor()
 {
@@ -80,7 +80,7 @@ void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(const std::
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_GUIDE(), title, parameters, CFT_SHOW_GUIDE_);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::ShowGuide::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::ShowGuide::constructParameters()
 {
     return new DataTable(CFT_SHOW_GUIDE_, new voidArray({invokerContext), macroName)}));
 }

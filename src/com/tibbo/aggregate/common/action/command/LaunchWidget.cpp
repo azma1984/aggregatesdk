@@ -82,7 +82,7 @@ TableFormat* com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_L
     
     return CFT_LAUNCH_WIDGET_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET_;
 
 void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor()
 {
@@ -107,7 +107,7 @@ void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const st
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), title, parameters, CFT_LAUNCH_WIDGET_);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::LaunchWidget::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::LaunchWidget::constructParameters()
 {
     return new DataTable(CFT_LAUNCH_WIDGET_, new voidArray({widgetContext), defaultContext), template_), location != 0 ? location)->toDataTable()) : 0), dashboard != 0 ? dashboard)->toDataTable()) : 0), input)}));
 }
@@ -162,7 +162,7 @@ void com::tibbo::aggregate::common::action::command::LaunchWidget::setDashboard(
     this->dashboard = dashboard;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::LaunchWidget::getInput()
+DateDataTable* com::tibbo::aggregate::common::action::command::LaunchWidget::getInput()
 {
     return input;
 }

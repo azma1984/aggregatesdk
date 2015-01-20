@@ -18,6 +18,7 @@
 
 class DataTable;
 
+//todo - class stub
 class TableFormat//: public Cloneable
 { 
 public:   
@@ -50,9 +51,9 @@ private:
     std::map<std::string, int> fieldLookup;
     int minRecords;
     int maxRecords;
-    bool reorderable;
+    bool reorderable;*/
     bool unresizable;
-    bool bindingsEditable;
+   /* bool bindingsEditable;
     std::list<boost::shared_ptr<RecordValidator>>  recordValidators;
     std::list<boost::shared_ptr<TableValidator>>  tableValidators;
     std::list<boost::shared_ptr<Binding>>  bindings;
@@ -60,7 +61,7 @@ private:
 	*/
     bool immutable;
     
-	boost::shared_ptr<DataTable> immutabilizer;
+    boost::shared_ptr<DataTable> immutabilizer;
 	/*
 protected:
     void ctor();
@@ -115,15 +116,15 @@ public:
     int getMaxRecords();
     int getMinRecords();
     bool isReorderable();
-    bool isUnresizable();
+    bool isUnresizable();*/
     void setUnresizable(bool unresizable);
-    bool isBindingsEditable();
+   /* bool isBindingsEditable();
     void setBindingsEditable(bool bindingsEditable);
-    std::list<Binding>  getBindings();
+    std::list<Binding>  getBindings();*/
     void addBinding(Binding* binding);
     void addBinding(Reference* target, Expression* expression);
     void addBinding(const std::string& target, const std::string& expression);
-    void removeBinding(Binding* binding);
+  /*  void removeBinding(Binding* binding);
 //    void setBindings(std::list<Binding>& in_bindings);
     Expression* getNamingExpression();
     std::string encode(bool useVisibleSeparators);
@@ -174,7 +175,7 @@ public:
    // TableFormat(const std::string& format, ClassicEncodingSettings* settings);
   //  TableFormat(const std::string& format, ClassicEncodingSettings* settings, bool validate);
     TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat);
-    //TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat);
+    TableFormat(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat<bool>> fieldFormat);
 	
 
 

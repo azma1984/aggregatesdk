@@ -37,7 +37,7 @@ com::tibbo::aggregate::common::action::command::EditData::EditData(const std::st
     ctor(title,data,readonly);
 }
 
-com::tibbo::aggregate::common::action::command::EditData::EditData(const std::string & title, const std::string & iconId, const std::string & expression, ::java::lang::Long* period) 
+com::tibbo::aggregate::common::action::command::EditData::EditData(const std::string & title, const std::string & iconId, const std::string & expression, long  period) 
     : EditData(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,iconId,expression,period);
@@ -120,12 +120,12 @@ std::string& com::tibbo::aggregate::common::action::command::EditData::CF_PERIOD
 }
 std::string com::tibbo::aggregate::common::action::command::EditData::CF_PERIOD_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::command::EditData::CFT_EDIT_DATA()
+DateTableFormat*& com::tibbo::aggregate::common::action::command::EditData::CFT_EDIT_DATA()
 {
     
     return CFT_EDIT_DATA_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::command::EditData::CFT_EDIT_DATA_;
+DateTableFormat* com::tibbo::aggregate::common::action::command::EditData::CFT_EDIT_DATA_;
 
 void com::tibbo::aggregate::common::action::command::EditData::ctor()
 {
@@ -144,7 +144,7 @@ void com::tibbo::aggregate::common::action::command::EditData::ctor(const std::s
     this->readOnly = readonly;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::ctor(const std::string & title, const std::string & iconId, const std::string & expression, ::java::lang::Long* period)
+void com::tibbo::aggregate::common::action::command::EditData::ctor(const std::string & title, const std::string & iconId, const std::string & expression, long  period)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_DATA(), title);
     this->data = new DataTable();
@@ -153,7 +153,7 @@ void com::tibbo::aggregate::common::action::command::EditData::ctor(const std::s
     this->period = period;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditData::constructParameters()
+DateDataTable* com::tibbo::aggregate::common::action::command::EditData::constructParameters()
 {
     auto rec = new DataRecord(CFT_EDIT_DATA_);
     rec)->addDataTable(data);
@@ -176,7 +176,7 @@ com::tibbo::aggregate::common::action::GenericActionResponse* com::tibbo::aggreg
     return new ::com::tibbo::aggregate::common::action::GenericActionResponse(table);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::command::EditData::getData()
+DateDataTable* com::tibbo::aggregate::common::action::command::EditData::getData()
 {
     return data;
 }
@@ -276,12 +276,12 @@ void com::tibbo::aggregate::common::action::command::EditData::setExpression(con
     this->expression = expression;
 }
 
-java::lang::Long* com::tibbo::aggregate::common::action::command::EditData::getPeriod()
+ com::tibbo::aggregate::common::action::command::EditData::getPeriod()
 {
     return period;
 }
 
-void com::tibbo::aggregate::common::action::command::EditData::setPeriod(::java::lang::Long* period)
+void com::tibbo::aggregate::common::action::command::EditData::setPeriod(long  period)
 {
     this->period = period;
 }

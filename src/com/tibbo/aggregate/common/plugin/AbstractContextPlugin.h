@@ -1,107 +1,47 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/plugin/AbstractContextPlugin.java
+#ifndef _AbstractContextPlugin_H_
+#define _AbstractContextPlugin_H_
 
-#pragma once
+//#include "plugin/BasePlugin.h"
+//#include "plugin/ContextPlugin.h"
+//#include "context/Context.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-
-
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/plugin/BasePlugin.h"
-#include <com/tibbo/aggregate/common/plugin/ContextPlugin.h"
-
-template<typename ComponentType, typename... Bases> struct SubArray;
-namespace com
+class AbstractContextPlugin //: public BasePlugin, public ContextPlugin
 {
-    namespace tibbo
-    {
-        namespace aggregate
-        {
-            namespace common
-            {
-                namespace context
-                {
-typedef ::SubArray< ::com::tibbo::aggregate::common::context::EntityDefinition, voidArray > EntityDefinitionArray;
-typedef ::SubArray< ::com::tibbo::aggregate::common::context::AbstractEntityDefinition, voidArray, EntityDefinitionArray > AbstractEntityDefinitionArray;
-                } // context
-            } // common
-        } // aggregate
-    } // tibbo
-} // com
+	
+// public:
+//    void initialize();
+//    void deinitialize();
+//    void install(ContextManager* cm);
+//    void deinstall(ContextManager* cm);
+//    void install(::com::tibbo::aggregate::common::server::ServerContext* context);
+//    void deinstall(::com::tibbo::aggregate::common::server::ServerContext* context) ;
+//    void launch();
+//    void shutdown();
+//
+//
+//    AbstractContextPlugin();
+//    AbstractContextPlugin(const std::string & name);
+//protected:
+//    AbstractContextPlugin(const ::default_init_tag&);
+//
+//
+//public:
+//    
+//    Context* createGlobalConfigContext(Context* rootContext, bool requestReboot, VariableDefinitionArray* properties);
+//    Context* createUserConfigContext(Context* userContext, bool requestReboot, VariableDefinitionArray* properties);
+//    const std::string & getDescription();
+//    Context* getGlobalConfigContext();
+//    const std::string & getId();
+//    const std::string & getShortId();
+//    int getSortIndex();
+//    Context* getUserConfigContext(const std::string & username);
+//    void globalDeinit(Context* rootContext);
+//    void globalInit(Context* rootContext);
+//    void globalStart();
+//    void globalStop();
+//    void userDeinit(Context* userContext);
+//    void userInit(Context* userContext);
 
-namespace java
-{
-    namespace lang
-    {
-typedef ::SubArray< ::java::lang::Cloneable, ObjectArray > CloneableArray;
-typedef ::SubArray< ::java::lang::Comparable, ObjectArray > ComparableArray;
-    } // lang
-} // java
-
-namespace com
-{
-    namespace tibbo
-    {
-        namespace aggregate
-        {
-            namespace common
-            {
-                namespace context
-                {
-typedef ::SubArray< ::com::tibbo::aggregate::common::context::VariableDefinition, AbstractEntityDefinitionArray, ::java::lang::CloneableArray, ::java::lang::ComparableArray > VariableDefinitionArray;
-                } // context
-            } // common
-        } // aggregate
-    } // tibbo
-} // com
-
-
-
-class com::tibbo::aggregate::common::plugin::AbstractContextPlugin
-    : public BasePlugin
-    , public ContextPlugin
-{
-
-public:
-    typedef BasePlugin super;
-protected:
-    void ctor();
-    void ctor(const std::string & name);
-
-public:
-    void initialize() /* throws(PluginException) */;
-    void deinitialize() /* throws(PluginException) */;
-    void install(::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException, PluginException) */;
-    void deinstall(::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException, PluginException) */;
-    void install(::com::tibbo::aggregate::common::server::ServerContext* context) /* throws(ContextException, PluginException) */;
-    void deinstall(::com::tibbo::aggregate::common::server::ServerContext* context) /* throws(ContextException, PluginException) */;
-    void launch() /* throws(PluginException) */;
-    void shutdown() /* throws(PluginException) */;
-
-    // Generated
-    AbstractContextPlugin();
-    AbstractContextPlugin(const std::string & name);
-protected:
-    AbstractContextPlugin(const ::default_init_tag&);
-
-
-public:
-    
-    ::com::tibbo::aggregate::common::context::Context* createGlobalConfigContext(::com::tibbo::aggregate::common::context::Context* rootContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray* properties);
-    ::com::tibbo::aggregate::common::context::Context* createUserConfigContext(::com::tibbo::aggregate::common::context::Context* userContext, bool requestReboot, ::com::tibbo::aggregate::common::context::VariableDefinitionArray* properties);
-    const std::string & getDescription();
-    ::com::tibbo::aggregate::common::context::Context* getGlobalConfigContext();
-    const std::string & getId();
-    const std::string & getShortId();
-    int getSortIndex();
-    ::com::tibbo::aggregate::common::context::Context* getUserConfigContext(const std::string & username);
-    void globalDeinit(::com::tibbo::aggregate::common::context::Context* rootContext);
-    void globalInit(::com::tibbo::aggregate::common::context::Context* rootContext);
-    void globalStart();
-    void globalStop();
-    void userDeinit(::com::tibbo::aggregate::common::context::Context* userContext);
-    void userInit(::com::tibbo::aggregate::common::context::Context* userContext);
-
-private:
-    ::java::lang::Class* getClass0();
 };
+#endif

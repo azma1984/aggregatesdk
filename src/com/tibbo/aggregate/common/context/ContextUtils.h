@@ -3,62 +3,71 @@
 #ifndef ContextUtilsH
 #define ContextUtilsH
 
-//#include <com/tibbo/aggregate/common/action/ActionDefinition.h"
-//#include <com/tibbo/aggregate/common/context/Context.h"
-//#include <com/tibbo/aggregate/common/context/ContextManager.h"
-//#include <com/tibbo/aggregate/common/context/ContextRuntimeException.h"
-//#include <com/tibbo/aggregate/common/context/ContextUtils_findChildren_1.h"
-//#include <com/tibbo/aggregate/common/context/ContextVisitor.h"
-//#include <com/tibbo/aggregate/common/context/Contexts.h"
-//#include <com/tibbo/aggregate/common/context/EventData.h"
-//#include <com/tibbo/aggregate/common/context/EventDefinition.h"
-//#include <com/tibbo/aggregate/common/context/VariableDefinition.h"
-//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-//#include <com/tibbo/aggregate/common/util/StringUtils.h"
+//#include "action/ActionDefinition.h"
+#include "context/Context.h"
+//#include "context/ContextManager.h"
+//#include "context/ContextRuntimeException.h"
+//#include "context/ContextUtils_findChildren_1.h"
+#include "context/ContextVisitor.h"
+//#include "context/Contexts.h"
+//#include "context/EventData.h"
+//#include "context/EventDefinition.h"
+//#include "context/VariableDefinition.h"
+//#include "datatable/FieldFormat.h"
+//#include "datatable/TableFormat.h"
+//#include "util/StringUtils.h"
 
 #include <string>
 
+#include <list>
 
-//todo - So far the class is not described
+
+//todo - So far the class is not described (class stub)
 class ContextUtils
 {
+private:
+    static std::list<std::string>  expandMaskPart(const std::string & head, const std::string & tail, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren);
+    static void acceptFinder(Context* context, ContextVisitor* visitor, CallerController* caller, bool resolveGroups);
+	
+	static const std::string CONTEXT_CLASS_SUFFIX;
+
+public:
+
+    static const std::string CONTEXT_NAME_PATTERN;
+    static const std::string CONTEXT_PATH_PATTERN;
+    static const std::string CONTEXT_MASK_PATTERN;
+    static const std::string CONTEXT_TYPE_PATTERN;
+    static const std::string ENTITY_NAME_PATTERN;
+    static const std::string IDENTIFIER_PATTERN;
+
+	
+
+    static const std::string CONTEXT_NAME_SEPARATOR;
+    static const std::string CONTEXT_TYPE_SEPARATOR;
+    static const std::string CONTEXT_GROUP_MASK;
+    static const std::string ENTITY_GROUP_MASK;
+    static const std::string CONTEXT_TYPE_ANY;
+    static const std::string ENTITY_GROUP_SEPARATOR;
+	static const std::string MASK_LIST_SEPARATOR;
+
+    static const std::string GROUP_DEFAULT;
+    static const std::string GROUP_SYSTEM;
+    static const std::string GROUP_REMOTE;
+    static const std::string GROUP_CUSTOM;
+    static const std::string GROUP_STATUS;
+    static const std::string GROUP_ACCESS;
+
+
+	
+    static const int ENTITY_VARIABLE = 1;
+    static const int ENTITY_FUNCTION = 2;
+    static const int ENTITY_EVENT = 4;
+    static const int ENTITY_ACTION = 8;
+
+    static const std::string USERNAME_PATTERN;
+    static const std::string VARIABLES_GROUP_DS_SETTINGS;
 /*
 
-private:
-    static const std::string CONTEXT_NAME_PATTERN_;
-    static const std::string CONTEXT_PATH_PATTERN_;
-    static const std::string CONTEXT_MASK_PATTERN_;
-    static const std::string CONTEXT_TYPE_PATTERN_;
-    static const std::string ENTITY_NAME_PATTERN_;
-    static const std::string IDENTIFIER_PATTERN_;
-    static const std::string CONTEXT_CLASS_SUFFIX_;
-    static const std::string CONTEXT_NAME_SEPARATOR_;
-    static const std::string CONTEXT_TYPE_SEPARATOR_;
-    static const std::string CONTEXT_GROUP_MASK_;
-    static const std::string ENTITY_GROUP_MASK_;
-    static const std::string CONTEXT_TYPE_ANY_;
-    static const std::string ENTITY_GROUP_SEPARATOR_;
-    static const std::string MASK_LIST_SEPARATOR_;
-    static const std::string GROUP_DEFAULT_;
-    static const std::string GROUP_SYSTEM_;
-    static const std::string GROUP_REMOTE_;
-    static const std::string GROUP_CUSTOM_;
-    static const std::string GROUP_STATUS_;
-    static const std::string GROUP_ACCESS_;
-*/
-public:
-	/*
-    static const int ENTITY_VARIABLE = 1) };
-    static const int ENTITY_FUNCTION = 2) };
-    static const int ENTITY_EVENT = 4) };
-    static const int ENTITY_ACTION = 8) };
-
-private:
-    static const std::string USERNAME_PATTERN_;
-    static const std::string VARIABLES_GROUP_DS_SETTINGS_;
-
-public:
     static const std::string createName(std::stringArray* parts);
     static const std::string createGroup(std::stringArray* parts);
     static const std::string userContextPath(const std::string & username);
@@ -118,17 +127,11 @@ public:
     static std::list  expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller);
     static std::list  expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren);
 
-private:
-    static std::list  expandMaskPart(const std::string & head, const std::string & tail, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren);
 
-public:
     static std::list  findChildren(const std::string & rootsMask, ::java::lang::Class* contextClass, ContextManager* manager, CallerController* caller, bool resolveGroups);
     static std::list  findChildren(const std::string & rootsMask, const std::string & type, ContextManager* manager, CallerController* caller, bool resolveGroups);
 
-private:
-    static void acceptFinder(Context* context, ContextVisitor* visitor, CallerController* caller, bool resolveGroups) ;
 
-public:
     static bool matchesToMask(const std::string & mask, const std::string & name);
     static bool matchesToType(const std::string & type, ::java::util::Collection* requiredTypes);
     static bool matchesToType(::java::util::Collection* types, ::java::util::Collection* requiredTypes);
@@ -154,45 +157,6 @@ public:
     static const std::string createType(::java::lang::Class* clazz, const std::string & deviceType);
     static bool isValidContextNameChar(char16_t c);
 
-    // Generated
-    ContextUtils();
-protected:
-    ContextUtils(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-    static const std::string& CONTEXT_NAME_PATTERN();
-    static const std::string& CONTEXT_PATH_PATTERN();
-    static const std::string& CONTEXT_MASK_PATTERN();
-    static const std::string& CONTEXT_TYPE_PATTERN();
-    static const std::string& ENTITY_NAME_PATTERN();
-    static const std::string& IDENTIFIER_PATTERN();
-
-private:
-    static const std::string& CONTEXT_CLASS_SUFFIX();
-
-public:
-    static const std::string& CONTEXT_NAME_SEPARATOR();
-    static const std::string& CONTEXT_TYPE_SEPARATOR();
-    static const std::string& CONTEXT_GROUP_MASK();
-    static const std::string& ENTITY_GROUP_MASK();
-    static const std::string& CONTEXT_TYPE_ANY();
-    static const std::string& ENTITY_GROUP_SEPARATOR();
-    static const std::string& MASK_LIST_SEPARATOR();
-    static const std::string& GROUP_DEFAULT();
-    static const std::string& GROUP_SYSTEM();
-    static const std::string& GROUP_REMOTE();
-    static const std::string& GROUP_CUSTOM();
-    static const std::string& GROUP_STATUS();
-    static const std::string& GROUP_ACCESS();
-    static const std::string& USERNAME_PATTERN();
-    static const std::string& VARIABLES_GROUP_DS_SETTINGS();
-
-private:
-    ::java::lang::Class* getClass0();
-    friend class ContextUtils_findChildren_1;
 	*/
 };
 

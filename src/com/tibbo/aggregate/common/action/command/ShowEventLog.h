@@ -39,7 +39,7 @@ private:
     static TableFormat* CFT_SHOW_EVENT_LOG_;
     static TableFormat* RFT_SHOW_EVENT_LOG_;
     const std::string & eventFilter;
-    ::com::tibbo::aggregate::common::context::EntityList* events;
+    EntityList* events;
     bool showRealtime;
     bool showHistory;
     bool preloadHistory;
@@ -55,7 +55,7 @@ private:
     ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard;
 protected:
     void ctor();
-    void ctor(const std::string & title, ::com::tibbo::aggregate::common::context::EntityList* eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
+    void ctor(const std::string & title, EntityList* eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
     void ctor(const std::string & title, const std::string & eventFilter, bool showRealtime, bool showHistory, bool preloadHistory);
     void ctor(const std::string & title, DataTable* parameters);
 
@@ -65,8 +65,8 @@ public: /* protected */
 public:
     const std::string & getEventFilter();
     void setEventFilter(const std::string & eventFilter);
-    ::com::tibbo::aggregate::common::context::EntityList* getEvents();
-    void setEvents(::com::tibbo::aggregate::common::context::EntityList* eventList);
+    EntityList* getEvents();
+    void setEvents(EntityList* eventList);
     bool isShowRealtime();
     void setShowRealtime(bool showRealtime);
     bool isShowHistory();
@@ -96,7 +96,7 @@ public:
 
     // Generated
     ShowEventLog();
-    ShowEventLog(const std::string & title, ::com::tibbo::aggregate::common::context::EntityList* eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
+    ShowEventLog(const std::string & title, EntityList* eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
     ShowEventLog(const std::string & title, const std::string & eventFilter, bool showRealtime, bool showHistory, bool preloadHistory);
     ShowEventLog(const std::string & title, DataTable* parameters);
 protected:

@@ -53,7 +53,7 @@ private:
     ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard;
 protected:
     void ctor();
-    void ctor(const std::string & title, ::com::tibbo::aggregate::common::context::Context* root);
+    void ctor(const std::string & title, Context* root);
     void ctor(const std::string & title, std::stringArray*/*...*/ roots);
     void ctor(const std::string & title, DataTable* parameters);
 
@@ -70,7 +70,7 @@ public:
 
     // Generated
     ShowSystemTree();
-    ShowSystemTree(const std::string & title, ::com::tibbo::aggregate::common::context::Context* root);
+    ShowSystemTree(const std::string & title, Context* root);
     ShowSystemTree(const std::string & title, std::stringArray* roots);
     ShowSystemTree(const std::string & title, DataTable* parameters);
 protected:

@@ -1,32 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/plugin/ExtensionsPlugin.java
+#ifndef _ExtensionsPlugin_H_
+#define _ExtensionsPlugin_H_
 
-#pragma once
-
-
-#include <com/tibbo/aggregate/common/plugin/BasePlugin.h"
+#include "plugin/BasePlugin.h"
 
 
 
-class com::tibbo::aggregate::common::plugin::ExtensionsPlugin
-    : public BasePlugin
+class ExtensionsPlugin : public BasePlugin
 {
 
 public:
-    typedef BasePlugin super;
-protected:
-    void ctor();
-
-    // Generated
-
-public:
-    ExtensionsPlugin();
-protected:
-    ExtensionsPlugin(const ::default_init_tag&);
+	ExtensionsPlugin():BasePlugin(){}
 
 
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
 };

@@ -8,6 +8,9 @@
 #include "DataTable/DataTable.h"
 //#include "server/groupcontext.h"
 #include "data/event.h"
+#include "security/Permissions.h"
+
+
 
 class GroupContext;
 
@@ -52,7 +55,7 @@ class ServerContext : public Context
   //  ::java::util::Collection* getMembers(bool includeSubgroups);
     virtual void addedToGroup(GroupContext* groupContext)=0;
     virtual void removedFromGroup(GroupContext* groupContext)=0;
-  //  ::java::util::Set* getGroups();
+  //  ::std::set  getGroups();
     virtual void alertActivated(Event* alert, int type)=0;
     virtual void alertDeactivated(Event* alert)=0;
     virtual bool shouldBeHidden()=0;
