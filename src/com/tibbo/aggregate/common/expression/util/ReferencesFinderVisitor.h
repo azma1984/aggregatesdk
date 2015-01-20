@@ -11,7 +11,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor
+class util::ReferencesFinderVisitor
     
     , public ::ExpressionParserVisitor
 {

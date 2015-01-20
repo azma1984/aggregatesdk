@@ -55,72 +55,72 @@ namespace
         void *o;
     };
 }
-com::tibbo::aggregate::common::context::EventData::EventData(const ::default_init_tag&)
+EventData::EventData(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::EventData::EventData(EventDefinition* definition) 
+EventData::EventData(EventDefinition* definition) 
     : EventData(*static_cast< ::default_init_tag* >(0))
 {
     ctor(definition);
 }
 
-void com::tibbo::aggregate::common::context::EventData::init()
+void EventData::init()
 {
     listeners = new ContextEventListenerSet();
     history = ::java::util::Collections::synchronizedList(new ::java::util::LinkedList());
 }
 
-void com::tibbo::aggregate::common::context::EventData::ctor(EventDefinition* definition)
+void EventData::ctor(EventDefinition* definition)
 {
     super::ctor();
     init();
     this->definition = definition;
 }
 
-void com::tibbo::aggregate::common::context::EventData::registerFiredEvent()
+void EventData::registerFiredEvent()
 {
     fireCount++;
 }
 
-com::tibbo::aggregate::common::context::EventDefinition* com::tibbo::aggregate::common::context::EventData::getDefinition()
+EventDefinition* EventData::getDefinition()
 {
     return definition;
 }
 
-java::util::Set* com::tibbo::aggregate::common::context::EventData::getListeners()
+std::set  EventData::getListeners()
 {
     return listeners)->getListeners();
 }
 
-java::util::Set* com::tibbo::aggregate::common::context::EventData::getListenersInfo()
+std::set  EventData::getListenersInfo()
 {
     return listeners)->getListenersInfo();
 }
 
-long com::tibbo::aggregate::common::context::EventData::getFireCount()
+long EventData::getFireCount()
 {
     return fireCount;
 }
 
-bool com::tibbo::aggregate::common::context::EventData::addListener(ContextEventListener* listener, bool weak)
+bool EventData::addListener(ContextEventListener* listener, bool weak)
 {
     return listeners)->addListener(listener, weak);
 }
 
-bool com::tibbo::aggregate::common::context::EventData::removeListener(ContextEventListener* listener)
+bool EventData::removeListener(ContextEventListener* listener)
 {
     return listeners)->removeListener(listener);
 }
 
-void com::tibbo::aggregate::common::context::EventData::clearListeners()
+void EventData::clearListeners()
 {
     listeners)->clear();
 }
 
-void com::tibbo::aggregate::common::context::EventData::dispatch(Event* event)
+void EventData::dispatch(Event* event)
 {
     try {
         auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
@@ -161,7 +161,7 @@ void com::tibbo::aggregate::common::context::EventData::dispatch(Event* event)
     }
 }
 
-Event* com::tibbo::aggregate::common::context::EventData::store(Event* event, int  customMemoryStorageSize)
+Event* EventData::store(Event* event, int  customMemoryStorageSize)
 {
     auto memoryStorateSize = customMemoryStorageSize != 0 ? customMemoryStorageSize : definition)->getMemoryStorageSize();
     if(memoryStorateSize == 0) {
@@ -207,37 +207,37 @@ Event* com::tibbo::aggregate::common::context::EventData::store(Event* event, in
     }
 }
 
-java::util::List* com::tibbo::aggregate::common::context::EventData::getHistory()
+std::list  EventData::getHistory()
 {
     return new ::java::util::LinkedList(history);
 }
 
-std::string com::tibbo::aggregate::common::context::EventData::toString()
+std::string EventData::toString()
 {
     return std::stringBuilder().append(definition))->append(u" - "_j)
         ->append(listeners)->size())
         ->append(u" listeners"_j)->toString();
 }
 
-int com::tibbo::aggregate::common::context::EventData::compareTo(EventData* d)
+int EventData::compareTo(EventData* d)
 {
     return definition)->compareTo(d)->getDefinition());
 }
 
-int com::tibbo::aggregate::common::context::EventData::compareTo(void* arg0)
+int EventData::compareTo(void* arg0)
 { 
     return compareTo(dynamic_cast< EventData* >(arg0));
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::EventData::class_()
+java::lang::Class* EventData::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.EventData", 44);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::EventData::getClass0()
+java::lang::Class* EventData::getClass0()
 {
     return class_();
 }

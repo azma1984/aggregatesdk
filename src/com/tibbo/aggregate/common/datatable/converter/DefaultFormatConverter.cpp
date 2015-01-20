@@ -69,7 +69,7 @@ DefaultFormatConverter::DefaultFormatConverter(Class* valueClass, boost::shared_
 //    }
 //}
 //
-//com::tibbo::aggregate::common::datatable::FieldFormat* DefaultFormatConverter::createFieldFormat(const std::string & name)
+//DateFieldFormat* DefaultFormatConverter::createFieldFormat(const std::string & name)
 //{
 //    return 0;
 //}

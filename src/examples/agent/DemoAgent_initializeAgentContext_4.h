@@ -12,12 +12,12 @@
 
 class examples::agent::DemoAgent_initializeAgentContext_4
     
-    , public ::com::tibbo::aggregate::common::context::VariableGetter
+    , public VariableGetter
 {
 
 public:
     typedef void super;
-    DataTable* get(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request) /* throws(ContextException) */;
+    DataTable* get(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request) ;
 
     // Generated
     DemoAgent_initializeAgentContext_4();

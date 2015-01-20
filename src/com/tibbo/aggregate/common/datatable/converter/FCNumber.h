@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::converter::FCNumber
+class Dateconverter::FCNumber
     : public SimpleFormatConverter
 {
 

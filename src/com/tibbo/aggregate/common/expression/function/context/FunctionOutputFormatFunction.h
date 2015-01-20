@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::context::FunctionOutputFormatFunction
+class function::context::FunctionOutputFormatFunction
     : public EntityFormatFunction
 {
 
@@ -20,7 +20,7 @@ protected:
     void ctor();
 
 public: /* protected */
-    const std::string & getFormat(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
+    const std::string & getFormat(Evaluator* evaluator, Context* con, voidArray*/*...*/ parameters);
 
     // Generated
 

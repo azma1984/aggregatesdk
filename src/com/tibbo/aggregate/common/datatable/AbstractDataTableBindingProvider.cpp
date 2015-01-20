@@ -59,43 +59,43 @@ namespace
 
     template<typename F> finally_<F> finally(F f) { return finally_<F>(f); }
 }
-com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::AbstractDataTableBindingProvider(const ::default_init_tag&)
+DateAbstractDataTableBindingProvider::AbstractDataTableBindingProvider(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::AbstractDataTableBindingProvider() 
+DateAbstractDataTableBindingProvider::AbstractDataTableBindingProvider() 
     : AbstractDataTableBindingProvider(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::AbstractDataTableBindingProvider(::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector) 
+DateAbstractDataTableBindingProvider::AbstractDataTableBindingProvider(::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector) 
     : AbstractDataTableBindingProvider(*static_cast< ::default_init_tag* >(0))
 {
     ctor(errorCollector);
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::init()
+void DateAbstractDataTableBindingProvider::init()
 {
     listeners = new ::java::util::LinkedHashMap();
     listenersLock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::ctor()
+void DateAbstractDataTableBindingProvider::ctor()
 {
     super::ctor();
     init();
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::ctor(::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector)
+void DateAbstractDataTableBindingProvider::ctor(::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector)
 {
     super::ctor(errorCollector);
     init();
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::writeReference(::com::tibbo::aggregate::common::expression::Reference* ref, void* value) /* throws(BindingException) */
+void DateAbstractDataTableBindingProvider::writeReference(Reference* ref, void* value) /* throws(BindingException) */
 {
     if(isLocalReference(ref) && ref)->getServer() == 0) {
         auto row = ref)->getRow() != 0 ? (ref)->getRow()))->intValue() : int(0);
@@ -117,14 +117,14 @@ void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider:
     }
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::writeToEditor(const std::string & property, void* value)
+void DateAbstractDataTableBindingProvider::writeToEditor(const std::string & property, void* value)
 {
     if(DataTableBindingProvider::PROPERTY_ENABLED())->equals(property))) {
         setEditorEnabled((util::Util::convertToBoolean(value, true, false)))->booleanValue());
     }
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::writeToField(int row, const std::string & field, const std::string & property, void* value) /* throws(BindingException) */
+void DateAbstractDataTableBindingProvider::writeToField(int row, const std::string & field, const std::string & property, void* value) /* throws(BindingException) */
 {
     if(DataTableBindingProvider::PROPERTY_ENABLED())->equals(property))) {
         setEnabled(value, row, field);
@@ -142,22 +142,22 @@ void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider:
     }
 }
 
-int com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::getListenerCount()
+int DateAbstractDataTableBindingProvider::getListenerCount()
 {
     return listeners)->size();
 }
 
-java::util::Map* com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::getListeners()
+java::util::Map* DateAbstractDataTableBindingProvider::getListeners()
 {
     return listeners;
 }
 
-java::util::concurrent::locks::ReentrantReadWriteLock* com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::getListenersLock()
+java::util::concurrent::locks::ReentrantReadWriteLock* DateAbstractDataTableBindingProvider::getListenersLock()
 {
     return listenersLock;
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::addReferenceListener(::com::tibbo::aggregate::common::expression::Reference* ref, ::com::tibbo::aggregate::common::binding::ReferenceListener* listener) /* throws(BindingException) */
+void DateAbstractDataTableBindingProvider::addReferenceListener(Reference* ref, ::com::tibbo::aggregate::common::binding::ReferenceListener* listener) /* throws(BindingException) */
 {
     listenersLock)->writeLock())->lock();
     {
@@ -171,7 +171,7 @@ void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider:
 
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::removeReferenceListener(::com::tibbo::aggregate::common::binding::ReferenceListener* listener)
+void DateAbstractDataTableBindingProvider::removeReferenceListener(::com::tibbo::aggregate::common::binding::ReferenceListener* listener)
 {
     listenersLock)->writeLock())->lock();
     {
@@ -185,12 +185,12 @@ void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider:
 
 }
 
-bool com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::isLocalReference(::com::tibbo::aggregate::common::expression::Reference* ref)
+bool DateAbstractDataTableBindingProvider::isLocalReference(Reference* ref)
 {
     return ref)->getSchema() == 0 && ref)->getContext() == 0 && ref)->getEntity() == 0;
 }
 
-void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::processBindings(const std::string & field, int record, bool startup)
+void DateAbstractDataTableBindingProvider::processBindings(const std::string & field, int record, bool startup)
 {
     listenersLock)->readLock())->lock();
     {
@@ -201,9 +201,9 @@ void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider:
             for (auto _i = listeners)->entrySet())->iterator(); _i->hasNext(); ) {
                 ::java::util::Map_Entry* entry = java_cast< ::java::util::Map_Entry* >(_i->next());
                 {
-                    auto const ref = java_cast< ::com::tibbo::aggregate::common::expression::Reference* >(entry)->getValue());
+                    auto const ref = java_cast< Reference* >(entry)->getValue());
                     auto const listener = java_cast< ::com::tibbo::aggregate::common::binding::ReferenceListener* >(entry)->getKey());
-                    if(startup && ::com::tibbo::aggregate::common::util::Util::equals(listener)->getBinding())->getReference())->getSchema(), ::com::tibbo::aggregate::common::expression::Reference::SCHEMA_TABLE())) {
+                    if(startup && ::com::tibbo::aggregate::common::util::Util::equals(listener)->getBinding())->getReference())->getSchema(), Reference::SCHEMA_TABLE())) {
                         continue;
                     }
                     auto rfield = ref)->getField();
@@ -229,13 +229,13 @@ void com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider:
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::class_()
+java::lang::Class* DateAbstractDataTableBindingProvider::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.AbstractDataTableBindingProvider", 69);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::AbstractDataTableBindingProvider::getClass0()
+java::lang::Class* DateAbstractDataTableBindingProvider::getClass0()
 {
     return class_();
 }

@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::type::StringFunction
+class function::type::StringFunction
     : public TypeConversionFunction
 {
 

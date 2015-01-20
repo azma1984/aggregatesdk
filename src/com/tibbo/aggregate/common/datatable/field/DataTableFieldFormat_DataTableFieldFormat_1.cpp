@@ -26,7 +26,7 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat_DataTableFieldFormat_1::DataTableFieldFormat_DataTableFieldFormat_1(DataTableFieldFormat *DataTableFieldFormat_this)
+Datefield::DataTableFieldFormat_DataTableFieldFormat_1::DataTableFieldFormat_DataTableFieldFormat_1(DataTableFieldFormat *DataTableFieldFormat_this)
     : super(*static_cast< ::default_init_tag* >(0))
     , DataTableFieldFormat_this(DataTableFieldFormat_this)
 {
@@ -34,7 +34,7 @@ com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat_DataTableF
     ctor();
 }
 
-void* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat_DataTableFieldFormat_1::validate(void* value) /* throws(ValidationException) */
+void* Datefield::DataTableFieldFormat_DataTableFieldFormat_1::validate(void* value) /* throws(ValidationException) */
 {
     auto def = java_cast< DataTable* >(DataTableFieldFormat_this->getDefaultValue());
     if(def == 0 || def)->getFieldCount() == 0) {
@@ -55,13 +55,13 @@ void* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat_Data
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat_DataTableFieldFormat_1::class_()
+java::lang::Class* Datefield::DataTableFieldFormat_DataTableFieldFormat_1::class_()
 {
     static ::java::lang::Class* c = ::class_(u"", 0);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat_DataTableFieldFormat_1::getClass0()
+java::lang::Class* Datefield::DataTableFieldFormat_DataTableFieldFormat_1::getClass0()
 {
     return class_();
 }

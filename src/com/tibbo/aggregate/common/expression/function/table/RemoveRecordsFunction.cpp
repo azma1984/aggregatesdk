@@ -35,42 +35,42 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::RemoveRecordsFunction::RemoveRecordsFunction(const ::default_init_tag&)
+function::table::RemoveRecordsFunction::RemoveRecordsFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::RemoveRecordsFunction::RemoveRecordsFunction() 
+function::table::RemoveRecordsFunction::RemoveRecordsFunction() 
     : RemoveRecordsFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::RemoveRecordsFunction::ctor()
+void function::table::RemoveRecordsFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String fieldToCheck, Object value"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String fieldToCheck, Object value"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::RemoveRecordsFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::RemoveRecordsFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     checkParameters(3, true, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
     if((*parameters)[int(0)] == 0 || (*parameters)[int(1)] == 0) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(u"Field parameter may not be NULL"_j);
+        throw new EvaluationException(u"Field parameter may not be NULL"_j);
     }
     auto sourceTable = (java_cast< DataTable* >((*parameters)[int(0)]));
     auto fieldToCheck = (*parameters)[int(1)])->toString();
     if(!sourceTable)->getFormat())->hasField(fieldToCheck)) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoField"_j))->append(fieldToCheck)->toString());
+        throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoField"_j))->append(fieldToCheck)->toString());
     }
     auto value = (*parameters)[int(2)];
     auto resultTable = new DataTable(sourceTable)->getFormat());
     for (auto _i = sourceTable)->getRecords())->iterator(); _i->hasNext(); ) {
         DataRecord* rec = java_cast< DataRecord* >(_i->next());
         {
-            if(::com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::equal(rec)->getValue(fieldToCheck), value)) {
+            if(AbstractEvaluatingVisitor::equal(rec)->getValue(fieldToCheck), value)) {
                 continue;
             }
             resultTable)->addRecord(rec)->clone());
@@ -81,13 +81,13 @@ void* com::tibbo::aggregate::common::expression::function::table::RemoveRecordsF
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::RemoveRecordsFunction::class_()
+java::lang::Class* function::table::RemoveRecordsFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.RemoveRecordsFunction", 74);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::RemoveRecordsFunction::getClass0()
+java::lang::Class* function::table::RemoveRecordsFunction::getClass0()
 {
     return class_();
 }

@@ -51,30 +51,30 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::util::DumpingVisitor::DumpingVisitor(const ::default_init_tag&)
+util::DumpingVisitor::DumpingVisitor(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::util::DumpingVisitor::DumpingVisitor()
+util::DumpingVisitor::DumpingVisitor()
     : DumpingVisitor(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::util::DumpingVisitor::ctor()
+void util::DumpingVisitor::ctor()
 {
     super::ctor();
     init();
 }
 
-void com::tibbo::aggregate::common::expression::util::DumpingVisitor::init()
+void util::DumpingVisitor::init()
 {
     indent = int(0);
 }
 
-std::string com::tibbo::aggregate::common::expression::util::DumpingVisitor::indentString()
+std::string util::DumpingVisitor::indentString()
 {
     auto sb = new std::stringBuffer();
     for (auto i = int(0); i < indent; ++i) {
@@ -83,7 +83,7 @@ std::string com::tibbo::aggregate::common::expression::util::DumpingVisitor::ind
     return sb)->toString();
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::SimpleNode* node, void* data)
+void* util::DumpingVisitor::visit(::SimpleNode* node, void* data)
 {
     Log::CORE())->warn(std::stringBuilder().append(indentString())->append(node))
         ->append(u": acceptor not unimplemented in subclass?"_j)->toString());
@@ -93,7 +93,7 @@ void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::S
     return data;
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::dumpNode(::SimpleNode* node, void* data)
+void* util::DumpingVisitor::dumpNode(::SimpleNode* node, void* data)
 {
     Log::CORE())->warn(std::stringBuilder().append(indentString())->append(node)->jjtGetFirstToken())->image)
         ->append(node))
@@ -104,180 +104,180 @@ void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::dumpNode(
     return data;
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTStart* node, void* data)
+void* util::DumpingVisitor::visit(::ASTStart* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTConditionalNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTConditionalNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTLogicalOrNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTLogicalOrNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTLogicalAndNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTLogicalAndNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTBitwiseOrNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTBitwiseOrNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTBitwiseXorNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTBitwiseXorNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTBitwiseAndNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTBitwiseAndNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTEQNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTEQNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTNENode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTNENode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTRegexMatchNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTRegexMatchNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTLTNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTLTNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTGTNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTGTNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTLENode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTLENode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTGENode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTGENode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTAddNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTAddNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTSubtractNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTSubtractNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTMulNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTMulNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTDivNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTDivNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTModNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTModNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTUnaryNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTUnaryNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTLogicalNotNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTLogicalNotNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTBitwiseNotNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTBitwiseNotNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTFunctionNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTFunctionNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTValueReferenceNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTValueReferenceNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTLongConstNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTLongConstNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTFloatConstNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTFloatConstNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTStringConstNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTStringConstNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTTrueNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTTrueNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTFalseNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTFalseNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTNullNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTNullNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTRightShiftNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTRightShiftNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTUnsignedRightShiftNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTUnsignedRightShiftNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::util::DumpingVisitor::visit(::ASTLeftShiftNode* node, void* data)
+void* util::DumpingVisitor::visit(::ASTLeftShiftNode* node, void* data)
 {
     return dumpNode(node, data);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::DumpingVisitor::class_()
+java::lang::Class* util::DumpingVisitor::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.util.DumpingVisitor", 57);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::DumpingVisitor::getClass0()
+java::lang::Class* util::DumpingVisitor::getClass0()
 {
     return class_();
 }

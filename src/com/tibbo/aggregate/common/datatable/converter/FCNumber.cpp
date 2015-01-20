@@ -25,34 +25,34 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCNumber::FCNumber(const ::default_init_tag&)
+Dateconverter::FCNumber::FCNumber(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCNumber::FCNumber() 
+Dateconverter::FCNumber::FCNumber() 
     : FCNumber(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::converter::FCNumber::ctor()
+void Dateconverter::FCNumber::ctor()
 {
     super::ctor(::java::lang::Number::class_());
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::FCNumber::createFieldFormat(const std::string & name)
+DateFieldFormat* Dateconverter::FCNumber::createFieldFormat(const std::string & name)
 {
     return FieldFormat::create(name, FieldFormat::FLOAT_FIELD);
 }
 
-java::lang::Number* com::tibbo::aggregate::common::datatable::converter::FCNumber::simpleToBean(void* value)
+java::lang::Number* Dateconverter::FCNumber::simpleToBean(void* value)
 {
     return java_cast< ::java::lang::Number* >(value);
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCNumber::convertToTable(::java::lang::Number* value, TableFormat* format)
+void* Dateconverter::FCNumber::convertToTable(::java::lang::Number* value, TableFormat* format)
 {
     if(value == 0) {
         return ::java::lang::Float::valueOf(0.0f);
@@ -60,25 +60,25 @@ void* com::tibbo::aggregate::common::datatable::converter::FCNumber::convertToTa
     return ::java::lang::Float::valueOf(value)->floatValue());
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCNumber::convertToTable(void* value, TableFormat* format)
+void* Dateconverter::FCNumber::convertToTable(void* value, TableFormat* format)
 { 
     return convertToTable(dynamic_cast< ::java::lang::Number* >(value), format);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCNumber::class_()
+java::lang::Class* Dateconverter::FCNumber::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.FCNumber", 55);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCNumber::convertToTable(void* value)
+void* Dateconverter::FCNumber::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCNumber::getClass0()
+java::lang::Class* Dateconverter::FCNumber::getClass0()
 {
     return class_();
 }

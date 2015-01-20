@@ -14,13 +14,13 @@ private:
     bool shareConcurrency;
     std::list<ReferenceListener>  listeners;
     std::list<TimerTask>  timerTasks;
-    ::java::util::Set* tasks;
+    ::std::set  tasks;
     bool stopped;
     bool enabled;
 protected:
-    void ctor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator);
-    void ctor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::java::util::concurrent::ExecutorService* executionService);
-    void ctor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService);
+    void ctor(BindingProvider* provider, Evaluator* evaluator);
+    void ctor(BindingProvider* provider, Evaluator* evaluator, ::java::util::concurrent::ExecutorService* executionService);
+    void ctor(BindingProvider* provider, Evaluator* evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService);
 
 public:
     bool start();
@@ -37,9 +37,9 @@ public:
 private:
     void initBinding(Binding* binding, EvaluationOptions* options);
     void ensureTimer();
-    void addReferenceListener(Binding* binding, EvaluationOptions* options, ::com::tibbo::aggregate::common::expression::Reference* reference) /* throws(BindingException) */;
-    void writeReference(int method, ::com::tibbo::aggregate::common::expression::Reference* destination, ::com::tibbo::aggregate::common::expression::Reference* cause, void* value, ChangeCache* cache) /* throws(BindingException) */;
-    bool checkCondition(EvaluationOptions* options, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* evaluationEnvironment) /* throws(BindingException) */;
+    void addReferenceListener(Binding* binding, EvaluationOptions* options, Reference* reference) /* throws(BindingException) */;
+    void writeReference(int method, Reference* destination, Reference* cause, void* value, ChangeCache* cache) /* throws(BindingException) */;
+    bool checkCondition(EvaluationOptions* options, EvaluationEnvironment* evaluationEnvironment) /* throws(BindingException) */;
 
 public:
     bool isStopped();
@@ -52,14 +52,14 @@ public: /* protected */
 
 public:
     BindingProvider* getProvider();
-    ::com::tibbo::aggregate::common::expression::Evaluator* getEvaluator();
+    Evaluator* getEvaluator();
     bool isDisableStartupConcurrency();
     void setDisableStartupConcurrency(bool disableStartupConcurrency);
 
     // Generated
-    DefaultBindingProcessor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator);
-    DefaultBindingProcessor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::java::util::concurrent::ExecutorService* executionService);
-    DefaultBindingProcessor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService);
+    DefaultBindingProcessor(BindingProvider* provider, Evaluator* evaluator);
+    DefaultBindingProcessor(BindingProvider* provider, Evaluator* evaluator, ::java::util::concurrent::ExecutorService* executionService);
+    DefaultBindingProcessor(BindingProvider* provider, Evaluator* evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService);
 protected:
     DefaultBindingProcessor(const ::default_init_tag&);
 

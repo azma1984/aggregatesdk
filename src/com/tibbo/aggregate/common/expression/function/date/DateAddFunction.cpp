@@ -34,28 +34,28 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::date::DateAddFunction::DateAddFunction(const ::default_init_tag&)
+function::date::DateAddFunction::DateAddFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::date::DateAddFunction::DateAddFunction() 
+function::date::DateAddFunction::DateAddFunction() 
     : DateAddFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::date::DateAddFunction::ctor()
+void function::date::DateAddFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date date, Integer count, String unit [, String timezone]"_j, u"Date"_j);
+    super::ctor(function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date date, Integer count, String unit [, String timezone]"_j, u"Date"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::date::DateAddFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::date::DateAddFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(3, false, parameters);
-    checkParameterType(0, (*parameters)[int(0)], ::java::util::Date::class_());
-    auto date = java_cast< ::java::util::Date* >((*parameters)[int(0)]);
+    checkParameterType(0, (*parameters)[int(0)], Date::class_());
+    auto date = java_cast< Date* >((*parameters)[int(0)]);
     int  count = util::Util::convertToNumber((*parameters)[int(1)], false, false))->intValue());
     auto unit = ::com::tibbo::aggregate::common::util::TimeHelper::getTimeUnit((*parameters)[int(2)])->toString());
     auto tz = ::com::tibbo::aggregate::common::util::DateUtils::UTC_TIME_ZONE();
@@ -70,13 +70,13 @@ void* com::tibbo::aggregate::common::expression::function::date::DateAddFunction
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::DateAddFunction::class_()
+java::lang::Class* function::date::DateAddFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.date.DateAddFunction", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::DateAddFunction::getClass0()
+java::lang::Class* function::date::DateAddFunction::getClass0()
 {
     return class_();
 }

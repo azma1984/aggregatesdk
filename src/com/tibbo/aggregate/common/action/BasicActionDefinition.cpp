@@ -181,7 +181,7 @@ com::tibbo::aggregate::common::action::KeyStroke* com::tibbo::aggregate::common:
     return accelerator;
 }
 
-java::util::List* com::tibbo::aggregate::common::action::BasicActionDefinition::getDropSources()
+std::list  com::tibbo::aggregate::common::action::BasicActionDefinition::getDropSources()
 {
     if(dropSources != 0) {
         return ::java::util::Collections::unmodifiableList(dropSources);
@@ -314,7 +314,7 @@ Action<InitialRequest,ActionCommand,ActionResponse> * BasicActionDefinition::ins
     return action;
 }
 
-java::util::List* com::tibbo::aggregate::common::action::BasicActionDefinition::getCommands()
+std::list  com::tibbo::aggregate::common::action::BasicActionDefinition::getCommands()
 {
     if(commandList == 0) {
         commandList = new ::java::util::LinkedList();

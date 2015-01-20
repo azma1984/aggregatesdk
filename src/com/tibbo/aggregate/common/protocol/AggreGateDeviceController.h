@@ -14,7 +14,7 @@ struct com::tibbo::aggregate::common::protocol::AggreGateDeviceController
     AggreGateDevice* getDevice();
     void connect() /* throws(DisconnectionException, IOException, InterruptedException, RemoteDeviceErrorException, ContextException) */;
     void disconnect() /* throws(IOException, InterruptedException, RemoteDeviceErrorException) */;
-    void login() /* throws(ContextException) */;
+    void login() ;
     void start() /* throws(IOException, InterruptedException, ContextException, RemoteDeviceErrorException) */;
     bool isActive();
     ::com::tibbo::aggregate::common::communication::CommandProcessorStatistics* getStatistics();

@@ -13,12 +13,12 @@
 //    ctor();
 //}
 //
-//java::util::List*& DataTableConversion::FORMAT_CONVERTERS()
+//std::list & DataTableConversion::FORMAT_CONVERTERS()
 //{
 //    
 //    return FORMAT_CONVERTERS_;
 //}
-//java::util::List* DataTableConversion::FORMAT_CONVERTERS_;
+//std::list  DataTableConversion::FORMAT_CONVERTERS_;
 //
 //java::util::concurrent::locks::ReentrantReadWriteLock*& DataTableConversion::FORMAT_CONVERTERS_LOCK()
 //{
@@ -72,13 +72,13 @@
 //    return java_cast< void* >(list)->get(0));
 //}
 //
-//java::util::List* DataTableConversion::beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format) /* throws(DataTableException) */
+//std::list  DataTableConversion::beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format) /* throws(DataTableException) */
 //{
 //    
 //    return beansFromTable(table, beanClass, format, true);
 //}
 //
-//java::util::List* DataTableConversion::beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */
+//std::list  DataTableConversion::beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */
 //{
 //    
 //    try {
@@ -136,7 +136,7 @@
 //    populateBeanFromRecord(bean, rec, format, setReadOnlyFields, new ::java::util::LinkedHashSet(int(0)));
 //}
 //
-//void DataTableConversion::populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields, ::java::util::Set* fieldsToSkip) /* throws(DataTableException) */
+//void DataTableConversion::populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields, ::std::set  fieldsToSkip) /* throws(DataTableException) */
 //{
 //    
 //    try {
@@ -218,7 +218,7 @@
 //    return DataTableConversion::beanToRecord(bean, format, setReadOnlyFields, ignoreErrors, new ::java::util::LinkedHashSet(int(0)));
 //}
 //
-//DataRecord* DataTableConversion::beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors, ::java::util::Set* fieldsToSkip) /* throws(DataTableException) */
+//DataRecord* DataTableConversion::beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors, ::std::set  fieldsToSkip) /* throws(DataTableException) */
 //{
 //    
 //    try {
@@ -497,7 +497,7 @@ void DataTableConversion::registerFormatConverter(FormatConverter* converter)
 //    return value;
 //}
 //
-//java::util::List* DataTableConversion::createList(void* bean, DataRecord* rec, bool setReadOnlyFields, FieldFormat* ff) /* throws(NoSuchFieldException, DataTableException) */
+//std::list  DataTableConversion::createList(void* bean, DataRecord* rec, bool setReadOnlyFields, FieldFormat* ff) /* throws(NoSuchFieldException, DataTableException) */
 //{
 //    
 //    auto field = bean)->getClass())->getDeclaredField(ff)->getName());

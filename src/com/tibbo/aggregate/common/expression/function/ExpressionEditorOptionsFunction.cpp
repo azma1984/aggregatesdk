@@ -50,36 +50,36 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::ExpressionEditorOptionsFunction::ExpressionEditorOptionsFunction(const ::default_init_tag&)
+function::ExpressionEditorOptionsFunction::ExpressionEditorOptionsFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::ExpressionEditorOptionsFunction::ExpressionEditorOptionsFunction() 
+function::ExpressionEditorOptionsFunction::ExpressionEditorOptionsFunction() 
     : ExpressionEditorOptionsFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::ExpressionEditorOptionsFunction::ctor()
+void function::ExpressionEditorOptionsFunction::ctor()
 {
     super::ctor(Functions::GROUP_SYSTEM(), 0, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::ExpressionEditorOptionsFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::ExpressionEditorOptionsFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, true, parameters);
     auto caller = evaluator)->getDefaultResolver())->getCallerController();
     auto contextManager = evaluator)->getDefaultResolver())->getContextManager();
     auto defaultContextMask = (*parameters)[int(0)] != 0 ? (*parameters)[int(0)])->toString() : static_cast< const std::string & >(0);
-    ::com::tibbo::aggregate::common::context::Context* defaultContext;
+    Context* defaultContext;
     std::list  contexts = new ::java::util::LinkedList();
     if(defaultContextMask != 0 && contextManager != 0) {
-        contexts = ::com::tibbo::aggregate::common::context::ContextUtils::expandMaskToContexts(defaultContextMask, contextManager, caller);
+        contexts = ContextUtils::expandMaskToContexts(defaultContextMask, contextManager, caller);
     }
     if(contexts)->size() == 1) {
-        defaultContext = java_cast< ::com::tibbo::aggregate::common::context::Context* >(contexts)->get(0));
+        defaultContext = java_cast< Context* >(contexts)->get(0));
     }
     std::map references = new ::java::util::LinkedHashMap();
     auto entity = (parameters)->length >= 3 && (*parameters)[int(1)] != 0) ? (*parameters)[int(1)])->toString() : static_cast< const std::string & >(0);
@@ -93,17 +93,17 @@ void* com::tibbo::aggregate::common::expression::function::ExpressionEditorOptio
         for (auto _i = additionalReferences)->iterator(); _i->hasNext(); ) {
             DataRecord* rec = java_cast< DataRecord* >(_i->next());
             {
-                references)->put(new ::com::tibbo::aggregate::common::expression::Reference(rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_REFERENCE())), rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_DESCRIPTION()));
+                references)->put(new Reference(rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_REFERENCE())), rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_DESCRIPTION()));
             }
         }
     }
     try {
         if(entity != 0 && entityType != 0 && contextManager != 0) {
-            auto const utilitiesContext = java_cast< ::com::tibbo::aggregate::common::context::Context* >(contextManager)->get(::com::tibbo::aggregate::common::context::Contexts::CTX_UTILITIES(), caller));
+            auto const utilitiesContext = java_cast< Context* >(contextManager)->get(Contexts::CTX_UTILITIES(), caller));
             switch ((entityType))->intValue()) {
-            case ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_VARIABLE:
+            case ContextUtils::ENTITY_VARIABLE:
                 for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-                    ::com::tibbo::aggregate::common::context::Context* cur = java_cast< ::com::tibbo::aggregate::common::context::Context* >(_i->next());
+                    Context* cur = java_cast< Context* >(_i->next());
                     {
                         if(cur)->getVariableDefinition(entity, caller) != 0) {
                             defaultContext = cur;
@@ -116,14 +116,14 @@ void* com::tibbo::aggregate::common::expression::function::ExpressionEditorOptio
                     for (auto _i = refs)->iterator(); _i->hasNext(); ) {
                         DataRecord* rec = java_cast< DataRecord* >(_i->next());
                         {
-                            references)->put(new ::com::tibbo::aggregate::common::expression::Reference(rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_REFERENCE())), rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_DESCRIPTION()));
+                            references)->put(new Reference(rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_REFERENCE())), rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_DESCRIPTION()));
                         }
                     }
                 }
                 break;
-            case ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_FUNCTION:
+            case ContextUtils::ENTITY_FUNCTION:
                 for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-                    ::com::tibbo::aggregate::common::context::Context* cur = java_cast< ::com::tibbo::aggregate::common::context::Context* >(_i->next());
+                    Context* cur = java_cast< Context* >(_i->next());
                     {
                         if(cur)->getFunctionDefinition(entity, caller) != 0) {
                             defaultContext = cur;
@@ -132,9 +132,9 @@ void* com::tibbo::aggregate::common::expression::function::ExpressionEditorOptio
                     }
                 }
                 break;
-            case ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_EVENT:
+            case ContextUtils::ENTITY_EVENT:
                 for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-                    ::com::tibbo::aggregate::common::context::Context* cur = java_cast< ::com::tibbo::aggregate::common::context::Context* >(_i->next());
+                    Context* cur = java_cast< Context* >(_i->next());
                     {
                         if(cur)->getEventDefinition(entity, caller) != 0) {
                             defaultContext = cur;
@@ -147,7 +147,7 @@ void* com::tibbo::aggregate::common::expression::function::ExpressionEditorOptio
                     for (auto _i = refs)->iterator(); _i->hasNext(); ) {
                         DataRecord* rec = java_cast< DataRecord* >(_i->next());
                         {
-                            references)->put(new ::com::tibbo::aggregate::common::expression::Reference(rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_REFERENCE())), rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_DESCRIPTION()));
+                            references)->put(new Reference(rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_REFERENCE())), rec)->getString(field::StringFieldFormat::FIELD_ADDITIONAL_REFERENCES_DESCRIPTION()));
                         }
                     }
                 }
@@ -157,21 +157,21 @@ void* com::tibbo::aggregate::common::expression::function::ExpressionEditorOptio
             }
 
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+    } catch (ContextException* ex) {
+        throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
     }
     return field::StringFieldFormat::encodeExpressionEditorOptions(defaultContext, defaultTable, references);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::ExpressionEditorOptionsFunction::class_()
+java::lang::Class* function::ExpressionEditorOptionsFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.ExpressionEditorOptionsFunction", 78);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::ExpressionEditorOptionsFunction::getClass0()
+java::lang::Class* function::ExpressionEditorOptionsFunction::getClass0()
 {
     return class_();
 }

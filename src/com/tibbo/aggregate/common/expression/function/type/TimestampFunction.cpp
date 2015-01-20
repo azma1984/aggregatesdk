@@ -15,37 +15,37 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::type::TimestampFunction::TimestampFunction(const ::default_init_tag&)
+function::type::TimestampFunction::TimestampFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::type::TimestampFunction::TimestampFunction() 
+function::type::TimestampFunction::TimestampFunction() 
     : TimestampFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::type::TimestampFunction::ctor()
+void function::type::TimestampFunction::ctor()
 {
     super::ctor(u"Date"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::type::TimestampFunction::convert(void* parameter) /* throws(EvaluationException) */
+void* function::type::TimestampFunction::convert(void* parameter) /* throws(EvaluationException) */
 {
-    return parameter != 0 ? new ::java::util::Date(util::Util::convertToNumber(parameter, false, false))->longValue())) : 0);
+    return parameter != 0 ? new Date(util::Util::convertToNumber(parameter, false, false))->longValue())) : 0);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::TimestampFunction::class_()
+java::lang::Class* function::type::TimestampFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.type.TimestampFunction", 69);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::TimestampFunction::getClass0()
+java::lang::Class* function::type::TimestampFunction::getClass0()
 {
     return class_();
 }

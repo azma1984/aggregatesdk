@@ -82,48 +82,48 @@ namespace
         void *o;
     };
 }
-com::tibbo::aggregate::common::datatable::encoding::FormatCache::FormatCache(const ::default_init_tag&)
+Dateencoding::FormatCache::FormatCache(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::encoding::FormatCache::FormatCache(::com::tibbo::aggregate::common::protocol::AbstractAggreGateDeviceController* controller) 
+Dateencoding::FormatCache::FormatCache(::com::tibbo::aggregate::common::protocol::AbstractAggreGateDeviceController* controller) 
     : FormatCache(*static_cast< ::default_init_tag* >(0))
 {
     ctor(controller);
 }
 
-com::tibbo::aggregate::common::datatable::encoding::FormatCache::FormatCache() 
+Dateencoding::FormatCache::FormatCache() 
     : FormatCache(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::FormatCache::init()
+void Dateencoding::FormatCache::init()
 {
     cache = new ::java::util::LinkedHashMap(int(100), 0.75f);
     cacheLock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
 }
 
-const int com::tibbo::aggregate::common::datatable::encoding::FormatCache::RETRIES;
+const int Dateencoding::FormatCache::RETRIES;
 
-const int com::tibbo::aggregate::common::datatable::encoding::FormatCache::TIMEOUT;
+const int Dateencoding::FormatCache::TIMEOUT;
 
-void com::tibbo::aggregate::common::datatable::encoding::FormatCache::ctor(::com::tibbo::aggregate::common::protocol::AbstractAggreGateDeviceController* controller)
+void Dateencoding::FormatCache::ctor(::com::tibbo::aggregate::common::protocol::AbstractAggreGateDeviceController* controller)
 {
     super::ctor();
     init();
     this->controller = controller;
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::FormatCache::ctor()
+void Dateencoding::FormatCache::ctor()
 {
     super::ctor();
     init();
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::FormatCache::put(int id, TableFormat* format)
+void Dateencoding::FormatCache::put(int id, TableFormat* format)
 {
     cacheLock)->writeLock())->lock();
     {
@@ -150,7 +150,7 @@ void com::tibbo::aggregate::common::datatable::encoding::FormatCache::put(int id
 
 }
 
-int com::tibbo::aggregate::common::datatable::encoding::FormatCache::add(TableFormat* format)
+int Dateencoding::FormatCache::add(TableFormat* format)
 {
     cacheLock)->writeLock())->lock();
     {
@@ -192,7 +192,7 @@ int com::tibbo::aggregate::common::datatable::encoding::FormatCache::add(TableFo
 
 }
 
-java::lang::Integer* com::tibbo::aggregate::common::datatable::encoding::FormatCache::getId(TableFormat* format)
+java::lang::Integer* Dateencoding::FormatCache::getId(TableFormat* format)
 {
     cacheLock)->readLock())->lock();
     {
@@ -207,7 +207,7 @@ java::lang::Integer* com::tibbo::aggregate::common::datatable::encoding::FormatC
 
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::encoding::FormatCache::getCachedVersion(TableFormat* format)
+DateTableFormat* Dateencoding::FormatCache::getCachedVersion(TableFormat* format)
 {
     cacheLock)->readLock())->lock();
     {
@@ -222,7 +222,7 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::encoding::FormatCache::get(int id)
+DateTableFormat* Dateencoding::FormatCache::get(int id)
 {
     TableFormat* result;
     auto retry = int(0);
@@ -244,12 +244,12 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
                         Log::PROTOCOL_CACHING())->debug(std::stringBuilder().append(u"Requesting remote format #"_j)->append(id)->toString());
                     }
                     DataTable* output;
-                    auto utilitiesContext = java_cast< ::com::tibbo::aggregate::common::protocol::RemoteContextManager* >(controller)->getContextManager()) != 0 ? static_cast< ::com::tibbo::aggregate::common::context::Context* >(java_cast< ::com::tibbo::aggregate::common::protocol::ProxyContext* >(java_cast< ::com::tibbo::aggregate::common::protocol::RemoteContextManager* >(controller)->getContextManager()))->get(::com::tibbo::aggregate::common::context::Contexts::CTX_UTILITIES()))) : static_cast< ::com::tibbo::aggregate::common::context::Context* >(0);
+                    auto utilitiesContext = java_cast< ::com::tibbo::aggregate::common::protocol::RemoteContextManager* >(controller)->getContextManager()) != 0 ? static_cast< Context* >(java_cast< ::com::tibbo::aggregate::common::protocol::ProxyContext* >(java_cast< ::com::tibbo::aggregate::common::protocol::RemoteContextManager* >(controller)->getContextManager()))->get(Contexts::CTX_UTILITIES()))) : static_cast< Context* >(0);
                     if(utilitiesContext != 0 && utilitiesContext)->getFunctionDefinition(::com::tibbo::aggregate::common::server::UtilitiesContextConstants::F_GET_FORMAT()) != 0) {
                         output = utilitiesContext)->callFunction(::com::tibbo::aggregate::common::server::UtilitiesContextConstants::F_GET_FORMAT(), new voidArray({id))}));
                     } else {
                         auto const input = (new DataRecord(::com::tibbo::aggregate::common::server::CommonServerFormats::FIFT_GET_FORMAT(), new voidArray({id))})))->wrap();
-                        output = controller)->callRemoteFunction(::com::tibbo::aggregate::common::context::Contexts::CTX_UTILITIES(), ::com::tibbo::aggregate::common::server::UtilitiesContextConstants::F_GET_FORMAT(), ::com::tibbo::aggregate::common::server::CommonServerFormats::FOFT_GET_FORMAT(), input);
+                        output = controller)->callRemoteFunction(Contexts::CTX_UTILITIES(), ::com::tibbo::aggregate::common::server::UtilitiesContextConstants::F_GET_FORMAT(), ::com::tibbo::aggregate::common::server::CommonServerFormats::FOFT_GET_FORMAT(), input);
                     }
                     auto formatData = output)->rec())->getString(::com::tibbo::aggregate::common::server::UtilitiesContextConstants::FOF_GET_FORMAT_DATA());
                     result = new TableFormat(formatData, new ClassicEncodingSettings(false));
@@ -294,7 +294,7 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
     return result;
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::FormatCache::clear()
+void Dateencoding::FormatCache::clear()
 {
     cacheLock)->writeLock())->lock();
     {
@@ -308,7 +308,7 @@ void com::tibbo::aggregate::common::datatable::encoding::FormatCache::clear()
 
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::FormatCache::dump()
+void Dateencoding::FormatCache::dump()
 {
     cacheLock)->readLock())->lock();
     {
@@ -331,13 +331,13 @@ void com::tibbo::aggregate::common::datatable::encoding::FormatCache::dump()
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::encoding::FormatCache::class_()
+java::lang::Class* Dateencoding::FormatCache::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.encoding.FormatCache", 57);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::encoding::FormatCache::getClass0()
+java::lang::Class* Dateencoding::FormatCache::getClass0()
 {
     return class_();
 }

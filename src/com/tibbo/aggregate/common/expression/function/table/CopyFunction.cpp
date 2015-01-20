@@ -19,24 +19,24 @@ static T java_cast(U* u)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::CopyFunction::CopyFunction(const ::default_init_tag&)
+function::table::CopyFunction::CopyFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::CopyFunction::CopyFunction() 
+function::table::CopyFunction::CopyFunction() 
     : CopyFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::CopyFunction::ctor()
+void function::table::CopyFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable source, DataTable target"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable source, DataTable target"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::CopyFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::CopyFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -49,13 +49,13 @@ void* com::tibbo::aggregate::common::expression::function::table::CopyFunction::
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::CopyFunction::class_()
+java::lang::Class* function::table::CopyFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.CopyFunction", 65);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::CopyFunction::getClass0()
+java::lang::Class* function::table::CopyFunction::getClass0()
 {
     return class_();
 }

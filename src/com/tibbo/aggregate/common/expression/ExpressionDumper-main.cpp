@@ -7,7 +7,7 @@ int main(int argc, const std::string & argv)
 {
     init_jvm();
     
-    ::com::tibbo::aggregate::common::expression::ExpressionDumper::main(make_args(argc, argv));
+    ExpressionDumper::main(make_args(argc, argv));
     
     return 0;
 }

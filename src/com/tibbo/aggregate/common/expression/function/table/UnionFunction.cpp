@@ -33,24 +33,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::UnionFunction::UnionFunction(const ::default_init_tag&)
+function::table::UnionFunction::UnionFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::UnionFunction::UnionFunction() 
+function::table::UnionFunction::UnionFunction() 
     : UnionFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::UnionFunction::ctor()
+void function::table::UnionFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable left, DataTable right"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable left, DataTable right"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::UnionFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::UnionFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -60,7 +60,7 @@ void* com::tibbo::aggregate::common::expression::function::table::UnionFunction:
     return union_(leftTable, rightTable);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::expression::function::table::UnionFunction::union_(DataTable* leftTable, DataTable* rightTable)
+DateDataTable* function::table::UnionFunction::union_(DataTable* leftTable, DataTable* rightTable)
 {
     TableFormat* newFormat;
     DataTable* resultDataTable;
@@ -77,7 +77,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return resultDataTable;
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::expression::function::table::UnionFunction::joinTableFormats(TableFormat* newFormat, TableFormat* tableFormat)
+DateTableFormat* function::table::UnionFunction::joinTableFormats(TableFormat* newFormat, TableFormat* tableFormat)
 {
     auto result = newFormat)->clone();
     long min1 = newFormat)->getMinRecords();
@@ -107,13 +107,13 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::UnionFunction::class_()
+java::lang::Class* function::table::UnionFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.UnionFunction", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::UnionFunction::getClass0()
+java::lang::Class* function::table::UnionFunction::getClass0()
 {
     return class_();
 }

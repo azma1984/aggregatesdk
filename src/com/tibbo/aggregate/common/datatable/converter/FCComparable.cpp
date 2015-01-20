@@ -31,29 +31,29 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCComparable::FCComparable(const ::default_init_tag&)
+Dateconverter::FCComparable::FCComparable(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCComparable::FCComparable() 
+Dateconverter::FCComparable::FCComparable() 
     : FCComparable(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::converter::FCComparable::ctor()
+void Dateconverter::FCComparable::ctor()
 {
     super::ctor(::java::lang::Comparable::class_());
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::FCComparable::createFieldFormat(const std::string & name)
+DateFieldFormat* Dateconverter::FCComparable::createFieldFormat(const std::string & name)
 {
     return FieldFormat::create(name, FieldFormat::FLOAT_FIELD);
 }
 
-java::lang::Comparable* com::tibbo::aggregate::common::datatable::converter::FCComparable::simpleToBean(void* value)
+java::lang::Comparable* Dateconverter::FCComparable::simpleToBean(void* value)
 {
     auto s = java_cast< const std::string & >(value);
     auto result = java_cast< ::java::lang::Comparable* >(value);
@@ -69,30 +69,30 @@ java::lang::Comparable* com::tibbo::aggregate::common::datatable::converter::FCC
     return result;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCComparable::convertToTable(::java::lang::Comparable* value, TableFormat* format)
+void* Dateconverter::FCComparable::convertToTable(::java::lang::Comparable* value, TableFormat* format)
 {
     return value != 0 ? value)->toString()) : value);
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCComparable::convertToTable(void* value, TableFormat* format)
+void* Dateconverter::FCComparable::convertToTable(void* value, TableFormat* format)
 { 
     return convertToTable(dynamic_cast< ::java::lang::Comparable* >(value), format);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCComparable::class_()
+java::lang::Class* Dateconverter::FCComparable::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.FCComparable", 59);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCComparable::convertToTable(void* value)
+void* Dateconverter::FCComparable::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCComparable::getClass0()
+java::lang::Class* Dateconverter::FCComparable::getClass0()
 {
     return class_();
 }

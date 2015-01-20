@@ -17,24 +17,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::FunctionAvailableFunction::FunctionAvailableFunction(const ::default_init_tag&)
+function::context::FunctionAvailableFunction::FunctionAvailableFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::FunctionAvailableFunction::FunctionAvailableFunction(const std::string & group) 
+function::context::FunctionAvailableFunction::FunctionAvailableFunction(const std::string & group) 
     : FunctionAvailableFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(group);
 }
 
-void com::tibbo::aggregate::common::expression::function::context::FunctionAvailableFunction::ctor(const std::string & group)
+void function::context::FunctionAvailableFunction::ctor(const std::string & group)
 {
     super::ctor(group, u"String context, String function"_j);
 }
 
-bool com::tibbo::aggregate::common::expression::function::context::FunctionAvailableFunction::hasEntity(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters)
+bool function::context::FunctionAvailableFunction::hasEntity(Evaluator* evaluator, Context* con, voidArray*/*...*/ parameters)
 {
     auto def = con)->getFunctionDefinition((*parameters)[int(1)])->toString(), evaluator)->getDefaultResolver())->getCallerController());
     return def != 0;
@@ -42,13 +42,13 @@ bool com::tibbo::aggregate::common::expression::function::context::FunctionAvail
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::FunctionAvailableFunction::class_()
+java::lang::Class* function::context::FunctionAvailableFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.FunctionAvailableFunction", 80);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::FunctionAvailableFunction::getClass0()
+java::lang::Class* function::context::FunctionAvailableFunction::getClass0()
 {
     return class_();
 }

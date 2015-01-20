@@ -77,37 +77,37 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::JavaMethodFunction::JavaMethodFunction(const ::default_init_tag&)
+function::JavaMethodFunction::JavaMethodFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::JavaMethodFunction::JavaMethodFunction(const std::string & clazz, const std::string & method, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue) 
+function::JavaMethodFunction::JavaMethodFunction(const std::string & clazz, const std::string & method, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue) 
     : JavaMethodFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(clazz,method,category,parametersFootprint,returnValue);
 }
 
-com::tibbo::aggregate::common::expression::function::JavaMethodFunction::JavaMethodFunction(const std::string & clazz, const std::string & method, bool statical, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue) 
+function::JavaMethodFunction::JavaMethodFunction(const std::string & clazz, const std::string & method, bool statical, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue) 
     : JavaMethodFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(clazz,method,statical,category,parametersFootprint,returnValue);
 }
 
-java::lang::ClassArrayArray*& com::tibbo::aggregate::common::expression::function::JavaMethodFunction::CONVERSIONS()
+java::lang::ClassArrayArray*& function::JavaMethodFunction::CONVERSIONS()
 {
     
     return CONVERSIONS_;
 }
-java::lang::ClassArrayArray* com::tibbo::aggregate::common::expression::function::JavaMethodFunction::CONVERSIONS_;
+java::lang::ClassArrayArray* function::JavaMethodFunction::CONVERSIONS_;
 
-void com::tibbo::aggregate::common::expression::function::JavaMethodFunction::ctor(const std::string & clazz, const std::string & method, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue)
+void function::JavaMethodFunction::ctor(const std::string & clazz, const std::string & method, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue)
 {
     ctor(clazz, method, true, category, parametersFootprint, returnValue);
 }
 
-void com::tibbo::aggregate::common::expression::function::JavaMethodFunction::ctor(const std::string & clazz, const std::string & method, bool statical, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue)
+void function::JavaMethodFunction::ctor(const std::string & clazz, const std::string & method, bool statical, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue)
 {
     super::ctor(category, parametersFootprint, returnValue);
     this->clazz = clazz;
@@ -115,7 +115,7 @@ void com::tibbo::aggregate::common::expression::function::JavaMethodFunction::ct
     this->statical = statical;
 }
 
-void* com::tibbo::aggregate::common::expression::function::JavaMethodFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::JavaMethodFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     try {
         auto cls = ::java::lang::Class::forName(clazz);
@@ -144,21 +144,21 @@ void* com::tibbo::aggregate::common::expression::function::JavaMethodFunction::e
             }
         }
         if(executor == 0) {
-            throw new ::com::tibbo::aggregate::common::expression::EvaluationException(u"Incompatible arguments"_j);
+            throw new EvaluationException(u"Incompatible arguments"_j);
         }
         castTypes(executor)->getParameterTypes(), parameters);
         if(instance == 0 && !statical) {
-            throw new ::com::tibbo::aggregate::common::expression::EvaluationException(u"Object cannot be null"_j);
+            throw new EvaluationException(u"Object cannot be null"_j);
         }
         return executor)->invoke(instance, parameters);
     } catch (::java::lang::reflect::InvocationTargetException* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(ex)->getTargetException())->getMessage(), ex)->getTargetException());
+        throw new EvaluationException(ex)->getTargetException())->getMessage(), ex)->getTargetException());
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
-java::lang::reflect::Method* com::tibbo::aggregate::common::expression::function::JavaMethodFunction::findExecutorMethod(::java::lang::Class* cls, ::java::lang::ClassArray* types, int firstParameterToRotate)
+java::lang::reflect::Method* function::JavaMethodFunction::findExecutorMethod(::java::lang::Class* cls, ::java::lang::ClassArray* types, int firstParameterToRotate)
 {
     try {
         return cls)->getMethod(method, types);
@@ -185,7 +185,7 @@ java::lang::reflect::Method* com::tibbo::aggregate::common::expression::function
     return 0;
 }
 
-void com::tibbo::aggregate::common::expression::function::JavaMethodFunction::castTypes(::java::lang::ClassArray* types, voidArray* parameters)
+void function::JavaMethodFunction::castTypes(::java::lang::ClassArray* types, voidArray* parameters)
 {
     for (auto i = int(0); i < types)->length; i++) {
         auto requiredType = (*types)[i];
@@ -210,20 +210,20 @@ void com::tibbo::aggregate::common::expression::function::JavaMethodFunction::ca
     }
 }
 
-void* com::tibbo::aggregate::common::expression::function::JavaMethodFunction::convertParameter(int i, void* value)
+void* function::JavaMethodFunction::convertParameter(int i, void* value)
 {
     return value;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::JavaMethodFunction::class_()
+java::lang::Class* function::JavaMethodFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.JavaMethodFunction", 65);
     return c;
 }
 
-void com::tibbo::aggregate::common::expression::function::JavaMethodFunction::clinit()
+void function::JavaMethodFunction::clinit()
 {
     super::
     static bool in_cl_init = false;
@@ -260,7 +260,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::JavaMethodFunction::getClass0()
+java::lang::Class* function::JavaMethodFunction::getClass0()
 {
     return class_();
 }

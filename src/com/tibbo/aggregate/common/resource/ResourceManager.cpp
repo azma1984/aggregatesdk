@@ -77,12 +77,12 @@ java::util::Map*& ResourceManager::ICON_CACHE()
 }
 java::util::Map* ResourceManager::ICON_CACHE_;
 
-java::util::List*& ResourceManager::BUNDLES()
+std::list & ResourceManager::BUNDLES()
 {
     
     return BUNDLES_;
 }
-java::util::List* ResourceManager::BUNDLES_;
+std::list  ResourceManager::BUNDLES_;
 
 java::util::Locale*& ResourceManager::LOCALE()
 {

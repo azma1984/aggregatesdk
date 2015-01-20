@@ -36,47 +36,47 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::GetVariableFunction::GetVariableFunction(const ::default_init_tag&)
+function::context::GetVariableFunction::GetVariableFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::GetVariableFunction::GetVariableFunction() 
+function::context::GetVariableFunction::GetVariableFunction() 
     : GetVariableFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::context::GetVariableFunction::ctor()
+void function::context::GetVariableFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED(), u"String context, String variable"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_CONTEXT_RELATED(), u"String context, String variable"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::context::GetVariableFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::context::GetVariableFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     auto resolver = evaluator)->getDefaultResolver();
-    auto con = java_cast< ::com::tibbo::aggregate::common::context::Context* >(resolver)->getContextManager())->get((*parameters)[int(0)])->toString(), resolver)->getCallerController()));
+    auto con = java_cast< Context* >(resolver)->getContextManager())->get((*parameters)[int(0)])->toString(), resolver)->getCallerController()));
     if(con == 0) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append((*parameters)[int(0)])->toString())->toString());
+        throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append((*parameters)[int(0)])->toString())->toString());
     }
     try {
-        return con)->getVariable((*parameters)[int(1)])->toString(), resolver)->getCallerController(), new ::com::tibbo::aggregate::common::context::DefaultRequestController(evaluator));
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+        return con)->getVariable((*parameters)[int(1)])->toString(), resolver)->getCallerController(), new DefaultRequestController(evaluator));
+    } catch (ContextException* ex) {
+        throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::GetVariableFunction::class_()
+java::lang::Class* function::context::GetVariableFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.GetVariableFunction", 74);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::GetVariableFunction::getClass0()
+java::lang::Class* function::context::GetVariableFunction::getClass0()
 {
     return class_();
 }

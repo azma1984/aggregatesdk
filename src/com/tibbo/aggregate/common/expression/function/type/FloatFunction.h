@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::type::FloatFunction
+class function::type::FloatFunction
     : public TypeConversionFunction
 {
 

@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::FCBigDecimal
+class DateFCBigDecimal
     : public converter::SimpleFormatConverter
 {
 

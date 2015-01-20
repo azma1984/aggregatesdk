@@ -14,13 +14,13 @@ class AbstractCallerController : public CallerController
 //    typedef void super;
 
 //private:
-//    static ::java::util::Set* CONTROLLERS_;
+//    static ::std::set  CONTROLLERS_;
 //    const std::string & username;
 //    CallerData* callerData;
 //    bool loggedIn;
 //    const std::string & type;
 //    const std::string & address;
-//    ::java::util::Date* creationTime;
+//    Date* creationTime;
 //    std::map properties;
 //protected:
 //    void ctor(CallerData* callerData);
@@ -52,8 +52,8 @@ class AbstractCallerController : public CallerController
 //    void setType(const std::string & type);
 //    const std::string & getAddress();
 //    void setAddress(const std::string & address);
-//    void login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) /* throws(ContextException) */;
-//    ::java::util::Date* getCreationTime();
+//    void login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) ;
+//    Date* getCreationTime();
 //    void logout();
 
 //    // Generated
@@ -68,6 +68,6 @@ class AbstractCallerController : public CallerController
 
 //private:
 //    void init();
-//    static ::java::util::Set*& CONTROLLERS();
+//    static ::std::set & CONTROLLERS();
 //    ::java::lang::Class* getClass0();
 };

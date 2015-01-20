@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::FCBigInteger
+class DateFCBigInteger
     : public converter::SimpleFormatConverter
 {
 

@@ -10,20 +10,20 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::context::EntityFormatFunction
-    : public ::com::tibbo::aggregate::common::expression::function::AbstractFunction
+class function::context::EntityFormatFunction
+    : public function::AbstractFunction
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::expression::function::AbstractFunction super;
+    typedef function::AbstractFunction super;
 protected:
     void ctor(const std::string & parametersFootprint);
 
 public:
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
 public: /* protected */
-    const std::string & getFormat(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
+    const std::string & getFormat(Evaluator* evaluator, Context* con, voidArray*/*...*/ parameters);
 
     // Generated
 

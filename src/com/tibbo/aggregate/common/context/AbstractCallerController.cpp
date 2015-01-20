@@ -50,33 +50,33 @@ namespace
         void *o;
     };
 }
-com::tibbo::aggregate::common::context::AbstractCallerController::AbstractCallerController(const ::default_init_tag&)
+AbstractCallerController::AbstractCallerController(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::AbstractCallerController::AbstractCallerController(CallerData* callerData) 
+AbstractCallerController::AbstractCallerController(CallerData* callerData) 
     : AbstractCallerController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(callerData);
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::init()
+void AbstractCallerController::init()
 {
     loggedIn = false;
-    creationTime = new ::java::util::Date();
+    creationTime = new Date();
     properties = new ::java::util::HashMap();
 }
 
-java::util::Set*& com::tibbo::aggregate::common::context::AbstractCallerController::CONTROLLERS()
+std::set & AbstractCallerController::CONTROLLERS()
 {
     
     return CONTROLLERS_;
 }
-java::util::Set* com::tibbo::aggregate::common::context::AbstractCallerController::CONTROLLERS_;
+std::set  AbstractCallerController::CONTROLLERS_;
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::ctor(CallerData* callerData)
+void AbstractCallerController::ctor(CallerData* callerData)
 {
     super::ctor();
     init();
@@ -89,41 +89,41 @@ void com::tibbo::aggregate::common::context::AbstractCallerController::ctor(Call
     }
 }
 
-bool com::tibbo::aggregate::common::context::AbstractCallerController::isLoggedIn()
+bool AbstractCallerController::isLoggedIn()
 {
     return loggedIn;
 }
 
-bool com::tibbo::aggregate::common::context::AbstractCallerController::isPermissionCheckingEnabled()
+bool AbstractCallerController::isPermissionCheckingEnabled()
 {
     return true;
 }
 
-com::tibbo::aggregate::common::security::PermissionCache* com::tibbo::aggregate::common::context::AbstractCallerController::getPermissionCache()
+com::tibbo::aggregate::common::security::PermissionCache* AbstractCallerController::getPermissionCache()
 {
     return 0;
 }
 
-com::tibbo::aggregate::common::context::CallerData* com::tibbo::aggregate::common::context::AbstractCallerController::getCallerData()
+CallerData* AbstractCallerController::getCallerData()
 {
     return java_cast< CallerData* >(callerData);
 }
 
-java::util::Map* com::tibbo::aggregate::common::context::AbstractCallerController::getProperties()
+java::util::Map* AbstractCallerController::getProperties()
 {
     return properties;
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::setLoggedIn(bool loggedIn)
+void AbstractCallerController::setLoggedIn(bool loggedIn)
 {
     this->loggedIn = loggedIn;
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::sendFeedback(int level, const std::string & message)
+void AbstractCallerController::sendFeedback(int level, const std::string & message)
 {
 }
 
-java::util::List* com::tibbo::aggregate::common::context::AbstractCallerController::getControllers()
+std::list  AbstractCallerController::getControllers()
 {
     
     std::list  list = new ::java::util::LinkedList();
@@ -141,82 +141,82 @@ java::util::List* com::tibbo::aggregate::common::context::AbstractCallerControll
     return ::java::util::Collections::unmodifiableList(list);
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractCallerController::toString()
+std::string AbstractCallerController::toString()
 {
     return std::stringBuilder().append((type != 0 ? type : getClass())->getName()))->append(u" ("_j)
         ->append((loggedIn ? u"logged in"_j : u"not logged in"_j))
         ->append(u")"_j)->toString();
 }
 
-com::tibbo::aggregate::common::security::Permissions* com::tibbo::aggregate::common::context::AbstractCallerController::getPermissions()
+com::tibbo::aggregate::common::security::Permissions* AbstractCallerController::getPermissions()
 {
     return 0;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractCallerController::getUsername()
+std::string AbstractCallerController::getUsername()
 {
     return username;
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::setUsername(const std::string & username)
+void AbstractCallerController::setUsername(const std::string & username)
 {
     this->username = username;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractCallerController::getInheritedUsername()
+std::string AbstractCallerController::getInheritedUsername()
 {
     return 0;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractCallerController::getEffectiveUsername()
+std::string AbstractCallerController::getEffectiveUsername()
 {
     auto inheritedUsername = getInheritedUsername();
     return inheritedUsername != 0 ? inheritedUsername : getUsername();
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractCallerController::getType()
+std::string AbstractCallerController::getType()
 {
     return type;
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::setType(const std::string & type)
+void AbstractCallerController::setType(const std::string & type)
 {
     this->type = type;
 }
 
-std::string com::tibbo::aggregate::common::context::AbstractCallerController::getAddress()
+std::string AbstractCallerController::getAddress()
 {
     return address;
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::setAddress(const std::string & address)
+void AbstractCallerController::setAddress(const std::string & address)
 {
     this->address = address;
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) /* throws(ContextException) */
+void AbstractCallerController::login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) 
 {
     setUsername(username);
 }
 
-java::util::Date* com::tibbo::aggregate::common::context::AbstractCallerController::getCreationTime()
+Date* AbstractCallerController::getCreationTime()
 {
     return creationTime;
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::logout()
+void AbstractCallerController::logout()
 {
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::AbstractCallerController::class_()
+java::lang::Class* AbstractCallerController::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.AbstractCallerController", 59);
     return c;
 }
 
-void com::tibbo::aggregate::common::context::AbstractCallerController::clinit()
+void AbstractCallerController::clinit()
 {
     super::
     static bool in_cl_init = false;
@@ -232,7 +232,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::AbstractCallerController::getClass0()
+java::lang::Class* AbstractCallerController::getClass0()
 {
     return class_();
 }

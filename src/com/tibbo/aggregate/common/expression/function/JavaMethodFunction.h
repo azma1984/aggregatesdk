@@ -34,7 +34,7 @@ typedef ::SubArray< ::java::lang::ClassArray, CloneableArray, ::java::io::Serial
 
 
 
-class com::tibbo::aggregate::common::expression::function::JavaMethodFunction
+class function::JavaMethodFunction
     : public AbstractFunction
 {
 
@@ -51,7 +51,7 @@ protected:
     void ctor(const std::string & clazz, const std::string & method, bool statical, const std::string & category, const std::string & parametersFootprint, const std::string & returnValue);
 
 public:
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
 private:
     ::java::lang::reflect::Method* findExecutorMethod(::java::lang::Class* cls, ::java::lang::ClassArray* types, int firstParameterToRotate);

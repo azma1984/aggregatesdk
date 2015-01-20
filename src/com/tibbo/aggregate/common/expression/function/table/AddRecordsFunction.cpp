@@ -34,24 +34,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::AddRecordsFunction::AddRecordsFunction(const ::default_init_tag&)
+function::table::AddRecordsFunction::AddRecordsFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::AddRecordsFunction::AddRecordsFunction() 
+function::table::AddRecordsFunction::AddRecordsFunction() 
     : AddRecordsFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::AddRecordsFunction::ctor()
+void function::table::AddRecordsFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, Object field1, Object field2, ..."_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, Object field1, Object field2, ..."_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::AddRecordsFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::AddRecordsFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     try {
         checkParameters(1, true, parameters);
@@ -67,19 +67,19 @@ void* com::tibbo::aggregate::common::expression::function::table::AddRecordsFunc
         }
         return table;
     } catch (::com::tibbo::aggregate::common::util::SyntaxErrorException* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::AddRecordsFunction::class_()
+java::lang::Class* function::table::AddRecordsFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.AddRecordsFunction", 71);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::AddRecordsFunction::getClass0()
+java::lang::Class* function::table::AddRecordsFunction::getClass0()
 {
     return class_();
 }

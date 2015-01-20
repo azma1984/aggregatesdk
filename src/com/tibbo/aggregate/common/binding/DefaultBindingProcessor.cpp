@@ -79,19 +79,19 @@ com::tibbo::aggregate::common::binding::DefaultBindingProcessor::DefaultBindingP
     
 }
 
-com::tibbo::aggregate::common::binding::DefaultBindingProcessor::DefaultBindingProcessor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator) 
+com::tibbo::aggregate::common::binding::DefaultBindingProcessor::DefaultBindingProcessor(BindingProvider* provider, Evaluator* evaluator) 
     : DefaultBindingProcessor(*static_cast< ::default_init_tag* >(0))
 {
     ctor(provider,evaluator);
 }
 
-com::tibbo::aggregate::common::binding::DefaultBindingProcessor::DefaultBindingProcessor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::java::util::concurrent::ExecutorService* executionService) 
+com::tibbo::aggregate::common::binding::DefaultBindingProcessor::DefaultBindingProcessor(BindingProvider* provider, Evaluator* evaluator, ::java::util::concurrent::ExecutorService* executionService) 
     : DefaultBindingProcessor(*static_cast< ::default_init_tag* >(0))
 {
     ctor(provider,evaluator,executionService);
 }
 
-com::tibbo::aggregate::common::binding::DefaultBindingProcessor::DefaultBindingProcessor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService) 
+com::tibbo::aggregate::common::binding::DefaultBindingProcessor::DefaultBindingProcessor(BindingProvider* provider, Evaluator* evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService) 
     : DefaultBindingProcessor(*static_cast< ::default_init_tag* >(0))
 {
     ctor(provider,evaluator,timer,executionService);
@@ -105,7 +105,7 @@ void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::init()
     enabled = true;
 }
 
-void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::ctor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator)
+void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::ctor(BindingProvider* provider, Evaluator* evaluator)
 {
     super::ctor();
     init();
@@ -113,13 +113,13 @@ void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::ctor(Bindi
     this->evaluator = evaluator;
 }
 
-void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::ctor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::java::util::concurrent::ExecutorService* executionService)
+void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::ctor(BindingProvider* provider, Evaluator* evaluator, ::java::util::concurrent::ExecutorService* executionService)
 {
     ctor(provider, evaluator);
     this->executionService = executionService;
 }
 
-void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::ctor(BindingProvider* provider, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService)
+void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::ctor(BindingProvider* provider, Evaluator* evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService)
 {
     ctor(provider, evaluator);
     this->executionService = executionService;
@@ -257,9 +257,9 @@ void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::initBindin
                     provider)->processError(binding, EvaluationOptions::EVENT, options)->getActivator(), ex);
                 }
             } else {
-                auto identifiers = ::com::tibbo::aggregate::common::expression::ExpressionUtils::findReferences(binding)->getExpression());
+                auto identifiers = ExpressionUtils::findReferences(binding)->getExpression());
                 for (auto _i = identifiers)->iterator(); _i->hasNext(); ) {
-                    ::com::tibbo::aggregate::common::expression::Reference* ref = java_cast< ::com::tibbo::aggregate::common::expression::Reference* >(_i->next());
+                    Reference* ref = java_cast< Reference* >(_i->next());
                     {
                         try {
                             addReferenceListener(binding, options, ref);
@@ -297,7 +297,7 @@ void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::ensureTime
     }
 }
 
-void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::addReferenceListener(Binding* binding, EvaluationOptions* options, ::com::tibbo::aggregate::common::expression::Reference* reference) /* throws(BindingException) */
+void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::addReferenceListener(Binding* binding, EvaluationOptions* options, Reference* reference) /* throws(BindingException) */
 {
     if(stopped) {
         return;
@@ -307,7 +307,7 @@ void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::addReferen
     listeners)->add(listener));
 }
 
-void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::writeReference(int method, ::com::tibbo::aggregate::common::expression::Reference* destination, ::com::tibbo::aggregate::common::expression::Reference* cause, void* value, ChangeCache* cache) /* throws(BindingException) */
+void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::writeReference(int method, Reference* destination, Reference* cause, void* value, ChangeCache* cache) /* throws(BindingException) */
 {
     if(stopped || !enabled) {
         return;
@@ -315,7 +315,7 @@ void com::tibbo::aggregate::common::binding::DefaultBindingProcessor::writeRefer
     provider)->writeReference(method, destination, cause, value, cache);
 }
 
-bool com::tibbo::aggregate::common::binding::DefaultBindingProcessor::checkCondition(EvaluationOptions* options, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* evaluationEnvironment) /* throws(BindingException) */
+bool com::tibbo::aggregate::common::binding::DefaultBindingProcessor::checkCondition(EvaluationOptions* options, EvaluationEnvironment* evaluationEnvironment) /* throws(BindingException) */
 {
     try {
         auto const conditionIsAbsent = options == 0 || options)->getCondition() == 0 || options)->getCondition())->getText() == 0 || options)->getCondition())->getText())->isEmpty();
@@ -381,7 +381,7 @@ com::tibbo::aggregate::common::binding::BindingProvider* com::tibbo::aggregate::
     return provider;
 }
 
-com::tibbo::aggregate::common::expression::Evaluator* com::tibbo::aggregate::common::binding::DefaultBindingProcessor::getEvaluator()
+Evaluator* com::tibbo::aggregate::common::binding::DefaultBindingProcessor::getEvaluator()
 {
     return evaluator;
 }

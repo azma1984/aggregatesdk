@@ -13,7 +13,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::field::DateFieldFormat
+class Datefield::DateFieldFormat
     : public FieldFormat
 {
 
@@ -23,7 +23,7 @@ public:
 private:
     static const std::string EDITOR_TIME_;
     static const std::string EDITOR_DATE_;
-    static ::java::util::Date* DEFAULT_DATE_;
+    static Date* DEFAULT_DATE_;
     ::java::text::SimpleDateFormat* dateFormatter;
 protected:
     void ctor(const std::string & name);
@@ -32,9 +32,9 @@ public:
     char16_t getType();
     ::java::lang::Class* getFieldClass();
     ::java::lang::Class* getFieldWrappedClass();
-    ::java::util::Date* getNotNullDefault();
-    ::java::util::Date* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
-    const std::string & valueToString(::java::util::Date* value, encoding::ClassicEncodingSettings* settings);
+    Date* getNotNullDefault();
+    Date* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+    const std::string & valueToString(Date* value, encoding::ClassicEncodingSettings* settings);
 
 public: /* protected */
     std::list  getSuitableEditors();
@@ -62,6 +62,6 @@ public:
     static const std::string& EDITOR_DATE();
 
 private:
-    static ::java::util::Date*& DEFAULT_DATE();
+    static Date*& DEFAULT_DATE();
     ::java::lang::Class* getClass0();
 };

@@ -12,7 +12,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor
+class AbstractEvaluatingVisitor
     
     , public ::ExpressionParserVisitor
 {

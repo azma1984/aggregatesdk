@@ -30,24 +30,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::other::GroupsFunction::GroupsFunction(const ::default_init_tag&)
+function::other::GroupsFunction::GroupsFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::other::GroupsFunction::GroupsFunction() 
+function::other::GroupsFunction::GroupsFunction() 
     : GroupsFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::other::GroupsFunction::ctor()
+void function::other::GroupsFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String source, String regex"_j, u"Object"_j);
+    super::ctor(function::Functions::GROUP_STRING_PROCESSING(), u"String source, String regex"_j, u"Object"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::other::GroupsFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::other::GroupsFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     auto source = (*parameters)[int(0)])->toString();
@@ -65,13 +65,13 @@ void* com::tibbo::aggregate::common::expression::function::other::GroupsFunction
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::GroupsFunction::class_()
+java::lang::Class* function::other::GroupsFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.other.GroupsFunction", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::GroupsFunction::getClass0()
+java::lang::Class* function::other::GroupsFunction::getClass0()
 {
     return class_();
 }

@@ -90,37 +90,37 @@ namespace
         void *o;
     };
 }
-com::tibbo::aggregate::common::expression::Evaluator::Evaluator(const ::default_init_tag&)
+Evaluator::Evaluator(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::Evaluator::Evaluator(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* caller) 
+Evaluator::Evaluator(ContextManager* cm, CallerController* caller) 
     : Evaluator(*static_cast< ::default_init_tag* >(0))
 {
     ctor(cm,caller);
 }
 
-com::tibbo::aggregate::common::expression::Evaluator::Evaluator(DataTable* defaultTable) 
+Evaluator::Evaluator(DataTable* defaultTable) 
     : Evaluator(*static_cast< ::default_init_tag* >(0))
 {
     ctor(defaultTable);
 }
 
-com::tibbo::aggregate::common::expression::Evaluator::Evaluator(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::Context* defaultContext, DataTable* defaultTable, ::com::tibbo::aggregate::common::context::CallerController* caller) 
+Evaluator::Evaluator(ContextManager* cm, Context* defaultContext, DataTable* defaultTable, CallerController* caller) 
     : Evaluator(*static_cast< ::default_init_tag* >(0))
 {
     ctor(cm,defaultContext,defaultTable,caller);
 }
 
-com::tibbo::aggregate::common::expression::Evaluator::Evaluator(ReferenceResolver* resolver) 
+Evaluator::Evaluator(ReferenceResolver* resolver) 
     : Evaluator(*static_cast< ::default_init_tag* >(0))
 {
     ctor(resolver);
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::init()
+void Evaluator::init()
 {
     environmentResolver = new Evaluator_LocalEnvironmentResolver(this);
     resolvers = new ::java::util::HashMap();
@@ -128,31 +128,31 @@ void com::tibbo::aggregate::common::expression::Evaluator::init()
     count = int(0);
 }
 
-std::string& com::tibbo::aggregate::common::expression::Evaluator::ENVIRONMENT_PREVIOUS()
+std::string& Evaluator::ENVIRONMENT_PREVIOUS()
 {
     
     return ENVIRONMENT_PREVIOUS_;
 }
-std::string com::tibbo::aggregate::common::expression::Evaluator::ENVIRONMENT_PREVIOUS_;
+std::string Evaluator::ENVIRONMENT_PREVIOUS_;
 
-std::string& com::tibbo::aggregate::common::expression::Evaluator::ENVIRONMENT_COUNT()
+std::string& Evaluator::ENVIRONMENT_COUNT()
 {
     
     return ENVIRONMENT_COUNT_;
 }
-std::string com::tibbo::aggregate::common::expression::Evaluator::ENVIRONMENT_COUNT_;
+std::string Evaluator::ENVIRONMENT_COUNT_;
 
-void com::tibbo::aggregate::common::expression::Evaluator::ctor(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* caller)
+void Evaluator::ctor(ContextManager* cm, CallerController* caller)
 {
     ctor(cm, 0, 0, caller);
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::ctor(DataTable* defaultTable)
+void Evaluator::ctor(DataTable* defaultTable)
 {
     ctor(0, 0, defaultTable, 0);
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::ctor(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::Context* defaultContext, DataTable* defaultTable, ::com::tibbo::aggregate::common::context::CallerController* caller)
+void Evaluator::ctor(ContextManager* cm, Context* defaultContext, DataTable* defaultTable, CallerController* caller)
 {
     super::ctor();
     init();
@@ -164,26 +164,26 @@ void com::tibbo::aggregate::common::expression::Evaluator::ctor(::com::tibbo::ag
     init_(resolver);
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::ctor(ReferenceResolver* resolver)
+void Evaluator::ctor(ReferenceResolver* resolver)
 {
     super::ctor();
     init();
     init_(resolver);
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::init_(ReferenceResolver* defaultResolver)
+void Evaluator::init_(ReferenceResolver* defaultResolver)
 {
     defaultResolver)->setEvaluator(this);
     resolvers)->put(0, defaultResolver);
     setResolver(Reference::SCHEMA_ENVIRONMENT(), environmentResolver);
 }
 
-void* com::tibbo::aggregate::common::expression::Evaluator::evaluate(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+void* Evaluator::evaluate(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     return evaluate(expression, new EvaluationEnvironment());
 }
 
-void* com::tibbo::aggregate::common::expression::Evaluator::evaluate(Expression* expression, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */
+void* Evaluator::evaluate(Expression* expression, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */
 {
     {
         auto finally0 = finally([&] {
@@ -217,48 +217,48 @@ void* com::tibbo::aggregate::common::expression::Evaluator::evaluate(Expression*
     }
 }
 
-std::string com::tibbo::aggregate::common::expression::Evaluator::evaluateToString(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+std::string Evaluator::evaluateToString(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     return result != 0 ? result)->toString() : u""_j;
 }
 
-std::string com::tibbo::aggregate::common::expression::Evaluator::evaluateToStringOrNull(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+std::string Evaluator::evaluateToStringOrNull(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     return result != 0 ? result)->toString() : static_cast< const std::string & >(0);
 }
 
-bool com::tibbo::aggregate::common::expression::Evaluator::evaluateToBoolean(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+bool Evaluator::evaluateToBoolean(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     return (util::Util::convertToBoolean(result, true, false)))->booleanValue();
 }
 
-java::lang::Boolean* com::tibbo::aggregate::common::expression::Evaluator::evaluateToBooleanOrNull(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+java::lang::Boolean* Evaluator::evaluateToBooleanOrNull(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     return ::com::tibbo::aggregate::common::util::Util::convertToBoolean(result, true, true);
 }
 
-java::lang::Number* com::tibbo::aggregate::common::expression::Evaluator::evaluateToNumber(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+java::lang::Number* Evaluator::evaluateToNumber(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     return evaluateToNumber(expression, false, false);
 }
 
-java::lang::Number* com::tibbo::aggregate::common::expression::Evaluator::evaluateToNumber(Expression* expression, bool validate, bool allowNull) /* throws(SyntaxErrorException, EvaluationException) */
+java::lang::Number* Evaluator::evaluateToNumber(Expression* expression, bool validate, bool allowNull) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     return ::com::tibbo::aggregate::common::util::Util::convertToNumber(result, validate, allowNull);
 }
 
-java::lang::Comparable* com::tibbo::aggregate::common::expression::Evaluator::evaluateToComparable(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+java::lang::Comparable* Evaluator::evaluateToComparable(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     return dynamic_cast< ::java::lang::Comparable* >(result) != 0 ? java_cast< ::java::lang::Comparable* >(result) : static_cast< ::java::lang::Comparable* >(result)->toString());
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::expression::Evaluator::evaluateToDataTable(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+DateDataTable* Evaluator::evaluateToDataTable(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     if(dynamic_cast< DataTable* >(result) != 0) {
@@ -267,17 +267,17 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return DataTableUtils::wrapToTable(::java::util::Collections::singletonList(result));
 }
 
-java::util::Date* com::tibbo::aggregate::common::expression::Evaluator::evaluateToDate(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+Date* Evaluator::evaluateToDate(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     if(result == 0) {
         return 0;
     }
-    if(dynamic_cast< ::java::util::Date* >(result) != 0) {
-        return java_cast< ::java::util::Date* >(result);
+    if(dynamic_cast< Date* >(result) != 0) {
+        return java_cast< Date* >(result);
     }
     if(dynamic_cast< ::java::lang::Number* >(result) != 0) {
-        return new ::java::util::Date((java_cast< ::java::lang::Number* >(result)))->longValue());
+        return new Date((java_cast< ::java::lang::Number* >(result)))->longValue());
     }
     try {
         return util::DateUtils::createDateFormatter())->parse(result)->toString());
@@ -286,7 +286,7 @@ java::util::Date* com::tibbo::aggregate::common::expression::Evaluator::evaluate
     }
 }
 
-java::awt::Color* com::tibbo::aggregate::common::expression::Evaluator::evaluateToColor(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
+java::awt::Color* Evaluator::evaluateToColor(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */
 {
     auto result = evaluate(expression);
     if(result == 0) {
@@ -298,37 +298,37 @@ java::awt::Color* com::tibbo::aggregate::common::expression::Evaluator::evaluate
     return new ::java::awt::Color(util::Util::convertToNumber(result, false, false))->intValue());
 }
 
-com::tibbo::aggregate::common::expression::ReferenceResolver* com::tibbo::aggregate::common::expression::Evaluator::getResolver(const std::string & schema)
+ReferenceResolver* Evaluator::getResolver(const std::string & schema)
 {
     return java_cast< ReferenceResolver* >(resolvers)->get(schema));
 }
 
-com::tibbo::aggregate::common::expression::ReferenceResolver* com::tibbo::aggregate::common::expression::Evaluator::getDefaultResolver()
+ReferenceResolver* Evaluator::getDefaultResolver()
 {
     return java_cast< ReferenceResolver* >(resolvers)->get(0));
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::setResolver(const std::string & schema, ReferenceResolver* resolver)
+void Evaluator::setResolver(const std::string & schema, ReferenceResolver* resolver)
 {
     resolvers)->put(schema, resolver);
 }
 
-java::util::Map* com::tibbo::aggregate::common::expression::Evaluator::getResolvers()
+java::util::Map* Evaluator::getResolvers()
 {
     return resolvers;
 }
 
-void* com::tibbo::aggregate::common::expression::Evaluator::getPreviousResult()
+void* Evaluator::getPreviousResult()
 {
     return previousResult;
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::setPreviousResult(void* previousResult)
+void Evaluator::setPreviousResult(void* previousResult)
 {
     this->previousResult = previousResult;
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::registerCustomFunction(const std::string & name, Function* impl)
+void Evaluator::registerCustomFunction(const std::string & name, Function* impl)
 {
     if(AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS())->containsKey(name) || customFunctions)->containsKey(name)) {
         std::cout <<"Function already registered:"_j)->append(name)->toString());
@@ -336,42 +336,42 @@ void com::tibbo::aggregate::common::expression::Evaluator::registerCustomFunctio
     customFunctions)->put(name, impl);
 }
 
-java::util::Map* com::tibbo::aggregate::common::expression::Evaluator::getAllFunctions()
+java::util::Map* Evaluator::getAllFunctions()
 {
     std::map res = new ::java::util::LinkedHashMap(static_cast< std::map >(AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS()));
     res)->putAll(customFunctions);
     return res;
 }
 
-com::tibbo::aggregate::common::expression::Function* com::tibbo::aggregate::common::expression::Evaluator::getCustomFunction(const std::string & name)
+Function* Evaluator::getCustomFunction(const std::string & name)
 {
     return java_cast< Function* >(customFunctions)->get(name));
 }
 
-com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver* com::tibbo::aggregate::common::expression::Evaluator::getEnvironmentResolver()
+EnvironmentReferenceResolver* Evaluator::getEnvironmentResolver()
 {
     return environmentResolver;
 }
 
-com::tibbo::aggregate::common::expression::util::Tracer* com::tibbo::aggregate::common::expression::Evaluator::getTracer()
+util::Tracer* Evaluator::getTracer()
 {
     return tracer;
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::setTracer(::com::tibbo::aggregate::common::expression::util::Tracer* tracer)
+void Evaluator::setTracer(util::Tracer* tracer)
 {
     this->tracer = tracer;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::Evaluator::class_()
+java::lang::Class* Evaluator::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.Evaluator", 47);
     return c;
 }
 
-void com::tibbo::aggregate::common::expression::Evaluator::clinit()
+void Evaluator::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -385,7 +385,7 @@ struct string_init_ {
     super::
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::Evaluator::getClass0()
+java::lang::Class* Evaluator::getClass0()
 {
     return class_();
 }

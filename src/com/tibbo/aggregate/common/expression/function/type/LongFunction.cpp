@@ -17,24 +17,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::type::LongFunction::LongFunction(const ::default_init_tag&)
+function::type::LongFunction::LongFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::type::LongFunction::LongFunction() 
+function::type::LongFunction::LongFunction() 
     : LongFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::type::LongFunction::ctor()
+void function::type::LongFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_TYPE_CONVERSION(), u"Object value [, Integer radix]"_j, u"Long"_j);
+    super::ctor(function::Functions::GROUP_TYPE_CONVERSION(), u"Object value [, Integer radix]"_j, u"Long"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::type::LongFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::type::LongFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, true, parameters);
     if(parameters)->length >= 2) {
@@ -49,13 +49,13 @@ void* com::tibbo::aggregate::common::expression::function::type::LongFunction::e
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::LongFunction::class_()
+java::lang::Class* function::type::LongFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.type.LongFunction", 64);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::LongFunction::getClass0()
+java::lang::Class* function::type::LongFunction::getClass0()
 {
     return class_();
 }

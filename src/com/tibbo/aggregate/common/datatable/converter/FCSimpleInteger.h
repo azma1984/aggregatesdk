@@ -9,7 +9,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::converter::FCSimpleInteger
+class Dateconverter::FCSimpleInteger
     : public SimpleFormatConverter
 {
 

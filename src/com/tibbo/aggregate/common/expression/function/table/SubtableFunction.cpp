@@ -29,24 +29,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::SubtableFunction::SubtableFunction(const ::default_init_tag&)
+function::table::SubtableFunction::SubtableFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::SubtableFunction::SubtableFunction() 
+function::table::SubtableFunction::SubtableFunction() 
     : SubtableFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::SubtableFunction::ctor()
+void function::table::SubtableFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String field1, String field2, ..."_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String field1, String field2, ..."_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::SubtableFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::SubtableFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -60,13 +60,13 @@ void* com::tibbo::aggregate::common::expression::function::table::SubtableFuncti
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::SubtableFunction::class_()
+java::lang::Class* function::table::SubtableFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.SubtableFunction", 69);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::SubtableFunction::getClass0()
+java::lang::Class* function::table::SubtableFunction::getClass0()
 {
     return class_();
 }

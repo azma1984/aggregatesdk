@@ -9,12 +9,12 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::color::RgbFunction
-    : public ::com::tibbo::aggregate::common::expression::function::AbstractFunction
+class function::color::RgbFunction
+    : public function::AbstractFunction
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::expression::function::AbstractFunction super;
+    typedef function::AbstractFunction super;
 protected:
     void ctor();
 

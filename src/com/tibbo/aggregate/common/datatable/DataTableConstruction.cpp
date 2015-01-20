@@ -35,37 +35,37 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::DataTableConstruction::DataTableConstruction(const ::default_init_tag&)
+DateDataTableConstruction::DataTableConstruction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::DataTableConstruction::DataTableConstruction()
+DateDataTableConstruction::DataTableConstruction()
     : DataTableConstruction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableConstruction::constructTable(void* object) /* throws(SyntaxErrorException, EvaluationException) */
+DateDataTable* DateDataTableConstruction::constructTable(void* object) /* throws(SyntaxErrorException, EvaluationException) */
 {
     
     return DataTableConstruction::constructTable(::java::util::Collections::singletonList(object), 0, 0, 0);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableConstruction::constructTable(std::list  parameters) /* throws(SyntaxErrorException, EvaluationException) */
+DateDataTable* DateDataTableConstruction::constructTable(std::list  parameters) /* throws(SyntaxErrorException, EvaluationException) */
 {
     
     return DataTableConstruction::constructTable(parameters, 0, 0, 0);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableConstruction::constructTable(std::list  parameters, TableFormat* format) /* throws(SyntaxErrorException, EvaluationException) */
+DateDataTable* DateDataTableConstruction::constructTable(std::list  parameters, TableFormat* format) /* throws(SyntaxErrorException, EvaluationException) */
 {
     
     return DataTableConstruction::constructTable(parameters, format, 0, 0);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableConstruction::constructTable(std::list  parameters, TableFormat* format, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */
+DateDataTable* DateDataTableConstruction::constructTable(std::list  parameters, TableFormat* format, Evaluator* evaluator, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */
 {
     
     auto params = DataTableConstruction::resolveParameters(parameters, evaluator, environment);
@@ -82,18 +82,18 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return res;
 }
 
-java::util::List* com::tibbo::aggregate::common::datatable::DataTableConstruction::resolveParameters(std::list  parameters, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */
+std::list  DateDataTableConstruction::resolveParameters(std::list  parameters, Evaluator* evaluator, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */
 {
     
     std::list  params = new ::java::util::LinkedList();
     for (auto _i = parameters)->iterator(); _i->hasNext(); ) {
         void* param = java_cast< void* >(_i->next());
         {
-            if(dynamic_cast< ::com::tibbo::aggregate::common::expression::Expression* >(param) != 0) {
+            if(dynamic_cast< Expression* >(param) != 0) {
                 if(evaluator == 0) {
                     throw new ::java::lang::IllegalStateException(u"Evaluator not defined"_j);
                 }
-                params)->add(evaluator)->evaluate(java_cast< ::com::tibbo::aggregate::common::expression::Expression* >(param), environment)));
+                params)->add(evaluator)->evaluate(java_cast< Expression* >(param), environment)));
             } else {
                 params)->add(param));
             }
@@ -102,7 +102,7 @@ java::util::List* com::tibbo::aggregate::common::datatable::DataTableConstructio
     return params;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableConstruction::fillDataTable(TableFormat* format, std::list  params)
+DateDataTable* DateDataTableConstruction::fillDataTable(TableFormat* format, std::list  params)
 {
     
     auto table = new DataTable(format);
@@ -132,13 +132,13 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTableConstruction::class_()
+java::lang::Class* DateDataTableConstruction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.DataTableConstruction", 58);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTableConstruction::getClass0()
+java::lang::Class* DateDataTableConstruction::getClass0()
 {
     return class_();
 }

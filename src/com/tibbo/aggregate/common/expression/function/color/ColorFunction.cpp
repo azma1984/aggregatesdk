@@ -18,27 +18,27 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::color::ColorFunction::ColorFunction(const ::default_init_tag&)
+function::color::ColorFunction::ColorFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::color::ColorFunction::ColorFunction() 
+function::color::ColorFunction::ColorFunction() 
     : ColorFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::color::ColorFunction::ctor()
+void function::color::ColorFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_COLOR_PROCESSING(), u"Integer red, Integer green, Integer blue"_j, u"Color"_j);
+    super::ctor(function::Functions::GROUP_COLOR_PROCESSING(), u"Integer red, Integer green, Integer blue"_j, u"Color"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::color::ColorFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::color::ColorFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     if(parameters)->length != 3) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(u"Invalid parameter count, need 3 but found "_j)->append(parameters)->length)->toString());
+        throw new EvaluationException(std::stringBuilder().append(u"Invalid parameter count, need 3 but found "_j)->append(parameters)->length)->toString());
     }
     auto r = ::com::tibbo::aggregate::common::util::Util::convertToNumber((*parameters)[int(0)], true, false);
     auto g = ::com::tibbo::aggregate::common::util::Util::convertToNumber((*parameters)[int(1)], true, false);
@@ -48,13 +48,13 @@ void* com::tibbo::aggregate::common::expression::function::color::ColorFunction:
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::color::ColorFunction::class_()
+java::lang::Class* function::color::ColorFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.color.ColorFunction", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::color::ColorFunction::getClass0()
+java::lang::Class* function::color::ColorFunction::getClass0()
 {
     return class_();
 }

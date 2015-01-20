@@ -28,24 +28,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::HasFieldFunction::HasFieldFunction(const ::default_init_tag&)
+function::table::HasFieldFunction::HasFieldFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::HasFieldFunction::HasFieldFunction() 
+function::table::HasFieldFunction::HasFieldFunction() 
     : HasFieldFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::HasFieldFunction::ctor()
+void function::table::HasFieldFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String field"_j, u"Boolean"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String field"_j, u"Boolean"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::HasFieldFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::HasFieldFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -56,13 +56,13 @@ void* com::tibbo::aggregate::common::expression::function::table::HasFieldFuncti
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::HasFieldFunction::class_()
+java::lang::Class* function::table::HasFieldFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.HasFieldFunction", 69);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::HasFieldFunction::getClass0()
+java::lang::Class* function::table::HasFieldFunction::getClass0()
 {
     return class_();
 }

@@ -10,7 +10,7 @@ FireEventRequestController::FireEventRequestController(const ::default_init_tag&
     
 }
 
-FireEventRequestController::FireEventRequestController(::java::lang::Long* customExpirationPeriod) 
+FireEventRequestController::FireEventRequestController(long  customExpirationPeriod) 
     : FireEventRequestController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(customExpirationPeriod);
@@ -22,7 +22,7 @@ FireEventRequestController::FireEventRequestController(bool ignoreStorageErrors)
     ctor(ignoreStorageErrors);
 }
 
-void FireEventRequestController::ctor(::java::lang::Long* customExpirationPeriod)
+void FireEventRequestController::ctor(long  customExpirationPeriod)
 {
     super::ctor();
     this->customExpirationPeriod = customExpirationPeriod;
@@ -34,12 +34,12 @@ void FireEventRequestController::ctor(bool ignoreStorageErrors)
     this->ignoreStorageErrors = ignoreStorageErrors;
 }
 
-java::lang::Long* FireEventRequestController::getCustomExpirationPeriod()
+ FireEventRequestController::getCustomExpirationPeriod()
 {
     return customExpirationPeriod;
 }
 
-void FireEventRequestController::setCustomExpirationPeriod(::java::lang::Long* customExpirationPeriod)
+void FireEventRequestController::setCustomExpirationPeriod(long  customExpirationPeriod)
 {
     this->customExpirationPeriod = customExpirationPeriod;
 }

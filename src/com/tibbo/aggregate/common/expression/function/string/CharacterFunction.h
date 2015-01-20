@@ -9,12 +9,12 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::string::CharacterFunction
-    : public ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction
+class function::string::CharacterFunction
+    : public function::JavaMethodFunction
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction super;
+    typedef function::JavaMethodFunction super;
 protected:
     void ctor(const std::string & method);
 

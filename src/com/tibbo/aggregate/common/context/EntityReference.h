@@ -12,7 +12,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::EntityReference
+class EntityReference
     
     , public ::java::io::Serializable
     , public ::java::lang::Cloneable

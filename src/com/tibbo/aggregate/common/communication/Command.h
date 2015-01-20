@@ -8,7 +8,7 @@ class Command
 /*
 
 private:
-    ::java::lang::Long* timeout;
+    long  timeout;
 protected:
     void ctor();
     void ctor(const std::string & data);
@@ -26,8 +26,8 @@ public:
 	void send(::java::io::OutputStream* stream);
     const std::string & getId();
     bool isAsync();
-    ::java::lang::Long* getTimeout();
-    void setTimeout(::java::lang::Long* timeout);
+    long  getTimeout();
+    void setTimeout(long  timeout);
 
     // Generated
     Command();

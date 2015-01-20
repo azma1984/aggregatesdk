@@ -37,31 +37,31 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::AggregateFunction::AggregateFunction(const ::default_init_tag&)
+function::table::AggregateFunction::AggregateFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::AggregateFunction::AggregateFunction() 
+function::table::AggregateFunction::AggregateFunction() 
     : AggregateFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::AggregateFunction::ctor()
+void function::table::AggregateFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"Object source, String expression, Object initialValue"_j, u"Object"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"Object source, String expression, Object initialValue"_j, u"Object"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::AggregateFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::AggregateFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(3, false, parameters);
     auto source = (*parameters)[int(0)];
-    auto expression = new ::com::tibbo::aggregate::common::expression::Expression((*parameters)[int(1)])->toString());
+    auto expression = new Expression((*parameters)[int(1)])->toString());
     auto aggregate = (*parameters)[int(2)];
     auto resolver = evaluator)->getDefaultResolver();
-    auto localEvaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(resolver)->getContextManager(), resolver)->getDefaultContext(), resolver)->getDefaultTable(), resolver)->getCallerController());
+    auto localEvaluator = new Evaluator(resolver)->getContextManager(), resolver)->getDefaultContext(), resolver)->getDefaultTable(), resolver)->getCallerController());
     localEvaluator)->getEnvironmentResolver())->setEnvironment(evaluator)->getEnvironmentResolver())->getEnvironment());
     localEvaluator)->setPreviousResult(aggregate);
     try {
@@ -74,9 +74,9 @@ void* com::tibbo::aggregate::common::expression::function::table::AggregateFunct
             }
         } else {
             auto mask = source)->toString();
-            auto contexts = ::com::tibbo::aggregate::common::context::ContextUtils::expandMaskToContexts(mask, resolver)->getContextManager(), resolver)->getCallerController());
+            auto contexts = ContextUtils::expandMaskToContexts(mask, resolver)->getContextManager(), resolver)->getCallerController());
             for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-                ::com::tibbo::aggregate::common::context::Context* context = java_cast< ::com::tibbo::aggregate::common::context::Context* >(_i->next());
+                Context* context = java_cast< Context* >(_i->next());
                 {
                     localEvaluator)->getDefaultResolver())->setDefaultContext(context);
                     aggregate = localEvaluator)->evaluate(expression);
@@ -84,20 +84,20 @@ void* com::tibbo::aggregate::common::expression::function::table::AggregateFunct
             }
         }
     } catch (::com::tibbo::aggregate::common::util::SyntaxErrorException* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
     }
     return aggregate;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::AggregateFunction::class_()
+java::lang::Class* function::table::AggregateFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.AggregateFunction", 70);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::AggregateFunction::getClass0()
+java::lang::Class* function::table::AggregateFunction::getClass0()
 {
     return class_();
 }

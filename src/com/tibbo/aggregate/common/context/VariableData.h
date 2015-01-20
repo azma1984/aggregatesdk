@@ -12,7 +12,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::VariableData
+class VariableData
     
     , public ::java::lang::Comparable
 {

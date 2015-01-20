@@ -39,7 +39,7 @@ bool RemoteServerController::connectImpl()
 				if(msg == 0) {
 					throw ex;
 				} else {
-					throw new ::com::tibbo::aggregate::common::device::RemoteDeviceErrorException(msg, static_cast< ::java::lang::Throwable* >(ex));
+					throw new RemoteDeviceErrorException(msg, static_cast< ::java::lang::Throwable* >(ex));
 				}
 			}
 			sslSocket)->setEnabledCipherSuites(sslSocket)->getSupportedCipherSuites());
@@ -56,13 +56,13 @@ bool RemoteServerController::connectImpl()
 	}
 	catch (std::exception* ex)
 	{
-        throw new ::com::tibbo::aggregate::common::device::RemoteDeviceErrorException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"devErrConnecting"_j), new voidArray({std::stringBuilder().append(java_cast< RemoteServer* >(getDevice()))->getDescription())->append(u" ("_j)
+        throw new RemoteDeviceErrorException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"devErrConnecting"_j), new voidArray({std::stringBuilder().append(java_cast< RemoteServer* >(getDevice()))->getDescription())->append(u" ("_j)
             ->append(java_cast< RemoteServer* >(getDevice()))->getInfo())
             ->append(u")"_j)->toString())})))->append(ex)->getMessage())->toString(), static_cast< ::java::lang::Throwable* >(ex));
     }
     super::connectImpl();
     if(java_cast< RemoteContextManager* >(getContextManager()) != 0) {
-        java_cast< RemoteContextManager* >(getContextManager()))->setRoot(new ProxyContext(::com::tibbo::aggregate::common::context::Contexts::CTX_ROOT(), this));
+        java_cast< RemoteContextManager* >(getContextManager()))->setRoot(new ProxyContext(Contexts::CTX_ROOT(), this));
         java_cast< RemoteContextManager* >(getContextManager()))->restart();
     }
     return true;
@@ -81,7 +81,7 @@ bool RemoteServerController::loginImpl()
         java_cast< RemoteContextManager* >(getContextManager()))->restart();
     }
     auto loginInput = new DataTable(::com::tibbo::aggregate::common::server::CommonServerFormats::FIFT_LOGIN(), new voidArray({java_cast< RemoteServer* >(getDevice()))->getUsername()), java_cast< RemoteServer* >(getDevice()))->getPassword())}));
-    callRemoteFunction(::com::tibbo::aggregate::common::context::Contexts::CTX_ROOT(), ::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGIN(), 0, loginInput);
+    callRemoteFunction(Contexts::CTX_ROOT(), ::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGIN(), 0, loginInput);
     if(java_cast< RemoteContextManager* >(getContextManager()) != 0) {
         java_cast< ProxyContext* >(java_cast< RemoteContextManager* >(getContextManager()))->getRoot()))->reinitialize();
     }

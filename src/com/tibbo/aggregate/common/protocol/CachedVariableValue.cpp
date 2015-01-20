@@ -10,30 +10,30 @@ com::tibbo::aggregate::common::protocol::CachedVariableValue::CachedVariableValu
     
 }
 
-com::tibbo::aggregate::common::protocol::CachedVariableValue::CachedVariableValue(::java::util::Date* timestamp, DataTable* value) 
+com::tibbo::aggregate::common::protocol::CachedVariableValue::CachedVariableValue(Date* timestamp, DataTable* value) 
     : CachedVariableValue(*static_cast< ::default_init_tag* >(0))
 {
     ctor(timestamp,value);
 }
 
-void com::tibbo::aggregate::common::protocol::CachedVariableValue::ctor(::java::util::Date* timestamp, DataTable* value)
+void com::tibbo::aggregate::common::protocol::CachedVariableValue::ctor(Date* timestamp, DataTable* value)
 {
     super::ctor();
     this->timestamp = timestamp;
     this->value = value;
 }
 
-java::util::Date* com::tibbo::aggregate::common::protocol::CachedVariableValue::getTimestamp()
+Date* com::tibbo::aggregate::common::protocol::CachedVariableValue::getTimestamp()
 {
     return timestamp;
 }
 
-void com::tibbo::aggregate::common::protocol::CachedVariableValue::setTimestamp(::java::util::Date* timestamp)
+void com::tibbo::aggregate::common::protocol::CachedVariableValue::setTimestamp(Date* timestamp)
 {
     this->timestamp = timestamp;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::protocol::CachedVariableValue::getValue()
+DateDataTable* com::tibbo::aggregate::common::protocol::CachedVariableValue::getValue()
 {
     return value;
 }

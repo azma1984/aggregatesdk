@@ -104,28 +104,28 @@ std::string& com::tibbo::aggregate::common::action::ProtocolHandler::FIELD_ACTIO
 }
 std::string com::tibbo::aggregate::common::action::ProtocolHandler::FIELD_ACTION_ID_ACTION_ID_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_ID_FORMAT()
+DateTableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_ID_FORMAT()
 {
     
     return FORMAT_ACTION_ID_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_ID_FORMAT_;
+DateTableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_ID_FORMAT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_COMMAND()
+DateTableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_COMMAND()
 {
     
     return FORMAT_ACTION_COMMAND_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_COMMAND_;
+DateTableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_COMMAND_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_RESPONSE()
+DateTableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_RESPONSE()
 {
     
     return FORMAT_ACTION_RESPONSE_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_RESPONSE_;
+DateTableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_RESPONSE_;
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionIdToDataTable(ActionIdentifier* id)
+DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionIdToDataTable(ActionIdentifier* id)
 {
     
     auto stringId = id != 0 ? id)->toString() : static_cast< const std::string & >(0);
@@ -147,7 +147,7 @@ com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::
     return actionId;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandToDataTable(GenericActionCommand* cmd)
+DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandToDataTable(GenericActionCommand* cmd)
 {
     
     auto table = new DataTable(FORMAT_ACTION_COMMAND_);
@@ -183,7 +183,7 @@ com::tibbo::aggregate::common::action::GenericActionCommand* com::tibbo::aggrega
     return actionCmd;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseToDataTable(GenericActionResponse* response)
+DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseToDataTable(GenericActionResponse* response)
 {
     
     auto table = new DataTable(FORMAT_ACTION_RESPONSE_);

@@ -18,24 +18,24 @@ static T java_cast(U* u)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::color::RgbFunction::RgbFunction(const ::default_init_tag&)
+function::color::RgbFunction::RgbFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::color::RgbFunction::RgbFunction() 
+function::color::RgbFunction::RgbFunction() 
     : RgbFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::color::RgbFunction::ctor()
+void function::color::RgbFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_COLOR_PROCESSING(), u"Color color"_j, u"Integer"_j);
+    super::ctor(function::Functions::GROUP_COLOR_PROCESSING(), u"Color color"_j, u"Integer"_j);
 }
 
-java::awt::Color* com::tibbo::aggregate::common::expression::function::color::RgbFunction::color(voidArray* parameters) /* throws(EvaluationException) */
+java::awt::Color* function::color::RgbFunction::color(voidArray* parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], ::java::awt::Color::class_());
@@ -44,13 +44,13 @@ java::awt::Color* com::tibbo::aggregate::common::expression::function::color::Rg
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::color::RgbFunction::class_()
+java::lang::Class* function::color::RgbFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.color.RgbFunction", 64);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::color::RgbFunction::getClass0()
+java::lang::Class* function::color::RgbFunction::getClass0()
 {
     return class_();
 }

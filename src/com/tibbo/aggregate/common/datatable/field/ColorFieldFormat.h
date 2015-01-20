@@ -13,7 +13,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::field::ColorFieldFormat
+class Datefield::ColorFieldFormat
     : public FieldFormat
 {
 

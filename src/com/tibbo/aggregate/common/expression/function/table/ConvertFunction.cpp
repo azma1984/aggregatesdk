@@ -31,24 +31,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::ConvertFunction::ConvertFunction(const ::default_init_tag&)
+function::table::ConvertFunction::ConvertFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::ConvertFunction::ConvertFunction() 
+function::table::ConvertFunction::ConvertFunction() 
     : ConvertFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::ConvertFunction::ctor()
+void function::table::ConvertFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String format"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String format"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::ConvertFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::ConvertFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -71,13 +71,13 @@ void* com::tibbo::aggregate::common::expression::function::table::ConvertFunctio
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::ConvertFunction::class_()
+java::lang::Class* function::table::ConvertFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.ConvertFunction", 68);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::ConvertFunction::getClass0()
+java::lang::Class* function::table::ConvertFunction::getClass0()
 {
     return class_();
 }

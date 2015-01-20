@@ -35,24 +35,24 @@ namespace
 
     template<typename F> finally_<F> finally(F f) { return finally_<F>(f); }
 }
-com::tibbo::aggregate::common::expression::function::other::EvaluateFunction::EvaluateFunction(const ::default_init_tag&)
+function::other::EvaluateFunction::EvaluateFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::other::EvaluateFunction::EvaluateFunction() 
+function::other::EvaluateFunction::EvaluateFunction() 
     : EvaluateFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::other::EvaluateFunction::ctor()
+void function::other::EvaluateFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_OTHER(), u"String expression"_j, u"Object"_j);
+    super::ctor(function::Functions::GROUP_OTHER(), u"String expression"_j, u"Object"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::other::EvaluateFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::other::EvaluateFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
     auto previousBackup = evaluator)->getPreviousResult();
@@ -61,22 +61,22 @@ void* com::tibbo::aggregate::common::expression::function::other::EvaluateFuncti
             evaluator)->setPreviousResult(previousBackup);
         });
         try {
-            return evaluator)->evaluate(new ::com::tibbo::aggregate::common::expression::Expression((*parameters)[int(0)])->toString()));
+            return evaluator)->evaluate(new Expression((*parameters)[int(0)])->toString()));
         } catch (::com::tibbo::aggregate::common::util::SyntaxErrorException* ex) {
-            throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+            throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
         }
     }
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::EvaluateFunction::class_()
+java::lang::Class* function::other::EvaluateFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.other.EvaluateFunction", 69);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::EvaluateFunction::getClass0()
+java::lang::Class* function::other::EvaluateFunction::getClass0()
 {
     return class_();
 }

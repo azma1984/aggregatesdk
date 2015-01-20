@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat_DataTableFieldFormat_1
+class Datefield::DataTableFieldFormat_DataTableFieldFormat_1
     : public validator::AbstractFieldValidator
 {
 

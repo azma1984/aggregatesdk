@@ -10,17 +10,17 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::date::DateFunction
-    : public ::com::tibbo::aggregate::common::expression::function::AbstractFunction
+class function::date::DateFunction
+    : public function::AbstractFunction
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::expression::function::AbstractFunction super;
+    typedef function::AbstractFunction super;
 protected:
     void ctor(const std::string & returnValue);
 
 public:
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
     void* execute(::java::util::GregorianCalendar* calendar, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
     // Generated

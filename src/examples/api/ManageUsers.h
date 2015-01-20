@@ -35,8 +35,8 @@ public:
     static void main(std::stringArray* args);
 
 private:
-    static void createEditDeleteUser(::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
-    static void listUserAccounts(::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
+    static void createEditDeleteUser(ContextManager* cm) ;
+    static void listUserAccounts(ContextManager* cm) ;
 
     // Generated
 

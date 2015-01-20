@@ -56,7 +56,7 @@ public:
 
 public:
 	void addLocalFunctionDefinitions();
-	TableFormat* decodeFormat(const std::string & source, ::com::tibbo::aggregate::common::context::CallerController* caller);
+	TableFormat* decodeFormat(const std::string & source, CallerController* caller);
 	void clear();
 
 private:
@@ -93,18 +93,18 @@ public:
     const std::string & getLocalRoot();
     const std::string & getRemoteRoot();
     bool isMapped();
-    ::com::tibbo::aggregate::common::context::Context* get(const std::string & contextPath, ::com::tibbo::aggregate::common::context::CallerController* caller);
+    Context* get(const std::string & contextPath, CallerController* caller);
     const std::string & getIconId();
-    ::com::tibbo::aggregate::common::context::Context* getChild(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* callerController);
-	::com::tibbo::aggregate::common::context::VariableDefinition* getVariableDefinition(const std::string & name);
-    ::com::tibbo::aggregate::common::context::FunctionDefinition* getFunctionDefinition(const std::string & name);
-    ::com::tibbo::aggregate::common::context::EventData* getEventData(const std::string & name);
+    Context* getChild(const std::string & name, CallerController* callerController);
+	VariableDefinition* getVariableDefinition(const std::string & name);
+    FunctionDefinition* getFunctionDefinition(const std::string & name);
+    EventData* getEventData(const std::string & name);
     ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(const std::string & name);
-    std::list  getVariableDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, bool hidden);
-    std::list  getFunctionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, bool hidden);
-    std::list  getEventDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, bool hidden);
-    std::list  getActionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, bool hidden);
-    ::com::tibbo::aggregate::common::context::ContextStatus* getStatus();
+    std::list  getVariableDefinitions(CallerController* caller, bool hidden);
+    std::list  getFunctionDefinitions(CallerController* caller, bool hidden);
+    std::list  getEventDefinitions(CallerController* caller, bool hidden);
+    std::list  getActionDefinitions(CallerController* caller, bool hidden);
+    ContextStatus* getStatus();
 
 private:
     void initVariablesLoggingErrors();
@@ -112,23 +112,23 @@ private:
     void initEventsLoggingErrors();
     void initActionsLoggingErrors();
     void initStatusLoggingErrors();
-	IncomingAggreGateCommand* sendGetVariable(const std::string & name, ::java::lang::Long* timeout);
+	IncomingAggreGateCommand* sendGetVariable(const std::string & name, long  timeout);
 
 public:
-	DataTable* getRemoteVariable(TableFormat* format, const std::string & name, ::java::lang::Long* timeout) ;
+	DataTable* getRemoteVariable(TableFormat* format, const std::string & name, long  timeout) ;
 
 public:
     AbstractAggreGateDeviceController* getController();
 	void setupVariables();
-	DataTable* getVariableImpl(::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request);
+	DataTable* getVariableImpl(VariableDefinition* def, CallerController* caller, RequestController* request);
 
 private:
-	DataTable* getRemoteVariable(::com::tibbo::aggregate::common::context::VariableDefinition* def);
+	DataTable* getRemoteVariable(VariableDefinition* def);
 
 public:
-	bool setVariableImpl(::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* value);
+	bool setVariableImpl(VariableDefinition* def, CallerController* caller, RequestController* request, DataTable* value);
 	void setupFunctions();
-	DataTable* callFunctionImpl(::com::tibbo::aggregate::common::context::FunctionDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* parameters);
+	DataTable* callFunctionImpl(FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters);
 	DataTable* callRemoteFunction(const std::string & name, TableFormat* outputFormat, DataTable* parameters);
 
 public:
@@ -141,8 +141,8 @@ private:
     void addRemoteListener(const std::string & ename, ContextEventListener* contextEventListener);
 
 public:
-    std::list  getChildren(::com::tibbo::aggregate::common::context::CallerController* caller);
-    std::list  getVisibleChildren(::com::tibbo::aggregate::common::context::CallerController* caller);
+    std::list  getChildren(CallerController* caller);
+    std::list  getVisibleChildren(CallerController* caller);
     void addVisibleChild(const std::string & localVisiblePath);
     void removeVisibleChild(const std::string & localVisiblePath);
 
@@ -153,7 +153,7 @@ public:
 	void reinitialize();
 
 public:
-    Event* fireEvent(::com::tibbo::aggregate::common::context::EventDefinition* ed, DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, ::com::tibbo::aggregate::common::context::CallerController* caller, FireEventRequestController* request, Permissions* permissions);
+    Event* fireEvent(EventDefinition* ed, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions);
 
 private:
     void cacheVariableValue(const std::string & variable, DataTable* value);
@@ -209,34 +209,34 @@ public:
     Event* fireEvent(Event* event);
 
 public:
-    Event* fireEvent(const std::string & name, int level, ::com::tibbo::aggregate::common::context::CallerController* caller, FireEventRequestController* request, Permissions* permissions, DataTable* data);
-    Event* fireEvent(const std::string & name, DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, ::com::tibbo::aggregate::common::context::CallerController* caller, FireEventRequestController* request);
+    Event* fireEvent(const std::string & name, int level, CallerController* caller, FireEventRequestController* request, Permissions* permissions, DataTable* data);
+    Event* fireEvent(const std::string & name, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request);
     Event* fireEvent(const std::string & name, DataTable* data);
-    Event* fireEvent(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller, DataTable* data);
+    Event* fireEvent(const std::string & name, CallerController* caller, DataTable* data);
     Event* fireEvent(const std::string & name, int level, DataTable* data);
-    Event* fireEvent(const std::string & name, int level, ::com::tibbo::aggregate::common::context::CallerController* caller, DataTable* data);
+    Event* fireEvent(const std::string & name, int level, CallerController* caller, DataTable* data);
     Event* fireEvent(const std::string & name);
-    Event* fireEvent(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller);
+    Event* fireEvent(const std::string & name, CallerController* caller);
     Event* fireEvent(const std::string & name, voidArray* data);
-    ::com::tibbo::aggregate::common::context::Context* get(const std::string & contextName);
-    ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller);
-    std::list  getActionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller);
+    Context* get(const std::string & contextName);
+    ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(const std::string & name, CallerController* caller);
+    std::list  getActionDefinitions(CallerController* caller);
     std::list  getActionDefinitions();
-    ::com::tibbo::aggregate::common::context::Context* getChild(const std::string & name);
+    Context* getChild(const std::string & name);
     std::list  getChildren();
-    std::list  getEventDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller);
+    std::list  getEventDefinitions(CallerController* caller);
 	std::list  getEventDefinitions();
-    std::list  getEventDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, const std::string & group);
+    std::list  getEventDefinitions(CallerController* caller, const std::string & group);
     std::list  getEventDefinitions(const std::string & group);
-    ::com::tibbo::aggregate::common::context::FunctionDefinition* getFunctionDefinition(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller);
-    std::list  getFunctionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller);
+    FunctionDefinition* getFunctionDefinition(const std::string & name, CallerController* caller);
+    std::list  getFunctionDefinitions(CallerController* caller);
     std::list  getFunctionDefinitions();
-    std::list  getFunctionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, const std::string & group);
+    std::list  getFunctionDefinitions(CallerController* caller, const std::string & group);
     std::list  getFunctionDefinitions(const std::string & group);
-    ::com::tibbo::aggregate::common::context::VariableDefinition* getVariableDefinition(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller);
-    std::list  getVariableDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller);
+    VariableDefinition* getVariableDefinition(const std::string & name, CallerController* caller);
+    std::list  getVariableDefinitions(CallerController* caller);
     std::list  getVariableDefinitions();
-    std::list  getVariableDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, const std::string & group);
+    std::list  getVariableDefinitions(CallerController* caller, const std::string & group);
     std::list  getVariableDefinitions(const std::string & group);
     std::list  getVisibleChildren();
     static const std::string& F_LOCAL_REINITIALIZE();

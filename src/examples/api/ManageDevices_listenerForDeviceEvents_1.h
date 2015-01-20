@@ -12,18 +12,18 @@
 
 
 class examples::api::ManageDevices_listenerForDeviceEvents_1
-    : public ::com::tibbo::aggregate::common::context::DefaultContextEventListener
+    : public DefaultContextEventListener
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::context::DefaultContextEventListener super;
+    typedef DefaultContextEventListener super;
     void handle(Event* event) /* throws(EventHandlingException) */;
 
     // Generated
     ManageDevices_listenerForDeviceEvents_1();
-    ManageDevices_listenerForDeviceEvents_1(::com::tibbo::aggregate::common::context::CallerController* callerController);
-    ManageDevices_listenerForDeviceEvents_1(::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode);
-    ManageDevices_listenerForDeviceEvents_1(::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    ManageDevices_listenerForDeviceEvents_1(CallerController* callerController);
+    ManageDevices_listenerForDeviceEvents_1(CallerController* callerController, int  listenerCode);
+    ManageDevices_listenerForDeviceEvents_1(CallerController* callerController, int  listenerCode, Expression* filter);
     ManageDevices_listenerForDeviceEvents_1(int  listenerCode);
     
 

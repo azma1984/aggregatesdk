@@ -8,91 +8,91 @@
 #include <com/tibbo/aggregate/common/expression/Evaluator.h"
 //#include <java/lang/Integer.h"
 
-com::tibbo::aggregate::common::expression::AbstractReferenceResolver::AbstractReferenceResolver(const ::default_init_tag&)
+AbstractReferenceResolver::AbstractReferenceResolver(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::AbstractReferenceResolver::AbstractReferenceResolver()
+AbstractReferenceResolver::AbstractReferenceResolver()
     : AbstractReferenceResolver(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::context::CallerController* com::tibbo::aggregate::common::expression::AbstractReferenceResolver::getCallerController()
+CallerController* AbstractReferenceResolver::getCallerController()
 {
     return callerController;
 }
 
-com::tibbo::aggregate::common::context::Context* com::tibbo::aggregate::common::expression::AbstractReferenceResolver::getDefaultContext()
+Context* AbstractReferenceResolver::getDefaultContext()
 {
     return defaultContext;
 }
 
-com::tibbo::aggregate::common::context::ContextManager* com::tibbo::aggregate::common::expression::AbstractReferenceResolver::getContextManager()
+ContextManager* AbstractReferenceResolver::getContextManager()
 {
     return contextManager;
 }
 
-java::lang::Integer* com::tibbo::aggregate::common::expression::AbstractReferenceResolver::getDefaultRow()
+java::lang::Integer* AbstractReferenceResolver::getDefaultRow()
 {
     return defaultRow;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::expression::AbstractReferenceResolver::getDefaultTable()
+DateDataTable* AbstractReferenceResolver::getDefaultTable()
 {
     return defaultTable;
 }
 
-com::tibbo::aggregate::common::expression::Evaluator* com::tibbo::aggregate::common::expression::AbstractReferenceResolver::getEvaluator()
+Evaluator* AbstractReferenceResolver::getEvaluator()
 {
     return evaluator;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractReferenceResolver::addContextManager(const std::string & schema, ::com::tibbo::aggregate::common::context::ContextManager* cm)
+void AbstractReferenceResolver::addContextManager(const std::string & schema, ContextManager* cm)
 {
 }
 
-void com::tibbo::aggregate::common::expression::AbstractReferenceResolver::setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController)
+void AbstractReferenceResolver::setCallerController(CallerController* callerController)
 {
     this->callerController = callerController;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractReferenceResolver::setDefaultContext(::com::tibbo::aggregate::common::context::Context* defaultContext)
+void AbstractReferenceResolver::setDefaultContext(Context* defaultContext)
 {
     this->defaultContext = defaultContext;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractReferenceResolver::setContextManager(::com::tibbo::aggregate::common::context::ContextManager* contextManager)
+void AbstractReferenceResolver::setContextManager(ContextManager* contextManager)
 {
     this->contextManager = contextManager;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractReferenceResolver::setDefaultRow(int  defaultRow)
+void AbstractReferenceResolver::setDefaultRow(int  defaultRow)
 {
     this->defaultRow = defaultRow;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractReferenceResolver::setDefaultTable(DataTable* defaultTable)
+void AbstractReferenceResolver::setDefaultTable(DataTable* defaultTable)
 {
     this->defaultTable = defaultTable;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractReferenceResolver::setEvaluator(Evaluator* evaluator)
+void AbstractReferenceResolver::setEvaluator(Evaluator* evaluator)
 {
     this->evaluator = evaluator;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::AbstractReferenceResolver::class_()
+java::lang::Class* AbstractReferenceResolver::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.AbstractReferenceResolver", 63);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::AbstractReferenceResolver::getClass0()
+java::lang::Class* AbstractReferenceResolver::getClass0()
 {
     return class_();
 }

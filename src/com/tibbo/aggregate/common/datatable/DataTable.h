@@ -44,7 +44,7 @@ private:
 	std::list<DataRecord> records;
 	/*
 		static TableFormat* DEFAULT_FORMAT;
-	::java::lang::Long* id;
+	long  id;
 	TableFormat* format;
 	const std::string & invalidationMessage;
 	static const std::string ELEMENT_FORMAT_;
@@ -71,9 +71,9 @@ public:
     TableFormat* getFormat();
     FieldFormat* getFormat(int field);
     FieldFormat* getFormat(const std::string & name);
-    ::java::lang::Long* getId();
+    long  getId();
     DataTable* setFormat(TableFormat* format);
-    void setId(::java::lang::Long* id);
+    void setId(long  id);
     bool hasField(const std::string & field);
     void setInvalidationMessage(const std::string & invalidationMessage);
 
@@ -117,8 +117,8 @@ public:
 
 private:
     const std::string & toDefaultString();
-    ::com::tibbo::aggregate::common::expression::Expression* getNamingExpression();
-    ::com::tibbo::aggregate::common::expression::Evaluator* ensureEvaluator();
+    Expression* getNamingExpression();
+    Evaluator* ensureEvaluator();
 
 public:
     void fixRecords();

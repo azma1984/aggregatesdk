@@ -15,24 +15,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::string::CharacterFunction::CharacterFunction(const ::default_init_tag&)
+function::string::CharacterFunction::CharacterFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::string::CharacterFunction::CharacterFunction(const std::string & method) 
+function::string::CharacterFunction::CharacterFunction(const std::string & method) 
     : CharacterFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(method);
 }
 
-void com::tibbo::aggregate::common::expression::function::string::CharacterFunction::ctor(const std::string & method)
+void function::string::CharacterFunction::ctor(const std::string & method)
 {
-    super::ctor(::java::lang::Character::class_())->getName(), method, true, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String character"_j, u"Boolean"_j);
+    super::ctor(::java::lang::Character::class_())->getName(), method, true, function::Functions::GROUP_STRING_PROCESSING(), u"String character"_j, u"Boolean"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::string::CharacterFunction::convertParameter(int i, void* value)
+void* function::string::CharacterFunction::convertParameter(int i, void* value)
 {
     if(value != 0 && dynamic_cast< const std::string & >(value) != 0) {
         return ::java::lang::Character::valueOf(value)->toString())->charAt(int(0)));
@@ -42,13 +42,13 @@ void* com::tibbo::aggregate::common::expression::function::string::CharacterFunc
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::string::CharacterFunction::class_()
+java::lang::Class* function::string::CharacterFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.string.CharacterFunction", 71);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::string::CharacterFunction::getClass0()
+java::lang::Class* function::string::CharacterFunction::getClass0()
 {
     return class_();
 }

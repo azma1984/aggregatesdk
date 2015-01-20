@@ -29,39 +29,39 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::AvailableFunction::AvailableFunction(const ::default_init_tag&)
+function::context::AvailableFunction::AvailableFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::AvailableFunction::AvailableFunction() 
+function::context::AvailableFunction::AvailableFunction() 
     : AvailableFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::context::AvailableFunction::ctor()
+void function::context::AvailableFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED(), u"String context"_j, u"Boolean"_j);
+    super::ctor(function::Functions::GROUP_CONTEXT_RELATED(), u"String context"_j, u"Boolean"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::context::AvailableFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::context::AvailableFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
-    auto con = java_cast< ::com::tibbo::aggregate::common::context::Context* >(evaluator)->getDefaultResolver())->getContextManager())->get((*parameters)[int(0)])->toString(), evaluator)->getDefaultResolver())->getCallerController()));
+    auto con = java_cast< Context* >(evaluator)->getDefaultResolver())->getContextManager())->get((*parameters)[int(0)])->toString(), evaluator)->getDefaultResolver())->getCallerController()));
     return ::java::lang::Boolean::valueOf(con != 0);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::AvailableFunction::class_()
+java::lang::Class* function::context::AvailableFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.AvailableFunction", 72);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::AvailableFunction::getClass0()
+java::lang::Class* function::context::AvailableFunction::getClass0()
 {
     return class_();
 }

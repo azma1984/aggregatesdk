@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::type::TimestampFunction
+class function::type::TimestampFunction
     : public TypeConversionFunction
 {
 

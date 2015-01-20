@@ -9,8 +9,8 @@
 struct com::tibbo::aggregate::common::util::RemoteConnector
     
 {
-    ::com::tibbo::aggregate::common::context::ContextManager* getContextManager();
-    ::com::tibbo::aggregate::common::context::CallerController* getCallerController();
+    ContextManager* getContextManager();
+    CallerController* getCallerController();
     UserSettings* getSettings();
 
     // Generated

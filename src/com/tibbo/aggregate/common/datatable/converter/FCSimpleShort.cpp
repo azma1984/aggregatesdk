@@ -25,52 +25,52 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::FCSimpleShort(const ::default_init_tag&)
+Dateconverter::FCSimpleShort::FCSimpleShort(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::FCSimpleShort() 
+Dateconverter::FCSimpleShort::FCSimpleShort() 
     : FCSimpleShort(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::ctor()
+void Dateconverter::FCSimpleShort::ctor()
 {
     super::ctor(::java::lang::Short::TYPE());
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::createFieldFormat(const std::string & name)
+DateFieldFormat* Dateconverter::FCSimpleShort::createFieldFormat(const std::string & name)
 {
     return FieldFormat::create(name, FieldFormat::INTEGER_FIELD);
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::simpleToBean(void* value)
+void* Dateconverter::FCSimpleShort::simpleToBean(void* value)
 {
     return ::java::lang::Short::valueOf((java_cast< int  >(value)))->shortValue());
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::convertToTable(void* value, TableFormat* format)
+void* Dateconverter::FCSimpleShort::convertToTable(void* value, TableFormat* format)
 {
     return new ::java::lang::Integer((java_cast< ::java::lang::Short* >(value)))->shortValue());
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::class_()
+java::lang::Class* Dateconverter::FCSimpleShort::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.FCSimpleShort", 60);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::convertToTable(void* value)
+void* Dateconverter::FCSimpleShort::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCSimpleShort::getClass0()
+java::lang::Class* Dateconverter::FCSimpleShort::getClass0()
 {
     return class_();
 }

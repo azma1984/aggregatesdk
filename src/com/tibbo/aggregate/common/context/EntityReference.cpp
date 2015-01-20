@@ -26,67 +26,67 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::context::EntityReference::EntityReference(const ::default_init_tag&)
+EntityReference::EntityReference(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::EntityReference::EntityReference() 
+EntityReference::EntityReference() 
     : EntityReference(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::context::EntityReference::EntityReference(const std::string & context, const std::string & entity) 
+EntityReference::EntityReference(const std::string & context, const std::string & entity) 
     : EntityReference(*static_cast< ::default_init_tag* >(0))
 {
     ctor(context,entity);
 }
 
-void com::tibbo::aggregate::common::context::EntityReference::ctor()
+void EntityReference::ctor()
 {
     super::ctor();
 }
 
-void com::tibbo::aggregate::common::context::EntityReference::ctor(const std::string & context, const std::string & entity)
+void EntityReference::ctor(const std::string & context, const std::string & entity)
 {
     super::ctor();
     this->context = context;
     this->entity = entity;
 }
 
-std::string com::tibbo::aggregate::common::context::EntityReference::getContext()
+std::string EntityReference::getContext()
 {
     return context;
 }
 
-std::string com::tibbo::aggregate::common::context::EntityReference::getEntity()
+std::string EntityReference::getEntity()
 {
     return entity;
 }
 
-std::string com::tibbo::aggregate::common::context::EntityReference::getProperty()
+std::string EntityReference::getProperty()
 {
     return entity;
 }
 
-void com::tibbo::aggregate::common::context::EntityReference::setContext(const std::string & context)
+void EntityReference::setContext(const std::string & context)
 {
     this->context = context;
 }
 
-void com::tibbo::aggregate::common::context::EntityReference::setEntity(const std::string & entity)
+void EntityReference::setEntity(const std::string & entity)
 {
     this->entity = entity;
 }
 
-void com::tibbo::aggregate::common::context::EntityReference::setProperty(const std::string & property)
+void EntityReference::setProperty(const std::string & property)
 {
     this->entity = property;
 }
 
-int com::tibbo::aggregate::common::context::EntityReference::hashCode()
+int EntityReference::hashCode()
 {
     auto const prime = int(31);
     auto result = int(1);
@@ -95,7 +95,7 @@ int com::tibbo::aggregate::common::context::EntityReference::hashCode()
     return result;
 }
 
-bool com::tibbo::aggregate::common::context::EntityReference::equals(void* obj)
+bool EntityReference::equals(void* obj)
 {
     if(this) == obj)
         return true;
@@ -124,23 +124,23 @@ bool com::tibbo::aggregate::common::context::EntityReference::equals(void* obj)
     return true;
 }
 
-int com::tibbo::aggregate::common::context::EntityReference::compareTo(EntityReference* ref)
+int EntityReference::compareTo(EntityReference* ref)
 {
     return toString())->compareTo(ref)->toString());
 }
 
-int com::tibbo::aggregate::common::context::EntityReference::compareTo(void* arg0)
+int EntityReference::compareTo(void* arg0)
 { 
     return compareTo(dynamic_cast< EntityReference* >(arg0));
 }
 
-std::string com::tibbo::aggregate::common::context::EntityReference::toString()
+std::string EntityReference::toString()
 {
     return std::stringBuilder().append(context)->append(u":"_j)
         ->append(entity)->toString();
 }
 
-com::tibbo::aggregate::common::context::EntityReference* com::tibbo::aggregate::common::context::EntityReference::clone()
+EntityReference* EntityReference::clone()
 {
     try {
         return java_cast< EntityReference* >(super::clone());
@@ -151,13 +151,13 @@ com::tibbo::aggregate::common::context::EntityReference* com::tibbo::aggregate::
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::EntityReference::class_()
+java::lang::Class* EntityReference::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.EntityReference", 50);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::EntityReference::getClass0()
+java::lang::Class* EntityReference::getClass0()
 {
     return class_();
 }

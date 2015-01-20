@@ -50,120 +50,120 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::DefaultReferenceResolver::DefaultReferenceResolver(const ::default_init_tag&)
+DefaultReferenceResolver::DefaultReferenceResolver(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::DefaultReferenceResolver::DefaultReferenceResolver() 
+DefaultReferenceResolver::DefaultReferenceResolver() 
     : DefaultReferenceResolver(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::expression::DefaultReferenceResolver::DefaultReferenceResolver(DataTable* defaultTable) 
+DefaultReferenceResolver::DefaultReferenceResolver(DataTable* defaultTable) 
     : DefaultReferenceResolver(*static_cast< ::default_init_tag* >(0))
 {
     ctor(defaultTable);
 }
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::ROW()
+std::string& DefaultReferenceResolver::ROW()
 {
     
     return ROW_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::ROW_;
+std::string DefaultReferenceResolver::ROW_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::DESCRIPTION()
+std::string& DefaultReferenceResolver::DESCRIPTION()
 {
     
     return DESCRIPTION_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::DESCRIPTION_;
+std::string DefaultReferenceResolver::DESCRIPTION_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::NAME()
+std::string& DefaultReferenceResolver::NAME()
 {
     
     return NAME_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::NAME_;
+std::string DefaultReferenceResolver::NAME_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::ICON()
+std::string& DefaultReferenceResolver::ICON()
 {
     
     return ICON_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::ICON_;
+std::string DefaultReferenceResolver::ICON_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::TYPE()
+std::string& DefaultReferenceResolver::TYPE()
 {
     
     return TYPE_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::TYPE_;
+std::string DefaultReferenceResolver::TYPE_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::READABLE()
+std::string& DefaultReferenceResolver::READABLE()
 {
     
     return READABLE_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::READABLE_;
+std::string DefaultReferenceResolver::READABLE_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::WRITABLE()
+std::string& DefaultReferenceResolver::WRITABLE()
 {
     
     return WRITABLE_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::WRITABLE_;
+std::string DefaultReferenceResolver::WRITABLE_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::RECORDS()
+std::string& DefaultReferenceResolver::RECORDS()
 {
     
     return RECORDS_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::RECORDS_;
+std::string DefaultReferenceResolver::RECORDS_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::FORMAT()
+std::string& DefaultReferenceResolver::FORMAT()
 {
     
     return FORMAT_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::FORMAT_;
+std::string DefaultReferenceResolver::FORMAT_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::HELP()
+std::string& DefaultReferenceResolver::HELP()
 {
     
     return HELP_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::HELP_;
+std::string DefaultReferenceResolver::HELP_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::OPTIONS()
+std::string& DefaultReferenceResolver::OPTIONS()
 {
     
     return OPTIONS_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::OPTIONS_;
+std::string DefaultReferenceResolver::OPTIONS_;
 
-std::string& com::tibbo::aggregate::common::expression::DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION()
+std::string& DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION()
 {
     
     return SELECTION_VALUE_DESCRIPTION_;
 }
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION_;
+std::string DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION_;
 
-void com::tibbo::aggregate::common::expression::DefaultReferenceResolver::ctor()
+void DefaultReferenceResolver::ctor()
 {
     super::ctor();
 }
 
-void com::tibbo::aggregate::common::expression::DefaultReferenceResolver::ctor(DataTable* defaultTable)
+void DefaultReferenceResolver::ctor(DataTable* defaultTable)
 {
     ctor();
     setDefaultTable(defaultTable);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::resolveReference(Reference* ref, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */
+void* DefaultReferenceResolver::resolveReference(Reference* ref, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */
 {
     if(ref)->getProperty() != 0 && ROW_)->equals(ref)->getProperty()))) {
         return getDefaultRow();
@@ -177,7 +177,7 @@ void* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::resol
                 if(DESCRIPTION_)->equals(ref)->getProperty()))) {
                     return resolveEntityDescription(ref, con);
                 }
-                if(ref)->getEntityType() == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_VARIABLE) {
+                if(ref)->getEntityType() == ContextUtils::ENTITY_VARIABLE) {
                     auto vd = con)->getVariableDefinition(ref)->getEntity());
                     if(vd == 0) {
                         throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conVarNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
@@ -194,13 +194,13 @@ void* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::resol
                 }
             } else {
                 TableFormat* rf;
-                if(ref)->getEntityType() == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_VARIABLE) {
+                if(ref)->getEntityType() == ContextUtils::ENTITY_VARIABLE) {
                     auto vd = con)->getVariableDefinition(ref)->getEntity());
                     if(vd == 0) {
                         throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conVarNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
                     }
                     rf = vd)->getFormat();
-                } else if(ref)->getEntityType() == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_FUNCTION) {
+                } else if(ref)->getEntityType() == ContextUtils::ENTITY_FUNCTION) {
                     auto fd = con)->getFunctionDefinition(ref)->getEntity());
                     if(fd == 0) {
                         throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conFuncNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
@@ -293,12 +293,12 @@ void* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::resol
     return value;
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::getDefaultTableAggregate(DataTable* table)
+void* DefaultReferenceResolver::getDefaultTableAggregate(DataTable* table)
 {
     return table;
 }
 
-java::lang::Integer* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::getRow(Reference* ref, EvaluationEnvironment* environment)
+java::lang::Integer* DefaultReferenceResolver::getRow(Reference* ref, EvaluationEnvironment* environment)
 {
     if(ref)->getRow() != 0) {
         return ref)->getRow();
@@ -311,15 +311,15 @@ java::lang::Integer* com::tibbo::aggregate::common::expression::DefaultReference
     }
 }
 
-std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver::resolveEntityDescription(Reference* ref, ::com::tibbo::aggregate::common::context::Context* con) /* throws(IllegalStateException) */
+std::string DefaultReferenceResolver::resolveEntityDescription(Reference* ref, Context* con) /* throws(IllegalStateException) */
 {
-    if(ref)->getEntityType() == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_VARIABLE) {
+    if(ref)->getEntityType() == ContextUtils::ENTITY_VARIABLE) {
         auto vd = con)->getVariableDefinition(ref)->getEntity());
         if(vd == 0) {
             throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conVarNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
         }
         return vd)->getDescription();
-    } else if(ref)->getEntityType() == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_FUNCTION) {
+    } else if(ref)->getEntityType() == ContextUtils::ENTITY_FUNCTION) {
         auto fd = con)->getFunctionDefinition(ref)->getEntity());
         if(fd == 0) {
             throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conFuncNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
@@ -330,49 +330,49 @@ std::string com::tibbo::aggregate::common::expression::DefaultReferenceResolver:
     }
 }
 
-java::util::List* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::getContexts(Reference* ref) /* throws(ContextException) */
+std::list  DefaultReferenceResolver::getContexts(Reference* ref) 
 {
-    if(ref)->getContext() != 0 && ::com::tibbo::aggregate::common::context::ContextUtils::isMask(ref)->getContext())) {
-        return ::com::tibbo::aggregate::common::context::ContextUtils::expandMaskToContexts(ref)->getContext(), getContextManager(), getCallerController());
+    if(ref)->getContext() != 0 && ContextUtils::isMask(ref)->getContext())) {
+        return ContextUtils::expandMaskToContexts(ref)->getContext(), getContextManager(), getCallerController());
     } else {
         auto con = getContext(ref);
         return con != 0 ? ::java::util::Collections::singletonList(con) : ::java::util::Collections::/* <Context> */emptyList();
     }
 }
 
-com::tibbo::aggregate::common::context::Context* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::getContext(Reference* ref) /* throws(ContextException) */
+Context* DefaultReferenceResolver::getContext(Reference* ref) 
 {
     auto con = getDefaultContext();
     if(ref)->getContext() != 0) {
-        if(::com::tibbo::aggregate::common::context::ContextUtils::isRelative(ref)->getContext()) && con != 0) {
-            con = java_cast< ::com::tibbo::aggregate::common::context::Context* >(con)->get(ref)->getContext(), getCallerController()));
+        if(ContextUtils::isRelative(ref)->getContext()) && con != 0) {
+            con = java_cast< Context* >(con)->get(ref)->getContext(), getCallerController()));
         } else if(getContextManager() != 0) {
-            con = java_cast< ::com::tibbo::aggregate::common::context::Context* >(getContextManager())->get(ref)->getContext(), getCallerController()));
+            con = java_cast< Context* >(getContextManager())->get(ref)->getContext(), getCallerController()));
         } else {
             con;
         }
         if(con == 0) {
-            throw new ::com::tibbo::aggregate::common::context::ContextException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append(ref)->getContext())->toString());
+            throw new ContextException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append(ref)->getContext())->toString());
         }
     }
     return con;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::resolveEntity(Reference* ref, ::com::tibbo::aggregate::common::context::Context* con, EvaluationEnvironment* environment) /* throws(ContextException, SyntaxErrorException, EvaluationException) */
+DateDataTable* DefaultReferenceResolver::resolveEntity(Reference* ref, Context* con, EvaluationEnvironment* environment) /* throws(ContextException, SyntaxErrorException, EvaluationException) */
 {
-    if(ref)->getEntityType() == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_VARIABLE) {
+    if(ref)->getEntityType() == ContextUtils::ENTITY_VARIABLE) {
         auto vd = con)->getVariableDefinition(ref)->getEntity());
         if(vd == 0) {
             throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conVarNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
         }
-        return con)->getVariable(ref)->getEntity(), getCallerController(), new ::com::tibbo::aggregate::common::context::DefaultRequestController(getEvaluator()));
-    } else if(ref)->getEntityType() == ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_FUNCTION) {
+        return con)->getVariable(ref)->getEntity(), getCallerController(), new DefaultRequestController(getEvaluator()));
+    } else if(ref)->getEntityType() == ContextUtils::ENTITY_FUNCTION) {
         auto fd = con)->getFunctionDefinition(ref)->getEntity());
         if(fd == 0) {
             throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conFuncNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
         }
         auto parameters = DataTableConstruction::constructTable(ref)->getParameters(), fd)->getInputFormat(), getEvaluator(), environment);
-        return con)->callFunction(ref)->getEntity(), getCallerController(), new ::com::tibbo::aggregate::common::context::DefaultRequestController(getEvaluator()), parameters);
+        return con)->callFunction(ref)->getEntity(), getCallerController(), new DefaultRequestController(getEvaluator()), parameters);
     } else {
         throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Illegal entity type: "_j)->append(ref)->getEntityType())->toString());
     }
@@ -380,13 +380,13 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::class_()
+java::lang::Class* DefaultReferenceResolver::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.DefaultReferenceResolver", 62);
     return c;
 }
 
-void com::tibbo::aggregate::common::expression::DefaultReferenceResolver::clinit()
+void DefaultReferenceResolver::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -410,7 +410,7 @@ struct string_init_ {
     super::
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::DefaultReferenceResolver::getClass0()
+java::lang::Class* DefaultReferenceResolver::getClass0()
 {
     return class_();
 }

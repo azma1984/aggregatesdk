@@ -25,57 +25,57 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::FCBigDecimal::FCBigDecimal(const ::default_init_tag&)
+DateFCBigDecimal::FCBigDecimal(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::FCBigDecimal::FCBigDecimal() 
+DateFCBigDecimal::FCBigDecimal() 
     : FCBigDecimal(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::FCBigDecimal::ctor()
+void DateFCBigDecimal::ctor()
 {
     super::ctor(::java::math::BigDecimal::class_());
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::FCBigDecimal::createFieldFormat(const std::string & name)
+DateFieldFormat* DateFCBigDecimal::createFieldFormat(const std::string & name)
 {
     return FieldFormat::create(name, FieldFormat::DOUBLE_FIELD);
 }
 
-java::math::BigDecimal* com::tibbo::aggregate::common::datatable::FCBigDecimal::simpleToBean(void* value)
+java::math::BigDecimal* DateFCBigDecimal::simpleToBean(void* value)
 {
     return new ::java::math::BigDecimal((java_cast< ::java::lang::Double* >(value)))->doubleValue());
 }
 
-void* com::tibbo::aggregate::common::datatable::FCBigDecimal::convertToTable(::java::math::BigDecimal* value, TableFormat* format)
+void* DateFCBigDecimal::convertToTable(::java::math::BigDecimal* value, TableFormat* format)
 {
     return value;
 }
 
-void* com::tibbo::aggregate::common::datatable::FCBigDecimal::convertToTable(void* value, TableFormat* format)
+void* DateFCBigDecimal::convertToTable(void* value, TableFormat* format)
 { 
     return convertToTable(dynamic_cast< ::java::math::BigDecimal* >(value), format);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::FCBigDecimal::class_()
+java::lang::Class* DateFCBigDecimal::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.FCBigDecimal", 49);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::FCBigDecimal::convertToTable(void* value)
+void* DateFCBigDecimal::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::FCBigDecimal::getClass0()
+java::lang::Class* DateFCBigDecimal::getClass0()
 {
     return class_();
 }

@@ -9,13 +9,13 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::DataTable_DataTableReferenceResolver
-    : public ::com::tibbo::aggregate::common::expression::AbstractReferenceResolver
+class DateDataTable_DataTableReferenceResolver
+    : public AbstractReferenceResolver
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::expression::AbstractReferenceResolver super;
-    void* resolveReference(::com::tibbo::aggregate::common::expression::Reference* ref, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* resolvingEnvironment) /* throws(SyntaxErrorException, ContextException) */;
+    typedef AbstractReferenceResolver super;
+    void* resolveReference(Reference* ref, EvaluationEnvironment* resolvingEnvironment) /* throws(SyntaxErrorException, ContextException) */;
 
     // Generated
     DataTable_DataTableReferenceResolver(DataTable *DataTable_this);

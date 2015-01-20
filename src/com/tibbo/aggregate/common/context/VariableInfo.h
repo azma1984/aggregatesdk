@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::VariableInfo
+class VariableInfo
     
 {
 

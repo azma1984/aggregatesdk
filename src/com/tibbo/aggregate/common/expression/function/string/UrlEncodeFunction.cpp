@@ -17,24 +17,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::string::UrlEncodeFunction::UrlEncodeFunction(const ::default_init_tag&)
+function::string::UrlEncodeFunction::UrlEncodeFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::string::UrlEncodeFunction::UrlEncodeFunction() 
+function::string::UrlEncodeFunction::UrlEncodeFunction() 
     : UrlEncodeFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::string::UrlEncodeFunction::ctor()
+void function::string::UrlEncodeFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, String encoding"_j, u"String"_j);
+    super::ctor(function::Functions::GROUP_STRING_PROCESSING(), u"String string, String encoding"_j, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::string::UrlEncodeFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::string::UrlEncodeFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     auto source = (*parameters)[int(0)])->toString();
@@ -42,19 +42,19 @@ void* com::tibbo::aggregate::common::expression::function::string::UrlEncodeFunc
     try {
         return ::java::net::URLEncoder::encode(source, encoding);
     } catch (::java::io::UnsupportedEncodingException* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(ex)->getMessage(), ex);
+        throw new EvaluationException(ex)->getMessage(), ex);
     }
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::string::UrlEncodeFunction::class_()
+java::lang::Class* function::string::UrlEncodeFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.string.UrlEncodeFunction", 71);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::string::UrlEncodeFunction::getClass0()
+java::lang::Class* function::string::UrlEncodeFunction::getClass0()
 {
     return class_();
 }

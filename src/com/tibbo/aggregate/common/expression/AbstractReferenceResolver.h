@@ -11,7 +11,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::AbstractReferenceResolver
+class AbstractReferenceResolver
     
     , public ReferenceResolver
 {
@@ -21,23 +21,23 @@ public:
 
 private:
     Evaluator* evaluator;
-    ::com::tibbo::aggregate::common::context::ContextManager* contextManager;
-    ::com::tibbo::aggregate::common::context::Context* defaultContext;
+    ContextManager* contextManager;
+    Context* defaultContext;
     DataTable* defaultTable;
     int  defaultRow;
-    ::com::tibbo::aggregate::common::context::CallerController* callerController;
+    CallerController* callerController;
 
 public:
-    ::com::tibbo::aggregate::common::context::CallerController* getCallerController();
-    ::com::tibbo::aggregate::common::context::Context* getDefaultContext();
-    ::com::tibbo::aggregate::common::context::ContextManager* getContextManager();
+    CallerController* getCallerController();
+    Context* getDefaultContext();
+    ContextManager* getContextManager();
     int  getDefaultRow();
     DataTable* getDefaultTable();
     Evaluator* getEvaluator();
-    void addContextManager(const std::string & schema, ::com::tibbo::aggregate::common::context::ContextManager* cm);
-    void setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController);
-    void setDefaultContext(::com::tibbo::aggregate::common::context::Context* defaultContext);
-    void setContextManager(::com::tibbo::aggregate::common::context::ContextManager* contextManager);
+    void addContextManager(const std::string & schema, ContextManager* cm);
+    void setCallerController(CallerController* callerController);
+    void setDefaultContext(Context* defaultContext);
+    void setContextManager(ContextManager* contextManager);
     void setDefaultRow(int  defaultRow);
     void setDefaultTable(DataTable* defaultTable);
     void setEvaluator(Evaluator* evaluator);

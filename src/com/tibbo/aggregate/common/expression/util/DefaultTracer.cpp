@@ -15,24 +15,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::util::DefaultTracer::DefaultTracer(const ::default_init_tag&)
+util::DefaultTracer::DefaultTracer(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::util::DefaultTracer::DefaultTracer()
+util::DefaultTracer::DefaultTracer()
     : DefaultTracer(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::util::DefaultTracer::trace(void* value, const std::string & message)
+void util::DefaultTracer::trace(void* value, const std::string & message)
 {
     traceToLog(value, message);
 }
 
-void com::tibbo::aggregate::common::expression::util::DefaultTracer::traceToLog(void* value, const std::string & message)
+void util::DefaultTracer::traceToLog(void* value, const std::string & message)
 {
     
     Log::EXPRESSIONS())->info(std::stringBuilder().append(u"Trace: "_j)->append(value))
@@ -42,13 +42,13 @@ void com::tibbo::aggregate::common::expression::util::DefaultTracer::traceToLog(
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::DefaultTracer::class_()
+java::lang::Class* util::DefaultTracer::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.util.DefaultTracer", 56);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::DefaultTracer::getClass0()
+java::lang::Class* util::DefaultTracer::getClass0()
 {
     return class_();
 }

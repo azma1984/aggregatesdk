@@ -27,24 +27,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::GetFormatFunction::GetFormatFunction(const ::default_init_tag&)
+function::table::GetFormatFunction::GetFormatFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::GetFormatFunction::GetFormatFunction() 
+function::table::GetFormatFunction::GetFormatFunction() 
     : GetFormatFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::GetFormatFunction::ctor()
+void function::table::GetFormatFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table"_j, u"String"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table"_j, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::GetFormatFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::GetFormatFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, true, parameters);
     if((*parameters)[int(0)] == 0)
@@ -57,13 +57,13 @@ void* com::tibbo::aggregate::common::expression::function::table::GetFormatFunct
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::GetFormatFunction::class_()
+java::lang::Class* function::table::GetFormatFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.GetFormatFunction", 70);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::GetFormatFunction::getClass0()
+java::lang::Class* function::table::GetFormatFunction::getClass0()
 {
     return class_();
 }

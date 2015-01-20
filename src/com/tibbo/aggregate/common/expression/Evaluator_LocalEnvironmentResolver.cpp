@@ -16,20 +16,20 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::Evaluator_LocalEnvironmentResolver::Evaluator_LocalEnvironmentResolver(Evaluator *Evaluator_this, const ::default_init_tag&)
+Evaluator_LocalEnvironmentResolver::Evaluator_LocalEnvironmentResolver(Evaluator *Evaluator_this, const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
     , Evaluator_this(Evaluator_this)
 {
     
 }
 
-com::tibbo::aggregate::common::expression::Evaluator_LocalEnvironmentResolver::Evaluator_LocalEnvironmentResolver(Evaluator *Evaluator_this)
+Evaluator_LocalEnvironmentResolver::Evaluator_LocalEnvironmentResolver(Evaluator *Evaluator_this)
     : Evaluator_LocalEnvironmentResolver(Evaluator_this, *static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void* com::tibbo::aggregate::common::expression::Evaluator_LocalEnvironmentResolver::resolveReference(Reference* ref, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, ContextException, EvaluationException) */
+void* Evaluator_LocalEnvironmentResolver::resolveReference(Reference* ref, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, ContextException, EvaluationException) */
 {
     if(::com::tibbo::aggregate::common::util::Util::equals(Evaluator::ENVIRONMENT_PREVIOUS(), ref)->getField())) {
         return Evaluator_this->previousResult;
@@ -42,13 +42,13 @@ void* com::tibbo::aggregate::common::expression::Evaluator_LocalEnvironmentResol
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::Evaluator_LocalEnvironmentResolver::class_()
+java::lang::Class* Evaluator_LocalEnvironmentResolver::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.Evaluator.LocalEnvironmentResolver", 72);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::Evaluator_LocalEnvironmentResolver::getClass0()
+java::lang::Class* Evaluator_LocalEnvironmentResolver::getClass0()
 {
     return class_();
 }

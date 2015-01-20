@@ -17,24 +17,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::VariableWritableFunction::VariableWritableFunction(const ::default_init_tag&)
+function::context::VariableWritableFunction::VariableWritableFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::VariableWritableFunction::VariableWritableFunction(const std::string & group) 
+function::context::VariableWritableFunction::VariableWritableFunction(const std::string & group) 
     : VariableWritableFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(group);
 }
 
-void com::tibbo::aggregate::common::expression::function::context::VariableWritableFunction::ctor(const std::string & group)
+void function::context::VariableWritableFunction::ctor(const std::string & group)
 {
     super::ctor(group, u"String context, String variable"_j);
 }
 
-bool com::tibbo::aggregate::common::expression::function::context::VariableWritableFunction::hasEntity(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters)
+bool function::context::VariableWritableFunction::hasEntity(Evaluator* evaluator, Context* con, voidArray*/*...*/ parameters)
 {
     auto def = con)->getVariableDefinition((*parameters)[int(1)])->toString(), evaluator)->getDefaultResolver())->getCallerController());
     return def != 0 && def)->isWritable();
@@ -42,13 +42,13 @@ bool com::tibbo::aggregate::common::expression::function::context::VariableWrita
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::VariableWritableFunction::class_()
+java::lang::Class* function::context::VariableWritableFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.VariableWritableFunction", 79);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::VariableWritableFunction::getClass0()
+java::lang::Class* function::context::VariableWritableFunction::getClass0()
 {
     return class_();
 }

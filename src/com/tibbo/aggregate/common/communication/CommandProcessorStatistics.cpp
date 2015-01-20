@@ -48,12 +48,12 @@ com::tibbo::aggregate::common::communication::CommandProcessorStatistics::Comman
     ctor();
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::communication::CommandProcessorStatistics::FORMAT()
+DateTableFormat*& com::tibbo::aggregate::common::communication::CommandProcessorStatistics::FORMAT()
 {
     
     return FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::FORMAT_;
+DateTableFormat* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::FORMAT_;
 
 void com::tibbo::aggregate::common::communication::CommandProcessorStatistics::update(ReplyMonitor* monitor)
 {
@@ -70,7 +70,7 @@ void com::tibbo::aggregate::common::communication::CommandProcessorStatistics::u
     }
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::toDataTable()
+DateDataTable* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::toDataTable()
 {
     try {
         return DataTableConversion::beanToTable(this, FORMAT_);
@@ -79,14 +79,14 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     }
 }
 
-java::lang::Long* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::getStartTime()
+ com::tibbo::aggregate::common::communication::CommandProcessorStatistics::getStartTime()
 {
     return startTime;
 }
 
-java::lang::Long* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::getConnectionTime()
+ com::tibbo::aggregate::common::communication::CommandProcessorStatistics::getConnectionTime()
 {
-    return startTime != 0 ? ::java::lang::Long::valueOf((::java::lang::System::currentTimeMillis() - (startTime))->longValue())) : static_cast< ::java::lang::Long* >(0);
+    return startTime != 0 ? ::java::lang::Long::valueOf((::java::lang::System::currentTimeMillis() - (startTime))->longValue())) : static_cast< long  >(0);
 }
 
 long com::tibbo::aggregate::common::communication::CommandProcessorStatistics::getCommandCount()

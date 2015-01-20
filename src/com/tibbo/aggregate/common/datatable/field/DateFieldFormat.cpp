@@ -65,71 +65,71 @@ namespace
         void *o;
     };
 }
-com::tibbo::aggregate::common::datatable::field::DateFieldFormat::DateFieldFormat(const ::default_init_tag&)
+Datefield::DateFieldFormat::DateFieldFormat(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::field::DateFieldFormat::DateFieldFormat(const std::string & name) 
+Datefield::DateFieldFormat::DateFieldFormat(const std::string & name) 
     : DateFieldFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name);
 }
 
-void com::tibbo::aggregate::common::datatable::field::DateFieldFormat::init()
+void Datefield::DateFieldFormat::init()
 {
     dateFormatter = ::com::tibbo::aggregate::common::util::DateUtils::createDateFormatter();
 }
 
-std::string& com::tibbo::aggregate::common::datatable::field::DateFieldFormat::EDITOR_TIME()
+std::string& Datefield::DateFieldFormat::EDITOR_TIME()
 {
     
     return EDITOR_TIME_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DateFieldFormat::EDITOR_TIME_;
+std::string Datefield::DateFieldFormat::EDITOR_TIME_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DateFieldFormat::EDITOR_DATE()
+std::string& Datefield::DateFieldFormat::EDITOR_DATE()
 {
     
     return EDITOR_DATE_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DateFieldFormat::EDITOR_DATE_;
+std::string Datefield::DateFieldFormat::EDITOR_DATE_;
 
-java::util::Date*& com::tibbo::aggregate::common::datatable::field::DateFieldFormat::DEFAULT_DATE()
+Date*& Datefield::DateFieldFormat::DEFAULT_DATE()
 {
     
     return DEFAULT_DATE_;
 }
-java::util::Date* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::DEFAULT_DATE_;
+Date* Datefield::DateFieldFormat::DEFAULT_DATE_;
 
-void com::tibbo::aggregate::common::datatable::field::DateFieldFormat::ctor(const std::string & name)
+void Datefield::DateFieldFormat::ctor(const std::string & name)
 {
     super::ctor(name);
     init();
 }
 
-char16_t com::tibbo::aggregate::common::datatable::field::DateFieldFormat::getType()
+char16_t Datefield::DateFieldFormat::getType()
 {
     return FieldFormat::DATE_FIELD;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::getFieldClass()
+java::lang::Class* Datefield::DateFieldFormat::getFieldClass()
 {
-    return ::java::util::Date::class_();
+    return Date::class_();
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::getFieldWrappedClass()
+java::lang::Class* Datefield::DateFieldFormat::getFieldWrappedClass()
 {
-    return ::java::util::Date::class_();
+    return Date::class_();
 }
 
-java::util::Date* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::getNotNullDefault()
+Date* Datefield::DateFieldFormat::getNotNullDefault()
 {
     return DEFAULT_DATE_;
 }
 
-java::util::Date* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
+Date* Datefield::DateFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
 {
     try {
         {
@@ -140,7 +140,7 @@ java::util::Date* com::tibbo::aggregate::common::datatable::field::DateFieldForm
         }
     } catch (::java::lang::Exception* ex) {
         try {
-            return new ::java::util::Date(util::Util::convertToNumber(value, true, true))->longValue());
+            return new Date(util::Util::convertToNumber(value, true, true))->longValue());
         } catch (::java::lang::Exception* ex1) {
             std::cout <<"Error parsing date from string '"_j)->append(value)
                 ->append(u"': "_j)
@@ -149,7 +149,7 @@ java::util::Date* com::tibbo::aggregate::common::datatable::field::DateFieldForm
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DateFieldFormat::valueToString(::java::util::Date* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::DateFieldFormat::valueToString(Date* value, encoding::ClassicEncodingSettings* settings)
 {
     try {
         {
@@ -165,12 +165,12 @@ std::string com::tibbo::aggregate::common::datatable::field::DateFieldFormat::va
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DateFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::DateFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
 { 
-    return valueToString(dynamic_cast< ::java::util::Date* >(value), settings);
+    return valueToString(dynamic_cast< Date* >(value), settings);
 }
 
-java::util::List* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::getSuitableEditors()
+std::list  Datefield::DateFieldFormat::getSuitableEditors()
 {
     return ::java::util::Arrays::asList(new std::stringArray({
         EDITOR_LIST()
@@ -181,13 +181,13 @@ java::util::List* com::tibbo::aggregate::common::datatable::field::DateFieldForm
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::class_()
+java::lang::Class* Datefield::DateFieldFormat::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.DateFieldFormat", 58);
     return c;
 }
 
-void com::tibbo::aggregate::common::datatable::field::DateFieldFormat::clinit()
+void Datefield::DateFieldFormat::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -221,17 +221,17 @@ struct clinit_ {
     }
 }
 
-void* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::valueFromString(const std::string & value)
+void* Datefield::DateFieldFormat::valueFromString(const std::string & value)
 {
     return super::valueFromString(value);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DateFieldFormat::valueToString(void* value)
+std::string Datefield::DateFieldFormat::valueToString(void* value)
 {
     return super::valueToString(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DateFieldFormat::getClass0()
+java::lang::Class* Datefield::DateFieldFormat::getClass0()
 {
     return class_();
 }

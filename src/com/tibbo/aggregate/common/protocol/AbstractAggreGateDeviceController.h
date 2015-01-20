@@ -15,7 +15,7 @@ private:
 	*/
 	/*RemoteContextManager* */ C *contextManager;
 	/*
-	::com::tibbo::aggregate::common::context::CallerController* callerController;
+	CallerController* callerController;
 	::com::tibbo::aggregate::common::util::UserSettings* userSettings;
 	bool avoidSendingFormats;
 	encoding::FormatCache* formatCache;
@@ -30,10 +30,10 @@ protected:
 	/*
 	void setDevice(AggreGateDevice* device);
     AggreGateDevice* getDevice();
-    ::com::tibbo::aggregate::common::context::CallerController* getCallerController();
+    CallerController* getCallerController();
 
 public:
-    void setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController);
+    void setCallerController(CallerController* callerController);
 
 public:
     encoding::FormatCache* getFormatCache();
@@ -67,7 +67,7 @@ private:
     void processEvent(IncomingAggreGateCommand* cmd);
 
 public:
-	void confirmEvent(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::EventDefinition* def, Event* event);
+	void confirmEvent(Context* con, EventDefinition* def, Event* event);
     void setCommandParser(::com::tibbo::aggregate::common::communication::CommandParser* commandBuffer);
 
 public:

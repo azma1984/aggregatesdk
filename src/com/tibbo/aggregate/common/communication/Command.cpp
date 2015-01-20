@@ -86,7 +86,7 @@ void Command::send(::java::nio::channels::ByteChannel* byteChannel)
 void Command::send(::java::nio::channels::ByteChannel* byteChannel, bool encapsulate)
 {
     if(byteChannel == 0 || !byteChannel)->isOpen()) {
-        throw new ::com::tibbo::aggregate::common::device::DisconnectionException(Cres::get())->getString(u"disconnected"_j));
+        throw new DisconnectionException(Cres::get())->getString(u"disconnected"_j));
     }
     try {
         auto header = encapsulate ? this->header() : static_cast< const std::string & >(0);
@@ -107,9 +107,9 @@ void Command::send(::java::nio::channels::ByteChannel* byteChannel, bool encapsu
             sent += byteChannel)->write(buff);
         } while (sent < size);
     } catch (SocketDisconnectionException* ex) {
-        throw new ::com::tibbo::aggregate::common::device::DisconnectionException(Cres::get())->getString(u"disconnected"_j), ex);
+        throw new DisconnectionException(Cres::get())->getString(u"disconnected"_j), ex);
     } catch (::java::nio::channels::ClosedChannelException* ex) {
-        throw new ::com::tibbo::aggregate::common::device::DisconnectionException(Cres::get())->getString(u"disconnected"_j), ex);
+        throw new DisconnectionException(Cres::get())->getString(u"disconnected"_j), ex);
     } catch (std::exception* ex) {
         throw ex;
     }
@@ -138,12 +138,12 @@ bool Command::isAsync()
     return false;
 }
 
-java::lang::Long* Command::getTimeout()
+ Command::getTimeout()
 {
     return timeout;
 }
 
-void Command::setTimeout(::java::lang::Long* timeout)
+void Command::setTimeout(long  timeout)
 {
     this->timeout = timeout;
 }

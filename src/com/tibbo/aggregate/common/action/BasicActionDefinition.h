@@ -16,13 +16,13 @@
 
 
 class com::tibbo::aggregate::common::action::BasicActionDefinition
-    : public ::com::tibbo::aggregate::common::context::AbstractEntityDefinition
+    : public AbstractEntityDefinition
     , public ActionDefinition
     , public ActionCommandList
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::context::AbstractEntityDefinition super;
+    typedef AbstractEntityDefinition super;
 
 private:
     static const std::string GROUP_ID_SEPARATOR_;

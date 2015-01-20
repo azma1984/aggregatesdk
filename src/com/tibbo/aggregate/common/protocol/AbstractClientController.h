@@ -15,26 +15,26 @@ class AbstractClientController
 /*
 
 private:
-    ::com::tibbo::aggregate::common::context::ContextManager* contextManager;
-    ::com::tibbo::aggregate::common::context::CallerController* callerController;
+    ContextManager* contextManager;
+    CallerController* callerController;
     std::map listeners;
 protected:
     void ctor();
-    void ctor(::com::tibbo::aggregate::common::context::ContextManager* contextManager);
-    void ctor(::com::tibbo::aggregate::common::context::ContextManager* contextManager, ::com::tibbo::aggregate::common::context::CallerController* callerController);
+    void ctor(ContextManager* contextManager);
+    void ctor(ContextManager* contextManager, CallerController* callerController);
 
 public:
-    ::com::tibbo::aggregate::common::context::CallerController* getCallerController();
-    void setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController);
+    CallerController* getCallerController();
+    void setCallerController(CallerController* callerController);
     void addMaskListener(const std::string & context, const std::string & name, ContextEventListener* cel, bool weak);
     void removeMaskListener(const std::string & context, const std::string & name, ContextEventListener* cel);
-    ::com::tibbo::aggregate::common::context::ContextManager* getContextManager();
+    ContextManager* getContextManager();
     void shutdown();
 
     // Generated
     AbstractClientController();
-    AbstractClientController(::com::tibbo::aggregate::common::context::ContextManager* contextManager);
-    AbstractClientController(::com::tibbo::aggregate::common::context::ContextManager* contextManager, ::com::tibbo::aggregate::common::context::CallerController* callerController);
+    AbstractClientController(ContextManager* contextManager);
+    AbstractClientController(ContextManager* contextManager, CallerController* callerController);
 protected:
     AbstractClientController(const ::default_init_tag&);
 

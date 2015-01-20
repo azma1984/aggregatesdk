@@ -42,44 +42,44 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::FloatFieldFormat(const ::default_init_tag&)
+Datefield::FloatFieldFormat::FloatFieldFormat(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::FloatFieldFormat(const std::string & name) 
+Datefield::FloatFieldFormat::FloatFieldFormat(const std::string & name) 
     : FloatFieldFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name);
 }
 
-void com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::ctor(const std::string & name)
+void Datefield::FloatFieldFormat::ctor(const std::string & name)
 {
     super::ctor(name);
 }
 
-char16_t com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::getType()
+char16_t Datefield::FloatFieldFormat::getType()
 {
     return FieldFormat::FLOAT_FIELD;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::getFieldClass()
+java::lang::Class* Datefield::FloatFieldFormat::getFieldClass()
 {
     return ::java::lang::Float::TYPE();
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::getFieldWrappedClass()
+java::lang::Class* Datefield::FloatFieldFormat::getFieldWrappedClass()
 {
     return ::java::lang::Float::class_();
 }
 
-java::lang::Float* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::getNotNullDefault()
+java::lang::Float* Datefield::FloatFieldFormat::getNotNullDefault()
 {
     return new ::java::lang::Float(static_cast< float >(int(0)));
 }
 
-void* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::convertValue(void* value) /* throws(ValidationException) */
+void* Datefield::FloatFieldFormat::convertValue(void* value) /* throws(ValidationException) */
 {
     if(value != 0 && !(dynamic_cast< ::java::lang::Float* >(value) != 0)) {
         value = ::java::lang::Float::valueOf(util::Util::convertToNumber(value, true, false))->floatValue());
@@ -87,7 +87,7 @@ void* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::convert
     return value;
 }
 
-java::lang::Float* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
+java::lang::Float* Datefield::FloatFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
 {
     if(value)->length() == 0) {
         return ::java::lang::Float::valueOf(0.0f);
@@ -99,17 +99,17 @@ java::lang::Float* com::tibbo::aggregate::common::datatable::field::FloatFieldFo
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::valueToString(::java::lang::Float* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::FloatFieldFormat::valueToString(::java::lang::Float* value, encoding::ClassicEncodingSettings* settings)
 {
     return value == 0 ? static_cast< const std::string & >(0) : value)->toString();
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::FloatFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
 { 
     return valueToString(dynamic_cast< ::java::lang::Float* >(value), settings);
 }
 
-java::util::List* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::getSuitableEditors()
+std::list  Datefield::FloatFieldFormat::getSuitableEditors()
 {
     return ::java::util::Arrays::asList(new std::stringArray({
         EDITOR_LIST()
@@ -120,23 +120,23 @@ java::util::List* com::tibbo::aggregate::common::datatable::field::FloatFieldFor
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::class_()
+java::lang::Class* Datefield::FloatFieldFormat::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.FloatFieldFormat", 59);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::valueFromString(const std::string & value)
+void* Datefield::FloatFieldFormat::valueFromString(const std::string & value)
 {
     return super::valueFromString(value);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::valueToString(void* value)
+std::string Datefield::FloatFieldFormat::valueToString(void* value)
 {
     return super::valueToString(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::FloatFieldFormat::getClass0()
+java::lang::Class* Datefield::FloatFieldFormat::getClass0()
 {
     return class_();
 }

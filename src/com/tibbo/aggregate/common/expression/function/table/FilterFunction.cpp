@@ -52,33 +52,33 @@ namespace
 
     template<typename F> finally_<F> finally(F f) { return finally_<F>(f); }
 }
-com::tibbo::aggregate::common::expression::function::table::FilterFunction::FilterFunction(const ::default_init_tag&)
+function::table::FilterFunction::FilterFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::FilterFunction::FilterFunction() 
+function::table::FilterFunction::FilterFunction() 
     : FilterFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::FilterFunction::ctor()
+void function::table::FilterFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String filterExpression"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String filterExpression"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::FilterFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::FilterFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
     auto source = java_cast< DataTable* >((*parameters)[int(0)]);
-    auto filter = new ::com::tibbo::aggregate::common::expression::Expression((*parameters)[int(1)])->toString());
+    auto filter = new Expression((*parameters)[int(1)])->toString());
     auto result = new DataTable(source)->getFormat())->clone())->setMinRecords(0));
     auto oldRow = evaluator)->getDefaultResolver())->getDefaultRow();
     auto resolver = evaluator)->getDefaultResolver();
-    auto localEvaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(resolver)->getContextManager(), resolver)->getDefaultContext(), resolver)->getDefaultTable(), resolver)->getCallerController());
+    auto localEvaluator = new Evaluator(resolver)->getContextManager(), resolver)->getDefaultContext(), resolver)->getDefaultTable(), resolver)->getCallerController());
     localEvaluator)->getDefaultResolver())->setDefaultTable(source);
     {
         auto finally0 = finally([&] {
@@ -93,7 +93,7 @@ void* com::tibbo::aggregate::common::expression::function::table::FilterFunction
                         DataTableReplication::copyRecord(source)->getRecord(i), rec, true, true);
                     }
                 } catch (::com::tibbo::aggregate::common::util::SyntaxErrorException* ex) {
-                    throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+                    throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
                 }
             }
         }
@@ -104,13 +104,13 @@ void* com::tibbo::aggregate::common::expression::function::table::FilterFunction
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::FilterFunction::class_()
+java::lang::Class* function::table::FilterFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.FilterFunction", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::FilterFunction::getClass0()
+java::lang::Class* function::table::FilterFunction::getClass0()
 {
     return class_();
 }

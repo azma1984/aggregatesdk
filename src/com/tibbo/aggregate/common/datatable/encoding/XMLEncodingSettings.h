@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::encoding::XMLEncodingSettings
+class Dateencoding::XMLEncodingSettings
     : public EncodingSettings
 {
 

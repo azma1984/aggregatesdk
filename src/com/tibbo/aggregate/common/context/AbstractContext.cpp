@@ -1106,7 +1106,7 @@ void /*template <class C> */AbstractContext/*<C>*/::stop()
 //    return compareTo(dynamic_cast< Context* >(arg0));
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getChildren(CallerController* caller)
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getChildren(CallerController* caller)
 //{
 //    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
 //        if(Log::CONTEXT_CHILDREN())->isDebugEnabled()) {
@@ -1140,17 +1140,17 @@ void /*template <class C> */AbstractContext/*<C>*/::stop()
 //    return getPermissionChecker())->canSee(caller != 0 ? caller)->getPermissions() : static_cast< Permissions* >(0), con)->getPath(), getContextManager());
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getChildren()
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getChildren()
 //{
 //    return getChildren(static_cast< CallerController* >(0));
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVisibleChildren(CallerController* caller)
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVisibleChildren(CallerController* caller)
 //{
 //    return getChildren(caller);
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVisibleChildren()
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVisibleChildren()
 //{
 //    return getVisibleChildren(static_cast< CallerController* >(0));
 //}
@@ -1160,12 +1160,12 @@ void /*template <class C> */AbstractContext/*<C>*/::stop()
 //    return false;
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getMappedChildren(CallerController* caller)
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getMappedChildren(CallerController* caller)
 //{
 //    return isMapped() ? getVisibleChildren(caller) : getChildren(caller);
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getMappedChildren()
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getMappedChildren()
 //{
 //    return getMappedChildren(static_cast< CallerController* >(0));
 //}
@@ -1755,12 +1755,12 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    }
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(CallerController* caller)
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(CallerController* caller)
 //{
 //    return getVariableDefinitions(caller, false);
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(CallerController* caller, bool includeHidden)
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(CallerController* caller, bool includeHidden)
 //{
 //    std::list  list = new ::java::util::LinkedList();
 //    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
@@ -1798,12 +1798,12 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    return list;
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions()
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions()
 //{
 //    return getVariableDefinitions(static_cast< CallerController* >(0));
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(CallerController* caller, const std::string & group)
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(CallerController* caller, const std::string & group)
 //{
 //    std::list  defs = new ::java::util::LinkedList();
 //    for (auto _i = getVariableDefinitions(caller))->iterator(); _i->hasNext(); ) {
@@ -1817,7 +1817,7 @@ void /*/*template <class C> */AbstractContext/*<C> */::setName(const std::string
 //    return defs;
 //}
 //
-//java::util::List* /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(const std::string & group)
+//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVariableDefinitions(const std::string & group)
 //{
 //    return getVariableDefinitions(static_cast< CallerController* >(0), group);
 //}
@@ -1872,12 +1872,12 @@ bool /*template <class C> */AbstractContext/*<C> */::isInitializedEvents()
     return setupComplete;
 }
 
-//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(CallerController* caller)
+//std::list  /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(CallerController* caller)
 //{
 //    return getFunctionDefinitions(caller, false);
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(CallerController* caller, bool includeHidden)
+//std::list  /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(CallerController* caller, bool includeHidden)
 //{
 //    std::list  list = new ::java::util::LinkedList();
 //    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
@@ -1906,12 +1906,12 @@ bool /*template <class C> */AbstractContext/*<C> */::isInitializedEvents()
 //    return list;
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions()
+//std::list  /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions()
 //{
 //    return getFunctionDefinitions(static_cast< CallerController* >(0));
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(CallerController* caller, const std::string & group)
+//std::list  /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(CallerController* caller, const std::string & group)
 //{
 //    std::list  defs = new ::java::util::LinkedList();
 //    for (auto _i = getFunctionDefinitions(caller))->iterator(); _i->hasNext(); ) {
@@ -1925,7 +1925,7 @@ bool /*template <class C> */AbstractContext/*<C> */::isInitializedEvents()
 //    return defs;
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(const std::string & group)
+//std::list  /*template <class C> */AbstractContext/*/*<C> */ */::getFunctionDefinitions(const std::string & group)
 //{
 //    return getFunctionDefinitions(static_cast< CallerController* >(0), group);
 //}
@@ -2047,12 +2047,12 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    }
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(CallerController* caller)
+//std::list  /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(CallerController* caller)
 //{
 //    return getEventDefinitions(caller, false);
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(CallerController* caller, bool includeHidden)
+//std::list  /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(CallerController* caller, bool includeHidden)
 //{
 //    std::list  list = new ::java::util::LinkedList();
 //    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
@@ -2080,12 +2080,12 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return list;
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions()
+//std::list  /*template <class C> */AbstractContext/*<C> */::getEventDefinitions()
 //{
 //    return getEventDefinitions(static_cast< CallerController* >(0));
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(CallerController* caller, const std::string & group)
+//std::list  /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(CallerController* caller, const std::string & group)
 //{
 //    std::list  res = new ::java::util::LinkedList();
 //    for (auto _i = getEventDefinitions(caller))->iterator(); _i->hasNext(); ) {
@@ -2099,7 +2099,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return res;
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(const std::string & group)
+//std::list  /*template <class C> */AbstractContext/*<C> */::getEventDefinitions(const std::string & group)
 //{
 //    return getEventDefinitions(static_cast< CallerController* >(0), group);
 //}
@@ -2152,7 +2152,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return 0;
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getActionDefinitions(CallerController* caller)
+//std::list  /*template <class C> */AbstractContext/*<C> */::getActionDefinitions(CallerController* caller)
 //{
 //    return getActionDefinitions(caller, false);
 //}
@@ -2187,7 +2187,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getActionDefinitions(CallerController* caller, bool includeHidden)
+//std::list  /*template <class C> */AbstractContext/*<C> */::getActionDefinitions(CallerController* caller, bool includeHidden)
 //{
 //    std::list  list = new ::java::util::LinkedList();
 //    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
@@ -2215,7 +2215,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    return list;
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getActionDefinitions()
+//std::list  /*template <class C> */AbstractContext/*<C> */::getActionDefinitions()
 //{
 //    return getActionDefinitions(static_cast< CallerController* >(0));
 //}
@@ -2628,7 +2628,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //void /*template <class C> */AbstractContext/*<C> */::variableUpdated(VariableDefinition* def, CallerController* caller, ::DataTable* value)
 //{
 //    fireUpdatedEvent(def, caller, value);
-//    fireChangeEvent(def, caller, new ::java::util::Date(), value);
+//    fireChangeEvent(def, caller, new Date(), value);
 //}
 //
 //void /*template <class C> */AbstractContext/*<C> */::fireUpdatedEvent(VariableDefinition* def, CallerController* caller, ::DataTable* value)
@@ -2642,7 +2642,7 @@ std::string /*template <class C> */AbstractContext/*<C> */::getRemotePath()
 //    }
 //}
 //
-//void /*template <class C> */AbstractContext/*<C> */::fireChangeEvent(VariableDefinition* def, CallerController* caller, ::java::util::Date* timestamp, ::DataTable* value)
+//void /*template <class C> */AbstractContext/*<C> */::fireChangeEvent(VariableDefinition* def, CallerController* caller, Date* timestamp, ::DataTable* value)
 //{
 //    auto callerAllowsChangeEvents = caller == 0 || !caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS());
 //    if(setupComplete && fireUpdateEvents && def)->isAllowUpdateEvents()&& callerAllowsChangeEvents) {
@@ -3380,7 +3380,7 @@ EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinit
 //{
 //}
 //
-//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(EventDefinition* ed, ::DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(EventDefinition* ed, ::DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions)
 //{
 //    if(id == 0) {
 //        id = ::java::lang::Long::valueOf(EventUtils::generateEventId());
@@ -3405,10 +3405,10 @@ EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinit
 //        }
 //    }
 //    auto rule = getEventProcessingRule(event);
-//    auto prefilter = rule != 0 ? rule)->getPrefilterExpression() : static_cast< ::com::tibbo::aggregate::common::expression::Expression* >(0);
+//    auto prefilter = rule != 0 ? rule)->getPrefilterExpression() : static_cast< Expression* >(0);
 //    if(prefilter != 0) {
 //        try {
-//            auto evaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
+//            auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
 //            if(!evaluator)->evaluateToBoolean(prefilter)) {
 //                rule)->addFiltered();
 //                if(logger)->isDebugEnabled()) {
@@ -3440,10 +3440,10 @@ EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinit
 //    }
 //    auto edata = getEventData(ed)->getName());
 //    edata)->registerFiredEvent();
-//    auto deduplicator = rule != 0 ? rule)->getDeduplicatorExpression() : static_cast< ::com::tibbo::aggregate::common::expression::Expression* >(0);
+//    auto deduplicator = rule != 0 ? rule)->getDeduplicatorExpression() : static_cast< Expression* >(0);
 //    if(deduplicator != 0) {
 //        try {
-//            auto evaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
+//            auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
 //            auto deduplicationId = evaluator)->evaluateToString(deduplicator);
 //            event)->setDeduplicationId(deduplicationId);
 //        } catch (::java::lang::Exception* ex) {
@@ -3472,18 +3472,18 @@ EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinit
 //    }
 //    processBindings(event);
 //    processEnrichments(event, rule, caller);
-//    ::java::lang::Long* customExpirationPeriod;
+//    long  customExpirationPeriod;
 //    if(request != 0 && request)->getCustomExpirationPeriod() != 0) {
 //        customExpirationPeriod = request)->getCustomExpirationPeriod();
 //    }
 //    if(customExpirationPeriod != 0) {
 //        if((customExpirationPeriod))->longValue() > 0) {
-//            event)->setExpirationtime(new ::java::util::Date(::java::lang::System::currentTimeMillis() + (customExpirationPeriod))->longValue()));
+//            event)->setExpirationtime(new Date(::java::lang::System::currentTimeMillis() + (customExpirationPeriod))->longValue()));
 //        }
 //    } else {
-//        auto userDefinedExpirationPeriod = rule != 0 ? ::java::lang::Long::valueOf(rule)->getPeriod()) : static_cast< ::java::lang::Long* >(0);
+//        auto userDefinedExpirationPeriod = rule != 0 ? ::java::lang::Long::valueOf(rule)->getPeriod()) : static_cast< long  >(0);
 //        if(userDefinedExpirationPeriod != 0 && (userDefinedExpirationPeriod))->longValue() > 0) {
-//            event)->setExpirationtime(new ::java::util::Date(::java::lang::System::currentTimeMillis() + (userDefinedExpirationPeriod))->longValue()));
+//            event)->setExpirationtime(new Date(::java::lang::System::currentTimeMillis() + (userDefinedExpirationPeriod))->longValue()));
 //        }
 //    }
 //    auto const customMemoryStorageSize = rule != 0 ? ((rule)->getDeduplicator() != 0 && rule)->getDeduplicator())->length() > 0) ? rule)->getQueue()) : static_cast< int  >(0)) : static_cast< int  >(0);
@@ -3519,7 +3519,7 @@ EventDefinition* /*template <class C> */AbstractContext/*<C> */::getEventDefinit
 //    return fireEvent(ed, data, level, 0, 0, 0, caller, request, permissions);
 //}
 //
-//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, ::DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request)
+//Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::string & name, ::DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request)
 //{
 //    return fireEvent(getAndCheckEventDefinition(name), data, level, id, creationtime, listener, caller, request, 0);
 //}
@@ -3577,7 +3577,7 @@ Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::stri
 //    if(rule == 0 || rule)->getEnrichments() == 0) {
 //        return;
 //    }
-//    auto evaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
+//    auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
 //    for (auto _i = rule)->getEnrichments())->iterator(); _i->hasNext(); ) {
 //        EventEnrichmentRule* enrichmentRule = java_cast< EventEnrichmentRule* >(_i->next());
 //        {
@@ -3587,7 +3587,7 @@ Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::stri
 //                if(result == 0) {
 //                    continue;
 //                }
-//                event)->addEnrichment(new Enrichment(name, result)->toString(), new ::java::util::Date(), caller != 0 ? caller)->getUsername() : static_cast< const std::string & >(0)));
+//                event)->addEnrichment(new Enrichment(name, result)->toString(), new Date(), caller != 0 ? caller)->getUsername() : static_cast< const std::string & >(0)));
 //            } catch (::java::lang::Exception* ex) {
 //                Log::CONTEXT_EVENTS())->error(std::stringBuilder().append("Error adding enrichment '"_j)->append(name)
 //                    ->append("' to event '"_j)
@@ -3604,7 +3604,7 @@ Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::stri
 //    return getContextManager())->getCallerController();
 //}
 //
-//java::util::List* /*template <class C> */AbstractContext/*<C> */::getEventHistory(const std::string & name)
+//std::list  /*template <class C> */AbstractContext/*<C> */::getEventHistory(const std::string & name)
 //{
 //    auto ed = getEventData(name);
 //    if(ed == 0) {
@@ -3615,7 +3615,7 @@ Event* /*template <class C> */AbstractContext/*<C> */::fireEvent(const std::stri
 //
 //void /*template <class C> */AbstractContext/*<C> */::lock(RequestController* request, ::java::util::concurrent::locks::Lock* lock)
 //{
-//    auto lockTimeout = (request != 0 && request)->getLockTimeout() != 0) ? request)->getLockTimeout() : static_cast< ::java::lang::Long* >(0);
+//    auto lockTimeout = (request != 0 && request)->getLockTimeout() != 0) ? request)->getLockTimeout() : static_cast< long  >(0);
 //    if(lockTimeout != 0) {
 //        try {
 //            if(!lock)->tryLock((lockTimeout))->longValue(), ::java::util::concurrent::TimeUnit::MILLISECONDS)) {

@@ -33,30 +33,30 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::ChoicesConverter(const ::default_init_tag&)
+Dateconverter::ChoicesConverter::ChoicesConverter(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::ChoicesConverter(::java::lang::Class* valueClass) 
+Dateconverter::ChoicesConverter::ChoicesConverter(::java::lang::Class* valueClass) 
     : ChoicesConverter(*static_cast< ::default_init_tag* >(0))
 {
     ctor(valueClass);
 }
 
-void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::init()
+void Dateconverter::ChoicesConverter::init()
 {
     choices = new ::java::util::LinkedList();
 }
 
-void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::ctor(::java::lang::Class* valueClass)
+void Dateconverter::ChoicesConverter::ctor(::java::lang::Class* valueClass)
 {
     super::ctor(valueClass);
     init();
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::createFieldFormat(const std::string & name)
+DateFieldFormat* Dateconverter::ChoicesConverter::createFieldFormat(const std::string & name)
 {
     auto ff = FieldFormat::create(name, FieldFormat::STRING_FIELD);
     for (auto _i = choices)->iterator(); _i->hasNext(); ) {
@@ -71,21 +71,21 @@ com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::co
     return ff;
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::createFieldFormat(const std::string & name, const std::string & description)
+DateFieldFormat* Dateconverter::ChoicesConverter::createFieldFormat(const std::string & name, const std::string & description)
 {
     auto const result = createFieldFormat(name);
     result)->setDescription(description);
     return result;
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::createFieldFormat(const std::string & name, const std::string & description, void* defaultValue)
+DateFieldFormat* Dateconverter::ChoicesConverter::createFieldFormat(const std::string & name, const std::string & description, void* defaultValue)
 {
     auto const result = createFieldFormat(name, description);
     result)->setDefault(defaultValue);
     return result;
 }
 
-void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::add(Choice* c)
+void Dateconverter::ChoicesConverter::add(Choice* c)
 {
     if(choices)->size() == 0) {
         defaultChoice = c;
@@ -93,22 +93,22 @@ void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::add(
     choices)->add(c));
 }
 
-void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::add(const std::string & description, void* object)
+void Dateconverter::ChoicesConverter::add(const std::string & description, void* object)
 {
     add(new Choice(description, object));
 }
 
-void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::add(const std::string & name, const std::string & description, void* object)
+void Dateconverter::ChoicesConverter::add(const std::string & name, const std::string & description, void* object)
 {
     add(new Choice(name, description, object));
 }
 
-void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::setDefault(Choice* defaultChoice)
+void Dateconverter::ChoicesConverter::setDefault(Choice* defaultChoice)
 {
     this->defaultChoice = defaultChoice;
 }
 
-void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::setDefault(const std::string & name)
+void Dateconverter::ChoicesConverter::setDefault(const std::string & name)
 {
     for (auto _i = choices)->iterator(); _i->hasNext(); ) {
         Choice* choice = java_cast< Choice* >(_i->next());
@@ -122,12 +122,12 @@ void com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::setD
     throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Can not find choice item with name: "_j)->append(name)->toString());
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::convertToBean(void* value)
+void* Dateconverter::ChoicesConverter::convertToBean(void* value)
 {
     return convertToBean(value, 0));
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::convertToBean(void* value, void* originalValue)
+void* Dateconverter::ChoicesConverter::convertToBean(void* value, void* originalValue)
 {
     if(dynamic_cast< DataTable* >(value) != 0) {
         value = (java_cast< DataTable* >(value)))->get();
@@ -143,7 +143,7 @@ void* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::con
     std::cout <<"Unknown value: "_j)->append(value))->toString());
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::convertToTable(void* value, TableFormat* format)
+void* Dateconverter::ChoicesConverter::convertToTable(void* value, TableFormat* format)
 {
     for (auto _i = choices)->iterator(); _i->hasNext(); ) {
         Choice* c = java_cast< Choice* >(_i->next());
@@ -156,25 +156,25 @@ void* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::con
     std::cout <<"Unknown value: "_j)->append(value))->toString());
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::createTable(void* value, TableFormat* format) /* throws(DataTableException) */
+DateDataTable* Dateconverter::ChoicesConverter::createTable(void* value, TableFormat* format) /* throws(DataTableException) */
 {
     return new DataTable(format, new voidArray({convertToTable(value))}));
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::class_()
+java::lang::Class* Dateconverter::ChoicesConverter::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.ChoicesConverter", 63);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::convertToTable(void* value)
+void* Dateconverter::ChoicesConverter::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::ChoicesConverter::getClass0()
+java::lang::Class* Dateconverter::ChoicesConverter::getClass0()
 {
     return class_();
 }

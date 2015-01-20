@@ -30,24 +30,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::AdjustRecordLimitsFunction::AdjustRecordLimitsFunction(const ::default_init_tag&)
+function::table::AdjustRecordLimitsFunction::AdjustRecordLimitsFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::AdjustRecordLimitsFunction::AdjustRecordLimitsFunction() 
+function::table::AdjustRecordLimitsFunction::AdjustRecordLimitsFunction() 
     : AdjustRecordLimitsFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::AdjustRecordLimitsFunction::ctor()
+void function::table::AdjustRecordLimitsFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, Integer minRecords, Integer maxRecords"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, Integer minRecords, Integer maxRecords"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::AdjustRecordLimitsFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::AdjustRecordLimitsFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(3, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -62,13 +62,13 @@ void* com::tibbo::aggregate::common::expression::function::table::AdjustRecordLi
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::AdjustRecordLimitsFunction::class_()
+java::lang::Class* function::table::AdjustRecordLimitsFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.AdjustRecordLimitsFunction", 79);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::AdjustRecordLimitsFunction::getClass0()
+java::lang::Class* function::table::AdjustRecordLimitsFunction::getClass0()
 {
     return class_();
 }

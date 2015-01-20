@@ -9,7 +9,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver
+class EnvironmentReferenceResolver
     : public AbstractReferenceResolver
 {
 

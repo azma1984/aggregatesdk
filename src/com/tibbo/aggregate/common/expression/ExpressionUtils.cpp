@@ -44,40 +44,40 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::ExpressionUtils::ExpressionUtils(const ::default_init_tag&)
+ExpressionUtils::ExpressionUtils(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::ExpressionUtils::ExpressionUtils()
+ExpressionUtils::ExpressionUtils()
     : ExpressionUtils(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-const char16_t com::tibbo::aggregate::common::expression::ExpressionUtils::PARAM_ESCAPE_SINGLE;
+const char16_t ExpressionUtils::PARAM_ESCAPE_SINGLE;
 
-const char16_t com::tibbo::aggregate::common::expression::ExpressionUtils::PARAM_ESCAPE_DOUBLE;
+const char16_t ExpressionUtils::PARAM_ESCAPE_DOUBLE;
 
-const char16_t com::tibbo::aggregate::common::expression::ExpressionUtils::PARAMS_DELIM;
+const char16_t ExpressionUtils::PARAMS_DELIM;
 
-const char16_t com::tibbo::aggregate::common::expression::ExpressionUtils::PARAMS_ESCAPE;
+const char16_t ExpressionUtils::PARAMS_ESCAPE;
 
-std::string& com::tibbo::aggregate::common::expression::ExpressionUtils::NULL_PARAM()
+std::string& ExpressionUtils::NULL_PARAM()
 {
     
     return NULL_PARAM_;
 }
-std::string com::tibbo::aggregate::common::expression::ExpressionUtils::NULL_PARAM_;
+std::string ExpressionUtils::NULL_PARAM_;
 
-void com::tibbo::aggregate::common::expression::ExpressionUtils::validateSyntax(Expression* expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */
+void ExpressionUtils::validateSyntax(Expression* expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */
 {
     
     ExpressionUtils::parse(expression, showExpressionInErrorText);
 }
 
-java::util::List* com::tibbo::aggregate::common::expression::ExpressionUtils::getFunctionParameters(const std::string & paramsString, bool allowExpressions)
+std::list  ExpressionUtils::getFunctionParameters(const std::string & paramsString, bool allowExpressions)
 {
     
     auto params = new ::java::util::LinkedList();
@@ -160,13 +160,13 @@ java::util::List* com::tibbo::aggregate::common::expression::ExpressionUtils::ge
     return params;
 }
 
-std::string com::tibbo::aggregate::common::expression::ExpressionUtils::prepareParameter(const std::string & parameter)
+std::string ExpressionUtils::prepareParameter(const std::string & parameter)
 {
     
     return parameter;
 }
 
-std::string com::tibbo::aggregate::common::expression::ExpressionUtils::getFunctionParameters(std::list  params)
+std::string ExpressionUtils::getFunctionParameters(std::list  params)
 {
     
     auto sb = new std::stringBuilder();
@@ -201,15 +201,15 @@ std::string com::tibbo::aggregate::common::expression::ExpressionUtils::getFunct
     return sb)->toString();
 }
 
-void com::tibbo::aggregate::common::expression::ExpressionUtils::dump(const std::string & expression) /* throws(SyntaxErrorException) */
+void ExpressionUtils::dump(const std::string & expression) /* throws(SyntaxErrorException) */
 {
     
     auto rootNode = parse(new Expression(expression), true);
-    ::ExpressionParserVisitor* visitor = new ::com::tibbo::aggregate::common::expression::util::DumpingVisitor();
+    ::ExpressionParserVisitor* visitor = new util::DumpingVisitor();
     rootNode)->jjtAccept(visitor, 0));
 }
 
-ASTStart* com::tibbo::aggregate::common::expression::ExpressionUtils::parse(Expression* expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */
+ASTStart* ExpressionUtils::parse(Expression* expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */
 {
     
     try {
@@ -222,16 +222,16 @@ ASTStart* com::tibbo::aggregate::common::expression::ExpressionUtils::parse(Expr
     }
 }
 
-java::util::List* com::tibbo::aggregate::common::expression::ExpressionUtils::findReferences(Expression* expression) /* throws(SyntaxErrorException) */
+std::list  ExpressionUtils::findReferences(Expression* expression) /* throws(SyntaxErrorException) */
 {
     
     auto rootNode = parse(expression, true);
-    auto visitor = new ::com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor();
+    auto visitor = new util::ReferencesFinderVisitor();
     rootNode)->jjtAccept(static_cast< ::ExpressionParserVisitor* >(visitor), 0));
     return visitor->getIdentifiers();
 }
 
-std::string com::tibbo::aggregate::common::expression::ExpressionUtils::escapeStringLiteral(const std::string & text)
+std::string ExpressionUtils::escapeStringLiteral(const std::string & text)
 {
     
     if(text == 0) {
@@ -255,7 +255,7 @@ std::string com::tibbo::aggregate::common::expression::ExpressionUtils::escapeSt
     return result)->toString();
 }
 
-long com::tibbo::aggregate::common::expression::ExpressionUtils::generateBindingId()
+long ExpressionUtils::generateBindingId()
 {
     
     auto id = ::java::lang::Math::round(::java::lang::Math::random() * ::java::lang::Long::MAX_VALUE);
@@ -264,13 +264,13 @@ long com::tibbo::aggregate::common::expression::ExpressionUtils::generateBinding
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::ExpressionUtils::class_()
+java::lang::Class* ExpressionUtils::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.ExpressionUtils", 53);
     return c;
 }
 
-void com::tibbo::aggregate::common::expression::ExpressionUtils::clinit()
+void ExpressionUtils::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -283,7 +283,7 @@ struct string_init_ {
     super::
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::ExpressionUtils::getClass0()
+java::lang::Class* ExpressionUtils::getClass0()
 {
     return class_();
 }

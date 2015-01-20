@@ -12,32 +12,32 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::color::GreenFunction::GreenFunction(const ::default_init_tag&)
+function::color::GreenFunction::GreenFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::color::GreenFunction::GreenFunction()
+function::color::GreenFunction::GreenFunction()
     : GreenFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void* com::tibbo::aggregate::common::expression::function::color::GreenFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::color::GreenFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     return color(parameters))->getGreen());
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::color::GreenFunction::class_()
+java::lang::Class* function::color::GreenFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.color.GreenFunction", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::color::GreenFunction::getClass0()
+java::lang::Class* function::color::GreenFunction::getClass0()
 {
     return class_();
 }

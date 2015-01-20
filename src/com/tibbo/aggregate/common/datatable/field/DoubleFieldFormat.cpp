@@ -42,44 +42,44 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::DoubleFieldFormat(const ::default_init_tag&)
+Datefield::DoubleFieldFormat::DoubleFieldFormat(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::DoubleFieldFormat(const std::string & name) 
+Datefield::DoubleFieldFormat::DoubleFieldFormat(const std::string & name) 
     : DoubleFieldFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name);
 }
 
-void com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::ctor(const std::string & name)
+void Datefield::DoubleFieldFormat::ctor(const std::string & name)
 {
     super::ctor(name);
 }
 
-char16_t com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::getType()
+char16_t Datefield::DoubleFieldFormat::getType()
 {
     return FieldFormat::DOUBLE_FIELD;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::getFieldClass()
+java::lang::Class* Datefield::DoubleFieldFormat::getFieldClass()
 {
     return ::java::lang::Double::TYPE();
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::getFieldWrappedClass()
+java::lang::Class* Datefield::DoubleFieldFormat::getFieldWrappedClass()
 {
     return ::java::lang::Double::class_();
 }
 
-java::lang::Double* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::getNotNullDefault()
+java::lang::Double* Datefield::DoubleFieldFormat::getNotNullDefault()
 {
     return new ::java::lang::Double(static_cast< double >(int(0)));
 }
 
-void* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::convertValue(void* value) /* throws(ValidationException) */
+void* Datefield::DoubleFieldFormat::convertValue(void* value) /* throws(ValidationException) */
 {
     if(value != 0 && !(dynamic_cast< ::java::lang::Double* >(value) != 0)) {
         value = ::java::lang::Double::valueOf(util::Util::convertToNumber(value, true, false))->doubleValue());
@@ -87,7 +87,7 @@ void* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::conver
     return value;
 }
 
-java::lang::Double* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
+java::lang::Double* Datefield::DoubleFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
 {
     if(value)->length() == 0) {
         return ::java::lang::Double::valueOf(0.0);
@@ -99,40 +99,40 @@ java::lang::Double* com::tibbo::aggregate::common::datatable::field::DoubleField
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::valueToString(::java::lang::Double* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::DoubleFieldFormat::valueToString(::java::lang::Double* value, encoding::ClassicEncodingSettings* settings)
 {
     return value == 0 ? static_cast< const std::string & >(0) : value)->toString();
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::DoubleFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
 { 
     return valueToString(dynamic_cast< ::java::lang::Double* >(value), settings);
 }
 
-java::util::List* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::getSuitableEditors()
+std::list  Datefield::DoubleFieldFormat::getSuitableEditors()
 {
     return ::java::util::Arrays::asList(new std::stringArray({EDITOR_LIST()}));
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::class_()
+java::lang::Class* Datefield::DoubleFieldFormat::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.DoubleFieldFormat", 60);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::valueFromString(const std::string & value)
+void* Datefield::DoubleFieldFormat::valueFromString(const std::string & value)
 {
     return super::valueFromString(value);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::valueToString(void* value)
+std::string Datefield::DoubleFieldFormat::valueToString(void* value)
 {
     return super::valueToString(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DoubleFieldFormat::getClass0()
+java::lang::Class* Datefield::DoubleFieldFormat::getClass0()
 {
     return class_();
 }

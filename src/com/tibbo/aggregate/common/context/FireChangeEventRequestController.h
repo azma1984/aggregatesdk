@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::FireChangeEventRequestController
+class FireChangeEventRequestController
     : public FireEventRequestController
 {
 
@@ -21,13 +21,13 @@ private:
     VariableDefinition* def;
     DataTable* value;
 protected:
-    void ctor(::java::lang::Long* customExpirationPeriod, VariableDefinition* def, DataTable* value);
+    void ctor(long  customExpirationPeriod, VariableDefinition* def, DataTable* value);
 
 public:
     Event* process(Event* event);
 
     // Generated
-    FireChangeEventRequestController(::java::lang::Long* customExpirationPeriod, VariableDefinition* def, DataTable* value);
+    FireChangeEventRequestController(long  customExpirationPeriod, VariableDefinition* def, DataTable* value);
 protected:
     FireChangeEventRequestController(const ::default_init_tag&);
 

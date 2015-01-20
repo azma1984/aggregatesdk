@@ -16,24 +16,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::other::StFunction::StFunction(const ::default_init_tag&)
+function::other::StFunction::StFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::other::StFunction::StFunction() 
+function::other::StFunction::StFunction() 
     : StFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::other::StFunction::ctor()
+void function::other::StFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_OTHER(), u"String variable, Object value"_j, u"Object"_j);
+    super::ctor(function::Functions::GROUP_OTHER(), u"String variable, Object value"_j, u"Object"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::other::StFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::other::StFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, true, parameters);
     auto variable = (*parameters)[int(0)])->toString();
@@ -46,13 +46,13 @@ void* com::tibbo::aggregate::common::expression::function::other::StFunction::ex
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::StFunction::class_()
+java::lang::Class* function::other::StFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.other.StFunction", 63);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::StFunction::getClass0()
+java::lang::Class* function::other::StFunction::getClass0()
 {
     return class_();
 }

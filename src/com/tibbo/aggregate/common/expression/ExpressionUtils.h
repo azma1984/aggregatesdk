@@ -11,7 +11,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::ExpressionUtils
+class ExpressionUtils
     
 {
 

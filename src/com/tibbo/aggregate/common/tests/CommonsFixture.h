@@ -27,7 +27,7 @@ protected:
 public:
     void setUp() /* throws(Exception) */;
     void tearDown() /* throws(Exception) */;
-    static ::com::tibbo::aggregate::common::expression::Evaluator* createTestEvaluator();
+    static Evaluator* createTestEvaluator();
     static DataTable* createTestTable();
 
     // Generated

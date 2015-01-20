@@ -65,7 +65,7 @@ class StringFieldFormat : public FieldFormat
 
 //public:
 //    static const std::string encodeExpressionEditorOptions(std::map references);
-//    static const std::string encodeExpressionEditorOptions(::com::tibbo::aggregate::common::context::Context* defaultContext, DataTable* defaultTable, std::map references);
+//    static const std::string encodeExpressionEditorOptions(Context* defaultContext, DataTable* defaultTable, std::map references);
 //    static const std::string encodeMaskEditorOptions(std::list  contextTypes);
 //    static const std::string encodeMaskEditorOptions(const std::string & contextType);
 //    static const std::string encodeMaskEditorOptions(::java::lang::Class* contextClass);

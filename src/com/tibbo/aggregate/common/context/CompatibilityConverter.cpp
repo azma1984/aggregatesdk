@@ -3,7 +3,7 @@
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::CompatibilityConverter::class_()
+java::lang::Class* CompatibilityConverter::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.CompatibilityConverter", 57);
     return c;

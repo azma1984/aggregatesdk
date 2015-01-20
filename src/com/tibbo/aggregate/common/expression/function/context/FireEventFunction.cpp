@@ -47,58 +47,58 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::FireEventFunction::FireEventFunction(const ::default_init_tag&)
+function::context::FireEventFunction::FireEventFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::FireEventFunction::FireEventFunction() 
+function::context::FireEventFunction::FireEventFunction() 
     : FireEventFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::context::FireEventFunction::ctor()
+void function::context::FireEventFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED(), u"String context, String event, Integer level, Object parameter1, Object parameter2, ..."_j, u"Long"_j);
+    super::ctor(function::Functions::GROUP_CONTEXT_RELATED(), u"String context, String event, Integer level, Object parameter1, Object parameter2, ..."_j, u"Long"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::context::FireEventFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::context::FireEventFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(4, true, parameters);
-    auto con = java_cast< ::com::tibbo::aggregate::common::context::Context* >(evaluator)->getDefaultResolver())->getContextManager())->get((*parameters)[int(0)])->toString(), evaluator)->getDefaultResolver())->getCallerController()));
+    auto con = java_cast< Context* >(evaluator)->getDefaultResolver())->getContextManager())->get((*parameters)[int(0)])->toString(), evaluator)->getDefaultResolver())->getCallerController()));
     if(con == 0) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append((*parameters)[int(0)])->toString())->toString());
+        throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append((*parameters)[int(0)])->toString())->toString());
     }
     try {
         auto name = (*parameters)[int(1)])->toString();
         auto ed = con)->getEventDefinition(name);
         if(ed == 0) {
-            throw new ::com::tibbo::aggregate::common::context::ContextException(::java::text::MessageFormat::format(Cres::get())->getString(u"conEvtNotAvailExt"_j), new voidArray({name), con)->getPath())})));
+            throw new ContextException(::java::text::MessageFormat::format(Cres::get())->getString(u"conEvtNotAvailExt"_j), new voidArray({name), con)->getPath())})));
         }
         auto level = ::com::tibbo::aggregate::common::util::Util::convertToNumber((*parameters)[int(2)], true, true);
         if(level != 0 && !EventLevel::isValid(level)->intValue())) {
-            throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(u"Invalid event level: "_j)->append(level))->toString());
+            throw new EvaluationException(std::stringBuilder().append(u"Invalid event level: "_j)->append(level))->toString());
         }
         auto input = ::java::util::Arrays::asList(java_cast< voidArray* >(::java::util::Arrays::copyOfRange(static_cast< voidArray* >(parameters), int(3), parameters)->length)));
         auto data = (input)->size() == 1 && (dynamic_cast< DataTable* >(java_cast< void* >(input)->get(0))) != 0)) ? java_cast< DataTable* >(java_cast< void* >(input)->get(0))) : DataTableConstruction::constructTable(input, ed != 0 ? ed)->getFormat() : static_cast< TableFormat* >(0), evaluator, 0);
         auto ev = con)->fireEvent(ed)->getName(), level != 0 ? level)->intValue() : ed)->getLevel(), evaluator)->getDefaultResolver())->getCallerController(), data);
-        return ev != 0 ? ev)->getId() : static_cast< ::java::lang::Long* >(0);
+        return ev != 0 ? ev)->getId() : static_cast< long  >(0);
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::FireEventFunction::class_()
+java::lang::Class* function::context::FireEventFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.FireEventFunction", 72);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::FireEventFunction::getClass0()
+java::lang::Class* function::context::FireEventFunction::getClass0()
 {
     return class_();
 }

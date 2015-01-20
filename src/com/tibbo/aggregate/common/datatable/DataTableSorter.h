@@ -28,7 +28,7 @@ typedef ::SubArray< SortOrder, voidArray > SortOrderArray;
 
 
 
-class com::tibbo::aggregate::common::datatable::DataTableSorter
+class DateDataTableSorter
     
     , public ::java::lang::Iterable
 {

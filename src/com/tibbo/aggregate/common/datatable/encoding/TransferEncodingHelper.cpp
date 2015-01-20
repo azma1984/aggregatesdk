@@ -30,35 +30,35 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::TransferEncodingHelper(const ::default_init_tag&)
+Dateencoding::TransferEncodingHelper::TransferEncodingHelper(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::TransferEncodingHelper()
+Dateencoding::TransferEncodingHelper::TransferEncodingHelper()
     : TransferEncodingHelper(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-const char16_t com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::ESCAPE_CHAR;
+const char16_t Dateencoding::TransferEncodingHelper::ESCAPE_CHAR;
 
-java::util::Map*& com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::DIRECT()
+java::util::Map*& Dateencoding::TransferEncodingHelper::DIRECT()
 {
     
     return DIRECT_;
 }
-java::util::Map* com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::DIRECT_;
+java::util::Map* Dateencoding::TransferEncodingHelper::DIRECT_;
 
-java::util::Map*& com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::REVERSE()
+java::util::Map*& Dateencoding::TransferEncodingHelper::REVERSE()
 {
     
     return REVERSE_;
 }
-java::util::Map* com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::REVERSE_;
+java::util::Map* Dateencoding::TransferEncodingHelper::REVERSE_;
 
-std::string com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::encode(const std::string & s)
+std::string Dateencoding::TransferEncodingHelper::encode(const std::string & s)
 {
     
     if(s == 0) {
@@ -78,7 +78,7 @@ std::string com::tibbo::aggregate::common::datatable::encoding::TransferEncoding
     return out)->toString();
 }
 
-std::string com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::decode(const std::string & s)
+std::string Dateencoding::TransferEncodingHelper::decode(const std::string & s)
 {
     
     if(s == 0) {
@@ -107,13 +107,13 @@ std::string com::tibbo::aggregate::common::datatable::encoding::TransferEncoding
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::class_()
+java::lang::Class* Dateencoding::TransferEncodingHelper::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.encoding.TransferEncodingHelper", 68);
     return c;
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::clinit()
+void Dateencoding::TransferEncodingHelper::clinit()
 {
     super::
     static bool in_cl_init = false;
@@ -146,7 +146,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper::getClass0()
+java::lang::Class* Dateencoding::TransferEncodingHelper::getClass0()
 {
     return class_();
 }

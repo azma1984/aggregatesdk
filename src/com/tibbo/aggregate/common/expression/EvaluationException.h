@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::EvaluationException
+class EvaluationException
     : public ::com::tibbo::aggregate::common::AggreGateException
 {
 

@@ -1,5 +1,5 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTable.java
-#include "DataTable.h"
+#include "datatable/DataTable.h"
 
 
 DataTable::DataTable()
@@ -279,7 +279,7 @@ FieldFormat* DataTable::getFormat(const std::string & name)
     return getFormat())->getField(name);
 }
 
-java::lang::Long* DataTable::getId()
+ DataTable::getId()
 {
     return id;
 }
@@ -293,7 +293,7 @@ DataTable* DataTable::setFormat(TableFormat* format)
     return this;
 }
 
-void DataTable::setId(::java::lang::Long* id)
+void DataTable::setId(long  id)
 {
     this->id = id;
 }
@@ -435,7 +435,7 @@ void DataTable::swapRecords(int index1, int index2)
     records)->set(index2, r1);
 }
 
-java::util::List* DataTable::getRecords()
+std::list  DataTable::getRecords()
 {
     return ::java::util::Collections::unmodifiableList(records);
 }
@@ -635,18 +635,18 @@ std::string DataTable::toDefaultString()
     }
 }
 
-com::tibbo::aggregate::common::expression::Expression* DataTable::getNamingExpression()
+Expression* DataTable::getNamingExpression()
 {
-    return format == 0 ? static_cast< ::com::tibbo::aggregate::common::expression::Expression* >(0) : format)->getNamingExpression();
+    return format == 0 ? static_cast< Expression* >(0) : format)->getNamingExpression();
 }
 
-com::tibbo::aggregate::common::expression::Evaluator* DataTable::ensureEvaluator()
+Evaluator* DataTable::ensureEvaluator()
 {
     if(namingEvaluator == 0) {
-        auto defaultResolver = new ::com::tibbo::aggregate::common::expression::DefaultReferenceResolver();
+        auto defaultResolver = new DefaultReferenceResolver();
         defaultResolver)->setDefaultTable(this);
-        namingEvaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(static_cast< ::com::tibbo::aggregate::common::expression::ReferenceResolver* >(defaultResolver));
-        namingEvaluator)->setResolver(::com::tibbo::aggregate::common::expression::Reference::SCHEMA_ENVIRONMENT(), new DataTable_DataTableReferenceResolver(this));
+        namingEvaluator = new Evaluator(static_cast< ReferenceResolver* >(defaultResolver));
+        namingEvaluator)->setResolver(Reference::SCHEMA_ENVIRONMENT(), new DataTable_DataTableReferenceResolver(this));
     }
     return namingEvaluator;
 }
@@ -700,7 +700,7 @@ std::string DataTable::conformMessage(TableFormat* rf)
     return getFormat())->extendMessage(rf);
 }
 
-java::util::List* DataTable::selectAll(DataTableQuery* query)
+std::list  DataTable::selectAll(DataTableQuery* query)
 {
     std::list  r = new ::java::util::ArrayList();
     for (auto _i = this->iterator(); _i->hasNext(); ) {

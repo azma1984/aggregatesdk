@@ -43,9 +43,9 @@ public:
 //    static std::list  beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
 //    static void* beanFromRecord(DataRecord* rec, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
 //    static void populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields, ::java::util::Set* fieldsToSkip) /* throws(DataTableException) */;
+//    static void populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields, ::std::set  fieldsToSkip) /* throws(DataTableException) */;
 //    static DataRecord* beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors) /* throws(DataTableException) */;
-//    static DataRecord* beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors, ::java::util::Set* fieldsToSkip) /* throws(DataTableException) */;
+//    static DataRecord* beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors, ::std::set  fieldsToSkip) /* throws(DataTableException) */;
 
 //private:
 //    static TableFormat* getFormatFromDefaultValue(FieldFormat* ff);

@@ -40,24 +40,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::string::SplitFunction::SplitFunction(const ::default_init_tag&)
+function::string::SplitFunction::SplitFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::string::SplitFunction::SplitFunction() 
+function::string::SplitFunction::SplitFunction() 
     : SplitFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::string::SplitFunction::ctor()
+void function::string::SplitFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, String regex[, String fieldName [, Integer limit ]]"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_STRING_PROCESSING(), u"String string, String regex[, String fieldName [, Integer limit ]]"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::string::SplitFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::string::SplitFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     auto source = (*parameters)[int(0)])->toString();
@@ -76,13 +76,13 @@ void* com::tibbo::aggregate::common::expression::function::string::SplitFunction
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::string::SplitFunction::class_()
+java::lang::Class* function::string::SplitFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.string.SplitFunction", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::string::SplitFunction::getClass0()
+java::lang::Class* function::string::SplitFunction::getClass0()
 {
     return class_();
 }

@@ -17,19 +17,19 @@ public:
     typedef void super;
 
 private:
-    ::java::util::Date* timestamp;
+    Date* timestamp;
     DataTable* value;
 protected:
-    void ctor(::java::util::Date* timestamp, DataTable* value);
+    void ctor(Date* timestamp, DataTable* value);
 
 public:
-    ::java::util::Date* getTimestamp();
-    void setTimestamp(::java::util::Date* timestamp);
+    Date* getTimestamp();
+    void setTimestamp(Date* timestamp);
     DataTable* getValue();
     void setValue(DataTable* value);
 
     // Generated
-    CachedVariableValue(::java::util::Date* timestamp, DataTable* value);
+    CachedVariableValue(Date* timestamp, DataTable* value);
 protected:
     CachedVariableValue(const ::default_init_tag&);
 

@@ -20,7 +20,7 @@ public:
 //    typedef AbstractFormatConverter super;
 
 //private:
-//    ::java::util::Set* constructorArguments;
+//    ::std::set  constructorArguments;
 //protected:
 //    void ctor(::java::lang::Class* valueClass, TableFormat* format);
 

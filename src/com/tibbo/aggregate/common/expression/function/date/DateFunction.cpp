@@ -29,45 +29,45 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::date::DateFunction::DateFunction(const ::default_init_tag&)
+function::date::DateFunction::DateFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::date::DateFunction::DateFunction(const std::string & returnValue) 
+function::date::DateFunction::DateFunction(const std::string & returnValue) 
     : DateFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(returnValue);
 }
 
-void com::tibbo::aggregate::common::expression::function::date::DateFunction::ctor(const std::string & returnValue)
+void function::date::DateFunction::ctor(const std::string & returnValue)
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date date [, String timezone]"_j, returnValue);
+    super::ctor(function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date date [, String timezone]"_j, returnValue);
 }
 
-void* com::tibbo::aggregate::common::expression::function::date::DateFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::date::DateFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
-    checkParameterType(0, (*parameters)[int(0)], ::java::util::Date::class_());
+    checkParameterType(0, (*parameters)[int(0)], Date::class_());
     auto tz = ::com::tibbo::aggregate::common::util::DateUtils::UTC_TIME_ZONE();
     if(parameters)->length > 1) {
         tz = ::java::util::TimeZone::getTimeZone((*parameters)[int(1)])->toString());
     }
     auto calendar = new ::java::util::GregorianCalendar(tz);
-    calendar)->setTime(java_cast< ::java::util::Date* >((*parameters)[int(0)]));
+    calendar)->setTime(java_cast< Date* >((*parameters)[int(0)]));
     return execute(calendar, parameters);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::DateFunction::class_()
+java::lang::Class* function::date::DateFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.date.DateFunction", 64);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::DateFunction::getClass0()
+java::lang::Class* function::date::DateFunction::getClass0()
 {
     return class_();
 }

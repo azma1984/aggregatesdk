@@ -30,19 +30,19 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::ExpressionDumper::ExpressionDumper(const ::default_init_tag&)
+ExpressionDumper::ExpressionDumper(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::ExpressionDumper::ExpressionDumper()
+ExpressionDumper::ExpressionDumper()
     : ExpressionDumper(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::ExpressionDumper::main(std::stringArray* args)
+void ExpressionDumper::main(std::stringArray* args)
 {
     
     ::com::tibbo::aggregate::common::Log::start();
@@ -56,13 +56,13 @@ void com::tibbo::aggregate::common::expression::ExpressionDumper::main(std::stri
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::ExpressionDumper::class_()
+java::lang::Class* ExpressionDumper::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.ExpressionDumper", 54);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::ExpressionDumper::getClass0()
+java::lang::Class* ExpressionDumper::getClass0()
 {
     return class_();
 }

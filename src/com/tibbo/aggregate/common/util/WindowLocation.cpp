@@ -160,12 +160,12 @@ const int com::tibbo::aggregate::common::util::WindowLocation::SIDE_BOTTOM;
 
 const int com::tibbo::aggregate::common::util::WindowLocation::SIDE_RIGHT;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::util::WindowLocation::FORMAT()
+DateTableFormat*& com::tibbo::aggregate::common::util::WindowLocation::FORMAT()
 {
     
     return FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::util::WindowLocation::FORMAT_;
+DateTableFormat* com::tibbo::aggregate::common::util::WindowLocation::FORMAT_;
 
 void com::tibbo::aggregate::common::util::WindowLocation::ctor()
 {
@@ -492,7 +492,7 @@ struct clinit_ {
                 ->append(u"}"_j)->toString());
             auto state = std::stringBuilder().append(u"{"_j)->append(FIELD_STATE_)
                 ->append(u"#"_j)
-                ->append(::com::tibbo::aggregate::common::expression::DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION())
+                ->append(DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION())
                 ->append(u"}"_j)->toString();
             auto side = std::stringBuilder().append(u"({"_j)->append(FIELD_STATE_)
                 ->append(u"} != "_j)
@@ -500,7 +500,7 @@ struct clinit_ {
                 ->append(u" ? (', ' + {"_j)
                 ->append(FIELD_SIDE_)
                 ->append(u"#"_j)
-                ->append(::com::tibbo::aggregate::common::expression::DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION())
+                ->append(DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION())
                 ->append(u"}) : '')"_j)->toString();
             auto index = std::stringBuilder().append(u"({"_j)->append(FIELD_STATE_)
                 ->append(u"} != "_j)

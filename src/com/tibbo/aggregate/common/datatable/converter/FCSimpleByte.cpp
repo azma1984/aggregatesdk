@@ -25,52 +25,52 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::FCSimpleByte(const ::default_init_tag&)
+Dateconverter::FCSimpleByte::FCSimpleByte(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::FCSimpleByte() 
+Dateconverter::FCSimpleByte::FCSimpleByte() 
     : FCSimpleByte(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::ctor()
+void Dateconverter::FCSimpleByte::ctor()
 {
     super::ctor(::java::lang::Byte::TYPE());
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::createFieldFormat(const std::string & name)
+DateFieldFormat* Dateconverter::FCSimpleByte::createFieldFormat(const std::string & name)
 {
     return FieldFormat::create(name, FieldFormat::INTEGER_FIELD);
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::simpleToBean(void* value)
+void* Dateconverter::FCSimpleByte::simpleToBean(void* value)
 {
     return ::java::lang::Byte::valueOf((java_cast< int  >(value)))->byteValue());
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::convertToTable(void* value, TableFormat* format)
+void* Dateconverter::FCSimpleByte::convertToTable(void* value, TableFormat* format)
 {
     return new ::java::lang::Byte(value)->toString());
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::class_()
+java::lang::Class* Dateconverter::FCSimpleByte::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.FCSimpleByte", 59);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::convertToTable(void* value)
+void* Dateconverter::FCSimpleByte::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCSimpleByte::getClass0()
+java::lang::Class* Dateconverter::FCSimpleByte::getClass0()
 {
     return class_();
 }

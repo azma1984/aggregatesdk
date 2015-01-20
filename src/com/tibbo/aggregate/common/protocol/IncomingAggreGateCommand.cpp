@@ -106,7 +106,7 @@ std::string IncomingAggreGateCommand::getParameter(int number)
    return str;
 }
 /*
-java::util::List* IncomingAggreGateCommand::getParameters(int number)
+std::list  IncomingAggreGateCommand::getParameters(int number)
 {
     if(number != getNumberOfParameters()) {
         std::cout <<"Error getting command parameters: command has "_j)->append(getNumberOfParameters())
