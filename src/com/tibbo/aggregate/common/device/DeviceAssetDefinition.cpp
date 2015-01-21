@@ -45,7 +45,7 @@ void DeviceAssetDefinition::Init()
    FORMAT->addField("<" + FIELD_DESCRIPTION + "><S><F=R><D=" + Cres::get()->getString("description") + ">");
    FORMAT->addField("<" + FIELD_ENABLED + "><B><A=1><D=" + Cres::get()->getString("enabled") + ">");
     
-//   FORMAT->addField(FieldFormat<bool>::create("<" + FIELD_CHILDREN + "><T><F=N><D=" + Cres::get()->getString("devNestedAssets") + ">"));
+   FORMAT->addField(FieldFormat::create("<" + FIELD_CHILDREN + "><T><F=N><D=" + Cres::get()->getString("devNestedAssets") + ">"));
     
   // todo - Functions::AGGREGATE define is "Expression/Function/functions.h"
 //   FORMAT->setNamingExpression(Functions::AGGREGATE + "({}, \"{env/previous} + ({" + FIELD_ENABLED + "} ? 1 : 0)\", 0) + '/' + {#" + DefaultReferenceResolver::RECORDS + "}");
@@ -91,39 +91,35 @@ std::list<boost::shared_ptr<DeviceAssetDefinition>> DeviceAssetDefinition::getCh
 
 void DeviceAssetDefinition::setChildren(std::list<boost::shared_ptr<DeviceAssetDefinition>>  children)
 {
-//    if (children)
-  //      this->children = children;
+  this->children = children;
 }
 
 void DeviceAssetDefinition::addSubgroup(boost::shared_ptr<DeviceAssetDefinition> child)
 {
-//    getChildren()->add(children);
+   getChildren().push_back(child);
 }
 
 int DeviceAssetDefinition::compareTo(boost::shared_ptr<DeviceAssetDefinition> other)
 {
-//    return description->compareTo(other->description);
-	return 0;
+    return description.compare(other->description);
 }
 
 std::string DeviceAssetDefinition::toString()
 {
- //   std::stringstream ss;
-//    ss <<"GroupDefinition [id=" <<id <<", description=" <<description <<", enabled=" <<enabled
- //      <<", children=" <<(children != NULL ? children.size() : 0) <<"]";
+    std::stringstream ss;
+    ss <<"GroupDefinition [id=" <<id <<", description=" <<description <<", enabled=" <<enabled
+       <<", children=" <</*(children != NULL ? children.size() : 0)*/children.size() <<"]";
 
-//    return ss.str();
-
-return "";
+    return ss.str();
 }
 
-//    int DeviceAssetDefinition::hashCode()
-//{
-//    final int prime = 31;
-//    int result = 1;
-//    result = prime * result + ((description == null) ? 0 : description.hashCode());
-//    return result;
-//}
+int DeviceAssetDefinition::hashCode()
+{
+    const int prime = 31;
+    int result = 1;                                               //todo - How to calculate a string hashCode?
+    result = prime * result + ((description.empty() == true) ? 0 : 0xFFF/*description.hashCode()*/);
+    return result;
+}
 
 bool DeviceAssetDefinition::equals(DeviceAssetDefinition* obj)
 {

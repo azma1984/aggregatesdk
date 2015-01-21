@@ -105,19 +105,19 @@ bool AbstractDeviceDriver::isUseDeviceSideValuesCache()
 {
     return false;
 }
-//Function is not used!
+//
 //std::list<VariableDefinition>  AbstractDeviceDriver::readVariableDefinitions() 
 //{
 //    return 0;
 //}
 
-//Function is not used!
+//
 //std::list<VariableDefinition>   AbstractDeviceDriver::readVariableDefinitions(std::list<DeviceAssetDefinition>  groups) 
 //{
 //    return readVariableDefinitions();
 //}
 
-
+//
 //std::list<FunctionDefinition>   AbstractDeviceDriver::readFunctionDefinitions() 
 //{
 //   return 0;
@@ -146,7 +146,7 @@ bool AbstractDeviceDriver::isUseDeviceSideValuesCache()
 void AbstractDeviceDriver::writeVariableValue(VariableDefinition* vd, DataTable* value, DataTable* deviceValue) 
 {
 }
-
+	//todo - functions is not used
 //DataTable* AbstractDeviceDriver::executeFunction(FunctionDefinition* fd, DataTable* parameters) 
 //{
  //   throw new ::java::lang::UnsupportedOperationException();
@@ -179,6 +179,9 @@ void AbstractDeviceDriver::setConnected(bool connected)
 {
     this->connected = connected;
 }
+
+
+	//todo - functions is not used
 //
 //DeviceContext* AbstractDeviceDriver::getDeviceContext()
 //{

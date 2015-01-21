@@ -62,13 +62,14 @@ public:
     Date* getVariableModificationTime(const std::string& name) ;
     void updateVariableModificationTime(const std::string& name, Date* value) ;
     VariableStatus* getCustomVariableStatus(const std::string& name) ;
-    void disconnect() ;
+    void disconnect();
     virtual void finishSynchronization()=0 ;
     void setConnected(bool connected);
     DeviceContext* getDeviceContext();
     DiscoveryProvider* createDiscoveryProvider();
     std::string getProtocol();
     TableFormat* getConnectionPropertiesFormat();
+	//todo - functions is not used
    // TableFormat* createConnectionPropertiesFormat();
     //VariableDefinition* discoverVariable(const std::string& name, void* helper);
    // FunctionDefinition* discoverFunction(const std::string& name, void* helper);

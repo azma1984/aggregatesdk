@@ -8,6 +8,8 @@
 //#include "Expression/Function/functions.h";
 #include <string>
 #include <list>
+#include <sstream>
+#include <iostream>
 #include <boost/shared_ptr.hpp>
 
 
@@ -37,7 +39,7 @@ private:
     void addSubgroup(boost::shared_ptr<DeviceAssetDefinition> child);
     int compareTo(boost::shared_ptr<DeviceAssetDefinition> other);
     std::string toString();
-//    int hashCode();
+    int hashCode();
     bool equals(DeviceAssetDefinition* obj);
 	void Init();
 
