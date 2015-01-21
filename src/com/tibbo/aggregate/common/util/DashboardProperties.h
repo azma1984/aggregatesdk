@@ -6,6 +6,7 @@
 #include "datatable/TableFormat.h"
 
 #include <string>
+#include <boost/shared_ptr.hpp>
 
 class DashboardProperties : public AggreGateBean
 {
@@ -19,8 +20,7 @@ public:
   
 	static int LAYOUT_DOCKABLE;
 	static int LAYOUT_SCROLLABLE;
-
-	static TableFormat FORMAT ;
+    static boost::shared_ptr<TableFormat> FORMAT();
 
 	DashboardProperties();
     DashboardProperties(DataRecord& data);
@@ -40,14 +40,16 @@ public:
     void setCleanup(bool cleanup);
 	bool isClosable();
 
-	operator std::string() const;	  
+    operator std::string() const;
+
 private:
 	std::string name;
 	std::string description;
 	int layout;
 	int columns;
 	bool closable;
-	bool cleanup;    
+    bool cleanup;
+    static boost::shared_ptr<TableFormat> FORMAT_ ;
 };
 
 #endif

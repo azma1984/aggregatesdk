@@ -1,4 +1,5 @@
 #include "util/DashboardProperties.h"
+#include "datatable/validator/ValidatorHelper.h"
 
 
 std::string DashboardProperties::FIELD_NAME = "name";
@@ -11,34 +12,46 @@ std::string DashboardProperties::FIELD_CLEANUP = "cleanup";
 int DashboardProperties::LAYOUT_DOCKABLE = 0;
 int DashboardProperties::LAYOUT_SCROLLABLE = 1;
 
-TableFormat DashboardProperties::FORMAT = TableFormat(1, 1);
-// TODO: нужно инициализировать FORMAT до конструктора DashboardProperties()
+
+boost::shared_ptr<TableFormat> DashboardProperties::FORMAT()
+{
+    if (!FORMAT_) {
+        FORMAT_.reset( new TableFormat(1, 1) );
+        //TODO: Cres::get()->getString
 /*
-static
-  {
-    FieldFormat ff = FieldFormat.create("<" + FIELD_NAME + "><S><F=N><D=" + Cres.get().getString("name") + ">");
-    FORMAT.addField(ff);
-    
-    ff = FieldFormat.create("<" + FIELD_DESCRIPTION + "><S><F=N><D=" + Cres.get().getString("description") + ">");
-    ff.addValidator(ValidatorHelper.DESCRIPTION_LENGTH_VALIDATOR);
-    ff.addValidator(ValidatorHelper.DESCRIPTION_SYNTAX_VALIDATOR);
-    FORMAT.addField(ff);
-    
-    ff = FieldFormat.create("<" + FIELD_LAYOUT + "><I><A=" + LAYOUT_DOCKABLE + "><D=" + Cres.get().getString("layout") + ">");
-    ff.addSelectionValue(LAYOUT_DOCKABLE, Cres.get().getString("dbLayoutDockable"));
-    ff.addSelectionValue(LAYOUT_SCROLLABLE, Cres.get().getString("dbLayoutScrollable"));
-    FORMAT.addField(ff);
-    
-    ff = FieldFormat.create("<" + FIELD_COLUMNS + "><I><A=3><D=" + Cres.get().getString("columns") + ">");
-    FORMAT.addField(ff);
-    
-    FORMAT.addField(FieldFormat.create("<" + FIELD_CLOSABLE + "><B><A=1><D=" + Cres.get().getString("clDashboardClosable") + ">"));
-    
-    FORMAT.addField(FieldFormat.create("<" + FIELD_CLEANUP + "><B><F=H>"));
-    
-    FORMAT.setNamingExpression("{" + FIELD_DESCRIPTION + "} != null ? {" + FIELD_DESCRIPTION + "} : ({" + FIELD_NAME + "} != null ? {" + FIELD_NAME + "} : '')");
-  }
+        FieldFormat* ff = FieldFormat::create( std::string("<").append(FIELD_NAME).append("><S><F=N><D=")
+                                                .append(Cres::get()->getString("name")).append(">") );
+        FORMAT_->addField(ff);
+
+        ff = FieldFormat.create( std::string("<").append(FIELD_DESCRIPTION).append("><S><F=N><D=")
+                                    .append(Cres::get()->getString("description")).append(">") );
+        ff->addValidator(ValidatorHelper::DESCRIPTION_LENGTH_VALIDATOR_);
+        ff->addValidator(ValidatorHelper::DESCRIPTION_SYNTAX_VALIDATOR_);
+        FORMAT_->addField(ff);
+
+        ff = FieldFormat.create( std::string("<").append(FIELD_LAYOUT).append("><I><A=").append(LAYOUT_DOCKABLE)
+                                    .append("><D=").append(Cres::get()->getString("layout")).append(">") );
+        ff->addSelectionValue(LAYOUT_DOCKABLE, Cres::get()->getString("dbLayoutDockable"));
+        ff->addSelectionValue(LAYOUT_SCROLLABLE, Cres::get()->getString("dbLayoutScrollable"));
+        FORMAT_->addField(ff);
+
+        ff = FieldFormat.create( std::string("<").append(FIELD_COLUMNS).append("><I><A=3><D=")
+                                    .append(Cres::get()->getString("columns") + ">");
+        FORMAT_->addField(ff);
+
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_CLOSABLE).append("><B><A=1><D=")
+                                    .append(Cres::get()->getString("clDashboardClosable")).append(">")) );
+
+        FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_CLEANUP).append("><B><F=H>")) );
+
+        FORMAT_->setNamingExpression(  std::string("{").append(FIELD_DESCRIPTION).append("} != null ? {")
+                                        .append(FIELD_DESCRIPTION).append("} : ({").append(FIELD_NAME)
+                                        .append("} != null ? {").append(FIELD_NAME).append("} : '')") );
 */
+    }
+
+    return FORMAT_;
+}
 
 
 DashboardProperties::DashboardProperties() : 
