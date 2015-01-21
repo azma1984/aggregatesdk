@@ -6,7 +6,13 @@
 #include "expression/Evaluator.h"
 
 
+<<<<<<< Updated upstream
 class DefaultContextEventListener : public ContextEventListener
+=======
+class DefaultContextEventListener
+    
+    , public ContextEventListener
+>>>>>>> Stashed changes
 {
 private:
     CallerController* callerController;
@@ -14,12 +20,15 @@ private:
     Expression* filter;
     bool acceptEventsWithoutListenerCode;
     Evaluator* evaluator;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 protected:
     void ctor();
     void ctor(CallerController* callerController);
     void ctor(CallerController* callerController, int  listenerCode);
-    void ctor(CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    void ctor(CallerController* callerController, int  listenerCode, Expression* filter);
     void ctor(int  listenerCode);
 
 public:
@@ -39,6 +48,6 @@ public:
     DefaultContextEventListener();
     DefaultContextEventListener(CallerController* callerController);
     DefaultContextEventListener(CallerController* callerController, int  listenerCode);
-    DefaultContextEventListener(CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    DefaultContextEventListener(CallerController* callerController, int  listenerCode, Expression* filter);
     DefaultContextEventListener(int  listenerCode);
 };

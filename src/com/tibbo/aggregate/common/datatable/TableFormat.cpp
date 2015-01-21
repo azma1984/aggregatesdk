@@ -61,7 +61,7 @@ TableFormat::TableFormat(int minRecords, int maxRecords, const std::string& fiel
    // ctor(minRecords,maxRecords,fieldFormat);
 }
 
-TableFormat::TableFormat(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat<bool>> fieldFormat)     
+TableFormat::TableFormat(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat> fieldFormat)     
 {
     //ctor(minRecords,maxRecords,fieldFormat);
 }
@@ -168,13 +168,14 @@ TableFormat* TableFormat::addFields(std::list<FieldFormat>& fieldFormats)
 
     return this;
 }
-
-TableFormat* TableFormat::addField(FieldFormat* ff)
-{
-    return addField(ff, fields->size());
-}
 */
-TableFormat* TableFormat::addField(const std::string &encodedFormat)
+boost::shared_ptr<TableFormat> TableFormat::addField(boost::shared_ptr<FieldFormat> ff)
+{
+   // return addField(ff, fields->size());
+	return 0;
+}
+
+boost::shared_ptr<TableFormat> TableFormat::addField(const std::string &encodedFormat)
 {
  return 0;
   //  return addField(static_cast<FieldFormat*>(&FieldFormat::create(encodedFormat)) );

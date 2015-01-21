@@ -13,7 +13,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::EventData
+class EventData
     
     , public ::java::lang::Comparable
 {
@@ -32,8 +32,8 @@ protected:
 public:
     void registerFiredEvent();
     EventDefinition* getDefinition();
-    ::java::util::Set* getListeners();
-    ::java::util::Set* getListenersInfo();
+    ::std::set  getListeners();
+    ::std::set  getListenersInfo();
     long getFireCount();
     bool addListener(ContextEventListener* listener, bool weak);
     bool removeListener(ContextEventListener* listener);

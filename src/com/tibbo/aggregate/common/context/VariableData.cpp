@@ -14,111 +14,111 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::context::VariableData::VariableData(const ::default_init_tag&)
+VariableData::VariableData(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::VariableData::VariableData(VariableDefinition* definition) 
+VariableData::VariableData(VariableDefinition* definition) 
     : VariableData(*static_cast< ::default_init_tag* >(0))
 {
     ctor(definition);
 }
 
-void com::tibbo::aggregate::common::context::VariableData::init()
+void VariableData::init()
 {
     readWriteLock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
 }
 
-void com::tibbo::aggregate::common::context::VariableData::ctor(VariableDefinition* definition)
+void VariableData::ctor(VariableDefinition* definition)
 {
     super::ctor();
     init();
     this->definition = definition;
 }
 
-void com::tibbo::aggregate::common::context::VariableData::registerGetOperation()
+void VariableData::registerGetOperation()
 {
     getCount++;
 }
 
-void com::tibbo::aggregate::common::context::VariableData::registerSetOperation()
+void VariableData::registerSetOperation()
 {
     setCount++;
 }
 
-com::tibbo::aggregate::common::context::VariableDefinition* com::tibbo::aggregate::common::context::VariableData::getDefinition()
+VariableDefinition* VariableData::getDefinition()
 {
     return definition;
 }
 
-void* com::tibbo::aggregate::common::context::VariableData::getValue()
+void* VariableData::getValue()
 {
     return value;
 }
 
-void com::tibbo::aggregate::common::context::VariableData::setValue(void* value)
+void VariableData::setValue(void* value)
 {
     this->value = value;
 }
 
-java::util::concurrent::locks::ReentrantReadWriteLock* com::tibbo::aggregate::common::context::VariableData::getReadWriteLock()
+java::util::concurrent::locks::ReentrantReadWriteLock* VariableData::getReadWriteLock()
 {
     return readWriteLock;
 }
 
-long com::tibbo::aggregate::common::context::VariableData::getGetCount()
+long VariableData::getGetCount()
 {
     return getCount;
 }
 
-long com::tibbo::aggregate::common::context::VariableData::getSetCount()
+long VariableData::getSetCount()
 {
     return setCount;
 }
 
-bool com::tibbo::aggregate::common::context::VariableData::isGetterCached()
+bool VariableData::isGetterCached()
 {
     return getterCached;
 }
 
-void com::tibbo::aggregate::common::context::VariableData::setGetterCached(bool getterCached)
+void VariableData::setGetterCached(bool getterCached)
 {
     this->getterCached = getterCached;
 }
 
-bool com::tibbo::aggregate::common::context::VariableData::isSetterCached()
+bool VariableData::isSetterCached()
 {
     return setterCached;
 }
 
-void com::tibbo::aggregate::common::context::VariableData::setSetterCached(bool setterCached)
+void VariableData::setSetterCached(bool setterCached)
 {
     this->setterCached = setterCached;
 }
 
-java::lang::reflect::Method* com::tibbo::aggregate::common::context::VariableData::getGetterMethod()
+java::lang::reflect::Method* VariableData::getGetterMethod()
 {
     return getterMethod;
 }
 
-void com::tibbo::aggregate::common::context::VariableData::setGetterMethod(::java::lang::reflect::Method* getter)
+void VariableData::setGetterMethod(::java::lang::reflect::Method* getter)
 {
     this->getterMethod = getter;
 }
 
-java::lang::reflect::Method* com::tibbo::aggregate::common::context::VariableData::getSetterMethod()
+java::lang::reflect::Method* VariableData::getSetterMethod()
 {
     return setterMethod;
 }
 
-void com::tibbo::aggregate::common::context::VariableData::setSetterMethod(::java::lang::reflect::Method* setter)
+void VariableData::setSetterMethod(::java::lang::reflect::Method* setter)
 {
     this->setterMethod = setter;
 }
 
-int com::tibbo::aggregate::common::context::VariableData::compareTo(VariableData* d)
+int VariableData::compareTo(VariableData* d)
 {
     if(d != 0) {
         return definition)->compareTo(d)->getDefinition());
@@ -126,20 +126,20 @@ int com::tibbo::aggregate::common::context::VariableData::compareTo(VariableData
     return 0;
 }
 
-int com::tibbo::aggregate::common::context::VariableData::compareTo(void* arg0)
+int VariableData::compareTo(void* arg0)
 { 
     return compareTo(dynamic_cast< VariableData* >(arg0));
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::VariableData::class_()
+java::lang::Class* VariableData::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.VariableData", 47);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::VariableData::getClass0()
+java::lang::Class* VariableData::getClass0()
 {
     return class_();
 }

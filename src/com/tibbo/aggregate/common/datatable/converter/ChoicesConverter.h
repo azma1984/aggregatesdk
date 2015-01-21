@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::converter::ChoicesConverter
+class Dateconverter::ChoicesConverter
     : public AbstractFormatConverter
 {
 

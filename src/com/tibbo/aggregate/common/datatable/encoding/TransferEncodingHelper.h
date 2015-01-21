@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::encoding::TransferEncodingHelper
+class Dateencoding::TransferEncodingHelper
     
 {
 

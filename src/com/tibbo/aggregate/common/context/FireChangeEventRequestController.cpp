@@ -20,26 +20,26 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::context::FireChangeEventRequestController::FireChangeEventRequestController(const ::default_init_tag&)
+FireChangeEventRequestController::FireChangeEventRequestController(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::FireChangeEventRequestController::FireChangeEventRequestController(::java::lang::Long* customExpirationPeriod, VariableDefinition* def, DataTable* value) 
+FireChangeEventRequestController::FireChangeEventRequestController(long  customExpirationPeriod, VariableDefinition* def, DataTable* value) 
     : FireChangeEventRequestController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(customExpirationPeriod,def,value);
 }
 
-void com::tibbo::aggregate::common::context::FireChangeEventRequestController::ctor(::java::lang::Long* customExpirationPeriod, VariableDefinition* def, DataTable* value)
+void FireChangeEventRequestController::ctor(long  customExpirationPeriod, VariableDefinition* def, DataTable* value)
 {
     super::ctor(customExpirationPeriod);
     this->def = def;
     this->value = value;
 }
 
-Event* com::tibbo::aggregate::common::context::FireChangeEventRequestController::process(Event* event)
+Event* FireChangeEventRequestController::process(Event* event)
 {
     if(event)->getExpirationtime() == 0) {
         return 0;
@@ -53,13 +53,13 @@ Event* com::tibbo::aggregate::common::context::FireChangeEventRequestController:
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::FireChangeEventRequestController::class_()
+java::lang::Class* FireChangeEventRequestController::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.FireChangeEventRequestController", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::FireChangeEventRequestController::getClass0()
+java::lang::Class* FireChangeEventRequestController::getClass0()
 {
     return class_();
 }

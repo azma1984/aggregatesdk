@@ -42,24 +42,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::AddColumnsFunction::AddColumnsFunction(const ::default_init_tag&)
+function::table::AddColumnsFunction::AddColumnsFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::AddColumnsFunction::AddColumnsFunction() 
+function::table::AddColumnsFunction::AddColumnsFunction() 
     : AddColumnsFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::AddColumnsFunction::ctor()
+void function::table::AddColumnsFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String format1, String expression1, String format2, String expression2, ..."_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String format1, String expression1, String format2, String expression2, ..."_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::AddColumnsFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::AddColumnsFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(3, true, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -69,7 +69,7 @@ void* com::tibbo::aggregate::common::expression::function::table::AddColumnsFunc
     for (auto i = int(1); i < parameters)->length - int(1); i = i + int(2)) {
         auto ff = FieldFormat::create((*parameters)[i])->toString());
         clone)->addField(ff);
-        newFields)->put(ff, new ::com::tibbo::aggregate::common::expression::Expression((*parameters)[i + int(1)])->toString()));
+        newFields)->put(ff, new Expression((*parameters)[i + int(1)])->toString()));
     }
     table)->setFormat(clone);
     table)->joinFormats();
@@ -77,16 +77,16 @@ void* com::tibbo::aggregate::common::expression::function::table::AddColumnsFunc
         ::java::util::Map_Entry* entry = java_cast< ::java::util::Map_Entry* >(_i->next());
         {
             auto resolver = evaluator)->getDefaultResolver();
-            auto localEvaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(resolver)->getContextManager(), resolver)->getDefaultContext(), table, resolver)->getCallerController());
+            auto localEvaluator = new Evaluator(resolver)->getContextManager(), resolver)->getDefaultContext(), table, resolver)->getCallerController());
             localEvaluator)->getEnvironmentResolver())->setEnvironment(evaluator)->getEnvironmentResolver())->getEnvironment());
             for (auto j = int(0); j < table)->getRecordCount(); j++) {
                 auto rec = table)->getRecord(j);
                 localEvaluator)->getDefaultResolver())->setDefaultRow(j));
                 try {
-                    auto value = localEvaluator)->evaluate(java_cast< ::com::tibbo::aggregate::common::expression::Expression* >(entry)->getValue()), environment);
+                    auto value = localEvaluator)->evaluate(java_cast< Expression* >(entry)->getValue()), environment);
                     rec)->setValue(java_cast< FieldFormat* >(entry)->getKey()))->getName(), value);
                 } catch (::com::tibbo::aggregate::common::util::SyntaxErrorException* ex) {
-                    throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+                    throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
                 }
             }
         }
@@ -96,13 +96,13 @@ void* com::tibbo::aggregate::common::expression::function::table::AddColumnsFunc
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::AddColumnsFunction::class_()
+java::lang::Class* function::table::AddColumnsFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.AddColumnsFunction", 71);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::AddColumnsFunction::getClass0()
+java::lang::Class* function::table::AddColumnsFunction::getClass0()
 {
     return class_();
 }

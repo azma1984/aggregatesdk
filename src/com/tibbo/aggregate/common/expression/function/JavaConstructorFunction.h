@@ -9,7 +9,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::JavaConstructorFunction
+class function::JavaConstructorFunction
     : public AbstractFunction
 {
 
@@ -22,7 +22,7 @@ protected:
     void ctor(const std::string & clazz, const std::string & category, const std::string & returnValue);
 
 public:
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
     // Generated
     JavaConstructorFunction(const std::string & clazz, const std::string & category, const std::string & returnValue);

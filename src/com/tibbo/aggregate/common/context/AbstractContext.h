@@ -524,7 +524,7 @@ private:
 public:
     void variableUpdated(VariableDefinition* def, CallerController* caller, DataTable* value) ;
     void fireUpdatedEvent(VariableDefinition* def, CallerController* caller, DataTable* value);
-    void fireChangeEvent(VariableDefinition* def, CallerController* caller, ::java::util::Date* timestamp, DataTable* value);
+    void fireChangeEvent(VariableDefinition* def, CallerController* caller, Date* timestamp, DataTable* value);
     void setupVariables() ;
 
 private:
@@ -626,7 +626,7 @@ public:
     void setupEvents();
     void postEvent(Event* ev, EventDefinition* ed, CallerController* caller, FireEventRequestController* request) ;
     void updateEvent(Event* ev, EventDefinition* ed, CallerController* caller, FireEventRequestController* request) ;
-    Event* fireEvent(EventDefinition* ed, DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions);
+    Event* fireEvent(EventDefinition* ed, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions);
     Event* fireEvent(Event* event);
 
 private:
@@ -634,7 +634,7 @@ private:
 
 public:
     Event* fireEvent(const std::string & name, int level, CallerController* caller, FireEventRequestController* request, Permissions* permissions, DataTable* data);
-    Event* fireEvent(const std::string & name, DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request);
+    Event* fireEvent(const std::string & name, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request);
     Event* fireEvent(const std::string & name, DataTable* data);
     Event* fireEvent(const std::string & name, CallerController* caller, DataTable* data);
     Event* fireEvent(const std::string & name, int level, DataTable* data);

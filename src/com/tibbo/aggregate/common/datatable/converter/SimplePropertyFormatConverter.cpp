@@ -69,19 +69,19 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::SimplePropertyFormatConverter(const ::default_init_tag&)
+Dateconverter::SimplePropertyFormatConverter::SimplePropertyFormatConverter(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::SimplePropertyFormatConverter(::java::lang::Class* valueClass, const std::string & field) 
+Dateconverter::SimplePropertyFormatConverter::SimplePropertyFormatConverter(::java::lang::Class* valueClass, const std::string & field) 
     : SimplePropertyFormatConverter(*static_cast< ::default_init_tag* >(0))
 {
     ctor(valueClass,field);
 }
 
-void com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::ctor(::java::lang::Class* valueClass, const std::string & field)
+void Dateconverter::SimplePropertyFormatConverter::ctor(::java::lang::Class* valueClass, const std::string & field)
 {
     super::ctor(valueClass);
     try {
@@ -102,12 +102,12 @@ void com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatCo
     }
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::createFieldFormat(const std::string & name)
+DateFieldFormat* Dateconverter::SimplePropertyFormatConverter::createFieldFormat(const std::string & name)
 {
     return datatable::DataTableConversion::createFieldFormat(name, static_cast< ::java::lang::Class* >(propertyDescriptor)->getPropertyType())))->setNullable(true);
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::simpleToBean(void* value)
+void* Dateconverter::SimplePropertyFormatConverter::simpleToBean(void* value)
 {
     if(value == 0) {
         return 0;
@@ -126,7 +126,7 @@ void* com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatC
     }
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::convertToTable(void* value, TableFormat* format)
+void* Dateconverter::SimplePropertyFormatConverter::convertToTable(void* value, TableFormat* format)
 {
     try {
         return propertyDescriptor)->getReadMethod())->invoke(value, new voidArray());
@@ -137,18 +137,18 @@ void* com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatC
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::class_()
+java::lang::Class* Dateconverter::SimplePropertyFormatConverter::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.SimplePropertyFormatConverter", 76);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::convertToTable(void* value)
+void* Dateconverter::SimplePropertyFormatConverter::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter::getClass0()
+java::lang::Class* Dateconverter::SimplePropertyFormatConverter::getClass0()
 {
     return class_();
 }

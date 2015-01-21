@@ -12,37 +12,37 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::type::StringFunction::StringFunction(const ::default_init_tag&)
+function::type::StringFunction::StringFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::type::StringFunction::StringFunction() 
+function::type::StringFunction::StringFunction() 
     : StringFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::type::StringFunction::ctor()
+void function::type::StringFunction::ctor()
 {
     super::ctor(u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::type::StringFunction::convert(void* parameter) /* throws(EvaluationException) */
+void* function::type::StringFunction::convert(void* parameter) /* throws(EvaluationException) */
 {
     return parameter != 0 ? parameter)->toString()) : 0);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::StringFunction::class_()
+java::lang::Class* function::type::StringFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.type.StringFunction", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::StringFunction::getClass0()
+java::lang::Class* function::type::StringFunction::getClass0()
 {
     return class_();
 }

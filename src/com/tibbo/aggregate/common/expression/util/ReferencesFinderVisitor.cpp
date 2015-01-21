@@ -64,183 +64,183 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::ReferencesFinderVisitor(const ::default_init_tag&)
+util::ReferencesFinderVisitor::ReferencesFinderVisitor(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::ReferencesFinderVisitor() 
+util::ReferencesFinderVisitor::ReferencesFinderVisitor() 
     : ReferencesFinderVisitor(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::init()
+void util::ReferencesFinderVisitor::init()
 {
     references = new ::java::util::LinkedList();
 }
 
-void com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::ctor()
+void util::ReferencesFinderVisitor::ctor()
 {
     super::ctor();
     init();
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::SimpleNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::SimpleNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTStart* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTStart* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTConditionalNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTConditionalNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTLogicalOrNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTLogicalOrNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTLogicalAndNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTLogicalAndNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTBitwiseOrNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTBitwiseOrNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTBitwiseXorNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTBitwiseXorNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTBitwiseAndNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTBitwiseAndNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTEQNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTEQNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTNENode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTNENode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTRegexMatchNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTRegexMatchNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTLTNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTLTNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTGTNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTGTNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTLENode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTLENode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTGENode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTGENode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTAddNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTAddNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTSubtractNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTSubtractNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTMulNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTMulNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTDivNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTDivNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTModNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTModNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTUnaryNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTUnaryNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTLogicalNotNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTLogicalNotNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTBitwiseNotNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTBitwiseNotNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTFunctionNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTFunctionNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTValueReferenceNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTValueReferenceNode* node, void* data)
 {
-    auto ref = new ::com::tibbo::aggregate::common::expression::Reference(node)->uriImage);
+    auto ref = new Reference(node)->uriImage);
     references)->add(ref));
     for (auto _i = ref)->getParameters())->iterator(); _i->hasNext(); ) {
         void* param = java_cast< void* >(_i->next());
         {
-            if(dynamic_cast< ::com::tibbo::aggregate::common::expression::Expression* >(param) != 0) {
+            if(dynamic_cast< Expression* >(param) != 0) {
                 try {
-                    references)->addAll(static_cast< ::java::util::Collection* >(::com::tibbo::aggregate::common::expression::ExpressionUtils::findReferences(java_cast< ::com::tibbo::aggregate::common::expression::Expression* >(param))));
+                    references)->addAll(static_cast< ::java::util::Collection* >(ExpressionUtils::findReferences(java_cast< Expression* >(param))));
                 } catch (::com::tibbo::aggregate::common::util::SyntaxErrorException* ex) {
                     throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
                 }
@@ -250,60 +250,60 @@ void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTLongConstNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTLongConstNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTFloatConstNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTFloatConstNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTStringConstNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTStringConstNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTTrueNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTTrueNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTFalseNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTFalseNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTNullNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTNullNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-java::util::List* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::getIdentifiers()
+std::list  util::ReferencesFinderVisitor::getIdentifiers()
 {
     return references;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTRightShiftNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTRightShiftNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTUnsignedRightShiftNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTUnsignedRightShiftNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::visit(::ASTLeftShiftNode* node, void* data)
+void* util::ReferencesFinderVisitor::visit(::ASTLeftShiftNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     return 0;
@@ -311,13 +311,13 @@ void* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::class_()
+java::lang::Class* util::ReferencesFinderVisitor::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.util.ReferencesFinderVisitor", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::ReferencesFinderVisitor::getClass0()
+java::lang::Class* util::ReferencesFinderVisitor::getClass0()
 {
     return class_();
 }

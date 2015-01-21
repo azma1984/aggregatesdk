@@ -41,50 +41,50 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::CallFunctionFunction::CallFunctionFunction(const ::default_init_tag&)
+function::context::CallFunctionFunction::CallFunctionFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::CallFunctionFunction::CallFunctionFunction() 
+function::context::CallFunctionFunction::CallFunctionFunction() 
     : CallFunctionFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::context::CallFunctionFunction::ctor()
+void function::context::CallFunctionFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED(), u"String context, String function, Object parameter1, Object parameter2, ..."_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_CONTEXT_RELATED(), u"String context, String function, Object parameter1, Object parameter2, ..."_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::context::CallFunctionFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::context::CallFunctionFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
-    auto con = java_cast< ::com::tibbo::aggregate::common::context::Context* >(evaluator)->getDefaultResolver())->getContextManager())->get((*parameters)[int(0)])->toString(), evaluator)->getDefaultResolver())->getCallerController()));
+    auto con = java_cast< Context* >(evaluator)->getDefaultResolver())->getContextManager())->get((*parameters)[int(0)])->toString(), evaluator)->getDefaultResolver())->getCallerController()));
     if(con == 0) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append((*parameters)[int(0)])->toString())->toString());
+        throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append((*parameters)[int(0)])->toString())->toString());
     }
     try {
         auto fd = con)->getFunctionDefinition((*parameters)[int(1)])->toString());
         auto input = ::java::util::Arrays::asList(java_cast< voidArray* >(::java::util::Arrays::copyOfRange(static_cast< voidArray* >(parameters), int(2), parameters)->length)));
         auto inputTable = DataTableConstruction::constructTable(input, fd != 0 ? fd)->getInputFormat() : static_cast< TableFormat* >(0), evaluator, 0);
-        auto output = con)->callFunction((*parameters)[int(1)])->toString(), evaluator)->getDefaultResolver())->getCallerController(), new ::com::tibbo::aggregate::common::context::DefaultRequestController(evaluator), inputTable);
+        auto output = con)->callFunction((*parameters)[int(1)])->toString(), evaluator)->getDefaultResolver())->getCallerController(), new DefaultRequestController(evaluator), inputTable);
         return output;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::CallFunctionFunction::class_()
+java::lang::Class* function::context::CallFunctionFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.CallFunctionFunction", 75);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::CallFunctionFunction::getClass0()
+java::lang::Class* function::context::CallFunctionFunction::getClass0()
 {
     return class_();
 }

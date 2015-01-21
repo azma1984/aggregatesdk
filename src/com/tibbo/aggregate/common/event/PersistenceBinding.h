@@ -29,7 +29,7 @@ private:
     const std::string & type;
     const std::string & index;
     const std::string & expression;
-    ::com::tibbo::aggregate::common::expression::Expression* compiledExpression;
+    Expression* compiledExpression;
 protected:
     void ctor();
     void ctor(DataRecord* record);
@@ -40,7 +40,7 @@ public:
     const std::string & getIndex();
     const std::string & getName();
     const std::string & getExpression();
-    ::com::tibbo::aggregate::common::expression::Expression* getCompiledExpression();
+    Expression* getCompiledExpression();
     void setName(const std::string & name);
     void setType(const std::string & type);
     void setIndex(const std::string & index);

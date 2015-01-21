@@ -27,24 +27,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::RecordsFunction::RecordsFunction(const ::default_init_tag&)
+function::table::RecordsFunction::RecordsFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::RecordsFunction::RecordsFunction() 
+function::table::RecordsFunction::RecordsFunction() 
     : RecordsFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::RecordsFunction::ctor()
+void function::table::RecordsFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table"_j, u"Integer"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table"_j, u"Integer"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::RecordsFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::RecordsFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -54,13 +54,13 @@ void* com::tibbo::aggregate::common::expression::function::table::RecordsFunctio
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::RecordsFunction::class_()
+java::lang::Class* function::table::RecordsFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.RecordsFunction", 68);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::RecordsFunction::getClass0()
+java::lang::Class* function::table::RecordsFunction::getClass0()
 {
     return class_();
 }

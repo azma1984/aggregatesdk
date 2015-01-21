@@ -9,7 +9,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor
+class DefaultEvaluatingVisitor
     : public AbstractEvaluatingVisitor
 {
 

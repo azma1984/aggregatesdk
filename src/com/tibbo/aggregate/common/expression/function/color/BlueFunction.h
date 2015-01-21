@@ -9,13 +9,13 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::color::BlueFunction
+class function::color::BlueFunction
     : public RgbFunction
 {
 
 public:
     typedef RgbFunction super;
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
     // Generated
     BlueFunction();

@@ -14,43 +14,43 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::date::DateFieldFunction::DateFieldFunction(const ::default_init_tag&)
+function::date::DateFieldFunction::DateFieldFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::date::DateFieldFunction::DateFieldFunction(int field) 
+function::date::DateFieldFunction::DateFieldFunction(int field) 
     : DateFieldFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(field);
 }
 
-void com::tibbo::aggregate::common::expression::function::date::DateFieldFunction::ctor(int field)
+void function::date::DateFieldFunction::ctor(int field)
 {
     super::ctor(u"Integer"_j);
     this->field = field;
 }
 
-void* com::tibbo::aggregate::common::expression::function::date::DateFieldFunction::execute(::java::util::GregorianCalendar* calendar, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::date::DateFieldFunction::execute(::java::util::GregorianCalendar* calendar, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     return calendar)->get(field));
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::DateFieldFunction::class_()
+java::lang::Class* function::date::DateFieldFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.date.DateFieldFunction", 69);
     return c;
 }
 
-void* com::tibbo::aggregate::common::expression::function::date::DateFieldFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray* parameters)
+void* function::date::DateFieldFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray* parameters)
 {
     return super::execute(evaluator, environment, parameters);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::DateFieldFunction::getClass0()
+java::lang::Class* function::date::DateFieldFunction::getClass0()
 {
     return class_();
 }

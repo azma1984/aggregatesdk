@@ -38,45 +38,45 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::KeyFieldsValidator(const ::default_init_tag&)
+Datevalidator::KeyFieldsValidator::KeyFieldsValidator(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::KeyFieldsValidator() 
+Datevalidator::KeyFieldsValidator::KeyFieldsValidator() 
     : KeyFieldsValidator(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::KeyFieldsValidator(const std::string & source) 
+Datevalidator::KeyFieldsValidator::KeyFieldsValidator(const std::string & source) 
     : KeyFieldsValidator(*static_cast< ::default_init_tag* >(0))
 {
     ctor(source);
 }
 
-void com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::ctor()
+void Datevalidator::KeyFieldsValidator::ctor()
 {
     super::ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::ctor(const std::string & source)
+void Datevalidator::KeyFieldsValidator::ctor(const std::string & source)
 {
     super::ctor();
 }
 
-std::string com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::encode()
+std::string Datevalidator::KeyFieldsValidator::encode()
 {
     return u""_j;
 }
 
-java::lang::Character* com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::getType()
+java::lang::Character* Datevalidator::KeyFieldsValidator::getType()
 {
     return ::java::lang::Character::valueOf(TableFormat::RECORD_VALIDATOR_KEY_FIELDS);
 }
 
-void com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::validate(DataTable* table, DataRecord* record) /* throws(ValidationException) */
+void Datevalidator::KeyFieldsValidator::validate(DataTable* table, DataRecord* record) /* throws(ValidationException) */
 {
     auto keyFields = table)->getFormat())->getKeyFields();
     if(keyFields)->size() == 0) {
@@ -100,13 +100,13 @@ void com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::va
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::class_()
+java::lang::Class* Datevalidator::KeyFieldsValidator::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.validator.KeyFieldsValidator", 65);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::validator::KeyFieldsValidator::getClass0()
+java::lang::Class* Datevalidator::KeyFieldsValidator::getClass0()
 {
     return class_();
 }

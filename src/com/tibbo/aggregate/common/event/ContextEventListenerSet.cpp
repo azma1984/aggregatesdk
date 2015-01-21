@@ -116,7 +116,7 @@ ContextEventListenerInfo* ContextEventListenerSet::getListenerInfo(void* ref)
         auto cel = java_cast< ContextEventListener* >((java_cast< ::java::lang::ref::Reference* >(ref)))->get());
         return cel != 0 ? new ContextEventListenerInfo(cel, true) : static_cast< ContextEventListenerInfo* >(0);
     } else {
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(std::stringBuilder().append(u"Unexpected reference: "_j)->append(ref))->toString());
+        throw new ContextRuntimeException(std::stringBuilder().append(u"Unexpected reference: "_j)->append(ref))->toString());
     }
 	*/
  return 0;

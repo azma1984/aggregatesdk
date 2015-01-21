@@ -20,24 +20,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::date::DateCreateFunction::DateCreateFunction(const ::default_init_tag&)
+function::date::DateCreateFunction::DateCreateFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::date::DateCreateFunction::DateCreateFunction() 
+function::date::DateCreateFunction::DateCreateFunction() 
     : DateCreateFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::date::DateCreateFunction::ctor()
+void function::date::DateCreateFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Integer year, Integer month, Integer day, Integer hour, Integer minute, Integer second [, String timezone]"_j, u"Date"_j);
+    super::ctor(function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Integer year, Integer month, Integer day, Integer hour, Integer minute, Integer second [, String timezone]"_j, u"Date"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::date::DateCreateFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::date::DateCreateFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(6, false, parameters);
     auto year = util::Util::convertToNumber((*parameters)[int(0)], true, false))->intValue();
@@ -57,13 +57,13 @@ void* com::tibbo::aggregate::common::expression::function::date::DateCreateFunct
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::DateCreateFunction::class_()
+java::lang::Class* function::date::DateCreateFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.date.DateCreateFunction", 70);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::DateCreateFunction::getClass0()
+java::lang::Class* function::date::DateCreateFunction::getClass0()
 {
     return class_();
 }

@@ -3,7 +3,7 @@
 
 /*
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::validator::TableValidator::class_()
+java::lang::Class* Datevalidator::TableValidator::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.validator.TableValidator", 61);
     return c;

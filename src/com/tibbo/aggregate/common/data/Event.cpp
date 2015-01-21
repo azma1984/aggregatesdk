@@ -28,10 +28,10 @@ void Event::ctor()
 {
     super::ctor();
     init();
-    setCreationtime(new ::java::util::Date(::java::lang::System::currentTimeMillis()));
+    setCreationtime(new Date(::java::lang::System::currentTimeMillis()));
 }
 
-void Event::ctor(const std::string & context, EventDefinition* def, int level, DataTable* data, ::java::lang::Long* id, ::java::util::Date* creationtime, Permissions* permissions)
+void Event::ctor(const std::string & context, EventDefinition* def, int level, DataTable* data, long  id, Date* creationtime, Permissions* permissions)
 {
     ctor();
     init_(context, def)->getName(), level, data, id);
@@ -41,17 +41,17 @@ void Event::ctor(const std::string & context, EventDefinition* def, int level, D
         this->creationtime = creationtime;
     }
     if(def)->getExpirationPeriod() > 0) {
-        setExpirationtime(new ::java::util::Date(::java::lang::System::currentTimeMillis() + def)->getExpirationPeriod()));
+        setExpirationtime(new Date(::java::lang::System::currentTimeMillis() + def)->getExpirationPeriod()));
     }
 }
 
-void Event::ctor(const std::string & context, const std::string & name, int level, DataTable* data, ::java::lang::Long* id)
+void Event::ctor(const std::string & context, const std::string & name, int level, DataTable* data, long  id)
 {
     ctor();
     init_(context, name, level, data, id);
 }
 
-void Event::init_(const std::string & context, const std::string & name, int level, DataTable* data, ::java::lang::Long* id)
+void Event::init_(const std::string & context, const std::string & name, int level, DataTable* data, long  id)
 {
     this->context = context;
     this->name = name;

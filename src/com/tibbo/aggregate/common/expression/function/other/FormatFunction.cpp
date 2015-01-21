@@ -26,24 +26,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::other::FormatFunction::FormatFunction(const ::default_init_tag&)
+function::other::FormatFunction::FormatFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::other::FormatFunction::FormatFunction() 
+function::other::FormatFunction::FormatFunction() 
     : FormatFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::other::FormatFunction::ctor()
+void function::other::FormatFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String pattern, Object parameter1, ..."_j, u"String"_j);
+    super::ctor(function::Functions::GROUP_STRING_PROCESSING(), u"String pattern, Object parameter1, ..."_j, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::other::FormatFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::other::FormatFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, true, parameters);
     auto pattern = (*parameters)[int(0)])->toString();
@@ -56,13 +56,13 @@ void* com::tibbo::aggregate::common::expression::function::other::FormatFunction
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::FormatFunction::class_()
+java::lang::Class* function::other::FormatFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.other.FormatFunction", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::FormatFunction::getClass0()
+java::lang::Class* function::other::FormatFunction::getClass0()
 {
     return class_();
 }

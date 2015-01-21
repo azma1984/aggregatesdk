@@ -3,7 +3,7 @@
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::Tracer::class_()
+java::lang::Class* util::Tracer::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.util.Tracer", 49);
     return c;

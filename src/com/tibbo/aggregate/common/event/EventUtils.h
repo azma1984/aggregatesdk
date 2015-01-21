@@ -36,9 +36,9 @@ private:
 
 public:
     static long generateEventId();
-    static std::list  getEventDefinitions(::com::tibbo::aggregate::common::context::ContextManager* cm, const std::string & contextMask, const std::string & eventsMask, ::com::tibbo::aggregate::common::context::CallerController* caller);
-    static std::list  getEvents(::com::tibbo::aggregate::common::context::Context* context, const std::string & eventsMask, ::com::tibbo::aggregate::common::context::CallerController* caller);
-    static bool matchesToMask(const std::string & eventMask, ::com::tibbo::aggregate::common::context::EventDefinition* ed);
+    static std::list  getEventDefinitions(ContextManager* cm, const std::string & contextMask, const std::string & eventsMask, CallerController* caller);
+    static std::list  getEvents(Context* context, const std::string & eventsMask, CallerController* caller);
+    static bool matchesToMask(const std::string & eventMask, EventDefinition* ed);
     static bool matchesToMask(const std::string & eventMask, const std::string & event);
     static DataTable* createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal);
     static ::java::awt::Color* getEventColor(int level);

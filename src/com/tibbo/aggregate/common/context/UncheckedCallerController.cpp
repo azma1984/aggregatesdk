@@ -5,80 +5,80 @@
 #include <com/tibbo/aggregate/common/security/Permissions.h"
 ////#include <java/lang/UnsupportedOperationException.h"
 
-com::tibbo::aggregate::common::context::UncheckedCallerController::UncheckedCallerController(const ::default_init_tag&)
+UncheckedCallerController::UncheckedCallerController(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::UncheckedCallerController::UncheckedCallerController() 
+UncheckedCallerController::UncheckedCallerController() 
     : UncheckedCallerController(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::context::UncheckedCallerController::UncheckedCallerController(const std::string & username) 
+UncheckedCallerController::UncheckedCallerController(const std::string & username) 
     : UncheckedCallerController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(username);
 }
 
-void com::tibbo::aggregate::common::context::UncheckedCallerController::init()
+void UncheckedCallerController::init()
 {
     permissions = DefaultPermissionChecker::getNullPermissions();
 }
 
-void com::tibbo::aggregate::common::context::UncheckedCallerController::ctor()
+void UncheckedCallerController::ctor()
 {
     super::ctor(0);
     init();
 }
 
-void com::tibbo::aggregate::common::context::UncheckedCallerController::ctor(const std::string & username)
+void UncheckedCallerController::ctor(const std::string & username)
 {
     super::ctor(0);
     init();
     setUsername(username);
 }
 
-com::tibbo::aggregate::common::security::Permissions* com::tibbo::aggregate::common::context::UncheckedCallerController::getPermissions()
+com::tibbo::aggregate::common::security::Permissions* UncheckedCallerController::getPermissions()
 {
     return permissions;
 }
 
-bool com::tibbo::aggregate::common::context::UncheckedCallerController::isPermissionCheckingEnabled()
+bool UncheckedCallerController::isPermissionCheckingEnabled()
 {
     return false;
 }
 
-bool com::tibbo::aggregate::common::context::UncheckedCallerController::isLoggedIn()
+bool UncheckedCallerController::isLoggedIn()
 {
     return true;
 }
 
-void com::tibbo::aggregate::common::context::UncheckedCallerController::logout()
+void UncheckedCallerController::logout()
 {
 }
 
-bool com::tibbo::aggregate::common::context::UncheckedCallerController::isHeadless()
+bool UncheckedCallerController::isHeadless()
 {
     return true;
 }
 
-void com::tibbo::aggregate::common::context::UncheckedCallerController::handleContextEvent(Event* event) /* throws(EventHandlingException) */
+void UncheckedCallerController::handleContextEvent(Event* event) /* throws(EventHandlingException) */
 {
     throw new ::java::lang::UnsupportedOperationException();
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::UncheckedCallerController::class_()
+java::lang::Class* UncheckedCallerController::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.UncheckedCallerController", 60);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::UncheckedCallerController::getClass0()
+java::lang::Class* UncheckedCallerController::getClass0()
 {
     return class_();
 }

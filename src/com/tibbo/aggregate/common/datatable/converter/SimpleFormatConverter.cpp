@@ -22,24 +22,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter::SimpleFormatConverter(const ::default_init_tag&)
+Dateconverter::SimpleFormatConverter::SimpleFormatConverter(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter::SimpleFormatConverter(::java::lang::Class* valueClass) 
+Dateconverter::SimpleFormatConverter::SimpleFormatConverter(::java::lang::Class* valueClass) 
     : SimpleFormatConverter(*static_cast< ::default_init_tag* >(0))
 {
     ctor(valueClass);
 }
 
-void com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter::ctor(::java::lang::Class* valueClass)
+void Dateconverter::SimpleFormatConverter::ctor(::java::lang::Class* valueClass)
 {
     super::ctor(valueClass);
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter::convertToBean(void* value, void* originalValue)
+void* Dateconverter::SimpleFormatConverter::convertToBean(void* value, void* originalValue)
 {
     if(dynamic_cast< DataTable* >(value) != 0) {
         value = (java_cast< DataTable* >(value)))->get();
@@ -49,13 +49,13 @@ void* com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter::class_()
+java::lang::Class* Dateconverter::SimpleFormatConverter::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.SimpleFormatConverter", 68);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter::getClass0()
+java::lang::Class* Dateconverter::SimpleFormatConverter::getClass0()
 {
     return class_();
 }

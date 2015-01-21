@@ -16,13 +16,13 @@ AbstractClientController::AbstractClientController()
     ctor();
 }
 
-AbstractClientController::AbstractClientController(::com::tibbo::aggregate::common::context::ContextManager* contextManager) 
+AbstractClientController::AbstractClientController(ContextManager* contextManager) 
     : AbstractClientController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(contextManager);
 }
 
-AbstractClientController::AbstractClientController(::com::tibbo::aggregate::common::context::ContextManager* contextManager, ::com::tibbo::aggregate::common::context::CallerController* callerController) 
+AbstractClientController::AbstractClientController(ContextManager* contextManager, CallerController* callerController) 
     : AbstractClientController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(contextManager,callerController);
@@ -39,14 +39,14 @@ void AbstractClientController::ctor()
     init();
 }
 
-void AbstractClientController::ctor(::com::tibbo::aggregate::common::context::ContextManager* contextManager)
+void AbstractClientController::ctor(ContextManager* contextManager)
 {
     super::ctor();
     init();
     this->contextManager = contextManager;
 }
 
-void AbstractClientController::ctor(::com::tibbo::aggregate::common::context::ContextManager* contextManager, ::com::tibbo::aggregate::common::context::CallerController* callerController)
+void AbstractClientController::ctor(ContextManager* contextManager, CallerController* callerController)
 {
     super::ctor();
     init();
@@ -54,12 +54,12 @@ void AbstractClientController::ctor(::com::tibbo::aggregate::common::context::Co
     this->callerController = callerController;
 }
 
-com::tibbo::aggregate::common::context::CallerController* AbstractClientController::getCallerController()
+CallerController* AbstractClientController::getCallerController()
 {
     return callerController;
 }
 
-void AbstractClientController::setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController)
+void AbstractClientController::setCallerController(CallerController* callerController)
 {
     this->callerController = callerController;
 }
@@ -88,7 +88,7 @@ void AbstractClientController::removeMaskListener(const std::string & context, c
     listeners)->remove(cel);
 }
 
-com::tibbo::aggregate::common::context::ContextManager* AbstractClientController::getContextManager()
+ContextManager* AbstractClientController::getContextManager()
 {
     return contextManager;
 }

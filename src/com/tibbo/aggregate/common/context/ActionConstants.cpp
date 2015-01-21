@@ -3,111 +3,111 @@
 
 ////#include <java/lang/String.h"
 
-com::tibbo::aggregate::common::context::ActionConstants::ActionConstants(const ::default_init_tag&)
+ActionConstants::ActionConstants(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::ActionConstants::ActionConstants()
+ActionConstants::ActionConstants()
     : ActionConstants(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_NAME()
+std::string& ActionConstants::FIELD_AD_NAME()
 {
     
     return FIELD_AD_NAME_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_NAME_;
+std::string ActionConstants::FIELD_AD_NAME_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_DESCRIPTION()
+std::string& ActionConstants::FIELD_AD_DESCRIPTION()
 {
     
     return FIELD_AD_DESCRIPTION_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_DESCRIPTION_;
+std::string ActionConstants::FIELD_AD_DESCRIPTION_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_HELP()
+std::string& ActionConstants::FIELD_AD_HELP()
 {
     
     return FIELD_AD_HELP_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_HELP_;
+std::string ActionConstants::FIELD_AD_HELP_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_ACCELERATOR()
+std::string& ActionConstants::FIELD_AD_ACCELERATOR()
 {
     
     return FIELD_AD_ACCELERATOR_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_ACCELERATOR_;
+std::string ActionConstants::FIELD_AD_ACCELERATOR_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_DROP_SOURCES()
+std::string& ActionConstants::FIELD_AD_DROP_SOURCES()
 {
     
     return FIELD_AD_DROP_SOURCES_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_DROP_SOURCES_;
+std::string ActionConstants::FIELD_AD_DROP_SOURCES_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_HIDDEN()
+std::string& ActionConstants::FIELD_AD_HIDDEN()
 {
     
     return FIELD_AD_HIDDEN_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_HIDDEN_;
+std::string ActionConstants::FIELD_AD_HIDDEN_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_ENABLED()
+std::string& ActionConstants::FIELD_AD_ENABLED()
 {
     
     return FIELD_AD_ENABLED_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_ENABLED_;
+std::string ActionConstants::FIELD_AD_ENABLED_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_ICON_ID()
+std::string& ActionConstants::FIELD_AD_ICON_ID()
 {
     
     return FIELD_AD_ICON_ID_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_ICON_ID_;
+std::string ActionConstants::FIELD_AD_ICON_ID_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_GROUP()
+std::string& ActionConstants::FIELD_AD_GROUP()
 {
     
     return FIELD_AD_GROUP_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_GROUP_;
+std::string ActionConstants::FIELD_AD_GROUP_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_EXECUTION_GROUP()
+std::string& ActionConstants::FIELD_AD_EXECUTION_GROUP()
 {
     
     return FIELD_AD_EXECUTION_GROUP_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_EXECUTION_GROUP_;
+std::string ActionConstants::FIELD_AD_EXECUTION_GROUP_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_DEFAULT()
+std::string& ActionConstants::FIELD_AD_DEFAULT()
 {
     
     return FIELD_AD_DEFAULT_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_DEFAULT_;
+std::string ActionConstants::FIELD_AD_DEFAULT_;
 
-std::string& com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK()
+std::string& ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK()
 {
     
     return FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK_;
 }
-std::string com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK_;
+std::string ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK_;
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::ActionConstants::class_()
+java::lang::Class* ActionConstants::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.ActionConstants", 50);
     return c;
 }
 
-void com::tibbo::aggregate::common::context::ActionConstants::clinit()
+void ActionConstants::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -131,7 +131,7 @@ struct string_init_ {
     super::
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::ActionConstants::getClass0()
+java::lang::Class* ActionConstants::getClass0()
 {
     return class_();
 }

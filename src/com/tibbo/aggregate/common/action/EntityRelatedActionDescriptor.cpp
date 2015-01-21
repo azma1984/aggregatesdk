@@ -80,12 +80,12 @@ std::string& com::tibbo::aggregate::common::action::EntityRelatedActionDescripto
 }
 std::string com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FIELD_ICON_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT()
+DateTableFormat*& com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT()
 {
     
     return FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT_;
+DateTableFormat* com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT_;
 
 void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId)
 {

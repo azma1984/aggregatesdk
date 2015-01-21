@@ -25,57 +25,57 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCDouble::FCDouble(const ::default_init_tag&)
+Dateconverter::FCDouble::FCDouble(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCDouble::FCDouble() 
+Dateconverter::FCDouble::FCDouble() 
     : FCDouble(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::converter::FCDouble::ctor()
+void Dateconverter::FCDouble::ctor()
 {
     super::ctor(::java::lang::Double::class_());
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::FCDouble::createFieldFormat(const std::string & name)
+DateFieldFormat* Dateconverter::FCDouble::createFieldFormat(const std::string & name)
 {
     return FieldFormat::create(name, FieldFormat::DOUBLE_FIELD);
 }
 
-java::lang::Double* com::tibbo::aggregate::common::datatable::converter::FCDouble::simpleToBean(void* value)
+java::lang::Double* Dateconverter::FCDouble::simpleToBean(void* value)
 {
     return ::java::lang::Double::valueOf((java_cast< ::java::lang::Number* >(value)))->doubleValue());
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCDouble::convertToTable(::java::lang::Double* value, TableFormat* format)
+void* Dateconverter::FCDouble::convertToTable(::java::lang::Double* value, TableFormat* format)
 {
     return value;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCDouble::convertToTable(void* value, TableFormat* format)
+void* Dateconverter::FCDouble::convertToTable(void* value, TableFormat* format)
 { 
     return convertToTable(dynamic_cast< ::java::lang::Double* >(value), format);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCDouble::class_()
+java::lang::Class* Dateconverter::FCDouble::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.FCDouble", 55);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCDouble::convertToTable(void* value)
+void* Dateconverter::FCDouble::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCDouble::getClass0()
+java::lang::Class* Dateconverter::FCDouble::getClass0()
 {
     return class_();
 }

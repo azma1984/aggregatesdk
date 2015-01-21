@@ -167,46 +167,46 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::AbstractEvaluatingVisitor(const ::default_init_tag&)
+AbstractEvaluatingVisitor::AbstractEvaluatingVisitor(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::AbstractEvaluatingVisitor(Evaluator* evaluator) 
+AbstractEvaluatingVisitor::AbstractEvaluatingVisitor(Evaluator* evaluator) 
     : AbstractEvaluatingVisitor(*static_cast< ::default_init_tag* >(0))
 {
     ctor(evaluator);
 }
 
-void com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::init()
+void AbstractEvaluatingVisitor::init()
 {
     top = -int(1);
     stack = new ::java::util::ArrayList();
 }
 
-std::string& com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::TEMP_FORMAT_NAME()
+std::string& AbstractEvaluatingVisitor::TEMP_FORMAT_NAME()
 {
     
     return TEMP_FORMAT_NAME_;
 }
-std::string com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::TEMP_FORMAT_NAME_;
+std::string AbstractEvaluatingVisitor::TEMP_FORMAT_NAME_;
 
-java::util::Map*& com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS()
+java::util::Map*& AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS()
 {
     
     return DEFAULT_FUNCTIONS_;
 }
-java::util::Map* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS_;
+java::util::Map* AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS_;
 
-void com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::ctor(Evaluator* evaluator)
+void AbstractEvaluatingVisitor::ctor(Evaluator* evaluator)
 {
     super::ctor();
     init();
     this->evaluator = evaluator;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::registerDefaultFunction(const std::string & name, Function* impl)
+void AbstractEvaluatingVisitor::registerDefaultFunction(const std::string & name, Function* impl)
 {
     
     if(DEFAULT_FUNCTIONS_)->containsKey(name)) {
@@ -215,12 +215,12 @@ void com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::regis
     DEFAULT_FUNCTIONS_)->put(name, impl);
 }
 
-com::tibbo::aggregate::common::expression::Evaluator* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::getEvaluator()
+Evaluator* AbstractEvaluatingVisitor::getEvaluator()
 {
     return evaluator;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::set(int delta, void* value)
+void AbstractEvaluatingVisitor::set(int delta, void* value)
 {
     top += delta;
     for (auto i = stack)->size(); i <= top; i++) {
@@ -229,24 +229,24 @@ void com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::set(i
     stack)->set(top, value);
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::getResult()
+void* AbstractEvaluatingVisitor::getResult()
 {
     auto result = get(0);
     top--;
     return result;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::get(int delta)
+void* AbstractEvaluatingVisitor::get(int delta)
 {
     return java_cast< void* >(stack)->get(top + delta));
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::SimpleNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::SimpleNode* node, void* data)
 {
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTStart* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTStart* node, void* data)
 {
     node)->childrenAccept(this, data);
     if(top == -int(1)) {
@@ -256,7 +256,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     }
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTConditionalNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTConditionalNode* node, void* data)
 {
     node)->jjtGetChild(int(0)))->jjtAccept(this, data);
     bool condition = (util::Util::convertToBoolean(get(0), true, false)))->booleanValue();
@@ -269,7 +269,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTLogicalOrNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTLogicalOrNode* node, void* data)
 {
     node)->jjtGetChild(int(0)))->jjtAccept(this, data);
     bool left = (util::Util::convertToBoolean(get(0), true, false)))->booleanValue();
@@ -283,7 +283,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTLogicalAndNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTLogicalAndNode* node, void* data)
 {
     node)->jjtGetChild(int(0)))->jjtAccept(this, data);
     bool left = (util::Util::convertToBoolean(get(0), true, false)))->booleanValue();
@@ -297,7 +297,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTBitwiseAndNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTBitwiseAndNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -314,7 +314,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTBitwiseOrNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTBitwiseOrNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -331,7 +331,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTBitwiseXorNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTBitwiseXorNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -348,7 +348,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-bool com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::equal(void* v1, void* v2)
+bool AbstractEvaluatingVisitor::equal(void* v1, void* v2)
 {
     
     if((v1 == 0) || (v2 == 0)) {
@@ -364,7 +364,7 @@ bool com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::equal
     }
 }
 
-int com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::compare(void* v1, void* v2)
+int AbstractEvaluatingVisitor::compare(void* v1, void* v2)
 {
     
     if((v1 == 0) && (v2 == 0)) {
@@ -397,27 +397,27 @@ int com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::compar
     return f1)->valueToString(v1))->compareTo(f2)->valueToString(v2));
 }
 
-bool com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::isFloatingPoint(::java::lang::Number* number)
+bool AbstractEvaluatingVisitor::isFloatingPoint(::java::lang::Number* number)
 {
     
     return (dynamic_cast< ::java::lang::Float* >(number) != 0) || (dynamic_cast< ::java::lang::Double* >(number) != 0);
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTEQNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTEQNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     set(-int(1), ::java::lang::Boolean::valueOf(equal(get(-int(1)), get(0))));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTNENode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTNENode* node, void* data)
 {
     node)->childrenAccept(this, data);
     set(-int(1), ::java::lang::Boolean::valueOf(!equal(get(-int(1)), get(0))));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTRegexMatchNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTRegexMatchNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = get(-int(1));
@@ -429,35 +429,35 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTLTNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTLTNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     set(-int(1), ::java::lang::Boolean::valueOf(compare(get(-int(1)), get(0)) < 0));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTGTNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTGTNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     set(-int(1), ::java::lang::Boolean::valueOf(compare(get(-int(1)), get(0)) > 0));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTLENode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTLENode* node, void* data)
 {
     node)->childrenAccept(this, data);
     set(-int(1), ::java::lang::Boolean::valueOf(compare(get(-int(1)), get(0)) <= 0));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTGENode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTGENode* node, void* data)
 {
     node)->childrenAccept(this, data);
     set(-int(1), ::java::lang::Boolean::valueOf(compare(get(-int(1)), get(0)) >= 0));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTAddNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTAddNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     if((dynamic_cast< const std::string & >(get(-int(1))) != 0) && (dynamic_cast< const std::string & >(get(0)) != 0)) {
@@ -484,7 +484,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTSubtractNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTSubtractNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -501,7 +501,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTMulNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTMulNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -518,7 +518,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTDivNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTDivNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -535,7 +535,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTModNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTModNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -548,7 +548,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTUnaryNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTUnaryNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto val = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(0), false, true);
@@ -564,7 +564,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTLogicalNotNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTLogicalNotNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto val = ::com::tibbo::aggregate::common::util::Util::convertToBoolean(get(0), true, true);
@@ -572,7 +572,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTBitwiseNotNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTBitwiseNotNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto val = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(0), false, true);
@@ -588,7 +588,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTFunctionNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTFunctionNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     std::list  parameters = new ::java::util::LinkedList();
@@ -611,43 +611,43 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTLongConstNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTLongConstNode* node, void* data)
 {
     set(1, new ::java::lang::Long(node)->val));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTFloatConstNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTFloatConstNode* node, void* data)
 {
     set(1, new ::java::lang::Float(node)->val));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTStringConstNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTStringConstNode* node, void* data)
 {
     set(1, node)->val);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTTrueNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTTrueNode* node, void* data)
 {
     set(1, ::java::lang::Boolean::valueOf(true));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTFalseNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTFalseNode* node, void* data)
 {
     set(1, ::java::lang::Boolean::valueOf(false));
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTNullNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTNullNode* node, void* data)
 {
     set(1, 0);
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTRightShiftNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTRightShiftNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -664,7 +664,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTUnsignedRightShiftNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTUnsignedRightShiftNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -681,7 +681,7 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
     return 0;
 }
 
-void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visit(::ASTLeftShiftNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(::ASTLeftShiftNode* node, void* data)
 {
     node)->childrenAccept(this, data);
     auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
@@ -700,13 +700,13 @@ void* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::visi
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::class_()
+java::lang::Class* AbstractEvaluatingVisitor::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.AbstractEvaluatingVisitor", 63);
     return c;
 }
 
-void com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::clinit()
+void AbstractEvaluatingVisitor::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -723,140 +723,140 @@ struct clinit_ {
         in_cl_init = true;
         DEFAULT_FUNCTIONS_ = new ::java::util::LinkedHashMap();
         {
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ABS(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"abs"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ACOS(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"acos"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ASIN(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"asin"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ATAN(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"atan"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::CBRT(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"cbrt"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::CEIL(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"ceil"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::COS(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"cos"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::COSH(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"cosh"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::E(), new ::com::tibbo::aggregate::common::expression::function::FloatConstantFunction((new ::java::lang::Float(::java::lang::Math::E)))->floatValue()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::EXP(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"exp"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::EQ(), new ::com::tibbo::aggregate::common::expression::function::number::EqFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FLOOR(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"floor"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FORMAT_NUMBER(), new ::com::tibbo::aggregate::common::expression::function::number::FormatNumberFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::GE(), new ::com::tibbo::aggregate::common::expression::function::number::GeFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::GT(), new ::com::tibbo::aggregate::common::expression::function::number::GtFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LE(), new ::com::tibbo::aggregate::common::expression::function::number::LeFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LOG(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"log"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LOG10(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"log10"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LT(), new ::com::tibbo::aggregate::common::expression::function::number::LtFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::MIN(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"min"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float first, Float second"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::MAX(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"max"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float first, Float second"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::NE(), new ::com::tibbo::aggregate::common::expression::function::number::NeFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::PI(), new ::com::tibbo::aggregate::common::expression::function::FloatConstantFunction((new ::java::lang::Float(::java::lang::Math::PI)))->floatValue()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::POW(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"pow"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float base, Float power"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::RANDOM(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"random"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u""_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ROUND(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"round"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Long"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SIGNUM(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"signum"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SIN(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"sin"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SINH(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"sinh"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SQRT(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"sqrt"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::TAN(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"tan"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::TANH(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"tanh"_j, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::CONTAINS(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"contains"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, String substring"_j, u"Boolean"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ENDS_WITH(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"endsWith"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, String suffix"_j, u"Boolean"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FORMAT(), new ::com::tibbo::aggregate::common::expression::function::other::FormatFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUPS(), new ::com::tibbo::aggregate::common::expression::function::other::GroupsFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::INDEX(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"indexOf"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, String substring [, Integer fromIndex]"_j, u"Integer"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::IS_DIGIT(), new ::com::tibbo::aggregate::common::expression::function::string::CharacterFunction(u"isDigit"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::IS_LETTER(), new ::com::tibbo::aggregate::common::expression::function::string::CharacterFunction(u"isLetter"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::IS_LOWER_CASE(), new ::com::tibbo::aggregate::common::expression::function::string::CharacterFunction(u"isLowerCase"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::IS_UPPER_CASE(), new ::com::tibbo::aggregate::common::expression::function::string::CharacterFunction(u"isUpperCase"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::IS_WHITESPACE(), new ::com::tibbo::aggregate::common::expression::function::string::CharacterFunction(u"isWhitespace"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LAST_INDEX(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"lastIndexOf"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, String substring [, Integer fromIndex]"_j, u"Integer"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LENGTH(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"length"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string"_j, u"Integer"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LOWER(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"toLowerCase"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string"_j, u"String"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::REPLACE(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"replace"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, String target, String replacement"_j, u"String"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SPLIT(), new ::com::tibbo::aggregate::common::expression::function::string::SplitFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::STARTS_WITH(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"startsWith"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, String prefix"_j, u"Boolean"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SUBSTRING(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"substring"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string, Integer beginIndex [, Integer endIndex]"_j, u"String"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::TRIM(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"trim"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string"_j, u"String"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::UPPER(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(std::string::class_())->getName(), u"toUpperCase"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_STRING_PROCESSING(), u"String string"_j, u"String"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::URL_DECODE(), new ::com::tibbo::aggregate::common::expression::function::string::UrlDecodeFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::URL_ENCODE(), new ::com::tibbo::aggregate::common::expression::function::string::UrlEncodeFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DATE(), new ::com::tibbo::aggregate::common::expression::function::date::DateCreateFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DATE_ADD(), new ::com::tibbo::aggregate::common::expression::function::date::DateAddFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DATE_DIFF(), new ::com::tibbo::aggregate::common::expression::function::date::DateDiffFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DAY(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::DAY_OF_MONTH));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DAY_OF_WEEK(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::DAY_OF_WEEK));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DAY_OF_YEAR(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::DAY_OF_YEAR));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FORMAT_DATE(), new ::com::tibbo::aggregate::common::expression::function::date::FormatDateFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::HOUR(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::HOUR_OF_DAY));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::MILLISECOND(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::MILLISECOND));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::MINUTE(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::MINUTE));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::MONTH(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::MONTH));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::NOW(), new ::com::tibbo::aggregate::common::expression::function::JavaConstructorFunction(::java::util::Date::class_())->getName(), ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SECOND(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::SECOND));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::PRINT_PERIOD(), new ::com::tibbo::aggregate::common::expression::function::date::PrintPeriodFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::TIME(), new ::com::tibbo::aggregate::common::expression::function::date::TimeFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::YEAR(), new ::com::tibbo::aggregate::common::expression::function::date::DateFieldFunction(::java::util::Calendar::YEAR));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::BLUE(), new ::com::tibbo::aggregate::common::expression::function::color::BlueFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::BRIGHTER(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::awt::Color::class_())->getName(), u"brighter"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_COLOR_PROCESSING(), u"Color color"_j, u"Color"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::COLOR(), new ::com::tibbo::aggregate::common::expression::function::color::ColorFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DARKER(), new ::com::tibbo::aggregate::common::expression::function::JavaMethodFunction(::java::awt::Color::class_())->getName(), u"darker"_j, false, ::com::tibbo::aggregate::common::expression::function::Functions::GROUP_COLOR_PROCESSING(), u"Color color"_j, u"Color"_j));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::GREEN(), new ::com::tibbo::aggregate::common::expression::function::color::GreenFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::RED(), new ::com::tibbo::aggregate::common::expression::function::color::RedFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ADD_COLUMNS(), new ::com::tibbo::aggregate::common::expression::function::table::AddColumnsFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ADD_RECORDS(), new ::com::tibbo::aggregate::common::expression::function::table::AddRecordsFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ADJUST_RECORD_LIMITS(), new ::com::tibbo::aggregate::common::expression::function::table::AdjustRecordLimitsFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::AGGREGATE(), new ::com::tibbo::aggregate::common::expression::function::table::AggregateFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::CELL(), new ::com::tibbo::aggregate::common::expression::function::table::CellFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::CLEAR(), new ::com::tibbo::aggregate::common::expression::function::table::ClearFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::CONVERT(), new ::com::tibbo::aggregate::common::expression::function::table::ConvertFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::COPY(), new ::com::tibbo::aggregate::common::expression::function::table::CopyFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DESCRIBE(), new ::com::tibbo::aggregate::common::expression::function::table::DescribeFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DESCRIPTION(), new ::com::tibbo::aggregate::common::expression::function::table::DescriptionFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ENCODE(), new ::com::tibbo::aggregate::common::expression::function::table::EncodeFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FILTER(), new ::com::tibbo::aggregate::common::expression::function::table::FilterFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::GET_FORMAT(), new ::com::tibbo::aggregate::common::expression::function::table::GetFormatFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::HAS_FIELD(), new ::com::tibbo::aggregate::common::expression::function::table::HasFieldFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::JOIN(), new ::com::tibbo::aggregate::common::expression::function::table::JoinFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::PRINT(), new ::com::tibbo::aggregate::common::expression::function::table::PrintFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::RECORDS(), new ::com::tibbo::aggregate::common::expression::function::table::RecordsFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::REMOVE_COLUMNS(), new ::com::tibbo::aggregate::common::expression::function::table::RemoveColumnsFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::REMOVE_RECORDS(), new ::com::tibbo::aggregate::common::expression::function::table::RemoveRecordsFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SELECT(), new ::com::tibbo::aggregate::common::expression::function::table::SelectFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SET(), new ::com::tibbo::aggregate::common::expression::function::table::SetFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SORT(), new ::com::tibbo::aggregate::common::expression::function::table::SortFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SUBTABLE(), new ::com::tibbo::aggregate::common::expression::function::table::SubtableFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::TABLE(), new ::com::tibbo::aggregate::common::expression::function::table::TableFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::UNION(), new ::com::tibbo::aggregate::common::expression::function::table::UnionFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::BOOLEAN(), new ::com::tibbo::aggregate::common::expression::function::type::BooleanFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::INTEGER(), new ::com::tibbo::aggregate::common::expression::function::type::IntegerFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FLOAT(), new ::com::tibbo::aggregate::common::expression::function::type::FloatFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LONG(), new ::com::tibbo::aggregate::common::expression::function::type::LongFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::STRING(), new ::com::tibbo::aggregate::common::expression::function::type::StringFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::TIMESTAMP(), new ::com::tibbo::aggregate::common::expression::function::type::TimestampFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::AVAILABLE(), new ::com::tibbo::aggregate::common::expression::function::context::AvailableFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::CALL_FUNCTION(), new ::com::tibbo::aggregate::common::expression::function::context::CallFunctionFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DC(), new ::com::tibbo::aggregate::common::expression::function::context::DcFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DR(), new ::com::tibbo::aggregate::common::expression::function::context::DrFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::DT(), new ::com::tibbo::aggregate::common::expression::function::context::DtFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::EVENT_AVAILABLE(), new ::com::tibbo::aggregate::common::expression::function::context::EventAvailableFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::EVENT_FORMAT(), new ::com::tibbo::aggregate::common::expression::function::context::EventFormatFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FIRE_EVENT(), new ::com::tibbo::aggregate::common::expression::function::context::FireEventFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FUNCTION_AVAILABLE(), new ::com::tibbo::aggregate::common::expression::function::context::FunctionAvailableFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FUNCTION_INPUT_FORMAT(), new ::com::tibbo::aggregate::common::expression::function::context::FunctionInputFormatFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::FUNCTION_OUTPUT_FORMAT(), new ::com::tibbo::aggregate::common::expression::function::context::FunctionOutputFormatFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::GET_VARIABLE(), new ::com::tibbo::aggregate::common::expression::function::context::GetVariableFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SET_VARIABLE(), new ::com::tibbo::aggregate::common::expression::function::context::SetVariableFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::VARIABLE_AVAILABLE(), new ::com::tibbo::aggregate::common::expression::function::context::VariableAvailableFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::VARIABLE_FORMAT(), new ::com::tibbo::aggregate::common::expression::function::context::VariableFormatFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::VARIABLE_READABLE(), new ::com::tibbo::aggregate::common::expression::function::context::VariableReadableFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::VARIABLE_WRITABLE(), new ::com::tibbo::aggregate::common::expression::function::context::VariableWritableFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::EVALUATE(), new ::com::tibbo::aggregate::common::expression::function::other::EvaluateFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::LD(), new ::com::tibbo::aggregate::common::expression::function::other::LdFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::SLEEP(), new ::com::tibbo::aggregate::common::expression::function::other::SleepFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::ST(), new ::com::tibbo::aggregate::common::expression::function::other::StFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::TRACE(), new ::com::tibbo::aggregate::common::expression::function::other::TraceFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::USER(), new ::com::tibbo::aggregate::common::expression::function::other::UserFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::XPATH(), new ::com::tibbo::aggregate::common::expression::function::other::XPathFunction());
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::HAS_VARIABLE(), new ::com::tibbo::aggregate::common::expression::function::context::VariableReadableFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_SYSTEM()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::HAS_FUNCTION(), new ::com::tibbo::aggregate::common::expression::function::context::FunctionAvailableFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_SYSTEM()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::HAS_EVENT(), new ::com::tibbo::aggregate::common::expression::function::context::EventAvailableFunction(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_SYSTEM()));
-            registerDefaultFunction(::com::tibbo::aggregate::common::expression::function::Functions::EXPRESSION_EDITOR_OPTIONS(), new ::com::tibbo::aggregate::common::expression::function::ExpressionEditorOptionsFunction());
+            registerDefaultFunction(function::Functions::ABS(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"abs"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::ACOS(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"acos"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::ASIN(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"asin"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::ATAN(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"atan"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::CBRT(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"cbrt"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::CEIL(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"ceil"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::COS(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"cos"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::COSH(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"cosh"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::E(), new function::FloatConstantFunction((new ::java::lang::Float(::java::lang::Math::E)))->floatValue()));
+            registerDefaultFunction(function::Functions::EXP(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"exp"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::EQ(), new function::number::EqFunction());
+            registerDefaultFunction(function::Functions::FLOOR(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"floor"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::FORMAT_NUMBER(), new function::number::FormatNumberFunction());
+            registerDefaultFunction(function::Functions::GE(), new function::number::GeFunction());
+            registerDefaultFunction(function::Functions::GT(), new function::number::GtFunction());
+            registerDefaultFunction(function::Functions::LE(), new function::number::LeFunction());
+            registerDefaultFunction(function::Functions::LOG(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"log"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::LOG10(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"log10"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::LT(), new function::number::LtFunction());
+            registerDefaultFunction(function::Functions::MIN(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"min"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float first, Float second"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::MAX(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"max"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float first, Float second"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::NE(), new function::number::NeFunction());
+            registerDefaultFunction(function::Functions::PI(), new function::FloatConstantFunction((new ::java::lang::Float(::java::lang::Math::PI)))->floatValue()));
+            registerDefaultFunction(function::Functions::POW(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"pow"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float base, Float power"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::RANDOM(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"random"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u""_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::ROUND(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"round"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Long"_j));
+            registerDefaultFunction(function::Functions::SIGNUM(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"signum"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::SIN(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"sin"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::SINH(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"sinh"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::SQRT(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"sqrt"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::TAN(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"tan"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::TANH(), new function::JavaMethodFunction(::java::lang::Math::class_())->getName(), u"tanh"_j, function::Functions::GROUP_NUMBER_PROCESSING(), u"Float value"_j, u"Float"_j));
+            registerDefaultFunction(function::Functions::CONTAINS(), new function::JavaMethodFunction(std::string::class_())->getName(), u"contains"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string, String substring"_j, u"Boolean"_j));
+            registerDefaultFunction(function::Functions::ENDS_WITH(), new function::JavaMethodFunction(std::string::class_())->getName(), u"endsWith"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string, String suffix"_j, u"Boolean"_j));
+            registerDefaultFunction(function::Functions::FORMAT(), new function::other::FormatFunction());
+            registerDefaultFunction(function::Functions::GROUPS(), new function::other::GroupsFunction());
+            registerDefaultFunction(function::Functions::INDEX(), new function::JavaMethodFunction(std::string::class_())->getName(), u"indexOf"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string, String substring [, Integer fromIndex]"_j, u"Integer"_j));
+            registerDefaultFunction(function::Functions::IS_DIGIT(), new function::string::CharacterFunction(u"isDigit"_j));
+            registerDefaultFunction(function::Functions::IS_LETTER(), new function::string::CharacterFunction(u"isLetter"_j));
+            registerDefaultFunction(function::Functions::IS_LOWER_CASE(), new function::string::CharacterFunction(u"isLowerCase"_j));
+            registerDefaultFunction(function::Functions::IS_UPPER_CASE(), new function::string::CharacterFunction(u"isUpperCase"_j));
+            registerDefaultFunction(function::Functions::IS_WHITESPACE(), new function::string::CharacterFunction(u"isWhitespace"_j));
+            registerDefaultFunction(function::Functions::LAST_INDEX(), new function::JavaMethodFunction(std::string::class_())->getName(), u"lastIndexOf"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string, String substring [, Integer fromIndex]"_j, u"Integer"_j));
+            registerDefaultFunction(function::Functions::LENGTH(), new function::JavaMethodFunction(std::string::class_())->getName(), u"length"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string"_j, u"Integer"_j));
+            registerDefaultFunction(function::Functions::LOWER(), new function::JavaMethodFunction(std::string::class_())->getName(), u"toLowerCase"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string"_j, u"String"_j));
+            registerDefaultFunction(function::Functions::REPLACE(), new function::JavaMethodFunction(std::string::class_())->getName(), u"replace"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string, String target, String replacement"_j, u"String"_j));
+            registerDefaultFunction(function::Functions::SPLIT(), new function::string::SplitFunction());
+            registerDefaultFunction(function::Functions::STARTS_WITH(), new function::JavaMethodFunction(std::string::class_())->getName(), u"startsWith"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string, String prefix"_j, u"Boolean"_j));
+            registerDefaultFunction(function::Functions::SUBSTRING(), new function::JavaMethodFunction(std::string::class_())->getName(), u"substring"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string, Integer beginIndex [, Integer endIndex]"_j, u"String"_j));
+            registerDefaultFunction(function::Functions::TRIM(), new function::JavaMethodFunction(std::string::class_())->getName(), u"trim"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string"_j, u"String"_j));
+            registerDefaultFunction(function::Functions::UPPER(), new function::JavaMethodFunction(std::string::class_())->getName(), u"toUpperCase"_j, false, function::Functions::GROUP_STRING_PROCESSING(), u"String string"_j, u"String"_j));
+            registerDefaultFunction(function::Functions::URL_DECODE(), new function::string::UrlDecodeFunction());
+            registerDefaultFunction(function::Functions::URL_ENCODE(), new function::string::UrlEncodeFunction());
+            registerDefaultFunction(function::Functions::DATE(), new function::date::DateCreateFunction());
+            registerDefaultFunction(function::Functions::DATE_ADD(), new function::date::DateAddFunction());
+            registerDefaultFunction(function::Functions::DATE_DIFF(), new function::date::DateDiffFunction());
+            registerDefaultFunction(function::Functions::DAY(), new function::date::DateFieldFunction(::java::util::Calendar::DAY_OF_MONTH));
+            registerDefaultFunction(function::Functions::DAY_OF_WEEK(), new function::date::DateFieldFunction(::java::util::Calendar::DAY_OF_WEEK));
+            registerDefaultFunction(function::Functions::DAY_OF_YEAR(), new function::date::DateFieldFunction(::java::util::Calendar::DAY_OF_YEAR));
+            registerDefaultFunction(function::Functions::FORMAT_DATE(), new function::date::FormatDateFunction());
+            registerDefaultFunction(function::Functions::HOUR(), new function::date::DateFieldFunction(::java::util::Calendar::HOUR_OF_DAY));
+            registerDefaultFunction(function::Functions::MILLISECOND(), new function::date::DateFieldFunction(::java::util::Calendar::MILLISECOND));
+            registerDefaultFunction(function::Functions::MINUTE(), new function::date::DateFieldFunction(::java::util::Calendar::MINUTE));
+            registerDefaultFunction(function::Functions::MONTH(), new function::date::DateFieldFunction(::java::util::Calendar::MONTH));
+            registerDefaultFunction(function::Functions::NOW(), new function::JavaConstructorFunction(Date::class_())->getName(), function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date"_j));
+            registerDefaultFunction(function::Functions::SECOND(), new function::date::DateFieldFunction(::java::util::Calendar::SECOND));
+            registerDefaultFunction(function::Functions::PRINT_PERIOD(), new function::date::PrintPeriodFunction());
+            registerDefaultFunction(function::Functions::TIME(), new function::date::TimeFunction());
+            registerDefaultFunction(function::Functions::YEAR(), new function::date::DateFieldFunction(::java::util::Calendar::YEAR));
+            registerDefaultFunction(function::Functions::BLUE(), new function::color::BlueFunction());
+            registerDefaultFunction(function::Functions::BRIGHTER(), new function::JavaMethodFunction(::java::awt::Color::class_())->getName(), u"brighter"_j, false, function::Functions::GROUP_COLOR_PROCESSING(), u"Color color"_j, u"Color"_j));
+            registerDefaultFunction(function::Functions::COLOR(), new function::color::ColorFunction());
+            registerDefaultFunction(function::Functions::DARKER(), new function::JavaMethodFunction(::java::awt::Color::class_())->getName(), u"darker"_j, false, function::Functions::GROUP_COLOR_PROCESSING(), u"Color color"_j, u"Color"_j));
+            registerDefaultFunction(function::Functions::GREEN(), new function::color::GreenFunction());
+            registerDefaultFunction(function::Functions::RED(), new function::color::RedFunction());
+            registerDefaultFunction(function::Functions::ADD_COLUMNS(), new function::table::AddColumnsFunction());
+            registerDefaultFunction(function::Functions::ADD_RECORDS(), new function::table::AddRecordsFunction());
+            registerDefaultFunction(function::Functions::ADJUST_RECORD_LIMITS(), new function::table::AdjustRecordLimitsFunction());
+            registerDefaultFunction(function::Functions::AGGREGATE(), new function::table::AggregateFunction());
+            registerDefaultFunction(function::Functions::CELL(), new function::table::CellFunction());
+            registerDefaultFunction(function::Functions::CLEAR(), new function::table::ClearFunction());
+            registerDefaultFunction(function::Functions::CONVERT(), new function::table::ConvertFunction());
+            registerDefaultFunction(function::Functions::COPY(), new function::table::CopyFunction());
+            registerDefaultFunction(function::Functions::DESCRIBE(), new function::table::DescribeFunction());
+            registerDefaultFunction(function::Functions::DESCRIPTION(), new function::table::DescriptionFunction());
+            registerDefaultFunction(function::Functions::ENCODE(), new function::table::EncodeFunction());
+            registerDefaultFunction(function::Functions::FILTER(), new function::table::FilterFunction());
+            registerDefaultFunction(function::Functions::GET_FORMAT(), new function::table::GetFormatFunction());
+            registerDefaultFunction(function::Functions::HAS_FIELD(), new function::table::HasFieldFunction());
+            registerDefaultFunction(function::Functions::JOIN(), new function::table::JoinFunction());
+            registerDefaultFunction(function::Functions::PRINT(), new function::table::PrintFunction());
+            registerDefaultFunction(function::Functions::RECORDS(), new function::table::RecordsFunction());
+            registerDefaultFunction(function::Functions::REMOVE_COLUMNS(), new function::table::RemoveColumnsFunction());
+            registerDefaultFunction(function::Functions::REMOVE_RECORDS(), new function::table::RemoveRecordsFunction());
+            registerDefaultFunction(function::Functions::SELECT(), new function::table::SelectFunction());
+            registerDefaultFunction(function::Functions::SET(), new function::table::SetFunction());
+            registerDefaultFunction(function::Functions::SORT(), new function::table::SortFunction());
+            registerDefaultFunction(function::Functions::SUBTABLE(), new function::table::SubtableFunction());
+            registerDefaultFunction(function::Functions::TABLE(), new function::table::TableFunction());
+            registerDefaultFunction(function::Functions::UNION(), new function::table::UnionFunction());
+            registerDefaultFunction(function::Functions::BOOLEAN(), new function::type::BooleanFunction());
+            registerDefaultFunction(function::Functions::INTEGER(), new function::type::IntegerFunction());
+            registerDefaultFunction(function::Functions::FLOAT(), new function::type::FloatFunction());
+            registerDefaultFunction(function::Functions::LONG(), new function::type::LongFunction());
+            registerDefaultFunction(function::Functions::STRING(), new function::type::StringFunction());
+            registerDefaultFunction(function::Functions::TIMESTAMP(), new function::type::TimestampFunction());
+            registerDefaultFunction(function::Functions::AVAILABLE(), new function::context::AvailableFunction());
+            registerDefaultFunction(function::Functions::CALL_FUNCTION(), new function::context::CallFunctionFunction());
+            registerDefaultFunction(function::Functions::DC(), new function::context::DcFunction());
+            registerDefaultFunction(function::Functions::DR(), new function::context::DrFunction());
+            registerDefaultFunction(function::Functions::DT(), new function::context::DtFunction());
+            registerDefaultFunction(function::Functions::EVENT_AVAILABLE(), new function::context::EventAvailableFunction(function::Functions::GROUP_CONTEXT_RELATED()));
+            registerDefaultFunction(function::Functions::EVENT_FORMAT(), new function::context::EventFormatFunction());
+            registerDefaultFunction(function::Functions::FIRE_EVENT(), new function::context::FireEventFunction());
+            registerDefaultFunction(function::Functions::FUNCTION_AVAILABLE(), new function::context::FunctionAvailableFunction(function::Functions::GROUP_CONTEXT_RELATED()));
+            registerDefaultFunction(function::Functions::FUNCTION_INPUT_FORMAT(), new function::context::FunctionInputFormatFunction());
+            registerDefaultFunction(function::Functions::FUNCTION_OUTPUT_FORMAT(), new function::context::FunctionOutputFormatFunction());
+            registerDefaultFunction(function::Functions::GET_VARIABLE(), new function::context::GetVariableFunction());
+            registerDefaultFunction(function::Functions::SET_VARIABLE(), new function::context::SetVariableFunction());
+            registerDefaultFunction(function::Functions::VARIABLE_AVAILABLE(), new function::context::VariableAvailableFunction(function::Functions::GROUP_CONTEXT_RELATED()));
+            registerDefaultFunction(function::Functions::VARIABLE_FORMAT(), new function::context::VariableFormatFunction());
+            registerDefaultFunction(function::Functions::VARIABLE_READABLE(), new function::context::VariableReadableFunction(function::Functions::GROUP_CONTEXT_RELATED()));
+            registerDefaultFunction(function::Functions::VARIABLE_WRITABLE(), new function::context::VariableWritableFunction(function::Functions::GROUP_CONTEXT_RELATED()));
+            registerDefaultFunction(function::Functions::EVALUATE(), new function::other::EvaluateFunction());
+            registerDefaultFunction(function::Functions::LD(), new function::other::LdFunction());
+            registerDefaultFunction(function::Functions::SLEEP(), new function::other::SleepFunction());
+            registerDefaultFunction(function::Functions::ST(), new function::other::StFunction());
+            registerDefaultFunction(function::Functions::TRACE(), new function::other::TraceFunction());
+            registerDefaultFunction(function::Functions::USER(), new function::other::UserFunction());
+            registerDefaultFunction(function::Functions::XPATH(), new function::other::XPathFunction());
+            registerDefaultFunction(function::Functions::HAS_VARIABLE(), new function::context::VariableReadableFunction(function::Functions::GROUP_SYSTEM()));
+            registerDefaultFunction(function::Functions::HAS_FUNCTION(), new function::context::FunctionAvailableFunction(function::Functions::GROUP_SYSTEM()));
+            registerDefaultFunction(function::Functions::HAS_EVENT(), new function::context::EventAvailableFunction(function::Functions::GROUP_SYSTEM()));
+            registerDefaultFunction(function::Functions::EXPRESSION_EDITOR_OPTIONS(), new function::ExpressionEditorOptionsFunction());
         }
     }
 };
@@ -866,7 +866,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::getClass0()
+java::lang::Class* AbstractEvaluatingVisitor::getClass0()
 {
     return class_();
 }

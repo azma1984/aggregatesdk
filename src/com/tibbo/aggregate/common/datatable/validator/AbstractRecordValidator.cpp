@@ -27,19 +27,19 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::validator::AbstractRecordValidator::AbstractRecordValidator(const ::default_init_tag&)
+Datevalidator::AbstractRecordValidator::AbstractRecordValidator(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::validator::AbstractRecordValidator::AbstractRecordValidator()
+Datevalidator::AbstractRecordValidator::AbstractRecordValidator()
     : AbstractRecordValidator(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-bool com::tibbo::aggregate::common::datatable::validator::AbstractRecordValidator::equals(void* obj)
+bool Datevalidator::AbstractRecordValidator::equals(void* obj)
 {
     if(obj == 0) {
         return false;
@@ -50,7 +50,7 @@ bool com::tibbo::aggregate::common::datatable::validator::AbstractRecordValidato
     return ::com::tibbo::aggregate::common::util::Util::equals(getType(), (java_cast< RecordValidator* >(obj)))->getType());
 }
 
-void* com::tibbo::aggregate::common::datatable::validator::AbstractRecordValidator::clone()
+void* Datevalidator::AbstractRecordValidator::clone()
 {
     try {
         return super::clone();
@@ -61,13 +61,13 @@ void* com::tibbo::aggregate::common::datatable::validator::AbstractRecordValidat
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::validator::AbstractRecordValidator::class_()
+java::lang::Class* Datevalidator::AbstractRecordValidator::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.validator.AbstractRecordValidator", 70);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::validator::AbstractRecordValidator::getClass0()
+java::lang::Class* Datevalidator::AbstractRecordValidator::getClass0()
 {
     return class_();
 }

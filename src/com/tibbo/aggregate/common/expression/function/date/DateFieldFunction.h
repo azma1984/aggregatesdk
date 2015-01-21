@@ -11,7 +11,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::date::DateFieldFunction
+class function::date::DateFieldFunction
     : public DateFunction
 {
 
@@ -34,7 +34,7 @@ protected:
 
 public:
     
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray* parameters);
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray* parameters);
 
 private:
     ::java::lang::Class* getClass0();

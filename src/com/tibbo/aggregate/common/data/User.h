@@ -71,7 +71,7 @@ public:
     void setCity(const std::string& city);
     void setAddress2(const std::string& address2);
     void setAddress1(const std::string& address1);
-    void setId(::java::lang::Long* id);
+    void setId(long  id);
     void setLocale(const std::string& locale);
     void setDatepattern(const std::string& datepattern);
     void setTimepattern(const std::string& timepattern);

@@ -5,7 +5,7 @@
 #include "../encoding/ClassicEncodingSettings.h"
 #include "SString.h"
 
-class BooleanFieldFormat : public FieldFormat<bool>
+class BooleanFieldFormat : public FieldFormat
 {
 
 public:

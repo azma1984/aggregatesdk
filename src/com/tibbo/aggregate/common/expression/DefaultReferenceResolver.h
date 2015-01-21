@@ -11,7 +11,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::DefaultReferenceResolver
+class DefaultReferenceResolver
     : public AbstractReferenceResolver
 {
 
@@ -43,14 +43,14 @@ public: /* protected */
     int  getRow(Reference* ref, EvaluationEnvironment* environment);
 
 private:
-    const std::string & resolveEntityDescription(Reference* ref, ::com::tibbo::aggregate::common::context::Context* con) /* throws(IllegalStateException) */;
+    const std::string & resolveEntityDescription(Reference* ref, Context* con) /* throws(IllegalStateException) */;
 
 public:
-    std::list  getContexts(Reference* ref) /* throws(ContextException) */;
-    ::com::tibbo::aggregate::common::context::Context* getContext(Reference* ref) /* throws(ContextException) */;
+    std::list  getContexts(Reference* ref) ;
+    Context* getContext(Reference* ref) ;
 
 public: /* protected */
-    DataTable* resolveEntity(Reference* ref, ::com::tibbo::aggregate::common::context::Context* con, EvaluationEnvironment* environment) /* throws(ContextException, SyntaxErrorException, EvaluationException) */;
+    DataTable* resolveEntity(Reference* ref, Context* con, EvaluationEnvironment* environment) /* throws(ContextException, SyntaxErrorException, EvaluationException) */;
 
     // Generated
 

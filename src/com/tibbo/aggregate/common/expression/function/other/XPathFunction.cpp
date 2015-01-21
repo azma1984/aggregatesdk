@@ -52,45 +52,45 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::other::XPathFunction::XPathFunction(const ::default_init_tag&)
+function::other::XPathFunction::XPathFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::other::XPathFunction::XPathFunction() 
+function::other::XPathFunction::XPathFunction() 
     : XPathFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-std::string& com::tibbo::aggregate::common::expression::function::other::XPathFunction::FIELD_NODE_NAME()
+std::string& function::other::XPathFunction::FIELD_NODE_NAME()
 {
     
     return FIELD_NODE_NAME_;
 }
-std::string com::tibbo::aggregate::common::expression::function::other::XPathFunction::FIELD_NODE_NAME_;
+std::string function::other::XPathFunction::FIELD_NODE_NAME_;
 
-std::string& com::tibbo::aggregate::common::expression::function::other::XPathFunction::FIELD_NODE_CONTENT()
+std::string& function::other::XPathFunction::FIELD_NODE_CONTENT()
 {
     
     return FIELD_NODE_CONTENT_;
 }
-std::string com::tibbo::aggregate::common::expression::function::other::XPathFunction::FIELD_NODE_CONTENT_;
+std::string function::other::XPathFunction::FIELD_NODE_CONTENT_;
 
-std::string& com::tibbo::aggregate::common::expression::function::other::XPathFunction::FIELD_NODE_CHILDREN()
+std::string& function::other::XPathFunction::FIELD_NODE_CHILDREN()
 {
     
     return FIELD_NODE_CHILDREN_;
 }
-std::string com::tibbo::aggregate::common::expression::function::other::XPathFunction::FIELD_NODE_CHILDREN_;
+std::string function::other::XPathFunction::FIELD_NODE_CHILDREN_;
 
-void com::tibbo::aggregate::common::expression::function::other::XPathFunction::ctor()
+void function::other::XPathFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_OTHER(), u"String xml, String query [, Boolean table]"_j, u"Object"_j);
+    super::ctor(function::Functions::GROUP_OTHER(), u"String xml, String query [, Boolean table]"_j, u"Object"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::other::XPathFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::other::XPathFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     try {
@@ -111,11 +111,11 @@ void* com::tibbo::aggregate::common::expression::function::other::XPathFunction:
             return expr)->evaluate(doc), ::javax::xml::xpath::XPathConstants::STRING()))->toString();
         }
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(ex)->getMessage(), ex);
+        throw new EvaluationException(ex)->getMessage(), ex);
     }
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::expression::function::other::XPathFunction::tableFromNodes(std::list  nodes)
+DateDataTable* function::other::XPathFunction::tableFromNodes(std::list  nodes)
 {
     auto format = formatFromNodes(nodes);
     auto result = new DataTable(format);
@@ -141,7 +141,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return result;
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::expression::function::other::XPathFunction::formatFromNodes(std::list  nodes)
+DateTableFormat* function::other::XPathFunction::formatFromNodes(std::list  nodes)
 {
     auto format = new TableFormat();
     format)->addField(static_cast< FieldFormat* >(FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(FIELD_NODE_NAME_)
@@ -175,7 +175,7 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
     return format;
 }
 
-java::util::List* com::tibbo::aggregate::common::expression::function::other::XPathFunction::nodesToList(::org::w3c::dom::NodeList* nodeList)
+std::list  function::other::XPathFunction::nodesToList(::org::w3c::dom::NodeList* nodeList)
 {
     std::list  nodes = new ::java::util::LinkedList();
     for (auto i = int(0); i < nodeList)->getLength(); i++) {
@@ -184,20 +184,20 @@ java::util::List* com::tibbo::aggregate::common::expression::function::other::XP
     return nodes;
 }
 
-std::string com::tibbo::aggregate::common::expression::function::other::XPathFunction::buildAttributeFieldName(::org::w3c::dom::Node* attribute)
+std::string function::other::XPathFunction::buildAttributeFieldName(::org::w3c::dom::Node* attribute)
 {
     return ::com::tibbo::aggregate::common::util::Util::descriptionToName(attribute)->getNodeName());
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::XPathFunction::class_()
+java::lang::Class* function::other::XPathFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.other.XPathFunction", 66);
     return c;
 }
 
-void com::tibbo::aggregate::common::expression::function::other::XPathFunction::clinit()
+void function::other::XPathFunction::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -212,7 +212,7 @@ struct string_init_ {
     super::
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::XPathFunction::getClass0()
+java::lang::Class* function::other::XPathFunction::getClass0()
 {
     return class_();
 }

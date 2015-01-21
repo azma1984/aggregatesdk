@@ -54,19 +54,19 @@ private:
 public:
     static const std::string transferDecode(const std::string & value);
     static const std::string transferEncode(const std::string & value);
-    static void inlineData(DataTable* table, ::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* cc);
+    static void inlineData(DataTable* table, ContextManager* cm, CallerController* cc);
     static std::map getEditorSelectionValues();
     static DataTable* wrapToTable(std::list  values);
     static DataTable* wrapToTable(std::map values);
-    static ::java::util::Set* findDifferingFields(DataTable* first, DataTable* second);
+    static ::std::set  findDifferingFields(DataTable* first, DataTable* second);
     static DataTable* makeSubtable(DataTable* table, ::java::util::Collection* fields);
-    static ::com::tibbo::aggregate::common::expression::Evaluator* createEvaluator(DataTable* dataTable, ::com::tibbo::aggregate::common::context::ContextManager* contextManager, ::com::tibbo::aggregate::common::context::Context* context);
+    static Evaluator* createEvaluator(DataTable* dataTable, ContextManager* contextManager, Context* context);
     static const std::string fieldValueToString(FieldFormat* ff, void* value);
     static ::java::nio::charset::Charset* detectCharset(::int8_tArray* data);
     static const std::string createRecordKeyString(DataRecord* record, int  rowNumber, const std::string & keyField);
-    static DataTable* processBindings(DataTable* table, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator);
-    static DataTable* processBindings(DataTable* table, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector);
-    static DataTable* processBindings(DataTable* table, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector, bool split);
+    static DataTable* processBindings(DataTable* table, Evaluator* evaluator);
+    static DataTable* processBindings(DataTable* table, Evaluator* evaluator, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector);
+    static DataTable* processBindings(DataTable* table, Evaluator* evaluator, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector, bool split);
 
     // Generated
     DataTableUtils();

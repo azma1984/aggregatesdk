@@ -30,7 +30,7 @@ private:
     std::list  eventActions;
 protected:
     void ctor();
-    void ctor(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
+    void ctor(ContextManager* cm, CallerController* callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
 
 public:
     ::java::text::SimpleDateFormat* createDateFormatter();
@@ -49,13 +49,13 @@ public:
     std::list  getEventActions();
     void setEventActions(std::list  eventActions);
     UserSettings* clone();
-    void fill(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
-    void fillBasicProperties(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
-    void fillActions(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* callerController);
+    void fill(ContextManager* cm, CallerController* callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
+    void fillBasicProperties(ContextManager* cm, CallerController* callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
+    void fillActions(ContextManager* cm, CallerController* callerController);
 
     // Generated
     UserSettings();
-    UserSettings(::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* callerController);
+    UserSettings(ContextManager* cm, CallerController* callerController);
 protected:
     UserSettings(const ::default_init_tag&);
 

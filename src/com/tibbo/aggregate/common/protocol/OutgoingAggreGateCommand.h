@@ -25,7 +25,7 @@ public:
     void constructReply(const std::string & id, const std::string & code);
     void constructReply(const std::string & id, const std::string & code, const std::string & message);
     void constructReply(const std::string & id, const std::string & code, const std::string & message, const std::string & details);
-    void constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, ::java::lang::Long* eventId, ::java::util::Date* creationtime, int  listener);
+    void constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, long  eventId, Date* creationtime, int  listener);
 
     // Generated
     OutgoingAggreGateCommand();

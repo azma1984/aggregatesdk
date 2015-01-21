@@ -18,24 +18,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::EventFormatFunction::EventFormatFunction(const ::default_init_tag&)
+function::context::EventFormatFunction::EventFormatFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::EventFormatFunction::EventFormatFunction() 
+function::context::EventFormatFunction::EventFormatFunction() 
     : EventFormatFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::context::EventFormatFunction::ctor()
+void function::context::EventFormatFunction::ctor()
 {
     super::ctor(u"String context, String event"_j);
 }
 
-std::string com::tibbo::aggregate::common::expression::function::context::EventFormatFunction::getFormat(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters)
+std::string function::context::EventFormatFunction::getFormat(Evaluator* evaluator, Context* con, voidArray*/*...*/ parameters)
 {
     auto def = con)->getEventDefinition((*parameters)[int(1)])->toString(), evaluator)->getDefaultResolver())->getCallerController());
     return def != 0 ? def)->getFormat())->encode(false) : static_cast< const std::string & >(0);
@@ -43,13 +43,13 @@ std::string com::tibbo::aggregate::common::expression::function::context::EventF
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::EventFormatFunction::class_()
+java::lang::Class* function::context::EventFormatFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.EventFormatFunction", 74);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::EventFormatFunction::getClass0()
+java::lang::Class* function::context::EventFormatFunction::getClass0()
 {
     return class_();
 }

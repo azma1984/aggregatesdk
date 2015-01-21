@@ -187,7 +187,7 @@ com::tibbo::aggregate::common::communication::ReplyMonitor* com::tibbo::aggregat
                 }
             }
         }
-        throw new ::com::tibbo::aggregate::common::device::DisconnectionException(Cres::get())->getString(u"disconnected"_j));
+        throw new DisconnectionException(Cres::get())->getString(u"disconnected"_j));
     }
     auto const mon = new ReplyMonitor(cmd);
     auto future = SENDERS_POOL())->submit(static_cast< ::java::util::concurrent::Callable* >(new AsyncCommandProcessor_sendCommand_1(this, mon, cmd)));
@@ -195,8 +195,8 @@ com::tibbo::aggregate::common::communication::ReplyMonitor* com::tibbo::aggregat
         auto th = java_cast< ::java::lang::Throwable* >(future)->get());
         if(th == 0) {
             return mon;
-        } else if(dynamic_cast< ::com::tibbo::aggregate::common::device::DisconnectionException* >(th) != 0) {
-            throw java_cast< ::com::tibbo::aggregate::common::device::DisconnectionException* >(th);
+        } else if(dynamic_cast< DisconnectionException* >(th) != 0) {
+            throw java_cast< DisconnectionException* >(th);
         } else if(dynamic_cast< std::exception* >(th) != 0) {
             throw java_cast< std::exception* >(th);
         } else if(dynamic_cast< ::java::lang::InterruptedException* >(th) != 0) {
@@ -293,7 +293,7 @@ void com::tibbo::aggregate::common::communication::AsyncCommandProcessor::run()
                 }
             }
             java_cast< AbstractDeviceController* >(controller))->disconnectImpl();
-        } catch (::com::tibbo::aggregate::common::device::DisconnectionException* ex) {
+        } catch (DisconnectionException* ex) {
             processError(::org::apache::log4j::Level::DEBUG(), u"Disconnection of peer detected in async processor"_j, ex);
         } catch (::java::nio::channels::ClosedByInterruptException* ex) {
             processError(::org::apache::log4j::Level::DEBUG(), u"Async processor interrupted"_j, ex);
@@ -325,7 +325,7 @@ bool com::tibbo::aggregate::common::communication::AsyncCommandProcessor::isActi
     return !sentCommandsQueue)->isEmpty();
 }
 
-java::util::List* com::tibbo::aggregate::common::communication::AsyncCommandProcessor::getActiveCommands()
+std::list  com::tibbo::aggregate::common::communication::AsyncCommandProcessor::getActiveCommands()
 {
     std::list  res = new ::java::util::LinkedList();
     {

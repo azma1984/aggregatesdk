@@ -74,7 +74,7 @@ void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::construc
     addParam(DataTableUtils::transferEncode(details));
 }
 
-void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, ::java::lang::Long* eventId, ::java::util::Date* creationtime, int  listener)
+void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, long  eventId, Date* creationtime, int  listener)
 {
     this->id = new std::string();
     addParam(std::string::valueOf(AggreGateCommand::COMMAND_CODE_MESSAGE));

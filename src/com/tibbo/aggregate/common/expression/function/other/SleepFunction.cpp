@@ -19,44 +19,44 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::other::SleepFunction::SleepFunction(const ::default_init_tag&)
+function::other::SleepFunction::SleepFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::other::SleepFunction::SleepFunction() 
+function::other::SleepFunction::SleepFunction() 
     : SleepFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::other::SleepFunction::ctor()
+void function::other::SleepFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_OTHER(), u"Integer milliseconds"_j, u"Null"_j);
+    super::ctor(function::Functions::GROUP_OTHER(), u"Integer milliseconds"_j, u"Null"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::other::SleepFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::other::SleepFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
     auto n = ::com::tibbo::aggregate::common::util::Util::convertToNumber((*parameters)[int(0)], true, false);
     try {
         ::java::lang::Thread::currentThread())->sleep(n)->intValue());
     } catch (::java::lang::InterruptedException* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new EvaluationException(static_cast< ::java::lang::Throwable* >(ex));
     }
     return 0;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::SleepFunction::class_()
+java::lang::Class* function::other::SleepFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.other.SleepFunction", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::SleepFunction::getClass0()
+java::lang::Class* function::other::SleepFunction::getClass0()
 {
     return class_();
 }

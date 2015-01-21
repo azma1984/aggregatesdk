@@ -6,32 +6,32 @@
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/String.h"
 
-com::tibbo::aggregate::common::expression::util::TracerManager::TracerManager(const ::default_init_tag&)
+util::TracerManager::TracerManager(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::util::TracerManager::TracerManager()
+util::TracerManager::TracerManager()
     : TracerManager(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::expression::util::Tracer*& com::tibbo::aggregate::common::expression::util::TracerManager::DEFAULT_TRACER()
+util::Tracer*& util::TracerManager::DEFAULT_TRACER()
 {
     
     return DEFAULT_TRACER_;
 }
-com::tibbo::aggregate::common::expression::util::Tracer* com::tibbo::aggregate::common::expression::util::TracerManager::DEFAULT_TRACER_;
+util::Tracer* util::TracerManager::DEFAULT_TRACER_;
 
-com::tibbo::aggregate::common::expression::util::Tracer* com::tibbo::aggregate::common::expression::util::TracerManager::getDefaultTracer()
+util::Tracer* util::TracerManager::getDefaultTracer()
 {
     
     return DEFAULT_TRACER_;
 }
 
-void com::tibbo::aggregate::common::expression::util::TracerManager::setDefaultTracer(Tracer* tracer)
+void util::TracerManager::setDefaultTracer(Tracer* tracer)
 {
     
     if(tracer == 0) {
@@ -42,13 +42,13 @@ void com::tibbo::aggregate::common::expression::util::TracerManager::setDefaultT
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::TracerManager::class_()
+java::lang::Class* util::TracerManager::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.util.TracerManager", 56);
     return c;
 }
 
-void com::tibbo::aggregate::common::expression::util::TracerManager::clinit()
+void util::TracerManager::clinit()
 {
     super::
     static bool in_cl_init = false;
@@ -64,7 +64,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::util::TracerManager::getClass0()
+java::lang::Class* util::TracerManager::getClass0()
 {
     return class_();
 }

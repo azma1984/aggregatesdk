@@ -15,37 +15,37 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::DrFunction::DrFunction(const ::default_init_tag&)
+function::context::DrFunction::DrFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::DrFunction::DrFunction() 
+function::context::DrFunction::DrFunction() 
     : DrFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::context::DrFunction::ctor()
+void function::context::DrFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED(), u""_j, u"Integer"_j);
+    super::ctor(function::Functions::GROUP_CONTEXT_RELATED(), u""_j, u"Integer"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::context::DrFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::context::DrFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     return evaluator)->getDefaultResolver())->getDefaultRow();
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::DrFunction::class_()
+java::lang::Class* function::context::DrFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.DrFunction", 65);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::DrFunction::getClass0()
+java::lang::Class* function::context::DrFunction::getClass0()
 {
     return class_();
 }

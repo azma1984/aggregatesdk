@@ -21,26 +21,26 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::context::VariableInfo::VariableInfo(const ::default_init_tag&)
+VariableInfo::VariableInfo(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::VariableInfo::VariableInfo()
+VariableInfo::VariableInfo()
     : VariableInfo(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::context::VariableInfo::FORMAT()
+DateTableFormat*& VariableInfo::FORMAT()
 {
     
     return FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::context::VariableInfo::FORMAT_;
+DateTableFormat* VariableInfo::FORMAT_;
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::context::VariableInfo::createInfoTable(VariableDefinition* vd)
+DateDataTable* VariableInfo::createInfoTable(VariableDefinition* vd)
 {
     
     auto res = new DataRecord(FORMAT_);
@@ -56,13 +56,13 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::VariableInfo::class_()
+java::lang::Class* VariableInfo::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.VariableInfo", 47);
     return c;
 }
 
-void com::tibbo::aggregate::common::context::VariableInfo::clinit()
+void VariableInfo::clinit()
 {
     super::
     static bool in_cl_init = false;
@@ -96,7 +96,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::VariableInfo::getClass0()
+java::lang::Class* VariableInfo::getClass0()
 {
     return class_();
 }

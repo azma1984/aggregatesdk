@@ -6,24 +6,24 @@
 //#include <java/lang/String.h"
 #include <ObjectArray.h"
 
-com::tibbo::aggregate::common::expression::function::type::TypeConversionFunction::TypeConversionFunction(const ::default_init_tag&)
+function::type::TypeConversionFunction::TypeConversionFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::type::TypeConversionFunction::TypeConversionFunction(const std::string & returnValue) 
+function::type::TypeConversionFunction::TypeConversionFunction(const std::string & returnValue) 
     : TypeConversionFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(returnValue);
 }
 
-void com::tibbo::aggregate::common::expression::function::type::TypeConversionFunction::ctor(const std::string & returnValue)
+void function::type::TypeConversionFunction::ctor(const std::string & returnValue)
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_TYPE_CONVERSION(), u"Object value"_j, returnValue);
+    super::ctor(function::Functions::GROUP_TYPE_CONVERSION(), u"Object value"_j, returnValue);
 }
 
-void* com::tibbo::aggregate::common::expression::function::type::TypeConversionFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::type::TypeConversionFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, true, parameters);
     return convert((*parameters)[int(0)]);
@@ -31,13 +31,13 @@ void* com::tibbo::aggregate::common::expression::function::type::TypeConversionF
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::TypeConversionFunction::class_()
+java::lang::Class* function::type::TypeConversionFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.type.TypeConversionFunction", 74);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::TypeConversionFunction::getClass0()
+java::lang::Class* function::type::TypeConversionFunction::getClass0()
 {
     return class_();
 }

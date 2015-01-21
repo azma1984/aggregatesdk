@@ -1,11 +1,15 @@
-#pragma once
+#ifndef EncodingSettingsH
+#define EncodingSettingsH
 
 #include <boost/shared_ptr.hpp>
-#include "datatable/TableFormat.h"
+//#include "datatable/TableFormat.h"
+
+
+class TableFormat;
 
 class EncodingSettings
 {
-	/*
+
 private:
     bool        encodeFormat;
     boost::shared_ptr<TableFormat> format;
@@ -36,5 +40,6 @@ public:
     {
         this->encodeFormat = encodeFormat;
     }
-*/
+
 };
+#endif 

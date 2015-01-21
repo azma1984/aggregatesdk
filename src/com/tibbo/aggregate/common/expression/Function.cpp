@@ -3,7 +3,7 @@
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::Function::class_()
+java::lang::Class* Function::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.Function", 46);
     return c;

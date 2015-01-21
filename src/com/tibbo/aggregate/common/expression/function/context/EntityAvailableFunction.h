@@ -11,20 +11,20 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::context::EntityAvailableFunction
-    : public ::com::tibbo::aggregate::common::expression::function::AbstractFunction
+class function::context::EntityAvailableFunction
+    : public function::AbstractFunction
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::expression::function::AbstractFunction super;
+    typedef function::AbstractFunction super;
 protected:
     void ctor(const std::string & group, const std::string & parametersFootprint);
 
 public:
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
 public: /* protected */
-    bool hasEntity(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
+    bool hasEntity(Evaluator* evaluator, Context* con, voidArray*/*...*/ parameters);
 
     // Generated
 

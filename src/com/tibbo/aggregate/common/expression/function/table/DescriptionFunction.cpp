@@ -26,24 +26,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::DescriptionFunction::DescriptionFunction(const ::default_init_tag&)
+function::table::DescriptionFunction::DescriptionFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::DescriptionFunction::DescriptionFunction() 
+function::table::DescriptionFunction::DescriptionFunction() 
     : DescriptionFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::DescriptionFunction::ctor()
+void function::table::DescriptionFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table"_j, u"String"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table"_j, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::DescriptionFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::DescriptionFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -53,13 +53,13 @@ void* com::tibbo::aggregate::common::expression::function::table::DescriptionFun
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::DescriptionFunction::class_()
+java::lang::Class* function::table::DescriptionFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.DescriptionFunction", 72);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::DescriptionFunction::getClass0()
+java::lang::Class* function::table::DescriptionFunction::getClass0()
 {
     return class_();
 }

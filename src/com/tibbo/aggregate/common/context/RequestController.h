@@ -9,7 +9,7 @@ class RequestController
 {
     void* getOriginator();
     long getLockTimeout();
-   // ::com::tibbo::aggregate::common::expression::Evaluator* getEvaluator();
+   // Evaluator* getEvaluator();
 
 
     

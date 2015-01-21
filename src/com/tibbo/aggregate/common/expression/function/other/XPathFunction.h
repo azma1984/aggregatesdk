@@ -12,12 +12,12 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::other::XPathFunction
-    : public ::com::tibbo::aggregate::common::expression::function::AbstractFunction
+class function::other::XPathFunction
+    : public function::AbstractFunction
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::expression::function::AbstractFunction super;
+    typedef function::AbstractFunction super;
 
 private:
     static const std::string FIELD_NODE_NAME_;
@@ -27,7 +27,7 @@ protected:
     void ctor();
 
 public:
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
 private:
     DataTable* tableFromNodes(std::list  nodes);

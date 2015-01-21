@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::converter::Choice
+class Dateconverter::Choice
     
 {
 

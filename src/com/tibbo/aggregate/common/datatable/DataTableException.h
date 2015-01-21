@@ -9,7 +9,7 @@ class DataTableException : public ContextException
 {
 /*
 public:
-    typedef ::com::tibbo::aggregate::common::context::ContextException super;
+    typedef ContextException super;
 protected:
     void ctor(const std::string & message);
     void ctor(::java::lang::Throwable* cause);

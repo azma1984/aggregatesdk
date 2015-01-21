@@ -42,7 +42,7 @@ void DefaultClientController::init()
 }
 
 
-void DefaultClientController::processOperationGetVar(const std::string & id, ::com::tibbo::aggregate::common::context::Context* con, const std::string & name, OutgoingAggreGateCommand* ans)
+void DefaultClientController::processOperationGetVar(const std::string & id, Context* con, const std::string & name, OutgoingAggreGateCommand* ans)
 {
     DataTable* result;
     if(Log::CLIENTS())->isDebugEnabled()) {
@@ -61,12 +61,12 @@ void DefaultClientController::processOperationGetVar(const std::string & id, ::c
     ans)->addParam(result)->encode(createClassicEncodingSettings(vd)->getFormat() != 0)));
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* DefaultClientController::getVariable(::com::tibbo::aggregate::common::context::Context* con, const std::string & name) 
+DateDataTable* DefaultClientController::getVariable(Context* con, const std::string & name) 
 {
     return con)->getVariable(name, getCallerController());
 }
 
-void DefaultClientController::processOperationSetVar(const std::string & id, ::com::tibbo::aggregate::common::context::Context* con, const std::string & name, const std::string & encodedValue, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processOperationSetVar(const std::string & id, Context* con, const std::string & name, const std::string & encodedValue, OutgoingAggreGateCommand* ans) 
 {
     if(Log::CLIENTS())->isDebugEnabled()) {
         Log::CLIENTS())->debug(std::stringBuilder().append(u"Setting variable '"_j)->append(name)
@@ -85,17 +85,17 @@ void DefaultClientController::processOperationSetVar(const std::string & id, ::c
     ans)->constructReply(id, AggreGateCommand::REPLY_CODE_OK());
 }
 
-com::tibbo::aggregate::common::context::VariableDefinition* DefaultClientController::getVariableDefinition(::com::tibbo::aggregate::common::context::Context* con, const std::string & name)
+VariableDefinition* DefaultClientController::getVariableDefinition(Context* con, const std::string & name)
 {
     return con)->getVariableDefinition(name);
 }
 
-void DefaultClientController::setVariable(::com::tibbo::aggregate::common::context::Context* con, const std::string & name, DataTable* value) 
+void DefaultClientController::setVariable(Context* con, const std::string & name, DataTable* value) 
 {
-    con)->setVariable(name, static_cast< ::com::tibbo::aggregate::common::context::CallerController* >(getCallerController()), value);
+    con)->setVariable(name, static_cast< CallerController* >(getCallerController()), value);
 }
 
-void DefaultClientController::processOperationCallFunction(const std::string & id, ::com::tibbo::aggregate::common::context::Context* con, const std::string & name, const std::string & encodedParameters, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processOperationCallFunction(const std::string & id, Context* con, const std::string & name, const std::string & encodedParameters, OutgoingAggreGateCommand* ans) 
 {
     DataTable* result;
     if(Log::CLIENTS())->isDebugEnabled()) {
@@ -116,14 +116,14 @@ void DefaultClientController::processOperationCallFunction(const std::string & i
     ans)->addParam(result)->encode(createClassicEncodingSettings(fd)->getOutputFormat() != 0)));
 }
 
-com::tibbo::aggregate::common::context::FunctionDefinition* DefaultClientController::getFunctionDefinition(::com::tibbo::aggregate::common::context::Context* con, const std::string & name)
+FunctionDefinition* DefaultClientController::getFunctionDefinition(Context* con, const std::string & name)
 {
     return con)->getFunctionDefinition(name);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* DefaultClientController::callFunction(::com::tibbo::aggregate::common::context::Context* con, const std::string & name, DataTable* parameters) 
+DateDataTable* DefaultClientController::callFunction(Context* con, const std::string & name, DataTable* parameters) 
 {
-    return con)->callFunction(name, static_cast< ::com::tibbo::aggregate::common::context::CallerController* >(getCallerController()), parameters);
+    return con)->callFunction(name, static_cast< CallerController* >(getCallerController()), parameters);
 }
 */
 
@@ -152,7 +152,7 @@ void DefaultClientController::processOperationAddEventListener(const std::string
             ->append(context)
             ->append(u"'"_j)->toString());
     }
-    auto cel = createListener(listener, filter != 0 ? new ::com::tibbo::aggregate::common::expression::Expression(filter) : static_cast< ::com::tibbo::aggregate::common::expression::Expression* >(0));
+    auto cel = createListener(listener, filter != 0 ? new Expression(filter) : static_cast< Expression* >(0));
     addMaskListener(context, name, cel, true);
     ans)->constructReply(id, AggreGateCommand::REPLY_CODE_OK());
 }
@@ -165,7 +165,7 @@ void DefaultClientController::processOperationRemoveEventListener(const std::str
             ->append(context)
             ->append(u"'"_j)->toString());
     }
-    auto cel = createListener(listenerHashCode, filter != 0 ? new ::com::tibbo::aggregate::common::expression::Expression(filter) : static_cast< ::com::tibbo::aggregate::common::expression::Expression* >(0));
+    auto cel = createListener(listenerHashCode, filter != 0 ? new Expression(filter) : static_cast< Expression* >(0));
     removeMaskListener(context, name, cel);
     ans)->constructReply(id, AggreGateCommand::REPLY_CODE_OK());
 }
@@ -234,21 +234,21 @@ void DefaultClientController::processMessageOperation(IncomingAggreGateCommand* 
 
             auto con = getContext(context);
             if(con == 0) {
-                throw new ::com::tibbo::aggregate::common::context::ContextException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append(context)->toString());
+                throw new ContextException(std::stringBuilder().append(Cres::get())->getString(u"conNotAvail"_j))->append(context)->toString());
             }
-            if(addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_DESTROYED(), defaultEventListener)) {
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_CHILD_ADDED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_CHILD_REMOVED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_VARIABLE_ADDED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_VARIABLE_REMOVED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_FUNCTION_ADDED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_FUNCTION_REMOVED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_EVENT_ADDED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_EVENT_REMOVED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_INFO_CHANGED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_ACTION_ADDED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_ACTION_REMOVED(), defaultEventListener);
-                addNormalListener(con)->getPath(), ::com::tibbo::aggregate::common::context::AbstractContext::E_ACTION_STATE_CHANGED(), defaultEventListener);
+            if(addNormalListener(con)->getPath(), AbstractContext::E_DESTROYED(), defaultEventListener)) {
+                addNormalListener(con)->getPath(), AbstractContext::E_CHILD_ADDED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_CHILD_REMOVED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_VARIABLE_ADDED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_VARIABLE_REMOVED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_FUNCTION_ADDED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_FUNCTION_REMOVED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_EVENT_ADDED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_EVENT_REMOVED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_INFO_CHANGED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_ACTION_ADDED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_ACTION_REMOVED(), defaultEventListener);
+                addNormalListener(con)->getPath(), AbstractContext::E_ACTION_STATE_CHANGED(), defaultEventListener);
                 addCustomListeners(con);
             }
             switch (operation)->charAt(int(0))) {
@@ -270,7 +270,7 @@ void DefaultClientController::processMessageOperation(IncomingAggreGateCommand* 
 	*/
 }
 /*
-void DefaultClientController::addCustomListeners(::com::tibbo::aggregate::common::context::Context* con)
+void DefaultClientController::addCustomListeners(Context* con)
 {
 }
 
@@ -315,7 +315,7 @@ OutgoingAggreGateCommand* DefaultClientController::processCommand(IncomingAggreG
             throw new ::com::tibbo::aggregate::common::AggreGateException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidCmdCode"_j))->append(commandCode)->charAt(int(0)))->toString());
         }
 
-    } catch (::com::tibbo::aggregate::common::context::ContextSecurityException* ex) {
+    } catch (ContextSecurityException* ex) {
         if(Log::CLIENTS())->isDebugEnabled()) {
             Log::CLIENTS())->debug(std::stringBuilder().append(u"Access denied while processing command '"_j)->append(cmd))
                 ->append(u"': "_j)->toString(), ex);
@@ -339,8 +339,8 @@ void DefaultClientController::shutdown()
     //    if(dataChannel != 0) {
     //        dataChannel)->close();
     //    }
-    //    if(java_cast< ::com::tibbo::aggregate::common::context::Context* >(getContextManager())->getRoot()))->getFunctionDefinition(::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGOUT()) != 0) {
-    //        java_cast< ::com::tibbo::aggregate::common::context::Context* >(getContextManager())->getRoot()))->callFunction(::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGOUT(), static_cast< ::com::tibbo::aggregate::common::context::CallerController* >(getCallerController()));
+    //    if(java_cast< Context* >(getContextManager())->getRoot()))->getFunctionDefinition(::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGOUT()) != 0) {
+    //        java_cast< Context* >(getContextManager())->getRoot()))->callFunction(::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGOUT(), static_cast< CallerController* >(getCallerController()));
     //    }
     //    super::shutdown();
     //} catch (::java::lang::Exception* ex) {
@@ -359,7 +359,7 @@ bool DefaultClientController::run()
     //    Log::CLIENTS())->info(std::stringBuilder().append(msg)->append(u": "_j)
     //        ->append(ex))->toString());
     //    return false;
-    //} catch (::com::tibbo::aggregate::common::device::DisconnectionException* ex) {
+    //} catch (DisconnectionException* ex) {
     //    Log::CLIENTS())->info(std::stringBuilder().append(u"Client disconnected: "_j)->append(ex)->getMessage())->toString());
     //    return false;
     //} catch (::java::lang::Exception* ex) {
@@ -396,7 +396,7 @@ std::string DefaultClientController::getErrorDetails(::java::lang::Throwable* er
         ->append(::com::tibbo::aggregate::common::Constants::VERSION())
         ->append(u"\n"_j)->toString());
     buf)->append(std::stringBuilder().append(Cres::get())->getString(u"clServerTime"_j))->append(u": "_j)
-        ->append(new ::java::util::Date()))
+        ->append(new Date()))
         ->append(u"\n"_j)->toString());
     auto baos = new ::java::io::ByteArrayOutputStream();
     error)->printStackTrace(new ::java::io::PrintStream(static_cast< ::java::io::OutputStream* >(baos)));
@@ -412,7 +412,7 @@ void DefaultClientController::sendCommand(OutgoingAggreGateCommand* cmd)
     }
 }
 
-com::tibbo::aggregate::common::event::ContextEventListener* DefaultClientController::createListener(int  listenerHashCode, ::com::tibbo::aggregate::common::expression::Expression* filter)
+com::tibbo::aggregate::common::event::ContextEventListener* DefaultClientController::createListener(int  listenerHashCode, Expression* filter)
 {
     if(listenerHashCode == 0) {
         return defaultEventListener;
@@ -435,7 +435,7 @@ void DefaultClientController::processPendingEvents()
         }
         try {
             sendCommand(current);
-        } catch (::com::tibbo::aggregate::common::device::DisconnectionException* ex) {
+        } catch (DisconnectionException* ex) {
             Log::CLIENTS())->debug(std::stringBuilder().append(u"Disconnection detected while forwarding event to client: "_j)->append(ex)->getMessage())->toString(), ex);
         } catch (::java::lang::Throwable* ex) {
             auto msg = u"Exception while forwarding event to client: "_j;
@@ -459,7 +459,7 @@ com::tibbo::aggregate::common::event::ContextEventListener* DefaultClientControl
     return defaultEventListener;
 }
 
-com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* DefaultClientController::createClassicEncodingSettings(bool useFormatCache)
+Dateencoding::ClassicEncodingSettings* DefaultClientController::createClassicEncodingSettings(bool useFormatCache)
 {
     return new encoding::ClassicEncodingSettings(false);
 }

@@ -13,32 +13,32 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::converter::Choice::Choice(const ::default_init_tag&)
+Dateconverter::Choice::Choice(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::Choice::Choice(const std::string & description, void* object) 
+Dateconverter::Choice::Choice(const std::string & description, void* object) 
     : Choice(*static_cast< ::default_init_tag* >(0))
 {
     ctor(description,object);
 }
 
-com::tibbo::aggregate::common::datatable::converter::Choice::Choice(const std::string & name, const std::string & description, void* object) 
+Dateconverter::Choice::Choice(const std::string & name, const std::string & description, void* object) 
     : Choice(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name,description,object);
 }
 
-std::string& com::tibbo::aggregate::common::datatable::converter::Choice::WHITESPACE_PATTERN()
+std::string& Dateconverter::Choice::WHITESPACE_PATTERN()
 {
     
     return WHITESPACE_PATTERN_;
 }
-std::string com::tibbo::aggregate::common::datatable::converter::Choice::WHITESPACE_PATTERN_;
+std::string Dateconverter::Choice::WHITESPACE_PATTERN_;
 
-void com::tibbo::aggregate::common::datatable::converter::Choice::ctor(const std::string & description, void* object)
+void Dateconverter::Choice::ctor(const std::string & description, void* object)
 {
     super::ctor();
     this->name = description)->toLowerCase(::java::util::Locale::ENGLISH()))->replaceAll(WHITESPACE_PATTERN_, u""_j);
@@ -46,7 +46,7 @@ void com::tibbo::aggregate::common::datatable::converter::Choice::ctor(const std
     this->object = object;
 }
 
-void com::tibbo::aggregate::common::datatable::converter::Choice::ctor(const std::string & name, const std::string & description, void* object)
+void Dateconverter::Choice::ctor(const std::string & name, const std::string & description, void* object)
 {
     super::ctor();
     this->name = name;
@@ -54,30 +54,30 @@ void com::tibbo::aggregate::common::datatable::converter::Choice::ctor(const std
     this->object = object;
 }
 
-std::string com::tibbo::aggregate::common::datatable::converter::Choice::getName()
+std::string Dateconverter::Choice::getName()
 {
     return name;
 }
 
-std::string com::tibbo::aggregate::common::datatable::converter::Choice::getDescription()
+std::string Dateconverter::Choice::getDescription()
 {
     return description;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::Choice::getObject()
+void* Dateconverter::Choice::getObject()
 {
     return object;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::Choice::class_()
+java::lang::Class* Dateconverter::Choice::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.Choice", 53);
     return c;
 }
 
-void com::tibbo::aggregate::common::datatable::converter::Choice::clinit()
+void Dateconverter::Choice::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -90,7 +90,7 @@ struct string_init_ {
     super::
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::Choice::getClass0()
+java::lang::Class* Dateconverter::Choice::getClass0()
 {
     return class_();
 }

@@ -13,7 +13,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::EntityList
+class EntityList
     
     , public ::java::lang::Cloneable
     , public ::java::lang::Iterable

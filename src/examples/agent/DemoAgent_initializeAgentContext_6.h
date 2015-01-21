@@ -12,12 +12,12 @@
 
 class examples::agent::DemoAgent_initializeAgentContext_6
     
-    , public ::com::tibbo::aggregate::common::context::FunctionImplementation
+    , public FunctionImplementation
 {
 
 public:
     typedef void super;
-    DataTable* execute(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::FunctionDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* parameters) /* throws(ContextException) */;
+    DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters) ;
 
     // Generated
     DemoAgent_initializeAgentContext_6();

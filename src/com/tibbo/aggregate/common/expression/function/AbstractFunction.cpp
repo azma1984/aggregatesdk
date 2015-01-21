@@ -19,19 +19,19 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::AbstractFunction::AbstractFunction(const ::default_init_tag&)
+function::AbstractFunction::AbstractFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::AbstractFunction::AbstractFunction(const std::string & category, const std::string & parametersFootprint, const std::string & returnValue) 
+function::AbstractFunction::AbstractFunction(const std::string & category, const std::string & parametersFootprint, const std::string & returnValue) 
     : AbstractFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(category,parametersFootprint,returnValue);
 }
 
-void com::tibbo::aggregate::common::expression::function::AbstractFunction::ctor(const std::string & category, const std::string & parametersFootprint, const std::string & returnValue)
+void function::AbstractFunction::ctor(const std::string & category, const std::string & parametersFootprint, const std::string & returnValue)
 {
     super::ctor();
     this->category = category;
@@ -39,51 +39,51 @@ void com::tibbo::aggregate::common::expression::function::AbstractFunction::ctor
     this->returnValue = returnValue;
 }
 
-std::string com::tibbo::aggregate::common::expression::function::AbstractFunction::getCategory()
+std::string function::AbstractFunction::getCategory()
 {
     return category;
 }
 
-std::string com::tibbo::aggregate::common::expression::function::AbstractFunction::getReturnValue()
+std::string function::AbstractFunction::getReturnValue()
 {
     return returnValue;
 }
 
-std::string com::tibbo::aggregate::common::expression::function::AbstractFunction::getParametersFootprint()
+std::string function::AbstractFunction::getParametersFootprint()
 {
     return parametersFootprint;
 }
 
-void com::tibbo::aggregate::common::expression::function::AbstractFunction::checkParameters(int minimalCount, bool allowNulls, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void function::AbstractFunction::checkParameters(int minimalCount, bool allowNulls, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     if(parameters)->length < minimalCount) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprInvalidParamCount"_j), new voidArray({minimalCount)), parameters)->length))})));
+        throw new EvaluationException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprInvalidParamCount"_j), new voidArray({minimalCount)), parameters)->length))})));
     }
     if(!allowNulls) {
         for (auto i = int(0); i < minimalCount; i++) {
             if((*parameters)[i] == 0) {
-                throw new ::com::tibbo::aggregate::common::expression::EvaluationException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprParamCantBeNull"_j), new voidArray({i))})));
+                throw new EvaluationException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprParamCantBeNull"_j), new voidArray({i))})));
             }
         }
     }
 }
 
-void com::tibbo::aggregate::common::expression::function::AbstractFunction::checkParameterType(int num, void* value, ::java::lang::Class* requiredType) /* throws(EvaluationException) */
+void function::AbstractFunction::checkParameterType(int num, void* value, ::java::lang::Class* requiredType) /* throws(EvaluationException) */
 {
     if(!(requiredType)->isAssignableFrom(value)->getClass()))) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprInvalidParameterType"_j), new voidArray({num)), requiredType)->getSimpleName()), value)->getClass())->getSimpleName())})));
+        throw new EvaluationException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprInvalidParameterType"_j), new voidArray({num)), requiredType)->getSimpleName()), value)->getClass())->getSimpleName())})));
     }
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::AbstractFunction::class_()
+java::lang::Class* function::AbstractFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.AbstractFunction", 63);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::AbstractFunction::getClass0()
+java::lang::Class* function::AbstractFunction::getClass0()
 {
     return class_();
 }

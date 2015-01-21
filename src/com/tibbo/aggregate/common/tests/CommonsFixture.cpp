@@ -68,16 +68,16 @@ void com::tibbo::aggregate::common::tests::CommonsFixture::tearDown() /* throws(
 {
 }
 
-com::tibbo::aggregate::common::expression::Evaluator* com::tibbo::aggregate::common::tests::CommonsFixture::createTestEvaluator()
+Evaluator* com::tibbo::aggregate::common::tests::CommonsFixture::createTestEvaluator()
 {
     
-    ::com::tibbo::aggregate::common::expression::ReferenceResolver* rr = new ::com::tibbo::aggregate::common::expression::DefaultReferenceResolver();
+    ReferenceResolver* rr = new DefaultReferenceResolver();
     rr)->setDefaultTable(createTestTable());
-    auto ev = new ::com::tibbo::aggregate::common::expression::Evaluator(rr);
+    auto ev = new Evaluator(rr);
     return ev;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::tests::CommonsFixture::createTestTable()
+DateDataTable* com::tibbo::aggregate::common::tests::CommonsFixture::createTestTable()
 {
     
     auto rf = new TableFormat(int(5), int(10));

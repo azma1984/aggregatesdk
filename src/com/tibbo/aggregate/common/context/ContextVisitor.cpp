@@ -3,7 +3,7 @@
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::ContextVisitor::class_()
+java::lang::Class* ContextVisitor::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.ContextVisitor", 49);
     return c;

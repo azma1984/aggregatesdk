@@ -14,7 +14,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::field::DataFieldFormat
+class Datefield::DataFieldFormat
     : public FieldFormat
 {
 

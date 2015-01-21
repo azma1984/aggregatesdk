@@ -11,7 +11,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::util::DumpingVisitor
+class util::DumpingVisitor
     
     , public ::ExpressionParserVisitor
 {

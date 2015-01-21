@@ -22,14 +22,14 @@ class LongFieldFormat : public FieldFormat
 //    char16_t getType();
 //    ::java::lang::Class* getFieldClass();
 //    ::java::lang::Class* getFieldWrappedClass();
-//    ::java::lang::Long* getNotNullDefault();
+//    long  getNotNullDefault();
 
 //public: /* protected */
 //    void* convertValue(void* value) /* throws(ValidationException) */;
 
 //public:
-//    ::java::lang::Long* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
-//    const std::string & valueToString(::java::lang::Long* value, encoding::ClassicEncodingSettings* settings);
+//    long  valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+//    const std::string & valueToString(long  value, encoding::ClassicEncodingSettings* settings);
 
 //public: /* protected */
 //    std::list  getSuitableEditors();

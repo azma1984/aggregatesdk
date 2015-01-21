@@ -38,24 +38,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::CellFunction::CellFunction(const ::default_init_tag&)
+function::table::CellFunction::CellFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::CellFunction::CellFunction() 
+function::table::CellFunction::CellFunction() 
     : CellFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::CellFunction::ctor()
+void function::table::CellFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table [, String field [, Integer row [, Boolean description]]]"_j, u"Object"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table [, String field [, Integer row [, Boolean description]]]"_j, u"Object"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::CellFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::CellFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -69,7 +69,7 @@ void* com::tibbo::aggregate::common::expression::function::table::CellFunction::
         if(dynamic_cast< ::java::lang::Number* >((*parameters)[int(1)]) != 0) {
             auto fieldIndex = java_cast< ::java::lang::Number* >((*parameters)[int(1)]);
             if(table)->getFieldCount() < fieldIndex)->intValue()) {
-                throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoFieldIndex"_j))->append(fieldIndex)->intValue())->toString());
+                throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoFieldIndex"_j))->append(fieldIndex)->intValue())->toString());
             }
             field = table)->getFormat(fieldIndex)->intValue()))->getName();
         } else {
@@ -79,14 +79,14 @@ void* com::tibbo::aggregate::common::expression::function::table::CellFunction::
         field = table)->getFormat(int(0)))->getName();
     }
     if(!table)->getFormat())->hasField(field)) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoField"_j))->append(field)
+        throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoField"_j))->append(field)
             ->append(u" ("_j)
             ->append(table)->getFormat()))
             ->append(u")"_j)->toString());
     }
     auto record = (parameters)->length > 2) ? ::com::tibbo::aggregate::common::util::Util::convertToNumber((*parameters)[int(2)], false, false) : int(0));
     if(table)->getRecordCount() <= record)->intValue()) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoRecordIndex"_j))->append(record)->intValue())->toString());
+        throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoRecordIndex"_j))->append(record)->intValue())->toString());
     }
     auto rec = table)->getRecord(record)->intValue());
     auto value = rec)->getValue(field);
@@ -100,13 +100,13 @@ void* com::tibbo::aggregate::common::expression::function::table::CellFunction::
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::CellFunction::class_()
+java::lang::Class* function::table::CellFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.CellFunction", 65);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::CellFunction::getClass0()
+java::lang::Class* function::table::CellFunction::getClass0()
 {
     return class_();
 }

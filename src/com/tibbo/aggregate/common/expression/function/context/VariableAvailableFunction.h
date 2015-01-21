@@ -11,7 +11,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::context::VariableAvailableFunction
+class function::context::VariableAvailableFunction
     : public EntityAvailableFunction
 {
 
@@ -21,7 +21,7 @@ protected:
     void ctor(const std::string & group);
 
 public: /* protected */
-    bool hasEntity(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters);
+    bool hasEntity(Evaluator* evaluator, Context* con, voidArray*/*...*/ parameters);
 
     // Generated
 

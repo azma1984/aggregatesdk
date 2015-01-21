@@ -12,7 +12,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::FunctionData
+class FunctionData
     
     , public ::java::lang::Comparable
 {

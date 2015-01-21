@@ -19,7 +19,7 @@ public:
 
 private:
     static TableFormat* FORMAT_;
-    ::java::lang::Long* startTime;
+    long  startTime;
     long commandCount;
     float averageResponseTime;
     long outgoingTraffic;
@@ -29,8 +29,8 @@ private:
 public:
     void update(ReplyMonitor* monitor);
     DataTable* toDataTable();
-    ::java::lang::Long* getStartTime();
-    ::java::lang::Long* getConnectionTime();
+    long  getStartTime();
+    long  getConnectionTime();
     long getCommandCount();
     long getAverageResponseTime();
     long getOutgoingTraffic();

@@ -28,24 +28,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::EncodeFunction::EncodeFunction(const ::default_init_tag&)
+function::table::EncodeFunction::EncodeFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::EncodeFunction::EncodeFunction() 
+function::table::EncodeFunction::EncodeFunction() 
     : EncodeFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::EncodeFunction::ctor()
+void function::table::EncodeFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, "_j, u"String"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, "_j, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::EncodeFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::EncodeFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -56,13 +56,13 @@ void* com::tibbo::aggregate::common::expression::function::table::EncodeFunction
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::EncodeFunction::class_()
+java::lang::Class* function::table::EncodeFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.EncodeFunction", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::EncodeFunction::getClass0()
+java::lang::Class* function::table::EncodeFunction::getClass0()
 {
     return class_();
 }

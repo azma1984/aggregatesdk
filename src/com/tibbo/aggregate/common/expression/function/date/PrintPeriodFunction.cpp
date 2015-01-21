@@ -16,24 +16,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::date::PrintPeriodFunction::PrintPeriodFunction(const ::default_init_tag&)
+function::date::PrintPeriodFunction::PrintPeriodFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::date::PrintPeriodFunction::PrintPeriodFunction() 
+function::date::PrintPeriodFunction::PrintPeriodFunction() 
     : PrintPeriodFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::date::PrintPeriodFunction::ctor()
+void function::date::PrintPeriodFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Long period"_j, u"String"_j);
+    super::ctor(function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Long period"_j, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::date::PrintPeriodFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::date::PrintPeriodFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
     auto period = ::com::tibbo::aggregate::common::util::Util::convertToNumber((*parameters)[int(0)], false, false);
@@ -49,13 +49,13 @@ void* com::tibbo::aggregate::common::expression::function::date::PrintPeriodFunc
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::PrintPeriodFunction::class_()
+java::lang::Class* function::date::PrintPeriodFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.date.PrintPeriodFunction", 71);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::PrintPeriodFunction::getClass0()
+java::lang::Class* function::date::PrintPeriodFunction::getClass0()
 {
     return class_();
 }

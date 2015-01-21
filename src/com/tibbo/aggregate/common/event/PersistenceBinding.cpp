@@ -76,12 +76,12 @@ std::string& PersistenceBinding::TYPE_TIMESTAMP()
 }
 std::string PersistenceBinding::TYPE_TIMESTAMP_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& PersistenceBinding::FORMAT()
+DateTableFormat*& PersistenceBinding::FORMAT()
 {
     
     return FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* PersistenceBinding::FORMAT_;
+DateTableFormat* PersistenceBinding::FORMAT_;
 
 void PersistenceBinding::ctor()
 {
@@ -125,10 +125,10 @@ std::string PersistenceBinding::getExpression()
     return expression;
 }
 
-com::tibbo::aggregate::common::expression::Expression* PersistenceBinding::getCompiledExpression()
+Expression* PersistenceBinding::getCompiledExpression()
 {
     if(compiledExpression == 0) {
-        compiledExpression = expression != 0 ? new ::com::tibbo::aggregate::common::expression::Expression(expression) : static_cast< ::com::tibbo::aggregate::common::expression::Expression* >(0);
+        compiledExpression = expression != 0 ? new Expression(expression) : static_cast< Expression* >(0);
     }
     return compiledExpression;
 }

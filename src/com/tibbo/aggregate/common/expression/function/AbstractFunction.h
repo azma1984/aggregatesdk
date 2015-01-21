@@ -10,9 +10,9 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::AbstractFunction
+class function::AbstractFunction
     
-    , public ::com::tibbo::aggregate::common::expression::Function
+    , public Function
 {
 
 public:

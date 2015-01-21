@@ -28,39 +28,39 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::EntityFormatFunction::EntityFormatFunction(const ::default_init_tag&)
+function::context::EntityFormatFunction::EntityFormatFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::EntityFormatFunction::EntityFormatFunction(const std::string & parametersFootprint) 
+function::context::EntityFormatFunction::EntityFormatFunction(const std::string & parametersFootprint) 
     : EntityFormatFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(parametersFootprint);
 }
 
-void com::tibbo::aggregate::common::expression::function::context::EntityFormatFunction::ctor(const std::string & parametersFootprint)
+void function::context::EntityFormatFunction::ctor(const std::string & parametersFootprint)
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_CONTEXT_RELATED(), parametersFootprint, u"String"_j);
+    super::ctor(function::Functions::GROUP_CONTEXT_RELATED(), parametersFootprint, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::context::EntityFormatFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::context::EntityFormatFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
-    auto con = java_cast< ::com::tibbo::aggregate::common::context::Context* >(evaluator)->getDefaultResolver())->getContextManager())->get((*parameters)[int(0)])->toString(), evaluator)->getDefaultResolver())->getCallerController()));
+    auto con = java_cast< Context* >(evaluator)->getDefaultResolver())->getContextManager())->get((*parameters)[int(0)])->toString(), evaluator)->getDefaultResolver())->getCallerController()));
     return con != 0 ? getFormat(evaluator, con, parameters)) : 0);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::EntityFormatFunction::class_()
+java::lang::Class* function::context::EntityFormatFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.EntityFormatFunction", 75);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::EntityFormatFunction::getClass0()
+java::lang::Class* function::context::EntityFormatFunction::getClass0()
 {
     return class_();
 }

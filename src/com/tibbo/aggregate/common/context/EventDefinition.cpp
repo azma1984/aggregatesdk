@@ -64,7 +64,7 @@ void EventDefinition::setSynchronous(bool synchronous)
     this->synchronous = synchronous;
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* EventDefinition::getFormat()
+DateTableFormat* EventDefinition::getFormat()
 {
     return format;
 }

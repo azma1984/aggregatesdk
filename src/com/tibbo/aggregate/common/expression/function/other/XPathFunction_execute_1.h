@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::other::XPathFunction_execute_1
+class function::other::XPathFunction_execute_1
     
     , public ::org::xml::sax::EntityResolver
 {

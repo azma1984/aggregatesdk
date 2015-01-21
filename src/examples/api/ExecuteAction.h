@@ -36,7 +36,7 @@ public:
     static void main(std::stringArray* args);
 
 private:
-    static void executeDiscoveryAction(::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
+    static void executeDiscoveryAction(ContextManager* cm) ;
     static ::com::tibbo::aggregate::common::action::GenericActionResponse* processCommand(::com::tibbo::aggregate::common::action::GenericActionCommand* cmd);
 
     // Generated

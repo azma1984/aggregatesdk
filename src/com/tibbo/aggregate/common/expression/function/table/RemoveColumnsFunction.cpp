@@ -28,24 +28,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::RemoveColumnsFunction::RemoveColumnsFunction(const ::default_init_tag&)
+function::table::RemoveColumnsFunction::RemoveColumnsFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::RemoveColumnsFunction::RemoveColumnsFunction() 
+function::table::RemoveColumnsFunction::RemoveColumnsFunction() 
     : RemoveColumnsFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::RemoveColumnsFunction::ctor()
+void function::table::RemoveColumnsFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String column1, String column2, ..."_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String column1, String column2, ..."_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::RemoveColumnsFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::RemoveColumnsFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -62,13 +62,13 @@ void* com::tibbo::aggregate::common::expression::function::table::RemoveColumnsF
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::RemoveColumnsFunction::class_()
+java::lang::Class* function::table::RemoveColumnsFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.RemoveColumnsFunction", 74);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::RemoveColumnsFunction::getClass0()
+java::lang::Class* function::table::RemoveColumnsFunction::getClass0()
 {
     return class_();
 }

@@ -77,7 +77,7 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerT
     con)->addEventListener(event, listener, false, !mask);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerToContext(::com::tibbo::aggregate::common::context::Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerToContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak)
 { 
     addListenerToContext(dynamic_cast< ProxyContext* >(con), event, listener, mask, weak);
 }
@@ -87,7 +87,7 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListen
     con)->removeEventListener(event, listener, !mask);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListenerFromContext(::com::tibbo::aggregate::common::context::Context* con, const std::string & event, ContextEventListener* listener, bool mask)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListenerFromContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask)
 { 
     removeListenerFromContext(dynamic_cast< ProxyContext* >(con), event, listener, mask);
 }
@@ -108,7 +108,7 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemov
 {
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemoved(::com::tibbo::aggregate::common::context::Context* con)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemoved(Context* con)
 { 
     contextRemoved(dynamic_cast< ProxyContext* >(con));
 }

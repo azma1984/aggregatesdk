@@ -26,7 +26,7 @@ private:
     static TableFormat* FORMAT_CONFIG_;
 
 public:
-    void globalInit(::com::tibbo::aggregate::common::context::Context* rootContext) /* throws(PluginException) */;
+    void globalInit(Context* rootContext) /* throws(PluginException) */;
     void install(::com::tibbo::aggregate::common::server::ServerContext* context) /* throws(ContextException, PluginException) */;
 
     // Generated
@@ -38,7 +38,7 @@ protected:
 public:
     
     static void 
-    void install(::com::tibbo::aggregate::common::context::ContextManager* cm);
+    void install(ContextManager* cm);
 
 private:
     static const std::string& CONTEXT_TYPE_TRACKERS();

@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::DataTableBuilding
+class DateDataTableBuilding
     
 {
 
@@ -49,16 +49,16 @@ private:
     static TableFormat* TABLE_FORMAT_;
 
 public:
-    static TableFormat* createTableFormat(DataTable* formatTable) /* throws(ContextException) */;
-    static TableFormat* createTableFormat(DataTable* formatTable, encoding::ClassicEncodingSettings* settings, bool allowNull) /* throws(ContextException) */;
-    static TableFormat* createTableFormat(int minRecords, int maxRecords, bool reorderable, DataTable* fields, encoding::ClassicEncodingSettings* settings) /* throws(ContextException) */;
+    static TableFormat* createTableFormat(DataTable* formatTable) ;
+    static TableFormat* createTableFormat(DataTable* formatTable, encoding::ClassicEncodingSettings* settings, bool allowNull) ;
+    static TableFormat* createTableFormat(int minRecords, int maxRecords, bool reorderable, DataTable* fields, encoding::ClassicEncodingSettings* settings) ;
     static DataTable* formatToFieldsTable(TableFormat* tf, bool readOnly);
     static DataTable* formatToFieldsTable(TableFormat* tf, bool readOnly, encoding::ClassicEncodingSettings* settings);
     static DataTable* formatToFieldsTable(TableFormat* tf, bool readOnly, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields);
-    static DataTable* formatToTable(TableFormat* tf, bool ignoreHiddenFields) /* throws(ContextException) */;
-    static DataTable* formatToTable(TableFormat* tf) /* throws(ContextException) */;
-    static DataTable* formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings) /* throws(ContextException) */;
-    static DataTable* formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields) /* throws(ContextException) */;
+    static DataTable* formatToTable(TableFormat* tf, bool ignoreHiddenFields) ;
+    static DataTable* formatToTable(TableFormat* tf) ;
+    static DataTable* formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings) ;
+    static DataTable* formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields) ;
 
     // Generated
     DataTableBuilding();

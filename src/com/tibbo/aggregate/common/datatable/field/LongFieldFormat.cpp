@@ -44,59 +44,59 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::field::LongFieldFormat::LongFieldFormat(const ::default_init_tag&)
+Datefield::LongFieldFormat::LongFieldFormat(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::field::LongFieldFormat::LongFieldFormat(const std::string & name) 
+Datefield::LongFieldFormat::LongFieldFormat(const std::string & name) 
     : LongFieldFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name);
 }
 
-std::string& com::tibbo::aggregate::common::datatable::field::LongFieldFormat::EDITOR_PERIOD()
+std::string& Datefield::LongFieldFormat::EDITOR_PERIOD()
 {
     
     return EDITOR_PERIOD_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::LongFieldFormat::EDITOR_PERIOD_;
+std::string Datefield::LongFieldFormat::EDITOR_PERIOD_;
 
-void com::tibbo::aggregate::common::datatable::field::LongFieldFormat::ctor(const std::string & name)
+void Datefield::LongFieldFormat::ctor(const std::string & name)
 {
     super::ctor(name);
 }
 
-char16_t com::tibbo::aggregate::common::datatable::field::LongFieldFormat::getType()
+char16_t Datefield::LongFieldFormat::getType()
 {
     return FieldFormat::LONG_FIELD;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::getFieldClass()
+java::lang::Class* Datefield::LongFieldFormat::getFieldClass()
 {
     return ::java::lang::Long::TYPE();
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::getFieldWrappedClass()
+java::lang::Class* Datefield::LongFieldFormat::getFieldWrappedClass()
 {
     return ::java::lang::Long::class_();
 }
 
-java::lang::Long* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::getNotNullDefault()
+ Datefield::LongFieldFormat::getNotNullDefault()
 {
     return new ::java::lang::Long(static_cast< long >(int(0)));
 }
 
-void* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::convertValue(void* value) /* throws(ValidationException) */
+void* Datefield::LongFieldFormat::convertValue(void* value) /* throws(ValidationException) */
 {
-    if(value != 0 && !(dynamic_cast< ::java::lang::Long* >(value) != 0)) {
+    if(value != 0 && !(dynamic_cast< long  >(value) != 0)) {
         value = ::java::lang::Long::valueOf(util::Util::convertToNumber(value, true, false))->longValue());
     }
     return value;
 }
 
-java::lang::Long* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
+ Datefield::LongFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
 {
     try {
         return new ::java::lang::Long(value);
@@ -105,17 +105,17 @@ java::lang::Long* com::tibbo::aggregate::common::datatable::field::LongFieldForm
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::LongFieldFormat::valueToString(::java::lang::Long* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::LongFieldFormat::valueToString(long  value, encoding::ClassicEncodingSettings* settings)
 {
     return value == 0 ? static_cast< const std::string & >(0) : value)->toString();
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::LongFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::LongFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
 { 
-    return valueToString(dynamic_cast< ::java::lang::Long* >(value), settings);
+    return valueToString(dynamic_cast< long  >(value), settings);
 }
 
-java::util::List* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::getSuitableEditors()
+std::list  Datefield::LongFieldFormat::getSuitableEditors()
 {
     return ::java::util::Arrays::asList(new std::stringArray({
         EDITOR_LIST()
@@ -125,7 +125,7 @@ java::util::List* com::tibbo::aggregate::common::datatable::field::LongFieldForm
     }));
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::LongFieldFormat::encodePeriodEditorOptions(int minUnit, int maxUnit)
+std::string Datefield::LongFieldFormat::encodePeriodEditorOptions(int minUnit, int maxUnit)
 {
     
     return std::stringBuilder().append(std::string::valueOf(minUnit))->append(u" "_j)
@@ -134,13 +134,13 @@ std::string com::tibbo::aggregate::common::datatable::field::LongFieldFormat::en
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::class_()
+java::lang::Class* Datefield::LongFieldFormat::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.LongFieldFormat", 58);
     return c;
 }
 
-void com::tibbo::aggregate::common::datatable::field::LongFieldFormat::clinit()
+void Datefield::LongFieldFormat::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -153,17 +153,17 @@ struct string_init_ {
     super::
 }
 
-void* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::valueFromString(const std::string & value)
+void* Datefield::LongFieldFormat::valueFromString(const std::string & value)
 {
     return super::valueFromString(value);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::LongFieldFormat::valueToString(void* value)
+std::string Datefield::LongFieldFormat::valueToString(void* value)
 {
     return super::valueToString(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::LongFieldFormat::getClass0()
+java::lang::Class* Datefield::LongFieldFormat::getClass0()
 {
     return class_();
 }

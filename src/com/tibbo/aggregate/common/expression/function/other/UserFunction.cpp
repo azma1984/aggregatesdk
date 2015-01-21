@@ -16,24 +16,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::other::UserFunction::UserFunction(const ::default_init_tag&)
+function::other::UserFunction::UserFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::other::UserFunction::UserFunction() 
+function::other::UserFunction::UserFunction() 
     : UserFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::other::UserFunction::ctor()
+void function::other::UserFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_OTHER(), u""_j, u"String"_j);
+    super::ctor(function::Functions::GROUP_OTHER(), u""_j, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::other::UserFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::other::UserFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     auto cc = evaluator)->getDefaultResolver())->getCallerController();
     return cc != 0 ? cc)->getUsername()) : 0);
@@ -41,13 +41,13 @@ void* com::tibbo::aggregate::common::expression::function::other::UserFunction::
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::UserFunction::class_()
+java::lang::Class* function::other::UserFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.other.UserFunction", 65);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::other::UserFunction::getClass0()
+java::lang::Class* function::other::UserFunction::getClass0()
 {
     return class_();
 }

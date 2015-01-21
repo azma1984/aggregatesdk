@@ -49,46 +49,46 @@ namespace
 
     template<typename F> finally_<F> finally(F f) { return finally_<F>(f); }
 }
-com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::DataTableFieldFormat(const ::default_init_tag&)
+Datefield::DataTableFieldFormat::DataTableFieldFormat(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::DataTableFieldFormat(const std::string & name) 
+Datefield::DataTableFieldFormat::DataTableFieldFormat(const std::string & name) 
     : DataTableFieldFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name);
 }
 
-void com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::ctor(const std::string & name)
+void Datefield::DataTableFieldFormat::ctor(const std::string & name)
 {
     super::ctor(name);
     setTransferEncode(true);
     addValidator(new DataTableFieldFormat_DataTableFieldFormat_1(this));
 }
 
-char16_t com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::getType()
+char16_t Datefield::DataTableFieldFormat::getType()
 {
     return FieldFormat::DATATABLE_FIELD;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::getFieldClass()
+java::lang::Class* Datefield::DataTableFieldFormat::getFieldClass()
 {
     return DataTable::class_();
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::getFieldWrappedClass()
+java::lang::Class* Datefield::DataTableFieldFormat::getFieldWrappedClass()
 {
     return DataTable::class_();
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::getNotNullDefault()
+DateDataTable* Datefield::DataTableFieldFormat::getNotNullDefault()
 {
     return new DataTable();
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
+DateDataTable* Datefield::DataTableFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
 {
     try {
         auto defaultValue = java_cast< DataTable* >(getDefaultValue());
@@ -134,7 +134,7 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::valueToString(DataTable* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::DataTableFieldFormat::valueToString(DataTable* value, encoding::ClassicEncodingSettings* settings)
 {
     if(value == 0) {
         return 0;
@@ -142,12 +142,12 @@ std::string com::tibbo::aggregate::common::datatable::field::DataTableFieldForma
     return value)->encode(settings);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::DataTableFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
 { 
     return valueToString(dynamic_cast< DataTable* >(value), settings);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::encodeEditorOptions(bool showTableData)
+std::string Datefield::DataTableFieldFormat::encodeEditorOptions(bool showTableData)
 {
     
     return showTableData ? u"1"_j : u"0"_j;
@@ -155,23 +155,23 @@ std::string com::tibbo::aggregate::common::datatable::field::DataTableFieldForma
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::class_()
+java::lang::Class* Datefield::DataTableFieldFormat::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.DataTableFieldFormat", 63);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::valueFromString(const std::string & value)
+void* Datefield::DataTableFieldFormat::valueFromString(const std::string & value)
 {
     return super::valueFromString(value);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::valueToString(void* value)
+std::string Datefield::DataTableFieldFormat::valueToString(void* value)
 {
     return super::valueToString(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat::getClass0()
+java::lang::Class* Datefield::DataTableFieldFormat::getClass0()
 {
     return class_();
 }

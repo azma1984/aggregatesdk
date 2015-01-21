@@ -34,69 +34,69 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::context::EntityList::EntityList(const ::default_init_tag&)
+EntityList::EntityList(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::EntityList::EntityList() 
+EntityList::EntityList() 
     : EntityList(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::context::EntityList::EntityList(DataTable* data) 
+EntityList::EntityList(DataTable* data) 
     : EntityList(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
 }
 
-com::tibbo::aggregate::common::context::EntityList::EntityList(const std::string & context, const std::string & entity) 
+EntityList::EntityList(const std::string & context, const std::string & entity) 
     : EntityList(*static_cast< ::default_init_tag* >(0))
 {
     ctor(context,entity);
 }
 
-com::tibbo::aggregate::common::context::EntityList::EntityList(EntityReference* ref) 
+EntityList::EntityList(EntityReference* ref) 
     : EntityList(*static_cast< ::default_init_tag* >(0))
 {
     ctor(ref);
 }
 
-void com::tibbo::aggregate::common::context::EntityList::init()
+void EntityList::init()
 {
     entities = new ::java::util::LinkedList();
 }
 
-std::string& com::tibbo::aggregate::common::context::EntityList::FIELD_CONTEXT()
+std::string& EntityList::FIELD_CONTEXT()
 {
     
     return FIELD_CONTEXT_;
 }
-std::string com::tibbo::aggregate::common::context::EntityList::FIELD_CONTEXT_;
+std::string EntityList::FIELD_CONTEXT_;
 
-std::string& com::tibbo::aggregate::common::context::EntityList::FIELD_ENTITY()
+std::string& EntityList::FIELD_ENTITY()
 {
     
     return FIELD_ENTITY_;
 }
-std::string com::tibbo::aggregate::common::context::EntityList::FIELD_ENTITY_;
+std::string EntityList::FIELD_ENTITY_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::context::EntityList::FORMAT()
+DateTableFormat*& EntityList::FORMAT()
 {
     
     return FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::context::EntityList::FORMAT_;
+DateTableFormat* EntityList::FORMAT_;
 
-void com::tibbo::aggregate::common::context::EntityList::ctor()
+void EntityList::ctor()
 {
     super::ctor();
     init();
 }
 
-void com::tibbo::aggregate::common::context::EntityList::ctor(DataTable* data)
+void EntityList::ctor(DataTable* data)
 {
     super::ctor();
     init();
@@ -108,26 +108,26 @@ void com::tibbo::aggregate::common::context::EntityList::ctor(DataTable* data)
     }
 }
 
-void com::tibbo::aggregate::common::context::EntityList::ctor(const std::string & context, const std::string & entity)
+void EntityList::ctor(const std::string & context, const std::string & entity)
 {
     super::ctor();
     init();
     add(context, entity);
 }
 
-void com::tibbo::aggregate::common::context::EntityList::ctor(EntityReference* ref)
+void EntityList::ctor(EntityReference* ref)
 {
     super::ctor();
     init();
     entities)->add(ref));
 }
 
-bool com::tibbo::aggregate::common::context::EntityList::includes(EntityReference* ref)
+bool EntityList::includes(EntityReference* ref)
 {
     return includes(ref)->getContext(), ref)->getEntity());
 }
 
-bool com::tibbo::aggregate::common::context::EntityList::includes(const std::string & context, const std::string & entity)
+bool EntityList::includes(const std::string & context, const std::string & entity)
 {
     for (auto _i = entities)->iterator(); _i->hasNext(); ) {
         EntityReference* ref = java_cast< EntityReference* >(_i->next());
@@ -140,7 +140,7 @@ bool com::tibbo::aggregate::common::context::EntityList::includes(const std::str
     return false;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::context::EntityList::toDataTable()
+DateDataTable* EntityList::toDataTable()
 {
     auto tab = new DataTable(FORMAT_);
     for (auto _i = entities)->iterator(); _i->hasNext(); ) {
@@ -152,41 +152,41 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return tab;
 }
 
-bool com::tibbo::aggregate::common::context::EntityList::isEmpty()
+bool EntityList::isEmpty()
 {
     return entities)->isEmpty();
 }
 
-void com::tibbo::aggregate::common::context::EntityList::add(const std::string & context, const std::string & entity)
+void EntityList::add(const std::string & context, const std::string & entity)
 {
     if(!includes(context, entity)) {
         add(new EntityReference(context, entity));
     }
 }
 
-void com::tibbo::aggregate::common::context::EntityList::add(EntityReference* ref)
+void EntityList::add(EntityReference* ref)
 {
     if(!includes(ref)) {
         entities)->add(ref));
     }
 }
 
-java::util::List* com::tibbo::aggregate::common::context::EntityList::getEntities()
+std::list  EntityList::getEntities()
 {
     return entities;
 }
 
-java::util::Iterator* com::tibbo::aggregate::common::context::EntityList::iterator()
+java::util::Iterator* EntityList::iterator()
 {
     return entities)->iterator();
 }
 
-std::string com::tibbo::aggregate::common::context::EntityList::toString()
+std::string EntityList::toString()
 {
     return entities)->toString();
 }
 
-com::tibbo::aggregate::common::context::EntityList* com::tibbo::aggregate::common::context::EntityList::clone()
+EntityList* EntityList::clone()
 {
     try {
         auto clone = java_cast< EntityList* >(super::clone());
@@ -203,7 +203,7 @@ com::tibbo::aggregate::common::context::EntityList* com::tibbo::aggregate::commo
     }
 }
 
-int com::tibbo::aggregate::common::context::EntityList::hashCode()
+int EntityList::hashCode()
 {
     auto const prime = int(31);
     auto result = int(1);
@@ -211,7 +211,7 @@ int com::tibbo::aggregate::common::context::EntityList::hashCode()
     return result;
 }
 
-bool com::tibbo::aggregate::common::context::EntityList::equals(void* obj)
+bool EntityList::equals(void* obj)
 {
     if(this) == obj)
         return true;
@@ -235,13 +235,13 @@ bool com::tibbo::aggregate::common::context::EntityList::equals(void* obj)
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::EntityList::class_()
+java::lang::Class* EntityList::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.EntityList", 45);
     return c;
 }
 
-void com::tibbo::aggregate::common::context::EntityList::clinit()
+void EntityList::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -272,7 +272,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::EntityList::getClass0()
+java::lang::Class* EntityList::getClass0()
 {
     return class_();
 }

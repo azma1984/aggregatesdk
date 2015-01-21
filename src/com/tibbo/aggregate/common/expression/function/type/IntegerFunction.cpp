@@ -17,24 +17,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::type::IntegerFunction::IntegerFunction(const ::default_init_tag&)
+function::type::IntegerFunction::IntegerFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::type::IntegerFunction::IntegerFunction() 
+function::type::IntegerFunction::IntegerFunction() 
     : IntegerFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::type::IntegerFunction::ctor()
+void function::type::IntegerFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_TYPE_CONVERSION(), u"Object value [, Integer radix]"_j, u"Integer"_j);
+    super::ctor(function::Functions::GROUP_TYPE_CONVERSION(), u"Object value [, Integer radix]"_j, u"Integer"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::type::IntegerFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::type::IntegerFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, true, parameters);
     if(parameters)->length >= 2) {
@@ -49,13 +49,13 @@ void* com::tibbo::aggregate::common::expression::function::type::IntegerFunction
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::IntegerFunction::class_()
+java::lang::Class* function::type::IntegerFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.type.IntegerFunction", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::IntegerFunction::getClass0()
+java::lang::Class* function::type::IntegerFunction::getClass0()
 {
     return class_();
 }

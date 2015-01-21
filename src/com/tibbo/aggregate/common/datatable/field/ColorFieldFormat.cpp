@@ -41,51 +41,51 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::ColorFieldFormat(const ::default_init_tag&)
+Datefield::ColorFieldFormat::ColorFieldFormat(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::ColorFieldFormat(const std::string & name) 
+Datefield::ColorFieldFormat::ColorFieldFormat(const std::string & name) 
     : ColorFieldFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name);
 }
 
-std::string& com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::EDITOR_BOX()
+std::string& Datefield::ColorFieldFormat::EDITOR_BOX()
 {
     
     return EDITOR_BOX_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::EDITOR_BOX_;
+std::string Datefield::ColorFieldFormat::EDITOR_BOX_;
 
-void com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::ctor(const std::string & name)
+void Datefield::ColorFieldFormat::ctor(const std::string & name)
 {
     super::ctor(name);
 }
 
-char16_t com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::getType()
+char16_t Datefield::ColorFieldFormat::getType()
 {
     return FieldFormat::COLOR_FIELD;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::getFieldClass()
+java::lang::Class* Datefield::ColorFieldFormat::getFieldClass()
 {
     return ::java::awt::Color::class_();
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::getFieldWrappedClass()
+java::lang::Class* Datefield::ColorFieldFormat::getFieldWrappedClass()
 {
     return ::java::awt::Color::class_();
 }
 
-java::awt::Color* com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::getNotNullDefault()
+java::awt::Color* Datefield::ColorFieldFormat::getNotNullDefault()
 {
     return ::java::awt::Color::BLACK();
 }
 
-java::awt::Color* com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
+java::awt::Color* Datefield::ColorFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
 {
     if(value)->startsWith(u"#"_j)) {
         auto red = ::java::lang::Integer::parseInt(value)->substring(1, 3), 16);
@@ -98,17 +98,17 @@ java::awt::Color* com::tibbo::aggregate::common::datatable::field::ColorFieldFor
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::valueToString(::java::awt::Color* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::ColorFieldFormat::valueToString(::java::awt::Color* value, encoding::ClassicEncodingSettings* settings)
 {
     return value == 0 ? static_cast< const std::string & >(0) : ::com::tibbo::aggregate::common::util::StringUtils::colorToString(value);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::ColorFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
 { 
     return valueToString(dynamic_cast< ::java::awt::Color* >(value), settings);
 }
 
-java::util::List* com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::getSuitableEditors()
+std::list  Datefield::ColorFieldFormat::getSuitableEditors()
 {
     return ::java::util::Arrays::asList(new std::stringArray({
         EDITOR_LIST()
@@ -118,13 +118,13 @@ java::util::List* com::tibbo::aggregate::common::datatable::field::ColorFieldFor
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::class_()
+java::lang::Class* Datefield::ColorFieldFormat::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.ColorFieldFormat", 59);
     return c;
 }
 
-void com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::clinit()
+void Datefield::ColorFieldFormat::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -137,17 +137,17 @@ struct string_init_ {
     super::
 }
 
-void* com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::valueFromString(const std::string & value)
+void* Datefield::ColorFieldFormat::valueFromString(const std::string & value)
 {
     return super::valueFromString(value);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::valueToString(void* value)
+std::string Datefield::ColorFieldFormat::valueToString(void* value)
 {
     return super::valueToString(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::ColorFieldFormat::getClass0()
+java::lang::Class* Datefield::ColorFieldFormat::getClass0()
 {
     return class_();
 }

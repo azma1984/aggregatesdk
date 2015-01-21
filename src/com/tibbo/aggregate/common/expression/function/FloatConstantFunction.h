@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::FloatConstantFunction
+class function::FloatConstantFunction
     : public AbstractFunction
 {
 
@@ -23,7 +23,7 @@ protected:
     void ctor(float constant);
 
 public:
-    void* execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
+    void* execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */;
 
     // Generated
     FloatConstantFunction(float constant);

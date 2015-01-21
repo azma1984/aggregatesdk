@@ -60,7 +60,7 @@ void com::tibbo::aggregate::common::binding::ChangeCache::init()
     variableChanges = new ::java::util::Hashtable();
 }
 
-void com::tibbo::aggregate::common::binding::ChangeCache::setVariableField(::com::tibbo::aggregate::common::context::Context* context, const std::string & variable, const std::string & field, int record, void* value, ::com::tibbo::aggregate::common::context::CallerController* cc) /* throws(ContextException) */
+void com::tibbo::aggregate::common::binding::ChangeCache::setVariableField(Context* context, const std::string & variable, const std::string & field, int record, void* value, CallerController* cc) 
 {
     auto changes = java_cast< std::map >(variableChanges)->get(context));
     if(changes == 0) {
@@ -84,8 +84,8 @@ void com::tibbo::aggregate::common::binding::ChangeCache::commit(BindingProvider
                 ::java::util::Map_Entry* ve = java_cast< ::java::util::Map_Entry* >(_i->next());
                 {
                     try {
-                        auto cc = selector)->select(java_cast< ::com::tibbo::aggregate::common::context::Context* >(ce)->getKey()), java_cast< const std::string & >(ve)->getKey()), ::com::tibbo::aggregate::common::context::ContextUtils::ENTITY_VARIABLE);
-                        java_cast< ::com::tibbo::aggregate::common::context::Context* >(ce)->getKey()))->setVariable(java_cast< const std::string & >(ve)->getKey()), cc, java_cast< DataTable* >(ve)->getValue()));
+                        auto cc = selector)->select(java_cast< Context* >(ce)->getKey()), java_cast< const std::string & >(ve)->getKey()), ContextUtils::ENTITY_VARIABLE);
+                        java_cast< Context* >(ce)->getKey()))->setVariable(java_cast< const std::string & >(ve)->getKey()), cc, java_cast< DataTable* >(ve)->getValue()));
                     } catch (::java::lang::Exception* ex) {
                         provider)->processError(0, EvaluationOptions::EVENT, 0, ex);
                     }

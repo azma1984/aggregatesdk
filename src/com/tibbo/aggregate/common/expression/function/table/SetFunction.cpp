@@ -29,24 +29,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::SetFunction::SetFunction(const ::default_init_tag&)
+function::table::SetFunction::SetFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::SetFunction::SetFunction() 
+function::table::SetFunction::SetFunction() 
     : SetFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::SetFunction::ctor()
+void function::table::SetFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String field, Integer row, Object value"_j, u"Object"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String field, Integer row, Object value"_j, u"Object"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::SetFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::SetFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(4, true, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -59,13 +59,13 @@ void* com::tibbo::aggregate::common::expression::function::table::SetFunction::e
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::SetFunction::class_()
+java::lang::Class* function::table::SetFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.SetFunction", 64);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::SetFunction::getClass0()
+java::lang::Class* function::table::SetFunction::getClass0()
 {
     return class_();
 }

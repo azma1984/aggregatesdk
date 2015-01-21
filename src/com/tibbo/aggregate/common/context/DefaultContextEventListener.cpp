@@ -29,76 +29,76 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::context::DefaultContextEventListener::DefaultContextEventListener(const ::default_init_tag&)
+DefaultContextEventListener::DefaultContextEventListener(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::DefaultContextEventListener::DefaultContextEventListener() 
+DefaultContextEventListener::DefaultContextEventListener() 
     : DefaultContextEventListener(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::context::DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController) 
+DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController) 
     : DefaultContextEventListener(*static_cast< ::default_init_tag* >(0))
 {
     ctor(callerController);
 }
 
-com::tibbo::aggregate::common::context::DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController, int  listenerCode) 
+DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController, int  listenerCode) 
     : DefaultContextEventListener(*static_cast< ::default_init_tag* >(0))
 {
     ctor(callerController,listenerCode);
 }
 
-com::tibbo::aggregate::common::context::DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter) 
+DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController, int  listenerCode, Expression* filter) 
     : DefaultContextEventListener(*static_cast< ::default_init_tag* >(0))
 {
     ctor(callerController,listenerCode,filter);
 }
 
-com::tibbo::aggregate::common::context::DefaultContextEventListener::DefaultContextEventListener(int  listenerCode) 
+DefaultContextEventListener::DefaultContextEventListener(int  listenerCode) 
     : DefaultContextEventListener(*static_cast< ::default_init_tag* >(0))
 {
     ctor(listenerCode);
 }
 
-void com::tibbo::aggregate::common::context::DefaultContextEventListener::ctor()
+void DefaultContextEventListener::ctor()
 {
     super::ctor();
 }
 
-void com::tibbo::aggregate::common::context::DefaultContextEventListener::ctor(CallerController* callerController)
+void DefaultContextEventListener::ctor(CallerController* callerController)
 {
     ctor();
     this->callerController = callerController;
 }
 
-void com::tibbo::aggregate::common::context::DefaultContextEventListener::ctor(CallerController* callerController, int  listenerCode)
+void DefaultContextEventListener::ctor(CallerController* callerController, int  listenerCode)
 {
     ctor(callerController);
     this->listenerCode = listenerCode;
 }
 
-void com::tibbo::aggregate::common::context::DefaultContextEventListener::ctor(CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter)
+void DefaultContextEventListener::ctor(CallerController* callerController, int  listenerCode, Expression* filter)
 {
     ctor(callerController, listenerCode);
     this->filter = filter;
 }
 
-void com::tibbo::aggregate::common::context::DefaultContextEventListener::ctor(int  listenerCode)
+void DefaultContextEventListener::ctor(int  listenerCode)
 {
     ctor();
     this->listenerCode = listenerCode;
 }
 
-bool com::tibbo::aggregate::common::context::DefaultContextEventListener::shouldHandle(Event* ev) /* throws(EventHandlingException) */
+bool DefaultContextEventListener::shouldHandle(Event* ev) /* throws(EventHandlingException) */
 {
     if(filter != 0) {
         if(evaluator == 0) {
-            evaluator = new ::com::tibbo::aggregate::common::expression::Evaluator(0, 0, ev)->getData(), java_cast< CallerController* >(callerController));
+            evaluator = new Evaluator(0, 0, ev)->getData(), java_cast< CallerController* >(callerController));
         } else {
             evaluator)->getDefaultResolver())->setDefaultTable(ev)->getData());
         }
@@ -121,17 +121,17 @@ bool com::tibbo::aggregate::common::context::DefaultContextEventListener::should
     return true;
 }
 
-com::tibbo::aggregate::common::context::CallerController* com::tibbo::aggregate::common::context::DefaultContextEventListener::getCallerController()
+CallerController* DefaultContextEventListener::getCallerController()
 {
     return java_cast< CallerController* >(callerController);
 }
 
-java::lang::Integer* com::tibbo::aggregate::common::context::DefaultContextEventListener::getListenerCode()
+java::lang::Integer* DefaultContextEventListener::getListenerCode()
 {
     return listenerCode;
 }
 
-void com::tibbo::aggregate::common::context::DefaultContextEventListener::setCallerController(CallerController* callerController)
+void DefaultContextEventListener::setCallerController(CallerController* callerController)
 {
     this->callerController = callerController;
     if(evaluator != 0) {
@@ -139,30 +139,30 @@ void com::tibbo::aggregate::common::context::DefaultContextEventListener::setCal
     }
 }
 
-void com::tibbo::aggregate::common::context::DefaultContextEventListener::setAcceptEventsWithoutListenerCode(bool acceptEventsWithoutListenerCode)
+void DefaultContextEventListener::setAcceptEventsWithoutListenerCode(bool acceptEventsWithoutListenerCode)
 {
     this->acceptEventsWithoutListenerCode = acceptEventsWithoutListenerCode;
 }
 
-void com::tibbo::aggregate::common::context::DefaultContextEventListener::setFilter(::com::tibbo::aggregate::common::expression::Expression* filter)
+void DefaultContextEventListener::setFilter(Expression* filter)
 {
     this->filter = filter;
 }
 
-com::tibbo::aggregate::common::expression::Expression* com::tibbo::aggregate::common::context::DefaultContextEventListener::getFilter()
+Expression* DefaultContextEventListener::getFilter()
 {
     return filter;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::DefaultContextEventListener::class_()
+java::lang::Class* DefaultContextEventListener::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.DefaultContextEventListener", 62);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::DefaultContextEventListener::getClass0()
+java::lang::Class* DefaultContextEventListener::getClass0()
 {
     return class_();
 }

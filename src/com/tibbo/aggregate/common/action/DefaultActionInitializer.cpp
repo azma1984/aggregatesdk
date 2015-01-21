@@ -38,7 +38,7 @@ com::tibbo::aggregate::common::action::DefaultActionInitializer::DefaultActionIn
     ctor();
 }
 
-com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::common::action::DefaultActionInitializer::initAction(::com::tibbo::aggregate::common::context::Context* context, const std::string & actionName, ServerActionInput* initialParametrs, DataTable* inputData, std::map environment, ActionExecutionMode* mode, ::com::tibbo::aggregate::common::context::CallerController* callerController, ::com::tibbo::aggregate::common::util::ErrorCollector* collector) /* throws(ContextException) */
+com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::common::action::DefaultActionInitializer::initAction(Context* context, const std::string & actionName, ServerActionInput* initialParametrs, DataTable* inputData, std::map environment, ActionExecutionMode* mode, CallerController* callerController, ::com::tibbo::aggregate::common::util::ErrorCollector* collector) 
 {
     auto def = context)->getFunctionDefinition(::com::tibbo::aggregate::common::server::ServerContextConstants::F_INIT_ACTION());
     if(def == 0) {

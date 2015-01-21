@@ -14,21 +14,21 @@ public:
     typedef DefaultRequestController super;
 
 private:
-    ::java::lang::Long* customExpirationPeriod;
+    long  customExpirationPeriod;
     bool ignoreStorageErrors;
 protected:
-    void ctor(::java::lang::Long* customExpirationPeriod);
+    void ctor(long  customExpirationPeriod);
     void ctor(bool ignoreStorageErrors);
 
 public:
-    ::java::lang::Long* getCustomExpirationPeriod();
-    void setCustomExpirationPeriod(::java::lang::Long* customExpirationPeriod);
+    long  getCustomExpirationPeriod();
+    void setCustomExpirationPeriod(long  customExpirationPeriod);
     bool isIgnoreStorageErrors();
     void setIgnoreStorageErrors(bool ignoreStorageErrors);
     Event* process(Event* event);
 
     // Generated
-    FireEventRequestController(::java::lang::Long* customExpirationPeriod);
+    FireEventRequestController(long  customExpirationPeriod);
     FireEventRequestController(bool ignoreStorageErrors);
 protected:
     FireEventRequestController(const ::default_init_tag&);

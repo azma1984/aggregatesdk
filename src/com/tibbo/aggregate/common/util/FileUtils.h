@@ -27,11 +27,11 @@ public:
     static void copyFile(::java::io::File* source, ::java::io::File* destination) /* throws(IOException) */;
     static const std::string getExtension(::java::io::File* f);
     static const std::string getExtension(const std::string & fileName);
-    static ::java::lang::Long* makeChecksumAdler32(::java::io::File* f) /* throws(FileNotFoundException) */;
-    static ::java::lang::Long* makeChecksumAdler32(std::iostream* in);
+    static long  makeChecksumAdler32(::java::io::File* f) /* throws(FileNotFoundException) */;
+    static long  makeChecksumAdler32(std::iostream* in);
 
 private:
-    static ::java::lang::Long* makeChecksumAdler32(::java::util::zip::CheckedInputStream* cis);
+    static long  makeChecksumAdler32(::java::util::zip::CheckedInputStream* cis);
 
     // Generated
 

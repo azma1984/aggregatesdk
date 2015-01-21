@@ -3,7 +3,7 @@
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::ReferenceResolver::class_()
+java::lang::Class* ReferenceResolver::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.ReferenceResolver", 55);
     return c;

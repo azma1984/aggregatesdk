@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::DefaultRequestController
+class DefaultRequestController
     
     , public RequestController
 {
@@ -20,27 +20,27 @@ public:
 
 private:
     void* originator;
-    ::java::lang::Long* lockTimeout;
-    ::com::tibbo::aggregate::common::expression::Evaluator* evaluator;
+    long  lockTimeout;
+    Evaluator* evaluator;
 protected:
     void ctor();
-    void ctor(::java::lang::Long* lockTimeout);
+    void ctor(long  lockTimeout);
     void ctor(void* originator);
-    void ctor(::com::tibbo::aggregate::common::expression::Evaluator* evaluator);
+    void ctor(Evaluator* evaluator);
 
 public:
     void* getOriginator();
     void setOriginator(void* originator);
-    ::java::lang::Long* getLockTimeout();
-    void setLockTimeout(::java::lang::Long* lockTimeout);
-    ::com::tibbo::aggregate::common::expression::Evaluator* getEvaluator();
-    void setEvaluator(::com::tibbo::aggregate::common::expression::Evaluator* evaluator);
+    long  getLockTimeout();
+    void setLockTimeout(long  lockTimeout);
+    Evaluator* getEvaluator();
+    void setEvaluator(Evaluator* evaluator);
 
     // Generated
     DefaultRequestController();
-    DefaultRequestController(::java::lang::Long* lockTimeout);
+    DefaultRequestController(long  lockTimeout);
     DefaultRequestController(void* originator);
-    DefaultRequestController(::com::tibbo::aggregate::common::expression::Evaluator* evaluator);
+    DefaultRequestController(Evaluator* evaluator);
 protected:
     DefaultRequestController(const ::default_init_tag&);
 

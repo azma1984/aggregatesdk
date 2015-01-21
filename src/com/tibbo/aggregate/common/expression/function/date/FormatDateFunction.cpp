@@ -29,28 +29,28 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::date::FormatDateFunction::FormatDateFunction(const ::default_init_tag&)
+function::date::FormatDateFunction::FormatDateFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::date::FormatDateFunction::FormatDateFunction() 
+function::date::FormatDateFunction::FormatDateFunction() 
     : FormatDateFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::date::FormatDateFunction::ctor()
+void function::date::FormatDateFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date date, String pattern [, String timezone]"_j, u"String"_j);
+    super::ctor(function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date date, String pattern [, String timezone]"_j, u"String"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::date::FormatDateFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::date::FormatDateFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(2, false, parameters);
-    checkParameterType(0, (*parameters)[int(0)], ::java::util::Date::class_());
-    auto date = java_cast< ::java::util::Date* >((*parameters)[int(0)]);
+    checkParameterType(0, (*parameters)[int(0)], Date::class_());
+    auto date = java_cast< Date* >((*parameters)[int(0)]);
     auto pattern = (*parameters)[int(1)])->toString();
     if(date == 0) {
         return u""_j;
@@ -64,13 +64,13 @@ void* com::tibbo::aggregate::common::expression::function::date::FormatDateFunct
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::FormatDateFunction::class_()
+java::lang::Class* function::date::FormatDateFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.date.FormatDateFunction", 70);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::FormatDateFunction::getClass0()
+java::lang::Class* function::date::FormatDateFunction::getClass0()
 {
     return class_();
 }

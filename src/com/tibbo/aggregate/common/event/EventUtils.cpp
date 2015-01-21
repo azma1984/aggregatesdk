@@ -86,12 +86,12 @@ std::string& EventUtils::FIELD_SEVERITY_STATS_LEVEL()
 }
 std::string EventUtils::FIELD_SEVERITY_STATS_LEVEL_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& EventUtils::SEVERITY_STATS_FORMAT()
+DateTableFormat*& EventUtils::SEVERITY_STATS_FORMAT()
 {
     
     return SEVERITY_STATS_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* EventUtils::SEVERITY_STATS_FORMAT_;
+DateTableFormat* EventUtils::SEVERITY_STATS_FORMAT_;
 
 java::util::Random*& EventUtils::ID_GENERATOR()
 {
@@ -106,7 +106,7 @@ long EventUtils::generateEventId()
     return ::java::lang::Math::abs(ID_GENERATOR_)->nextLong());
 }
 
-java::util::List* EventUtils::getEventDefinitions(ContextManager* cm, const std::string & contextMask, const std::string & eventsMask, CallerController* caller)
+std::list  EventUtils::getEventDefinitions(ContextManager* cm, const std::string & contextMask, const std::string & eventsMask, CallerController* caller)
 {
     
     std::list  events = new ::java::util::LinkedList();
@@ -120,7 +120,7 @@ java::util::List* EventUtils::getEventDefinitions(ContextManager* cm, const std:
     return events;
 }
 
-java::util::List* EventUtils::getEvents(Context* context, const std::string & eventsMask, CallerController* caller)
+std::list  EventUtils::getEvents(Context* context, const std::string & eventsMask, CallerController* caller)
 {
     
     std::list  events = new ::java::util::LinkedList();
@@ -160,7 +160,7 @@ bool EventUtils::matchesToMask(const std::string & eventMask, const std::string 
     return ::com::tibbo::aggregate::common::util::Util::equals(event, eventMask);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* EventUtils::createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal)
+DateDataTable* EventUtils::createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal)
 {
     
     auto stats = new DataTable(SEVERITY_STATS_FORMAT_);

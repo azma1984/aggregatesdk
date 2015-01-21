@@ -15,20 +15,20 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable_DataTableReferenceResolver::DataTable_DataTableReferenceResolver(DataTable *DataTable_this, const ::default_init_tag&)
+DateDataTable_DataTableReferenceResolver::DataTable_DataTableReferenceResolver(DataTable *DataTable_this, const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
     , DataTable_this(DataTable_this)
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::DataTable_DataTableReferenceResolver::DataTable_DataTableReferenceResolver(DataTable *DataTable_this)
+DateDataTable_DataTableReferenceResolver::DataTable_DataTableReferenceResolver(DataTable *DataTable_this)
     : DataTable_DataTableReferenceResolver(DataTable_this, *static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void* com::tibbo::aggregate::common::datatable::DataTable_DataTableReferenceResolver::resolveReference(::com::tibbo::aggregate::common::expression::Reference* ref, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* resolvingEnvironment) /* throws(SyntaxErrorException, ContextException) */
+void* DateDataTable_DataTableReferenceResolver::resolveReference(Reference* ref, EvaluationEnvironment* resolvingEnvironment) /* throws(SyntaxErrorException, ContextException) */
 {
     if(DataTableUtils::NAMING_ENVIRONMENT_SHORT_DATA())->equals(ref)->getField()))) {
         return DataTable_this->dataAsString(false, false);
@@ -41,13 +41,13 @@ void* com::tibbo::aggregate::common::datatable::DataTable_DataTableReferenceReso
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTable_DataTableReferenceResolver::class_()
+java::lang::Class* DateDataTable_DataTableReferenceResolver::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.DataTable.DataTableReferenceResolver", 73);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTable_DataTableReferenceResolver::getClass0()
+java::lang::Class* DateDataTable_DataTableReferenceResolver::getClass0()
 {
     return class_();
 }

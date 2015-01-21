@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::context::ContextRuntimeException
+class ContextRuntimeException
     : public ::java::lang::RuntimeException
 {
 

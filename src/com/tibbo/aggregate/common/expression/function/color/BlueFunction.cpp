@@ -12,32 +12,32 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::color::BlueFunction::BlueFunction(const ::default_init_tag&)
+function::color::BlueFunction::BlueFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::color::BlueFunction::BlueFunction()
+function::color::BlueFunction::BlueFunction()
     : BlueFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void* com::tibbo::aggregate::common::expression::function::color::BlueFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::color::BlueFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     return color(parameters))->getBlue());
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::color::BlueFunction::class_()
+java::lang::Class* function::color::BlueFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.color.BlueFunction", 65);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::color::BlueFunction::getClass0()
+java::lang::Class* function::color::BlueFunction::getClass0()
 {
     return class_();
 }

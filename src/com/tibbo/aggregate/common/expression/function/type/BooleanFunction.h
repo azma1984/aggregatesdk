@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::expression::function::type::BooleanFunction
+class function::type::BooleanFunction
     : public TypeConversionFunction
 {
 

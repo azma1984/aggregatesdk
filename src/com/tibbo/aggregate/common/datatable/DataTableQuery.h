@@ -25,7 +25,7 @@ typedef ::SubArray< QueryCondition, voidArray > QueryConditionArray;
 
 
 
-class com::tibbo::aggregate::common::datatable::DataTableQuery
+class DateDataTableQuery
     
     , public ::java::lang::Iterable
 {

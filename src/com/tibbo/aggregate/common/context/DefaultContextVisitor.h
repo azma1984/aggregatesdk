@@ -9,14 +9,14 @@
 
 
 
-class com::tibbo::aggregate::common::context::DefaultContextVisitor
+class DefaultContextVisitor
     
     , public ContextVisitor
 {
 
 public:
     typedef void super;
-    bool shouldVisit(Context* context) /* throws(ContextException) */;
+    bool shouldVisit(Context* context) ;
 
     // Generated
     DefaultContextVisitor();

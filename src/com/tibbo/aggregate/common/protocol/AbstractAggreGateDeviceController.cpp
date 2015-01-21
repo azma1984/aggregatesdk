@@ -73,17 +73,17 @@ AggreGateDevice* AbstractAggreGateDeviceController::getDevice()
     return java_cast< AggreGateDevice* >(device);
 }
 
-com::tibbo::aggregate::common::context::CallerController* AbstractAggreGateDeviceController::getCallerController()
+CallerController* AbstractAggreGateDeviceController::getCallerController()
 {
     return callerController;
 }
 
-void AbstractAggreGateDeviceController::setCallerController(::com::tibbo::aggregate::common::context::CallerController* callerController)
+void AbstractAggreGateDeviceController::setCallerController(CallerController* callerController)
 {
     this->callerController = callerController;
 }
 
-com::tibbo::aggregate::common::datatable::encoding::FormatCache* AbstractAggreGateDeviceController::getFormatCache()
+Dateencoding::FormatCache* AbstractAggreGateDeviceController::getFormatCache()
 {
     return formatCache;
 }
@@ -93,7 +93,7 @@ com::tibbo::aggregate::common::util::UserSettings* AbstractAggreGateDeviceContro
     return userSettings;
 }
 
-com::tibbo::aggregate::common::datatable::encoding::ClassicEncodingSettings* AbstractAggreGateDeviceController::createClassicEncodingSettings(bool forSending)
+Dateencoding::ClassicEncodingSettings* AbstractAggreGateDeviceController::createClassicEncodingSettings(bool forSending)
 {
     auto es = new encoding::ClassicEncodingSettings(false);
     if(!forSending) {
@@ -117,7 +117,7 @@ bool AbstractAggreGateDeviceController::connectImpl()
 {
 	auto ans = java_cast< IncomingAggreGateCommand* >(sendCommand(AggreGateCommandUtils::startMessage()));
     if(!ans)->getReplyCode())->equals(AggreGateCommand::REPLY_CODE_OK()))) {
-        throw new ::com::tibbo::aggregate::common::device::RemoteDeviceErrorException(Cres::get())->getString(u"devUncompatibleVersion"_j));
+        throw new RemoteDeviceErrorException(Cres::get())->getString(u"devUncompatibleVersion"_j));
     }
     formatCache)->clear();
     return true;
@@ -138,7 +138,7 @@ void AbstractAggreGateDeviceController::disconnectImpl()
     formatCache)->clear();
 }
 
-java::util::List* AbstractAggreGateDeviceController::getProxyContexts(const std::string & path)
+std::list  AbstractAggreGateDeviceController::getProxyContexts(const std::string & path)
 {
     auto con = java_cast< ProxyContext* >(java_cast< RemoteContextManager* >(getContextManager()))->get(path));
 	return con != 0 ? ::java::util::Collections::singletonList(con) : ::java::util::Collections::emptyList();
@@ -154,15 +154,15 @@ IncomingAggreGateCommand* AbstractAggreGateDeviceController::sendCommandAndCheck
 	auto ans = java_cast< IncomingAggreGateCommand* >(sendCommand(cmd));
     if(ans)->getReplyCode())->equals(AggreGateCommand::REPLY_CODE_DENIED()))) {
         auto message = ans)->getNumberOfParameters() > AggreGateCommand::INDEX_REPLY_MESSAGE ? std::stringBuilder().append(u": "_j)->append(DataTableUtils::transferDecode(ans)->getParameter(AggreGateCommand::INDEX_REPLY_MESSAGE)))->toString() : u""_j;
-        throw new ::com::tibbo::aggregate::common::context::ContextSecurityException(std::stringBuilder().append(Cres::get())->getString(u"devAccessDeniedReply"_j))->append(message)->toString());
+        throw new ContextSecurityException(std::stringBuilder().append(Cres::get())->getString(u"devAccessDeniedReply"_j))->append(message)->toString());
     }
     if(ans)->getReplyCode())->equals(AggreGateCommand::REPLY_CODE_ERROR()))) {
         auto message = ans)->getNumberOfParameters() > AggreGateCommand::INDEX_REPLY_MESSAGE ? std::stringBuilder().append(u": "_j)->append(DataTableUtils::transferDecode(ans)->getParameter(AggreGateCommand::INDEX_REPLY_MESSAGE)))->toString() : u""_j;
         auto details = ans)->getNumberOfParameters() > AggreGateCommand::INDEX_REPLY_DETAILS ? DataTableUtils::transferDecode(ans)->getParameter(AggreGateCommand::INDEX_REPLY_DETAILS)) : static_cast< const std::string & >(0);
-        throw new ::com::tibbo::aggregate::common::device::RemoteDeviceErrorException(std::stringBuilder().append(Cres::get())->getString(u"devServerReturnedError"_j))->append(message)->toString(), details);
+        throw new RemoteDeviceErrorException(std::stringBuilder().append(Cres::get())->getString(u"devServerReturnedError"_j))->append(message)->toString(), details);
     }
     if(!ans)->getReplyCode())->equals(AggreGateCommand::REPLY_CODE_OK()))) {
-        throw new ::com::tibbo::aggregate::common::device::RemoteDeviceErrorException(std::stringBuilder().append(Cres::get())->getString(u"devServerReturnedError"_j))->append(u": "_j)
+        throw new RemoteDeviceErrorException(std::stringBuilder().append(Cres::get())->getString(u"devServerReturnedError"_j))->append(u": "_j)
             ->append(ans)->toString())
             ->append(u" (error code: '"_j)
             ->append(ans)->getReplyCode())
@@ -194,7 +194,7 @@ void AbstractAggreGateDeviceController::processEvent(IncomingAggreGateCommand* c
     eventPreprocessor)->execute(new AbstractAggreGateDeviceController_processEvent_1(this, cmd));
 }
 
-void AbstractAggreGateDeviceController::confirmEvent(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::EventDefinition* def, Event* event)
+void AbstractAggreGateDeviceController::confirmEvent(Context* con, EventDefinition* def, Event* event)
 {
 }
 
@@ -209,20 +209,20 @@ std::string AbstractAggreGateDeviceController::toString()
     return java_cast< AggreGateDevice* >(getDevice()))->toString();
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* AbstractAggreGateDeviceController::callRemoteFunction(const std::string & context, const std::string & name, TableFormat* outputFormat, DataTable* parameters)
+DateDataTable* AbstractAggreGateDeviceController::callRemoteFunction(const std::string & context, const std::string & name, TableFormat* outputFormat, DataTable* parameters)
 {
     try {
         auto const encodedParameters = parameters)->encode(createClassicEncodingSettings(true));
         auto ans = sendCommandAndCheckReplyCode(AggreGateCommandUtils::callFunctionOperation(context, name, encodedParameters));
         return decodeRemoteDataTable(outputFormat, ans)->getEncodedDataTableFromReply());
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(ex)->getMessage(), ex);
+        throw new ContextException(ex)->getMessage(), ex);
     }
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* AbstractAggreGateDeviceController::decodeRemoteDataTable(TableFormat* format, const std::string & encodedReply)
+DateDataTable* AbstractAggreGateDeviceController::decodeRemoteDataTable(TableFormat* format, const std::string & encodedReply)
 {
     if(isAvoidSendingFormats()) {
         auto settings = new encoding::ClassicEncodingSettings(false, format);
@@ -255,7 +255,7 @@ void AbstractAggreGateDeviceController::disconnect()
     AbstractDeviceController::disconnect();
 }
 
-java::util::List* AbstractAggreGateDeviceController::getActiveCommands()
+std::list  AbstractAggreGateDeviceController::getActiveCommands()
 {
     return java_cast< std::list  >(AbstractDeviceController::getActiveCommands());
 }

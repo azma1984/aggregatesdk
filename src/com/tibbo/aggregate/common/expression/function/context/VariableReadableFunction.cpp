@@ -17,24 +17,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::context::VariableReadableFunction::VariableReadableFunction(const ::default_init_tag&)
+function::context::VariableReadableFunction::VariableReadableFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::context::VariableReadableFunction::VariableReadableFunction(const std::string & group) 
+function::context::VariableReadableFunction::VariableReadableFunction(const std::string & group) 
     : VariableReadableFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor(group);
 }
 
-void com::tibbo::aggregate::common::expression::function::context::VariableReadableFunction::ctor(const std::string & group)
+void function::context::VariableReadableFunction::ctor(const std::string & group)
 {
     super::ctor(group, u"String context, String variable"_j);
 }
 
-bool com::tibbo::aggregate::common::expression::function::context::VariableReadableFunction::hasEntity(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::context::Context* con, voidArray*/*...*/ parameters)
+bool function::context::VariableReadableFunction::hasEntity(Evaluator* evaluator, Context* con, voidArray*/*...*/ parameters)
 {
     auto def = con)->getVariableDefinition((*parameters)[int(1)])->toString(), evaluator)->getDefaultResolver())->getCallerController());
     return def != 0 && def)->isReadable();
@@ -42,13 +42,13 @@ bool com::tibbo::aggregate::common::expression::function::context::VariableReada
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::VariableReadableFunction::class_()
+java::lang::Class* function::context::VariableReadableFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.context.VariableReadableFunction", 79);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::context::VariableReadableFunction::getClass0()
+java::lang::Class* function::context::VariableReadableFunction::getClass0()
 {
     return class_();
 }

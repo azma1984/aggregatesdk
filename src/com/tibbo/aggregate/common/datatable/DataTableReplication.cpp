@@ -45,55 +45,55 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::DataTableReplication::DataTableReplication(const ::default_init_tag&)
+DateDataTableReplication::DataTableReplication(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::DataTableReplication::DataTableReplication()
+DateDataTableReplication::DataTableReplication()
     : DataTableReplication(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copy(DataTable* source, DataTable* target)
+std::set  DateDataTableReplication::copy(DataTable* source, DataTable* target)
 {
     
     return copy(source, target, false, false, true, true, false, 0);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields)
+std::set  DateDataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields)
 {
     
     return copy(source, target, copyReadOnlyFields, false, true, true, false, 0);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields)
+std::set  DateDataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields)
 {
     
     return copy(source, target, copyReadOnlyFields, copyNonReplicatableFields, true, true, false, 0);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget)
+std::set  DateDataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget)
 {
     
     return copy(source, target, copyReadOnlyFields, copyNonReplicatableFields, removeRecordsFromTarget, true, false, 0);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget)
+std::set  DateDataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget)
 {
     
     return copy(source, target, copyReadOnlyFields, copyNonReplicatableFields, removeRecordsFromTarget, addRecordsToTarget, false, 0);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable)
+std::set  DateDataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable)
 {
     
     return copy(source, target, copyReadOnlyFields, copyNonReplicatableFields, removeRecordsFromTarget, addRecordsToTarget, ignoreUnresizable, 0);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, ::java::util::Collection* fields)
+std::set  DateDataTableReplication::copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, ::java::util::Collection* fields)
 {
     
     if(target)->getFormat())->getKeyFields())->size() == 0) {
@@ -103,10 +103,10 @@ java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication:
     }
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copyWithKeyFields(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, ::java::util::Collection* fields)
+std::set  DateDataTableReplication::copyWithKeyFields(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, ::java::util::Collection* fields)
 {
     
-    ::java::util::Set* errors = new ::java::util::LinkedHashSet();
+    ::std::set  errors = new ::java::util::LinkedHashSet();
     auto keyFields = target)->getFormat())->getKeyFields();
     for (auto _i = keyFields)->iterator(); _i->hasNext(); ) {
         const std::string & fieldName = java_cast< const std::string & >(_i->next());
@@ -172,10 +172,10 @@ java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication:
     return errors;
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copyWithoutKeyFields(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, ::java::util::Collection* fields)
+std::set  DateDataTableReplication::copyWithoutKeyFields(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, ::java::util::Collection* fields)
 {
     
-    ::java::util::Set* errors = new ::java::util::LinkedHashSet();
+    ::std::set  errors = new ::java::util::LinkedHashSet();
     if(removeRecordsFromTarget && (ignoreUnresizable || !target)->getFormat())->isUnresizable())) {
         while (target)->getRecordCount() > source)->getRecordCount()) {
             if(target)->getRecordCount() > target)->getFormat())->getMinRecords()) {
@@ -208,28 +208,28 @@ java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication:
     return errors;
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copyRecord(DataRecord* source, DataRecord* target)
+std::set  DateDataTableReplication::copyRecord(DataRecord* source, DataRecord* target)
 {
     
     return copyRecord(source, target, false, false, true, true, 0);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copyRecord(DataRecord* source, DataRecord* target, bool copyReadOnlyFields, bool copyNonReplicatableFields)
+std::set  DateDataTableReplication::copyRecord(DataRecord* source, DataRecord* target, bool copyReadOnlyFields, bool copyNonReplicatableFields)
 {
     
     return copyRecord(source, target, copyReadOnlyFields, copyNonReplicatableFields, true, true, 0);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copyRecord(DataRecord* source, DataRecord* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, ::java::util::Collection* fields)
+std::set  DateDataTableReplication::copyRecord(DataRecord* source, DataRecord* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, ::java::util::Collection* fields)
 {
     
     return copyRecord(source, target, copyReadOnlyFields, copyNonReplicatableFields, true, true, fields);
 }
 
-java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication::copyRecord(DataRecord* source, DataRecord* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, ::java::util::Collection* fields)
+std::set  DateDataTableReplication::copyRecord(DataRecord* source, DataRecord* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, ::java::util::Collection* fields)
 {
     
-    ::java::util::Set* errors = new ::java::util::LinkedHashSet();
+    ::std::set  errors = new ::java::util::LinkedHashSet();
     for (auto _i = target)->getFormat())->iterator(); _i->hasNext(); ) {
         FieldFormat* tgtFf = java_cast< FieldFormat* >(_i->next());
         {
@@ -283,13 +283,13 @@ java::util::Set* com::tibbo::aggregate::common::datatable::DataTableReplication:
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTableReplication::class_()
+java::lang::Class* DateDataTableReplication::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.DataTableReplication", 57);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTableReplication::getClass0()
+java::lang::Class* DateDataTableReplication::getClass0()
 {
     return class_();
 }

@@ -48,54 +48,54 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::DataTableQuery::DataTableQuery(const ::default_init_tag&)
+DateDataTableQuery::DataTableQuery(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::DataTableQuery::DataTableQuery(QueryConditionArray*/*...*/ conditions) 
+DateDataTableQuery::DataTableQuery(QueryConditionArray*/*...*/ conditions) 
     : DataTableQuery(*static_cast< ::default_init_tag* >(0))
 {
     ctor(conditions);
 }
 
-void com::tibbo::aggregate::common::datatable::DataTableQuery::init()
+void DateDataTableQuery::init()
 {
     conditions = new ::java::util::LinkedList();
 }
 
-void com::tibbo::aggregate::common::datatable::DataTableQuery::ctor(QueryConditionArray*/*...*/ conditions)
+void DateDataTableQuery::ctor(QueryConditionArray*/*...*/ conditions)
 {
     super::ctor();
     init();
     java_cast< std::list  >(this->conditions))->addAll(static_cast< ::java::util::Collection* >(::java::util::Arrays::asList(conditions)));
 }
 
-java::util::List* com::tibbo::aggregate::common::datatable::DataTableQuery::getConditions()
+std::list  DateDataTableQuery::getConditions()
 {
     return conditions;
 }
 
-void com::tibbo::aggregate::common::datatable::DataTableQuery::addCondition(QueryCondition* condition)
+void DateDataTableQuery::addCondition(QueryCondition* condition)
 {
     conditions)->add(condition));
 }
 
-java::util::Iterator* com::tibbo::aggregate::common::datatable::DataTableQuery::iterator()
+java::util::Iterator* DateDataTableQuery::iterator()
 {
     return conditions)->iterator();
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTableQuery::class_()
+java::lang::Class* DateDataTableQuery::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.DataTableQuery", 51);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTableQuery::getClass0()
+java::lang::Class* DateDataTableQuery::getClass0()
 {
     return class_();
 }

@@ -80,7 +80,7 @@ std::string DataTableUtils::transferEncode(const std::string & value)
     return ::encoding::TransferEncodingHelper::encode(value);
 }
 
-void DataTableUtils::inlineData(DataTable* table, ::com::tibbo::aggregate::common::context::ContextManager* cm, ::com::tibbo::aggregate::common::context::CallerController* cc) 
+void DataTableUtils::inlineData(DataTable* table, ContextManager* cm, CallerController* cc) 
 {
     
     if(table == 0) {
@@ -151,13 +151,13 @@ DataTable* DataTableUtils::wrapToTable(std::map values)
     return result)->wrap();
 }
 
-java::util::Set* DataTableUtils::findDifferingFields(DataTable* first, DataTable* second)
+std::set  DataTableUtils::findDifferingFields(DataTable* first, DataTable* second)
 {
     
     if(first)->getRecordCount() != second)->getRecordCount()) {
         return 0;
     }
-    ::java::util::Set* fields = new ::java::util::LinkedHashSet();
+    ::std::set  fields = new ::java::util::LinkedHashSet();
     for (auto _i = first)->getFormat())->iterator(); _i->hasNext(); ) {
         FieldFormat* ff = java_cast< FieldFormat* >(_i->next());
         {
@@ -192,13 +192,13 @@ DataTable* DataTableUtils::makeSubtable(DataTable* table, ::java::util::Collecti
     return result;
 }
 
-com::tibbo::aggregate::common::expression::Evaluator* DataTableUtils::createEvaluator(DataTable* dataTable, ::com::tibbo::aggregate::common::context::ContextManager* contextManager, ::com::tibbo::aggregate::common::context::Context* context)
+Evaluator* DataTableUtils::createEvaluator(DataTable* dataTable, ContextManager* contextManager, Context* context)
 {
     
-    ::com::tibbo::aggregate::common::expression::DefaultReferenceResolver* resolver = new DataTableUtils_createEvaluator_1(dataTable);
+    DefaultReferenceResolver* resolver = new DataTableUtils_createEvaluator_1(dataTable);
     resolver)->setContextManager(contextManager);
     resolver)->setDefaultContext(context);
-    return new ::com::tibbo::aggregate::common::expression::Evaluator(static_cast< ::com::tibbo::aggregate::common::expression::ReferenceResolver* >(resolver));
+    return new Evaluator(static_cast< ReferenceResolver* >(resolver));
 }
 
 std::string DataTableUtils::fieldValueToString(FieldFormat* ff, void* value)
@@ -242,19 +242,19 @@ std::string DataTableUtils::createRecordKeyString(DataRecord* record, int  rowNu
     return record)->getValueAsString(java_cast< const std::string & >(keyFields)->get(0)));
 }
 
-DataTable* DataTableUtils::processBindings(DataTable* table, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator)
+DataTable* DataTableUtils::processBindings(DataTable* table, Evaluator* evaluator)
 {
     
     return processBindings(table, evaluator, 0, false);
 }
 
-DataTable* DataTableUtils::processBindings(DataTable* table, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector)
+DataTable* DataTableUtils::processBindings(DataTable* table, Evaluator* evaluator, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector)
 {
     
     return processBindings(table, evaluator, errorCollector, false);
 }
 
-DataTable* DataTableUtils::processBindings(DataTable* table, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector, bool split)
+DataTable* DataTableUtils::processBindings(DataTable* table, Evaluator* evaluator, ::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector, bool split)
 {
     
     if(table == 0) {

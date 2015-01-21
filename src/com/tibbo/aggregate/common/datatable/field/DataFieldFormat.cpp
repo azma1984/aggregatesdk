@@ -43,133 +43,133 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::field::DataFieldFormat::DataFieldFormat(const ::default_init_tag&)
+Datefield::DataFieldFormat::DataFieldFormat(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::field::DataFieldFormat::DataFieldFormat(const std::string & name) 
+Datefield::DataFieldFormat::DataFieldFormat(const std::string & name) 
     : DataFieldFormat(*static_cast< ::default_init_tag* >(0))
 {
     ctor(name);
 }
 
-const int com::tibbo::aggregate::common::datatable::field::DataFieldFormat::TRANSCODER_VERSION;
+const int Datefield::DataFieldFormat::TRANSCODER_VERSION;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_TEXT()
+std::string& Datefield::DataFieldFormat::EDITOR_TEXT()
 {
     
     return EDITOR_TEXT_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_TEXT_;
+std::string Datefield::DataFieldFormat::EDITOR_TEXT_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_IMAGE()
+std::string& Datefield::DataFieldFormat::EDITOR_IMAGE()
 {
     
     return EDITOR_IMAGE_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_IMAGE_;
+std::string Datefield::DataFieldFormat::EDITOR_IMAGE_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_SOUND()
+std::string& Datefield::DataFieldFormat::EDITOR_SOUND()
 {
     
     return EDITOR_SOUND_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_SOUND_;
+std::string Datefield::DataFieldFormat::EDITOR_SOUND_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_HEX()
+std::string& Datefield::DataFieldFormat::EDITOR_HEX()
 {
     
     return EDITOR_HEX_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_HEX_;
+std::string Datefield::DataFieldFormat::EDITOR_HEX_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_REPORT()
+std::string& Datefield::DataFieldFormat::EDITOR_REPORT()
 {
     
     return EDITOR_REPORT_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EDITOR_REPORT_;
+std::string Datefield::DataFieldFormat::EDITOR_REPORT_;
 
-const char16_t com::tibbo::aggregate::common::datatable::field::DataFieldFormat::SEPARATOR;
+const char16_t Datefield::DataFieldFormat::SEPARATOR;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EXTENSIONS_DESCR_FIELD()
+std::string& Datefield::DataFieldFormat::EXTENSIONS_DESCR_FIELD()
 {
     
     return EXTENSIONS_DESCR_FIELD_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EXTENSIONS_DESCR_FIELD_;
+std::string Datefield::DataFieldFormat::EXTENSIONS_DESCR_FIELD_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::MODE_FIELD()
+std::string& Datefield::DataFieldFormat::MODE_FIELD()
 {
     
     return MODE_FIELD_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::MODE_FIELD_;
+std::string Datefield::DataFieldFormat::MODE_FIELD_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EXTENSIONS_FIELD()
+std::string& Datefield::DataFieldFormat::EXTENSIONS_FIELD()
 {
     
     return EXTENSIONS_FIELD_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EXTENSIONS_FIELD_;
+std::string Datefield::DataFieldFormat::EXTENSIONS_FIELD_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EXTENSION_FIELD()
+std::string& Datefield::DataFieldFormat::EXTENSION_FIELD()
 {
     
     return EXTENSION_FIELD_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EXTENSION_FIELD_;
+std::string Datefield::DataFieldFormat::EXTENSION_FIELD_;
 
-std::string& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::FOLDER_FIELD()
+std::string& Datefield::DataFieldFormat::FOLDER_FIELD()
 {
     
     return FOLDER_FIELD_;
 }
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::FOLDER_FIELD_;
+std::string Datefield::DataFieldFormat::FOLDER_FIELD_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EXTENSIONS_FORMAT()
+DateTableFormat*& Datefield::DataFieldFormat::EXTENSIONS_FORMAT()
 {
     
     return EXTENSIONS_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::EXTENSIONS_FORMAT_;
+DateTableFormat* Datefield::DataFieldFormat::EXTENSIONS_FORMAT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::datatable::field::DataFieldFormat::DATA_EDITOR_OPTIONS_FORMAT()
+DateTableFormat*& Datefield::DataFieldFormat::DATA_EDITOR_OPTIONS_FORMAT()
 {
     
     return DATA_EDITOR_OPTIONS_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::DATA_EDITOR_OPTIONS_FORMAT_;
+DateTableFormat* Datefield::DataFieldFormat::DATA_EDITOR_OPTIONS_FORMAT_;
 
-void com::tibbo::aggregate::common::datatable::field::DataFieldFormat::ctor(const std::string & name)
+void Datefield::DataFieldFormat::ctor(const std::string & name)
 {
     super::ctor(name);
     setTransferEncode(true);
 }
 
-char16_t com::tibbo::aggregate::common::datatable::field::DataFieldFormat::getType()
+char16_t Datefield::DataFieldFormat::getType()
 {
     return FieldFormat::DATA_FIELD;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::getFieldClass()
+java::lang::Class* Datefield::DataFieldFormat::getFieldClass()
 {
     return Data::class_();
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::getFieldWrappedClass()
+java::lang::Class* Datefield::DataFieldFormat::getFieldWrappedClass()
 {
     return Data::class_();
 }
 
-Data* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::getNotNullDefault()
+Data* Datefield::DataFieldFormat::getNotNullDefault()
 {
     return new Data();
 }
 
-Data* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
+Data* Datefield::DataFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
 {
     try {
         auto data = new Data();
@@ -194,7 +194,7 @@ Data* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::valueFro
     }
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::valueToString(Data* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::DataFieldFormat::valueToString(Data* value, encoding::ClassicEncodingSettings* settings)
 {
     if(value == 0) {
         return 0;
@@ -221,29 +221,29 @@ std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::va
     return buf)->toString();
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
+std::string Datefield::DataFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
 { 
     return valueToString(dynamic_cast< Data* >(value), settings);
 }
 
-java::util::List* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::getSuitableEditors()
+std::list  Datefield::DataFieldFormat::getSuitableEditors()
 {
     return ::java::util::Arrays::asList(new voidArray({EDITOR_LIST()), EDITOR_TEXT_), EDITOR_IMAGE_), EDITOR_SOUND_), EDITOR_HEX_), EDITOR_REPORT_)}));
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::encodeTextEditorOptions(const std::string & mode)
+std::string Datefield::DataFieldFormat::encodeTextEditorOptions(const std::string & mode)
 {
     
     return encodeTextEditorOptions(mode, 0, 0, 0);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::encodeTextEditorOptions(const std::string & extensionsDescription, const std::string & folder, std::list  extensions)
+std::string Datefield::DataFieldFormat::encodeTextEditorOptions(const std::string & extensionsDescription, const std::string & folder, std::list  extensions)
 {
     
     return encodeTextEditorOptions(0, extensionsDescription, folder, extensions);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::encodeTextEditorOptions(const std::string & mode, const std::string & extensionsDescription, const std::string & folder, std::list  extensions)
+std::string Datefield::DataFieldFormat::encodeTextEditorOptions(const std::string & mode, const std::string & extensionsDescription, const std::string & folder, std::list  extensions)
 {
     
     DataTable* esdt;
@@ -268,13 +268,13 @@ std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::en
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::class_()
+java::lang::Class* Datefield::DataFieldFormat::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.DataFieldFormat", 58);
     return c;
 }
 
-void com::tibbo::aggregate::common::datatable::field::DataFieldFormat::clinit()
+void Datefield::DataFieldFormat::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -326,17 +326,17 @@ struct clinit_ {
     }
 }
 
-void* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::valueFromString(const std::string & value)
+void* Datefield::DataFieldFormat::valueFromString(const std::string & value)
 {
     return super::valueFromString(value);
 }
 
-std::string com::tibbo::aggregate::common::datatable::field::DataFieldFormat::valueToString(void* value)
+std::string Datefield::DataFieldFormat::valueToString(void* value)
 {
     return super::valueToString(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::field::DataFieldFormat::getClass0()
+java::lang::Class* Datefield::DataFieldFormat::getClass0()
 {
     return class_();
 }

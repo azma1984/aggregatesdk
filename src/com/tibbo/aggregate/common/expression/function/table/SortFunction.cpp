@@ -28,24 +28,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::SortFunction::SortFunction(const ::default_init_tag&)
+function::table::SortFunction::SortFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::SortFunction::SortFunction() 
+function::table::SortFunction::SortFunction() 
     : SortFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::SortFunction::ctor()
+void function::table::SortFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String field, boolean ascending"_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String field, boolean ascending"_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::SortFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::SortFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(3, false, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
@@ -59,13 +59,13 @@ void* com::tibbo::aggregate::common::expression::function::table::SortFunction::
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::SortFunction::class_()
+java::lang::Class* function::table::SortFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.SortFunction", 65);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::SortFunction::getClass0()
+java::lang::Class* function::table::SortFunction::getClass0()
 {
     return class_();
 }

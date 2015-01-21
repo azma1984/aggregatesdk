@@ -46,13 +46,13 @@ private:
     void init();
 
 public:
-    void addListenerToContext(::com::tibbo::aggregate::common::context::Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak);
+    void addListenerToContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak);
 
 public:
-    void contextRemoved(::com::tibbo::aggregate::common::context::Context* con);
+    void contextRemoved(Context* con);
 
 public:
-    void removeListenerFromContext(::com::tibbo::aggregate::common::context::Context* con, const std::string & event, ContextEventListener* listener, bool mask);
+    void removeListenerFromContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask);
 
 public:
     void addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener, bool weak);

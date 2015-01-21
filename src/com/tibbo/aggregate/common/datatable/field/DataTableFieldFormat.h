@@ -12,7 +12,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::field::DataTableFieldFormat
+class Datefield::DataTableFieldFormat
     : public FieldFormat
 {
 

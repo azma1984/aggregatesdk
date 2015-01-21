@@ -8,7 +8,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::converter::SimpleFormatConverter
+class Dateconverter::SimpleFormatConverter
     : public AbstractFormatConverter
 {
 

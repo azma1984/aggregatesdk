@@ -13,12 +13,12 @@
 
 class examples::agent::DemoAgent_initializeAgentContext_3
     
-    , public ::com::tibbo::aggregate::common::context::VariableSetter
+    , public VariableSetter
 {
 
 public:
     typedef void super;
-    bool set(::com::tibbo::aggregate::common::context::Context* con, ::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* value) /* throws(ContextException) */;
+    bool set(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request, DataTable* value) ;
 
     // Generated
     DemoAgent_initializeAgentContext_3();

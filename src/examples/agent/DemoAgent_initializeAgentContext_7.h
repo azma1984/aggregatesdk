@@ -12,18 +12,18 @@
 
 
 class examples::agent::DemoAgent_initializeAgentContext_7
-    : public ::com::tibbo::aggregate::common::context::DefaultContextEventListener
+    : public DefaultContextEventListener
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::context::DefaultContextEventListener super;
+    typedef DefaultContextEventListener super;
     void handle(Event* event) /* throws(EventHandlingException) */;
 
     // Generated
     DemoAgent_initializeAgentContext_7();
-    DemoAgent_initializeAgentContext_7(::com::tibbo::aggregate::common::context::CallerController* callerController);
-    DemoAgent_initializeAgentContext_7(::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode);
-    DemoAgent_initializeAgentContext_7(::com::tibbo::aggregate::common::context::CallerController* callerController, int  listenerCode, ::com::tibbo::aggregate::common::expression::Expression* filter);
+    DemoAgent_initializeAgentContext_7(CallerController* callerController);
+    DemoAgent_initializeAgentContext_7(CallerController* callerController, int  listenerCode);
+    DemoAgent_initializeAgentContext_7(CallerController* callerController, int  listenerCode, Expression* filter);
     DemoAgent_initializeAgentContext_7(int  listenerCode);
     
 

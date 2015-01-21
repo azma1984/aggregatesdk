@@ -5,10 +5,13 @@
 #include "EncodingSettings.h"
 #include "FormatCache.h"
 #include "KnownFormatCollector.h"
+//#include "datatable/tableformat.h"
+
+class TableFormat;
 
 class ClassicEncodingSettings : public EncodingSettings
 {
-	/*
+	
 private:
     bool useVisibleSeparators;
     boost::shared_ptr<FormatCache> formatCache;
@@ -17,16 +20,16 @@ private:
     bool encodeFieldNames;
 
 public:
-  //  ClassicEncodingSettings(bool useVisibleSeparators) : EncodingSettings(true, NULL), encodeDefaultValues(true), encodeFieldNames(false)
-   // {
-   //     this->useVisibleSeparators = useVisibleSeparators;
-  //  }
+    ClassicEncodingSettings(bool useVisibleSeparators) : EncodingSettings(true, NULL), encodeDefaultValues(true), encodeFieldNames(false)
+    {
+        this->useVisibleSeparators = useVisibleSeparators;
+    }
 
-  //  ClassicEncodingSettings(bool useVisibleSeparators, bool encodeFieldNames) : EncodingSettings(true, NULL), encodeDefaultValues(true), encodeFieldNames(false)
-  //  {
-  //      this->useVisibleSeparators = useVisibleSeparators;
-  //      this->encodeFieldNames = encodeFieldNames;
-  //  }
+    ClassicEncodingSettings(bool useVisibleSeparators, bool encodeFieldNames) : EncodingSettings(true, NULL), encodeDefaultValues(true), encodeFieldNames(false)
+    {
+        this->useVisibleSeparators = useVisibleSeparators;
+        this->encodeFieldNames = encodeFieldNames;
+    }
 
     ClassicEncodingSettings(bool useVisibleSeparators, boost::shared_ptr<TableFormat> format) : EncodingSettings(true, format), encodeDefaultValues(true), encodeFieldNames(false)
     {
@@ -82,6 +85,6 @@ public:
     {
         this->encodeFieldNames = encodeFieldNames;
     }
-	*/
+	
 };
 #endif

@@ -46,7 +46,7 @@ PersistenceOptions* PersistenceOptions::clone()
     }
 }
 
-java::util::List* PersistenceOptions::getPersistenceBindings()
+std::list  PersistenceOptions::getPersistenceBindings()
 {
     return persistenceBindings != 0 ? ::java::util::Collections::unmodifiableList(persistenceBindings) : static_cast< std::list  >(0);
 }

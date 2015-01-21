@@ -14,24 +14,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::type::FloatFunction::FloatFunction(const ::default_init_tag&)
+function::type::FloatFunction::FloatFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::type::FloatFunction::FloatFunction() 
+function::type::FloatFunction::FloatFunction() 
     : FloatFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::type::FloatFunction::ctor()
+void function::type::FloatFunction::ctor()
 {
     super::ctor(u"Float"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::type::FloatFunction::convert(void* parameter) /* throws(EvaluationException) */
+void* function::type::FloatFunction::convert(void* parameter) /* throws(EvaluationException) */
 {
     auto n = ::com::tibbo::aggregate::common::util::Util::convertToNumber(parameter, true, false);
     return ::java::lang::Float::valueOf(n)->floatValue());
@@ -39,13 +39,13 @@ void* com::tibbo::aggregate::common::expression::function::type::FloatFunction::
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::FloatFunction::class_()
+java::lang::Class* function::type::FloatFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.type.FloatFunction", 65);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::type::FloatFunction::getClass0()
+java::lang::Class* function::type::FloatFunction::getClass0()
 {
     return class_();
 }

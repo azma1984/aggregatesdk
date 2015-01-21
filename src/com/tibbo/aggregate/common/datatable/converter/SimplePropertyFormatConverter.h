@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::converter::SimplePropertyFormatConverter
+class Dateconverter::SimplePropertyFormatConverter
     : public SimpleFormatConverter
 {
 

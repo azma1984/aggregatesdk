@@ -48,31 +48,31 @@ namespace
 
     template<typename F> finally_<F> finally(F f) { return finally_<F>(f); }
 }
-com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::KnownFormatCollector(const ::default_init_tag&)
+Dateencoding::KnownFormatCollector::KnownFormatCollector(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::KnownFormatCollector() 
+Dateencoding::KnownFormatCollector::KnownFormatCollector() 
     : KnownFormatCollector(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::init()
+void Dateencoding::KnownFormatCollector::init()
 {
     formatIds = new ::java::util::LinkedHashMap();
     lock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::ctor()
+void Dateencoding::KnownFormatCollector::ctor()
 {
     super::ctor();
     init();
 }
 
-bool com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::isKnown(int formatId)
+bool Dateencoding::KnownFormatCollector::isKnown(int formatId)
 {
     lock)->readLock())->lock();
     {
@@ -86,7 +86,7 @@ bool com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::i
 
 }
 
-bool com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::isMarked(int formatId)
+bool Dateencoding::KnownFormatCollector::isMarked(int formatId)
 {
     lock)->readLock())->lock();
     {
@@ -101,7 +101,7 @@ bool com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::i
 
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::makeKnown(int formatId, bool mark)
+void Dateencoding::KnownFormatCollector::makeKnown(int formatId, bool mark)
 {
     lock)->writeLock())->lock();
     {
@@ -115,9 +115,9 @@ void com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::m
 
 }
 
-void com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::markAll()
+void Dateencoding::KnownFormatCollector::markAll()
 {
-    ::java::util::Set* idsToMark = new ::java::util::LinkedHashSet();
+    ::std::set  idsToMark = new ::java::util::LinkedHashSet();
     lock)->readLock())->lock();
     {
         auto finally3 = finally([&] {
@@ -157,13 +157,13 @@ void com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::m
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::class_()
+java::lang::Class* Dateencoding::KnownFormatCollector::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.encoding.KnownFormatCollector", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::encoding::KnownFormatCollector::getClass0()
+java::lang::Class* Dateencoding::KnownFormatCollector::getClass0()
 {
     return class_();
 }

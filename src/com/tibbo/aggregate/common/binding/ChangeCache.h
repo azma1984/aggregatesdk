@@ -16,6 +16,6 @@ private:
 
 public:
     void setVariableField(boost::shared_ptr<Context> context, const std::string& variable,
-                          const std::string& field, int record, void* value, boost::shared_ptr<CallerController> cc) /* throws(ContextException) */;
+                          const std::string& field, int record, void* value, boost::shared_ptr<CallerController> cc) ;
     void commit(boost::shared_ptr<BindingProvider> provider, boost::shared_ptr<CallerControllerSelector> selector);
 };

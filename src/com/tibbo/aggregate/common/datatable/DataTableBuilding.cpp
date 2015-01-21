@@ -50,228 +50,228 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::DataTableBuilding::DataTableBuilding(const ::default_init_tag&)
+DateDataTableBuilding::DataTableBuilding(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::DataTableBuilding::DataTableBuilding()
+DateDataTableBuilding::DataTableBuilding()
     : DataTableBuilding(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_MIN_RECORDS()
+std::string& DateDataTableBuilding::FIELD_TABLE_FORMAT_MIN_RECORDS()
 {
     
     return FIELD_TABLE_FORMAT_MIN_RECORDS_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_MIN_RECORDS_;
+std::string DateDataTableBuilding::FIELD_TABLE_FORMAT_MIN_RECORDS_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_MAX_RECORDS()
+std::string& DateDataTableBuilding::FIELD_TABLE_FORMAT_MAX_RECORDS()
 {
     
     return FIELD_TABLE_FORMAT_MAX_RECORDS_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_MAX_RECORDS_;
+std::string DateDataTableBuilding::FIELD_TABLE_FORMAT_MAX_RECORDS_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_FIELDS()
+std::string& DateDataTableBuilding::FIELD_TABLE_FORMAT_FIELDS()
 {
     
     return FIELD_TABLE_FORMAT_FIELDS_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_FIELDS_;
+std::string DateDataTableBuilding::FIELD_TABLE_FORMAT_FIELDS_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_REORDERABLE()
+std::string& DateDataTableBuilding::FIELD_TABLE_FORMAT_REORDERABLE()
 {
     
     return FIELD_TABLE_FORMAT_REORDERABLE_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_REORDERABLE_;
+std::string DateDataTableBuilding::FIELD_TABLE_FORMAT_REORDERABLE_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_UNRESIZABLE()
+std::string& DateDataTableBuilding::FIELD_TABLE_FORMAT_UNRESIZABLE()
 {
     
     return FIELD_TABLE_FORMAT_UNRESIZABLE_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_UNRESIZABLE_;
+std::string DateDataTableBuilding::FIELD_TABLE_FORMAT_UNRESIZABLE_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_BINDINGS()
+std::string& DateDataTableBuilding::FIELD_TABLE_FORMAT_BINDINGS()
 {
     
     return FIELD_TABLE_FORMAT_BINDINGS_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_TABLE_FORMAT_BINDINGS_;
+std::string DateDataTableBuilding::FIELD_TABLE_FORMAT_BINDINGS_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_OLDNAME()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_OLDNAME()
 {
     
     return FIELD_FIELDS_FORMAT_OLDNAME_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_OLDNAME_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_OLDNAME_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_NAME()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_NAME()
 {
     
     return FIELD_FIELDS_FORMAT_NAME_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_NAME_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_NAME_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_TYPE()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_TYPE()
 {
     
     return FIELD_FIELDS_FORMAT_TYPE_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_TYPE_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_TYPE_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_DESCRIPTION()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_DESCRIPTION()
 {
     
     return FIELD_FIELDS_FORMAT_DESCRIPTION_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_DESCRIPTION_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_DESCRIPTION_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_DEFAULT_VALUE()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_DEFAULT_VALUE()
 {
     
     return FIELD_FIELDS_FORMAT_DEFAULT_VALUE_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_DEFAULT_VALUE_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_DEFAULT_VALUE_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_HIDDEN()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_HIDDEN()
 {
     
     return FIELD_FIELDS_FORMAT_HIDDEN_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_HIDDEN_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_HIDDEN_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_INLINE()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_INLINE()
 {
     
     return FIELD_FIELDS_FORMAT_INLINE_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_INLINE_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_INLINE_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_READONLY()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_READONLY()
 {
     
     return FIELD_FIELDS_FORMAT_READONLY_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_READONLY_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_READONLY_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_NULLABLE()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_NULLABLE()
 {
     
     return FIELD_FIELDS_FORMAT_NULLABLE_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_NULLABLE_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_NULLABLE_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_KEY()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_KEY()
 {
     
     return FIELD_FIELDS_FORMAT_KEY_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_KEY_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_KEY_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_SELVALS()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_SELVALS()
 {
     
     return FIELD_FIELDS_FORMAT_SELVALS_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_SELVALS_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_SELVALS_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_EXTSELVALS()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_EXTSELVALS()
 {
     
     return FIELD_FIELDS_FORMAT_EXTSELVALS_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_EXTSELVALS_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_EXTSELVALS_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_HELP()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_HELP()
 {
     
     return FIELD_FIELDS_FORMAT_HELP_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_HELP_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_HELP_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_EDITOR()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_EDITOR()
 {
     
     return FIELD_FIELDS_FORMAT_EDITOR_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_EDITOR_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_EDITOR_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_EDITOR_OPTIONS()
+std::string& DateDataTableBuilding::FIELD_FIELDS_FORMAT_EDITOR_OPTIONS()
 {
     
     return FIELD_FIELDS_FORMAT_EDITOR_OPTIONS_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_FIELDS_FORMAT_EDITOR_OPTIONS_;
+std::string DateDataTableBuilding::FIELD_FIELDS_FORMAT_EDITOR_OPTIONS_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_SELECTION_VALUES_VALUE()
+std::string& DateDataTableBuilding::FIELD_SELECTION_VALUES_VALUE()
 {
     
     return FIELD_SELECTION_VALUES_VALUE_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_SELECTION_VALUES_VALUE_;
+std::string DateDataTableBuilding::FIELD_SELECTION_VALUES_VALUE_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_SELECTION_VALUES_DESCRIPTION()
+std::string& DateDataTableBuilding::FIELD_SELECTION_VALUES_DESCRIPTION()
 {
     
     return FIELD_SELECTION_VALUES_DESCRIPTION_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_SELECTION_VALUES_DESCRIPTION_;
+std::string DateDataTableBuilding::FIELD_SELECTION_VALUES_DESCRIPTION_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_BINDINGS_TARGET()
+std::string& DateDataTableBuilding::FIELD_BINDINGS_TARGET()
 {
     
     return FIELD_BINDINGS_TARGET_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_BINDINGS_TARGET_;
+std::string DateDataTableBuilding::FIELD_BINDINGS_TARGET_;
 
-std::string& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_BINDINGS_EXPRESSION()
+std::string& DateDataTableBuilding::FIELD_BINDINGS_EXPRESSION()
 {
     
     return FIELD_BINDINGS_EXPRESSION_;
 }
-std::string com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELD_BINDINGS_EXPRESSION_;
+std::string DateDataTableBuilding::FIELD_BINDINGS_EXPRESSION_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::datatable::DataTableBuilding::SELECTION_VALUES_FORMAT()
+DateTableFormat*& DateDataTableBuilding::SELECTION_VALUES_FORMAT()
 {
     
     return SELECTION_VALUES_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::DataTableBuilding::SELECTION_VALUES_FORMAT_;
+DateTableFormat* DateDataTableBuilding::SELECTION_VALUES_FORMAT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::datatable::DataTableBuilding::BINDINGS_FORMAT()
+DateTableFormat*& DateDataTableBuilding::BINDINGS_FORMAT()
 {
     
     return BINDINGS_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::DataTableBuilding::BINDINGS_FORMAT_;
+DateTableFormat* DateDataTableBuilding::BINDINGS_FORMAT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELDS_FORMAT()
+DateTableFormat*& DateDataTableBuilding::FIELDS_FORMAT()
 {
     
     return FIELDS_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::DataTableBuilding::FIELDS_FORMAT_;
+DateTableFormat* DateDataTableBuilding::FIELDS_FORMAT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat*& com::tibbo::aggregate::common::datatable::DataTableBuilding::TABLE_FORMAT()
+DateTableFormat*& DateDataTableBuilding::TABLE_FORMAT()
 {
     
     return TABLE_FORMAT_;
 }
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::DataTableBuilding::TABLE_FORMAT_;
+DateTableFormat* DateDataTableBuilding::TABLE_FORMAT_;
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::DataTableBuilding::createTableFormat(DataTable* formatTable) /* throws(ContextException) */
+DateTableFormat* DateDataTableBuilding::createTableFormat(DataTable* formatTable) 
 {
     
     return createTableFormat(formatTable, 0, false);
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::DataTableBuilding::createTableFormat(DataTable* formatTable, encoding::ClassicEncodingSettings* settings, bool allowNull) /* throws(ContextException) */
+DateTableFormat* DateDataTableBuilding::createTableFormat(DataTable* formatTable, encoding::ClassicEncodingSettings* settings, bool allowNull) 
 {
     
     auto rec = formatTable)->rec();
@@ -295,7 +295,7 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
     return format;
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::common::datatable::DataTableBuilding::createTableFormat(int minRecords, int maxRecords, bool reorderable, DataTable* fields, encoding::ClassicEncodingSettings* settings) /* throws(ContextException) */
+DateTableFormat* DateDataTableBuilding::createTableFormat(int minRecords, int maxRecords, bool reorderable, DataTable* fields, encoding::ClassicEncodingSettings* settings) 
 {
     
     auto rf = new TableFormat(reorderable);
@@ -356,19 +356,19 @@ com::tibbo::aggregate::common::datatable::TableFormat* com::tibbo::aggregate::co
     return rf;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableBuilding::formatToFieldsTable(TableFormat* tf, bool readOnly)
+DateDataTable* DateDataTableBuilding::formatToFieldsTable(TableFormat* tf, bool readOnly)
 {
     
     return formatToFieldsTable(tf, readOnly, 0);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableBuilding::formatToFieldsTable(TableFormat* tf, bool readOnly, encoding::ClassicEncodingSettings* settings)
+DateDataTable* DateDataTableBuilding::formatToFieldsTable(TableFormat* tf, bool readOnly, encoding::ClassicEncodingSettings* settings)
 {
     
     return formatToFieldsTable(tf, readOnly, settings, true);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableBuilding::formatToFieldsTable(TableFormat* tf, bool readOnly, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields)
+DateDataTable* DateDataTableBuilding::formatToFieldsTable(TableFormat* tf, bool readOnly, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields)
 {
     
     auto res = new DataTable(FIELDS_FORMAT_);
@@ -411,25 +411,25 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
     return res;
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableBuilding::formatToTable(TableFormat* tf, bool ignoreHiddenFields) /* throws(ContextException) */
+DateDataTable* DateDataTableBuilding::formatToTable(TableFormat* tf, bool ignoreHiddenFields) 
 {
     
     return formatToTable(tf, 0, ignoreHiddenFields);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableBuilding::formatToTable(TableFormat* tf) /* throws(ContextException) */
+DateDataTable* DateDataTableBuilding::formatToTable(TableFormat* tf) 
 {
     
     return formatToTable(tf, static_cast< encoding::ClassicEncodingSettings* >(0));
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableBuilding::formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings) /* throws(ContextException) */
+DateDataTable* DateDataTableBuilding::formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings) 
 {
     
     return formatToTable(tf, settings, true);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::common::datatable::DataTableBuilding::formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields) /* throws(ContextException) */
+DateDataTable* DateDataTableBuilding::formatToTable(TableFormat* tf, encoding::ClassicEncodingSettings* settings, bool ignoreHiddenFields) 
 {
     
     auto rec = new DataRecord(TABLE_FORMAT_);
@@ -451,13 +451,13 @@ com::tibbo::aggregate::common::datatable::DataTable* com::tibbo::aggregate::comm
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTableBuilding::class_()
+java::lang::Class* DateDataTableBuilding::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.DataTableBuilding", 54);
     return c;
 }
 
-void com::tibbo::aggregate::common::datatable::DataTableBuilding::clinit()
+void DateDataTableBuilding::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -659,7 +659,7 @@ struct clinit_ {
                 ->append(u"} ? null : '"_j)
                 ->append(Cres::get())->getString(u"dtMaxRecsLessThenMin"_j))
                 ->append(u"'"_j)->toString()));
-            TABLE_FORMAT_)->setNamingExpression(std::stringBuilder().append(::com::tibbo::aggregate::common::expression::function::Functions::PRINT())->append(u"({"_j)
+            TABLE_FORMAT_)->setNamingExpression(std::stringBuilder().append(function::Functions::PRINT())->append(u"({"_j)
                 ->append(FIELD_TABLE_FORMAT_FIELDS_)
                 ->append(u"}, '{"_j)
                 ->append(FIELD_FIELDS_FORMAT_NAME_)
@@ -673,7 +673,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::DataTableBuilding::getClass0()
+java::lang::Class* DateDataTableBuilding::getClass0()
 {
     return class_();
 }

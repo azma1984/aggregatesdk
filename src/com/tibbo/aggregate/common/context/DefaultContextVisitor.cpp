@@ -11,32 +11,32 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::context::DefaultContextVisitor::DefaultContextVisitor(const ::default_init_tag&)
+DefaultContextVisitor::DefaultContextVisitor(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::context::DefaultContextVisitor::DefaultContextVisitor()
+DefaultContextVisitor::DefaultContextVisitor()
     : DefaultContextVisitor(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-bool com::tibbo::aggregate::common::context::DefaultContextVisitor::shouldVisit(Context* context) /* throws(ContextException) */
+bool DefaultContextVisitor::shouldVisit(Context* context) 
 {
     return !context)->isDistributed();
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::context::DefaultContextVisitor::class_()
+java::lang::Class* DefaultContextVisitor::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.context.DefaultContextVisitor", 56);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::context::DefaultContextVisitor::getClass0()
+java::lang::Class* DefaultContextVisitor::getClass0()
 {
     return class_();
 }

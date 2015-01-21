@@ -10,7 +10,7 @@
 
 
 
-class com::tibbo::aggregate::common::datatable::DataTableConstruction
+class DateDataTableConstruction
     
 {
 
@@ -19,10 +19,10 @@ public:
     static DataTable* constructTable(void* object) /* throws(SyntaxErrorException, EvaluationException) */;
     static DataTable* constructTable(std::list  parameters) /* throws(SyntaxErrorException, EvaluationException) */;
     static DataTable* constructTable(std::list  parameters, TableFormat* format) /* throws(SyntaxErrorException, EvaluationException) */;
-    static DataTable* constructTable(std::list  parameters, TableFormat* format, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */;
+    static DataTable* constructTable(std::list  parameters, TableFormat* format, Evaluator* evaluator, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */;
 
 private:
-    static std::list  resolveParameters(std::list  parameters, ::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */;
+    static std::list  resolveParameters(std::list  parameters, Evaluator* evaluator, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */;
     static DataTable* fillDataTable(TableFormat* format, std::list  params);
 
     // Generated

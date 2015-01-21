@@ -97,7 +97,7 @@ std::string& ProxyContext::F_LOCAL_REINITIALIZE()
     return F_LOCAL_REINITIALIZE_;
 }
 
-java::util::List*& ProxyContext::AUTO_LISTENED_EVENTS()
+std::list & ProxyContext::AUTO_LISTENED_EVENTS()
 {
 	
 	return AUTO_LISTENED_EVENTS_;
@@ -128,10 +128,10 @@ void ProxyContext::setupMyself()
 
 void ProxyContext::addLocalFunctionDefinitions()
 {
-    addFunctionDefinition(new ::com::tibbo::aggregate::common::context::FunctionDefinition(F_LOCAL_REINITIALIZE(), TableFormat::EMPTY_FORMAT(), TableFormat::EMPTY_FORMAT()));
+    addFunctionDefinition(new FunctionDefinition(F_LOCAL_REINITIALIZE(), TableFormat::EMPTY_FORMAT(), TableFormat::EMPTY_FORMAT()));
 }
 
-com::tibbo::aggregate::common::datatable::TableFormat* ProxyContext::decodeFormat(const std::string & source, ::com::tibbo::aggregate::common::context::CallerController* caller)
+DateTableFormat* ProxyContext::decodeFormat(const std::string & source, CallerController* caller)
 {
     if(source == 0) {
         return 0;
@@ -170,10 +170,10 @@ void ProxyContext::clear()
 {
 	try
 	{
-	 accept(static_cast< ::com::tibbo::aggregate::common::context::ContextVisitor* >(new ProxyContext_clear_16(this)));
+	 accept(static_cast< ContextVisitor* >(new ProxyContext_clear_16(this)));
 	}
-	catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
+	catch (ContextException* ex) {
+        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -205,10 +205,10 @@ void ProxyContext::initInfo()
 
             }
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new ContextException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -240,10 +240,10 @@ void ProxyContext::initChildren()
 
             }
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new ContextException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -275,10 +275,10 @@ void ProxyContext::initVariables()
 
             }
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new ContextException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -310,10 +310,10 @@ void ProxyContext::initFunctions()
 
             }
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new ContextException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -345,10 +345,10 @@ void ProxyContext::initEvents()
 
             }
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new ContextException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -373,17 +373,17 @@ void ProxyContext::initActions()
                     });
                     {
                         initializingActions = true;
-                        initActionsImpl(getRemoteVariable(ACTION_DEF_FORMAT(), ::com::tibbo::aggregate::common::context::AbstractContext::V_ACTIONS(), ::java::lang::Long::valueOf(METADATA_READ_TIMEOUT)));
+                        initActionsImpl(getRemoteVariable(ACTION_DEF_FORMAT(), AbstractContext::V_ACTIONS(), ::java::lang::Long::valueOf(METADATA_READ_TIMEOUT)));
                         initializedActions = true;
                     }
                 }
 
             }
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new ContextException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -414,10 +414,10 @@ void ProxyContext::initVisibleChildren()
 
             }
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new ContextException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -449,10 +449,10 @@ void ProxyContext::initStatus()
 
             }
         }
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
+    } catch (ContextException* ex) {
         throw ex;
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(static_cast< ::java::lang::Throwable* >(ex));
+        throw new ContextException(static_cast< ::java::lang::Throwable* >(ex));
     }
 }
 
@@ -491,10 +491,10 @@ std::string ProxyContext::convertRemoteDescription(const std::string & remoteDes
 void ProxyContext::initChildrenImpl(DataTable* children)
 {
     for (auto _i = getChildren(getContextManager())->getCallerController()))->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::context::Context* child = java_cast< ::com::tibbo::aggregate::common::context::Context* >(_i->next());
+        Context* child = java_cast< Context* >(_i->next());
         {
             if(children)->select(VF_CHILDREN_NAME(), child)->getName()) == 0) {
-                removeChild(static_cast< ::com::tibbo::aggregate::common::context::Context* >(child));
+                removeChild(static_cast< Context* >(child));
             }
         }
     }
@@ -502,8 +502,8 @@ void ProxyContext::initChildrenImpl(DataTable* children)
         DataRecord* rec = java_cast< DataRecord* >(_i->next());
         {
             auto cn = rec)->getString(VF_CHILDREN_NAME());
-            if(java_cast< ::com::tibbo::aggregate::common::context::Context* >(getChild(cn)) == 0) {
-                addChild(static_cast< ::com::tibbo::aggregate::common::context::Context* >(java_cast< ::com::tibbo::aggregate::common::context::Context* >(createChildContextProxy(cn))));
+            if(java_cast< Context* >(getChild(cn)) == 0) {
+                addChild(static_cast< Context* >(java_cast< Context* >(createChildContextProxy(cn))));
             }
         }
     }
@@ -537,7 +537,7 @@ ProxyContext* ProxyContext::createChildContextProxy(const std::string & name)
 void ProxyContext::initVariablesImpl(DataTable* variables)
 {
     for (auto _i = getVariableDefinitions())->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::context::VariableDefinition* def = java_cast< ::com::tibbo::aggregate::common::context::VariableDefinition* >(_i->next());
+        VariableDefinition* def = java_cast< VariableDefinition* >(_i->next());
         {
             if(variables)->select(FIELD_VD_NAME(), def)->getName()) == 0) {
                 removeVariableDefinition(def)->getName());
@@ -562,7 +562,7 @@ void ProxyContext::initVariablesImpl(DataTable* variables)
 void ProxyContext::initFunctionsImpl(DataTable* functions)
 {
     for (auto _i = getFunctionDefinitions())->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::context::FunctionDefinition* def = java_cast< ::com::tibbo::aggregate::common::context::FunctionDefinition* >(_i->next());
+        FunctionDefinition* def = java_cast< FunctionDefinition* >(_i->next());
         {
             if(functions)->select(FIELD_FD_NAME(), def)->getName()) == 0) {
                 removeFunctionDefinition(def)->getName());
@@ -589,7 +589,7 @@ void ProxyContext::initFunctionsImpl(DataTable* functions)
 void ProxyContext::initEventsImpl(DataTable* events)
 {
     for (auto _i = getEventDefinitions())->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::context::EventDefinition* def = java_cast< ::com::tibbo::aggregate::common::context::EventDefinition* >(_i->next());
+        EventDefinition* def = java_cast< EventDefinition* >(_i->next());
         {
             if(events)->select(FIELD_ED_NAME(), def)->getName()) == 0) {
                 removeEventDefinition(def)->getName());
@@ -616,7 +616,7 @@ void ProxyContext::initActionsImpl(DataTable* actions)
     for (auto _i = getActionDefinitions())->iterator(); _i->hasNext(); ) {
         ::com::tibbo::aggregate::common::action::ActionDefinition* ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
         {
-            if(actions)->select(::com::tibbo::aggregate::common::context::ActionConstants::FIELD_AD_NAME(), ad)->getName()) == 0) {
+            if(actions)->select(ActionConstants::FIELD_AD_NAME(), ad)->getName()) == 0) {
                 removeActionDefinition(ad)->getName());
             }
         }
@@ -653,8 +653,8 @@ std::string ProxyContext::getDescription()
 {
     try {
         initInfo();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         Log::CONTEXT_VARIABLES())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), u"Error getting description of remote context"_j, ex);
     }
     return super::getDescription();
@@ -664,8 +664,8 @@ std::string ProxyContext::getType()
 {
     try {
         initInfo();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(std::stringBuilder().append(u"Error getting type of remote context: "_j)->append(ex)->getMessage())->toString(), ex);
+    } catch (ContextException* ex) {
+        throw new ContextRuntimeException(std::stringBuilder().append(u"Error getting type of remote context: "_j)->append(ex)->getMessage())->toString(), ex);
     }
     return super::getType();
 }
@@ -674,8 +674,8 @@ std::string ProxyContext::getLocalRoot()
 {
     try {
         initInfo();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
+    } catch (ContextException* ex) {
+        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
     }
     return localRoot;
 }
@@ -684,8 +684,8 @@ std::string ProxyContext::getRemoteRoot()
 {
     try {
         initInfo();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
+    } catch (ContextException* ex) {
+        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
     }
     return remoteRoot;
 }
@@ -694,52 +694,52 @@ bool ProxyContext::isMapped()
 {
     try {
         initInfo();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
+    } catch (ContextException* ex) {
+        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
     }
     return mapped;
 }
 
-com::tibbo::aggregate::common::context::Context* ProxyContext::get(const std::string & contextPath, ::com::tibbo::aggregate::common::context::CallerController* caller)
+Context* ProxyContext::get(const std::string & contextPath, CallerController* caller)
 {
     if(contextPath == 0) {
         return 0;
     }
-    if(::com::tibbo::aggregate::common::context::ContextUtils::isRelative(contextPath)) {
-        return java_cast< ::com::tibbo::aggregate::common::context::Context* >(super::get(contextPath, caller));
+    if(ContextUtils::isRelative(contextPath)) {
+        return java_cast< Context* >(super::get(contextPath, caller));
     }
     auto localPath = getLocalPath(contextPath);
     if(localPath == 0) {
         return 0;
     }
-    return java_cast< ::com::tibbo::aggregate::common::context::Context* >(super::get(localPath, caller));
+    return java_cast< Context* >(super::get(localPath, caller));
 }
 
 std::string ProxyContext::getIconId()
 {
     try {
         initInfo();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         Log::CONTEXT_VARIABLES())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), u"Error getting icon of remote context"_j, ex);
     }
     return super::getIconId();
 }
 
-com::tibbo::aggregate::common::context::Context* ProxyContext::getChild(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* callerController)
+Context* ProxyContext::getChild(const std::string & name, CallerController* callerController)
 {
-    if(java_cast< ::com::tibbo::aggregate::common::context::Context* >(super::getChild(name, callerController)) == 0) {
+    if(java_cast< Context* >(super::getChild(name, callerController)) == 0) {
         try {
             initChildren();
-        } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-            auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+        } catch (ContextException* ex) {
+            auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
             Log::CONTEXT_CHILDREN())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), u"Error initializing children of remote context"_j, ex);
         }
     }
-    return java_cast< ::com::tibbo::aggregate::common::context::Context* >(super::getChild(name, callerController));
+    return java_cast< Context* >(super::getChild(name, callerController));
 }
 
-com::tibbo::aggregate::common::context::VariableDefinition* ProxyContext::getVariableDefinition(const std::string & name)
+VariableDefinition* ProxyContext::getVariableDefinition(const std::string & name)
 {
     auto sup = super::getVariableDefinition(name);
     if(sup == 0 && isSetupComplete()) {
@@ -750,7 +750,7 @@ com::tibbo::aggregate::common::context::VariableDefinition* ProxyContext::getVar
     }
 }
 
-com::tibbo::aggregate::common::context::FunctionDefinition* ProxyContext::getFunctionDefinition(const std::string & name)
+FunctionDefinition* ProxyContext::getFunctionDefinition(const std::string & name)
 {
     auto sup = super::getFunctionDefinition(name);
     if(sup == 0 && isSetupComplete()) {
@@ -761,7 +761,7 @@ com::tibbo::aggregate::common::context::FunctionDefinition* ProxyContext::getFun
     }
 }
 
-com::tibbo::aggregate::common::context::EventData* ProxyContext::getEventData(const std::string & name)
+EventData* ProxyContext::getEventData(const std::string & name)
 {
     auto sup = super::getEventData(name);
     if(sup == 0 && isSetupComplete()) {
@@ -778,31 +778,31 @@ com::tibbo::aggregate::common::action::ActionDefinition* ProxyContext::getAction
     return super::getActionDefinition(name);
 }
 
-java::util::List* ProxyContext::getVariableDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, bool hidden)
+std::list  ProxyContext::getVariableDefinitions(CallerController* caller, bool hidden)
 {
     initVariablesLoggingErrors();
     return java_cast< std::list  >(super::getVariableDefinitions(caller, hidden));
 }
 
-java::util::List* ProxyContext::getFunctionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, bool hidden)
+std::list  ProxyContext::getFunctionDefinitions(CallerController* caller, bool hidden)
 {
     initFunctionsLoggingErrors();
     return java_cast< std::list  >(super::getFunctionDefinitions(caller, hidden));
 }
 
-java::util::List* ProxyContext::getEventDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, bool hidden)
+std::list  ProxyContext::getEventDefinitions(CallerController* caller, bool hidden)
 {
     initEventsLoggingErrors();
     return java_cast< std::list  >(super::getEventDefinitions(caller, hidden));
 }
 
-java::util::List* ProxyContext::getActionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, bool hidden)
+std::list  ProxyContext::getActionDefinitions(CallerController* caller, bool hidden)
 {
     initActionsLoggingErrors();
     return java_cast< std::list  >(super::getActionDefinitions(caller, hidden));
 }
 
-com::tibbo::aggregate::common::context::ContextStatus* ProxyContext::getStatus()
+ContextStatus* ProxyContext::getStatus()
 {
     initStatusLoggingErrors();
     return super::getStatus();
@@ -812,13 +812,13 @@ void ProxyContext::initVariablesLoggingErrors()
 {
     try {
         initVariables();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         auto message = std::stringBuilder().append(u"Error initializing variables of remote context '"_j)->append(getPathDescription())
             ->append(u"': "_j)
             ->append(ex)->getMessage())->toString();
         Log::CONTEXT_VARIABLES())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), message, ex);
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(message, ex);
+        throw new ContextRuntimeException(message, ex);
     }
 }
 
@@ -826,13 +826,13 @@ void ProxyContext::initFunctionsLoggingErrors()
 {
     try {
         initFunctions();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         auto message = std::stringBuilder().append(u"Error initializing functions of remote context '"_j)->append(getPathDescription())
             ->append(u"': "_j)
             ->append(ex)->getMessage())->toString();
         Log::CONTEXT_FUNCTIONS())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), message, ex);
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(message, ex);
+        throw new ContextRuntimeException(message, ex);
     }
 }
 
@@ -840,13 +840,13 @@ void ProxyContext::initEventsLoggingErrors()
 {
     try {
         initEvents();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         auto message = std::stringBuilder().append(u"Error initializing events of remote context '"_j)->append(getPathDescription())
             ->append(u"': "_j)
             ->append(ex)->getMessage())->toString();
         Log::CONTEXT_EVENTS())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), message, ex);
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(message, ex);
+        throw new ContextRuntimeException(message, ex);
     }
 }
 
@@ -854,8 +854,8 @@ void ProxyContext::initActionsLoggingErrors()
 {
     try {
         initActions();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         Log::CONTEXT_ACTIONS())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), std::stringBuilder().append(u"Error initializing actions of remote context '"_j)->append(getPathDescription())
             ->append(u"': "_j)
             ->append(ex)->getMessage())->toString(), ex);
@@ -866,28 +866,28 @@ void ProxyContext::initStatusLoggingErrors()
 {
     try {
         initStatus();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         Log::CONTEXT())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), std::stringBuilder().append(u"Error initializing status of remote context '"_j)->append(getPathDescription())
             ->append(u"': "_j)
             ->append(ex)->getMessage())->toString(), ex);
     }
 }
 
-IncomingAggreGateCommand* ProxyContext::sendGetVariable(const std::string & name, ::java::lang::Long* timeout)
+IncomingAggreGateCommand* ProxyContext::sendGetVariable(const std::string & name, long  timeout)
 {
     auto const cmd = AggreGateCommandUtils::getVariableOperation(getPeerPath(), name);
     cmd)->setTimeout(timeout);
     return controller)->sendCommandAndCheckReplyCode(cmd);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* ProxyContext::getRemoteVariable(TableFormat* format, const std::string & name, ::java::lang::Long* timeout)
+DateDataTable* ProxyContext::getRemoteVariable(TableFormat* format, const std::string & name, long  timeout)
 {
     auto encodedReply = sendGetVariable(name, timeout))->getEncodedDataTableFromReply();
     try {
         return controller)->decodeRemoteDataTable(format, encodedReply);
     } catch (::java::lang::Exception* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(std::stringBuilder().append(u"Error parsing encoded data table '"_j)->append(encodedReply)
+        throw new ContextException(std::stringBuilder().append(u"Error parsing encoded data table '"_j)->append(encodedReply)
             ->append(u"': "_j)
             ->append(ex)->getMessage())->toString(), ex);
     }
@@ -904,12 +904,12 @@ void ProxyContext::setupVariables()
     super::setupVariables();
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* ProxyContext::getVariableImpl(::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request)
+DateDataTable* ProxyContext::getVariableImpl(VariableDefinition* def, CallerController* caller, RequestController* request)
 {
     return getRemoteVariable(def);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* ProxyContext::getRemoteVariable(::com::tibbo::aggregate::common::context::VariableDefinition* def)
+DateDataTable* ProxyContext::getRemoteVariable(VariableDefinition* def)
 {
     try {
         auto cleanup = false;
@@ -960,11 +960,11 @@ com::tibbo::aggregate::common::datatable::DataTable* ProxyContext::getRemoteVari
             ->append(u"' from context '"_j)
             ->append(getPathDescription())
             ->append(u"'"_j)->toString(), ex);
-        throw new ::com::tibbo::aggregate::common::context::ContextException(ex)->getMessage(), ex);
+        throw new ContextException(ex)->getMessage(), ex);
     }
 }
 
-bool ProxyContext::setVariableImpl(::com::tibbo::aggregate::common::context::VariableDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* value)
+bool ProxyContext::setVariableImpl(VariableDefinition* def, CallerController* caller, RequestController* request, DataTable* value)
 {
     try {
         auto const encoded = value)->encode(controller)->createClassicEncodingSettings(true));
@@ -975,7 +975,7 @@ bool ProxyContext::setVariableImpl(::com::tibbo::aggregate::common::context::Var
             ->append(u"' of context '"_j)
             ->append(getPathDescription())
             ->append(u"'"_j)->toString(), ex);
-        throw new ::com::tibbo::aggregate::common::context::ContextException(ex)->getMessage(), ex);
+        throw new ContextException(ex)->getMessage(), ex);
     }
 }
 
@@ -985,7 +985,7 @@ void ProxyContext::setupFunctions()
     super::setupFunctions();
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* ProxyContext::callFunctionImpl(::com::tibbo::aggregate::common::context::FunctionDefinition* def, ::com::tibbo::aggregate::common::context::CallerController* caller, ::com::tibbo::aggregate::common::context::RequestController* request, DataTable* parameters)
+DateDataTable* ProxyContext::callFunctionImpl(FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
 {
     if(def)->getName())->equals(F_LOCAL_REINITIALIZE()))) {
         reinitialize();
@@ -994,7 +994,7 @@ com::tibbo::aggregate::common::datatable::DataTable* ProxyContext::callFunctionI
     return callRemoteFunction(def)->getName(), def)->getOutputFormat(), parameters);
 }
 
-com::tibbo::aggregate::common::datatable::DataTable* ProxyContext::callRemoteFunction(const std::string & name, TableFormat* outputFormat, DataTable* parameters)
+DateDataTable* ProxyContext::callRemoteFunction(const std::string & name, TableFormat* outputFormat, DataTable* parameters)
 {
     try {
         return controller)->callRemoteFunction(getPeerPath(), name, outputFormat, parameters);
@@ -1003,7 +1003,7 @@ com::tibbo::aggregate::common::datatable::DataTable* ProxyContext::callRemoteFun
             ->append(u"' of context '"_j)
             ->append(getPathDescription())
             ->append(u"'"_j)->toString(), ex);
-        throw new ::com::tibbo::aggregate::common::context::ContextException(ex)->getMessage(), ex);
+        throw new ContextException(ex)->getMessage(), ex);
     }
 }
 
@@ -1018,7 +1018,7 @@ bool ProxyContext::addEventListener(const std::string & name, ContextEventListen
         initEvents();
         auto ed = getEventData(name);
         if(ed == 0) {
-            throw new ::com::tibbo::aggregate::common::context::ContextException(std::stringBuilder().append(Cres::get())->getString(u"conEvtNotAvail"_j))->append(name)->toString());
+            throw new ContextException(std::stringBuilder().append(Cres::get())->getString(u"conEvtNotAvail"_j))->append(name)->toString());
         }
         if(sendRemoteCommand) {
             addRemoteListener(ed)->getDefinition())->getName(), contextEventListener);
@@ -1058,7 +1058,7 @@ bool ProxyContext::removeEventListener(const std::string & name, ContextEventLis
             }
         }
         return res;
-    } catch (::com::tibbo::aggregate::common::device::DisconnectionException* ex) {
+    } catch (DisconnectionException* ex) {
         Log::CONTEXT_EVENTS())->debug(std::stringBuilder().append(u"Disconnection detected when removing listener for event '"_j)->append(name)
             ->append(u"' from context '"_j)
             ->append(getPathDescription())
@@ -1085,23 +1085,23 @@ void ProxyContext::addRemoteListener(const std::string & ename, ContextEventList
     }
 }
 
-java::util::List* ProxyContext::getChildren(::com::tibbo::aggregate::common::context::CallerController* caller)
+std::list  ProxyContext::getChildren(CallerController* caller)
 {
     try {
         initChildren();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         Log::CONTEXT_CHILDREN())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), u"Error initializing children of remote context"_j, ex);
     }
     return java_cast< std::list  >(super::getChildren(caller));
 }
 
-java::util::List* ProxyContext::getVisibleChildren(::com::tibbo::aggregate::common::context::CallerController* caller)
+std::list  ProxyContext::getVisibleChildren(CallerController* caller)
 {
     try {
         initVisibleChildren();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, ::com::tibbo::aggregate::common::device::DisconnectionException::class_()) != -int(1);
+    } catch (ContextException* ex) {
+        auto disconnected = ::org::apache::commons::lang::exception::ExceptionUtils::indexOfType(ex, DisconnectionException::class_()) != -int(1);
         Log::CONTEXT_CHILDREN())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), u"Error initializing visible children of remote context"_j, ex);
         return new ::java::util::LinkedList();
     }
@@ -1109,7 +1109,7 @@ java::util::List* ProxyContext::getVisibleChildren(::com::tibbo::aggregate::comm
     for (auto _i = visibleChildren)->iterator(); _i->hasNext(); ) {
         const std::string & path = java_cast< const std::string & >(_i->next());
         {
-            auto con = java_cast< ::com::tibbo::aggregate::common::context::Context* >(java_cast< ::com::tibbo::aggregate::common::context::Context* >(java_cast< ::com::tibbo::aggregate::common::context::Context* >(getRoot()))->get(path, caller)));
+            auto con = java_cast< Context* >(java_cast< Context* >(java_cast< Context* >(getRoot()))->get(path, caller)));
             if(con != 0) {
                 res)->add(con));
             }
@@ -1130,8 +1130,8 @@ void ProxyContext::removeVisibleChild(const std::string & localVisiblePath)
 
 void ProxyContext::restoreEventListeners()
 {
-    for (auto _i = java_cast< std::list  >(super::getEventDefinitions(static_cast< ::com::tibbo::aggregate::common::context::CallerController* >(0))))->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::context::EventDefinition* ed = java_cast< ::com::tibbo::aggregate::common::context::EventDefinition* >(_i->next());
+    for (auto _i = java_cast< std::list  >(super::getEventDefinitions(static_cast< CallerController* >(0))))->iterator(); _i->hasNext(); ) {
+        EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
         {
             auto edata = getEventData(ed)->getName());
             {
@@ -1160,12 +1160,12 @@ void ProxyContext::reinitialize()
     restoreEventListeners();
 }
 
-Event* ProxyContext::fireEvent(::com::tibbo::aggregate::common::context::EventDefinition* ed, DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, ::com::tibbo::aggregate::common::context::CallerController* caller, FireEventRequestController* request, Permissions* permissions)
+Event* ProxyContext::fireEvent(EventDefinition* ed, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions)
 {
     auto event = super::fireEvent(ed, data, level, id, creationtime, listener, caller, request, permissions);
-    if(ed)->getName())->equals(::com::tibbo::aggregate::common::context::AbstractContext::E_UPDATED())) && isInitializedVariables()) {
-        auto variable = event)->getData())->rec())->getString(::com::tibbo::aggregate::common::context::AbstractContext::EF_UPDATED_VARIABLE());
-        auto value = event)->getData())->rec())->getDataTable(::com::tibbo::aggregate::common::context::AbstractContext::EF_UPDATED_VALUE());
+    if(ed)->getName())->equals(AbstractContext::E_UPDATED())) && isInitializedVariables()) {
+        auto variable = event)->getData())->rec())->getString(AbstractContext::EF_UPDATED_VARIABLE());
+        auto value = event)->getData())->rec())->getDataTable(AbstractContext::EF_UPDATED_VALUE());
         auto vd = getVariableDefinition(variable);
         if(vd != 0 && vd)->getRemoteCacheTime() != 0) {
             cacheVariableValue(variable, value);
@@ -1182,7 +1182,7 @@ void ProxyContext::cacheVariableValue(const std::string & variable, DataTable* v
             variableCacheLock)->writeLock())->unlock();
         });
         {
-            variableCache)->put(variable, new ::java::lang::ref::SoftReference(new CachedVariableValue(new ::java::util::Date(), value)));
+            variableCache)->put(variable, new ::java::lang::ref::SoftReference(new CachedVariableValue(new Date(), value)));
         }
     }
 
@@ -1207,8 +1207,8 @@ std::string ProxyContext::getRemotePath()
 {
     try {
         initInfo();
-    } catch (::com::tibbo::aggregate::common::context::ContextException* ex) {
-        throw new ::com::tibbo::aggregate::common::context::ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
+    } catch (ContextException* ex) {
+        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
     }
     return remotePath;
 }
@@ -1230,16 +1230,16 @@ std::string ProxyContext::getLocalPath(const std::string & remoteFullPath)
         return remoteFullPath;
     }
     const std::string & remoteConverted;
-    if(remoteRoot)->equals(::com::tibbo::aggregate::common::context::Contexts::CTX_ROOT()))) {
+    if(remoteRoot)->equals(Contexts::CTX_ROOT()))) {
         remoteConverted = remoteFullPath;
     } else if(remoteFullPath)->equals(remoteRoot))) {
         remoteConverted = u""_j;
-    } else if(remoteFullPath)->startsWith(std::stringBuilder().append(getRemoteRoot())->append(::com::tibbo::aggregate::common::context::ContextUtils::CONTEXT_NAME_SEPARATOR())->toString())) {
+    } else if(remoteFullPath)->startsWith(std::stringBuilder().append(getRemoteRoot())->append(ContextUtils::CONTEXT_NAME_SEPARATOR())->toString())) {
         remoteConverted = remoteFullPath)->substring(getRemoteRoot())->length() + int(1));
     } else {
         return getRemotePrimaryPath(remoteFullPath);
     }
-    auto converted = remoteConverted)->length() > 0 ? ::com::tibbo::aggregate::common::context::ContextUtils::createName(new std::stringArray({getLocalRoot(), remoteConverted})) : getLocalRoot();
+    auto converted = remoteConverted)->length() > 0 ? ContextUtils::createName(new std::stringArray({getLocalRoot(), remoteConverted})) : getLocalRoot();
     Log::CONTEXT())->debug(std::stringBuilder().append(u"Converted remote path '"_j)->append(remoteFullPath)
         ->append(u"' to: "_j)
         ->append(converted)->toString());
@@ -1252,10 +1252,10 @@ std::string ProxyContext::getRemotePrimaryPath(const std::string & remoteFullPat
     if(primaryMount == 0) {
         return 0;
     }
-    if(::com::tibbo::aggregate::common::util::Util::equals(::com::tibbo::aggregate::common::context::Contexts::CTX_ROOT(), remoteFullPath)) {
+    if(::com::tibbo::aggregate::common::util::Util::equals(Contexts::CTX_ROOT(), remoteFullPath)) {
         return primaryMount;
     } else {
-        return ::com::tibbo::aggregate::common::context::ContextUtils::createName(new std::stringArray({primaryMount, remoteFullPath}));
+        return ContextUtils::createName(new std::stringArray({primaryMount, remoteFullPath}));
     }
 }
 
@@ -1329,19 +1329,19 @@ struct clinit_ {
         in_cl_init = true;
         AUTO_LISTENED_EVENTS_ = new ::java::util::LinkedList();
         {
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_CHILD_ADDED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_CHILD_REMOVED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_VARIABLE_ADDED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_VARIABLE_REMOVED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_FUNCTION_ADDED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_FUNCTION_REMOVED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_EVENT_ADDED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_EVENT_REMOVED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_INFO_CHANGED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_DESTROYED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_ACTION_ADDED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_ACTION_REMOVED()));
-            AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::context::AbstractContext::E_ACTION_STATE_CHANGED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_CHILD_ADDED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_CHILD_REMOVED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_VARIABLE_ADDED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_VARIABLE_REMOVED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_FUNCTION_ADDED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_FUNCTION_REMOVED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_EVENT_ADDED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_EVENT_REMOVED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_INFO_CHANGED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_DESTROYED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_ACTION_ADDED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_ACTION_REMOVED()));
+            AUTO_LISTENED_EVENTS())->add(AbstractContext::E_ACTION_STATE_CHANGED()));
             AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::server::ServerContextConstants::E_VISIBLE_INFO_CHANGED()));
             AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::server::ServerContextConstants::E_VISIBLE_CHILD_ADDED()));
             AUTO_LISTENED_EVENTS())->add(::com::tibbo::aggregate::common::server::ServerContextConstants::E_VISIBLE_CHILD_REMOVED()));
@@ -1364,12 +1364,12 @@ Event* ProxyContext::fireEvent(Event* event)
     return super::fireEvent(event);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, int level, ::com::tibbo::aggregate::common::context::CallerController* caller, FireEventRequestController* request, Permissions* permissions, DataTable* data)
+Event* ProxyContext::fireEvent(const std::string & name, int level, CallerController* caller, FireEventRequestController* request, Permissions* permissions, DataTable* data)
 {
     return super::fireEvent(name, level, caller, request, permissions, data);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, DataTable* data, int level, ::java::lang::Long* id, ::java::util::Date* creationtime, int  listener, ::com::tibbo::aggregate::common::context::CallerController* caller, FireEventRequestController* request)
+Event* ProxyContext::fireEvent(const std::string & name, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request)
 {
     return super::fireEvent(name, data, level, id, creationtime, listener, caller, request);
 }
@@ -1379,7 +1379,7 @@ Event* ProxyContext::fireEvent(const std::string & name, DataTable* data)
     return super::fireEvent(name, data);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller, DataTable* data)
+Event* ProxyContext::fireEvent(const std::string & name, CallerController* caller, DataTable* data)
 {
     return super::fireEvent(name, caller, data);
 }
@@ -1389,7 +1389,7 @@ Event* ProxyContext::fireEvent(const std::string & name, int level, DataTable* d
     return super::fireEvent(name, level, data);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, int level, ::com::tibbo::aggregate::common::context::CallerController* caller, DataTable* data)
+Event* ProxyContext::fireEvent(const std::string & name, int level, CallerController* caller, DataTable* data)
 {
     return super::fireEvent(name, level, caller, data);
 }
@@ -1399,7 +1399,7 @@ Event* ProxyContext::fireEvent(const std::string & name)
     return super::fireEvent(name);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller)
+Event* ProxyContext::fireEvent(const std::string & name, CallerController* caller)
 {
     return super::fireEvent(name, caller);
 }
@@ -1409,107 +1409,107 @@ Event* ProxyContext::fireEvent(const std::string & name, voidArray* data)
     return super::fireEvent(name, data);
 }
 
-com::tibbo::aggregate::common::context::Context* ProxyContext::get(const std::string & contextName)
+Context* ProxyContext::get(const std::string & contextName)
 {
     return super::get(contextName);
 }
 
-com::tibbo::aggregate::common::action::ActionDefinition* ProxyContext::getActionDefinition(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller)
+com::tibbo::aggregate::common::action::ActionDefinition* ProxyContext::getActionDefinition(const std::string & name, CallerController* caller)
 {
     return super::getActionDefinition(name, caller);
 }
 
-java::util::List* ProxyContext::getActionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller)
+std::list  ProxyContext::getActionDefinitions(CallerController* caller)
 {
     return super::getActionDefinitions(caller);
 }
 
-java::util::List* ProxyContext::getActionDefinitions()
+std::list  ProxyContext::getActionDefinitions()
 {
     return super::getActionDefinitions();
 }
 
-com::tibbo::aggregate::common::context::Context* ProxyContext::getChild(const std::string & name)
+Context* ProxyContext::getChild(const std::string & name)
 {
     return super::getChild(name);
 }
 
-java::util::List* ProxyContext::getChildren()
+std::list  ProxyContext::getChildren()
 {
     return super::getChildren();
 }
 
-java::util::List* ProxyContext::getEventDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller)
+std::list  ProxyContext::getEventDefinitions(CallerController* caller)
 {
     return super::getEventDefinitions(caller);
 }
 
-java::util::List* ProxyContext::getEventDefinitions()
+std::list  ProxyContext::getEventDefinitions()
 {
     return super::getEventDefinitions();
 }
 
-java::util::List* ProxyContext::getEventDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, const std::string & group)
+std::list  ProxyContext::getEventDefinitions(CallerController* caller, const std::string & group)
 {
     return super::getEventDefinitions(caller, group);
 }
 
-java::util::List* ProxyContext::getEventDefinitions(const std::string & group)
+std::list  ProxyContext::getEventDefinitions(const std::string & group)
 {
     return super::getEventDefinitions(group);
 }
 
-com::tibbo::aggregate::common::context::FunctionDefinition* ProxyContext::getFunctionDefinition(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller)
+FunctionDefinition* ProxyContext::getFunctionDefinition(const std::string & name, CallerController* caller)
 {
     return super::getFunctionDefinition(name, caller);
 }
 
-java::util::List* ProxyContext::getFunctionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller)
+std::list  ProxyContext::getFunctionDefinitions(CallerController* caller)
 {
     return super::getFunctionDefinitions(caller);
 }
 
-java::util::List* ProxyContext::getFunctionDefinitions()
+std::list  ProxyContext::getFunctionDefinitions()
 {
     return super::getFunctionDefinitions();
 }
 
-java::util::List* ProxyContext::getFunctionDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, const std::string & group)
+std::list  ProxyContext::getFunctionDefinitions(CallerController* caller, const std::string & group)
 {
     return super::getFunctionDefinitions(caller, group);
 }
 
-java::util::List* ProxyContext::getFunctionDefinitions(const std::string & group)
+std::list  ProxyContext::getFunctionDefinitions(const std::string & group)
 {
     return super::getFunctionDefinitions(group);
 }
 
-com::tibbo::aggregate::common::context::VariableDefinition* ProxyContext::getVariableDefinition(const std::string & name, ::com::tibbo::aggregate::common::context::CallerController* caller)
+VariableDefinition* ProxyContext::getVariableDefinition(const std::string & name, CallerController* caller)
 {
     return super::getVariableDefinition(name, caller);
 }
 
-java::util::List* ProxyContext::getVariableDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller)
+std::list  ProxyContext::getVariableDefinitions(CallerController* caller)
 {
     return super::getVariableDefinitions(caller);
 }
 
-java::util::List* ProxyContext::getVariableDefinitions()
+std::list  ProxyContext::getVariableDefinitions()
 {
     return super::getVariableDefinitions();
 }
 
-java::util::List* ProxyContext::getVariableDefinitions(::com::tibbo::aggregate::common::context::CallerController* caller, const std::string & group)
+std::list  ProxyContext::getVariableDefinitions(CallerController* caller, const std::string & group)
 {
     return super::getVariableDefinitions(caller, group);
 }
 
-java::util::List* ProxyContext::getVariableDefinitions(const std::string & group)
+std::list  ProxyContext::getVariableDefinitions(const std::string & group)
 {
     return super::getVariableDefinitions(group);
 }
 
-java::util::List* ProxyContext::getVisibleChildren()
+std::list  ProxyContext::getVisibleChildren()
 {
     return super::getVisibleChildren();
 }

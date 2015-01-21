@@ -25,57 +25,57 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::datatable::FCBigInteger::FCBigInteger(const ::default_init_tag&)
+DateFCBigInteger::FCBigInteger(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::FCBigInteger::FCBigInteger() 
+DateFCBigInteger::FCBigInteger() 
     : FCBigInteger(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::FCBigInteger::ctor()
+void DateFCBigInteger::ctor()
 {
     super::ctor(::java::math::BigInteger::class_());
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::FCBigInteger::createFieldFormat(const std::string & name)
+DateFieldFormat* DateFCBigInteger::createFieldFormat(const std::string & name)
 {
     return FieldFormat::create(name, FieldFormat::STRING_FIELD);
 }
 
-java::math::BigInteger* com::tibbo::aggregate::common::datatable::FCBigInteger::simpleToBean(void* value)
+java::math::BigInteger* DateFCBigInteger::simpleToBean(void* value)
 {
     return new ::java::math::BigInteger((java_cast< const std::string & >(value)));
 }
 
-void* com::tibbo::aggregate::common::datatable::FCBigInteger::convertToTable(::java::math::BigInteger* value, TableFormat* format)
+void* DateFCBigInteger::convertToTable(::java::math::BigInteger* value, TableFormat* format)
 {
     return value)->toString();
 }
 
-void* com::tibbo::aggregate::common::datatable::FCBigInteger::convertToTable(void* value, TableFormat* format)
+void* DateFCBigInteger::convertToTable(void* value, TableFormat* format)
 { 
     return convertToTable(dynamic_cast< ::java::math::BigInteger* >(value), format);
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::FCBigInteger::class_()
+java::lang::Class* DateFCBigInteger::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.FCBigInteger", 49);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::FCBigInteger::convertToTable(void* value)
+void* DateFCBigInteger::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::FCBigInteger::getClass0()
+java::lang::Class* DateFCBigInteger::getClass0()
 {
     return class_();
 }

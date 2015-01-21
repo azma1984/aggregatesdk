@@ -28,39 +28,39 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::date::TimeFunction::TimeFunction(const ::default_init_tag&)
+function::date::TimeFunction::TimeFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::date::TimeFunction::TimeFunction() 
+function::date::TimeFunction::TimeFunction() 
     : TimeFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::date::TimeFunction::ctor()
+void function::date::TimeFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date date"_j, u"Long"_j);
+    super::ctor(function::Functions::GROUP_DATE_TIME_PROCESSING(), u"Date date"_j, u"Long"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::date::TimeFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::date::TimeFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(1, false, parameters);
-    checkParameterType(0, (*parameters)[int(0)], ::java::util::Date::class_());
-    return ::java::lang::Long::valueOf((java_cast< ::java::util::Date* >((*parameters)[int(0)])))->getTime());
+    checkParameterType(0, (*parameters)[int(0)], Date::class_());
+    return ::java::lang::Long::valueOf((java_cast< Date* >((*parameters)[int(0)])))->getTime());
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::TimeFunction::class_()
+java::lang::Class* function::date::TimeFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.date.TimeFunction", 64);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::date::TimeFunction::getClass0()
+java::lang::Class* function::date::TimeFunction::getClass0()
 {
     return class_();
 }

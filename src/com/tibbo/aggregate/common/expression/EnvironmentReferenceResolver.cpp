@@ -32,30 +32,30 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::EnvironmentReferenceResolver(const ::default_init_tag&)
+EnvironmentReferenceResolver::EnvironmentReferenceResolver(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::EnvironmentReferenceResolver() 
+EnvironmentReferenceResolver::EnvironmentReferenceResolver() 
     : EnvironmentReferenceResolver(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::init()
+void EnvironmentReferenceResolver::init()
 {
     environment = new ::java::util::HashMap();
 }
 
-void com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::ctor()
+void EnvironmentReferenceResolver::ctor()
 {
     super::ctor();
     init();
 }
 
-void* com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::resolveReference(Reference* ref, EvaluationEnvironment* resolvingEnvironment) /* throws(SyntaxErrorException, ContextException, EvaluationException) */
+void* EnvironmentReferenceResolver::resolveReference(Reference* ref, EvaluationEnvironment* resolvingEnvironment) /* throws(SyntaxErrorException, ContextException, EvaluationException) */
 {
     if(!Reference::SCHEMA_ENVIRONMENT())->equals(ref)->getSchema())) || ref)->getServer() != 0 || ref)->getContext() != 0 || ref)->getEntity() != 0 || ref)->getProperty() != 0 || ref)->getRow() != 0) {
         throw new EvaluationException(std::stringBuilder().append(u"Unexpected reference syntax: "_j)->append(ref))->toString());
@@ -65,43 +65,43 @@ void* com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::r
         return java_cast< void* >(resolvingEnvironment)->getEnvironment())->get(variable));
     }
     if(environment == 0) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(Cres::get())->getString(u"exprEnvNotDefined"_j));
+        throw new ContextException(Cres::get())->getString(u"exprEnvNotDefined"_j));
     }
     if(!environment)->containsKey(variable)) {
-        throw new ::com::tibbo::aggregate::common::context::ContextException(std::stringBuilder().append(Cres::get())->getString(u"exprEnvVarNotFound"_j))->append(variable)->toString());
+        throw new ContextException(std::stringBuilder().append(Cres::get())->getString(u"exprEnvVarNotFound"_j))->append(variable)->toString());
     }
     return java_cast< void* >(environment)->get(variable));
 }
 
-void com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::set(const std::string & variable, void* value)
+void EnvironmentReferenceResolver::set(const std::string & variable, void* value)
 {
     environment)->put(variable, value);
 }
 
-void* com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::get(const std::string & variable)
+void* EnvironmentReferenceResolver::get(const std::string & variable)
 {
     return java_cast< void* >(environment)->get(variable));
 }
 
-void com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::setEnvironment(std::map environment)
+void EnvironmentReferenceResolver::setEnvironment(std::map environment)
 {
     java_cast< std::map >(this->environment))->putAll(environment);
 }
 
-java::util::Map* com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::getEnvironment()
+java::util::Map* EnvironmentReferenceResolver::getEnvironment()
 {
     return environment;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::class_()
+java::lang::Class* EnvironmentReferenceResolver::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.EnvironmentReferenceResolver", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::EnvironmentReferenceResolver::getClass0()
+java::lang::Class* EnvironmentReferenceResolver::getClass0()
 {
     return class_();
 }

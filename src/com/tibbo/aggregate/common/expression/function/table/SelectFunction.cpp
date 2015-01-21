@@ -34,45 +34,45 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::SelectFunction::SelectFunction(const ::default_init_tag&)
+function::table::SelectFunction::SelectFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::SelectFunction::SelectFunction() 
+function::table::SelectFunction::SelectFunction() 
     : SelectFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::SelectFunction::ctor()
+void function::table::SelectFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String fieldToSelect, String fieldToCheck, Object value"_j, u"Object"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"DataTable table, String fieldToSelect, String fieldToCheck, Object value"_j, u"Object"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::SelectFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::SelectFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     checkParameters(3, false, parameters);
     checkParameters(4, true, parameters);
     checkParameterType(0, (*parameters)[int(0)], DataTable::class_());
     auto table = java_cast< DataTable* >((*parameters)[int(0)]);
     if((*parameters)[int(1)] == 0 || (*parameters)[int(2)] == 0) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(u"Field parameter may not be NULL"_j);
+        throw new EvaluationException(u"Field parameter may not be NULL"_j);
     }
     auto fieldToSelect = (*parameters)[int(1)])->toString();
     if(!table)->getFormat())->hasField(fieldToSelect)) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoField"_j))->append(fieldToSelect)->toString());
+        throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoField"_j))->append(fieldToSelect)->toString());
     }
     auto fieldToCheck = (*parameters)[int(2)])->toString();
     if(!table)->getFormat())->hasField(fieldToCheck)) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoField"_j))->append(fieldToCheck)->toString());
+        throw new EvaluationException(std::stringBuilder().append(Cres::get())->getString(u"exprTableHasNoField"_j))->append(fieldToCheck)->toString());
     }
     auto value = (*parameters)[int(3)];
     for (auto _i = table)->iterator(); _i->hasNext(); ) {
         DataRecord* rec = java_cast< DataRecord* >(_i->next());
         {
-            if(::com::tibbo::aggregate::common::expression::AbstractEvaluatingVisitor::equal(rec)->getValue(fieldToCheck), value)) {
+            if(AbstractEvaluatingVisitor::equal(rec)->getValue(fieldToCheck), value)) {
                 return rec)->getValue(fieldToSelect);
             }
         }
@@ -82,13 +82,13 @@ void* com::tibbo::aggregate::common::expression::function::table::SelectFunction
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::SelectFunction::class_()
+java::lang::Class* function::table::SelectFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.SelectFunction", 67);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::SelectFunction::getClass0()
+java::lang::Class* function::table::SelectFunction::getClass0()
 {
     return class_();
 }

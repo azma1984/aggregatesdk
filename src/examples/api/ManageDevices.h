@@ -35,14 +35,14 @@ public:
     static void main(std::stringArray* args);
 
 private:
-    static void executeDeviceOperation(::com::tibbo::aggregate::common::context::Context* deviceContext) /* throws(ContextException) */;
-    static void listenerForDeviceEvents(::com::tibbo::aggregate::common::context::Context* deviceContext);
-    static void changeDeviceSettings(::com::tibbo::aggregate::common::context::Context* deviceContext) /* throws(ContextException) */;
-    static void deleteDeviceAccount(::com::tibbo::aggregate::common::context::Context* deviceContext) /* throws(ContextException) */;
-    static void listDeviceSettings(::com::tibbo::aggregate::common::context::Context* deviceContext) /* throws(ContextException) */;
-    static void awaitDeviceSynchronization(::com::tibbo::aggregate::common::context::Context* deviceContext) /* throws(ContextException, InterruptedException) */;
-    static ::com::tibbo::aggregate::common::context::Context* createDeviceAccount(const std::string & username, const std::string & name, const std::string & description, const std::string & driverId, ::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
-    static void listDeviceAccounts(const std::string & username, ::com::tibbo::aggregate::common::context::ContextManager* cm) /* throws(ContextException) */;
+    static void executeDeviceOperation(Context* deviceContext) ;
+    static void listenerForDeviceEvents(Context* deviceContext);
+    static void changeDeviceSettings(Context* deviceContext) ;
+    static void deleteDeviceAccount(Context* deviceContext) ;
+    static void listDeviceSettings(Context* deviceContext) ;
+    static void awaitDeviceSynchronization(Context* deviceContext) /* throws(ContextException, InterruptedException) */;
+    static Context* createDeviceAccount(const std::string & username, const std::string & name, const std::string & description, const std::string & driverId, ContextManager* cm) ;
+    static void listDeviceAccounts(const std::string & username, ContextManager* cm) ;
 
     // Generated
 

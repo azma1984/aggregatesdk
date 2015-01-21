@@ -7,52 +7,52 @@
 //#include <java/lang/Long.h"
 //#include <java/lang/Object.h"
 */
-com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::FCSimpleLong(const ::default_init_tag&)
+Dateconverter::FCSimpleLong::FCSimpleLong(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::FCSimpleLong() 
+Dateconverter::FCSimpleLong::FCSimpleLong() 
     : FCSimpleLong(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::ctor()
+void Dateconverter::FCSimpleLong::ctor()
 {
     super::ctor(::java::lang::Long::TYPE());
 }
 
-com::tibbo::aggregate::common::datatable::FieldFormat* com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::createFieldFormat(const std::string & name)
+DateFieldFormat* Dateconverter::FCSimpleLong::createFieldFormat(const std::string & name)
 {
     return FieldFormat::create(name, FieldFormat::LONG_FIELD);
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::simpleToBean(void* value)
+void* Dateconverter::FCSimpleLong::simpleToBean(void* value)
 {
     return value;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::convertToTable(void* value, TableFormat* format)
+void* Dateconverter::FCSimpleLong::convertToTable(void* value, TableFormat* format)
 {
     return value;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::class_()
+java::lang::Class* Dateconverter::FCSimpleLong::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.converter.FCSimpleLong", 59);
     return c;
 }
 
-void* com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::convertToTable(void* value)
+void* Dateconverter::FCSimpleLong::convertToTable(void* value)
 {
     return super::convertToTable(value);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::datatable::converter::FCSimpleLong::getClass0()
+java::lang::Class* Dateconverter::FCSimpleLong::getClass0()
 {
     return class_();
 }

@@ -34,24 +34,24 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::DefaultEvaluatingVisitor(const ::default_init_tag&)
+DefaultEvaluatingVisitor::DefaultEvaluatingVisitor(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::DefaultEvaluatingVisitor(Evaluator* evaluator) 
+DefaultEvaluatingVisitor::DefaultEvaluatingVisitor(Evaluator* evaluator) 
     : DefaultEvaluatingVisitor(*static_cast< ::default_init_tag* >(0))
 {
     ctor(evaluator);
 }
 
-void com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::ctor(Evaluator* evaluator)
+void DefaultEvaluatingVisitor::ctor(Evaluator* evaluator)
 {
     super::ctor(evaluator);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTValueReferenceNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTValueReferenceNode* node, void* data)
 {
     if(node)->reference == 0) {
         node)->reference = new Reference(node)->uriImage);
@@ -72,178 +72,178 @@ void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::class_()
+java::lang::Class* DefaultEvaluatingVisitor::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.DefaultEvaluatingVisitor", 62);
     return c;
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::SimpleNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::SimpleNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTStart* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTStart* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTConditionalNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTConditionalNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTLogicalOrNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTLogicalOrNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTLogicalAndNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTLogicalAndNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTBitwiseAndNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTBitwiseAndNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTBitwiseOrNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTBitwiseOrNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTBitwiseXorNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTBitwiseXorNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTEQNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTEQNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTNENode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTNENode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTRegexMatchNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTRegexMatchNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTLTNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTLTNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTGTNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTGTNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTLENode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTLENode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTGENode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTGENode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTAddNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTAddNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTSubtractNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTSubtractNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTMulNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTMulNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTDivNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTDivNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTModNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTModNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTUnaryNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTUnaryNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTLogicalNotNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTLogicalNotNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTBitwiseNotNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTBitwiseNotNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTFunctionNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTFunctionNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTLongConstNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTLongConstNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTFloatConstNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTFloatConstNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTStringConstNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTStringConstNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTTrueNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTTrueNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTFalseNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTFalseNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTNullNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTNullNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTRightShiftNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTRightShiftNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTUnsignedRightShiftNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTUnsignedRightShiftNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-void* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::visit(::ASTLeftShiftNode* node, void* data)
+void* DefaultEvaluatingVisitor::visit(::ASTLeftShiftNode* node, void* data)
 {
     return super::visit(node, data);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::DefaultEvaluatingVisitor::getClass0()
+java::lang::Class* DefaultEvaluatingVisitor::getClass0()
 {
     return class_();
 }

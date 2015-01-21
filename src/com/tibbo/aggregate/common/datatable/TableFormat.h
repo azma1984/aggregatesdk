@@ -91,10 +91,10 @@ private:
 
 public:
     TableFormat* addFields(std::list<FieldFormat>& fieldFormats);
-//    TableFormat* addFields(std::list  fieldFormats);
-    TableFormat* addField(FieldFormat* ff);
-	*/
-    TableFormat* addField(const std::string& encodedFormat);
+//    TableFormat* addFields(std::list  fieldFormats);*/
+    boost::shared_ptr<TableFormat> addField(boost::shared_ptr<FieldFormat> ff);
+	
+    boost::shared_ptr<TableFormat> addField(const std::string& encodedFormat);
 	/*
     void addField(char type, const std::string& name);
     TableFormat* addField(char type, const std::string& name, const std::string& description);
@@ -175,7 +175,7 @@ public:
    // TableFormat(const std::string& format, ClassicEncodingSettings* settings);
   //  TableFormat(const std::string& format, ClassicEncodingSettings* settings, bool validate);
     TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat);
-    TableFormat(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat<bool>> fieldFormat);
+    TableFormat(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat> fieldFormat);
 	
 
 

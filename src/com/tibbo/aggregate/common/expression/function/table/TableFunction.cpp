@@ -33,30 +33,30 @@ static T* T* t)
     return t;
 }
 
-com::tibbo::aggregate::common::expression::function::table::TableFunction::TableFunction(const ::default_init_tag&)
+function::table::TableFunction::TableFunction(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::expression::function::table::TableFunction::TableFunction() 
+function::table::TableFunction::TableFunction() 
     : TableFunction(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-void com::tibbo::aggregate::common::expression::function::table::TableFunction::ctor()
+void function::table::TableFunction::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::expression::function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"String format, Object field1, Object field2, ..."_j, u"DataTable"_j);
+    super::ctor(function::Functions::GROUP_DATA_TABLE_PROCESSING(), u"String format, Object field1, Object field2, ..."_j, u"DataTable"_j);
 }
 
-void* com::tibbo::aggregate::common::expression::function::table::TableFunction::execute(::com::tibbo::aggregate::common::expression::Evaluator* evaluator, ::com::tibbo::aggregate::common::expression::EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
+void* function::table::TableFunction::execute(Evaluator* evaluator, EvaluationEnvironment* environment, voidArray*/*...*/ parameters) /* throws(EvaluationException) */
 {
     try {
         checkParameters(1, true, parameters);
         auto formatString = (*parameters)[int(0)] != 0 ? (*parameters)[int(0)])->toString() : static_cast< const std::string & >(0);
         if(formatString == 0) {
-            throw new ::com::tibbo::aggregate::common::expression::EvaluationException(u"Format cannot be NULL"_j);
+            throw new EvaluationException(u"Format cannot be NULL"_j);
         }
         auto useVisibleSeparators = true;
         for (auto i = int(0); i < formatString)->length(); i++) {
@@ -75,19 +75,19 @@ void* com::tibbo::aggregate::common::expression::function::table::TableFunction:
         auto result = DataTableConstruction::constructTable(::java::util::Arrays::asList(data), format, evaluator, 0);
         return result;
     } catch (::com::tibbo::aggregate::common::util::SyntaxErrorException* ex) {
-        throw new ::com::tibbo::aggregate::common::expression::EvaluationException(ex)->getMessage(), ex);
+        throw new EvaluationException(ex)->getMessage(), ex);
     }
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::TableFunction::class_()
+java::lang::Class* function::table::TableFunction::class_()
 {
     static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.function.table.TableFunction", 66);
     return c;
 }
 
-java::lang::Class* com::tibbo::aggregate::common::expression::function::table::TableFunction::getClass0()
+java::lang::Class* function::table::TableFunction::getClass0()
 {
     return class_();
 }
