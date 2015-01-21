@@ -14,6 +14,7 @@
 
 class ActionInitializer : public Interface
 {
+public:
     virtual ActionIdentifier* initAction(Context<ActionInitializer>* context, const std::string& actionName, ServerActionInput* initialParameters,
                                        DataTable* inputData, std::map<std::string, void*> environment, ActionExecutionMode* mode,
                                        CallerController* callerController, ErrorCollector* collector) = 0;
