@@ -12,7 +12,7 @@ int DashboardProperties::LAYOUT_DOCKABLE = 0;
 int DashboardProperties::LAYOUT_SCROLLABLE = 1;
 
 TableFormat DashboardProperties::FORMAT = TableFormat(1, 1);
-// TODO: нужно инициализировать FORMAT до конструктора DashboardProperties()
+// TODO: РЅСѓР¶РЅРѕ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ FORMAT РґРѕ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° DashboardProperties()
 /*
 static
   {
