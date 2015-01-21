@@ -3,6 +3,7 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include "context/ContextManager.h"
+#include "datatable/DataTable.h"
 
 /**
  * Context interface is used to provide a unified way to access any object in AggreGate. It may be some server object (e.g. alert or event filters storage), hardware device or widget component. When
@@ -142,6 +143,11 @@ class Context
 
 	//Возвращает ID иконки контекста
 	virtual std::string getIconId()=0;
+
+    /**
+    * Gets variable from context and returns its value.
+    */
+    virtual boost::shared_ptr<DataTable> getVariable(const std::tring& name, boost::shared_ptr<CallerController> caller) = 0;// throws ContextException;
 
   /**
    * Adds listener of event with specified name.

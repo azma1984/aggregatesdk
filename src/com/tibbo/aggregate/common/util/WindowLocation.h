@@ -1,9 +1,6 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/WindowLocation.java
+#pragma once
 
-#ifndef WindowLocationH
-#define WindowLocationH
-
-#include "AggreGateBean.h"
+#include "datatable/AggreGateBean.h"
 /*
 #include <com/tibbo/aggregate/common/Cres.h"
 #include <com/tibbo/aggregate/common/datatable/DataTableBindingProvider.h"
@@ -124,7 +121,7 @@ public:
     static const std::string& FIELD_AUTOHIDABLE();
     static const std::string& FIELD_KEY();
 	static TableFormat*& FORMAT();
-*/
+*/
 };
 
 #endif

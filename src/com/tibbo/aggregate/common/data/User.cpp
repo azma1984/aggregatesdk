@@ -1,5 +1,34 @@
 #include "data/User.h"
 
+
+std::string User::FIELD_NAME = "name";
+std::string User::FIELD_FIRSTNAME = "firstname";
+std::string User::FIELD_LASTNAME = "lastname";
+std::string User::FIELD_PASSWORD = "password";
+std::string User::FIELD_COUNTRY = "country";
+std::string User::FIELD_REGION = "region";
+std::string User::FIELD_ZIP = "zip";
+std::string User::FIELD_CITY = "city";
+std::string User::FIELD_ADDRESS1 = "address1";
+std::string User::FIELD_ADDRESS2 = "address2";
+std::string User::FIELD_COMMENTS = "comments";
+std::string User::FIELD_COMPANY = "company";
+std::string User::FIELD_DEPARTMENT = "department";
+std::string User::FIELD_EMAIL = "email";
+std::string User::FIELD_PHONE = "phone";
+std::string User::FIELD_FAX = "fax";
+std::string User::FIELD_TIMEZONE = "timezone";
+std::string User::FIELD_LOCALE = "locale";
+std::string User::FIELD_DATEPATTERN = "datepattern";
+std::string User::FIELD_TIMEPATTERN = "timepattern";
+std::string User::FIELD_WEEK_START = "weekStart";
+
+std::string User::DEFAULT_ADMIN_USERNAME = "admin";
+std::string User::DEFAULT_ADMIN_PASSWORD = "admin";
+
+std::string User::DEFAULT_LOCALE = "en";
+
+
 User::User()
 {
     locale = DEFAULT_LOCALE;

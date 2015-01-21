@@ -1,7 +1,6 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/EditableChildContextConstants.java
+#pragma once
 
-#ifndef EditableChildContextConstantsH
-#define EditableChildContextConstantsH
+#include <string>
 
 namespace EditableChildContextConstants
 {
@@ -18,5 +17,4 @@ namespace EditableChildContextConstants
   
   static const std::string VF_CHILD_INFO_NAME = "name";
   static const std::string VF_CHILD_INFO_DESCRIPTION = "description";
-};
-  #endif
+}

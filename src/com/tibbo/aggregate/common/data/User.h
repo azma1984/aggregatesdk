@@ -1,5 +1,4 @@
-#ifndef _User_H_
-#define _User_H_
+#pragma once
 
 #include <string>
 
@@ -81,4 +80,31 @@ public:
     std::string createDescription(const std::string& firstname, const std::string& lastname, const std::string& username, bool showUsername);
 
     User();
+
+    static std::string FIELD_NAME;
+    static std::string FIELD_FIRSTNAME;
+    static std::string FIELD_LASTNAME;
+    static std::string FIELD_PASSWORD;
+    static std::string FIELD_COUNTRY;
+    static std::string FIELD_REGION;
+    static std::string FIELD_ZIP;
+    static std::string FIELD_CITY;
+    static std::string FIELD_ADDRESS1;
+    static std::string FIELD_ADDRESS2;
+    static std::string FIELD_COMMENTS;
+    static std::string FIELD_COMPANY;
+    static std::string FIELD_DEPARTMENT;
+    static std::string FIELD_EMAIL;
+    static std::string FIELD_PHONE;
+    static std::string FIELD_FAX;
+    static std::string FIELD_TIMEZONE;
+    static std::string FIELD_LOCALE;
+    static std::string FIELD_DATEPATTERN;
+    static std::string FIELD_TIMEPATTERN;
+    static std::string FIELD_WEEK_START;
+
+    static std::string DEFAULT_ADMIN_USERNAME;
+    static std::string DEFAULT_ADMIN_PASSWORD;
+
+    static std::string DEFAULT_LOCALE;
 };

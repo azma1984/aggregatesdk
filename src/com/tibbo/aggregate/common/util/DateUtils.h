@@ -1,52 +1,27 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/DateUtils.java
-
 #pragma once
 
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/text/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include <string>
 
-
-
-class com::tibbo::aggregate::common::util::DateUtils
-    
+class DateUtils
 {
+private:    
+//    static TimeZone* UTC_TIME_ZONE_;
+//    static HashMap* DATE_TIME_FORMATS_;
+//    static ::java::util::HashMap* TIME_FORMATS_;
 
 public:
-    typedef void super;
-
-private:
-    static const std::string DEFAULT_DATE_PATTERN_;
-    static const std::string DEFAULT_TIME_PATTERN_;
-    static const std::string DATATABLE_DATE_PATTERN_;
-    static ::java::util::TimeZone* UTC_TIME_ZONE_;
-    static ::java::util::HashMap* DATE_TIME_FORMATS_;
-    static ::java::util::HashMap* TIME_FORMATS_;
-
-public:
-    static ::java::text::SimpleDateFormat* createDateFormatter();
-    static const std::string getDateTimePattern(const std::string & datePattern, const std::string & timePattern);
+    /*
+    static SimpleDateFormat* createDateFormatter();
     static std::map dateTimeFormats();
     static std::map timeFormats();
+    static TimeZone UTC_TIME_ZONE();
+    */
 
-    // Generated
-    DateUtils();
-protected:
-    DateUtils(const ::default_init_tag&);
+    std::string getDateTimePattern(const std::string & datePattern, const std::string & timePattern);
 
-
-public:
-    
-    static void 
-    static const std::string& DEFAULT_DATE_PATTERN();
-    static const std::string& DEFAULT_TIME_PATTERN();
-    static const std::string& DATATABLE_DATE_PATTERN();
-    static ::java::util::TimeZone*& UTC_TIME_ZONE();
-    static ::java::util::HashMap*& DATE_TIME_FORMATS();
-    static ::java::util::HashMap*& TIME_FORMATS();
-
-private:
-    ::java::lang::Class* getClass0();
+    static std::map DATE_TIME_FORMATS();
+    static std::map TIME_FORMATS();
+    static const std::string DEFAULT_DATE_PATTERN;
+    static const std::string DEFAULT_TIME_PATTERN;
+    static const std::string DATATABLE_DATE_PATTERN;
 };
