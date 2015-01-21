@@ -1,18 +1,14 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/RemoteConnector.java
-
 #pragma once
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "util/Interface.h"
+#include "util/UserSettings.h"
+#include "context/ContextManager.h"
+#include <boost/shared_ptr.hpp>
 
-struct com::tibbo::aggregate::common::util::RemoteConnector
-    
+class RemoteConnector
 {
-    ContextManager* getContextManager();
-    CallerController* getCallerController();
-    UserSettings* getSettings();
-
-    // Generated
-    
+public:
+    virtual boost::shared_ptr<ContextManager> getContextManager() = 0;
+    virtual boost::shared_ptr<CallerController> getCallerController() = 0;
+    virtual boost::shared_ptr<UserSettings> getSettings() = 0;
 };

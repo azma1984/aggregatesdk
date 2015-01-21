@@ -1,8 +1,8 @@
-#ifndef _PERSISTENT_PROPERTIES_H_
-#define _PERSISTENT_PROPERTIES_H_
+#pragma once
 
 class PersistentProperties   
 {
+//TODO: not used
 /*
 public:
     PersistentProperties() {}
@@ -18,4 +18,3 @@ private:
     std::map<std::string, DataTable> properties;
 */
 };
-#endif	//_PERSISTENT_PROPERTIES_H_

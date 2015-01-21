@@ -1,53 +1,36 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/ThreadUtils.java
-
 #pragma once
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/io/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
+#include <boost/shared_ptr.hpp>
 
-template<typename ComponentType, typename... Bases> struct SubArray;
-namespace java
+class ThreadUtils
 {
-    namespace io
-    {
-typedef ::SubArray< ::java::io::Serializable, voidArray > SerializableArray;
-    } // io
-
-    namespace lang
-    {
-typedef ::SubArray< ::java::lang::StackTraceElement, ObjectArray, ::java::io::SerializableArray > StackTraceElementArray;
-    } // lang
-} // java
-
-
-
-class com::tibbo::aggregate::common::util::ThreadUtils
-    
-{
-
-public:
-    typedef void super;
-
 private:
-    static TableFormat* FORMAT_STACK_;
+    static boost::shared_ptr<TableFormat> FORMAT_STACK_;
 
 public:
-    static DataTable* createStackTraceTable(::java::lang::StackTraceElementArray* elements);
+    /*
+     * TODO: StackTraceElemen
+    static DataTable* createStackTraceTable(vector<StackTraceElemen>& elements)
+    {
 
-    // Generated
-    ThreadUtils();
-protected:
-    ThreadUtils(const ::default_init_tag&);
+    }
+    /*
 
+    static boost::shared_ptr<TableFormat> FORMAT_STACK()
+    {
+        if (!FORMAT_STACK_) {
+            FORMAT_STACK_.reset(new TableFormat());
+            /*
+             * TODO: Cres::get()->getString
+            FORMAT_STACK_->addField( std::string("<class><S><D=").append(Cres::get()->getString("class")).append(">") );
+            FORMAT_STACK_->addField( std::string("<method><S><D=").append(Cres::get()->getString("method")).append(">") );
+            FORMAT_STACK_->addField( std::string("<file><S><F=N><D=").append(Cres::get()->getString("file")).append(">") );
+            FORMAT_STACK_->addField( std::string("<line><I><F=N><D=").append(Cres::get()->getString("line")).append(">") );
+            */
+        }
 
-public:
-    
-    static void 
-    static TableFormat*& FORMAT_STACK();
-
-private:
-    ::java::lang::Class* getClass0();
+        return FORMAT_STACK_;
+    }
 };

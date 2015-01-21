@@ -1,17 +1,9 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/Icons.java
-
 #pragma once
 
-//#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
-class com::tibbo::aggregate::common::util::Icons
-    
+class Icons
 {
-
+    // NOt used
+/*
 public:
     typedef void super;
 
@@ -697,4 +689,5 @@ public:
 
 private:
     ::java::lang::Class* getClass0();
+    */
 };

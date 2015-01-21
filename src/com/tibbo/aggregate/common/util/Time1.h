@@ -9,9 +9,9 @@
  * Represents a time.
  */
 
-//При компиляции в Visual Studio ошибка, так как уже есть заголовочный файл time.h
-//поэтому переименуем в time1.h
-class /*OWUTIL_API*/ Time1 {
+//РџСЂРё РєРѕРјРїРёР»СЏС†РёРё РІ Visual Studio РѕС€РёР±РєР°, С‚Р°Рє РєР°Рє СѓР¶Рµ РµСЃС‚СЊ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р» time.h
+//РїРѕСЌС‚РѕРјСѓ РїРµСЂРµРёРјРµРЅСѓРµРј РІ time1.h
+class  Time1 {
 	friend class TimeXMLSerializer;
 public:
 

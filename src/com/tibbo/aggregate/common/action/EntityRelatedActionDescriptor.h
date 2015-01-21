@@ -2,17 +2,11 @@
 
 #pragma once
 
-//#include <com/tibbo/aggregate/common/action/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/AggreGateBean.h"
+#include "datatable/AggreGateBean.h"
 
 
-
-class com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor
-    : public AggreGateBean
-{
-
+class EntityRelatedActionDescriptor : public AggreGateBean
+{/*
 public:
     typedef AggreGateBean super;
 
@@ -70,4 +64,5 @@ public:
 
 private:
     ::java::lang::Class* getClass0();
+    */
 };

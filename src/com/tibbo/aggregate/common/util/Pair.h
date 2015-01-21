@@ -1,5 +1,4 @@
-#ifndef _PAIR_H_
-#define _PAIR_H_
+#pragma once
 
 template<class F, class S> class Pair
 {
@@ -38,6 +37,4 @@ private:
 	F first;
 	S second;
 	*/
-;}
-
-#endif
+};
