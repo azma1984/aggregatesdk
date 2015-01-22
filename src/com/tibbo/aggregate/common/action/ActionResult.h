@@ -5,7 +5,8 @@
 
 class ActionResult
 {
-  virtual bool isSuccessful();
+public:
+    virtual bool isSuccessful() = 0;
 };
 
 #endif

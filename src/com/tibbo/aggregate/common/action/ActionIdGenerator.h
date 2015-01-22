@@ -1,16 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionIdGenerator.java
+#pragma once
 
-#ifndef ActionIdGeneratorH
-#define ActionIdGeneratorH
-
-#include "ActionIdentifier.h"
-#include "Action.h"
+#include "action/ActionIdentifier.h"
+#include "action/Action.h"
 
 class ActionIdGenerator
 {
- public:
+public:
 	ActionIdentifier* generate(Action<InitialRequest,ActionCommand,ActionResponse>* action);
 
 };
-
-#endif

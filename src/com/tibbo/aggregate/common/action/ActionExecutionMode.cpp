@@ -1,12 +1,17 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionExecutionMode.java
-#include "ActionExecutionMode.h"
+#include "action/ActionExecutionMode.h"
 
-	int ActionExecutionMode::getCode()
-	{
-	 return code;
-	}
+const int ActionExecutionMode::NORMAL = 0;
+const int ActionExecutionMode::REDIRECT = 1;
+const int ActionExecutionMode::BATCH = 2;
+const int ActionExecutionMode::TEST = 3;
+const int ActionExecutionMode::HEADLESS = 4;
 
-	ActionExecutionMode::ActionExecutionMode(int code1)
-	{
-	 this->code = code1;
-	}
+int ActionExecutionMode::getCode()
+{
+    return code;
+}
+
+ActionExecutionMode::ActionExecutionMode(int code1)
+{
+    this->code = code1;
+}

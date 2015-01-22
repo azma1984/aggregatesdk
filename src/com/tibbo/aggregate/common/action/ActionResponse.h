@@ -8,9 +8,9 @@
 
 class ActionResponse : public Interface
 {
-  virtual bool shouldRemember() = 0;
-  virtual RequestIdentifier* getRequestId() = 0;
-
+public:
+    virtual bool shouldRemember() = 0;
+    virtual RequestIdentifier* getRequestId() = 0;
 };
 
 #endif

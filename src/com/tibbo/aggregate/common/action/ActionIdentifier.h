@@ -1,18 +1,10 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionIdentifier.java
-#ifndef ActionIdentifierH
-#define ActionIdentifierH
+#pragma once
 
-#include "StringIdentifier.h"
-
-
+#include "action/StringIdentifier.h"
 
 class ActionIdentifier: public StringIdentifier
 {
- public:
-   ActionIdentifier(const std::string &id):StringIdentifier(id)
-   {
 
-   }
+public:
+    ActionIdentifier(const std::string &id):StringIdentifier(id) {}
 };
-
-#endif

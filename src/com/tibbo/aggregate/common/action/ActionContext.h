@@ -1,25 +1,19 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionContext.java
-
-#ifndef ActionContextH
-#define ActionContextH
+#pragma once
 
 #include <list>
 #include <exception>
 #include <iostream>
 
-#include "ActionDefinition.h"
-#include "BatchContext.h"
-#include "ActionManager.h"
-#include "RequestCache.h"
-#include "Context.h"
+#include "action/ActionDefinition.h"
+#include "action/BatchContext.h"
+#include "action/ActionManager.h"
+#include "action/RequestCache.h"
+#include "context/Context.h"
 
 
-
-
-enum ActionState
-	{
-	 CREATED, INITIALIZED, WORKING, DESTROYED
-	};
+enum ActionState{
+    CREATED, INITIALIZED, WORKING, DESTROYED
+};
 
 
 class ActionContext
@@ -62,4 +56,3 @@ class ActionContext
 	void setActionManager(ActionManager* actionManager);
 	*/
 };
-#endif

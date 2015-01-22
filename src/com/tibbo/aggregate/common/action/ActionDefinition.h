@@ -1,14 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionDefinition.java
+#pragma once
 
-#ifndef ActionDefinitionH
-#define ActionDefinitionH
+#include "context/EntityDefinition.h"
+#include "action/ResourceMask.h"
+#include "action/GroupIdentifier.h"
 
-#include "EntityDefinition.h"
-#include "ResourceMask.h"
-#include "GroupIdentifier.h"
-
-#include "ActionCommand.h"
-#include "InitialRequest.h"
+#include "action/ActionCommand.h"
+#include "action/InitialRequest.h"
 //#include <mutex>  mutex is not present in library dinkumware
 #include <list>
 //forward declarations
@@ -87,5 +84,3 @@ class ActionDefinition: public EntityDefinition
   //todo mutex is not present in library dinkumware
  // virtual std::mutex * getExecutionLock();
 };
-
-#endif

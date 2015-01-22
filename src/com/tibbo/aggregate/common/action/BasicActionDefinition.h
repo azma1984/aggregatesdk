@@ -1,29 +1,18 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/BasicActionDefinition.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/action/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/security/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/beans/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/locks/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/context/AbstractEntityDefinition.h"
-#include <com/tibbo/aggregate/common/action/ActionDefinition.h"
-#include <com/tibbo/aggregate/common/action/ActionCommandList.h"
+#include "context/AbstractEntityDefinition.h"
+#include "action/ActionDefinition.h"
+#include "action/ActionCommandList.h"
+#include "action/KeyStroke.h"
+#include "security/Permission.h"
+#include <boost/shared_ptr.hpp>
+#include <boost/thread/mutex.hpp>
 
-
-
-class com::tibbo::aggregate::common::action::BasicActionDefinition
+class BasicActionDefinition
     : public AbstractEntityDefinition
     , public ActionDefinition
     , public ActionCommandList
 {
-
-public:
-    typedef AbstractEntityDefinition super;
-
 private:
     static const std::string GROUP_ID_SEPARATOR_;
     static const std::string PROPERTY_NAME_;
@@ -36,40 +25,36 @@ private:
     static const std::string PROPERTY_GROUP_ID_;
     static const std::string PROPERTY_ICON_ID_;
     static const std::string PROPERTY_DEFAULT_;
-    ::java::beans::PropertyChangeSupport* propertyChangeListeners;
-    ::java::lang::Class* actionClass;
+    //TODO:
+    //PropertyChangeSupport* propertyChangeListeners;
+    //::java::lang::Class* actionClass;
     bool enabled;
     bool isDefault_;
     bool hidden;
-    GroupIdentifier* executionGroup;
-    KeyStroke* accelerator;
-    std::list  dropSources;
-    std::list  commandList;
+    boost::shared_ptr<GroupIdentifier> executionGroup;
+    boost::shared_ptr<KeyStroke> accelerator;
+//    std::list<boost::shared_ptr<ResourceMask>>  dropSources;
+    std::list<boost::shared_ptr<ActionCommand>>  commandList;
+    boost::mutex executionLock;
 
 public:
     bool concurrent;
-
-private:
-    ::java::util::concurrent::locks::std::mutex ** executionLock;
-protected:
-    void ctor(const std::string & name);
-    void ctor(const std::string & name, ::java::lang::Class* actionClass);
 
 public:
     GroupIdentifier* getExecutionGroup();
     bool isEnabled();
     bool isHidden();
-    KeyStroke* getAccelerator();
-    std::list  getDropSources();
+    boost::shared_ptr<KeyStroke> getAccelerator();
+//    std::list  getDropSources();
     void setIconId(const std::string & iconId);
     void setHelp(const std::string & help);
     void setDescription(const std::string & description);
     void setExecutionGroup(const std::string & base);
-    void setExecutionGroup(GroupIdentifier* groupId);
+    void setExecutionGroup(boost::shared_ptr<GroupIdentifier> groupId);
     void setEnabled(bool enabled);
     void setHidden(bool hidden);
-    void setAccelerator(KeyStroke* accelerator);
-    void setDropSources(std::list  dropSources);
+    void setAccelerator(boost::shared_ptr<KeyStroke> accelerator);
+//    void setDropSources(std::list  dropSources);
     void setName(const std::string & name);
     bool isDefault();
     void setDefault(bool isDefault);
@@ -77,56 +62,35 @@ public:
     void setConcurrent(bool allowConcurrentExecution);
     void addDropSource(ResourceMask* resourceMask);
     Action<InitialRequest,ActionCommand,ActionResponse> * instantiate();
-    std::list  getCommands();
+    std::list<boost::shared_ptr<ActionCommand>>  getCommands();
 
 public: /* protected */
     void registerCommands();
-    void registerCommand(ActionCommand* cmd);
+    void registerCommand(boost::shared_ptr<ActionCommand> cmd);
     void unregisterCommand(const std::string & id);
 
 public:
-    ::java::util::concurrent::locks::std::mutex ** getExecutionLock();
-    void removePropertyChangeListener(::java::beans::PropertyChangeListener* l);
-    void addPropertyChangeListener(::java::beans::PropertyChangeListener* l);
+    boost::mutex getExecutionLock();
+//    void removePropertyChangeListener(PropertyChangeListener* l);
+//    void addPropertyChangeListener(PropertyChangeListener* l);
     bool isHeadless();
-    Permissions* getPermissions();
-    int compareTo(void* o);
+    boost::shared_ptr<Permissions> getPermissions();
+    int compareTo(BasicActionDefinition* o);
 
     // Generated
     BasicActionDefinition(const std::string & name);
     BasicActionDefinition(const std::string & name, ::java::lang::Class* actionClass);
-protected:
-    BasicActionDefinition(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
 
 private:
     void init();
 
 public:
-    const std::string & getDescription();
-    const std::string & getGroup();
-    const std::string & getHelp();
-    const std::string & getIconId();
+    std::string getDescription();
+    std::string getGroup();
+    std::string getHelp();
+    std::string getIconId();
     int  getIndex();
-    const std::string & getName();
+    std::string getName();
     void* getOwner();
-    const std::string & toDetailedString();
-
-private:
-    static const std::string& GROUP_ID_SEPARATOR();
-    static const std::string& PROPERTY_NAME();
-    static const std::string& PROPERTY_DESCRIPTION();
-    static const std::string& PROPERTY_DROP_SOURCES();
-    static const std::string& PROPERTY_HELP();
-    static const std::string& PROPERTY_ACCELERATOR();
-    static const std::string& PROPERTY_HIDDEN();
-    static const std::string& PROPERTY_ENABLED();
-    static const std::string& PROPERTY_GROUP_ID();
-    static const std::string& PROPERTY_ICON_ID();
-    static const std::string& PROPERTY_DEFAULT();
-    ::java::lang::Class* getClass0();
+    const std::string toDetailedString();
 };

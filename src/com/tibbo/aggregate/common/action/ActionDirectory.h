@@ -1,13 +1,10 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionDirectory.java
+#pragma once
 
- #ifndef ActionDirectoryH
-#define ActionDirectoryH
-#include "ActionDefinition.h"
-#include "ActionLocator.h"
+#include "action/ActionDefinition.h"
+#include "action/ActionLocator.h"
+
 template <class L> class ActionDirectory
 {
+public:
 	ActionDefinition* getActionDefinition(L* locator);
-
-
 };
-#endif

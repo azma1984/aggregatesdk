@@ -1,7 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/KeyStroke.java
-
-#ifndef KeyStroke
-#define KeyStroke
+#pragma once
 
 class KeyStroke
 {
@@ -29,5 +26,3 @@ public:
 	KeyStroke(::javax::swing::KeyStroke* keyStroke);
   */
 };
-
-#endif
