@@ -5,15 +5,19 @@
 
 #include "server/ServerContext.h"
 #include "device/DeviceDriver.h"
-#include "device/DeviceSettingStatus.h"
-#include "device/sync/SettingSynchronizationOptions.h"
-#include "device/sync/SynchronizationHandler.h"
+//#include "device/DeviceSettingStatus.h"
+//#include "device/sync/SettingSynchronizationOptions.h"
+//#include "device/sync/SynchronizationHandler.h"
 #include "device/AccessSettingReinizializer.h"
 #include "util/date.h"
 #include "device/sync/SynchronizationResult.h"
 #include "device/sync/SynchronizationParameters.h"
 //#include <mutex>
 //#include <thread>
+class SettingSynchronizationOptions;
+
+class DeviceSettingStatus;
+class SynchronizationHandler;
 
 class DeviceContext
     : public ServerContext

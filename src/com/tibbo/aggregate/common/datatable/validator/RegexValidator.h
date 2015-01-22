@@ -3,7 +3,7 @@
 
 #include "datatable/validator/AbstractFieldValidator.h"
 
-
+class FieldFormat;
 class RegexValidator : public AbstractFieldValidator
 {
 private:
@@ -16,11 +16,10 @@ public:
     virtual bool shouldEncode();
     virtual std::string encode();
     virtual char getType();
-    virtual void* validate(void* value) /* throws(ValidationException) */;
+    virtual void* validate(void* value);
     virtual bool equals(void* obj);
     int hashCode();
 
-    // Generated
     RegexValidator(const std::string& source);
     RegexValidator(const std::string& regex, const std::string& message);
 };

@@ -152,10 +152,10 @@ void AbstractDeviceDriver::writeVariableValue(VariableDefinition* vd, DataTable*
  //   throw new ::java::lang::UnsupportedOperationException();
 //}
 
-//Date* AbstractDeviceDriver::getVariableModificationTime(const std::string & name) 
-//{
-//    return 0;
-//}
+boost::shared_ptr<Date> AbstractDeviceDriver::getVariableModificationTime(const std::string & name) 
+{
+    return 0;
+}
 //
 //void AbstractDeviceDriver::updateVariableModificationTime(const std::string & name, Date* value) 
 //{

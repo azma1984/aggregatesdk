@@ -4,7 +4,10 @@
 #include <boost/shared_ptr.hpp>
 #include "datatable/validator/AbstractFieldValidator.h"
 #include "datatable/FieldFormat.h"
-
+#include "util/Comparable.h"
+#include "cres.h"
+#include <sstream>
+#include <iostream>
 
 class LimitsValidator : public AbstractFieldValidator
 {

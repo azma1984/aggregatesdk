@@ -1,25 +1,12 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/FunctionData.java
-
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/reflect/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/locks/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Comparable.h"
+#ifndef FunctionDataH
+#define FunctionDataH
 
 
-
-class FunctionData
-    
-    , public ::java::lang::Comparable
+//todo -class stub
+class FunctionData//: public ::java::lang::Comparable
 {
 
-public:
-    typedef void super;
-
+/*
 private:
     FunctionDefinition* definition;
     ::java::util::concurrent::locks::std::mutex ** executionLock;
@@ -54,7 +41,7 @@ private:
 
 public:
     int compareTo(void* arg0);
-
-private:
-    ::java::lang::Class* getClass0();
+*/
 };
+
+#endif

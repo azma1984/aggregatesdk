@@ -6,8 +6,8 @@
 #include <string>
 
 
-//Singleton               //todo - cannot instantiate abstract class in getInstance()
-class AbstractValueWriter //: public ValueWriter
+//Singleton           
+class AbstractValueWriter : public ValueWriter
 {
 
  private:
@@ -19,7 +19,7 @@ class AbstractValueWriter //: public ValueWriter
     std::string name;
 
  public:
-    
+    void write(boost::shared_ptr<DataTable> value, boost::shared_ptr<CallerController> callerController,boost::shared_ptr<RequestController> requestController);
 
 	static AbstractValueWriter& getInstance()
     {
@@ -27,8 +27,6 @@ class AbstractValueWriter //: public ValueWriter
      return instance;
     }
     const std::string& toString();
-
-
 };
 
 #endif 

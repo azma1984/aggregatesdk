@@ -67,7 +67,7 @@ private:
     std::string editor;
     std::string editorOptions;
 //    std::map<T,std::string> selectionValues; //todo class template? 
-//    std::list<FieldValidator<void*>> validators;
+    std::list<FieldValidator<void*>*> validators;
     std::string icon;
     bool transferEncode;
     bool immutable;
@@ -154,7 +154,23 @@ public:
     std::string toDetailedString();
 
 
-
+    std::string getTypeName();
+    std::string getName();
+    bool isNullable();
+    void* getDefaultValue();
+    void* getDefaultValueCopy();
+    std::string getDescription();
+    bool hasDescription();
+    std::string getHelp();
+    bool isOptional();
+    bool hasSelectionValues();
+    std::map<void*, std::string> getSelectionValues();
+    FieldFormat* addSelectionValue(void* value,const std::string &description);
+    FieldFormat* addSelectionValue(void* value);
+    bool isExtendableSelectionValues();
+    std::list<FieldValidator<void*>*> getValidators();
+    bool isReadonly();
+    bool isNotReplicated();
 
    // static boost::shared_ptr<FieldFormat> create(const std::string &name, bool value);
   //  static boost::shared_ptr<FieldFormat> create(const std::string &name, int value);

@@ -11,11 +11,12 @@
 #include "device/DeviceAssetDefinition.h"
 #include "util/date.h"
 #include "expression/Expression.h"
-#include "device/sync/SynchronizationParameters.h"
+//#include "device/sync/SynchronizationParameters.h"
 class DeviceContext;
-
+class SynchronizationParameters;
 class DeviceDriver : public AggreGatePlugin
 {
+public:
     //// Device context control
 
     /**
@@ -282,7 +283,7 @@ class DeviceDriver : public AggreGatePlugin
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    //virtual Date *getVariableModificationTime(const std::string& name) = 0;//throws DeviceException, DisconnectionException;
+    virtual boost::shared_ptr<Date> getVariableModificationTime(const std::string& name) = 0;//throws DeviceException, DisconnectionException;
 
    /**
     * This method should update device-side modification time of a setting pointed by name argument or do nothing if modification-time-based synchronization is not supported.

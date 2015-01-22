@@ -5,11 +5,11 @@
 #include <map>
 #include "Cres.h"
 
-//todo Class stub
+
 class SynchronizationResult
 {
  private:
-   // static std::map<int, std::string> CODES;
+    static std::map<int, std::string> CODES;
     std::string details;
     int code;
 
@@ -24,9 +24,9 @@ public:
     static const int CODE_ERROR = 70;
 
 public:
-    //bool isSuccessful();
-    //int getCode();
-    //std::string toString();
+    bool isSuccessful();
+    int getCode();
+    std::string toString();
 	SynchronizationResult();
     SynchronizationResult(int code);
     SynchronizationResult(int code, const std::string& details);

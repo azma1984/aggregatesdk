@@ -244,3 +244,8 @@ boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &format)
 }
 
 
+std::list<FieldValidator<void*>*> FieldFormat::getValidators()
+{
+ return validators;
+   // return immutable ? ::java::util::Collections::unmodifiableList(validators) : validators;
+}

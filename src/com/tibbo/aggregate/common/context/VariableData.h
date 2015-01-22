@@ -1,25 +1,12 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/VariableData.java
-
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/reflect/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/locks/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Comparable.h"
+#ifndef VariableDataH
+#define VariableDataH
+#include "context/VariableDefinition.h"
 
 
-
-class VariableData
-    
-    , public ::java::lang::Comparable
+//todo - class stub
+class VariableData//: public ::java::lang::Comparable
 {
-
-public:
-    typedef void super;
-
+	/*
 private:
     VariableDefinition* definition;
     void* value;
@@ -38,7 +25,7 @@ public:
     void registerSetOperation();
     VariableDefinition* getDefinition();
 
-public: /* package */
+public: 
     void* getValue();
     void setValue(void* value);
 
@@ -70,7 +57,7 @@ private:
 
 public:
     int compareTo(void* arg0);
-
-private:
-    ::java::lang::Class* getClass0();
+	*/
 };
+
+#endif

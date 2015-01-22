@@ -6,7 +6,7 @@
 #include "datatable/validator/FieldValidator.h"
 #include "util/Util.h"
 
-class AbstractFieldValidator : public FieldValidator
+class AbstractFieldValidator : public FieldValidator<void*>
 {
 public:
     virtual bool shouldEncode() {
@@ -28,16 +28,18 @@ public:
         }
         */
 
-        return Util::equals(getType(), obj->getType());
+       // return Util::equals(getType(), obj->getType());
+		return false;//todo - function stub
     }
 
     virtual char getType() {
-        return '';
+        return 0;
     }
 
     //TODO: исключение
     virtual AbstractFieldValidator* clone() {
-        return FieldValidator::clone();
+		return 0;//todo - function stub
+//        return FieldValidator::clone();
 //        try
 //        {
 //            return super.clone();

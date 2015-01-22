@@ -5,8 +5,8 @@
 #include <string>
 
 
-//Singleton      todo - cannot instantiate abstract class in getInstance()
-class AbstractValueReader//: public ValueReader
+//Singleton 
+class AbstractValueReader: public ValueReader
 {
  private:
 	AbstractValueReader();
@@ -17,7 +17,7 @@ class AbstractValueReader//: public ValueReader
     std::string name;
 
  public:
-    
+    boost::shared_ptr<DataTable> read(boost::shared_ptr<CallerController> callerController,boost::shared_ptr<RequestController> requestController);
 
 	static AbstractValueReader& getInstance()
     {

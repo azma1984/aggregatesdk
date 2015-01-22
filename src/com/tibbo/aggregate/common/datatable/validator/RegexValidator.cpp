@@ -27,12 +27,16 @@ bool RegexValidator::shouldEncode()
 
 std::string RegexValidator::encode()
 {
-    return std::string(regex).append( (message.empty() != 0 ? std::string(SEPARATOR).append(message) : "") );
+//    return std::string(regex).append( (message.empty() != 0 ? std::string(SEPARATOR).append(message) : "") );
+	//todo- function stub
+	return "";
 }
 
 char RegexValidator::getType()
 {
-    return FieldFormat::VALIDATOR_REGEX;
+   // return FieldFormat::VALIDATOR_REGEX;
+	//todo- function stub
+	return 0;
 }
 
 //TODO:
@@ -59,15 +63,15 @@ bool RegexValidator::equals(void* obj)
         return true;
     }
 
-    if (!AbstractFieldValidator::equals(obj)) {
-        return false;
-    }
+//    if (!AbstractFieldValidator::equals(obj)) {
+   //     return false;
+  //  }
 
 //    if (getClass() != obj.getClass()) {
 //      return false;
 //    }
 
-    RegexValidator* other = dynamic_cast<RegexValidator*>(obj);
+    RegexValidator* other = (RegexValidator*)(obj);
     if (!other)
         return false;
 

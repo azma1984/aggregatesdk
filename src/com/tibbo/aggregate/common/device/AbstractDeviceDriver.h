@@ -59,7 +59,7 @@ public:
     virtual DataTable* readVariableValue(VariableDefinition* vd)=0;
     virtual void writeVariableValue(VariableDefinition* vd, DataTable* value, DataTable* deviceValue)=0;
     virtual DataTable* executeFunction(FunctionDefinition* fd, DataTable* parameters)=0;
-    Date* getVariableModificationTime(const std::string& name) ;
+    boost::shared_ptr<Date> getVariableModificationTime(const std::string& name) ;
     void updateVariableModificationTime(const std::string& name, Date* value) ;
     VariableStatus* getCustomVariableStatus(const std::string& name) ;
     void disconnect();

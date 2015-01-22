@@ -9,7 +9,8 @@ const char LimitsValidator::MIN_MAX_SEPARATOR = ' ';
 
 LimitsValidator::LimitsValidator(boost::shared_ptr<FieldFormat> fieldFormat, const std::string& source)
 {
-    std::list<std::string> minMax = StringUtils::split(source, MIN_MAX_SEPARATOR);
+	/*
+	std::list<std::string> minMax = StringUtils::split(source, MIN_MAX_SEPARATOR);
 
     if (fieldFormat->getType() == FieldFormat::DATA_FIELD || fieldFormat->getType() == FieldFormat::STRING_FIELD) {
         if (minMax.size() > 1) {
@@ -25,13 +26,13 @@ LimitsValidator::LimitsValidator(boost::shared_ptr<FieldFormat> fieldFormat, con
         }else {
             max = (Comparable) fieldFormat->valueFromString(minMax.get(0));
         }
-    }
+    }*/
 }
 
 LimitsValidator::LimitsValidator(boost::shared_ptr<Comparable> min, boost::shared_ptr<Comparable> max)
 {
     //TODO: нужно ли генерироват исключение?
-    //if (min != NULL && max != NULL && !min->equals(max))
+    //if (min != 0 && max != 0 && !min->equals(max))
          //Log.DATATABLE.error("'min' and 'max' Limits Validator parameters should be the same type", new Throwable());
 
     this->min = min;
@@ -62,41 +63,47 @@ boost::shared_ptr<Comparable> LimitsValidator::getMax()
 std::string LimitsValidator::encode()
 {
     std::stringstream ss;
-    if (min != NULL) {
+    if (min != 0) {
         ss << min->toString();
-        if (max != NULL)
+        if (max != 0)
             ss << MIN_MAX_SEPARATOR <<max->toString();
     }else {
-        ss << (max != NULL ? max->toString() : "");
+        ss << (max != 0 ? max->toString() : "");
     }
               return ss.str();
-//    return min != null ? min.toString() + (max != null ? MIN_MAX_SEPARATOR + max.toString() : "") : (max != null ? max.toString() : "");
+//    return min != 0 ? min.toString() + (max != 0 ? MIN_MAX_SEPARATOR + max.toString() : "") : (max != 0 ? max.toString() : "");
 }
 
 //TODO: ValidationException
-void* LimitsValidator::validate(void* value) /* throws(ValidationException) */
+void* LimitsValidator::validate(void* value) 
 {
-    if (value == null)
-        return value;
+ //   if (value == 0)
+ //       return value;
 
-    if (dynamic_cast<Data*>(value) != NULL) {
-        Data* data = dynamic_cast<Data*>(value);
+ //   if ((Data*)(value) != 0) 
+	//{
+ //       Data* data = (Data*)(value);
 
-        if (data->getData() != NULL) {
-            Comparable size = data->getData().size();
-            compare(size, NULL, NULL);
-        }
-    }else if (dynamic_cast<const std::string &>(value) != NULL) {
-        const std::string & string = dynamic_cast<const std::string &>(value);
-        compare(string->length(), Cres::get()->getString("dtValueTooShort"), Cres::get()->getString("dtValueTooLong"));
-    }else {
-        if (!dynamic_cast<Comparable*>(value) != NULL) {
-            throw new ValidationException("Value not comparable: " + value);
-        }
+ //      // if (data->getData() != 0) 
+	////	{
+ //     //      Comparable *size = data->getData().size();
+ //     //      compare(size, 0, 0);
+ //     //  }
+ //   }
+	//else 
+	//if ((const std::string &)(value) != 0) 
+	//{
+ //   // const std::string & string = (const std::string &)(value);
+ //    // compare(string.length(), Cres::get()->getString("dtValueTooShort"), Cres::get()->getString("dtValueTooLong"));
+ //   }
+	//else {
+ //       if (!(Comparable*)(value) != 0) {
+ //           throw new ValidationException("Value not comparable: " + value);
+ //       }
 
-        Comparable* cv = dynamic_cast<Comparable*>(value);
-        compare(cv, NULL, NULL);
-    }
+ //       Comparable* cv = (Comparable*)(value);
+ //       compare(cv, 0, 0);
+ //   }
 
     return value;
 }
@@ -104,14 +111,14 @@ void* LimitsValidator::validate(void* value) /* throws(ValidationException) */
 //TODO: ValidationException
 void LimitsValidator::compare(boost::shared_ptr<Comparable> cv, const std::string& smallMessage, const std::string& bigMessage) /* throws(ValidationException) */
 {
-    if (min != null) {
+    if (min != 0) {
         if (cv->compareTo(min) < 0) {
-//            throw new ValidationException(MessageFormat.format(smallMessage != null ? smallMessage : Cres.get().getString("dtValueTooSmall"), cv, min));
+//            throw new ValidationException(MessageFormat.format(smallMessage != 0 ? smallMessage : Cres.get().getString("dtValueTooSmall"), cv, min));
         }
     }
 
     if (cv->compareTo(max) > 0) {
-//        throw new ValidationException(MessageFormat.format(bigMessage != null ? bigMessage : Cres.get().getString("dtValueTooBig"), cv, max));
+//        throw new ValidationException(MessageFormat.format(bigMessage != 0 ? bigMessage : Cres.get().getString("dtValueTooBig"), cv, max));
     }
 }
 /*
@@ -119,8 +126,8 @@ int LimitsValidator::hashCode()
 {
     final int prime = 31;
         int result = 1;
-        result = prime * result + ((max == null) ? 0 : max.hashCode());
-        result = prime * result + ((min == null) ? 0 : min.hashCode());
+        result = prime * result + ((max == 0) ? 0 : max.hashCode());
+        result = prime * result + ((min == 0) ? 0 : min.hashCode());
         return result;
 }
 */
@@ -131,26 +138,26 @@ bool LimitsValidator::equals(void* obj)
         return true;
     }
 
-    if (!AbstractFieldValidator::equals(obj)) {
-        return false;
-    }
+   // if (!AbstractFieldValidator::equals(obj)) {
+  //      return false;
+ //   }
 
     //TODO:
 //    if (getClass() != obj.getClass()) {
 //        return false;
 //    }
 
-    LimitsValidator* other = dynamic_cast<LimitsValidator*>(obj);
-    if (max == NULL) {
-        if (other->max != NULL) {
+    LimitsValidator* other = (LimitsValidator*)(obj);
+    if (max == 0) {
+        if (other->max != 0) {
             return false;
         }
     }else if (!max->equals(other->max)) {
         return false;
     }
 
-    if (min == NULL) {
-        if (other->min != NULL) {
+    if (min == 0) {
+        if (other->min != 0) {
             return false;
         }
     }else if (!min->equals(other->min)) {

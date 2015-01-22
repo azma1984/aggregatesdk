@@ -18,5 +18,10 @@ const std::string &AbstractValueReader::toString()
 }
 
 
+boost::shared_ptr<DataTable> AbstractValueReader::read(boost::shared_ptr<CallerController> callerController,boost::shared_ptr<RequestController> requestController)
+{
+ return 0;
+}
+
 
 
