@@ -6,7 +6,7 @@
 #include "AggreGateException.h"
 
 
-
+//todo - class stub
 class ContextException  : public AggreGateException
 {
 /*

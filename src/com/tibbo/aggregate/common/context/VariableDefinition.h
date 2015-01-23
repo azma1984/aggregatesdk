@@ -8,7 +8,7 @@
 #include "datatable/TableFormat.h"
 #include "security/Permissions.h"
 #include "context/AbstractEntityDefinition.h" 
-
+//todo - class stub
 class VariableDefinition //: public AbstractEntityDefinition
 //    , public ::java::lang::Cloneable
 //    , public ::java::lang::Comparable

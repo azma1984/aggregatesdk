@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ContextManagerH
+#define ContextManagerH
 
 #include <boost/shared_ptr.hpp>
 
@@ -141,3 +142,4 @@ public:
      virtual boost::shared_ptr<CallerController> getCallerController() = 0;
 
 };
+#endif

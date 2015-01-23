@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/EventDefinition.java
 #ifndef EventDefinitionH
 #define EventDefinitionH
 
@@ -6,9 +5,9 @@
 #include "AbstractEntityDefinition.h"
 
 #include "datatable/TableFormat.h"
-//#include <com/tibbo/aggregate/common/event/PersistenceOptions.h"
-//#include <com/tibbo/aggregate/common/security/Permissions.h"
-
+//#include "event/PersistenceOptions.h"
+//#include "security/Permissions.h"
+//todo - class stub
 class EventDefinition : public AbstractEntityDefinition
 {
 

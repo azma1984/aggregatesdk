@@ -1,30 +1,28 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/DefaultContextManager.java
-
 #ifndef DefaultContextManagerH
 #define DefaultContextManagerH
 
-#include "ContextManager.h"
+//#include "context/ContextManager.h"
 
-//#include <com/tibbo/aggregate/common/context/CallerController.h"
+//#include "context/CallerController.h"
 #include "context/Context.h"
-//#include <com/tibbo/aggregate/common/context/ContextException.h"
-//#include <com/tibbo/aggregate/common/context/ContextUtils.h"
-//#include <com/tibbo/aggregate/common/context/DefaultContextManager_contextRemoved_2.h"
-//#include <com/tibbo/aggregate/common/context/DefaultContextManager_contextRemoved_1.h"
-//#include <com/tibbo/aggregate/common/context/DefaultContextManager_EventDispatcher.h"
-//#include <com/tibbo/aggregate/common/context/DefaultContextManager_QueuedEvent.h"
-//#include <com/tibbo/aggregate/common/context/EventData.h"
+//#include "context/ContextException.h"
+//#include "context/ContextUtils.h"
+//#include "context/DefaultContextManager_contextRemoved_2.h"
+//#include "context/DefaultContextManager_contextRemoved_1.h"
+//#include "context/DefaultContextManager_EventDispatcher.h"
+//#include "context/DefaultContextManager_QueuedEvent.h"
+//#include "context/EventData.h"
 #include "context/EventDefinition.h"
-//#include <com/tibbo/aggregate/common/context/UncheckedCallerController.h"
-//#include <com/tibbo/aggregate/common/data/Event.h"
-//#include <com/tibbo/aggregate/common/event/ContextEventListener.h"
-//#include <com/tibbo/aggregate/common/event/ContextEventListenerInfo.h"
-//#include <com/tibbo/aggregate/common/event/ContextEventListenerSet.h"
-//#include <com/tibbo/aggregate/common/event/EventUtils.h"
+//#include "context/UncheckedCallerController.h"
+//#include "data/Event.h"
+//#include "event/ContextEventListener.h"
+//#include "event/ContextEventListenerInfo.h"
+//#include "event/ContextEventListenerSet.h"
+//#include "event/EventUtils.h"
 
 
-
-template <class T> class DefaultContextManager: public ContextManager<T>
+//todo - class stub
+template <class T> class DefaultContextManager//: public ContextManager<T>
 {
   private:
 	void init();

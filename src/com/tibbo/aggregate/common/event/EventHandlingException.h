@@ -4,7 +4,7 @@
 //#include "AggreGateException.h"
 
 
-class EventHandlingException : public AggreGateException
+class EventHandlingException //: public AggreGateException
 {
   
 //public:

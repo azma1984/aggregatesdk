@@ -1,18 +1,18 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataRecord.java
 #include "DataRecord.h"
 
-/*
+
 
 DataRecord::DataRecord() 
 {
-    ctor();
+   // ctor();
 }
 
 DataRecord::DataRecord(TableFormat* tableFormat) 
 {
-    ctor(tableFormat);
+  //  ctor(tableFormat);
 }
-
+/*
 DataRecord::DataRecord(TableFormat* tableFormat, voidArray* data)
 {
     ctor(tableFormat,data);

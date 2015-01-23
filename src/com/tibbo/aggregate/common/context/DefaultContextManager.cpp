@@ -1,5 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/DefaultContextManager.java
-#include "DefaultContextManager.h"
+#include "context/DefaultContextManager.h"
 
 
 
