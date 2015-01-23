@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ActionConstantsH
+#define ActionConstantsH
 
 #include <string>
 
@@ -17,3 +18,5 @@ namespace ActionConstants
     static const std::string FIELD_AD_DEFAULT = "default";
     static const std::string FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK = "resourceMask";
 };
+
+#endif 

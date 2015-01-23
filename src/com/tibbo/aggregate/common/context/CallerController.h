@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CallerControllerH
+#define CallerControllerH
 
 #include <string>
 #include <map>
@@ -24,9 +25,11 @@ public:
     virtual bool isHeadless() = 0;
     virtual std::string getType() = 0;
     virtual std::string getAddress() = 0;
-    virtual Date getCreationTime() = 0;
+    virtual Date *getCreationTime() = 0;
     virtual boost::shared_ptr<CallerData> getCallerData() = 0;
     virtual std::map<std::string, std::string> getProperties() = 0;
     virtual void sendFeedback(int level, const std::string& message) = 0;
 };
+
+#endif
 

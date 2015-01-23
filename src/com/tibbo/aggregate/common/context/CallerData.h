@@ -1,5 +1,5 @@
-#ifndef _CallerData_H_
-
+#ifndef CallerDataH
+#define CallerDataH
 #include "Interface.h"
 #include "ActionManager.h"
 

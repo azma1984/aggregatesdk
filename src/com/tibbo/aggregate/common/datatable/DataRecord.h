@@ -22,15 +22,14 @@
 #include <map>
 
 class DataTable;
-
-class DataRecord //:Cloneable//, PublicCloneable
+//todo - class stub
+class DataRecord : public Cloneable//, PublicCloneable
 {   
 	
 public:
-	/*
-
+	
     DataRecord();
-    DataRecord(TableFormat* tableFormat);
+    DataRecord(TableFormat* tableFormat);/*
     DataRecord(TableFormat* tableFormat, voidArray* data);
     DataRecord(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
     DataRecord(TableFormat* tableFormat, const std::string& dataString);
@@ -109,13 +108,6 @@ public:
 
 	//	bool equals(void* obj);
 	bool operator==(const DataRecord& dataRecord) const;
-
-protected:    
-    void ctor();
-    void ctor(TableFormat* tableFormat);
-	void ctor(TableFormat* tableFormat, voidArray* data);
-	void ctor(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
-	void ctor(TableFormat* tableFormat, const std::string & dataString);
 
 private:
     static int INITIAL_DATA_SIZE;

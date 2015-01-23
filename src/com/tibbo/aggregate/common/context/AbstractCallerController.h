@@ -1,73 +1,58 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/AbstractCallerController.java
-
-#pragma once
-
+#ifndef AbstractCallerControllerH
+#define AbstractCallerControllerH
 
 #include "context/CallerController.h"
+#include "context/CallerController.h"
+#include "context/CallerData.h"
+#include "util/date.h"
 
+#include <set>
+#include <map>
 
-
+//todo - class stub
 class AbstractCallerController : public CallerController
 {
 
-//public:
-//    typedef void super;
+private:
+    static std::set<CallerController*>  CONTROLLERS;
+    std::string username;
+    boost::shared_ptr<CallerData> callerData;
+    bool loggedIn;
+    std::string type;
+    std::string address;
+    Date* creationTime;
+    std::map<std::string, std::string> properties;
 
-//private:
-//    static ::std::set  CONTROLLERS_;
-//    const std::string & username;
-//    CallerData* callerData;
-//    bool loggedIn;
-//    const std::string & type;
-//    const std::string & address;
-//    Date* creationTime;
-//    std::map properties;
-//protected:
-//    void ctor(CallerData* callerData);
-
-//public:
-//    bool isLoggedIn();
-//    bool isPermissionCheckingEnabled();
-//    PermissionCache* getPermissionCache();
-//    CallerData* getCallerData();
-//    std::map getProperties();
-
-//public: /* protected */
-//    void setLoggedIn(bool loggedIn);
-
-//public:
-//    void sendFeedback(int level, const std::string & message);
-//    static std::list  getControllers();
-//    const std::string & toString();
-//    Permissions* getPermissions();
-//    const std::string & getUsername();
-
-//public: /* protected */
-//    void setUsername(const std::string & username);
-
-//public:
-//    const std::string & getInheritedUsername();
-//    const std::string & getEffectiveUsername();
-//    const std::string & getType();
-//    void setType(const std::string & type);
-//    const std::string & getAddress();
-//    void setAddress(const std::string & address);
-//    void login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) ;
-//    Date* getCreationTime();
-//    void logout();
-
-//    // Generated
-//    AbstractCallerController(CallerData* callerData);
-//protected:
-//    AbstractCallerController(const ::default_init_tag&);
+public:
+    bool isLoggedIn();
+    bool isPermissionCheckingEnabled();
+    boost::shared_ptr<PermissionCache> getPermissionCache();
+    boost::shared_ptr<CallerData> getCallerData();
+    std::map<std::string, std::string> getProperties();
 
 
-//public:
-    
-//    static void
+    void setLoggedIn(bool loggedIn);
 
-//private:
-//    void init();
-//    static ::std::set & CONTROLLERS();
-//    ::java::lang::Class* getClass0();
+    void sendFeedback(int level, const std::string & message);
+    static std::list<CallerController*>  getControllers();
+    std::string toString();
+    boost::shared_ptr<Permissions> getPermissions();
+    std::string getUsername();
+
+    void setUsername(const std::string & username);
+
+    std::string  getInheritedUsername();
+    std::string  getEffectiveUsername();
+    std::string  getType();
+    void setType(const std::string & type);
+    std::string getAddress();
+    void setAddress(const std::string & address);
+    void login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) ;
+    Date* getCreationTime();
+    void logout();
+
+    AbstractCallerController(boost::shared_ptr<CallerData> callerData);
+
 };
+
+#endif

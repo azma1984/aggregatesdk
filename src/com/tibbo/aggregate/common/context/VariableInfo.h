@@ -1,37 +1,40 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/VariableInfo.java
+#ifndef _VariableInfo_H_
+#define _VariableInfo_H_
 
-#pragma once
+//#include "Cres.h"
+//#include "context/VariableDefinition.h"
+//#include "datatable/DataRecord.h"
+//#include "datatable/DataTable.h"
+//#include "datatable/DataTableBuilding.h"
+//#include "datatable/TableFormat.h"
+//#include "datatable/field/StringFieldFormat.h"
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-
-
+//Singleton //todo - class stub
 class VariableInfo
-    
 {
+// private:
+//   VariableInfo();
+//   ~VariableInfo();
+//   VariableInfo(VariableInfo const&);
+//   void operator=(VariableInfo const&);
+//
+//   static TableFormat *FORMAT;
+//
+//public:
+//    static boost::shared_ptr<DataTable> createInfoTable(VariableDefinition* vd);
+//
+//    
+//   static VariableInfo& getInstance()
+//    {
+//     static VariableInfo instance;
+//     return instance;
+//    }
+// 
+//
+//
+//    static TableFormat& getFORMAT();
 
-public:
-    typedef void super;
-
-private:
-    static TableFormat* FORMAT_;
-
-public:
-    static DataTable* createInfoTable(VariableDefinition* vd);
-
-    // Generated
-    VariableInfo();
-protected:
-    VariableInfo(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-    static TableFormat*& FORMAT();
-
-private:
-    ::java::lang::Class* getClass0();
 };
+
+
+#endif

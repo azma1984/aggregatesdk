@@ -1,64 +1,54 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/EventData.java
+#ifndef EventDataH
+#define EventDataH
 
-#pragma once
+#include "util/Comparable.h"
+//#include "Log.h"
+#include "context/EventDefinition.h"
+#include "data/Event.h"
+#include "event/ContextEventListener.h"
+#include "event/ContextEventListenerSet.h"
+#include "util/Util.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/data/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/event/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Comparable.h"
-
-
-
-class EventData
-    
-    , public ::java::lang::Comparable
+//todo - class stub
+class EventData: public Comparable
 {
 
-public:
-    typedef void super;
+//private:
+//    EventDefinition* definition;
+//    ContextEventListenerSet* listeners;
+//    std::list  history;
+//    long fireCount;
+//
+//
+//public:
+//    void registerFiredEvent();
+//    EventDefinition* getDefinition();
+//    ::std::set  getListeners();
+//    ::std::set  getListenersInfo();
+//    long getFireCount();
+//    bool addListener(ContextEventListener* listener, bool weak);
+//    bool removeListener(ContextEventListener* listener);
+//    void clearListeners();
+//    void dispatch(Event* event);
+//    Event* store(Event* event, int  customMemoryStorageSize);
+//    std::list  getHistory();
+//    const std::string & toString();
+//    int compareTo(EventData* d);
+//
+//    // Generated
+//    EventData(EventDefinition* definition);
+//protected:
+//    EventData(const ::default_init_tag&);
+//
+//
+//public:
+//    
+//
+//private:
+//    void init();
+//
+//public:
+//    int compareTo(void* arg0);
 
-private:
-    EventDefinition* definition;
-    ContextEventListenerSet* listeners;
-    std::list  history;
-    long fireCount;
-protected:
-    void ctor(EventDefinition* definition);
-
-public:
-    void registerFiredEvent();
-    EventDefinition* getDefinition();
-    ::std::set  getListeners();
-    ::std::set  getListenersInfo();
-    long getFireCount();
-    bool addListener(ContextEventListener* listener, bool weak);
-    bool removeListener(ContextEventListener* listener);
-    void clearListeners();
-    void dispatch(Event* event);
-    Event* store(Event* event, int  customMemoryStorageSize);
-    std::list  getHistory();
-    const std::string & toString();
-    int compareTo(EventData* d);
-
-    // Generated
-    EventData(EventDefinition* definition);
-protected:
-    EventData(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-
-public:
-    int compareTo(void* arg0);
-
-private:
-    ::java::lang::Class* getClass0();
 };
+#endif

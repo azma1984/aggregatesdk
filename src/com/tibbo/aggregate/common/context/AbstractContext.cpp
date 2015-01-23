@@ -1,4 +1,3 @@
-//// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/AbstractContext.java
 
 #include "AbstractContext.h"
 
@@ -1106,8 +1105,8 @@ void /*template <class C> */AbstractContext/*<C>*/::stop()
 //    return compareTo(dynamic_cast< Context* >(arg0));
 //}
 //
-//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getChildren(CallerController* caller)
-//{
+std::list<void*>  /*template <class C> */AbstractContext/*<C> */::getChildren(CallerController* caller)
+{
 //    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
 //        if(Log::CONTEXT_CHILDREN())->isDebugEnabled()) {
 //            Log::CONTEXT_CHILDREN())->debug(std::stringBuilder().append("Access to child '"_j)->append(name)
@@ -1125,8 +1124,11 @@ void /*template <class C> */AbstractContext/*<C>*/::stop()
 //        }
 //    }
 //    return childList;
-//}
-//
+
+	std::list<void*> list;
+	return list;
+}
+
 //bool /*/*template <class C> */*/AbstractContext/*<C> */::shouldSeeChild(CallerController* caller, Context* cur)
 //{
 //    return checkPermissions(cur)->getPermissions(), caller, cur) || canSee(caller, cur);
@@ -1140,36 +1142,46 @@ void /*template <class C> */AbstractContext/*<C>*/::stop()
 //    return getPermissionChecker())->canSee(caller != 0 ? caller)->getPermissions() : static_cast< Permissions* >(0), con)->getPath(), getContextManager());
 //}
 //
-//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getChildren()
-//{
+std::list<void*>  /*template <class C> */AbstractContext/*<C> */::getChildren()
+{
 //    return getChildren(static_cast< CallerController* >(0));
-//}
+	std::list<void*> list;
+	return list;
+}
 //
-//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVisibleChildren(CallerController* caller)
-//{
+std::list<void*>   /*template <class C> */AbstractContext/*<C> */::getVisibleChildren(CallerController* caller)
+{
 //    return getChildren(caller);
-//}
+		std::list<void*> list;
+	return list;
+}
 //
-//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getVisibleChildren()
-//{
+std::list<void*>   /*template <class C> */AbstractContext/*<C> */::getVisibleChildren()
+{
 //    return getVisibleChildren(static_cast< CallerController* >(0));
-//}
-//
-//bool /*/*template <class C> */*/AbstractContext/*<C> */::isMapped()
-//{
-//    return false;
-//}
-//
-//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getMappedChildren(CallerController* caller)
-//{
+		std::list<void*> list;
+	return list;
+}
+
+bool /*template <class C> */AbstractContext/*<C> */::isMapped()
+{
+    return false;
+}
+
+std::list<void*>   /*template <class C> */AbstractContext/*<C> */::getMappedChildren(CallerController* caller)
+{
 //    return isMapped() ? getVisibleChildren(caller) : getChildren(caller);
-//}
-//
-//std::list  /*/*template <class C> */*/AbstractContext/*<C> */::getMappedChildren()
-//{
+		std::list<void*> list;
+	return list;
+}
+
+std::list<void*>   /*template <class C> */AbstractContext/*<C> */::getMappedChildren()
+{
 //    return getMappedChildren(static_cast< CallerController* >(0));
-//}
-//
+		std::list<void*> list;
+	return list;
+}
+
 std::string /*template <class C> */AbstractContext/*<C> */::getName()
 {
     return name;

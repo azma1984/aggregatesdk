@@ -1,79 +1,123 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/AbstractContext.java
-
 #ifndef AbstractContextH
 #define AbstractContextH
 
 #include "Context.h"
-//#include "common/Cres.h"
-//#include "common/action/ActionDefinition.h"
-//#include "common/action/BasicActionDefinition.h"
-//#include "common/action/GroupIdentifier.h"
-//#include "common/action/KeyStroke.h"
-//#include "common/action/ResourceMask.h"
-//#include "common/action/TreeMask.h"
-//#include "common/context/AbstractContext_enableVariableStatuses_4.h"
-//#include "common/context/AbstractContext_start_1.h"
-//#include "common/context/AbstractContext_stop_2.h"
-//#include "common/context/AbstractContext_removeChild_3.h"
-//#include "common/context/ActionConstants.h"
-//#include "common/context/CallerController.h"
-//#include "common/context/CompatibilityConverter.h"
-//#include "common/context/Context.h"
-//#include "common/context/ContextException.h"
-//#include "common/context/ContextManager.h"
-//#include "common/context/ContextRuntimeException.h"
-//#include "common/context/ContextSecurityException.h"
-//#include "common/context/ContextStatus.h"
-//#include "common/context/ContextUtils.h"
-//#include "common/context/ContextVisitor.h"
-//#include "common/context/Contexts.h"
-//#include "common/context/EventData.h"
+#include "Cres.h"
+#include "action/ActionDefinition.h"
+//#include "action/BasicActionDefinition.h"
+//#include "action/GroupIdentifier.h"
+//#include "action/KeyStroke.h"
+//#include "action/ResourceMask.h"
+//#include "action/TreeMask.h"
+//#include "context/AbstractContext_enableVariableStatuses_4.h"
+//#include "context/AbstractContext_start_1.h"
+//#include "context/AbstractContext_stop_2.h"
+//#include "context/AbstractContext_removeChild_3.h"
+//#include "context/ActionConstants.h"
+//#include "context/CallerController.h"
+//#include "context/CompatibilityConverter.h"
+//#include "context/Context.h"
+//#include "context/ContextException.h"
+//#include "context/ContextManager.h"
+//#include "context/ContextRuntimeException.h"
+//#include "context/ContextSecurityException.h"
+//#include "context/ContextStatus.h"
+//#include "context/ContextUtils.h"
+//#include "context/ContextVisitor.h"
+//#include "context/Contexts.h"
+#include "context/EventData.h"
 #include "context/EventDefinition.h"
-//#include "common/context/FireChangeEventRequestController.h"
-//#include "common/context/FunctionData.h"
+//#include "context/FireChangeEventRequestController.h"
+#include "context/FunctionData.h"
 #include "context/FunctionDefinition.h"
-//#include "common/context/FunctionImplementation.h"
-//#include "common/context/RequestController.h"
-//#include "common/context/VariableData.h"
-//#include "common/context/VariableDefinition.h"
-//#include "common/context/VariableGetter.h"
-//#include "common/context/VariableSetter.h"
-//#include "common/context/VariableStatus.h"
+//#include "context/FunctionImplementation.h"
+//#include "context/RequestController.h"
+#include "context/VariableData.h"
+//#include "context/VariableDefinition.h"
+//#include "context/VariableGetter.h"
+//#include "context/VariableSetter.h"
+#include "context/VariableStatus.h"
 #include "data/Event.h"
-//#include "common/datatable/DataRecord.h"
-//#include "common/datatable/DataTable.h"
-//#include "common/datatable/DataTableConversion.h"
-//#include "common/datatable/DataTableReplication.h"
-//#include "common/datatable/DataTableUtils.h"
-//#include "common/datatable/FieldFormat.h"
-//#include "common/datatable/TableFormat.h"
-//#include "common/datatable/ValidationException.h"
-//#include "common/datatable/encoding/ClassicEncodingSettings.h"
-//#include "common/event/ContextEventListener.h"
-//#include "common/event/Enrichment.h"
-//#include "common/event/EventEnrichmentRule.h"
-//#include "common/event/EventLevel.h"
-//#include "common/event/EventProcessingRule.h"
-//#include "common/event/EventUtils.h"
-//#include "common/event/FireEventRequestController.h"
-//#include "common/event/PersistenceOptions.h"
-//#include "common/expression/Evaluator.h"
-//#include "common/expression/Expression.h"
-//#include "common/security/DefaultPermissionChecker.h"
-//#include "common/security/NullPermissionChecker.h"
-//#include "common/security/PermissionChecker.h"
-//#include "common/security/Permissions.h"
-//#include "common/util/Icons.h"
-//#include "common/util/StringUtils.h"
-//#include "common/util/Util.h"
+//#include "datatable/DataRecord.h"
+//#include "datatable/DataTable.h"
+//#include "datatable/DataTableConversion.h"
+//#include "datatable/DataTableReplication.h"
+//#include "datatable/DataTableUtils.h"
+//#include "datatable/FieldFormat.h"
+//#include "datatable/TableFormat.h"
+//#include "datatable/ValidationException.h"
+//#include "datatable/encoding/ClassicEncodingSettings.h"
+//#include "event/ContextEventListener.h"
+//#include "event/Enrichment.h"
+//#include "event/EventEnrichmentRule.h"
+//#include "event/EventLevel.h"
+//#include "event/EventProcessingRule.h"
+//#include "event/EventUtils.h"
+//#include "event/FireEventRequestController.h"
+//#include "event/PersistenceOptions.h"
+//#include "expression/Evaluator.h"
+//#include "expression/Expression.h"
+//#include "security/DefaultPermissionChecker.h"
+//#include "security/NullPermissionChecker.h"
+//#include "security/PermissionChecker.h"
+//#include "security/Permissions.h"
+//#include "util/Icons.h"
+//#include "util/StringUtils.h"
+//#include "util/Util.h"
 
-
+//todo - class stub
 /*template <class C>*/ class AbstractContext : public Context//<C>
 {
 private:
 	static const std::string IMPLEMENTATION_METHOD_PREFIX;
 	static const std::string SETTER_METHOD_PREFIX;
 	static const std::string GETTER_METHOD_PREFIX;
+
+	static const int VERY_LOW_PERFORMANCE_THRESHOLD = 120000;
+    static const int LOW_PERFORMANCE_THRESHOLD = 20000;
+    ContextManager* contextManager;
+    std::map<std::string, VariableData*> variableData;
+  //  ::java::util::concurrent::locks::ReentrantReadWriteLock* variableDataLock;
+    std::map<std::string, FunctionData*> functionData;
+  //  ::java::util::concurrent::locks::ReentrantReadWriteLock* functionDataLock;
+    std::map<std::string, EventData*> eventData;
+  //  ::java::util::concurrent::locks::ReentrantReadWriteLock* eventDataLock;
+    std::list<ActionDefinition*>  actionDefinitions;
+  //  ::java::util::concurrent::locks::ReentrantReadWriteLock* actionDefinitionsLock;
+
+    std::string name;
+    std::string description;
+   
+	std::string type;
+    std::string group;
+    std::string iconId;
+    //Context* parent;
+	
+    bool setupComplete;
+	
+    bool started;
+    int index;
+
+    bool permissionCheckingEnabled;
+    Permissions* permissions;
+    Permissions* childrenViewPermissions;
+    PermissionChecker* permissionChecker;
+    std::list<void*>  children;
+    std::map<std::string,void*> childrenMap;
+   // ::java::util::concurrent::locks::ReentrantReadWriteLock* childrenLock;
+    bool valueCheckingEnabled;
+    bool childrenConcurrencyEnabled;
+    bool childrenSortingEnabled;
+    bool fireUpdateEvents;
+    ContextStatus* status;
+    std::map<std::string, VariableStatus*> variableStatuses;
+    bool variableStatusesUpdated;
+   // ::java::util::concurrent::locks::ReentrantReadWriteLock* variableStatusesLock;
+
+    std::string path;
+
+	bool shouldSeeChild(CallerController* caller, Context* cur);
+    bool canSee(CallerController* caller, Context* con);
 public:
 	static const std::string V_INFO;
 	static const std::string V_CHILDREN;
@@ -167,7 +211,7 @@ public:
 	static const std::string FIELD_ED_LEVEL;
     static const std::string FIELD_ED_GROUP;
 	static const std::string FIELD_ED_ICON_ID;
-	/*
+	
 	TableFormat* VARIABLE_DEFINITION_FORMAT;
 	TableFormat* EF_VARIABLE_ADDED;
 	TableFormat* FUNCTION_DEFINITION_FORMAT;
@@ -219,87 +263,37 @@ public:
     static EventDefinition* ED_CHANGE;
     static EventDefinition* ED_DESTROYED;
     TableFormat* VFT_VARIABLE_STATUSES;
-    static const int DEFAULT_EVENT_LEVEL = -1) };
-    static Permissions* DEFAULT_PERMISSIONS;*/
-	
+    static const int DEFAULT_EVENT_LEVEL = -1;
+    static Permissions* DEFAULT_PERMISSIONS;
 
     static const std::string CALLER_CONTROLLER_PROPERTY_DEBUG;
     static const std::string CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS;
 	static const std::string CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS;
-/*
 
-    static const int INDEX_HIGHEST = 400) };
-    static const int INDEX_VERY_HIGH = 300) };
-    static const int INDEX_HIGH = 200) };
-    static const int INDEX_HIGHER = 100) };
-    static const int INDEX_NORMAL) };
-    static const int INDEX_LOWER = -100) };
-    static const int INDEX_LOW = -200) };
-    static const int INDEX_VERY_LOW = -300) };
-    static const int INDEX_LOWEST = -400) };
-    static const int DELTA_HIGHEST = 40) };
-    static const int DELTA_VERY_HIGH = 30) };
-    static const int DELTA_HIGH = 20) };
-    static const int DELTA_HIGHER = 10) };
-    static const int DELTA_LOWER = -10) };
-    static const int DELTA_LOW = -20) };
-    static const int DELTA_VERY_LOW = -30) };
-    static const int DELTA_LOWEST = -400) };
 
-private:
-    static const int VERY_LOW_PERFORMANCE_THRESHOLD = 120000) };
-    static const int LOW_PERFORMANCE_THRESHOLD = 20000) };
-    ContextManager* contextManager;
-    std::map variableData;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* variableDataLock;
-    std::map functionData;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* functionDataLock;
-    std::map eventData;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* eventDataLock;
-    std::list  actionDefinitions;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* actionDefinitionsLock;
-	*/
-    std::string name;
-    std::string description;
-   
-	std::string type;
-    std::string group;
-    std::string iconId;
-    //Context* parent;
-	
-    bool setupComplete;
-	
-    bool started;
-    int index;
-	/*
-    bool permissionCheckingEnabled;
-    Permissions* permissions;
-    Permissions* childrenViewPermissions;
-    PermissionChecker* permissionChecker;
-    std::list  children;
-    std::map childrenMap;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* childrenLock;
-    bool valueCheckingEnabled;
-    bool childrenConcurrencyEnabled;
-    bool childrenSortingEnabled;
-    bool fireUpdateEvents;
-    ContextStatus* status;
-    std::map variableStatuses;
-    bool variableStatusesUpdated;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* variableStatusesLock;
-	*/
-    std::string path;
-	/*
-protected:
-    void ctor(const std::string & name);
+    static const int INDEX_HIGHEST = 400;
+    static const int INDEX_VERY_HIGH = 300;
+    static const int INDEX_HIGH = 200;
+    static const int INDEX_HIGHER = 100;
+    static const int INDEX_NORMAL;
+    static const int INDEX_LOWER = -100;
+    static const int INDEX_LOW = -200;
+    static const int INDEX_VERY_LOW = -300;
+    static const int INDEX_LOWEST = -400;
+    static const int DELTA_HIGHEST = 40;
+    static const int DELTA_VERY_HIGH = 30;
+    static const int DELTA_HIGH = 20;
+    static const int DELTA_HIGHER = 10;
+    static const int DELTA_LOWER = -10;
+    static const int DELTA_LOW = -20;
+    static const int DELTA_VERY_LOW = -30;
+    static const int DELTA_LOWEST = -400;
 
-public:
+
     void setup(ContextManager* contextManager);
 
-public:
-    void setup();
-	*/
 
+    void setup();
 
     void setupPermissions();
 	void setupMyself();
@@ -308,21 +302,17 @@ public:
     void teardown();
     void start();
     void stop();
- /*   int compareTo(Context* context);
-    std::list  getChildren(CallerController* caller);
+    int compareTo(Context* context);
+    std::list<void*>  getChildren(CallerController* caller);
 
-private:
-    bool shouldSeeChild(CallerController* caller, Context* cur);
-    bool canSee(CallerController* caller, Context* con);
 
-public:
-    std::list  getChildren();
-    std::list  getVisibleChildren(CallerController* caller);
-    std::list  getVisibleChildren();
+    std::list<void*>  getChildren();
+    std::list<void*>  getVisibleChildren(CallerController* caller);
+    std::list<void*>  getVisibleChildren();
     bool isMapped();
-    std::list  getMappedChildren(CallerController* caller);
-    std::list  getMappedChildren();
-	*/
+    std::list<void*>  getMappedChildren(CallerController* caller);
+    std::list<void*>  getMappedChildren();
+	
     std::string getName();
     std::string getDescription();
    /*
