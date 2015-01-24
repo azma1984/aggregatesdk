@@ -1,56 +1,34 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/AbstractReferenceResolver.java
-
 #pragma once
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
+#include "expression/ReferenceResolver.h"
+#include <boost/shared_ptr.hpp>
 
 
-
-class AbstractReferenceResolver
-    
-    , public ReferenceResolver
+class AbstractReferenceResolver : public ReferenceResolver
 {
-
-public:
-    typedef void super;
-
 private:
-    Evaluator* evaluator;
-    ContextManager* contextManager;
-    Context* defaultContext;
-    DataTable* defaultTable;
+    boost::shared_ptr<Evaluator> evaluator;
+    boost::shared_ptr<ContextManager> contextManager;
+    boost::shared_ptr<Context> defaultContext;
+    boost::shared_ptr<DataTable> defaultTable;
+    boost::shared_ptr<CallerController> callerController;
     int  defaultRow;
-    CallerController* callerController;
 
 public:
-    CallerController* getCallerController();
-    Context* getDefaultContext();
-    ContextManager* getContextManager();
+    boost::shared_ptr<CallerController> getCallerController();
+    boost::shared_ptr<Context> getDefaultContext();
+    boost::shared_ptr<ContextManager> getContextManager();
+    boost::shared_ptr<DataTable> getDefaultTable();
+    boost::shared_ptr<Evaluator> getEvaluator();
     int  getDefaultRow();
-    DataTable* getDefaultTable();
-    Evaluator* getEvaluator();
-    void addContextManager(const std::string & schema, ContextManager* cm);
-    void setCallerController(CallerController* callerController);
-    void setDefaultContext(Context* defaultContext);
-    void setContextManager(ContextManager* contextManager);
+    void addContextManager(const std::string& schema, boost::shared_ptr<ContextManager> cm);
+    void setCallerController(boost::shared_ptr<CallerController> callerController);
+    void setDefaultContext(boost::shared_ptr<Context> defaultContext);
+    void setContextManager(boost::shared_ptr<ContextManager> contextManager);
+    void setDefaultTable(boost::shared_ptr<DataTable> defaultTable);
+    void setEvaluator(boost::shared_ptr<Evaluator> evaluator);
     void setDefaultRow(int  defaultRow);
-    void setDefaultTable(DataTable* defaultTable);
-    void setEvaluator(Evaluator* evaluator);
 
     // Generated
     AbstractReferenceResolver();
-protected:
-    AbstractReferenceResolver(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
 };

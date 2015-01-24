@@ -1,30 +1,26 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/EvaluationEnvironment.java
-
 #pragma once
 
 #include "expression/Reference.h"
+#include <string>
+#include <map>
+#include <boost/shared_ptr.hpp>
 
 class EvaluationEnvironment
 {
 private:
-    Reference* cause;
-    std::map environment;
-
-protected:
-    void ctor();
-    void ctor(Reference* cause);
-    void ctor(std::map environment);
-    void ctor(Reference* cause, std::map environment);
+    boost::shared_ptr<Reference> cause;
+    //TODO: void*
+    std::map<std::string, boost::shared_ptr<void*>> environment;
 
 public:
     Reference* getCause();
-    void setCause(Reference* cause);
-    std::map getEnvironment();
-    void setEnvironment(std::map environment);
+    void setCause(boost::shared_ptr<Reference> cause);
+    std::map<std::string, boost::shared_ptr<void*>> getEnvironment();
+    void setEnvironment(std::map<std::string, boost::shared_ptr<void*>> environment);
 
     // Generated
     EvaluationEnvironment();
-    EvaluationEnvironment(Reference* cause);
-    EvaluationEnvironment(std::map environment);
-    EvaluationEnvironment(Reference* cause, std::map environment);
+    EvaluationEnvironment(boost::shared_ptr<Reference> cause);
+    EvaluationEnvironment(std::map<std::string, boost::shared_ptr<void*>> environment);
+    EvaluationEnvironment(boost::shared_ptr<Reference> cause, std::map<std::string, boost::shared_ptr<void*>> environment);
 };

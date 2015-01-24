@@ -1,25 +1,10 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/AbstractEvaluatingVisitor.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/parser/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-#include <com/tibbo/aggregate/common/expression/parser/ExpressionParserVisitor.h"
+#include "expression/parser/ExpressionParserVisitor.h"
 
 
-
-class AbstractEvaluatingVisitor
-    
-    , public ::ExpressionParserVisitor
+class AbstractEvaluatingVisitor : public ExpressionParserVisitor
 {
-
-public:
-    typedef void super;
-
 private:
     static const std::string TEMP_FORMAT_NAME_;
     static std::map DEFAULT_FUNCTIONS_;

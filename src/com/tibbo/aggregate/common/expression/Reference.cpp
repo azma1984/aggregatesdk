@@ -1,5 +1,8 @@
 #include "Reference.h"
 
+#include "context/ContextUtils.h"
+#include "expression/ExpressionUtils.h"
+#include "util/SString.h"
 
 const std::string Reference::SCHEMA_FORM = "form";
 const std::string Reference::SCHEMA_TABLE = "table";
@@ -25,420 +28,317 @@ const char Reference::ROW_END = ']';
 const char Reference::PROPERTY_BEGIN = '#';
 
 
-/*
-Reference(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
+
+Reference::Reference()
 {
-    
-}
-
-Reference() 
-    : Reference(*static_cast< ::default_init_tag* >(0))
-{
-    ctor();
-}
-
-Reference(const std::string & source) 
-    : Reference(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(source);
-}
-
-Reference(const std::string & server, const std::string & context) 
-    : Reference(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(server,context);
-}
-
-Reference(const std::string & entity, int entityType, const std::string & field) 
-    : Reference(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(entity,entityType,field);
-}
-
-Reference(const std::string & context, const std::string & entity, int entityType, const std::string & field) 
-    : Reference(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(context,entity,entityType,field);
-}
-
-Reference(const std::string & context, const std::string & entity, int entityType) 
-    : Reference(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(context,entity,entityType);
-}
-
-Reference(const std::string & context, const std::string & function, voidArray* parameters) 
-    : Reference(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(context,function,parameters);
-}
-
-void init()
-{
-    entityType = ContextUtils::ENTITY_VARIABLE;
-    parameters = new ::java::util::LinkedList();
-}
-
-std::string& SCHEMA_FORM()
-{
-    
-    return SCHEMA_FORM_;
-}
-std::string SCHEMA_FORM_;
-
-std::string& SCHEMA_TABLE()
-{
-    
-    return SCHEMA_TABLE_;
-}
-std::string SCHEMA_TABLE_;
-
-std::string& SCHEMA_STATISTICS()
-{
-    
-    return SCHEMA_STATISTICS_;
-}
-std::string SCHEMA_STATISTICS_;
-
-std::string& SCHEMA_ENVIRONMENT()
-{
-    
-    return SCHEMA_ENVIRONMENT_;
-}
-std::string SCHEMA_ENVIRONMENT_;
-
-std::string& SCHEMA_PARENT()
-{
-    
-    return SCHEMA_PARENT_;
-}
-std::string SCHEMA_PARENT_;
-
-std::string& SCHEMA_MENU()
-{
-    
-    return SCHEMA_MENU_;
-}
-std::string SCHEMA_MENU_;
-
-std::string& SCHEMA_ACTION()
-{
-    
-    return SCHEMA_ACTION_;
-}
-std::string SCHEMA_ACTION_;
-
-const char16_t EVENT_SIGN;
-
-const char16_t ACTION_SIGN;
-
-const char16_t PARAMS_BEGIN;
-
-const char16_t PARAMS_END;
-
-const char16_t SCHEMA_END;
-
-const char16_t SERVER_END;
-
-const char16_t CONTEXT_END;
-
-const char16_t FIELD_BEGIN;
-
-const char16_t ROW_BEGIN;
-
-const char16_t ROW_END;
-
-const char16_t PROPERTY_BEGIN;
-
-void ctor()
-{
-    super::ctor();
     init();
 }
 
-void ctor(const std::string & source)
+Reference::Reference(const std::string & source)
 {
-    super::ctor();
     init();
     parse(source);
 }
 
-void ctor(const std::string & server, const std::string & context)
+Reference::Reference(const std::string & server, const std::string & context)
 {
-    super::ctor();
     init();
     this->server = server;
     this->context = context;
 }
 
-void ctor(const std::string & entity, int entityType, const std::string & field)
+Reference::Reference(const std::string & entity, int entityType, const std::string & field)
 {
-    super::ctor();
     init();
     this->entity = entity;
     this->entityType = entityType;
     this->field = field;
 }
 
-void ctor(const std::string & context, const std::string & entity, int entityType, const std::string & field)
+Reference::Reference(const std::string & context, const std::string & entity, int entityType, const std::string & field)
 {
-    ctor(entity, entityType, field);
+    init();
     this->context = context;
+    this->entity = entity;
+    this->entityType = entityType;
+    this->field = field;
 }
 
-void ctor(const std::string & context, const std::string & entity, int entityType)
+Reference::Reference(const std::string & context, const std::string & entity, int entityType)
 {
-    super::ctor();
     init();
     this->context = context;
     this->entity = entity;
     this->entityType = entityType;
 }
 
-void ctor(const std::string & context, const std::string & function, voidArray* parameters)
+Reference::Reference(const std::string & context, const std::string & function, vector<void*> parameters)
 {
-    super::ctor();
     init();
     this->context = context;
     this->entity = function;
     this->entityType = ContextUtils::ENTITY_FUNCTION;
-    ::java::util::Collections::addAll(java_cast< std::list  >(this->parameters), parameters);
+
+    //TODO: ?
+    this->parameters = parameters;//Collections.addAll(this.parameters, parameters);
 }
 
-void parse(const std::string & source)
+void Reference::init()
 {
-    source = source)->trim();
-    auto isFunction = false;
-    auto isEvent = false;
-    auto isAction = false;
+    entityType = ContextUtils::ENTITY_VARIABLE;
+    row = 0;
+}
+
+void Reference::parse(const std::string& source)
+{
+    //source = SString::trim()->trim();
+    bool isFunction = false;
+    bool isEvent = false;
+    bool isAction = false;
+
     image = source;
-    auto src = image;
-    auto paramsBegin = src)->indexOf(static_cast< int >(PARAMS_BEGIN));
-    auto paramsEnd = src)->lastIndexOf(static_cast< int >(PARAMS_END));
-    if(paramsBegin != -int(1)) {
-        if(paramsEnd == -int(1)) {
-            throw new ::java::lang::IllegalArgumentException(u"No closing ')' for function parameters"_j);
+    std::string src = image;
+
+    size_t paramsBegin = src.find(PARAMS_BEGIN);
+    size_t paramsEnd = src.rfind(PARAMS_END);
+    if (paramsBegin != std::string::npos) {
+        if (paramsEnd == std::string::npos) {
+            //TODO:
+            //throw IllegalArgumentException(u"No closing ')' for function parameters"_j);
         }
+
         isFunction = true;
-        auto paramsSrc = src)->substring(paramsBegin + int(1), paramsEnd);
+        std::string paramsSrc = src.substr(paramsBegin+1, paramsEnd);
         parameters = ExpressionUtils::getFunctionParameters(paramsSrc, true);
         entityType = ContextUtils::ENTITY_FUNCTION;
-        src = std::stringBuilder().append(src)->substring(0, paramsBegin))->append(src)->substring(paramsEnd + int(1)))->toString();
+        std::stringstream ss;
+        ss <<src.substr(0, paramsBegin) <<src.substr(paramsEnd + 1);
+        src = ss.str();
     } else {
-        auto eventSignPos = src)->lastIndexOf(static_cast< int >(EVENT_SIGN));
-        if(eventSignPos != -int(1)) {
+        size_t eventSignPos = src.rfind(EVENT_SIGN);
+        if(eventSignPos != std::string::npos) {
             isEvent = true;
             entityType = ContextUtils::ENTITY_EVENT;
-            src = std::stringBuilder().append(src)->substring(0, eventSignPos))->append(src)->substring(eventSignPos + int(1)))->toString();
+            std::stringstream ss;
+            ss <<src.substr(0, eventSignPos) <<src.substr(eventSignPos + 1);
+            src = ss.str();
         } else {
-            auto actionSignPos = src)->lastIndexOf(static_cast< int >(ACTION_SIGN));
-            if(actionSignPos != -int(1)) {
+            size_t actionSignPos = src.rfind(ACTION_SIGN);
+            if(actionSignPos != std::string::npos) {
                 isAction = true;
                 entityType = ContextUtils::ENTITY_ACTION;
-                src = std::stringBuilder().append(src)->substring(0, actionSignPos))->append(src)->substring(actionSignPos + int(1)))->toString();
+                std::stringstream ss;
+                ss <<src.substr(0, actionSignPos) <<src.substr(actionSignPos + 1);
+                src = ss.str();
             }
         }
     }
-    auto schemaEnd = src)->indexOf(static_cast< int >(SCHEMA_END));
-    if(schemaEnd != -int(1)) {
-        schema = src)->substring(0, schemaEnd);
-        src = src)->substring(schemaEnd + int(1));
+
+    size_t schemaEnd = src.find((SCHEMA_END);
+    if (schemaEnd != std::string::npos) {
+        schema = src.substr(0, schemaEnd);
+        src = src.substr(schemaEnd + 1);
     }
-    auto serverEnd = src)->indexOf(static_cast< int >(SERVER_END));
-    if(serverEnd != -int(1)) {
-        server = src)->substring(0, serverEnd);
-        src = src)->substring(serverEnd + int(1));
+
+    size_t serverEnd = src.find(f(SERVER_END);
+    if (serverEnd != std::string::npos) {
+        server = src.substr(0, serverEnd);
+        src = src.substr(serverEnd + 1);
     }
-    auto contextEnd = src)->indexOf(static_cast< int >(CONTEXT_END));
-    if(contextEnd != -int(1)) {
-        context = src)->substring(0, contextEnd);
-        src = src)->substring(contextEnd + int(1));
+
+    size_t contextEnd = src.find(CONTEXT_END);
+    if (contextEnd != std::string::npos) {
+        context = src.substr(0, contextEnd);
+        src = src.substr(contextEnd + 1);
     }
-    auto propertyBegin = src)->indexOf(static_cast< int >(PROPERTY_BEGIN));
-    if(propertyBegin != -int(1)) {
-        property = src)->substring(propertyBegin + int(1));
-        src = src)->substring(0, propertyBegin);
+    size_t propertyBegin = src.find(PROPERTY_BEGIN);
+    if (propertyBegin != std::string::npos) {
+        property = src.substr(propertyBegin + 1);
+        src = src.substr(0, propertyBegin);
     }
-    auto rowBegin = src)->indexOf(static_cast< int >(ROW_BEGIN));
-    auto rowEnd = src)->indexOf(static_cast< int >(ROW_END));
-    if(rowBegin != -int(1)) {
-        if(rowEnd == -int(1)) {
-            throw new ::java::lang::IllegalArgumentException(u"No closing ']' in row reference"_j);
+
+    size_t rowBegin = src.find(ROW_BEGIN);
+    size_t rowEnd = src.find(ROW_END);
+    if (rowBegin != std::string::npos) {
+        if(rowEnd == std::string::npos) {
+            //TODO:
+            //throw IllegalArgumentException(u"No closing ']' in row reference"_j);
         }
-        row = src)->substring(rowBegin + int(1), rowEnd));
-        src = src)->substring(0, rowBegin);
+        row = src.substr(rowBegin + 1, rowEnd);
+        src = src.substr(0, rowBegin);
     }
-    auto fieldBegin = src)->indexOf(static_cast< int >(FIELD_BEGIN));
-    if(fieldBegin != -int(1)) {
-        entity = src)->substring(0, fieldBegin);
-        field = (fieldBegin != src)->length() - int(1)) ? src)->substring(fieldBegin + int(1)) : static_cast< const std::string & >(0);
-    } else if(src)->length() > 0) {
-        if(context != 0 || isFunction || isEvent || isAction) {
+
+    size_t fieldBegin = src.find(FIELD_BEGIN);
+    if (fieldBegin != std::string::npos) {
+        entity = src.substr(0, fieldBegin);
+        field = (fieldBegin != src.length() - 1) ? src.substr(fieldBegin + 1) : "";
+    }else if(src.length() > 0) {
+        if(context.length() || isFunction || isEvent || isAction) {
             entity = src;
-        } else {
+        }else {
             field = src;
         }
     }
 }
 
-std::string getServer()
+std::string Reference::getServer()
 {
     return server;
 }
 
-std::string getContext()
+std::string Reference::getContext()
 {
     return context;
 }
 
-std::string getEntity()
+std::string Reference::getEntity()
 {
     return entity;
 }
 
-int getEntityType()
+int Reference::getEntityType()
 {
     return entityType;
 }
 
-std::string getField()
+std::string Reference::getField()
 {
     return field;
 }
 
-std::list  getParameters()
+std::vector<void*> Reference::getParameters()
 {
     return parameters;
 }
 
-java::lang::Integer* getRow()
+int Reference::getRow()
 {
     return row;
 }
 
-std::string getSchema()
+std::string Reference::getSchema()
 {
     return schema;
 }
 
-std::string getProperty()
+std::string Reference::getProperty()
 {
     return property;
 }
 
-std::string getImage()
+std::string Reference::getImage()
 {
-    if(image != 0) {
+    if (image.length()) {
         return image;
-    } else {
+    }else {
         return createImage();
     }
 }
 
-std::string createImage()
+std::string Reference::createImage()
 {
-    auto sb = new std::stringBuilder();
-    if(schema != 0) {
-        sb)->append(schema);
-        sb)->append(SCHEMA_END);
+    std::stringstream ss;
+
+    if (schema.length()) {
+        ss <<schema;
+        ss <<SCHEMA_END;
     }
-    if(server != 0) {
-        sb)->append(server);
-        sb)->append(SERVER_END);
+
+    if (server.length()) {
+        ss <<server;
+        ss <<SERVER_END;
     }
-    if(context != 0) {
-        sb)->append(context);
-        sb)->append(CONTEXT_END);
+
+    if (context.length()) {
+        ss <<context;
+        ss <<CONTEXT_END;
     }
-    if(entity != 0) {
-        sb)->append(entity);
-        if(entityType == ContextUtils::ENTITY_FUNCTION) {
-            sb)->append(PARAMS_BEGIN);
-            sb)->append(ExpressionUtils::getFunctionParameters(parameters));
-            sb)->append(PARAMS_END);
+
+    if (entity.length()) {
+        ss << entity;
+        if (entityType == ContextUtils::ENTITY_FUNCTION) {
+            ss <<PARAMS_BEGIN;
+            ss <<ExpressionUtils::getFunctionParameters(parameters));
+            sb <<PARAMS_END;
         }
-        if(entityType == ContextUtils::ENTITY_EVENT) {
-            sb)->append(EVENT_SIGN);
+
+        if (entityType == ContextUtils::ENTITY_EVENT) {
+            ss <<EVENT_SIGN;
         }
-        if(entityType == ContextUtils::ENTITY_ACTION) {
-            sb)->append(ACTION_SIGN);
+
+        if (entityType == ContextUtils::ENTITY_ACTION) {
+            ss <<ACTION_SIGN;
         }
-        if(field != 0 || (context == 0 && entityType == ContextUtils::ENTITY_VARIABLE)) {
-            sb)->append(FIELD_BEGIN);
+
+        if (field.length() || (context.length() == 0 && entityType == ContextUtils::ENTITY_VARIABLE)) {
+            ss <<FIELD_BEGIN;
         }
     }
-    if(field != 0) {
-        sb)->append(field);
+
+    if (field.length()) {
+        ss <<field;
     }
-    if(row != 0) {
-        sb)->append(ROW_BEGIN);
-        sb)->append(row));
-        sb)->append(ROW_END);
+
+    if (row != 0) {
+        ss <<ROW_BEGIN <<row <<ROW_END;
     }
-    if(property != 0) {
-        sb)->append(PROPERTY_BEGIN);
-        sb)->append(property);
+
+    if (property.length()) {
+        ss <<PROPERTY_BEGIN <<property;
     }
-    image = sb)->toString();
+
+    image = ss.str();
     return image;
 }
 
-std::string toString()
+std::string Reference::toString()
 {
     return getImage();
 }
 
-void setContext(const std::string & context)
+void Reference::setContext(const std::string & context)
 {
     this->context = context;
-    image;
 }
 
-void setEntity(const std::string & entity)
+void Reference::setEntity(const std::string & entity)
 {
     this->entity = entity;
-    image;
 }
 
-void setEntityType(int entityType)
+void Reference::setEntityType(int entityType)
 {
     this->entityType = entityType;
-    image;
 }
 
-void addParameter(const std::string & parameter)
+void Reference::addParameter(const std::string & parameter)
 {
-    parameters)->add(parameter));
+    parameters->add(new std::string(parameter));
 }
 
-void addParameter(Expression* parameter)
+void Reference::addParameter(boost::shared_ptr<Expression> parameter)
 {
-    parameters)->add(parameter));
+    parameters.push_back(parameter);
 }
 
-void setField(const std::string & field)
+void Reference::setField(const std::string & field)
 {
-    this->field = field;
-    image;
+    this->field = field;    
 }
 
-void setProperty(const std::string & property)
+void Reference::setProperty(const std::string & property)
 {
-    this->property = property;
-    image;
+    this->property = property;    
 }
 
-void setSchema(const std::string & schema)
+void Reference::setSchema(const std::string & schema)
 {
-    this->schema = schema;
-    image;
+    this->schema = schema;   
 }
 
-void setRow(int  row)
+void Reference::setRow(int  row)
 {
-    this->row = row;
-    image;
+    this->row = row;   
 }
 
 void setServer(const std::string & server)
@@ -456,43 +356,13 @@ Reference* clone()
     }
 }
 
-bool equals(void* obj)
+bool equals(Reference* obj)
 {
     auto const isReferenceNotNull = !(obj == 0 || !(dynamic_cast< Reference* >(obj) != 0));
     return isReferenceNotNull && getImage())->equals((java_cast< Reference* >(obj)))->getImage()));
 }
 
-int hashCode()
-{
-    return getImage())->hashCode();
-}
-
-
-
-java::lang::Class* class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.expression.Reference", 47);
-    return c;
-}
-
-void clinit()
-{
-struct string_init_ {
-    string_init_() {
-    SCHEMA_FORM_ = u"form"_j;
-    SCHEMA_TABLE_ = u"table"_j;
-    SCHEMA_STATISTICS_ = u"statistics"_j;
-    SCHEMA_ENVIRONMENT_ = u"env"_j;
-    SCHEMA_PARENT_ = u"parent"_j;
-    SCHEMA_MENU_ = u"menu"_j;
-    SCHEMA_ACTION_ = u"action"_j;
-    }
-};
-
-    static string_init_ string_init_instance;
-
-    super::
-}
-
-*/
-
+//int hashCode()
+//{
+//    return getImage())->hashCode();
+//}
