@@ -1,82 +1,38 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/DefaultReferenceResolver.java
-
 #pragma once
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/expression/AbstractReferenceResolver.h"
+#include "expression/AbstractReferenceResolver.h"
+#include <string>
+#include <boost/shared_ptr.hpp>
 
-
-
-class DefaultReferenceResolver
-    : public AbstractReferenceResolver
+class DefaultReferenceResolver : public AbstractReferenceResolver
 {
-
 public:
-    typedef AbstractReferenceResolver super;
+    static const std::string ROW;
+    static const std::string DESCRIPTION;
+    static const std::string NAME;
+    static const std::string ICON;
+    static const std::string TYPE;
+    static const std::string READABLE;
+    static const std::string WRITABLE;
+    static const std::string RECORDS;
+    static const std::string FORMAT;
+    static const std::string HELP;
+    static const std::string OPTIONS;
+    static const std::string SELECTION_VALUE_DESCRIPTION;
 
-private:
-    static const std::string ROW_;
-    static const std::string DESCRIPTION_;
-    static const std::string NAME_;
-    static const std::string ICON_;
-    static const std::string TYPE_;
-    static const std::string READABLE_;
-    static const std::string WRITABLE_;
-    static const std::string RECORDS_;
-    static const std::string FORMAT_;
-    static const std::string HELP_;
-    static const std::string OPTIONS_;
-    static const std::string SELECTION_VALUE_DESCRIPTION_;
-protected:
-    void ctor();
-    void ctor(DataTable* defaultTable);
-
-public:
-    void* resolveReference(Reference* ref, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */;
-
-public: /* protected */
-    void* getDefaultTableAggregate(DataTable* table);
-    int  getRow(Reference* ref, EvaluationEnvironment* environment);
-
-private:
-    const std::string & resolveEntityDescription(Reference* ref, Context* con) /* throws(IllegalStateException) */;
-
-public:
-    std::list  getContexts(Reference* ref) ;
-    Context* getContext(Reference* ref) ;
-
-public: /* protected */
-    DataTable* resolveEntity(Reference* ref, Context* con, EvaluationEnvironment* environment) /* throws(ContextException, SyntaxErrorException, EvaluationException) */;
-
-    // Generated
-
-public:
     DefaultReferenceResolver();
-    DefaultReferenceResolver(DataTable* defaultTable);
-protected:
-    DefaultReferenceResolver(const ::default_init_tag&);
+    DefaultReferenceResolver(boost::shared_ptr<DataTable> defaultTable);
 
-
-public:
-    
-    static void 
-    static const std::string& ROW();
-    static const std::string& DESCRIPTION();
-    static const std::string& NAME();
-    static const std::string& ICON();
-    static const std::string& TYPE();
-    static const std::string& READABLE();
-    static const std::string& WRITABLE();
-    static const std::string& RECORDS();
-    static const std::string& FORMAT();
-    static const std::string& HELP();
-    static const std::string& OPTIONS();
-    static const std::string& SELECTION_VALUE_DESCRIPTION();
+    boost::shared_ptr<void> resolveReference(boost::shared_ptr<Reference> ref, boost::shared_ptr<EvaluationEnvironment> environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */;
+    std::list<boost::shared_ptr<Context>>  getContexts(boost::shared_ptr<Reference> ref) ;
+    boost::shared_ptr<Context> getContext(boost::shared_ptr<Reference> ref) ;
 
 private:
-    ::java::lang::Class* getClass0();
+    std::string resolveEntityDescription(boost::shared_ptr<Reference> ref, boost::shared_ptr<Context> con) /* throws(IllegalStateException) */;
+
+protected:
+    boost::shared_ptr<void> getDefaultTableAggregate(boost::shared_ptr<DataTable> table);
+    int  getRow(boost::shared_ptr<Reference> ref, boost::shared_ptr<EvaluationEnvironment> environment);
+    boost::shared_ptr<DataTable> resolveEntity(boost::shared_ptr<Reference> ref, boost::shared_ptr<Context> con,
+                                               boost::shared_ptr<EvaluationEnvironment> environment) /* throws(ContextException, SyntaxErrorException, EvaluationException) */;
 };

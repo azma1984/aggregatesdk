@@ -137,7 +137,9 @@ public:
     static bool matchesToType(::java::util::Collection* types, ::java::util::Collection* requiredTypes);
     static bool matchesToMask(const std::string & mask, const std::string & context, bool contextMayExtendMask, bool maskMayExtendContext);
     static bool masksIntersect(const std::string & mask1, const std::string & mask2, bool mask2MayExtendMask1, bool mask1MayExtendMask2);
+    */
     static bool isRelative(const std::string & name);
+    /*
     static bool isMask(const std::string & name);
     static bool isValidContextType(const std::string & s);*/
     static bool isValidContextName(const std::string & s);
