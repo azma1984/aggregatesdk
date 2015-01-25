@@ -26,7 +26,8 @@ public:
     static std::string getFunctionParameters(std::vector<void*> params);
     static void dump(const std::string & expression) /* throws(SyntaxErrorException) */;
     //TODO: ASTStart
-//    static ASTStart* parse(boost::shared_ptr<Expression> expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */;
+    static boost::shared_ptr<ASTStart> parse(boost::shared_ptr<Expression> expression,
+                                             bool showExpressionInErrorText) /* throws(SyntaxErrorException) */;
     static std::list<boost::shared_ptr<Reference>>  findReferences(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException) */;
     // Not used
     //static std::string escapeStringLiteral(const std::string & text);

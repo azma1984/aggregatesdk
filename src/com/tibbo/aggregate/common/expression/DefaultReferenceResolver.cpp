@@ -1,43 +1,32 @@
 #include "expression/DefaultReferenceResolver.h"
 
-//#include <com/tibbo/aggregate/common/Cres.h"
-//#include <com/tibbo/aggregate/common/context/Context.h"
-//#include <com/tibbo/aggregate/common/context/ContextException.h"
-//#include <com/tibbo/aggregate/common/context/ContextManager.h"
 #include "context/ContextUtils.h"
 #include "context/DefaultRequestController.h"
-//#include <com/tibbo/aggregate/common/context/FunctionDefinition.h"
-//#include <com/tibbo/aggregate/common/context/VariableDefinition.h"
-//#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
 #include "datatable/DataTableConstruction.h"
-//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-//#include <com/tibbo/aggregate/common/expression/EvaluationEnvironment.h"
-//#include <com/tibbo/aggregate/common/expression/Reference.h"
-//#include <com/tibbo/aggregate/common/resource/ResourceManager.h"
+#include "datatable/TableFormat.h"
+#include "resource/ResourceManager.h"
 
 // Various properties
-  const std::string DefaultReferenceResolver::ROW = "row";
-  const std::string DefaultReferenceResolver::DESCRIPTION = "description";
+const std::string DefaultReferenceResolver::ROW = "row";
+const std::string DefaultReferenceResolver::DESCRIPTION = "description";
 
- // Context properties
-  const std::string DefaultReferenceResolver::NAME = "name";
-  const std::string DefaultReferenceResolver::ICON = "icon";
-  const std::string DefaultReferenceResolver::TYPE = "type";
+// Context properties
+const std::string DefaultReferenceResolver::NAME = "name";
+const std::string DefaultReferenceResolver::ICON = "icon";
+const std::string DefaultReferenceResolver::TYPE = "type";
 
- // Properties of variable definition
-  const std::string DefaultReferenceResolver::READABLE = "readable";
-  const std::string DefaultReferenceResolver::WRITABLE = "writable";
+// Properties of variable definition
+const std::string DefaultReferenceResolver::READABLE = "readable";
+const std::string DefaultReferenceResolver::WRITABLE = "writable";
 
- // Properties of table
-  const std::string DefaultReferenceResolver::RECORDS = "records";
+// Properties of table
+const std::string DefaultReferenceResolver::RECORDS = "records";
 
- // Properties of table field
-  const std::string DefaultReferenceResolver::FORMAT = "format";
-  const std::string DefaultReferenceResolver::HELP = "help";
-  const std::string DefaultReferenceResolver::OPTIONS = "options";
-  const std::string DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION = "svdesc";
+// Properties of table field
+const std::string DefaultReferenceResolver::FORMAT = "format";
+const std::string DefaultReferenceResolver::HELP = "help";
+const std::string DefaultReferenceResolver::OPTIONS = "options";
+const std::string DefaultReferenceResolver::SELECTION_VALUE_DESCRIPTION = "svdesc";
 
 
 DefaultReferenceResolver::DefaultReferenceResolver() 
@@ -52,6 +41,7 @@ DefaultReferenceResolver::DefaultReferenceResolver(boost::shared_ptr<DataTable> 
     setDefaultTable(defaultTable);
 }
 
+//TODO: возвращаемое значение boost::shared_ptr<void*>
 boost::shared_ptr<void*> DefaultReferenceResolver::resolveReference(
         boost::shared_ptr<Reference> ref,
         boost::shared_ptr<EvaluationEnvironment> environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */
@@ -70,120 +60,136 @@ boost::shared_ptr<void*> DefaultReferenceResolver::resolveReference(
                 }
 
                 if (ref->getEntityType() == ContextUtils::ENTITY_VARIABLE) {
-                    boost::shared_ptr<VariableDefinition> vd = con->getVariableDefinition(ref->getEntity());
+                    VariableDefinition* vd = con->getVariableDefinition(ref->getEntity());
                     if (vd == 0) {
-                        //TODO:
+                        //TODO: exception
                         //throw IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conVarNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
                     }
 
                     if (READABLE == ref->getProperty()) {
                         return vd->isReadable();
                     }
-                    if (WRITABLE_)->equals(ref)->getProperty()))) {
-                        return ::java::lang::Boolean::valueOf(vd)->isWritable());
+                    if (WRITABLE == ref->getProperty()) {
+                        return vd->isWritable();
                     }
-                    if(ICON_)->equals(ref)->getProperty()))) {
-                        return ::com::tibbo::aggregate::common::resource::ResourceManager::getImageIcon(vd)->getIconId());
+                    if (ICON == ref->getProperty()) {
+                        //TODO: ResourceManager
+                        //return ResourceManager::getImageIcon(vd->getIconId());
                     }
                 }
-            } else {
+            }else {
                 TableFormat* rf;
-                if(ref)->getEntityType() == ContextUtils::ENTITY_VARIABLE) {
-                    auto vd = con)->getVariableDefinition(ref)->getEntity());
-                    if(vd == 0) {
-                        throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conVarNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
+                if (ref->getEntityType() == ContextUtils::ENTITY_VARIABLE) {
+                    VariableDefinition* vd = con->getVariableDefinition(ref->getEntity());
+                    if (vd == 0) {
+                        //TODO: exception
+                        //throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conVarNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
                     }
-                    rf = vd)->getFormat();
-                } else if(ref)->getEntityType() == ContextUtils::ENTITY_FUNCTION) {
-                    auto fd = con)->getFunctionDefinition(ref)->getEntity());
-                    if(fd == 0) {
-                        throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conFuncNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
+                    rf = vd->getFormat();
+                }else if (ref->getEntityType() == ContextUtils::ENTITY_FUNCTION) {
+                    FunctionDefinition* fd = con->getFunctionDefinition(ref->getEntity());
+                    if (fd == 0) {
+                        //TODO: exception
+                        //throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"conFuncNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
                     }
-                    rf = fd)->getOutputFormat();
-                } else {
-                    throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Illegal entity type: "_j)->append(ref)->getEntityType())->toString());
+                    rf = fd->getOutputFormat();
+                }else {
+                    //TODO: exception
+                    //throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Illegal entity type: "_j)->append(ref)->getEntityType())->toString());
                 }
+
                 FieldFormat* ff;
-                if(rf != 0) {
-                    ff = rf)->getField(ref)->getField());
+                if (rf != 0) {
+                    ff = rf->getField(ref->getField());
                 }
-                if(ff != 0) {
-                    if(FORMAT_)->equals(ref)->getProperty()))) {
+
+                if (ff != 0) {
+                    if (FORMAT == ref->getProperty()) {
                         return ff;
                     }
-                    if(DESCRIPTION_)->equals(ref)->getProperty()))) {
-                        return ff)->getDescription();
+                    if (DESCRIPTION == ref->getProperty()) {
+                        return ff->getDescription();
                     }
-                    if(HELP_)->equals(ref)->getProperty()))) {
-                        return ff)->getHelp();
+                    if (HELP == ref->getProperty()) {
+                        return ff->getHelp();
                     }
                 }
             }
-            table = resolveEntity(ref, con, environment);
-        } else {
-            throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprDefConNotDefined"_j), new voidArray({ref)->getEntity())})));
+
+            table.reset( resolveEntity(ref, con, environment) );
+        }else {
+            //TODO: exception
+            //throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprDefConNotDefined"_j), new voidArray({ref)->getEntity())})));
         }
-    } else {
+    }else {
         if(con != 0) {
-            if(ref)->getProperty() != 0) {
-                if(NAME_)->equals(ref)->getProperty()))) {
-                    return con)->getName();
+            if(ref->getProperty().length() != 0) {
+                if (NAME == ref->getProperty()) {
+                    return con->getName();
                 }
-                if(DESCRIPTION_)->equals(ref)->getProperty()))) {
-                    return con)->getDescription();
+                if (DESCRIPTION == ref->getProperty()) {
+                    return con->getDescription();
                 }
-                if(ICON_)->equals(ref)->getProperty()))) {
-                    return ::com::tibbo::aggregate::common::resource::ResourceManager::getImageIcon(con)->getIconId());
+                if (ICON == ref->getProperty()) {
+                    return ResourceManager::getImageIcon(con->getIconId());
                 }
-                if(TYPE_)->equals(ref)->getProperty()))) {
-                    return con)->getType();
+                if (TYPE == ref->getProperty()) {
+                    return con->getType();
                 }
             }
-            if(ref)->getContext() != 0) {
-                return con)->getPath();
+            if (ref->getContext().length() != 0) {
+                return con->getPath();
             }
         }
     }
-    if(table == 0) {
-        throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprDefDataTableNotDefined"_j), new voidArray({field)})));
+
+    if (table == 0) {
+        //TODO: exception
+        //throw new ::java::lang::IllegalStateException(::java::text::MessageFormat::format(Cres::get())->getString(u"exprDefDataTableNotDefined"_j), new voidArray({field)})));
     }
-    if(field == 0 && ref)->getProperty() != 0 && RECORDS_)->equals(ref)->getProperty()))) {
-        return table)->getRecordCount());
+    if ((field == 0) && (ref->getProperty().length() != 0) && (RECORDS == ref->getProperty())) {
+        return table->getRecordCount();
     }
-    if(field == 0) {
+
+    if (field == 0) {
         return getDefaultTableAggregate(table);
     }
-    auto ff = table)->getFormat())->getField(ref)->getField());
-    if(ref)->getProperty() != 0) {
-        if(FORMAT_)->equals(ref)->getProperty()))) {
+
+    FieldFormat* ff = table->getFormat()->getField(ref->getField());
+    if(ref->getProperty().length() != 0) {
+        if (FORMAT == ref->getProperty()) {
             return ff;
         }
-        if(DESCRIPTION_)->equals(ref)->getProperty()))) {
-            return ff)->getDescription();
+        if (DESCRIPTION == ref->getProperty()) {
+            return ff->getDescription();
         }
-        if(HELP_)->equals(ref)->getProperty()))) {
-            return ff)->getHelp();
+        if (HELP == ref->getProperty()) {
+            return ff->getHelp();
         }
-        if(OPTIONS_)->equals(ref)->getProperty()))) {
-            return ff)->getSelectionValues();
+        if (OPTIONS == ref->getProperty()) {
+            return ff->getSelectionValues();
         }
     }
-    auto row = getRow(ref, environment);
-    if(table)->getRecordCount() <= (row))->intValue()) {
-        throw new ::java::lang::IllegalStateException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"exprNonExistentRow"_j), new voidArray({row), table)->getRecordCount()))})))->append(u": "_j)
-            ->append(table)->dataAsString())->toString());
+
+    int row = getRow(ref, environment);
+    if (table->getRecordCount() <= (row->intValue())) {
+        //TODO: exception
+        //throw new ::java::lang::IllegalStateException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"exprNonExistentRow"_j), new voidArray({row), table)->getRecordCount()))})))->append(u": "_j)
+        //    ->append(table)->dataAsString())->toString());
     }
-    auto record = table)->getRecord((row))->intValue());
-    auto value = record)->getValue(field);
-    if(ref)->getProperty() != 0) {
-        if(SELECTION_VALUE_DESCRIPTION_)->equals(ref)->getProperty())) && ff)->hasSelectionValues()) {
-            auto const valueDesc = java_cast< void* >(ff)->getSelectionValues())->get(value));
+    //TODO: void*
+    DataRecord* record = table->getRecord(row);
+    void* value = record->getValue(field);
+    if (ref->getProperty().length() != 0) {
+        if ((SELECTION_VALUE_DESCRIPTION == ref->getProperty()) && ff->hasSelectionValues()) {
+            auto const valueDesc = ff->getSelectionValues()->get(value);
             return valueDesc == 0 ? value : valueDesc;
         }
-        if(RECORDS_)->equals(ref)->getProperty())) && value != 0 && dynamic_cast< DataTable* >(value) != 0) {
-            return (java_cast< DataTable* >(value)))->getRecordCount());
+        if ((RECORDS == ref->getProperty()) && (value != NULL) && (dynamic_cast< DataTable* >(value) != NULL)) {
+            return (dynamic_cast<DataTable*>(value))->getRecordCount();
         }
     }
+
     return value;
 }
 
@@ -229,13 +235,17 @@ std::string DefaultReferenceResolver::resolveEntityDescription(boost::shared_ptr
     }
 }
 
-std::list  DefaultReferenceResolver::getContexts(Reference* ref) 
+std::list<boost::shared_ptr<Context>> DefaultReferenceResolver::getContexts(Reference* ref)
 {
-    if(ref)->getContext() != 0 && ContextUtils::isMask(ref)->getContext())) {
-        return ContextUtils::expandMaskToContexts(ref)->getContext(), getContextManager(), getCallerController());
-    } else {
-        auto con = getContext(ref);
-        return con != 0 ? ::java::util::Collections::singletonList(con) : ::java::util::Collections::/* <Context> */emptyList();
+    if ((ref->getContext().length() != 0) && ContextUtils::isMask(ref->getContext())) {
+        return ContextUtils::expandMaskToContexts(ref->getContext(), getContextManager(), getCallerController());
+    }else {
+        std::list<boost::shared_ptr<Context>> ls;
+        boost::shared_ptr<Context> con = getContext(ref);
+        if (con) {
+            ls.push_back( con );
+        }
+        return ls;
     }
 }
 

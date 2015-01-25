@@ -2,7 +2,7 @@
 
 #include "util/Cloneable.h"
 #include "expression/Reference.h"
-//#include "expression/parser/ASTStart.h"
+#include "expression/parser/ExpressionParserTree.h"
 #include <string>
 #include <boost/shared_ptr.hpp>
 
@@ -13,12 +13,11 @@ private:
     static const std::string REFERENCE_START;
     static const std::string REFERENCE_END;
     std::string text;
-    //TODO: ASTStart
-//    ::ASTStart* rootNode;
+    boost::shared_ptr<ASTStart> rootNode;
 public:
-    const std::string & getText();
-//    ::ASTStart* getRootNode();
-//    void setRootNode(::ASTStart* rootNode);
+    std::string getText();
+    boost::shared_ptr<ASTStart> getRootNode();
+    void setRootNode(boost::shared_ptr<ASTStart> rootNode);
     std::string toString();
 //    int hashCode();
     bool equals(Expression* obj);

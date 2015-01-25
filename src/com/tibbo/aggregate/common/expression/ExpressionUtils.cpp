@@ -1,4 +1,7 @@
 #include "expression/ExpressionUtils.h"
+#include "expression/parser/ExpressionParserTokenManager.h"
+#include "expression/util/ReferencesFinderVisitor.h"
+#include "expression/util/DumpingVisitor.h"
 
 #include <math.h>
 
@@ -151,32 +154,34 @@ std::string ExpressionUtils::getFunctionParameters(std::vector<void*> params)
 
 void ExpressionUtils::dump(const std::string & expression) /* throws(SyntaxErrorException) */
 {
-    //TODO: ASTStart
-//    ASTStart* rootNode = parse(new Expression(expression), true);
-//    ExpressionParserVisitor* visitor = new DumpingVisitor();
-//    rootNode->jjtAccept(visitor, null);
+    boost::shared_ptr<ASTStart> rootNode = parse(new Expression(expression), true);
+    boost::shared_ptr<ExpressionParserVisitor> visitor = new DumpingVisitor();
+    // NOTE: visitor.get() !!
+    rootNode->jjtAccept(visitor.get(), NULL);
 }
 
-//ASTStart* ExpressionUtils::parse(boost::shared_ptr<Expression> expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */
-//{
-//    try
-//    {
-//        ExpressionParser parser = new ExpressionParser(new CharArrayReader(expression.getText().toCharArray()));
-//        return parser.Start();
-//    }
-//    catch (Throwable ex)
-//    {
-//        throw new SyntaxErrorException(Cres.get().getString("exprParseErr") + (showExpressionInErrorText ? " '" + expression + "': " : ": ") + ex.getMessage(), ex);
-//    }
-//}
+boost::shared_ptr<ASTStart> ExpressionUtils::parse(boost::shared_ptr<Expression> expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */
+{
+    try
+    {
+        ExpressionParserTokenManager* tokenMgr = new ExpressionParserTokenManager(CharStream(expression->getText());
+        boost::shared_ptr<ExpressionParser> parser = new ExpressionParser(tokenMgr);
+        return parser->Start();
+    }
+    //TODO: catch
+    catch(...)// (Throwable ex)
+    {
+        //throw new SyntaxErrorException(Cres.get().getString("exprParseErr") + (showExpressionInErrorText ? " '" + expression + "': " : ": ") + ex.getMessage(), ex);
+    }
+}
 
 std::list<boost::shared_ptr<Reference>> ExpressionUtils::findReferences(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException) */
 {
     //TODO: ASTStart
-//    ASTStart rootNode = parse(expression, true);
-//    ReferencesFinderVisitor visitor = new ReferencesFinderVisitor();
-//    rootNode.jjtAccept(visitor, null);
-//    return visitor.getIdentifiers();
+    boost::shared_ptr<ASTStart> rootNode = parse(expression, true);
+    boost::shared_ptr<ReferencesFinderVisitor> visitor = new ReferencesFinderVisitor();
+    rootNode->jjtAccept(visitor.get(), NULL);
+    return visitor->getIdentifiers();
 }
 
 //std::string ExpressionUtils::escapeStringLiteral(const std::string & text);

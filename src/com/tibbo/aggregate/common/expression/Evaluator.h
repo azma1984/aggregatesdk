@@ -2,71 +2,61 @@
 
 #pragma once
 
+#include "expression/ReferenceResolver.h"
+#include "expression/Function.h"
+#include "expression/EnvironmentReferenceResolver.h"
 #include <string>
+#include <map>
+#include <boost/shared_ptr.hpp>
 
 class Evaluator
 {
 private:
     static const std::string ENVIRONMENT_PREVIOUS_;
     static const std::string ENVIRONMENT_COUNT_;
-    EnvironmentReferenceResolver* environmentResolver;
-    std::map resolvers;
-    std::map customFunctions;
-    util::Tracer* tracer;
+    boost::shared_ptr<EnvironmentReferenceResolver> environmentResolver;
+    std::map<std::string, boost::shared_ptr<ReferenceResolver>> resolvers;
+    std::map<std::string, boost::shared_ptr<Function>> customFunctions;
+//    util::Tracer* tracer;
+    boost::shared_ptr<void> previousResult;
     long count;
-    void* previousResult;
+
 protected:
     void ctor(ContextManager* cm, CallerController* caller);
     void ctor(DataTable* defaultTable);
     void ctor(ContextManager* cm, Context* defaultContext, DataTable* defaultTable, CallerController* caller);
     void ctor(ReferenceResolver* resolver);
 
-private:
-    void init(ReferenceResolver* defaultResolver);
-
 public:
-    void* evaluate(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    void* evaluate(Expression* expression, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */;
-    const std::string & evaluateToString(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    const std::string & evaluateToStringOrNull(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    bool evaluateToBoolean(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    ::java::lang::Boolean* evaluateToBooleanOrNull(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    ::java::lang::Number* evaluateToNumber(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    ::java::lang::Number* evaluateToNumber(Expression* expression, bool validate, bool allowNull) /* throws(SyntaxErrorException, EvaluationException) */;
-    ::java::lang::Comparable* evaluateToComparable(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    DataTable* evaluateToDataTable(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    Date* evaluateToDate(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    ::java::awt::Color* evaluateToColor(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    ReferenceResolver* getResolver(const std::string & schema);
-    ReferenceResolver* getDefaultResolver();
-    void setResolver(const std::string & schema, ReferenceResolver* resolver);
-    std::map getResolvers();
-    void* getPreviousResult();
-    void setPreviousResult(void* previousResult);
-    void registerCustomFunction(const std::string & name, Function* impl);
-    std::map getAllFunctions();
-    Function* getCustomFunction(const std::string & name);
-    EnvironmentReferenceResolver* getEnvironmentResolver();
-    util::Tracer* getTracer();
-    void setTracer(util::Tracer* tracer);
+    void* evaluate(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
+    void* evaluate(boost::shared_ptr<Expression> expression, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */;
+    std::string evaluateToString(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
+    std::string evaluateToStringOrNull(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
+    bool evaluateToBoolean(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
+    bool evaluateToBooleanOrNull(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
+    int evaluateToNumber(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
+    int evaluateToNumber(boost::shared_ptr<Expression> expression, bool validate, bool allowNull) /* throws(SyntaxErrorException, EvaluationException) */;
+//    ::java::lang::Comparable* evaluateToComparable(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
+//    boost::shared_ptr<DataTable> evaluateToDataTable(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
+//    boost::shared_ptr<Date> evaluateToDate(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
+//    ::java::awt::Color* evaluateToColor(Expression* expression) /* throws(SyntaxErrorException, EvaluationException) */;
+    boost::shared_ptr<ReferenceResolver> getResolver(const std::string & schema);
+    boost::shared_ptr<ReferenceResolver> getDefaultResolver();
+    void setResolver(const std::string & schema, boost::shared_ptr<ReferenceResolver> resolver);
+    std::map<std::string, boost::shared_ptr<ReferenceResolver>> getResolvers();
+    boost::shared_ptr<void> getPreviousResult();
+    void setPreviousResult(boost::shared_ptr<void> previousResult);
+    void registerCustomFunction(const std::string& name, boost::shared_ptr<Function> impl);
+    std::map<std::string, boost::shared_ptr<Function>> getAllFunctions();
+    boost::shared_ptr<Function> getCustomFunction(const std::string& name);
+    boost::shared_ptr<EnvironmentReferenceResolver> getEnvironmentResolver();
+//    util::Tracer* getTracer();
+//    void setTracer(util::Tracer* tracer);
 
     // Generated
-    Evaluator(ContextManager* cm, CallerController* caller);
-    Evaluator(DataTable* defaultTable);
-    Evaluator(ContextManager* cm, Context* defaultContext, DataTable* defaultTable, CallerController* caller);
-    Evaluator(ReferenceResolver* resolver);
-protected:
-    Evaluator(const ::default_init_tag&);
-
-
-public:
-    
-    static void
-
-private:
-    void init();
-    static const std::string& ENVIRONMENT_PREVIOUS();
-    static const std::string& ENVIRONMENT_COUNT();
-    ::java::lang::Class* getClass0();
-    friend class Evaluator_LocalEnvironmentResolver;
+    Evaluator(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> caller);
+    Evaluator(boost::shared_ptr<DataTable> defaultTable);
+    Evaluator(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<Context> defaultContext,
+              boost::shared_ptr<DataTable> defaultTable, boost::shared_ptr<CallerController> caller);
+    Evaluator(boost::shared_ptr<ReferenceResolver> resolver);
 };

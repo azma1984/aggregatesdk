@@ -19,15 +19,15 @@ std::string Expression::getText()
     return text;
 }
 
-//ASTStart* Expression::getRootNode()
-//{
-//    return rootNode;
-//}
+boost::shared_ptr<ASTStart> Expression::getRootNode()
+{
+    return rootNode;
+}
 
-//void Expression::setRootNode(::ASTStart* rootNode)
-//{
-//    this->rootNode = rootNode;
-//}
+void Expression::setRootNode(boost::shared_ptr<ASTStart> rootNode)
+{
+    this->rootNode = rootNode;
+}
 
 std::string Expression::toString()
 {
