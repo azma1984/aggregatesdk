@@ -101,7 +101,9 @@ boost::shared_ptr<AgObject> AbstractFormatConverter::clone(boost::shared_ptr<AgO
 
 boost::shared_ptr<AgObject> AbstractFormatConverter::convertToTable(boost::shared_ptr<AgObject> value)
 {
-    return FormatConverter::convertToTable(value, NULL);
+    // todo
+    return 0;
+    //return FormatConverter::convertToTable(value, NULL);
 }
 
 boost::shared_ptr<DataTable> AbstractFormatConverter::simpleToTable(boost::shared_ptr<AgObject> value, boost::shared_ptr<TableFormat> format)
