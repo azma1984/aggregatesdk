@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ActionExecutionModeH
+#define ActionExecutionModeH
 
 class ActionExecutionMode
 {

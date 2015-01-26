@@ -5,14 +5,14 @@
 #include <map>
 #include <list>
 #include <boost/shared_ptr.hpp>
-#include "../util/Cloneable.h"
-#include "../util/class.h"
+#include "util/Cloneable.h"
+#include "util/Class.h"
 
 //#include "field/BooleanFieldFormat.h"
 #include "../AggreGateException.h"
 #include "../util/Cloneable.h"
-#include "datatable/Encoding/ClassicEncodingSettings.h"
-#include "datatable/Validator/FieldValidator.h"
+#include "datatable/encoding/ClassicEncodingSettings.h"
+#include "datatable/validator/FieldValidator.h"
 
 
 /**

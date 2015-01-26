@@ -8,7 +8,7 @@
 #include "context/FunctionImplementation.h"
 #include "datatable/TableFormat.h"
 #include "security/Permissions.h"
-#include "context/entitydefinition.h"
+#include "context/EntityDefinition.h"
 
 
 class FunctionDefinition : public AbstractEntityDefinition

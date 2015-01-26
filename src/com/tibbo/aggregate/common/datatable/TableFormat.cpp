@@ -406,10 +406,10 @@ void TableFormat::addBinding(Binding* binding)
   //  bindings.push_back(*binding);
 }
 
-void TableFormat::addBinding(Reference* target, Expression* expression)
-{
+//void TableFormat::addBinding(Reference* target, Expression* expression)
+//{
    // addBinding(new Binding(target, expression));
-}
+//}
 
 void TableFormat::addBinding(const std::string & target, const std::string & expression)
 {

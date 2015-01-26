@@ -9,7 +9,6 @@
 #include <set>
 #include <map>
 
-//todo - class stub
 class AbstractCallerController : public CallerController
 {
 

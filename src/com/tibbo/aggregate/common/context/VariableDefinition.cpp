@@ -20,11 +20,11 @@ VariableDefinition::VariableDefinition(const std::string & name, TableFormat* fo
 
 //void VariableDefinition::init()
 //{
-//    localCachingEnabled = true;
+   // localCachingEnabled = true;
 //    compatibilityConverters;
-//    persistent = true;
+ //   persistent = true;
 //}
-//
+
 
 void VariableDefinition::init(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description)
 {
@@ -35,13 +35,13 @@ void VariableDefinition::init(const std::string & name, TableFormat* format, boo
  // setDescription(description != 0 ? description : name);
 }
 
-void VariableDefinition::setFormat(TableFormat* format)
-{
+//void VariableDefinition::setFormat(TableFormat* format)
+//{
 //    if(format != 0) {
 //        format)->makeImmutable(0);
 //    }
 //    this->format = format;
-}
+//}
 //
 //void VariableDefinition::setReadable(bool readable)
 //{

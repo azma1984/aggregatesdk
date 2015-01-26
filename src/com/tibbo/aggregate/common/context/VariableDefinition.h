@@ -4,7 +4,7 @@
 #include "context/CompatibilityConverter.h"
 #include "context/VariableGetter.h"
 #include "context/VariableSetter.h"
-#include "datatable/DataTable.h"
+//#include "datatable/DataTable.h"
 #include "datatable/TableFormat.h"
 #include "security/Permissions.h"
 #include "context/AbstractEntityDefinition.h" 
@@ -37,7 +37,7 @@ private:
    void init(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description);
 
 public:
-    void setFormat(TableFormat* format);
+ //   void setFormat(TableFormat* format);
 //    void setReadable(bool readable);
 //    void setWritable(bool writable);
 //    void setHidden(bool hidden);

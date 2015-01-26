@@ -5,11 +5,11 @@
 #include "util/Cloneable.h"
 #include "datatable/FieldFormat.h"
 #include "binding/Binding.h"
-#include "expression/Expression.h"
+//#include "expression/Expression.h"
 #include "datatable/validator/TableValidator.h"
 #include "datatable/validator/RecordValidator.h"
 #include "datatable/encoding/ClassicEncodingSettings.h"
-#include "datatable/DataTable.h"
+//#include "datatable/DataTable.h"
 
 #include <string>
 #include <list>
@@ -122,7 +122,7 @@ public:
     void setBindingsEditable(bool bindingsEditable);
     std::list<Binding>  getBindings();*/
     void addBinding(Binding* binding);
-    void addBinding(Reference* target, Expression* expression);
+  //  void addBinding(Reference* target, Expression* expression); //todo - required Expression.h
     void addBinding(const std::string& target, const std::string& expression);
   /*  void removeBinding(Binding* binding);
 //    void setBindings(std::list<Binding>& in_bindings);

@@ -8,6 +8,8 @@
 #include "context/FunctionData.h"
 //#include "context/VariableData.h"
 //#include "context/ContextVisitor.h"
+//#include "context/CallerController.h"
+//#include "context/VariableDefinition.h"
 #include "datatable/DataTable.h"
 #include "util/Date.h"
 #include "event/FireEventRequestController.h"
@@ -16,6 +18,8 @@
 
 class ContextVisitor;
 class VariableData;
+class VariableDefinition;
+class CallerController;
 /**
  * Context interface is used to provide a unified way to access any object in AggreGate. It may be some server object (e.g. alert or event filters storage), hardware device or widget component. When
  * server contexts are accessed remotely, so-called proxy contexts are created for operating server-side objects through the same interface.
@@ -314,23 +318,23 @@ class Context
   /**
    * Returns list of variables available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getVariableDefinitions(CallerController* caller)=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller)=0;
   /**
    * Returns list of variables.
    */
-	virtual std::list<void*>  getVariableDefinitions()=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions()=0;
   /**
    * Returns list of variables belonging to <code>group</code> that are available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getVariableDefinitions(CallerController* caller, const std::string & group)=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller, const std::string & group)=0;
   /**
    * Returns list of variables belonging to <code>group</code>.
    */
-	virtual std::list<void*>  getVariableDefinitions(const std::string & group)=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions(const std::string & group)=0;
   /**
    * Returns list of variables.
    */
-	virtual std::list<void*>  getVariableDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller, bool includeHidden)=0;
   /**
    * Adds function definition to this context.
    */
@@ -356,24 +360,24 @@ class Context
   /**
    * Returns list of functions available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getFunctionDefinitions(CallerController* caller)=0;
+	virtual std::list<FunctionDefinition*>  getFunctionDefinitions(CallerController* caller)=0;
   /**
    * Returns list of functions.
    */
-	virtual std::list<void*>  getFunctionDefinitions()=0;
+	virtual std::list<FunctionDefinition*>  getFunctionDefinitions()=0;
   /**
    * Returns list of functions belonging to <code>group</code> that are available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getFunctionDefinitions(CallerController* caller, const std::string & group)=0;
+	virtual std::list<FunctionDefinition*>  getFunctionDefinitions(CallerController* caller, const std::string & group)=0;
   /**
    * Returns list of functions belonging to <code>group</code>.
    */
-	virtual std::list<void*>  getFunctionDefinitions(const std::string & group)=0;
+	virtual std::list<FunctionDefinition*>  getFunctionDefinitions(const std::string & group)=0;
 
   /**
    * Returns list of functions.
    */
-	virtual std::list<void*>  getFunctionDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list<FunctionDefinition*>  getFunctionDefinitions(CallerController* caller, bool includeHidden)=0;
 
   /**
    * Adds event definition to this context.
