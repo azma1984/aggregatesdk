@@ -23,7 +23,7 @@
 
 class DataTable;
 //todo - class stub
-class DataRecord : public Cloneable//, PublicCloneable
+class DataRecord : public Cloneable, public AgObject//, PublicCloneable
 {   
 	
 public:
@@ -40,7 +40,7 @@ public:
     std::string dataAsString(bool showFieldNames, bool showHiddenFields);
     std::string valueAsString(const std::string& name);*/
     std::string toString();
-    DataTable* wrap();
+    boost::shared_ptr<DataTable> wrap();
 	/*
     virtual DataRecord* clone() const;    
 	//TODO:

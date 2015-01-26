@@ -1,30 +1,8 @@
-#ifndef _DataTableConversion_H_
-#define _DataTableConversion_H_
+#pragma once
 
+#include <list>
 
-//#include <com/tibbo/aggregate/common/Log.h"
-//#include <com/tibbo/aggregate/common/datatable/AggreGateBean.h"
-//#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
-//#include <com/tibbo/aggregate/common/datatable/FCBigDecimal.h"
-//#include <com/tibbo/aggregate/common/datatable/FCBigInteger.h"
-//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCByte.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCComparable.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCDouble.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCNumber.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCShort.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleBoolean.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleByte.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleDouble.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleFloat.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleInteger.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleLong.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleShort.h"
 #include "datatable/converter/FormatConverter.h"
-//#include <com/tibbo/aggregate/common/util/Util.h"
 
 class DataTableConversion
 {
@@ -55,6 +33,9 @@ public:
 //    static void* convertValueFromField(void* value);
 //    static void* convertValueFromField(void* value, ::java::lang::Class* requiredClass);
 //    static void* convertValueToField(FieldFormat* ff, void* value);
+
+    static boost::shared_ptr<DataRecord> beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors);
+    static boost::shared_ptr<DataRecord> beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors, const std::list<std::string> &fieldsToSkip);
 
     static void registerFormatConverter(boost::shared_ptr<FormatConverter> converter);
     static boost::shared_ptr<FieldFormat> createTableField(const std::string & name, boost::shared_ptr<TableFormat> format);
@@ -89,4 +70,3 @@ public:
 //    static std::list & FORMAT_CONVERTERS();
 //    static ::java::util::concurrent::locks::ReentrantReadWriteLock*& FORMAT_CONVERTERS_LOCK();
 };
-#endif  //_DataTableConversion_H_

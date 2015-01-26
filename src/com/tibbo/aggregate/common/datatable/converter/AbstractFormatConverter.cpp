@@ -37,6 +37,7 @@ void AbstractFormatConverter::addFiledToNullableFormat(boost::shared_ptr<TableFo
 
 void AbstractFormatConverter::removeFiledFromNullableFormat(boost::shared_ptr<TableFormat> format, const std::string &fieldName)
 {
+    //todo
 /*    for (Binding binding : format.getBindings())
     {
       if (fieldName.equals(binding.getReference().getField()))
@@ -44,4 +45,73 @@ void AbstractFormatConverter::removeFiledFromNullableFormat(boost::shared_ptr<Ta
     }
     format.removeField(fieldName);*/
 }
+
+AbstractFormatConverter::AbstractFormatConverter(boost::shared_ptr<Class> valueClass, boost::shared_ptr<TableFormat> format)
+{
+    this->valueClass = valueClass;
+    this->format = format;
+}
+
+AbstractFormatConverter::AbstractFormatConverter(boost::shared_ptr<Class> valueClass)
+{
+    this->valueClass = valueClass;
+}
+
+boost::shared_ptr<Class> AbstractFormatConverter::getValueClass()
+{
+    return valueClass;
+}
+
+void AbstractFormatConverter::setValueClass(boost::shared_ptr<Class> valueClass)
+{
+    this->valueClass = valueClass;
+}
+
+boost::shared_ptr<TableFormat> AbstractFormatConverter::getFormat()
+{
+    return format;
+}
+
+boost::shared_ptr<FieldFormat> AbstractFormatConverter::createFieldFormat(const std::string &name)
+{
+    return DataTableConversion::createTableField(name, format);
+}
+
+boost::shared_ptr<AgObject> AbstractFormatConverter::instantiate(boost::shared_ptr<DataRecord> source)
+{
+    //todo
+    return 0;
+    //boost::shared_ptr<DataTable> dataRecord = convertToBean(source->wrap(), NULL);
+    //return dataRecord;
+
+}
+
+boost::shared_ptr<AgObject> AbstractFormatConverter::clone(boost::shared_ptr<AgObject> value, bool useConversion)
+{
+    if (useConversion)
+    {
+        boost::shared_ptr<AgObject> fieldValue = convertToTable(value);
+        //return convertToBean(fieldValue, NULL);
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+boost::shared_ptr<AgObject> AbstractFormatConverter::convertToTable(boost::shared_ptr<AgObject> value)
+{
+    return FormatConverter::convertToTable(value, NULL);
+}
+
+boost::shared_ptr<DataTable> AbstractFormatConverter::simpleToTable(boost::shared_ptr<AgObject> value, boost::shared_ptr<TableFormat> format)
+{
+    return DataTableConversion::beanToRecord(value, format, true, false, FIELDS_TO_SKIP)->wrap();
+}
+
+
+
+
+
+
 

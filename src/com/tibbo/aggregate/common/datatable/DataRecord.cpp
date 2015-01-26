@@ -650,12 +650,13 @@ std::string str;
   /**
    * Constructs new <code>DataTable</code> and adds this record to it.
    */
-DataTable *DataRecord::wrap()
+boost::shared_ptr<DataTable> DataRecord::wrap()
 {
+    return 0;
     //return new DataTable(*(DataTable*)this);
 
-DataTable *dt=0;
-return dt;
+//DataTable *dt=0;
+//return dt;
 }
 
 /*
