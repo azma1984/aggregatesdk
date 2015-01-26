@@ -55,7 +55,10 @@ public:
 //    static void* convertValueFromField(void* value);
 //    static void* convertValueFromField(void* value, ::java::lang::Class* requiredClass);
 //    static void* convertValueToField(FieldFormat* ff, void* value);
-     static void registerFormatConverter(FormatConverter* converter);
+
+    static void registerFormatConverter(boost::shared_ptr<FormatConverter> converter);
+    static boost::shared_ptr<FieldFormat> createTableField(const std::string & name, boost::shared_ptr<TableFormat> format);
+
 //    static converter::FormatConverter* getFormatConverter(::java::lang::Class* valueClass);
 //    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, void* value);
 //    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, const std::string & valueClassName) /* throws(ClassNotFoundException) */;

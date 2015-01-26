@@ -338,7 +338,7 @@
 //}
 //
 
-void DataTableConversion::registerFormatConverter(FormatConverter* converter)
+void DataTableConversion::registerFormatConverter(boost::shared_ptr<FormatConverter> converter)
 {
 //    
 //    FORMAT_CONVERTERS_LOCK_)->writeLock())->lock();
