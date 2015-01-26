@@ -1,6 +1,5 @@
 #include "TableFormat.h"
 
-
 #include "util/ElementList.h"
 #include "AggreGateException.h"
 
@@ -39,6 +38,19 @@ TableFormat::TableFormat(int minRecords, int maxRecords)
 {
   //  ctor(minRecords,maxRecords);
 }
+
+TableFormat *TableFormat::clone() const
+{
+    return NULL;
+}
+
+std::list<boost::shared_ptr<FieldFormat>> &TableFormat::getFields()
+{
+    //todo
+    //return immutable ? Collections.unmodifiableList(fields) : fields;
+    return fields;
+}
+
 /*
 TableFormat::TableFormat(FieldFormat* ff) 
 {
@@ -173,11 +185,22 @@ TableFormat* TableFormat::addField(FieldFormat* ff)
     return addField(ff, fields->size());
 }
 */
-TableFormat* TableFormat::addField(const std::string &encodedFormat)
+boost::shared_ptr<TableFormat> TableFormat::addField(const std::string &encodedFormat)
 {
- return 0;
-  //  return addField(static_cast<FieldFormat*>(&FieldFormat::create(encodedFormat)) );
+    return 0;
 }
+
+boost::shared_ptr<TableFormat> TableFormat::addField(boost::shared_ptr<FieldFormat> ff, int index)
+{
+    return 0;
+}
+
+boost::shared_ptr<TableFormat> TableFormat::addField(boost::shared_ptr<FieldFormat> ff)
+{
+    return 0;
+}
+
+
 /*
 void TableFormat::addField(char type, const std::string& name)
 {
@@ -404,17 +427,10 @@ void TableFormat::addBinding(Binding* binding)
     bindings.push_back(*binding);
 }
 
-<<<<<<< HEAD
-//void TableFormat::addBinding(Reference* target, Expression* expression)
-//{
-   // addBinding(new Binding(target, expression));
-//}
-=======
 void TableFormat::addBinding(Reference* target, Expression* expression)
 {
     addBinding(new Binding(target, expression));
 }
->>>>>>> ddd5e266ade2898025ce4f313b709945c6cc3dfe
 
 void TableFormat::addBinding(const std::string & target, const std::string & expression)
 {
