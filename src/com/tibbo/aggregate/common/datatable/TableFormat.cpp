@@ -4,7 +4,7 @@
 #include "util/ElementList.h"
 #include "AggreGateException.h"
 
-/*boost::shared_ptr<TableFormat> */TableFormat *TableFormat::EMPTY_FORMAT = new TableFormat(0, 0);
+/*boost::shared_ptr<TableFormat> *///TableFormat *TableFormat::EMPTY_FORMAT = new TableFormat(0, 0);
 /*
 const int TableFormat::DEFAULT_MIN_RECORDS = 0;
 const int TableFormat::DEFAULT_MAX_RECORDS = 0x7fffffff;
@@ -28,7 +28,6 @@ const char TableFormat::BINDINGS_EDITABLE_FLAG = 'B';
 */
 TableFormat::TableFormat() 
 {
-   // ctor();
 }
 /*
 TableFormat::TableFormat(bool reorderable) 
@@ -60,12 +59,12 @@ TableFormat::TableFormat(int minRecords, int maxRecords, const std::string& fiel
 {
    // ctor(minRecords,maxRecords,fieldFormat);
 }
-
-TableFormat::TableFormat(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat> fieldFormat)     
-{
-    //ctor(minRecords,maxRecords,fieldFormat);
-}
 /*
+TableFormat::TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat)     
+{
+    ctor(minRecords,maxRecords,fieldFormat);
+}
+
 void TableFormat::init()
 {    
     minRecords = TableFormat::DEFAULT_MIN_RECORDS;
@@ -168,14 +167,13 @@ TableFormat* TableFormat::addFields(std::list<FieldFormat>& fieldFormats)
 
     return this;
 }
-*/
-boost::shared_ptr<TableFormat> TableFormat::addField(boost::shared_ptr<FieldFormat> ff)
-{
-   // return addField(ff, fields->size());
-	return 0;
-}
 
-boost::shared_ptr<TableFormat> TableFormat::addField(const std::string &encodedFormat)
+TableFormat* TableFormat::addField(FieldFormat* ff)
+{
+    return addField(ff, fields->size());
+}
+*/
+TableFormat* TableFormat::addField(const std::string &encodedFormat)
 {
  return 0;
   //  return addField(static_cast<FieldFormat*>(&FieldFormat::create(encodedFormat)) );
@@ -371,7 +369,7 @@ bool TableFormat::isUnresizable()
 {
     return unresizable;
 }
-*/
+
 void TableFormat::setUnresizable(bool unresizable)
 {
     if(immutable) {
@@ -379,7 +377,7 @@ void TableFormat::setUnresizable(bool unresizable)
     }
     this->unresizable = unresizable;
 }
-/*
+
 bool TableFormat::isBindingsEditable()
 {
     return bindingsEditable;
@@ -396,26 +394,33 @@ std::list<Binding> TableFormat::getBindings()
   //  return immutable ? unmodifiableList(bindings) : bindings;
 	 return  bindings;
 }
-*/
+
 void TableFormat::addBinding(Binding* binding)
 {
-//    if(immutable) {
-   //     throw AggreGateException("Immutable");
-  //  }
+    if(immutable) {
+        throw AggreGateException("Immutable");
+    }
 
-  //  bindings.push_back(*binding);
+    bindings.push_back(*binding);
 }
 
+<<<<<<< HEAD
 //void TableFormat::addBinding(Reference* target, Expression* expression)
 //{
    // addBinding(new Binding(target, expression));
 //}
+=======
+void TableFormat::addBinding(Reference* target, Expression* expression)
+{
+    addBinding(new Binding(target, expression));
+}
+>>>>>>> ddd5e266ade2898025ce4f313b709945c6cc3dfe
 
 void TableFormat::addBinding(const std::string & target, const std::string & expression)
 {
-  //  addBinding(new Binding(new Reference(target), new Expression(expression)));
+    addBinding(new Binding(new Reference(target), new Expression(expression)));
 }
-/*
+
 void TableFormat::removeBinding(Binding* binding)
 {
     if(immutable) {
@@ -441,7 +446,7 @@ void TableFormat::removeBinding(Binding* binding)
 //    bindings = in_bindings;
 //}
 
-Expression* TableFormat::getNamingExpression()
+com::tibbo::aggregate::common::expression::Expression* TableFormat::getNamingExpression()
 {
     return namingExpression;
 }
@@ -608,7 +613,7 @@ bool TableFormat::hasReadOnlyFields()
     return false;
 }
 
-std::list  TableFormat::getKeyFields()
+java::util::List* TableFormat::getKeyFields()
 {
     std::list  keyFields = new ::java::util::LinkedList();
     for (auto _i = this->iterator(); _i->hasNext(); ) {
@@ -752,7 +757,7 @@ void TableFormat::createBindings(const std::string & source, ::encoding::Classic
     for (auto _i = bindingsData)->iterator(); _i->hasNext(); ) {
         ::com::tibbo::aggregate::common::util::Element* el = java_cast< ::com::tibbo::aggregate::common::util::Element* >(_i->next());
         {
-            bindings)->add(new ::com::tibbo::aggregate::common::binding::Binding(new Reference(el)->getName()), new Expression(el)->getValue()))));
+            bindings)->add(new ::com::tibbo::aggregate::common::binding::Binding(new ::com::tibbo::aggregate::common::expression::Reference(el)->getName()), new ::com::tibbo::aggregate::common::expression::Expression(el)->getValue()))));
         }
     }
 }
@@ -762,7 +767,7 @@ void TableFormat::createNaming(const std::string & source, ::encoding::ClassicEn
     if(source == 0 || source)->length() == 0) {
         return;
     }
-    namingExpression = new Expression(source);
+    namingExpression = new ::com::tibbo::aggregate::common::expression::Expression(source);
 }
 
 java::util::Iterator* TableFormat::iterator()
@@ -906,7 +911,7 @@ TableFormat* TableFormat::setReorderable(bool reorderable)
 
 TableFormat* TableFormat::setNamingExpression(const std::string & namingExpression)
 {
-  //  setNamingExpression(new Expression(namingExpression));
+  //  setNamingExpression(new ::com::tibbo::aggregate::common::expression::Expression(namingExpression));
     return this;
 }
 /*

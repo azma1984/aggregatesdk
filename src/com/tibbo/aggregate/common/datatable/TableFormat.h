@@ -12,19 +12,15 @@
 //#include "datatable/DataTable.h"
 
 #include <string>
-#include <list>
-#include <map>
-#include <vector>
 
 class DataTable;
 
-//todo - class stub
-class TableFormat//: public Cloneable
+class TableFormat //: public Cloneable
 { 
 public:   
 	
 
-    static /*boost::shared_ptr<TableFormat>*/TableFormat *EMPTY_FORMAT;
+    //static boost::shared_ptr<TableFormat>TableFormat *EMPTY_FORMAT;
 	/*
     static const int DEFAULT_MIN_RECORDS;
     static const int DEFAULT_MAX_RECORDS;
@@ -51,9 +47,9 @@ private:
     std::map<std::string, int> fieldLookup;
     int minRecords;
     int maxRecords;
-    bool reorderable;*/
+    bool reorderable;
     bool unresizable;
-   /* bool bindingsEditable;
+    bool bindingsEditable;
     std::list<boost::shared_ptr<RecordValidator>>  recordValidators;
     std::list<boost::shared_ptr<TableValidator>>  tableValidators;
     std::list<boost::shared_ptr<Binding>>  bindings;
@@ -61,7 +57,7 @@ private:
 	*/
     bool immutable;
     
-    boost::shared_ptr<DataTable> immutabilizer;
+    //boost::shared_ptr<DataTable> immutabilizer;
 	/*
 protected:
     void ctor();
@@ -91,10 +87,10 @@ private:
 
 public:
     TableFormat* addFields(std::list<FieldFormat>& fieldFormats);
-//    TableFormat* addFields(std::list  fieldFormats);*/
-    boost::shared_ptr<TableFormat> addField(boost::shared_ptr<FieldFormat> ff);
-	
-    boost::shared_ptr<TableFormat> addField(const std::string& encodedFormat);
+//    TableFormat* addFields(std::list  fieldFormats);
+    TableFormat* addField(FieldFormat* ff);
+	*/
+    TableFormat* addField(const std::string& encodedFormat);
 	/*
     void addField(char type, const std::string& name);
     TableFormat* addField(char type, const std::string& name, const std::string& description);
@@ -116,15 +112,15 @@ public:
     int getMaxRecords();
     int getMinRecords();
     bool isReorderable();
-    bool isUnresizable();*/
+    bool isUnresizable();
     void setUnresizable(bool unresizable);
-   /* bool isBindingsEditable();
+    bool isBindingsEditable();
     void setBindingsEditable(bool bindingsEditable);
-    std::list<Binding>  getBindings();*/
+    std::list<Binding>  getBindings();
     void addBinding(Binding* binding);
   //  void addBinding(Reference* target, Expression* expression); //todo - required Expression.h
     void addBinding(const std::string& target, const std::string& expression);
-  /*  void removeBinding(Binding* binding);
+    void removeBinding(Binding* binding);
 //    void setBindings(std::list<Binding>& in_bindings);
     Expression* getNamingExpression();
     std::string encode(bool useVisibleSeparators);
@@ -167,7 +163,7 @@ public:
 
    // bool operator==(const TableFormat& tableFormat) const;//equals(void* obj);
 	
-
+public:
     TableFormat();
    // TableFormat(bool reorderable);
     TableFormat(int minRecords, int maxRecords);
@@ -175,10 +171,9 @@ public:
    // TableFormat(const std::string& format, ClassicEncodingSettings* settings);
   //  TableFormat(const std::string& format, ClassicEncodingSettings* settings, bool validate);
     TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat);
-    TableFormat(int minRecords, int maxRecords, boost::shared_ptr<FieldFormat> fieldFormat);
+    //TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat);
 	
 
 
 };
-
-#endif  //_TABLE_FORMAT_H_
+#endif
