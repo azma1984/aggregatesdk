@@ -15,6 +15,7 @@ class FieldFormat;
 class Evaluator;
 class Expression;
 class DataTableSorter;
+class TableKeyFieldsValidator;
 
 typedef boost::shared_ptr<AgObject> AgObjectPtr;
 typedef boost::shared_ptr<AgClass> AgClassPtr;
@@ -29,3 +30,6 @@ typedef boost::shared_ptr<Evaluator> EvaluatorPtr;
 typedef boost::shared_ptr<Expression> ExpressionPtr;
 typedef boost::shared_ptr<DataTableQuery> DataTableQueryPtr;
 typedef boost::shared_ptr<DataTableSorter> DataTableSorterPtr;
+typedef boost::shared_ptr<TableKeyFieldsValidator> TableKeyFieldsValidatorPtr;
+
+

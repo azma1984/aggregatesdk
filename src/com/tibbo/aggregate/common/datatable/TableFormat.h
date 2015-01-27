@@ -31,6 +31,7 @@ public:
 
 public:
     TableFormat();
+    TableFormat(bool reorderable);
     TableFormat(int minRecords, int maxRecords);
     TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat);
 };
