@@ -30,7 +30,7 @@ std::vector<char> Util::readStream(std::iostream& is)
 }
 
 //TODO:
-int/*Number*/ Util::convertToNumber(void* value, bool validate, bool allowNull)
+long/*Number*/ Util::convertToNumber(void* value, bool validate, bool allowNull)
 {
 /*
 if (value == null)
@@ -91,6 +91,8 @@ if (value == null)
       return allowNull ? null : 0;
     }
 */
+
+    return 0;
 }
 
 //TODO:
@@ -147,6 +149,8 @@ static bool Util::convertToBoolean(void* value, bool validate, bool allowNull)
           return allowNull ? null : false;
         }
         */
+
+    return false;
 }
 
 /*

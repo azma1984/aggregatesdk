@@ -1,221 +1,157 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/AbstractEvaluatingVisitor.java
-//#include <com/tibbo/aggregate/common/expression/AbstractEvaluatingVisitor.h"
+#include "expression/AbstractEvaluatingVisitor.h"
 
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/expression/EvaluationEnvironment.h"
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/Function.h"
-#include <com/tibbo/aggregate/common/expression/function/ExpressionEditorOptionsFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/FloatConstantFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/expression/function/JavaConstructorFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/JavaMethodFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/color/BlueFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/color/ColorFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/color/GreenFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/color/RedFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/AvailableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/CallFunctionFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/DcFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/DrFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/DtFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/EventAvailableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/EventFormatFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/FireEventFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/FunctionAvailableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/FunctionInputFormatFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/FunctionOutputFormatFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/GetVariableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/SetVariableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/VariableAvailableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/VariableFormatFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/VariableReadableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/context/VariableWritableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/date/DateAddFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/date/DateCreateFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/date/DateDiffFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/date/DateFieldFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/date/FormatDateFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/date/PrintPeriodFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/date/TimeFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/number/EqFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/number/FormatNumberFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/number/GeFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/number/GtFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/number/LeFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/number/LtFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/number/NeFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/EvaluateFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/FormatFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/GroupsFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/LdFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/SleepFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/StFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/TraceFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/UserFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/other/XPathFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/string/CharacterFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/string/SplitFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/string/UrlDecodeFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/string/UrlEncodeFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/AddColumnsFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/AddRecordsFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/AdjustRecordLimitsFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/AggregateFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/CellFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/ClearFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/ConvertFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/CopyFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/DescribeFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/DescriptionFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/EncodeFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/FilterFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/GetFormatFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/HasFieldFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/JoinFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/PrintFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/RecordsFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/RemoveColumnsFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/RemoveRecordsFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/SelectFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/SetFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/SortFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/SubtableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/TableFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/table/UnionFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/type/BooleanFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/type/FloatFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/type/IntegerFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/type/LongFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/type/StringFunction.h"
-#include <com/tibbo/aggregate/common/expression/function/type/TimestampFunction.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTAddNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTBitwiseAndNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTBitwiseNotNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTBitwiseOrNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTBitwiseXorNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTConditionalNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTDivNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTEQNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTFloatConstNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTFunctionNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTGENode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTGTNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTLENode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTLTNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTLeftShiftNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTLogicalAndNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTLogicalNotNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTLogicalOrNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTLongConstNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTModNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTMulNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTNENode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTRegexMatchNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTRightShiftNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTStart.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTStringConstNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTSubtractNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTUnaryNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTUnsignedRightShiftNode.h"
-#include <com/tibbo/aggregate/common/expression/parser/Node.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
-/*
-//#include <java/awt/Color.h"
-//#include <java/lang/Boolean.h"
-//#include <java/lang/Class.h"
-//#include <java/lang/ClassCastException.h"
-//#include <java/lang/Comparable.h"
-//#include <java/lang/Double.h"
-//#include <java/lang/Exception.h"
-//#include <java/lang/Float.h"
-//#include <java/lang/IllegalArgumentException.h"
-//#include <java/lang/IllegalStateException.h"
-//#include <java/lang/Integer.h"
-//#include <java/lang/Long.h"
-//#include <java/lang/Math.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Number.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/text/MessageFormat.h"
-//#include <java/util/ArrayList.h"
-//#include <java/util/Calendar.h"
-//#include <java/util/Date.h"
-//#include <java/util/LinkedHashMap.h"
-//#include <java/util/LinkedList.h"
-//#include <java/util/List.h"
-//#include <java/util/Map.h"
-//#include <java/util/ResourceBundle.h"
-#include <ObjectArray.h"
-*/
-template<typename T, typename U>
-static T java_cast(U* u)
-{
-    if(!u) return static_cast<T>(0);
-    auto t = dynamic_cast<T>(u);
-    if(!t) throw new ::java::lang::ClassCastException();
-    return t;
-}
+//#include <com/tibbo/aggregate/common/Cres.h"
+//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+//#include <com/tibbo/aggregate/common/expression/EvaluationEnvironment.h"
+//#include <com/tibbo/aggregate/common/expression/Evaluator.h"
+//#include <com/tibbo/aggregate/common/expression/Function.h"
+//#include <com/tibbo/aggregate/common/expression/function/ExpressionEditorOptionsFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/FloatConstantFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+//#include <com/tibbo/aggregate/common/expression/function/JavaConstructorFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/JavaMethodFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/color/BlueFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/color/ColorFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/color/GreenFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/color/RedFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/AvailableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/CallFunctionFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/DcFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/DrFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/DtFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/EventAvailableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/EventFormatFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/FireEventFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/FunctionAvailableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/FunctionInputFormatFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/FunctionOutputFormatFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/GetVariableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/SetVariableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/VariableAvailableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/VariableFormatFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/VariableReadableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/context/VariableWritableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/date/DateAddFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/date/DateCreateFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/date/DateDiffFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/date/DateFieldFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/date/FormatDateFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/date/PrintPeriodFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/date/TimeFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/number/EqFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/number/FormatNumberFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/number/GeFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/number/GtFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/number/LeFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/number/LtFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/number/NeFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/EvaluateFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/FormatFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/GroupsFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/LdFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/SleepFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/StFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/TraceFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/UserFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/other/XPathFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/string/CharacterFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/string/SplitFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/string/UrlDecodeFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/string/UrlEncodeFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/AddColumnsFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/AddRecordsFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/AdjustRecordLimitsFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/AggregateFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/CellFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/ClearFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/ConvertFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/CopyFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/DescribeFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/DescriptionFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/EncodeFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/FilterFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/GetFormatFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/HasFieldFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/JoinFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/PrintFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/RecordsFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/RemoveColumnsFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/RemoveRecordsFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/SelectFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/SetFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/SortFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/SubtableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/TableFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/table/UnionFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/type/BooleanFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/type/FloatFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/type/IntegerFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/type/LongFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/type/StringFunction.h"
+//#include <com/tibbo/aggregate/common/expression/function/type/TimestampFunction.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTAddNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTBitwiseAndNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTBitwiseNotNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTBitwiseOrNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTBitwiseXorNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTConditionalNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTDivNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTEQNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTFloatConstNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTFunctionNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTGENode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTGTNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTLENode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTLTNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTLeftShiftNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTLogicalAndNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTLogicalNotNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTLogicalOrNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTLongConstNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTModNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTMulNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTNENode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTRegexMatchNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTRightShiftNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTStart.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTStringConstNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTSubtractNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTUnaryNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTUnsignedRightShiftNode.h"
+//#include <com/tibbo/aggregate/common/expression/parser/Node.h"
+#include "util/Util.h"
 
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
+const std::string AbstractEvaluatingVisitor::TEMP_FORMAT_NAME = "name";
 
-AbstractEvaluatingVisitor::AbstractEvaluatingVisitor(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
-{
-    
-}
 
-AbstractEvaluatingVisitor::AbstractEvaluatingVisitor(Evaluator* evaluator) 
-    : AbstractEvaluatingVisitor(*static_cast< ::default_init_tag* >(0))
+AbstractEvaluatingVisitor::AbstractEvaluatingVisitor(boost::shared_ptr<Evaluator> evaluator)
 {
-    ctor(evaluator);
-}
-
-void AbstractEvaluatingVisitor::init()
-{
-    top = -int(1);
-    stack = new ::java::util::ArrayList();
-}
-
-std::string& AbstractEvaluatingVisitor::TEMP_FORMAT_NAME()
-{
-    
-    return TEMP_FORMAT_NAME_;
-}
-std::string AbstractEvaluatingVisitor::TEMP_FORMAT_NAME_;
-
-java::util::Map*& AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS()
-{
-    
-    return DEFAULT_FUNCTIONS_;
-}
-java::util::Map* AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS_;
-
-void AbstractEvaluatingVisitor::ctor(Evaluator* evaluator)
-{
-    super::ctor();
-    init();
+    this->top = -1;
     this->evaluator = evaluator;
 }
 
-void AbstractEvaluatingVisitor::registerDefaultFunction(const std::string & name, Function* impl)
+
+std::list<std::string, boost::shared_ptr<Function>>& AbstractEvaluatingVisitor::DEFAULT_FUNCTIONS()
 {
-    
-    if(DEFAULT_FUNCTIONS_)->containsKey(name)) {
-        std::cout <<"Function already registered:"_j)->append(name)->toString());
+    if (!DEFAULT_FUNCTIONS_) {
+        //TODO: init
     }
-    DEFAULT_FUNCTIONS_)->put(name, impl);
+
+    return DEFAULT_FUNCTIONS_;
 }
 
-Evaluator* AbstractEvaluatingVisitor::getEvaluator()
+void AbstractEvaluatingVisitor::registerDefaultFunction(const std::string &name, boost::shared_ptr<Function> impl)
+{
+    
+    if (DEFAULT_FUNCTIONS().find(name) != DEFAULT_FUNCTIONS().end()) {
+        //TODO: exception
+        //throw new IllegalArgumentException("Function already registered:" + name);
+    }
+
+    DEFAULT_FUNCTIONS_.insert( std::pair<std::string, boost::shared_ptr<Function>>(name, impl) );
+}
+
+boost::shared_ptr<Evaluator> AbstractEvaluatingVisitor::getEvaluator()
 {
     return evaluator;
 }
@@ -241,228 +177,237 @@ void* AbstractEvaluatingVisitor::get(int delta)
     return java_cast< void* >(stack)->get(top + delta));
 }
 
-void* AbstractEvaluatingVisitor::visit(::SimpleNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(SimpleNode* node, void* data)
 {
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTStart* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTStart* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    if(top == -int(1)) {
+    node->childrenAccept(this, data);
+    if (top == -1) {
         return 0;
-    } else {
+    }else {
         return get(0);
     }
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTConditionalNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTConditionalNode* node, void* data)
 {
-    node)->jjtGetChild(int(0)))->jjtAccept(this, data);
-    bool condition = (util::Util::convertToBoolean(get(0), true, false)))->booleanValue();
-    if(condition) {
-        node)->jjtGetChild(int(1)))->jjtAccept(this, data);
+    node->jjtGetChild(0)->jjtAccept(this, data);
+    bool condition = (Util::convertToBoolean(get(0), true, false));
+    if (condition) {
+        node->jjtGetChild(1)->jjtAccept(this, data);
     } else {
-        node)->jjtGetChild(int(2)))->jjtAccept(this, data);
+        node->jjtGetChild(2)->jjtAccept(this, data);
     }
-    set(-int(1), get(0));
+    set(-1, get(0));
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTLogicalOrNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTLogicalOrNode* node, void* data)
 {
-    node)->jjtGetChild(int(0)))->jjtAccept(this, data);
-    bool left = (util::Util::convertToBoolean(get(0), true, false)))->booleanValue();
-    if(left) {
-        set(0, ::java::lang::Boolean::valueOf(true));
+    node->jjtGetChild(0)->jjtAccept(this, data);
+    bool left = Util::convertToBoolean(get(0), true, false);
+    if (left) {
+        set(0, true);
         return 0;
     }
-    node)->jjtGetChild(int(1)))->jjtAccept(this, data);
-    bool right = (util::Util::convertToBoolean(get(0), true, false)))->booleanValue();
-    set(-int(1), ::java::lang::Boolean::valueOf(left || right));
+
+    node->jjtGetChild(1)->jjtAccept(this, data);
+    bool right = Util::convertToBoolean(get(0), true, false);
+    set(-1, (left || right));
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTLogicalAndNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTLogicalAndNode* node, void* data)
 {
-    node)->jjtGetChild(int(0)))->jjtAccept(this, data);
-    bool left = (util::Util::convertToBoolean(get(0), true, false)))->booleanValue();
+    node->jjtGetChild(0)->jjtAccept(this, data);
+    bool left = Util::convertToBoolean(get(0), true, false);
     if(!left) {
         set(0, ::java::lang::Boolean::valueOf(false));
         return 0;
     }
-    node)->jjtGetChild(int(1)))->jjtAccept(this, data);
-    bool right = (util::Util::convertToBoolean(get(0), true, false)))->booleanValue();
-    set(-int(1), ::java::lang::Boolean::valueOf(left && right));
+    node->jjtGetChild(1)->jjtAccept(this, data);
+    bool right = Util::convertToBoolean(get(0), true, false);
+    set(-1, (left && right));
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTBitwiseAndNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTBitwiseAndNode* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
-    auto right = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(0), false, true);
+    node->childrenAccept(this, data);
+    long* left = Util::convertToNumber(get(-int(1)), false, true);
+    long* right = Util::convertToNumber(get(0), false, true);
     if((left == 0) || (right == 0)) {
-        set(-int(1), 0);
+        set(-1, 0);
         return 0;
     }
-    if((dynamic_cast< int  >(left) != 0) && (dynamic_cast< int  >(right) != 0)) {
-        set(-int(1), new ::java::lang::Integer(left)->intValue() & right)->intValue()));
-    } else {
-        set(-int(1), new ::java::lang::Long(left)->longValue() & right)->longValue()));
-    }
+
+//    if((dynamic_cast<int>(left) != 0) && (dynamic_cast<int>(right) != 0)) {
+//        set(-int(1), new ::java::lang::Integer(left)->intValue() & right)->intValue()));
+//    } else {
+        set(-int(1), new long(left & right));
+//    }
+
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTBitwiseOrNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTBitwiseOrNode* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
-    auto right = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(0), false, true);
+    node->childrenAccept(this, data);
+    long* left = Util::convertToNumber(get(-1), false, true);
+    long* right = Util::convertToNumber(get(0), false, true);
     if((left == 0) || (right == 0)) {
-        set(-int(1), 0);
+        set(-1, 0);
         return 0;
     }
-    if((dynamic_cast< int  >(left) != 0) && (dynamic_cast< int  >(right) != 0)) {
-        set(-int(1), new ::java::lang::Integer(left)->intValue() | right)->intValue()));
-    } else {
-        set(-int(1), new ::java::lang::Long(left)->longValue() | right)->longValue()));
-    }
+//    if((dynamic_cast< int  >(left) != 0) && (dynamic_cast< int  >(right) != 0)) {
+//        set(-int(1), new ::java::lang::Integer(left)->intValue() | right)->intValue()));
+//    } else {
+        set(-1, new long(left | right);
+//    }
+
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTBitwiseXorNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTBitwiseXorNode* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    auto left = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(-int(1)), false, true);
-    auto right = ::com::tibbo::aggregate::common::util::Util::convertToNumber(get(0), false, true);
-    if((left == 0) || (right == 0)) {
-        set(-int(1), 0);
+    node->childrenAccept(this, data);
+    long* left = Util::convertToNumber(get(-1), false, true);
+    long* right = Util::convertToNumber(get(0), false, true);
+    if ((left == 0) || (right == 0)) {
+        set(-1, 0);
         return 0;
     }
-    if((dynamic_cast< int  >(left) != 0) && (dynamic_cast< int  >(right) != 0)) {
-        set(-int(1), new ::java::lang::Integer(left)->intValue() ^ right)->intValue()));
-    } else {
-        set(-int(1), new ::java::lang::Long(left)->longValue() ^ right)->longValue()));
-    }
+//    if((dynamic_cast< int  >(left) != 0) && (dynamic_cast< int  >(right) != 0)) {
+//        set(-int(1), new ::java::lang::Integer(left)->intValue() ^ right)->intValue()));
+//    } else {
+        set(-1, new long(left ^ right));
+//    }
     return 0;
 }
 
 bool AbstractEvaluatingVisitor::equal(void* v1, void* v2)
 {
     
-    if((v1 == 0) || (v2 == 0)) {
-        return ::com::tibbo::aggregate::common::util::Util::equals(v1, v2);
+    if ((v1 == 0) || (v2 == 0)) {
+        return Util::equals(v1, v2);
     } else {
-        if(v1)->getClass())->isAssignableFrom(v2)->getClass()) || v2)->getClass())->isAssignableFrom(v1)->getClass())) {
+        //TODO: how get class?
+        /*
+        if(v1->getClass())->isAssignableFrom(v2)->getClass()) || v2)->getClass())->isAssignableFrom(v1)->getClass())) {
             return v1)->equals(v2);
         } else {
             auto f1 = FieldFormat::create(TEMP_FORMAT_NAME_, static_cast< ::java::lang::Class* >(v1)->getClass()));
             auto f2 = FieldFormat::create(TEMP_FORMAT_NAME_, static_cast< ::java::lang::Class* >(v2)->getClass()));
             return f1)->valueToString(v1))->equals(f2)->valueToString(v2)));
         }
+        */
     }
 }
 
 int AbstractEvaluatingVisitor::compare(void* v1, void* v2)
+{    
+    //TODO:
+//    if((v1 == 0) && (v2 == 0)) {
+//        return 0;
+//    } else if(v1 == 0) {
+//        return -int(1);
+//    } else if(v2 == 0) {
+//        return 1;
+//    } else {
+//        if((dynamic_cast< ::java::lang::Comparable* >(v1) != 0) && (dynamic_cast< ::java::lang::Comparable* >(v2) != 0)) {
+//            auto c1 = java_cast< ::java::lang::Comparable* >(v1);
+//            auto c2 = java_cast< ::java::lang::Comparable* >(v2);
+//            if(c1)->getClass())->equals(c2)->getClass())) {
+//                return c1)->compareTo(c2);
+//            } else {
+//                auto n1 = ::com::tibbo::aggregate::common::util::Util::convertToNumber(c1, false, true);
+//                auto n2 = ::com::tibbo::aggregate::common::util::Util::convertToNumber(c2, false, true);
+//                if((n1 != 0) && (n2 != 0)) {
+//                    if(isFloatingPoint(n1) || isFloatingPoint(n2)) {
+//                        return n1)->floatValue() == n2)->floatValue() ? int(0) : (n1)->floatValue() > n2)->floatValue() ? int(1) : -int(1));
+//                    } else {
+//                        return n1)->longValue() == n2)->longValue() ? int(0) : (n1)->longValue() > n2)->longValue() ? int(1) : -int(1));
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    auto f1 = FieldFormat::create(TEMP_FORMAT_NAME_, static_cast< ::java::lang::Class* >(v1)->getClass()));
+//    auto f2 = FieldFormat::create(TEMP_FORMAT_NAME_, static_cast< ::java::lang::Class* >(v2)->getClass()));
+//    return f1)->valueToString(v1))->compareTo(f2)->valueToString(v2));
+}
+
+bool AbstractEvaluatingVisitor::isFloatingPoint(void* number)
 {
     
-    if((v1 == 0) && (v2 == 0)) {
-        return 0;
-    } else if(v1 == 0) {
-        return -int(1);
-    } else if(v2 == 0) {
-        return 1;
-    } else {
-        if((dynamic_cast< ::java::lang::Comparable* >(v1) != 0) && (dynamic_cast< ::java::lang::Comparable* >(v2) != 0)) {
-            auto c1 = java_cast< ::java::lang::Comparable* >(v1);
-            auto c2 = java_cast< ::java::lang::Comparable* >(v2);
-            if(c1)->getClass())->equals(c2)->getClass())) {
-                return c1)->compareTo(c2);
-            } else {
-                auto n1 = ::com::tibbo::aggregate::common::util::Util::convertToNumber(c1, false, true);
-                auto n2 = ::com::tibbo::aggregate::common::util::Util::convertToNumber(c2, false, true);
-                if((n1 != 0) && (n2 != 0)) {
-                    if(isFloatingPoint(n1) || isFloatingPoint(n2)) {
-                        return n1)->floatValue() == n2)->floatValue() ? int(0) : (n1)->floatValue() > n2)->floatValue() ? int(1) : -int(1));
-                    } else {
-                        return n1)->longValue() == n2)->longValue() ? int(0) : (n1)->longValue() > n2)->longValue() ? int(1) : -int(1));
-                    }
-                }
-            }
-        }
+    return (dynamic_cast<float*>(number) != 0) || (dynamic_cast<double*>(number) != 0);
+}
+
+void* AbstractEvaluatingVisitor::visit(ASTEQNode* node, void* data)
+{
+    node->childrenAccept(this, data);
+    set(1, equal(get(-1), get(0)));
+    return 0;
+}
+
+void* AbstractEvaluatingVisitor::visit(ASTNENode* node, void* data)
+{
+    node->childrenAccept(this, data);
+    set(1, !equal(get(-1), get(0)));
+    return 0;
+}
+
+void* AbstractEvaluatingVisitor::visit(ASTRegexMatchNode* node, void* data)
+{
+    node->childrenAccept(this, data);
+    void* left = get(1);
+    void* right = get(0);
+    if ((left == 0) || (right == 0)) {
+        return new bool(false);
     }
-    auto f1 = FieldFormat::create(TEMP_FORMAT_NAME_, static_cast< ::java::lang::Class* >(v1)->getClass()));
-    auto f2 = FieldFormat::create(TEMP_FORMAT_NAME_, static_cast< ::java::lang::Class* >(v2)->getClass()));
-    return f1)->valueToString(v1))->compareTo(f2)->valueToString(v2));
-}
-
-bool AbstractEvaluatingVisitor::isFloatingPoint(::java::lang::Number* number)
-{
-    
-    return (dynamic_cast< ::java::lang::Float* >(number) != 0) || (dynamic_cast< ::java::lang::Double* >(number) != 0);
-}
-
-void* AbstractEvaluatingVisitor::visit(::ASTEQNode* node, void* data)
-{
-    node)->childrenAccept(this, data);
-    set(-int(1), ::java::lang::Boolean::valueOf(equal(get(-int(1)), get(0))));
+    //TODO: how to string?
+    //set(1, :valueOf(left)->toString())->matches(right)->toString())));
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTNENode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTLTNode* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    set(-int(1), ::java::lang::Boolean::valueOf(!equal(get(-int(1)), get(0))));
+    node->childrenAccept(this, data);
+    set(1, (compare(get(-1), get(0)) < 0));
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTRegexMatchNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTGTNode* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    auto left = get(-int(1));
-    auto right = get(0);
-    if((left == 0) || (right == 0)) {
-        return ::java::lang::Boolean::valueOf(false);
-    }
-    set(-int(1), ::java::lang::Boolean::valueOf(left)->toString())->matches(right)->toString())));
+    node->childrenAccept(this, data);
+    set(1, (compare(get(-1), get(0)) > 0));
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTLTNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTLENode* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    set(-int(1), ::java::lang::Boolean::valueOf(compare(get(-int(1)), get(0)) < 0));
+    node->childrenAccept(this, data);
+    set(1, (compare(get(1), get(0)) <= 0));
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTGTNode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTGENode* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    set(-int(1), ::java::lang::Boolean::valueOf(compare(get(-int(1)), get(0)) > 0));
+    node->childrenAccept(this, data);
+    set(-1, (compare(get(-1), get(0)) >= 0));
     return 0;
 }
 
-void* AbstractEvaluatingVisitor::visit(::ASTLENode* node, void* data)
+void* AbstractEvaluatingVisitor::visit(ASTAddNode* node, void* data)
 {
-    node)->childrenAccept(this, data);
-    set(-int(1), ::java::lang::Boolean::valueOf(compare(get(-int(1)), get(0)) <= 0));
-    return 0;
-}
+    node->childrenAccept(this, data);
 
-void* AbstractEvaluatingVisitor::visit(::ASTGENode* node, void* data)
-{
-    node)->childrenAccept(this, data);
-    set(-int(1), ::java::lang::Boolean::valueOf(compare(get(-int(1)), get(0)) >= 0));
-    return 0;
-}
-
-void* AbstractEvaluatingVisitor::visit(::ASTAddNode* node, void* data)
-{
-    node)->childrenAccept(this, data);
-    if((dynamic_cast< const std::string & >(get(-int(1))) != 0) && (dynamic_cast< const std::string & >(get(0)) != 0)) {
+    if ( (dynamic_cast<std::string*>(get(-1) != 0)) && (dynamic_cast<std::string*>(get(0)) != 0) ) {
         set(-int(1), std::stringBuilder().append(java_cast< const std::string & >(get(-int(1))))->append(java_cast< const std::string & >(get(0)))->toString());
-    } else {
+    }else {
         if((dynamic_cast< const std::string & >(get(-int(1))) != 0) || (dynamic_cast< const std::string & >(get(0)) != 0)) {
             auto s1 = get(-int(1)) != 0 ? get(-int(1)))->toString() : u""_j;
             auto s2 = get(0) != 0 ? get(0))->toString() : u""_j;

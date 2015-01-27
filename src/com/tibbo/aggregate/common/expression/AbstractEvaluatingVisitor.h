@@ -2,37 +2,30 @@
 
 #include "expression/Evaluator.h"
 #include "expression/parser/ExpressionParserVisitor.h"
+#include <boost/shared_ptr.hpp>
 
 
 class AbstractEvaluatingVisitor : public ExpressionParserVisitor
 {
 private:
     static const std::string TEMP_FORMAT_NAME_;
-    static std::map DEFAULT_FUNCTIONS_;
-    Evaluator* evaluator;
+    static std::map<std::string, boost::shared_ptr<Function>> DEFAULT_FUNCTIONS_;
+    boost::shared_ptr<Evaluator> evaluator;
+    std::list<std::string, boost::shared_ptr<Function>>  stack;
 
-public: /* protected */
-    int top;
-
-private:
-    std::list  stack;
 protected:
-    void ctor(Evaluator* evaluator);
+    int top;    
 
 private:
-    static void registerDefaultFunction(const std::string & name, Function* impl);
+    static void registerDefaultFunction(const std::string & name, boost::shared_ptr<Function> impl);
+    static bool isFloatingPoint(void* number);
 
-public: /* protected */
-    Evaluator* getEvaluator();
+protected:
+    boost::shared_ptr<Evaluator> getEvaluator();
     void set(int delta, void* value);
-
-public:
-    void* getResult();
-
-public: /* protected */
     void* get(int delta);
 
-public:
+    void* getResult();    
     void* visit(SimpleNode* node, void* data);
     void* visit(ASTStart* node, void* data);
     void* visit(ASTConditionalNode* node, void* data);
@@ -43,11 +36,6 @@ public:
     void* visit(ASTBitwiseXorNode* node, void* data);
     static bool equal(void* v1, void* v2);
     static int compare(void* v1, void* v2);
-
-private:
-    static bool isFloatingPoint(::java::lang::Number* number);
-
-public:
     void* visit(ASTEQNode* node, void* data);
     void* visit(ASTNENode* node, void* data);
     void* visit(ASTRegexMatchNode* node, void* data);
@@ -73,22 +61,7 @@ public:
     void* visit(ASTRightShiftNode* node, void* data);
     void* visit(ASTUnsignedRightShiftNode* node, void* data);
     void* visit(ASTLeftShiftNode* node, void* data);
+    static std::map<std::string, boost::shared_ptr<Function>>& DEFAULT_FUNCTIONS();
 
-    // Generated
-    AbstractEvaluatingVisitor(Evaluator* evaluator);
-
-private:
-    void init();
-
-public:
-    void* visit(::ASTValueReferenceNode* node, void* data);
-
-private:
-    static const std::string& TEMP_FORMAT_NAME();
-
-public:
-    static std::map& DEFAULT_FUNCTIONS();
-
-private:
-    ::java::lang::Class* getClass0();
+    AbstractEvaluatingVisitor(boost::shared_ptr<Evaluator> evaluator);
 };
