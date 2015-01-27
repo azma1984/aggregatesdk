@@ -1,27 +1,23 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/EventDefinition.java
 #include "EventDefinition.h"
 
 
-
-
-
-EventDefinition::EventDefinition(const std::string & name, TableFormat* format) 
+EventDefinition::EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format)
 {
    init(name, format, 0);
 }
 
-EventDefinition::EventDefinition(const std::string & name, TableFormat* format, const std::string & description) 
+EventDefinition::EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, const std::string & description)
 {
   init(name, format, description);
 }
 
-EventDefinition::EventDefinition(const std::string & name, TableFormat* format, const std::string & description, const std::string & group) 
+EventDefinition::EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, const std::string & description, const std::string & group)
 {
   init(name, format, description);
   setGroup(group);
 }
 
-void EventDefinition::init(const std::string & name, TableFormat* format, const std::string & description)
+void EventDefinition::init(const std::string & name, boost::shared_ptr<TableFormat> format, const std::string & description)
 {
   // persistenceOptions = new PersistenceOptions();
   
@@ -31,14 +27,14 @@ void EventDefinition::init(const std::string & name, TableFormat* format, const 
 }
 
 /*
-void EventDefinition::setFormat(TableFormat* format)
+void EventDefinition::setFormat(boost::shared_ptr<TableFormat> format)
 {
     if(format != 0) {
         format)->makeImmutable(0);
     }
     this->format = format;
 }
-
+  */
 void EventDefinition::setHidden(bool hidden)
 {
     this->hidden = hidden;
@@ -46,25 +42,25 @@ void EventDefinition::setHidden(bool hidden)
 
 void EventDefinition::setPermissions(Permissions* perms)
 {
-    this->permissions = perms;
+	this->permissions = perms;
 }
-
+ /*
 void EventDefinition::setExpirationPeriod(long expirationPeriod)
 {
     this->expirationPeriod = expirationPeriod;
 }
-
+ */
 void EventDefinition::setLevel(int level)
 {
-    this->level = level;
+	this->level = level;
 }
 
 void EventDefinition::setSynchronous(bool synchronous)
 {
     this->synchronous = synchronous;
 }
-
-DateTableFormat* EventDefinition::getFormat()
+ /*
+Dateboost::shared_ptr<TableFormat> EventDefinition::getFormat()
 {
     return format;
 }
@@ -103,12 +99,12 @@ bool EventDefinition::isSynchronous()
 {
     return synchronous;
 }
-
-com::tibbo::aggregate::common::event::PersistenceOptions* EventDefinition::getPersistenceOptions()
+*/
+PersistenceOptions* EventDefinition::getPersistenceOptions()
 {
-    return persistenceOptions;
+	return persistenceOptions;
 }
-
+ /*
 java::lang::Integer* EventDefinition::getMemoryStorageSize()
 {
     return memoryStorageSize;

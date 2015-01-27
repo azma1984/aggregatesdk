@@ -1,14 +1,13 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/DefaultFormatConverter.java
 
 #ifndef DefaultFormatConverterH
 #define DefaultFormatConverterH
 
-//#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
+//#include "datatable/DataRecord.h"
+//#include "datatable/DataTable.h"
+//#include "datatable/DataTableConversion.h"
+//#include "datatable/DataTableException.h"
 #include "datatable/TableFormat.h"
-#include "Class.h"
+#include "AgClass.h"
 #include "datatable/converter/AbstractFormatConverter.h"
 
 
@@ -32,7 +31,7 @@ public:
 //    void* instantiate(DataRecord* source) /* throws(InstantiationException) */;
 
 //    // Generated
-    DefaultFormatConverter(Class* valueClass, boost::shared_ptr<TableFormat> format);
+    DefaultFormatConverter(AgClass* valueClass, boost::shared_ptr<TableFormat> format);
 //protected:
 //    DefaultFormatConverter(const ::default_init_tag&);
 

@@ -3,13 +3,15 @@
 
 #include "util/Cloneable.h"
 //#include <com/tibbo/aggregate/common/context/ContextUtils.h"
-#include "expression/Expression.h"
+//#include "expression/Expression.h"
 //#include <com/tibbo/aggregate/common/expression/ExpressionUtils.h"
 
 
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
+
+class   Expression;
 //todo - class stub
 class Reference : public Cloneable
 {
@@ -55,7 +57,7 @@ protected:
     void ctor(const std::string & entity, int entityType, const std::string & field);
     void ctor(const std::string & context, const std::string & entity, int entityType, const std::string & field);
     void ctor(const std::string & context, const std::string & entity, int entityType);
-    void ctor(const std::string & context, const std::string & function, vector<void*> parameters);
+    void ctor(const std::string & context, const std::string & function, std::vector<void*> parameters);
 
 public:// protected
     void parse(const std::string & source);
@@ -98,7 +100,7 @@ public:
     Reference(const std::string & entity, int entityType, const std::string & field);
     Reference(const std::string & context, const std::string & entity, int entityType, const std::string & field);
     Reference(const std::string & context, const std::string & entity, int entityType);
-    Reference(const std::string & context, const std::string & function, vector<void*> parameters);
+    Reference(const std::string & context, const std::string & function, std::vector<void*> parameters);
 };
 
 #endif  //_REFERENCE_H_

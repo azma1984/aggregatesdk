@@ -1,11 +1,11 @@
 #ifndef FunctionImplementationH
 #define FunctionImplementationH
 
-#include "DataTable/DataTable.h"
+#include "datatable/DataTable.h"
 
 //#include "FunctionDefinition.h"
-#include "Context/CallerController.h"
-#include "Context/RequestController.h"
+#include "context/CallerController.h"
+#include "context/RequestController.h"
 
 class FunctionDefinition;
 class Context;

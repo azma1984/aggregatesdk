@@ -1,17 +1,38 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataRecord.java
 #include "DataRecord.h"
 
+
+const std::string DataRecord::ELEMENT_ID = "I";
 
 
 DataRecord::DataRecord() 
 {
-   // ctor();
 }
 
-DataRecord::DataRecord(TableFormat* tableFormat) 
+DataRecord::DataRecord(TableFormatPtr tableFormat)
 {
-  //  ctor(tableFormat);
 }
+
+DataRecord::DataRecord(TableFormatPtr tableFormat, std::list<AgObjectPtr> data)
+{
+
+}
+
+DataRecord::DataRecord(TableFormatPtr tableFormat, const std::string& dataString, ClassicEncodingSettingsPtr settings, bool validate, std::list<std::string> fieldNamesInData)
+{
+
+}
+
+DataRecord::DataRecord(TableFormatPtr tableFormat, const std::string& dataString)
+{
+
+}
+
+void DataRecord::setData(const std::string &dataString, ClassicEncodingSettingsPtr settings, bool validate, std::list<std::string> fieldNamesInData)
+{
+
+}
+
+
 /*
 DataRecord::DataRecord(TableFormat* tableFormat, voidArray* data)
 {
@@ -650,25 +671,27 @@ std::string str;
   /**
    * Constructs new <code>DataTable</code> and adds this record to it.
    */
-DataTable *DataRecord::wrap()
+boost::shared_ptr<DataTable> DataRecord::wrap()
 {
+    return 0;
     //return new DataTable(*(DataTable*)this);
 
-DataTable *dt=0;
-return dt;
+//DataTable *dt=0;
+//return dt;
 }
 
-/*
-DataRecord* DataRecord::clone()
+
+DataRecord* DataRecord::clone() const
 {
 	//TODO: копирование
-    DataRecord* cl;
+    /*DataRecord* cl;
     try {
         cl = java_cast< DataRecord* >(super::clone());
     } catch (::java::lang::CloneNotSupportedException* ex) {
         throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
     }
     cl)->data = java_cast< std::map >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(data));
-    return cl;
+    return cl;*/
+    return 0;
 }
-*/
+

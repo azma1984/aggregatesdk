@@ -29,7 +29,7 @@ public:
 	long getId();
 	std::vector<char> getData();
 	std::vector<char> getBlob();
-    std::map<std::string,  boost::shared_ptr<AgObject>> getAttachments();
+    std::map< std::string,  boost::shared_ptr<AgObject> > getAttachments();
 
     std::vector<char> fetchData(ContextManager* cm, CallerController* cc);
 

@@ -2,17 +2,17 @@
 
 
 
-VariableDefinition::VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable) 
+VariableDefinition::VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable)
 {
   init(name,format,readable,writable,0);
 }
 
-VariableDefinition::VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description) 
+VariableDefinition::VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description)
 {
   init(name,format,readable,writable,description);
 }
 
-VariableDefinition::VariableDefinition(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description, const std::string & group) 
+VariableDefinition::VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description, const std::string & group)
 {
   init(name,format,readable,writable,description);
  // setGroup(group);
@@ -20,13 +20,13 @@ VariableDefinition::VariableDefinition(const std::string & name, TableFormat* fo
 
 //void VariableDefinition::init()
 //{
-//    localCachingEnabled = true;
+   // localCachingEnabled = true;
 //    compatibilityConverters;
-//    persistent = true;
+ //   persistent = true;
 //}
-//
 
-void VariableDefinition::init(const std::string & name, TableFormat* format, bool readable, bool writable, const std::string & description)
+
+void VariableDefinition::init(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description)
 {
  // setName(name);
 //  setFormat(format);
@@ -37,26 +37,27 @@ void VariableDefinition::init(const std::string & name, TableFormat* format, boo
 
 void VariableDefinition::setFormat(TableFormat* format)
 {
-//    if(format != 0) {
-//        format)->makeImmutable(0);
-//    }
-//    this->format = format;
+	if(format != 0)
+	{
+	 format->makeImmutable(0);
+    }
+	this->format = format;
 }
-//
-//void VariableDefinition::setReadable(bool readable)
-//{
-//    this->readable = readable;
-//}
-//
-//void VariableDefinition::setWritable(bool writable)
-//{
-//    this->writable = writable;
-//}
-//
-//void VariableDefinition::setHidden(bool hidden)
-//{
-//    this->hidden = hidden;
-//}
+
+void VariableDefinition::setReadable(bool readable)
+{
+	this->readable = readable;
+}
+
+void VariableDefinition::setWritable(bool writable)
+{
+    this->writable = writable;
+}
+
+void VariableDefinition::setHidden(bool hidden)
+{
+	this->hidden = hidden;
+}
 //
 //void VariableDefinition::setGroup(const std::string & group)
 //{
@@ -66,76 +67,76 @@ void VariableDefinition::setFormat(TableFormat* format)
 //    }
 //}
 //
-//void VariableDefinition::setReadPermissions(Permissions* readPermissions)
-//{
-//    this->readPermissions = readPermissions;
-//}
-//
-//void VariableDefinition::setWritePermissions(Permissions* writePermissions)
-//{
-//    this->writePermissions = writePermissions;
-//}
-//
-//void VariableDefinition::setSetter(VariableSetter* setter)
-//{
-//    this->setter = setter;
-//}
-//
-//void VariableDefinition::setGetter(VariableGetter* getter)
-//{
-//    this->getter = getter;
-//}
-//
-//DateTableFormat* VariableDefinition::getFormat()
-//{
-//    return format;
-//}
-//
-//bool VariableDefinition::isReadable()
-//{
-//    return readable;
-//}
-//
-//bool VariableDefinition::isWritable()
-//{
-//    return writable;
-//}
-//
-//bool VariableDefinition::isHidden()
-//{
-//    return hidden;
-//}
-//
-//com::tibbo::aggregate::common::security::Permissions* VariableDefinition::getReadPermissions()
-//{
-//    return readPermissions;
-//}
-//
-//com::tibbo::aggregate::common::security::Permissions* VariableDefinition::getWritePermissions()
-//{
-//    return writePermissions;
-//}
-//
-//VariableSetter* VariableDefinition::getSetter()
-//{
-//    return setter;
-//}
-//
-//VariableGetter* VariableDefinition::getGetter()
-//{
-//    return getter;
-//}
-//
-//std::string VariableDefinition::getHelpId()
-//{
-//    return helpId;
-//}
-//
-//void VariableDefinition::setHelpId(const std::string & helpId)
-//{
-//    this->helpId = helpId;
-//}
-//
+void VariableDefinition::setReadPermissions(boost::shared_ptr<Permissions> readPermissions)
+{
+ this->readPermissions = readPermissions;
+}
+
+void VariableDefinition::setWritePermissions(boost::shared_ptr<Permissions> writePermissions)
+{
+    this->writePermissions = writePermissions;
+}
+
+void VariableDefinition::setSetter(VariableSetter* setter)
+{
+    this->setter = setter;
+}
+
+void VariableDefinition::setGetter(VariableGetter* getter)
+{
+    this->getter = getter;
+}
+
+TableFormat* VariableDefinition::getFormat()
+{
+    return format;
+}
+
+bool VariableDefinition::isReadable()
+{
+    return readable;
+}
+
+bool VariableDefinition::isWritable()
+{
+    return writable;
+}
+
+bool VariableDefinition::isHidden()
+{
+    return hidden;
+}
+
+boost::shared_ptr<Permissions> VariableDefinition::getReadPermissions()
+{
+    return readPermissions;
+}
+
+boost::shared_ptr<Permissions> VariableDefinition::getWritePermissions()
+{
+    return writePermissions;
+}
+
+VariableSetter* VariableDefinition::getSetter()
+{
+    return setter;
+}
+
+VariableGetter* VariableDefinition::getGetter()
+{
+    return getter;
+}
+
+std::string VariableDefinition::getHelpId()
+{
+    return helpId;
+}
+
+void VariableDefinition::setHelpId(const std::string & helpId)
+{
+    this->helpId = helpId;
+}
+
 //java::lang::Class* VariableDefinition::getValueClass()
 //{
 //    return valueClass;
@@ -176,15 +177,15 @@ void VariableDefinition::setFormat(TableFormat* format)
 //    this->remoteCacheTime = remoteCacheTime;
 //}
 //
-//DateDataTable* VariableDefinition::getDefaultValue()
-//{
-//    return defaultValue;
-//}
-//
-//void VariableDefinition::setDefaultValue(DataTable* defaultValue)
-//{
-//    this->defaultValue = defaultValue;
-//}
+DataTable* VariableDefinition::getDefaultValue()
+{
+    return defaultValue;
+}
+
+void VariableDefinition::setDefaultValue(DataTable* defaultValue)
+{
+    this->defaultValue = defaultValue;
+}
 //
 //bool VariableDefinition::isPersistent()
 //{

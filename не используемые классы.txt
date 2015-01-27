@@ -1,3 +1,5 @@
 - AggreGateXE7\src\com\tibbo\aggregate\common\util\PAir.java
 - AggreGateXE7\src\com\tibbo\aggregate\common\util\ClassPathHelper.java
 - util\PersistentProperties.java
+- datatable\converter\ChoicesConverter
+- datatable\converter\SimplePropertyFormatConverter

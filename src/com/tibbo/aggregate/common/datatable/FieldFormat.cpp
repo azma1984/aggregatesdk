@@ -32,7 +32,7 @@ boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, bool
 }
 */
 
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, char type)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type)
 {
   //  switch (type)
    // {
@@ -95,7 +95,7 @@ boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, char
     }
 }*/
  
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, Class* valueClass)
+FieldFormatPtr FieldFormat::create(const std::string &name, AgClass* valueClass)
 {
 //    char type = CLASS_TO_TYPE[valueClass];
     
@@ -109,57 +109,64 @@ boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, Clas
 	return 0;
 }
 
-boost::shared_ptr<FieldFormat> FieldFormat::setDescription(const std::string &description)
+FieldFormatPtr FieldFormat::setDescription(const std::string &description)
 {
-	if(immutable) 
+    /*if(immutable)
 	{
      // throw new ::java::lang::IllegalStateException(u"Immutable");
     }
     this->description = description;
-    return boost::shared_ptr<FieldFormat>(this);
+    return boost::shared_ptr<FieldFormat>(this);*/
+    return 0;
 }
 
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, char type, const std::string & description)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description)
 {
-    boost::shared_ptr<FieldFormat> ff = create(name, type);
+    /*boost::shared_ptr<FieldFormat> ff = create(name, type);
     ff->setDescription(description);
-    return ff;
+    return ff;*/
+    return 0;
 }
 
- boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue)
 {
-    return create(name, type, description, defaultValue, false, 0);
+    //return create(name, type, description, defaultValue, false, 0);
+    return 0;
 }
 
- boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, const std::string & group)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, const std::string & group)
 {
-    return create(name, type, description, defaultValue, false, group);
+    return 0;
+    //return create(name, type, description, defaultValue, false, group);
 }
 
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable)
 {
-    return create(name, type, description, defaultValue, nullable, 0);
+    return 0;
+    //return create(name, type, description, defaultValue, nullable, 0);
 }
 
 
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable, const std::string & group)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable, const std::string & group)
 {
-    boost::shared_ptr<FieldFormat> ff = create(name, type, description);
+   /* boost::shared_ptr<FieldFormat> ff = create(name, type, description);
 //    ff->setNullable(nullable);
   //  ff->setDefault(defaultValue);
  //   ff->setGroup(group);
-    return ff;
+    return ff;*/
+    return 0;
 }
 
 
 
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &format, ClassicEncodingSettings &settings)
-  {
-   return create(format, settings, true);
-  }
+FieldFormatPtr FieldFormat::create(const std::string &format, ClassicEncodingSettings &settings)
+{
+    return 0;
+   //return create(format, settings, true);
+}
 
 
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &format, ClassicEncodingSettings &settings, bool validate)
+FieldFormatPtr FieldFormat::create(const std::string &format, ClassicEncodingSettings &settings, bool validate)
 {
 	/*
     ElementList *els = StringUtils::elements(format, settings.isUseVisibleSeparators());
@@ -235,17 +242,15 @@ boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &format, Cl
 }
 
 
- /**
-   * Decodes <code>FieldFormat</code> from string.
-   */
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &format)
+FieldFormatPtr FieldFormat::create(const std::string &format)
 {
- return create(format, *(new ClassicEncodingSettings(true)), true);
+    return 0;
+    //return create(format, *(new ClassicEncodingSettings(true)), true);
 }
 
 
-std::list<FieldValidator<void*>*> FieldFormat::getValidators()
+/*std::list<FieldValidator<void*>*> FieldFormat::getValidators()
 {
- return validators;
+    return validators;
    // return immutable ? ::java::util::Collections::unmodifiableList(validators) : validators;
-}
+}*/

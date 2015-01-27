@@ -1,89 +1,60 @@
-#ifndef _DataTableConversion_H_
-#define _DataTableConversion_H_
+#pragma once
 
+#include <list>
 
-//#include <com/tibbo/aggregate/common/Log.h"
-//#include <com/tibbo/aggregate/common/datatable/AggreGateBean.h"
-//#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
-//#include <com/tibbo/aggregate/common/datatable/FCBigDecimal.h"
-//#include <com/tibbo/aggregate/common/datatable/FCBigInteger.h"
-//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCByte.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCComparable.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCDouble.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCNumber.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCShort.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleBoolean.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleByte.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleDouble.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleFloat.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleInteger.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleLong.h"
-//#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleShort.h"
 #include "datatable/converter/FormatConverter.h"
-//#include <com/tibbo/aggregate/common/util/Util.h"
+#include "util/Pointers.h"
+
+class DataTable;
 
 class DataTableConversion
 {
-//private:
-//    static std::list  FORMAT_CONVERTERS_;
-//    static ::java::util::concurrent::locks::ReentrantReadWriteLock* FORMAT_CONVERTERS_LOCK_;
+private:
+    std::list<boost::shared_ptr<FormatConverter>>  FORMAT_CONVERTERS;
+    DataTableConversion();
 
 public:
-//    static DataTable* beanToTable(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors) /* throws(DataTableException) */;
-//    static DataTable* beanToTable(void* bean, TableFormat* format) /* throws(DataTableException) */;
-//    static DataTable* beanToTable(void* bean, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static DataTable* beansToTable(::java::util::Collection* beans, TableFormat* format) /* throws(DataTableException) */;
-//    static DataTable* beansToTable(::java::util::Collection* beans, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void* beanFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static std::list  beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format) /* throws(DataTableException) */;
-//    static std::list  beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void* beanFromRecord(DataRecord* rec, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields, ::std::set  fieldsToSkip) /* throws(DataTableException) */;
-//    static DataRecord* beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors) /* throws(DataTableException) */;
-//    static DataRecord* beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors, ::std::set  fieldsToSkip) /* throws(DataTableException) */;
+    static DataTableConversion &instance()
+    {
+        static DataTableConversion dataTableConversion;
+        return dataTableConversion;
+    }
 
-//private:
-//    static TableFormat* getFormatFromDefaultValue(FieldFormat* ff);
+    boost::shared_ptr<DataTable> beanToTable(AgObjectPtr bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true, bool ignoreErrors = false);
+    boost::shared_ptr<DataTable> beansToTable(std::list<AgObjectPtr> beans, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
 
-//public:
-//    static void* convertValueToField(FieldFormat* ff, void* value, ::java::lang::Class* requiredClass);
-//    static void* convertValueFromField(void* value);
-//    static void* convertValueFromField(void* value, ::java::lang::Class* requiredClass);
-//    static void* convertValueToField(FieldFormat* ff, void* value);
-     static void registerFormatConverter(FormatConverter* converter);
-//    static converter::FormatConverter* getFormatConverter(::java::lang::Class* valueClass);
-//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, void* value);
-//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, const std::string & valueClassName) /* throws(ClassNotFoundException) */;
-//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, ::java::lang::Class* valueClass);
-//    static FieldFormat* createTableField(const std::string & name, TableFormat* format);
-//    static FieldFormat* createTableField(const std::string & name, const std::string & description, TableFormat* format);
-//    static void* createAggreGateBean(void* value, ::java::lang::Class* requiredClass) /* throws(NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException) */;
+    AgObjectPtr beanFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
+    std::list<AgObjectPtr> beansFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
 
-//private:
-//    static void* createArray_(FieldFormat* ff, void* value);
-//    static std::list  createList(void* bean, DataRecord* rec, bool setReadOnlyFields, FieldFormat* ff) /* throws(NoSuchFieldException, DataTableException) */;
-//    static DataTable* convertList(void* bean, void* value, bool setReadOnlyFields, FieldFormat* ff) /* throws(NoSuchFieldException, InstantiationException, IllegalAccessException, DataTableException) */;
-//    static DataTable* convertArray_(FieldFormat* ff, void* value);
+    AgObjectPtr beanFromRecord(boost::shared_ptr<DataRecord> rec, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields);
 
-//    // Generated
+    void populateBeanFromRecord(AgObjectPtr bean, boost::shared_ptr<DataRecord> rec, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields);
+    void populateBeanFromRecord(AgObjectPtr bean, boost::shared_ptr<DataRecord> rec, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, std::list<std::string> fieldsToSkip);
 
-//public:
-//    DataTableConversion();
-//protected:
-//    DataTableConversion(const ::default_init_tag&);
+    boost::shared_ptr<DataRecord> beanToRecord(AgObjectPtr bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors);
+    boost::shared_ptr<DataRecord> beanToRecord(AgObjectPtr bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors, const std::list<std::string> &fieldsToSkip);
 
+    AgObjectPtr convertValueToField(boost::shared_ptr<FieldFormat> ff, AgObjectPtr value, boost::shared_ptr<AgClass> requiredClass);
+    AgObjectPtr convertValueFromField(AgObjectPtr value);
+    AgObjectPtr convertValueFromField(AgObjectPtr value, boost::shared_ptr<AgClass> requiredClass);
+    AgObjectPtr convertValueToField(boost::shared_ptr<FieldFormat> ff, AgObjectPtr value);
 
-//public:
-    
-//    static void
+    void registerFormatConverter(boost::shared_ptr<FormatConverter> converter);
+    boost::shared_ptr<FormatConverter> getFormatConverter(boost::shared_ptr<AgClass> valueClass);
 
-//public: // package
-//    static std::list & FORMAT_CONVERTERS();
-//    static ::java::util::concurrent::locks::ReentrantReadWriteLock*& FORMAT_CONVERTERS_LOCK();
+    boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name, AgObjectPtr value);
+    boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name, const std::string &valueClassName);
+    boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name, boost::shared_ptr<AgClass> valueClass);
+
+    boost::shared_ptr<FieldFormat> createTableField(const std::string & name, boost::shared_ptr<TableFormat> format);
+    boost::shared_ptr<FieldFormat> createTableField(const std::string & name, const std::string &description, boost::shared_ptr<TableFormat> format);
+
+    AgObjectPtr createAggreGateBean(AgObjectPtr value, boost::shared_ptr<AgClass> requiredClass);
+
+private:
+    boost::shared_ptr<TableFormat> getFormatFromDefaultValue(boost::shared_ptr<FieldFormat> ff);
+    AgObjectPtr createArray(boost::shared_ptr<FieldFormat> ff, AgObjectPtr value);
+    std::list<AgObjectPtr> createList(AgObjectPtr bean, boost::shared_ptr<DataRecord> rec, bool setReadOnlyFields, boost::shared_ptr<FieldFormat> ff);
+    boost::shared_ptr<DataTable> convertList(AgObjectPtr bean, AgObjectPtr value, bool setReadOnlyFields, boost::shared_ptr<FieldFormat> ff);
+    boost::shared_ptr<DataTable> convertArray(boost::shared_ptr<FieldFormat> ff, AgObjectPtr value);
 };
-#endif  //_DataTableConversion_H_

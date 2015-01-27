@@ -1,19 +1,24 @@
 
 #ifndef ContextRuntimeExceptionH
 #define ContextRuntimeExceptionH
+ #include <stdexcept>
 
-//todo - class stub
-class ContextRuntimeException// : public ::java::lang::RuntimeException
+class ContextRuntimeException
 {
-//	
-//public:
-//    ContextRuntimeException(const std::string & message);
-//    ContextRuntimeException(::java::lang::Throwable* cause);
-//    ContextRuntimeException(const std::string & message, ::java::lang::Throwable* cause);
-//protected:
-//    ContextRuntimeException(const ::default_init_tag&);
+ public:
+	ContextRuntimeException(const std::string &message)
+	{
 
+	}
+	ContextRuntimeException(const std::exception &cause)
+	{
 
+	}
+
+	ContextRuntimeException(const std::string &message, const std::exception &cause)
+	{
+
+    }
 };
 
 #endif

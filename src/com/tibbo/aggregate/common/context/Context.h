@@ -1,4 +1,4 @@
-#ifndef ContextH
+﻿#ifndef ContextH
 #define ContextH
 
 #include <string>
@@ -8,6 +8,8 @@
 #include "context/FunctionData.h"
 //#include "context/VariableData.h"
 //#include "context/ContextVisitor.h"
+//#include "context/CallerController.h"
+//#include "context/VariableDefinition.h"
 #include "datatable/DataTable.h"
 #include "util/Date.h"
 #include "event/FireEventRequestController.h"
@@ -16,6 +18,9 @@
 
 class ContextVisitor;
 class VariableData;
+class VariableDefinition;
+class CallerController;
+class EventDefinition;
 /**
  * Context interface is used to provide a unified way to access any object in AggreGate. It may be some server object (e.g. alert or event filters storage), hardware device or widget component. When
  * server contexts are accessed remotely, so-called proxy contexts are created for operating server-side objects through the same interface.
@@ -314,27 +319,27 @@ class Context
   /**
    * Returns list of variables available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getVariableDefinitions(CallerController* caller)=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller)=0;
   /**
    * Returns list of variables.
    */
-	virtual std::list<void*>  getVariableDefinitions()=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions()=0;
   /**
    * Returns list of variables belonging to <code>group</code> that are available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getVariableDefinitions(CallerController* caller, const std::string & group)=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller, const std::string & group)=0;
   /**
    * Returns list of variables belonging to <code>group</code>.
    */
-	virtual std::list<void*>  getVariableDefinitions(const std::string & group)=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions(const std::string & group)=0;
   /**
    * Returns list of variables.
    */
-	virtual std::list<void*>  getVariableDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller, bool includeHidden)=0;
   /**
    * Adds function definition to this context.
    */
-	virtual void addFunctionDefinition(FunctionDefinition* def)=0;
+	virtual void addFunctionDefinition(boost::shared_ptr<FunctionDefinition> def)=0;
   /**
    * Removes function definition from this context.
    */
@@ -346,34 +351,34 @@ class Context
   /**
    * Returns definition of function with specified name.
    */
-	virtual FunctionDefinition* getFunctionDefinition(const std::string & name)=0;
+	virtual boost::shared_ptr<FunctionDefinition> getFunctionDefinition(const std::string & name)=0;
 
   /**
    * Returns definition of function with specified name if it's accessible by caller controller.
    */
-	virtual FunctionDefinition* getFunctionDefinition(const std::string & name, CallerController* caller)=0;
+	virtual boost::shared_ptr<FunctionDefinition> getFunctionDefinition(const std::string & name, CallerController* caller)=0;
 
   /**
    * Returns list of functions available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getFunctionDefinitions(CallerController* caller)=0;
+	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(CallerController* caller)=0;
   /**
    * Returns list of functions.
    */
-	virtual std::list<void*>  getFunctionDefinitions()=0;
+	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions()=0;
   /**
    * Returns list of functions belonging to <code>group</code> that are available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getFunctionDefinitions(CallerController* caller, const std::string & group)=0;
+	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(CallerController* caller, const std::string & group)=0;
   /**
    * Returns list of functions belonging to <code>group</code>.
    */
-	virtual std::list<void*>  getFunctionDefinitions(const std::string & group)=0;
+	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(const std::string & group)=0;
 
   /**
    * Returns list of functions.
    */
-	virtual std::list<void*>  getFunctionDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(CallerController* caller, bool includeHidden)=0;
 
   /**
    * Adds event definition to this context.
@@ -386,12 +391,12 @@ class Context
   /**
    * Returns definition of event with specified name.
    */
-	virtual EventDefinition* getEventDefinition(const std::string & name)=0;
+	virtual  boost::shared_ptr<EventDefinition> getEventDefinition(const std::string & name)=0;
 
   /**
    * Returns definition of event with specified name if it's accessible by caller controller.
    */
-	virtual EventDefinition* getEventDefinition(const std::string & name, CallerController* caller)=0;
+	virtual  boost::shared_ptr<EventDefinition> getEventDefinition(const std::string & name, CallerController* caller)=0;
 
   /**
    * Returns <code>EventData</code> of event with specified name.
@@ -400,23 +405,23 @@ class Context
   /**
    * Returns list of events available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getEventDefinitions(CallerController* caller)=0;
+	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(CallerController* caller)=0;
   /**
    * Returns list of events.
    */
-	virtual std::list<void*>  getEventDefinitions()=0;
+	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions()=0;
   /**
    * Returns list of events belonging to <code>group</code> that are available for specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getEventDefinitions(CallerController* caller, const std::string & group)=0;
+	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(CallerController* caller, const std::string & group)=0;
  /**
    * Returns list of events belonging to <code>group</code>.
    */
-	virtual std::list<void*>  getEventDefinitions(const std::string & group)=0;
+	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(const std::string & group)=0;
   /**
    * Returns list of events.
    */
-	virtual std::list<void*>  getEventDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(CallerController* caller, bool includeHidden)=0;
   /**
    * Gets variable from context and returns its value.
    */
@@ -494,14 +499,14 @@ class Context
    * 
    * @return Event object or null if event was suppressed by context.
    */
-	virtual Event* fireEvent(const std::string & name)=0;
-    virtual Event* fireEvent(const std::string & name, CallerController* caller)=0;
-    virtual Event* fireEvent(const std::string & name, boost::shared_ptr<DataTable> data)=0;
-    virtual Event* fireEvent(const std::string & name, CallerController* caller, boost::shared_ptr<DataTable> data)=0;
-    virtual Event* fireEvent(const std::string & name, int level, boost::shared_ptr<DataTable> data)=0;
-    virtual Event* fireEvent(const std::string & name, int level, CallerController* caller, boost::shared_ptr<DataTable> data)=0;
-	virtual Event* fireEvent(const std::string & name, void* data)=0;
-    virtual Event* fireEvent(const std::string & name, boost::shared_ptr<DataTable> data, int level, long id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request)=0;
+	virtual boost::shared_ptr<Event> fireEvent(const std::string & name)=0;
+    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, CallerController* caller)=0;
+    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, boost::shared_ptr<DataTable> data)=0;
+    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, CallerController* caller, boost::shared_ptr<DataTable> data)=0;
+    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, int level, boost::shared_ptr<DataTable> data)=0;
+    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, int level, CallerController* caller, boost::shared_ptr<DataTable> data)=0;
+	virtual boost::shared_ptr<Event> fireEvent(const std::string & name, void* data)=0;
+    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, boost::shared_ptr<DataTable> data, int level, long id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request)=0;
    
 	  /**
    * Add a new action definition to the context.
@@ -523,35 +528,35 @@ class Context
    * @param name
    *          Name of action
    */
-    virtual ActionDefinition* getActionDefinition(const std::string & name)=0;
-    virtual ActionDefinition* getActionDefinition(const std::string & name, CallerController* caller)=0;
+	virtual boost::shared_ptr<ActionDefinition> getActionDefinition(const std::string & name)=0;
+	virtual boost::shared_ptr<ActionDefinition> getActionDefinition(const std::string & name, CallerController* caller)=0;
 	  /**
    * Returns default action definition or NULL if there is no default action or it's not available to the caller.
    * 
    * @param caller
    *          Caller controller
    */
-    virtual ActionDefinition* getDefaultActionDefinition(CallerController* caller)=0;
+	virtual boost::shared_ptr<ActionDefinition> getDefaultActionDefinition(CallerController* caller)=0;
   /**
    * Returns action definitions.
    */
-   virtual  std::list<void*>  getActionDefinitions()=0;
+   virtual  std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions()=0;
   /**
    * Returns action definitions that are accessible for the caller.
    * 
    * @param caller
    *          Caller controller
    */
-    virtual std::list<void*>  getActionDefinitions(CallerController* caller)=0;
-    virtual std::list<void*>  getActionDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions(CallerController* caller)=0;
+	virtual std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions(CallerController* caller, bool includeHidden)=0;
 	  /**
    * Returns context permissions.
    */
-    virtual Permissions* getPermissions()=0;
+    virtual boost::shared_ptr<Permissions> getPermissions()=0;
 	  /**
    * Returns permissions required to access children of this context.
    */
-    virtual Permissions* getChildrenViewPermissions()=0;
+    virtual boost::shared_ptr<Permissions> getChildrenViewPermissions()=0;
 
 
 
@@ -572,7 +577,7 @@ class Context
 	  /**
    * Returns in-memory event history.
    */
-    virtual std::list<void*>  getEventHistory(const std::string & name)=0;
+	virtual std::list<Event*>  getEventHistory(const std::string & name)=0;
 	  /**
    * Accepts context visitor, i.e. calls visitor.visit(this).
    */

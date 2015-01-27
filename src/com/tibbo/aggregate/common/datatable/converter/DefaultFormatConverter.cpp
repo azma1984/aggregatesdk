@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/DefaultFormatConverter.java
 #include "datatable/converter/DefaultFormatConverter.h"
 
 

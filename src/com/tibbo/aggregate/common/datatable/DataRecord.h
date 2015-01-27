@@ -1,87 +1,69 @@
-#ifndef _DATARECORD_H_
-#define _DATARECORD_H_
+#pragma once
 
-
-//#include <Cres.h>
 #include "data/Data.h"
 #include "datatable/DataTable.h"
-//#include <datatable/FieldFormat.h>
-//#include <datatable/QueryCondition.h>
-#include <datatable/TableFormat.h>
-//#include <datatable/ValidationException.h>
-//#include <datatable/encoding/ClassicEncodingSettings.h>
-//#include <util/CloneUtils.h>
-//#include <util/Element.h>
-//#include <util/ElementList.h>
-//#include <util/StringUtils.h>
-//#include <util/Util.h>
+#include "datatable/TableFormat.h"
+#include "datatable/QueryCondition.h"
+
 #include "util/Cloneable.h"
 #include "util/Date.h"
+#include "util/Pointers.h"
+#include "util/Color.h"
 
 #include <string>
 #include <map>
 
-class DataTable;
-//todo - class stub
-class DataRecord : public Cloneable//, PublicCloneable
+class DataRecord : public Cloneable, public AgObject
 {   
-	
+private:
+    static const std::string ELEMENT_ID;
+    std::map<std::string, AgObjectPtr> data;
+    TableFormatPtr format;
+    DataTablePtr table;
+
+    void setData(const std::string &dataString, ClassicEncodingSettingsPtr settings, bool validate, std::list<std::string> fieldNamesInData);
+    void checkNumberOfDataFieldsSet(AgObjectPtr value);
+    int findIndex(const std::string &name);
+    AgObjectPtr getValue(FieldFormatPtr ff);
+    DataRecord &setValue(int index, AgObjectPtr value, bool validate);
+
 public:
 	
     DataRecord();
-    DataRecord(TableFormat* tableFormat);/*
-    DataRecord(TableFormat* tableFormat, voidArray* data);
-    DataRecord(TableFormat* tableFormat, const std::string& dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
-    DataRecord(TableFormat* tableFormat, const std::string& dataString);
-	
-	DataRecord(DataRecord&);
+    DataRecord(TableFormatPtr tableFormat);
+    DataRecord(TableFormatPtr tableFormat, std::list<AgObjectPtr> data);
+    DataRecord(TableFormatPtr tableFormat, const std::string& dataString, ClassicEncodingSettingsPtr settings, bool validate, std::list<std::string> fieldNamesInData);
+    DataRecord(TableFormatPtr tableFormat, const std::string& dataString);
 
-    void cloneFormatFromTable();
-    std::string dataAsString(bool showFieldNames, bool showHiddenFields);
-    std::string valueAsString(const std::string& name);*/
-    std::string toString();
-    DataTable* wrap();
-	/*
-    virtual DataRecord* clone() const;    
-	//TODO:
-	DataRecord* setValue(const std::string& name, void* value);
-    DataRecord* setValue(const std::string& name, void* value, bool validate);
-    DataRecord* setValueSmart(int index, void* value);
-    DataRecord* setValueSmart(const std::string& name, void* value);
-    DataRecord* addValue(void* value);
-	//TODO:
-	void* getValueDescription(const std::string& name);
-    std::string getValueAsString(const std::string& name);
-    std::string getValueAsString(int index);
-    DataRecord* setId(const std::string& id);
-
-	DataRecord* addInt(int val);
-    DataRecord* addString(const std::string& val);
-    DataRecord* addBoolean(bool val);
-    DataRecord* addLong(long val);
-    DataRecord* addFloat(float val);
-    DataRecord* addDouble(double val);
-    DataRecord* addDate(Date* val);
-    DataRecord* addDataTable(DataTable* val);
-    DataRecord* addColor(::java::awt::Color* val);
-    DataRecord* addData(Data* val);
-    DataRecord* setValue(int index, void* value);
-
-    bool hasField(const std::string& name);
-	bool meetToCondition(QueryCondition* cond);
-    void setTable(DataTable* table);
-    void setFormat(TableFormat* format);
-
-	int getFieldCount();
-    TableFormat* getFormat();
-    FieldFormat* getFormat(int index);
-    FieldFormat* getFormat(const std::string& name);
+    int getFieldCount();
+    TableFormatPtr getFormat();
+    FieldFormatPtr getFormat(int index);
+    FieldFormatPtr getFormat(const std::string& name);
     std::string getId();
-    DataTable* getTable();
+    DataTablePtr getTable();
     std::string encode(bool useVisibleSeparators);
-    std::string encode(ClassicEncodingSettings* settings);
+    std::string encode(ClassicEncodingSettingsPtr settings);
 
-	std::string getString(const std::string& name);
+    DataRecord &addInt(int val);
+    DataRecord &addString(const std::string& val);
+    DataRecord &addBoolean(bool val);
+    DataRecord &addLong(long val);
+    DataRecord &addFloat(float val);
+    DataRecord &addDouble(double val);
+    DataRecord &addDate(Date val);
+    DataRecord &addDataTable(DataTablePtr val);
+    DataRecord &addColor(Color val);
+    DataRecord &addData(DataPtr val);
+    DataRecord &setValue(int index, AgObjectPtr value);
+    DataRecord &setValue(const std::string &name, AgObjectPtr value);
+    DataRecord &setValue(const std::string &name, AgObjectPtr value, bool validate);
+
+    DataRecord &setValueSmart(int index, AgObjectPtr value);
+    DataRecord &setValueSmart(const std::string& name, AgObjectPtr value);
+    DataRecord &addValue(AgObjectPtr value);
+
+
+    std::string getString(const std::string& name);
     std::string getString(int index);
     int getInt(const std::string& name);
     int getInt(int index);
@@ -95,33 +77,31 @@ public:
     double getDouble(int index);
     Date getDate(const std::string& name);
     Date getDate(int index);
-    DataTable getDataTable(const std::string& name);
-    DataTable getDataTable(int index);
-	//TODO: java::awt::Color определитбь свой Color
+    DataTablePtr getDataTable(const std::string& name);
+    DataTablePtr getDataTable(int index);
     Color getColor(const std::string& name);
     Color getColor(int index);
-    Data getData(const std::string& name);
-    Data getData(int index);
-	//TODO:
-    void* getValue(int index);
-    void* getValue(const std::string& name);
+    DataPtr getData(const std::string& name);
+    DataPtr getData(int index);
 
-	//	bool equals(void* obj);
-	bool operator==(const DataRecord& dataRecord) const;
+    AgObjectPtr getValue(int index);
+    AgObjectPtr getValue(const std::string& name);
+    AgObjectPtr getValueDescription(const std::string& name);
+    std::string getValueAsString(const std::string& name);
+    std::string getValueAsString(int index);
+    DataRecord &setId(const std::string& id);
+    void setTable(DataTablePtr table);
+    void setFormat(TableFormatPtr format);
 
-private:
-    static int INITIAL_DATA_SIZE;
-    static std::string ELEMENT_ID_;
-    std::map<std::string, void*> data;
-    TableFormat* format;
-    std::string id;
-    DataTable* table;
+    bool hasField(const std::string& name);
+    bool meetToCondition(boost::shared_ptr<QueryCondition> cond);
 
-	void setData(const std::string & dataString, ClassicEncodingSettings* settings, bool validate, std::list<std::string>&  fieldNamesInData);
-    void checkNumberOfDataFieldsSet(void* value);
-    DataRecord* setValue(int index, void* value, bool validate);   
-    int findIndex(const std::string & name);
-    void* getValue(FieldFormat* ff);*/
+    void cloneFormatFromTable();
+    std::string dataAsString(bool showFieldNames, bool showHiddenFields);
+    std::string valueAsString(const std::string& name);
+    std::string toString();
+    boost::shared_ptr<DataTable> wrap();
+    virtual DataRecord* clone() const;    
+
+    bool equals(AgObjectPtr obj);
 };
-
-#endif //_DATARECORD_H_

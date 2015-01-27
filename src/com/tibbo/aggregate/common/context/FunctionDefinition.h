@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/FunctionDefinition.java
-
 #ifndef FunctionDefinitionH
 #define FunctionDefinitionH
 
@@ -8,29 +6,29 @@
 #include "context/FunctionImplementation.h"
 #include "datatable/TableFormat.h"
 #include "security/Permissions.h"
-#include "context/entitydefinition.h"
+#include "context/EntityDefinition.h"
 
 
 class FunctionDefinition : public AbstractEntityDefinition
 {
  private:
-    TableFormat* inputFormat;
-    TableFormat* outputFormat;
+    boost::shared_ptr<TableFormat> inputFormat;
+    boost::shared_ptr<TableFormat> outputFormat;
     bool hidden;
     Permissions* permissions;
     FunctionImplementation* implementation;
     bool concurrent;
 
-    void init(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group);
+    void init(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description, const std::string &group);
 
 public:
-    TableFormat* getInputFormat();
-    TableFormat* getOutputFormat();
+    boost::shared_ptr<TableFormat> getInputFormat();
+    boost::shared_ptr<TableFormat> getOutputFormat();
     bool isHidden();
     Permissions* getPermissions();
     FunctionImplementation* getImplementation();
-    void setInputFormat(TableFormat* inputFormat);
-    void setOutputFormat(TableFormat* outputFormat);
+    void setInputFormat(boost::shared_ptr<TableFormat> inputFormat);
+    void setOutputFormat(boost::shared_ptr<TableFormat> outputFormat);
     void setHidden(bool hidden);
     void setPermissions(Permissions* perms);
     bool isConcurrent();
@@ -41,9 +39,9 @@ public:
     int hashCode();
     bool equals(void* obj);
 
-    FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat);
-    FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description);
-    FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group);
+    FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat);
+    FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description);
+    FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description, const std::string &group);
 
 };
 

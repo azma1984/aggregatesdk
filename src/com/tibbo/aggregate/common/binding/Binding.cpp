@@ -1,32 +1,32 @@
 #include "binding/Binding.h"
 
 
-//#include <com/tibbo/aggregate/common/expression/ExpressionUtils.h"
 
 
-Binding::Binding(boost::shared_ptr<Reference> reference, boost::shared_ptr<Expression> expression)
-{
-    id = 0;
-    this->reference = reference;
-    this->expression = expression;
-}
 
-Binding::Binding(const std::string& reference, const std::string& expression)
-{
-    id = 0;
-    this->reference = new Reference(reference);
-    this->expression = new Expression(expression);
-}
+//Binding::Binding(boost::shared_ptr<Reference> reference, boost::shared_ptr<Expression> expression)
+//{
+//    id = 0;
+//    this->reference = reference;
+//    this->expression = expression;
+//}
+//
+//Binding::Binding(const std::string& reference, const std::string& expression)
+//{
+//    id = 0;
+//    this->reference = new Reference(reference);
+//    this->expression = new Expression(expression);
+//}
 
-boost::shared_ptr<Expression> Binding::getExpression()
-{
-    return expression;
-}
+//boost::shared_ptr<Expression> Binding::getExpression()
+//{
+//    return expression;
+//}
 
-boost::shared_ptr<Reference> Binding::getReference()
-{
-    return reference;
-}
+//boost::shared_ptr<Reference> Binding::getReference()
+//{
+//    return reference;
+//}
 /*
 int Binding::hashCode()
 {
@@ -41,38 +41,39 @@ int Binding::hashCode()
 
 bool Binding::equals(Binding *obj)
 {
-    if(this == obj) {
-        return true;
-    }
 
-    if(obj == 0) {
-        return false;
-    }
+    //if(this == obj) {
+    //    return true;
+    //}
 
-    Binding* other = dynamic_cast<Binding*>(obj);
-    if(other == 0) {
-        return false;
-    }
+    //if(obj == 0) {
+    //    return false;
+    //}
 
-    if(expression == 0) {
-        if(other->expression != 0) {
-            return false;
-        }
-    }else if(!expression->equals(other->expression)) {
-        return false;
-    }
+    //Binding* other = dynamic_cast<Binding*>(obj);
+    //if(other == 0) {
+    //    return false;
+    //}
 
-    if (id != other->id) {
-        return false;
-    }
+    //if(expression == 0) {
+    //    if(other->expression != 0) {
+    //        return false;
+    //    }
+    //}else if(!expression->equals(other->expression)) {
+    //    return false;
+    //}
 
-    if(reference == 0) {
-        if(other->reference != 0) {
-            return false;
-        }
-    }else if(!reference->equals(other->reference)) {
-        return false;
-    }
+    //if (id != other->id) {
+    //    return false;
+    //}
+
+    //if(reference == 0) {
+    //    if(other->reference != 0) {
+    //        return false;
+    //    }
+    //}else if(!reference->equals(other->reference)) {
+    //    return false;
+    //}
 
     return true;
 }
@@ -80,22 +81,24 @@ bool Binding::equals(Binding *obj)
 Binding* Binding::clone()
 {
     //try {
-        Binding* clone = new Binding();
-        clone->reference = reference->clone();
-        clone->expression = (expression != 0) ? expression->clone() : NULL;
-        clone->id = (id == 0) ? 0 : ExpressionUtils::generateBindingId();
-        return clone;
+        //Binding* clone = new Binding();
+        //clone->reference = reference->clone();
+        //clone->expression = (expression != 0) ? expression->clone() : NULL;
+        //clone->id = (id == 0) ? 0 : ExpressionUtils::generateBindingId();
+        //return clone;
 //    } catch (::java::lang::CloneNotSupportedException* ex) {
 //        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
 //    }
+ return 0;
 }
 
 std::string Binding::toString()
 {
-    return std::string(reference->toString()).append(" = ").append(expression->toString());
+//    return std::string(reference->toString()).append(" = ").append(expression->toString());
+	return "";
 }
 
-long Binding::getId()
+long Binding::getId() const
 {
     return id;
 }
