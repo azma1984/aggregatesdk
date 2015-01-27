@@ -1,5 +1,7 @@
 #include "datatable/converter/AbstractFormatConverter.h"
+#include "datatable/FieldFormat.h"
 #include "Cres.h"
+
 
 std::list<std::string> initFIELDS_TO_SKIP()
 {

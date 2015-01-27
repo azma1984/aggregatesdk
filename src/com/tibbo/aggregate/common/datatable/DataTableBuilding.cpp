@@ -35,7 +35,7 @@ DateDataTableBuilding::DateDataTableBuilding()
     SELECTION_VALUES_FORMAT = TableFormatPtr(new TableFormat(true));
     SELECTION_VALUES_FORMAT->addField("<" + FIELD_SELECTION_VALUES_VALUE + "><S><F=NK><D=" + Cres::get()->getString("value") + ">");
     SELECTION_VALUES_FORMAT->addField("<" + FIELD_SELECTION_VALUES_DESCRIPTION + "><S><D=" + Cres::get()->getString("description") + "><V=<L=1 " + SString::fromNumber(INT_MAX) + ">>");
-    SELECTION_VALUES_FORMAT->addTableValidator(TableKeyFieldsValidatorPtr(new TableKeyFieldsValidator()));
+    //SELECTION_VALUES_FORMAT->addTableValidator(TableKeyFieldsValidatorPtr(new TableKeyFieldsValidator()));
 
 
 }

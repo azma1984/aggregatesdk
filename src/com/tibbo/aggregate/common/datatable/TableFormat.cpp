@@ -43,7 +43,7 @@ TableFormat *TableFormat::clone() const
     return NULL;
 }
 
-std::list<boost::shared_ptr<FieldFormat>> &TableFormat::getFields()
+std::list<FieldFormatPtr> TableFormat::getFields()
 {
     //todo
     //return immutable ? Collections.unmodifiableList(fields) : fields;
@@ -1029,7 +1029,7 @@ TableFormat* TableFormat::clone()
     return cl;
 }
 */
-void TableFormat::makeImmutable(DataTable* immutabilizer)
+void TableFormat::makeImmutable(DataTablePtr immutabilizer)
 {
     if (immutable) 
 	{

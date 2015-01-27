@@ -13,6 +13,7 @@
 #include "../util/Cloneable.h"
 #include "datatable/encoding/ClassicEncodingSettings.h"
 #include "datatable/validator/FieldValidator.h"
+#include "util/Pointers.h"
 
 
 /**
@@ -177,16 +178,16 @@ public:
   //  static boost::shared_ptr<FieldFormat> create(const std::string &name, long value);
 //    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type);
 
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, AgClass* valueClass);
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type);
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type, const std::string & description);
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type, const std::string & description, void* defaultValue);
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type, const std::string & description, void* defaultValue, const std::string & group);
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable);
-    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable, const std::string & group);
-    static boost::shared_ptr<FieldFormat> create(const std::string & format, ClassicEncodingSettings &settings);
-    static boost::shared_ptr<FieldFormat> create(const std::string & format, ClassicEncodingSettings &settings, bool validate);
-    static boost::shared_ptr<FieldFormat> create(const std::string & format);
+    static FieldFormatPtr create(const std::string &name, AgClass* valueClass);
+    static FieldFormatPtr create(const std::string &name, char type);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, void* defaultValue);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, void* defaultValue, const std::string & group);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable, const std::string & group);
+    static FieldFormatPtr create(const std::string & format, ClassicEncodingSettings &settings);
+    static FieldFormatPtr create(const std::string & format, ClassicEncodingSettings &settings, bool validate);
+    static FieldFormatPtr create(const std::string & format);
 
    // virtual Cloneable * clone() const
    // {

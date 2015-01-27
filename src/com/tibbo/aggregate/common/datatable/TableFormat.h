@@ -3,14 +3,18 @@
 #include <string>
 #include <list>
 #include "util/Cloneable.h"
-#include "datatable/FieldFormat.h"
+#include "util/Pointers.h"
 
-class DataTable;
 
 class TableFormat : public Cloneable
 { 
+
+public:
+    static const int DEFAULT_MIN_RECORDS = 0;
+    static const int DEFAULT_MAX_RECORDS = INT_MAX;
+
 private:
-    std::list<boost::shared_ptr<FieldFormat>> fields;
+    std::list<FieldFormatPtr> fields;
 public:   
     bool immutable;
     
@@ -22,12 +26,12 @@ public:
     virtual TableFormat *clone() const;
 
     TableFormat* setNamingExpression(const std::string &namingExpression);
-    void makeImmutable(DataTable* immutabilizer);
+    void makeImmutable(DataTablePtr immutabilizer);
 
     /**
        * Returns list of fields in table format.
        */
-    std::list<boost::shared_ptr<FieldFormat>> &getFields();
+    std::list<FieldFormatPtr> getFields();
 
 public:
     TableFormat();
