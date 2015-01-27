@@ -35,13 +35,25 @@ public:
 
     boost::shared_ptr<AgObject> convertValueToField(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value, boost::shared_ptr<AgClass> requiredClass);
     boost::shared_ptr<AgObject> convertValueFromField(boost::shared_ptr<AgObject> value);
-
-
+    boost::shared_ptr<AgObject> convertValueFromField(boost::shared_ptr<AgObject> value, boost::shared_ptr<AgClass> requiredClass);
+    boost::shared_ptr<AgObject> convertValueToField(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value);
 
     void registerFormatConverter(boost::shared_ptr<FormatConverter> converter);
+    boost::shared_ptr<FormatConverter> getFormatConverter(boost::shared_ptr<AgClass> valueClass);
+
+    boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name, boost::shared_ptr<AgObject> value);
+    boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name, const std::string &valueClassName);
+    boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name, boost::shared_ptr<AgClass> valueClass);
+
     boost::shared_ptr<FieldFormat> createTableField(const std::string & name, boost::shared_ptr<TableFormat> format);
+    boost::shared_ptr<FieldFormat> createTableField(const std::string & name, const std::string &description, boost::shared_ptr<TableFormat> format);
+
+    boost::shared_ptr<AgObject> createAggreGateBean(boost::shared_ptr<AgObject> value, boost::shared_ptr<AgClass> requiredClass);
 
 private:
     boost::shared_ptr<TableFormat> getFormatFromDefaultValue(boost::shared_ptr<FieldFormat> ff);
-
+    boost::shared_ptr<AgObject> createArray(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value);
+    std::list<boost::shared_ptr<AgObject>> createList(boost::shared_ptr<AgObject> bean, boost::shared_ptr<DataRecord> rec, bool setReadOnlyFields, boost::shared_ptr<FieldFormat> ff);
+    boost::shared_ptr<DataTable> convertList(boost::shared_ptr<AgObject> bean, boost::shared_ptr<AgObject> value, bool setReadOnlyFields, boost::shared_ptr<FieldFormat> ff);
+    boost::shared_ptr<DataTable> convertArray(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value);
 };

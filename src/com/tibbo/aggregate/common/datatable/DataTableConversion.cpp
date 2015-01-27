@@ -70,13 +70,23 @@ boost::shared_ptr<AgObject> DataTableConversion::convertValueFromField(boost::sh
     return 0;
 }
 
+boost::shared_ptr<AgObject> DataTableConversion::convertValueFromField(boost::shared_ptr<AgObject> value, boost::shared_ptr<AgClass> requiredClass)
+{
+    return 0;
+}
 
-
-
-
+boost::shared_ptr<AgObject> DataTableConversion::convertValueToField(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value)
+{
+    return 0;
+}
 
 void DataTableConversion::registerFormatConverter(boost::shared_ptr<FormatConverter> converter)
 {
+}
+
+boost::shared_ptr<FormatConverter> DataTableConversion::getFormatConverter(boost::shared_ptr<AgClass> valueClass)
+{
+    return 0;
 }
 
 boost::shared_ptr<DataRecord> DataTableConversion::beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors)
@@ -89,7 +99,53 @@ boost::shared_ptr<DataRecord> DataTableConversion::beanToRecord(boost::shared_pt
     return 0;
 }
 
-boost::shared_ptr<FieldFormat> DataTableConversion::createTableField(const std::string & name, boost::shared_ptr<TableFormat> format)
+boost::shared_ptr<FieldFormat> DataTableConversion::createFieldFormat(const std::string &name, boost::shared_ptr<AgObject> value)
+{
+    return 0;
+}
+
+boost::shared_ptr<FieldFormat> DataTableConversion::createFieldFormat(const std::string &name, const std::string &valueClassName)
+{
+    return 0;
+}
+
+boost::shared_ptr<FieldFormat> DataTableConversion::createFieldFormat(const std::string &name, boost::shared_ptr<AgClass> valueClass)
+{
+    return 0;
+}
+
+
+boost::shared_ptr<FieldFormat> DataTableConversion::createTableField(const std::string &name, boost::shared_ptr<TableFormat> format)
+{
+    return 0;
+}
+
+boost::shared_ptr<FieldFormat> DataTableConversion::createTableField(const std::string &name, const std::string &description, boost::shared_ptr<TableFormat> format)
+{
+    return 0;
+}
+
+boost::shared_ptr<AgObject> DataTableConversion::createAggreGateBean(boost::shared_ptr<AgObject> value, boost::shared_ptr<AgClass> requiredClass)
+{
+    return 0;
+}
+
+boost::shared_ptr<AgObject> DataTableConversion::createArray(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value)
+{
+    return 0;
+}
+
+std::list<boost::shared_ptr<AgObject>> DataTableConversion::createList(boost::shared_ptr<AgObject> bean, boost::shared_ptr<DataRecord> rec, bool setReadOnlyFields, boost::shared_ptr<FieldFormat> ff)
+{
+    return std::list<boost::shared_ptr<AgObject>>();
+}
+
+boost::shared_ptr<DataTable> DataTableConversion::convertList(boost::shared_ptr<AgObject> bean, boost::shared_ptr<AgObject> value, bool setReadOnlyFields, boost::shared_ptr<FieldFormat> ff)
+{
+    return 0;
+}
+
+boost::shared_ptr<DataTable> DataTableConversion::convertArray(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value)
 {
     return 0;
 }
