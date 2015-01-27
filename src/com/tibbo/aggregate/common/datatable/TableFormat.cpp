@@ -3,11 +3,6 @@
 #include "util/ElementList.h"
 #include "AggreGateException.h"
 
-/*boost::shared_ptr<TableFormat> *///TableFormat *TableFormat::EMPTY_FORMAT = new TableFormat(0, 0);
-/*
-const int TableFormat::DEFAULT_MIN_RECORDS = 0;
-const int TableFormat::DEFAULT_MAX_RECORDS = 0x7fffffff;
-
 const std::string TableFormat::ELEMENT_FLAGS = "F";
 const std::string TableFormat::ELEMENT_TABLE_VALIDATORS = "V";
 const std::string TableFormat::ELEMENT_RECORD_VALIDATORS = "R";
@@ -16,27 +11,39 @@ const std::string TableFormat::ELEMENT_MIN_RECORDS = "M";
 const std::string TableFormat::ELEMENT_MAX_RECORDS = "X";
 const std::string TableFormat::ELEMENT_NAMING = "N";
 
-const char TableFormat::TABLE_VALIDATOR_KEY_FIELDS = 'K';
-const char TableFormat::TABLE_VALIDATOR_EXPRESSION = 'E';
-const char TableFormat::RECORD_VALIDATOR_KEY_FIELDS = 'K';
+TableFormatPtr TableFormat::EMPTY_FORMAT;
 
-const char TableFormat::REORDERABLE_FLAG = 'R';
-const char TableFormat::UNRESIZEBLE_FLAG = 'U';
-const char TableFormat::BINDINGS_EDITABLE_FLAG = 'B';
 
-*/
 TableFormat::TableFormat() 
 {
+    minRecords = DEFAULT_MIN_RECORDS;
+    maxRecords = DEFAULT_MAX_RECORDS;
 }
 
 TableFormat::TableFormat(bool reorderable) 
 {
+    TableFormat::TableFormat();
 }
 
 TableFormat::TableFormat(int minRecords, int maxRecords)
 {
-  //  ctor(minRecords,maxRecords);
+    TableFormat::TableFormat();
 }
+
+TableFormat::TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat)
+{
+    TableFormat::TableFormat();
+}
+
+TableFormatPtr TableFormat::getEMPTY_FORMAT()
+{
+    if (EMPTY_FORMAT.get() == NULL)
+    {
+        EMPTY_FORMAT = TableFormatPtr(new TableFormat(0, 0));
+    }
+    return EMPTY_FORMAT;
+}
+
 
 TableFormat *TableFormat::clone() const
 {
@@ -66,10 +73,6 @@ TableFormat::TableFormat(const std::string& format, ClassicEncodingSettings* set
     ctor(format, settings, validate);
 }
 */
-TableFormat::TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat)
-{
-   // ctor(minRecords,maxRecords,fieldFormat);
-}
 /*
 TableFormat::TableFormat(int minRecords, int maxRecords, FieldFormat* fieldFormat)     
 {

@@ -16,6 +16,9 @@ class Evaluator;
 class Expression;
 class DataTableSorter;
 class TableKeyFieldsValidator;
+class RecordValidator;
+class TableValidator;
+class Binding;
 
 typedef boost::shared_ptr<AgObject> AgObjectPtr;
 typedef boost::shared_ptr<AgClass> AgClassPtr;
@@ -31,5 +34,7 @@ typedef boost::shared_ptr<Expression> ExpressionPtr;
 typedef boost::shared_ptr<DataTableQuery> DataTableQueryPtr;
 typedef boost::shared_ptr<DataTableSorter> DataTableSorterPtr;
 typedef boost::shared_ptr<TableKeyFieldsValidator> TableKeyFieldsValidatorPtr;
-
+typedef boost::shared_ptr<RecordValidator> RecordValidatorPtr;
+typedef boost::shared_ptr<TableValidator> TableValidatorPtr;
+typedef boost::shared_ptr<Binding> BindingPtr;
 
