@@ -1,31 +1,19 @@
-#ifndef _FieldFormat_H_
-#define _FieldFormat_H_
+#pragma once
 
 #include <string>
 #include <map>
 #include <list>
-#include <boost/shared_ptr.hpp>
+
 #include "util/Cloneable.h"
 #include "util/AgClass.h"
-
-//#include "field/BooleanFieldFormat.h"
-#include "../AggreGateException.h"
-#include "../util/Cloneable.h"
-#include "datatable/encoding/ClassicEncodingSettings.h"
-#include "datatable/validator/FieldValidator.h"
 #include "util/Pointers.h"
 
-
-/**
- * FieldFormat is a part of TableFormat that describes single DataTable field.
- */
-class BooleanFieldFormat;
 
 class FieldFormat : public Cloneable
 {
 private: 
    // static std::map<Class*,char> CLASS_TO_TYPE;// = new Hashtable();
-    static std::map<void*, std::string> TYPE_SELECTION_VALUES;// = new LinkedHashMap();    
+    //static std::map<void*, std::string> TYPE_SELECTION_VALUES;// = new LinkedHashMap();
   
     static std::string ELEMENT_FLAGS;
     static std::string ELEMENT_DEFAULT_VALUE;
@@ -50,7 +38,7 @@ private:
     static const char DEFAULT_OVERRIDE = 'D';
 
 
-	std::string name;
+    std::string name;
     bool nullable;
     bool optional;
     bool extendableSelectionValues;
@@ -61,14 +49,14 @@ private:
     bool inlineData;
     bool advanced;
     bool defaultOverride;
-    void* defaultValue;
+    AgObjectPtr defaultValue;
     std::string description;
     std::string help;
     std::string group;
     std::string editor;
     std::string editorOptions;
 //    std::map<T,std::string> selectionValues; //todo class template? 
-    std::list<FieldValidator<void*>*> validators;
+    //std::list<FieldValidator<void*>*> validators;
     std::string icon;
     bool transferEncode;
     bool immutable;
@@ -169,7 +157,7 @@ public:
     FieldFormat* addSelectionValue(void* value,const std::string &description);
     FieldFormat* addSelectionValue(void* value);
     bool isExtendableSelectionValues();
-    std::list<FieldValidator<void*>*> getValidators();
+    //std::list<FieldValidator<void*>*> getValidators();
     bool isReadonly();
     bool isNotReplicated();
 
@@ -196,11 +184,5 @@ public:
 
 
 };
-
-
-
-
-#endif
-
 
 
