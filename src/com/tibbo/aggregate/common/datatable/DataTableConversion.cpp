@@ -30,17 +30,17 @@ boost::shared_ptr<DataTable> DataTableConversion::beansToTable(std::list<boost::
     return 0;
 }
 
-boost::shared_ptr<AgObject> DataTableConversion::beanFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields)
+boost::shared_ptr<AgObject> DataTableConversion::beanFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields)
 {
     return 0;
 }
 
-std::list<boost::shared_ptr<AgObject>> DataTableConversion::beansFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields)
+std::list<boost::shared_ptr<AgObject>> DataTableConversion::beansFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields)
 {
     return std::list<boost::shared_ptr<AgObject>>();
 }
 
-boost::shared_ptr<AgObject> DataTableConversion::beanFromRecord(boost::shared_ptr<DataRecord> rec, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields)
+boost::shared_ptr<AgObject> DataTableConversion::beanFromRecord(boost::shared_ptr<DataRecord> rec, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields)
 {
     return 0;
 }
@@ -60,7 +60,7 @@ boost::shared_ptr<TableFormat> DataTableConversion::getFormatFromDefaultValue(bo
     return 0;
 }
 
-boost::shared_ptr<AgObject> DataTableConversion::convertValueToField(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value, boost::shared_ptr<Class> requiredClass)
+boost::shared_ptr<AgObject> DataTableConversion::convertValueToField(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value, boost::shared_ptr<AgClass> requiredClass)
 {
     return 0;
 }

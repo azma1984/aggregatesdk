@@ -22,10 +22,10 @@ public:
     boost::shared_ptr<DataTable> beanToTable(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true, bool ignoreErrors = false);
     boost::shared_ptr<DataTable> beansToTable(std::list<boost::shared_ptr<AgObject>> beans, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
 
-    boost::shared_ptr<AgObject> beanFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
-    std::list<boost::shared_ptr<AgObject>> beansFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
+    boost::shared_ptr<AgObject> beanFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
+    std::list<boost::shared_ptr<AgObject>> beansFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
 
-    boost::shared_ptr<AgObject> beanFromRecord(boost::shared_ptr<DataRecord> rec, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields);
+    boost::shared_ptr<AgObject> beanFromRecord(boost::shared_ptr<DataRecord> rec, boost::shared_ptr<AgClass> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields);
 
     void populateBeanFromRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<DataRecord> rec, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields);
     void populateBeanFromRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<DataRecord> rec, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, std::list<std::string> fieldsToSkip);
@@ -33,7 +33,7 @@ public:
     boost::shared_ptr<DataRecord> beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors);
     boost::shared_ptr<DataRecord> beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors, const std::list<std::string> &fieldsToSkip);
 
-    boost::shared_ptr<AgObject> convertValueToField(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value, boost::shared_ptr<Class> requiredClass);
+    boost::shared_ptr<AgObject> convertValueToField(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value, boost::shared_ptr<AgClass> requiredClass);
     boost::shared_ptr<AgObject> convertValueFromField(boost::shared_ptr<AgObject> value);
 
 

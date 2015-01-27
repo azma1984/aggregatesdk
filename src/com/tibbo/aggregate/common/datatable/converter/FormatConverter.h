@@ -2,8 +2,8 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include "util/AgObject.h"
+#include "util/AgClass.h"
 
-class Class;
 class TableFormat;
 class FieldFormat;
 class DataRecord;
@@ -11,7 +11,7 @@ class DataRecord;
 class FormatConverter
 {
 public:
-    virtual boost::shared_ptr<Class> getValueClass() = 0;
+    virtual boost::shared_ptr<AgClass> getValueClass() = 0;
     virtual boost::shared_ptr<TableFormat> getFormat() = 0;
     virtual boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name) = 0;
     virtual boost::shared_ptr<AgObject> instantiate(boost::shared_ptr<DataRecord> source) = 0;

@@ -46,23 +46,23 @@ void AbstractFormatConverter::removeFiledFromNullableFormat(boost::shared_ptr<Ta
     format.removeField(fieldName);*/
 }
 
-AbstractFormatConverter::AbstractFormatConverter(boost::shared_ptr<Class> valueClass, boost::shared_ptr<TableFormat> format)
+AbstractFormatConverter::AbstractFormatConverter(boost::shared_ptr<AgClass> valueClass, boost::shared_ptr<TableFormat> format)
 {
     this->valueClass = valueClass;
     this->format = format;
 }
 
-AbstractFormatConverter::AbstractFormatConverter(boost::shared_ptr<Class> valueClass)
+AbstractFormatConverter::AbstractFormatConverter(boost::shared_ptr<AgClass> valueClass)
 {
     this->valueClass = valueClass;
 }
 
-boost::shared_ptr<Class> AbstractFormatConverter::getValueClass()
+boost::shared_ptr<AgClass> AbstractFormatConverter::getValueClass()
 {
     return valueClass;
 }
 
-void AbstractFormatConverter::setValueClass(boost::shared_ptr<Class> valueClass)
+void AbstractFormatConverter::setValueClass(boost::shared_ptr<AgClass> valueClass)
 {
     this->valueClass = valueClass;
 }

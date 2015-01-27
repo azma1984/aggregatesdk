@@ -14,7 +14,7 @@ public:
     static const std::string VF_IS_NULL;
 
 private:
-    boost::shared_ptr<Class> valueClass;
+    boost::shared_ptr<AgClass> valueClass;
     boost::shared_ptr<TableFormat> format;
     static std::list<std::string> FIELDS_TO_SKIP;
 
@@ -25,11 +25,11 @@ public:
     static void addFiledToNullableFormat(boost::shared_ptr<TableFormat> format, boost::shared_ptr<FieldFormat> field);
     static void removeFiledFromNullableFormat(boost::shared_ptr<TableFormat> format, const std::string &fieldName);
 
-    AbstractFormatConverter(boost::shared_ptr<Class> valueClass, boost::shared_ptr<TableFormat> format);
-    AbstractFormatConverter(boost::shared_ptr<Class> valueClass);
+    AbstractFormatConverter(boost::shared_ptr<AgClass> valueClass, boost::shared_ptr<TableFormat> format);
+    AbstractFormatConverter(boost::shared_ptr<AgClass> valueClass);
 
-    virtual boost::shared_ptr<Class> getValueClass();
-    void setValueClass(boost::shared_ptr<Class> valueClass);
+    virtual boost::shared_ptr<AgClass> getValueClass();
+    void setValueClass(boost::shared_ptr<AgClass> valueClass);
     virtual boost::shared_ptr<TableFormat> getFormat();
     virtual boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name);
     virtual boost::shared_ptr<AgObject> instantiate(boost::shared_ptr<DataRecord> source);
