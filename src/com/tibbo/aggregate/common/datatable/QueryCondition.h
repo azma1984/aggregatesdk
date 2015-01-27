@@ -1,42 +1,25 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/QueryCondition.java
-
-#ifndef QueryConditionH
-#define QueryConditionH
-
-
+#pragma once
+#include "util/Pointers.h"
 
 class QueryCondition
-    
 {
-/*
 public:
-    typedef void super;
-    static const int EQ = 1) };
-    static const int GT = 2) };
-    static const int LT = 4) };
-    static const int NE = 8) };
-    static const int GE = 3) };
-    static const int LE = 5) };
+    static const int EQ = 1;
+    static const int GT = 2;
+    static const int LT = 4;
+    static const int NE = 8;
+    static const int GE = GT | EQ;
+    static const int LE = LT | EQ;
 
 private:
-    const std::string & field;
-    void* value;
+    std::string field;
+    AgObjectPtr value;
     int operator_;
-protected:
-    void ctor(const std::string & field, void* value, int operator_);
-    void ctor(const std::string & field, void* value);
 
 public:
-    const std::string & getField();
-    void* getValue();
+    QueryCondition(const std::string & field, AgObjectPtr value, int operator_ = EQ);
+    std::string getField();
+    AgObjectPtr getValue();
     int getOperator();
 
-    // Generated
-    QueryCondition(const std::string & field, void* value, int operator_);
-    QueryCondition(const std::string & field, void* value);
-protected:
-    QueryCondition(const ::default_init_tag&);
-
-*/
 };
-#endif
