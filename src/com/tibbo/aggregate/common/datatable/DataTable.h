@@ -1,4 +1,7 @@
-#pragma once
+#ifndef DataTableH
+#define DataTableH
+
+
 #include <list>
 #include "util/Pointers.h"
 #include "util/Cloneable.h"
@@ -7,6 +10,20 @@ class DataTable: public Cloneable
 {
 
 private:
+	//Evaluator * namingEvaluator;
+	std::list<DataRecord*> records;
+
+	static TableFormat* DEFAULT_FORMAT;
+	long  id;
+	TableFormat* format;
+	const std::string & invalidationMessage;
+	static const std::string ELEMENT_FORMAT_;
+	static const std::string ELEMENT_FORMAT_ID_;
+	static const std::string ELEMENT_RECORD_;
+	static const std::string ELEMENT_INVALIDATOR_;
+	static const std::string ELEMENT_FIELD_NAME_;
+
+protected:
     static TableFormatPtr DEFAULT_FORMAT;
     long  id;
     TableFormatPtr format;
@@ -107,3 +124,5 @@ public:
     int compareTo(DataTablePtr other);
     void append(DataTablePtr src);
 };
+
+#endif

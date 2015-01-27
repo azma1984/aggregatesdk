@@ -20,12 +20,12 @@ private:
     bool encodeFieldNames;
 
 public:
-    ClassicEncodingSettings(bool useVisibleSeparators) : EncodingSettings(true, NULL), encodeDefaultValues(true), encodeFieldNames(false)
-    {
+	ClassicEncodingSettings(bool useVisibleSeparators) : EncodingSettings(true, boost::shared_ptr<TableFormat>()/* NULL*/), encodeDefaultValues(true), encodeFieldNames(false)
+	{
         this->useVisibleSeparators = useVisibleSeparators;
     }
 
-    ClassicEncodingSettings(bool useVisibleSeparators, bool encodeFieldNames) : EncodingSettings(true, NULL), encodeDefaultValues(true), encodeFieldNames(false)
+	ClassicEncodingSettings(bool useVisibleSeparators, bool encodeFieldNames) : EncodingSettings(true,boost::shared_ptr<TableFormat>()/* NULL*/), encodeDefaultValues(true), encodeFieldNames(false)
     {
         this->useVisibleSeparators = useVisibleSeparators;
         this->encodeFieldNames = encodeFieldNames;

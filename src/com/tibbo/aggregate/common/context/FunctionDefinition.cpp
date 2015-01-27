@@ -4,17 +4,17 @@
 
 
 
-FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat) 
+FunctionDefinition::FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat)
 {
   init(name, inputFormat, outputFormat, 0, 0);
 }
 
-FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat,  const std::string &description) 
+FunctionDefinition::FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat,  const std::string &description)
 {
   init(name, inputFormat, outputFormat, description, 0);
 }
 
-FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group) 
+FunctionDefinition::FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description, const std::string &group)
 {
   init(name, inputFormat, outputFormat, description, group);
 }
@@ -22,7 +22,7 @@ FunctionDefinition::FunctionDefinition(const std::string &name, TableFormat* inp
 
 
 
-void FunctionDefinition::init(const std::string &name, TableFormat* inputFormat, TableFormat* outputFormat, const std::string &description, const std::string &group)
+void FunctionDefinition::init(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description, const std::string &group)
 {
     hidden = false;
     permissions=0;
@@ -37,12 +37,12 @@ void FunctionDefinition::init(const std::string &name, TableFormat* inputFormat,
     setGroup(group);
 }
 
-TableFormat* FunctionDefinition::getInputFormat()
+boost::shared_ptr<TableFormat> FunctionDefinition::getInputFormat()
 {
     return inputFormat;
 }
 
-TableFormat* FunctionDefinition::getOutputFormat()
+boost::shared_ptr<TableFormat> FunctionDefinition::getOutputFormat()
 {
     return outputFormat;
 }
@@ -62,7 +62,7 @@ FunctionImplementation* FunctionDefinition::getImplementation()
     return implementation;
 }
 
-void FunctionDefinition::setInputFormat(TableFormat* inputFormat)
+void FunctionDefinition::setInputFormat(boost::shared_ptr<TableFormat> inputFormat)
 {
     if(inputFormat != 0) 
 	{
@@ -71,7 +71,7 @@ void FunctionDefinition::setInputFormat(TableFormat* inputFormat)
     this->inputFormat = inputFormat;
 }
 
-void FunctionDefinition::setOutputFormat(TableFormat* outputFormat)
+void FunctionDefinition::setOutputFormat(boost::shared_ptr<TableFormat> outputFormat)
 {
     if(outputFormat != 0) 
 	{

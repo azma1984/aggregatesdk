@@ -17,8 +17,8 @@ public:
     virtual std::string getInheritedUsername() = 0;
     virtual std::string getEffectiveUsername() = 0;
     virtual bool isPermissionCheckingEnabled() = 0;
-    virtual boost::shared_ptr<Permissions> getPermissions() = 0;
-    virtual boost::shared_ptr<PermissionCache> getPermissionCache() = 0;
+    virtual Permissions *getPermissions() = 0;
+	virtual PermissionCache *getPermissionCache() = 0;
     virtual bool isLoggedIn()= 0;
     virtual void login(const std::string& username, const std::string& inheritedUsername, boost::shared_ptr<Permissions> permissons) = 0;
     virtual void logout() = 0;

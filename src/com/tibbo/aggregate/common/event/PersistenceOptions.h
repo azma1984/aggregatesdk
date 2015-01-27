@@ -3,12 +3,13 @@
 #ifndef _PersistenceOptions_H_
 #define _PersistenceOptions_H_
 //#include <com/tibbo/aggregate/common/event/PersistenceBinding.h"
-//#include <com/tibbo/aggregate/common/util/CloneUtils.h"
+//#include "util/CloneUtils.h"
+#include "util/cloneable.h"
 
 
 
 
-class PersistenceOptions//: public ::java::lang::Cloneable
+class PersistenceOptions: public Cloneable
 {
 /*
 private:
@@ -25,13 +26,13 @@ private:
     bool persistEnrichments;
     bool persistFormat;
     bool persistData;
-
-public:
+		 */
+public:   /*
     PersistenceOptions* clone();
     std::list  getPersistenceBindings();
     void addPersistenceBinding(PersistenceBinding* binding);
-    bool isDedicatedTablePreferred();
-    void setDedicatedTablePreferred(bool dedicatedTablePreferred);
+	bool isDedicatedTablePreferred();  */
+	void setDedicatedTablePreferred(bool dedicatedTablePreferred);  /*
     bool isPerContextTablePreferred();
     void setPerContextTablePreferred(bool perContextTablePreferred);
     bool isPersistContext();

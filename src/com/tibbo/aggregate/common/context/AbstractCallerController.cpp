@@ -26,7 +26,7 @@ bool AbstractCallerController::isPermissionCheckingEnabled()
     return true;
 }
 
-boost::shared_ptr<PermissionCache> AbstractCallerController::getPermissionCache()
+PermissionCache* AbstractCallerController::getPermissionCache()
 {
     return 0;
 }
@@ -58,7 +58,7 @@ std::list<CallerController*> AbstractCallerController::getControllers()
    std::set<CallerController*>::iterator it;
    
    for(it = CONTROLLERS.begin(); it != CONTROLLERS.end(); it++) 
-     {
+	 {
       CallerController* cc =  *it;
       list.push_front(cc);
      }
@@ -68,13 +68,14 @@ std::list<CallerController*> AbstractCallerController::getControllers()
 
 std::string AbstractCallerController::toString()
 {
-    return (type.empty() ==false ? type : "name_class"/*getClass().getName()*/) + " (" + (loggedIn ? "logged in" : "not logged in") + ")";
-	return "";
+ std::string str1 = (loggedIn ? "logged in" : "not logged in");
+ std::string str2 = " (" + str1 + ")";
+ return (type.empty() ==false)? type : "name_class"/*getClass().getName()*/ + str2 ;
 }
 
-boost::shared_ptr<Permissions> AbstractCallerController::getPermissions()
+Permissions *AbstractCallerController::getPermissions()
 {
-    return 0;
+	return 0;
 }
 
 std::string AbstractCallerController::getUsername()

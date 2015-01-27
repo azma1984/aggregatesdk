@@ -1,12 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/DefaultFormatConverter.java
 
 #ifndef DefaultFormatConverterH
 #define DefaultFormatConverterH
 
-//#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
-//#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
+//#include "datatable/DataRecord.h"
+//#include "datatable/DataTable.h"
+//#include "datatable/DataTableConversion.h"
+//#include "datatable/DataTableException.h"
 #include "datatable/TableFormat.h"
 #include "AgClass.h"
 #include "datatable/converter/AbstractFormatConverter.h"

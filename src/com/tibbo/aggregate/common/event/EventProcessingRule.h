@@ -34,7 +34,7 @@ private:
     int queue;
     bool duplicateDispatching;
     long period;
-    std::list<boost::shared_ptr<EventEnrichmentRule>>  enrichments;
+	std::list< boost::shared_ptr<EventEnrichmentRule> >  enrichments;
     boost::shared_ptr<Expression> prefilterExpression;
     boost::shared_ptr<Expression> deduplicatorExpression;
     long filtered;
@@ -54,8 +54,8 @@ public:
     std::string getDeduplicator();
     void setDeduplicator(const std::string& deduplicator);
     boost::shared_ptr<Expression> getDeduplicatorExpression();
-    std::list<boost::shared_ptr<EventEnrichmentRule>>  getEnrichments();
-    void setEnrichments(std::list<boost::shared_ptr<EventEnrichmentRule>  enrichments);
+	std::list< boost::shared_ptr<EventEnrichmentRule> >  getEnrichments();
+    void setEnrichments(std::list<boost::shared_ptr<EventEnrichmentRule> >  enrichments);
     int getQueue();
     void setQueue(int queue);
     bool isDuplicateDispatching();
