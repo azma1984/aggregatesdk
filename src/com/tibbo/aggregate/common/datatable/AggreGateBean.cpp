@@ -1,68 +1,35 @@
 #include "datatable/AggreGateBean.h"
+#include "datatable/DataTableConversion.h"
+#include "datatable/DataRecord.h"
 
-
-//AggreGateBean::AggreGateBean(const ::default_init_tag&)
-//    : super(*static_cast< ::default_init_tag* >(0))
-//{
-//    
-//}
-//
-AggreGateBean::AggreGateBean(boost::shared_ptr<TableFormat> format) 
+AggreGateBean::AggreGateBean(TableFormatPtr format)
 {
-//    this->format = format;
-//    if(format != 0) {
-//        try {
-//            DataTableConversion::populateBeanFromRecord(this, new DataRecord(format), format, true);
-//        } catch (DataTableException* ex) {
-//            throw new ::java::lang::IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
-//        }
-//    }
+    this->format = format;
+    DataTableConversion::instance().populateBeanFromRecord(shared_from_this(), DataRecordPtr(new DataRecord(format)), format, true);
 }
 
-AggreGateBean::AggreGateBean(boost::shared_ptr<TableFormat> format, boost::shared_ptr<DataRecord> data) 
+AggreGateBean::AggreGateBean(TableFormatPtr format, DataRecordPtr data)
 {
-   // ctor(format,data);
-}
-//
-//void AggreGateBean::ctor(TableFormat* format)
-//{
+    this->format = format;
+    DataTableConversion::instance().populateBeanFromRecord(shared_from_this(), data, format, true);
 
-//}
-//
-//void AggreGateBean::ctor(TableFormat* format, DataRecord* data)
-//{
-//    super::ctor();
-//    this->format = format;
-//    try {
-//        DataTableConversion::populateBeanFromRecord(this, data, format, true);
-//    } catch (DataTableException* ex) {
-//        throw new ::java::lang::IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
-//    }
-//}
-//
-//DataTable* AggreGateBean::toDataTable()
-//{
-//    try {
-//        return DataTableConversion::beanToTable(this, format, true, true);
-//    } catch (DataTableException* ex) {
-//        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
-//    }
-//}
-//
-//DataRecord* AggreGateBean::toDataRecord()
-//{
-//    try {
-//        return DataTableConversion::beanToRecord(this, format, true, true);
-//    } catch (DataTableException* ex) {
-//        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
-//    }
-//}
-//
-//TableFormat* AggreGateBean::getFormat()
-//{
-//    return format;
-//}
-//
+}
+
+DataTablePtr AggreGateBean::toDataTable()
+{
+    return DataTableConversion::instance().beanToTable(shared_from_this(), format, true, true);
+}
+
+DataRecordPtr AggreGateBean::toDataRecord()
+{
+    return DataTableConversion::instance().beanToRecord(shared_from_this(), format, true, true);
+}
+
+TableFormatPtr AggreGateBean::getFormat()
+{
+    return format;
+}
+
 
 
 

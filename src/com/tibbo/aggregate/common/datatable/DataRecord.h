@@ -103,7 +103,5 @@ public:
     boost::shared_ptr<DataTable> wrap();
     virtual DataRecord* clone() const;    
 
-
-
     bool equals(AgObjectPtr obj);
 };
