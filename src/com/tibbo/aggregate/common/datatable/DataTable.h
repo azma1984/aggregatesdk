@@ -1,188 +1,109 @@
-#ifndef DataTableH
-#define DataTableH
-
+#pragma once
 #include <list>
-//#include "Cloneable.h"
-//#include "DataRecord.h"
-/*
- #include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/Log.h"
+#include "util/Pointers.h"
+#include "util/Cloneable.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable_sort_1.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable_DataTableReferenceResolver.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable_Iter.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableQuery.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableSorter.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/QueryCondition.h"
-#include <com/tibbo/aggregate/common/datatable/SortOrder.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/datatable/ValidationException.h"
-#include <com/tibbo/aggregate/common/datatable/encoding/ClassicEncodingSettings.h"
-#include <com/tibbo/aggregate/common/datatable/encoding/FormatCache.h"
-#include <com/tibbo/aggregate/common/datatable/encoding/KnownFormatCollector.h"
-#include <com/tibbo/aggregate/common/datatable/validator/RecordValidator.h"
-#include <com/tibbo/aggregate/common/datatable/validator/TableValidator.h"
-#include <com/tibbo/aggregate/common/expression/DefaultReferenceResolver.h"
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/Expression.h"
-#include <com/tibbo/aggregate/common/expression/Reference.h"
-#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
-#include <com/tibbo/aggregate/common/util/CloneUtils.h"
-#include <com/tibbo/aggregate/common/util/Element.h"
-#include <com/tibbo/aggregate/common/util/ElementList.h"
-#include <com/tibbo/aggregate/common/util/StringUtils.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
-  */
-
-class DataRecord;
-class DataTable//: public Cloneable
+class DataTable: public Cloneable
 {
 
 private:
-	//Evaluator * namingEvaluator;
-	std::list<DataRecord> records;
-	/*
-		static TableFormat* DEFAULT_FORMAT;
-	long  id;
-	TableFormat* format;
-	const std::string & invalidationMessage;
-	static const std::string ELEMENT_FORMAT_;
-	static const std::string ELEMENT_FORMAT_ID_;
-	static const std::string ELEMENT_RECORD_;
-	static const std::string ELEMENT_INVALIDATOR_;
-	static const std::string ELEMENT_FIELD_NAME_;
+    static TableFormatPtr DEFAULT_FORMAT;
+    long  id;
+    TableFormatPtr format;
+    std::string invalidationMessage;
 
-protected:
-    void ctor();
-    void ctor(TableFormat* format);
-    void ctor(TableFormat* format, int emptyRecords);
-    void ctor(TableFormat* format, bool createEmptyRecords);
-    void ctor(DataRecord* record);
-	void ctor(TableFormat* format, const std::string & dataString, encoding::ClassicEncodingSettings* settings);
-	void ctor(TableFormat* format, voidArray* firstRowData);
-	void ctor(const std::string & data) ;
-	void ctor(const std::string & data, bool validate) ;
-	void ctor(const std::string & data, encoding::ClassicEncodingSettings* settings, bool validate);
+    static const std::string ELEMENT_FORMAT;
+    static const std::string ELEMENT_FORMAT_ID;
+    static const std::string ELEMENT_RECORD;
+    static const std::string ELEMENT_INVALIDATOR;
+    static const std::string ELEMENT_FIELD_NAME;
+
+    EvaluatorPtr namingEvaluator;
+
+    void addRecordImpl(int index, DataRecordPtr record);
+    DataRecordPtr removeRecordImpl(int index);
+    const std::string toDefaultString();
+    ExpressionPtr getNamingExpression();
+    EvaluatorPtr ensureEvaluator();
 
 public:
-    int getRecordCount();
-    int getFieldCount();
-    TableFormat* getFormat();
-    FieldFormat* getFormat(int field);
-    FieldFormat* getFormat(const std::string & name);
-    long  getId();
-    DataTable* setFormat(TableFormat* format);
-    void setId(long  id);
-    bool hasField(const std::string & field);
-    void setInvalidationMessage(const std::string & invalidationMessage);
+    TableFormatPtr getDEFAULT_FORMAT();
 
-public:
-    void checkOrSetFormat(DataRecord* record);
-
-public:
-    DataTable* addRecord(DataRecord* record);
-	DataRecord* addRecord(voidArray* fieldValues);
-    DataTable* addRecord(int index, DataRecord* record);
-    DataRecord* addRecord();
-
-private:
-    void addRecordImpl(int  index, DataRecord* record);
-
-public:
-	void validate();
-	void validateRecord(DataRecord* record);
-    DataTable* setRecord(int index, DataRecord* record);
-    void swapRecords(int index1, int index2);
-    std::list  getRecords();
-    bool isInvalid();
-    const std::string & getInvalidationMessage();
-    DataRecord* getRecord(int number);
-    DataRecord* getRecordById(const std::string & id);
-
-private:
-    DataRecord* removeRecordImpl(int index);
-
-public:
-    DataRecord* removeRecord(int index);
-    void removeRecords(DataRecord* rec);
-    void reorderRecord(DataRecord* record, int index);
-    bool equals(void* obj);
-    const std::string & getEncodedData(encoding::ClassicEncodingSettings* settings);
-    const std::string & encode();
-    const std::string & encode(bool useVisibleSeparators);
-    const std::string & encode(encoding::ClassicEncodingSettings* settings);
-    const std::string & toString();
-    const std::string & getDescription();
-
-private:
-    const std::string & toDefaultString();
-    Expression* getNamingExpression();
-    Evaluator* ensureEvaluator();
-
-public:
-    void fixRecords();
-    const std::string & dataAsString();
-    const std::string & dataAsString(bool showFieldNames, bool showHiddenFields);
-    bool isOneCellTable();
-    bool conform(TableFormat* rf);
-    const std::string & conformMessage(TableFormat* rf);
-    std::list  selectAll(DataTableQuery* query);
-    int  findIndex(DataTableQuery* query);
-    DataRecord* select(DataTableQuery* query);
-    DataRecord* select(const std::string & field, void* value);
-    int  findIndex(const std::string & field, void* value);
-    void sort(const std::string & field, bool ascending);
-    void sort(DataTableSorter* sorter);
-    void sort(::java::util::Comparator* comparator);
-    DataRecord* rec();
-    void* get();
-    void splitFormat();
-    void joinFormats();
-    ::java::util::Iterator* iterator();
-
-    int compareTo(DataTable* other);
-    void append(DataTable* src);
-
-
-    DataTable(TableFormat* format);
-    DataTable(TableFormat* format, int emptyRecords);
-    DataTable(TableFormat* format, bool createEmptyRecords);
-    DataTable(DataRecord* record);
-    DataTable(TableFormat* format, const std::string & dataString, encoding::ClassicEncodingSettings* settings);
-    DataTable(TableFormat* format, voidArray* firstRowData);
+    DataTable();
+    DataTable(TableFormatPtr format);
+    DataTable(TableFormatPtr format, int emptyRecords);
+    DataTable(TableFormatPtr format, bool createEmptyRecords);
+    DataTable(DataRecordPtr record);
+    DataTable(TableFormatPtr format, const std::string &dataString, ClassicEncodingSettingsPtr settings);
+    DataTable(TableFormatPtr format, std::list<AgObjectPtr> firstRowData);
     DataTable(const std::string & data);
     DataTable(const std::string & data, bool validate);
-    DataTable(const std::string & data, encoding::ClassicEncodingSettings* settings, bool validate);
-protected:
-    DataTable(const ::default_init_tag&);
+    DataTable(const std::string & data, ClassicEncodingSettingsPtr settings, bool validate);
 
+    int getRecordCount();
+    int getFieldCount();
+    TableFormatPtr getFormat();
+    FieldFormatPtr getFormat(int field);
+    FieldFormatPtr getFormat(const std::string & name);
+    long  getId();
+    DataTablePtr setFormat(TableFormatPtr format);
+    void setId(long id);
+    bool hasField(const std::string & field);
+    void setInvalidationMessage(const std::string & invalidationMessage);
+    void checkOrSetFormat(DataRecordPtr record);
 
+    DataTablePtr addRecord(DataRecordPtr record);
+    DataRecordPtr addRecord(std::list<AgObjectPtr> fieldValues);
+    DataTablePtr addRecord(int index, DataRecordPtr record);
+    DataRecordPtr addRecord();
 
+	void validate();
+    void validateRecord(DataRecordPtr record);
+    DataTablePtr setRecord(int index, DataRecordPtr record);
+    void swapRecords(int index1, int index2);
+    std::list<AgObjectPtr>  getRecords();
+    bool isInvalid();
+    const std::string getInvalidationMessage();
+    DataRecordPtr getRecord(int number);
+    DataRecordPtr getRecordById(const std::string &id);
 
+    DataRecordPtr removeRecord(int index);
+    void removeRecords(DataRecordPtr rec);
+    void reorderRecord(DataRecordPtr record, int index);
+    bool equals(DataTablePtr obj);
+    const std::string getEncodedData(ClassicEncodingSettingsPtr settings);
+    const std::string encode();
+    const std::string encode(bool useVisibleSeparators);
+    const std::string encode(ClassicEncodingSettingsPtr settings);
+    const std::string toString();
+    const std::string getDescription();
 
-public:
-	int compareTo(void* arg0);
-	static TableFormat*& DEFAULT_FORMAT();
+    void fixRecords();
+    const std::string dataAsString();
+    const std::string dataAsString(bool showFieldNames, bool showHiddenFields);
+    bool isOneCellTable();
+    bool conform(TableFormatPtr rf);
+    const std::string conformMessage(TableFormatPtr rf);
+    std::list<DataRecordPtr>  selectAll(DataTableQueryPtr query);
+    int  findIndex(DataTableQueryPtr query);
 
-private:
-	static const std::string& ELEMENT_FORMAT();
-	static const std::string& ELEMENT_FORMAT_ID();
-	static const std::string& ELEMENT_RECORD();
-	static const std::string& ELEMENT_INVALIDATOR();
-	static const std::string& ELEMENT_FIELD_NAME();
-	::java::lang::Class* getClass0();
-	friend class DataTable_sort_1;
-	friend class DataTable_Iter;
-	friend class DataTable_DataTableReferenceResolver;
-	*/
-public:
-	DataTable* clone();
-	DataTable(DataTable &table); //конструктор копии
-	void init();
+    DataRecordPtr select(DataTableQueryPtr query);
+    DataRecordPtr select(const std::string & field, AgObjectPtr value);
+    int  findIndex(const std::string & field, AgObjectPtr value);
+    void sort(const std::string & field, bool ascending);
+    void sort(DataTableSorterPtr sorter);
+    //todo
+    //void sort(::java::util::Comparator* comparator);
 
-	DataTable();
+    DataRecordPtr rec();
+    AgObjectPtr get();
+    void splitFormat();
+    void joinFormats();
 
+    //todo
+    //::java::util::Iterator* iterator();
+
+    DataTable* clone();
+    int compareTo(DataTablePtr other);
+    void append(DataTablePtr src);
 };
-
-#endif
