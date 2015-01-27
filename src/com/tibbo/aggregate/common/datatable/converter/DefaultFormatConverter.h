@@ -8,7 +8,7 @@
 //#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
 //#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
 #include "datatable/TableFormat.h"
-#include "Class.h"
+#include "AgClass.h"
 #include "datatable/converter/AbstractFormatConverter.h"
 
 
@@ -32,7 +32,7 @@ public:
 //    void* instantiate(DataRecord* source) /* throws(InstantiationException) */;
 
 //    // Generated
-    DefaultFormatConverter(Class* valueClass, boost::shared_ptr<TableFormat> format);
+    DefaultFormatConverter(AgClass* valueClass, boost::shared_ptr<TableFormat> format);
 //protected:
 //    DefaultFormatConverter(const ::default_init_tag&);
 

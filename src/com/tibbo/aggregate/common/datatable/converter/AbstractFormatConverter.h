@@ -4,7 +4,7 @@
 #include "datatable/converter/FormatConverter.h"
 #include "datatable/DataTableConversion.h"
 #include "datatable/DataRecord.h"
-#include "util/Class.h"
+#include "util/AgClass.h"
 
 
 class AbstractFormatConverter : public FormatConverter
@@ -34,7 +34,6 @@ public:
     virtual boost::shared_ptr<FieldFormat> createFieldFormat(const std::string &name);
     virtual boost::shared_ptr<AgObject> instantiate(boost::shared_ptr<DataRecord> source);
     virtual boost::shared_ptr<AgObject> clone(boost::shared_ptr<AgObject> value, bool useConversion);
-    virtual boost::shared_ptr<AgObject> convertToTable(boost::shared_ptr<AgObject> value);
 
 protected:
      static boost::shared_ptr<DataTable> simpleToTable(boost::shared_ptr<AgObject> value, boost::shared_ptr<TableFormat> format);

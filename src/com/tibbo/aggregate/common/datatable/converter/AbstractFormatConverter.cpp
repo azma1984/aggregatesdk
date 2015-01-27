@@ -74,7 +74,7 @@ boost::shared_ptr<TableFormat> AbstractFormatConverter::getFormat()
 
 boost::shared_ptr<FieldFormat> AbstractFormatConverter::createFieldFormat(const std::string &name)
 {
-    return DataTableConversion::createTableField(name, format);
+    return DataTableConversion::instance().createTableField(name, format);
 }
 
 boost::shared_ptr<AgObject> AbstractFormatConverter::instantiate(boost::shared_ptr<DataRecord> source)
@@ -99,16 +99,9 @@ boost::shared_ptr<AgObject> AbstractFormatConverter::clone(boost::shared_ptr<AgO
     }
 }
 
-boost::shared_ptr<AgObject> AbstractFormatConverter::convertToTable(boost::shared_ptr<AgObject> value)
-{
-    // todo
-    return 0;
-    //return FormatConverter::convertToTable(value, NULL);
-}
-
 boost::shared_ptr<DataTable> AbstractFormatConverter::simpleToTable(boost::shared_ptr<AgObject> value, boost::shared_ptr<TableFormat> format)
 {
-    return DataTableConversion::beanToRecord(value, format, true, false, FIELDS_TO_SKIP)->wrap();
+    return DataTableConversion::instance().beanToRecord(value, format, true, false, FIELDS_TO_SKIP)->wrap();
 }
 
 

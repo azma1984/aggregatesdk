@@ -4,69 +4,44 @@
 
 #include "datatable/converter/FormatConverter.h"
 
+class DataTable;
+
 class DataTableConversion
 {
-//private:
-//    static std::list  FORMAT_CONVERTERS_;
-//    static ::java::util::concurrent::locks::ReentrantReadWriteLock* FORMAT_CONVERTERS_LOCK_;
+private:
+    std::list<boost::shared_ptr<FormatConverter>>  FORMAT_CONVERTERS;
+    DataTableConversion();
 
 public:
-//    static DataTable* beanToTable(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors) /* throws(DataTableException) */;
-//    static DataTable* beanToTable(void* bean, TableFormat* format) /* throws(DataTableException) */;
-//    static DataTable* beanToTable(void* bean, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static DataTable* beansToTable(::java::util::Collection* beans, TableFormat* format) /* throws(DataTableException) */;
-//    static DataTable* beansToTable(::java::util::Collection* beans, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void* beanFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static std::list  beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format) /* throws(DataTableException) */;
-//    static std::list  beansFromTable(DataTable* table, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void* beanFromRecord(DataRecord* rec, ::java::lang::Class* beanClass, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields) /* throws(DataTableException) */;
-//    static void populateBeanFromRecord(void* bean, DataRecord* rec, TableFormat* format, bool setReadOnlyFields, ::std::set  fieldsToSkip) /* throws(DataTableException) */;
-//    static DataRecord* beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors) /* throws(DataTableException) */;
-//    static DataRecord* beanToRecord(void* bean, TableFormat* format, bool setReadOnlyFields, bool ignoreErrors, ::std::set  fieldsToSkip) /* throws(DataTableException) */;
+    static DataTableConversion &instance()
+    {
+        static DataTableConversion dataTableConversion;
+        return dataTableConversion;
+    }
 
-//private:
-//    static TableFormat* getFormatFromDefaultValue(FieldFormat* ff);
+    boost::shared_ptr<DataTable> beanToTable(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true, bool ignoreErrors = false);
+    boost::shared_ptr<DataTable> beansToTable(std::list<boost::shared_ptr<AgObject>> beans, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
 
-//public:
-//    static void* convertValueToField(FieldFormat* ff, void* value, ::java::lang::Class* requiredClass);
-//    static void* convertValueFromField(void* value);
-//    static void* convertValueFromField(void* value, ::java::lang::Class* requiredClass);
-//    static void* convertValueToField(FieldFormat* ff, void* value);
+    boost::shared_ptr<AgObject> beanFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
+    std::list<boost::shared_ptr<AgObject>> beansFromTable(boost::shared_ptr<DataTable> table, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields = true);
 
-    static boost::shared_ptr<DataRecord> beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors);
-    static boost::shared_ptr<DataRecord> beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors, const std::list<std::string> &fieldsToSkip);
+    boost::shared_ptr<AgObject> beanFromRecord(boost::shared_ptr<DataRecord> rec, boost::shared_ptr<Class> beanClass, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields);
 
-    static void registerFormatConverter(boost::shared_ptr<FormatConverter> converter);
-    static boost::shared_ptr<FieldFormat> createTableField(const std::string & name, boost::shared_ptr<TableFormat> format);
+    void populateBeanFromRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<DataRecord> rec, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields);
+    void populateBeanFromRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<DataRecord> rec, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, std::list<std::string> fieldsToSkip);
 
-//    static converter::FormatConverter* getFormatConverter(::java::lang::Class* valueClass);
-//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, void* value);
-//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, const std::string & valueClassName) /* throws(ClassNotFoundException) */;
-//    static /* <S> */FieldFormat* createFieldFormat(const std::string & name, ::java::lang::Class* valueClass);
-//    static FieldFormat* createTableField(const std::string & name, TableFormat* format);
-//    static FieldFormat* createTableField(const std::string & name, const std::string & description, TableFormat* format);
-//    static void* createAggreGateBean(void* value, ::java::lang::Class* requiredClass) /* throws(NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException) */;
+    boost::shared_ptr<DataRecord> beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors);
+    boost::shared_ptr<DataRecord> beanToRecord(boost::shared_ptr<AgObject> bean, boost::shared_ptr<TableFormat> format, bool setReadOnlyFields, bool ignoreErrors, const std::list<std::string> &fieldsToSkip);
 
-//private:
-//    static void* createArray_(FieldFormat* ff, void* value);
-//    static std::list  createList(void* bean, DataRecord* rec, bool setReadOnlyFields, FieldFormat* ff) /* throws(NoSuchFieldException, DataTableException) */;
-//    static DataTable* convertList(void* bean, void* value, bool setReadOnlyFields, FieldFormat* ff) /* throws(NoSuchFieldException, InstantiationException, IllegalAccessException, DataTableException) */;
-//    static DataTable* convertArray_(FieldFormat* ff, void* value);
-
-//    // Generated
-
-//public:
-//    DataTableConversion();
-//protected:
-//    DataTableConversion(const ::default_init_tag&);
+    boost::shared_ptr<AgObject> convertValueToField(boost::shared_ptr<FieldFormat> ff, boost::shared_ptr<AgObject> value, boost::shared_ptr<Class> requiredClass);
+    boost::shared_ptr<AgObject> convertValueFromField(boost::shared_ptr<AgObject> value);
 
 
-//public:
-    
-//    static void
 
-//public: // package
-//    static std::list & FORMAT_CONVERTERS();
-//    static ::java::util::concurrent::locks::ReentrantReadWriteLock*& FORMAT_CONVERTERS_LOCK();
+    void registerFormatConverter(boost::shared_ptr<FormatConverter> converter);
+    boost::shared_ptr<FieldFormat> createTableField(const std::string & name, boost::shared_ptr<TableFormat> format);
+
+private:
+    boost::shared_ptr<TableFormat> getFormatFromDefaultValue(boost::shared_ptr<FieldFormat> ff);
+
 };

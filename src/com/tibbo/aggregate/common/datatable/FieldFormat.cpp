@@ -95,7 +95,7 @@ boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, char
     }
 }*/
  
-boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, Class* valueClass)
+boost::shared_ptr<FieldFormat> FieldFormat::create(const std::string &name, AgClass* valueClass)
 {
 //    char type = CLASS_TO_TYPE[valueClass];
     
