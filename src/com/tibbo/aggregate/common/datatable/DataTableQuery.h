@@ -1,21 +1,16 @@
 #pragma once
+#include <list>
+#include "util/Pointers.h"
 
 class DataTableQuery
 {
-
-/*public:
-    typedef void super;
-
 private:
-    std::list  conditions;
+    std::list<QueryConditionPtr>  conditions;
 
 public:
-    std::list  getConditions();
-    void addCondition(QueryCondition* condition);
-    ::java::util::Iterator* iterator();
+    DataTableQuery(std::list<QueryConditionPtr> conditions);
+    std::list<QueryConditionPtr> getConditions();
+    void addCondition(QueryConditionPtr condition);
 
-    // Generated
-    DataTableQuery(QueryConditionArray* conditions);
-protected:
-    DataTableQuery(const ::default_init_tag&);*/
+    std::list<QueryConditionPtr>::iterator iterator();
 };

@@ -124,8 +124,6 @@ public:
     void setDefaultFromString(const std::string &value, ClassicEncodingSettings &settings, bool validate);
   //  boost::shared_ptr<FieldFormat> setDefault(/*T*/void* value);
 
-
-
 	boost::shared_ptr<FieldFormat> setHidden(bool hidden);
     boost::shared_ptr<FieldFormat> setEditor(const std::string & editor);
     boost::shared_ptr<FieldFormat> setKeyField(bool keyField);
