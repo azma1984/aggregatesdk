@@ -26,7 +26,7 @@ class Cres
 	
 	void reinit(Locale* locale);
 
-	Class *getClass();
+    AgClass *getClass();
 
 	Cres();
 };

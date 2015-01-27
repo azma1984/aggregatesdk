@@ -4,7 +4,7 @@
 #define ResourceAccessorH
 
 #include <string>
-#include "Class.h"
+#include "AgClass.h"
 //Strings depending on language (localization)
 
 
@@ -40,7 +40,7 @@ class ResourceAccessor
  //   static const std::string RESOURCE_PACKAGE_NAME = "res";
 
  public:
-   static ResourceBundle* fetch(Class* clazz, Locale* locale)
+   static ResourceBundle* fetch(AgClass* clazz, Locale* locale)
 	{
      return 0;
 	}

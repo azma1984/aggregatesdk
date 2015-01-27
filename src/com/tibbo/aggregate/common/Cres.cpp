@@ -16,7 +16,7 @@ ResourceBundle *Cres::get()
     return BUNDLE;
 }
 
-Class *Cres::getClass()
+AgClass *Cres::getClass()
 {
 
  return 0;

@@ -28,12 +28,11 @@ const char TableFormat::BINDINGS_EDITABLE_FLAG = 'B';
 TableFormat::TableFormat() 
 {
 }
-/*
+
 TableFormat::TableFormat(bool reorderable) 
 {
-    ctor(reorderable);
 }
-*/
+
 TableFormat::TableFormat(int minRecords, int maxRecords)
 {
   //  ctor(minRecords,maxRecords);
