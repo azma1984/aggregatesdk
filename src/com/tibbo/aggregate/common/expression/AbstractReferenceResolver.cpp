@@ -3,7 +3,7 @@
 
 AbstractReferenceResolver::AbstractReferenceResolver()
 {
-    ctor();
+
 }
 
 boost::shared_ptr<CallerController> AbstractReferenceResolver::getCallerController()

@@ -1,18 +1,49 @@
 
 options {
-  STATIC=false;
+//  STATIC=false;
   MULTI=true;
   VISITOR=true;
-  NODE_DEFAULT_VOID=true;
-  UNICODE_INPUT=true;
+//  NODE_DEFAULT_VOID=true;
+//  UNICODE_INPUT=true;
   TRACK_TOKENS=true;
+
+  JAVA_UNICODE_ESCAPE = true;
+  OUTPUT_LANGUAGE = "c++";
+//  NAMESPACE = "adder_parser";
+//  OUTPUT_DIRECTORY = "gen";
 }
 
 PARSER_BEGIN(ExpressionParser)
 
-package com.tibbo.aggregate.common.expression.parser;
+//package com.tibbo.aggregate.common.expression.parser;
 
-public class ExpressionParser {
+class ExpressionParser {
+}
+
+string skip_to_matching_brace() : 
+{
+	string res = "";
+	Token* tok;
+	int nesting = 1;  
+	while (true) {
+	tok = getToken(1);
+	if (tok.kind == EOF) break;
+	if (tok.kind == LBRACE) nesting++;
+	if (tok.kind == RBRACE) {
+	  nesting--;
+	  if (nesting == 0) break;
+	}
+	if (tok.kind == STRING_LITERAL) {
+	  res += tok.image.replace("\\\\", "\\");
+	}
+	else
+	{
+	  res += tok.image;
+	}
+	tok = getNextToken();
+  }
+
+  return res;
 }
 
 PARSER_END(ExpressionParser)
@@ -177,32 +208,10 @@ TOKEN : /* IDENTIFIERS */
   < #DIGIT: ["0"-"9"] >
 }
 
-JAVACODE
-    String skip_to_matching_brace()
-    {
-      String res = "";
-      Token tok;
-      int nesting = 1;
-      while (true) {
-        tok = getToken(1);
-        if (tok.kind == EOF) break;
-        if (tok.kind == LBRACE) nesting++;
-        if (tok.kind == RBRACE) {
-          nesting--;
-          if (nesting == 0) break;
-        }
-        if (tok.kind == STRING_LITERAL) {
-          res += tok.image.replace("\\\\", "\\");
-        }
-        else
-        {
-          res += tok.image;
-        }
-        tok = getNextToken();
-      }
-
-      return res;
-    }
+string skip_to_matching_brace() : {}
+{
+	{return "";}
+}
 
 ASTStart Start() #Start : {}
 {

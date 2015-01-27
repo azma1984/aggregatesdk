@@ -636,13 +636,12 @@
 //    }
 //    return true;
 //}
-//
-//bool ContextUtils::isRelative(const std::string & name)
-//{
-//    
-//    return name)->startsWith(CONTEXT_NAME_SEPARATOR_);
-//}
-//
+
+bool ContextUtils::isRelative(const std::string & name)
+{
+    return (name->find(CONTEXT_NAME_SEPARATOR) == 0);
+}
+
 //bool ContextUtils::isMask(const std::string & name)
 //{
 //    

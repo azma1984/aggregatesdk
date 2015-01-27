@@ -1,119 +1,111 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/parser/ExpressionParserTokenManager.java
+#ifndef EXPRESSIONPARSERTOKENMANAGER_H
+#define EXPRESSIONPARSERTOKENMANAGER_H
+#include "JavaCC.h"
+#include "CharStream.h"
+#include "Token.h"
+#include "ErrorHandler.h"
+#include "TokenManager.h"
+#include "ExpressionParserConstants.h"
+class ExpressionParser;
 
-#pragma once
+/** Token Manager. */
+class ExpressionParserTokenManager : public TokenManager {
+   public:
 
+  /** Debug output. */
+  FILE *debugStream;
+  /** Set debug output. */
 
+void  setDebugStream(FILE *ds);
 
-class ExpressionParserTokenManager
-{
-public:
-    /** Token literal values. */
-     static const std::string jjstrLiteralImages = {
-    "", null, null, null, null, null, null, null, null, null, null, "\174\174",
-    "\46\46", "\41", "\174", "\136", "\46", "\176", null, null, null, null, null, null, null,
-    null, null, null, null, "\53", "\55", "\52", "\57", "\45", "\77", "\72", "\54",
-    "\75\75", "\41\75", "\176\75", "\74", "\76", "\74\75", "\76\75", "\50", "\51", "\173",
-    "\175", "\76\76", "\76\76\76", "\74\74", null, null, null, null, };
+ int  jjStopAtPos(int pos, int kind);
 
-    /** Lexer state names. */
-    static const std::string lexStateNames = {
-       "DEFAULT",
-       "IN_SINGLE_LINE_COMMENT",
-       "IN_MULTI_LINE_COMMENT",
-    };
+ int  jjMoveStringLiteralDfa0_0();
 
-    /** Lex State array. */
-    static const int jjnewLexState = {
-       -1, -1, -1, -1, -1, -1, 1, 2, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-       -1, -1, -1, -1, -1,
-    };
-    static const long jjtoToken = {
-       0x1ffffff43ff801L,
-    };
-    static const long jjtoSkip = {
-       0x33eL,
-    };
-    static const long jjtoSpecial = {
-       0x300L,
-    };
-    static const long jjtoMore = {
-       0x4c0L,
-    };
+ int  jjMoveStringLiteralDfa1_0(unsigned long long active0);
 
-    int curLexState;
-    int defaultLexState;
-    int jjnewStateCnt;
-    int jjround[59];
-    int jjstateSet [118];
-    int jjmatchedPos;
-    int jjmatchedKind;
-    char curChar;
-    SimpleCharStream* input_stream;
-private:
-    int jjStopAtPos(int pos, int kind);
-    int jjMoveStringLiteralDfa0_0();
-    int jjMoveStringLiteralDfa1_0(long active0);
-    int jjMoveStringLiteralDfa2_0(long old0, long active0);
-    int jjMoveStringLiteralDfa3_0(long old0, long active0);
-    int jjMoveStringLiteralDfa4_0(long old0, long active0);
+ int  jjMoveStringLiteralDfa2_0(unsigned long long old0, unsigned long long active0);
 
-    static const long jjbitVec0 = {
-       0xfffffffffffffffeL, 0xffffffffffffffffL, 0xffffffffffffffffL, 0xffffffffffffffffL
-    };
-    static const long jjbitVec2 = {
-       0x0L, 0x0L, 0xffffffffffffffffL, 0xffffffffffffffffL
-    };
+ int  jjMoveStringLiteralDfa3_0(unsigned long long old0, unsigned long long active0);
+
+ int  jjMoveStringLiteralDfa4_0(unsigned long long old0, unsigned long long active0);
+
+int jjMoveNfa_0(int startState, int curPos);
+
+ int  jjMoveStringLiteralDfa0_2();
+
+ int  jjMoveStringLiteralDfa1_2(unsigned long long active0);
+
+ int  jjMoveStringLiteralDfa0_1();
+
+int jjMoveNfa_1(int startState, int curPos);
+
+bool jjCanMove_0(int hiByte, int i1, int i2, unsigned long long l1, unsigned long long l2);
+
+Token * jjFillToken();
+
+public: int curLexState;
+public: int jjnewStateCnt;
+public: int jjround;
+public: int jjmatchedPos;
+public: int jjmatchedKind;
 
 
-    int jjMoveNfa_0(int startState, int curPos);
-    int jjMoveStringLiteralDfa0_2();
-    int jjMoveStringLiteralDfa1_2(long active0);
-    int jjMoveStringLiteralDfa0_1();
-    int jjMoveNfa_1(int startState, int curPos);
+Token * getNextToken();
 
-    static const int jjnextStates = {
-       16, 17, 18, 39, 40, 45, 46, 49, 50, 14, 26, 27, 28, 54, 56, 57,
-       3, 5, 10, 11, 14, 41, 42, 14, 49, 50, 14, 12, 13, 19, 20, 29,
-       30, 43, 44, 47, 48, 51, 52, 0, 1, 3,
-    };
+void  SkipLexicalActions(Token *matchedToken);
+#define jjCheckNAdd(state)\
+{\
+   if (jjrounds[state] != jjround)\
+   {\
+      jjstateSet[jjnewStateCnt++] = state;\
+      jjrounds[state] = jjround;\
+   }\
+}
+#define jjAddStates(start, end)\
+{\
+   for (int x = start; x <= end; x++) {\
+      jjstateSet[jjnewStateCnt++] = jjnextStates[x];\
+   } /*while (start++ != end);*/\
+}
+#define jjCheckNAddTwoStates(state1, state2)\
+{\
+   jjCheckNAdd(state1);\
+   jjCheckNAdd(state2);\
+}
 
-    static bool jjCanMove_0(int hiByte, int i1, int i2, long l1, long l2);
+#define jjCheckNAddStates(start, end)\
+{\
+   for (int x = start; x <= end; x++) {\
+      jjCheckNAdd(jjnextStates[x]);\
+   } /*while (start++ != end);*/\
+}
 
-
-
-
-    const std::string & jjimage;
-    const std::string & image;
+#ifndef JAVACC_CHARSTREAM
+#define JAVACC_CHARSTREAM CharStream
+#endif
+  private: ExpressionParser*parser;
+  private: void ReInitRounds();
+  public: ExpressionParserTokenManager(JAVACC_CHARSTREAM *stream, int lexState = 0, ExpressionParser *parserArg = NULL);
+  public: virtual ~ExpressionParserTokenManager();
+  void ReInit(JAVACC_CHARSTREAM *stream, int lexState = 0, ExpressionParser *parserArg = NULL);
+  void SwitchTo(int lexState);
+  const JAVACC_SIMPLE_STRING jjKindsForBitVector(int i, unsigned long long vec);
+  const JAVACC_SIMPLE_STRING jjKindsForStateVector(int lexState, int vec[], int start, int end);
+    JAVACC_CHARSTREAM  *input_stream;
+    int jjrounds[59];
+    int jjstateSet[2 * 59];
+    JAVACC_STRING_TYPE jjimage;
+    JAVACC_STRING_TYPE image;
     int jjimageLen;
     int lengthOfMatch;
-
-    void ReInit(SimpleCharStream* stream);
-
-
-    void ReInitRounds();
-
-
-    void ReInit(SimpleCharStream* stream, int lexState);
-    void SwitchTo(int lexState);
-
-
-    Token* jjFillToken();
-
-    Token* getNextToken();
-
-    void SkipLexicalActions(Token* matchedToken);
-
-    void jjCheckNAdd(int state);
-    void jjAddStates(int start, int end);
-    void jjCheckNAddTwoStates(int state1, int state2);
-    void jjCheckNAddStates(int start, int end);
-
-    // Generated
-
-
-    void ExpressionParserTokenManager();
-
-
-
+    JAVACC_CHAR_TYPE curChar;
+    TokenManagerErrorHandler *errorHandler;
+    bool errorHandlerCreated;
+    public: void setErrorHandler(TokenManagerErrorHandler *eh) {
+      if (errorHandlerCreated && errorHandler != NULL) delete errorHandler;
+      errorHandler = eh;
+      errorHandlerCreated = false;
+    }
 };
+#endif
