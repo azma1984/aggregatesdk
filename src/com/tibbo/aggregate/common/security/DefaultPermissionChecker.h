@@ -9,7 +9,7 @@ class DefaultPermissionChecker : public PermissionChecker
 {
 private:
     static const std::string NULL_PERMISSIONS_;
-    std::vector<boost::shared_ptr<PermissionType>> permissionTypes;
+	std::vector< boost::shared_ptr<PermissionType> > permissionTypes;
     //::org::apache::log4j::Logger* logger;
     boost::shared_ptr<CallerController> unchecked;
 

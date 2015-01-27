@@ -3,13 +3,15 @@
 
 #include "util/Cloneable.h"
 //#include <com/tibbo/aggregate/common/context/ContextUtils.h"
-#include "expression/Expression.h"
+//#include "expression/Expression.h"
 //#include <com/tibbo/aggregate/common/expression/ExpressionUtils.h"
 
 
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
+
+class   Expression;
 //todo - class stub
 class Reference : public Cloneable
 {

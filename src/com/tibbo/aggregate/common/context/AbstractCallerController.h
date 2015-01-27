@@ -1,6 +1,7 @@
 #ifndef AbstractCallerControllerH
 #define AbstractCallerControllerH
 
+#define BOOST_THREAD_USE_LIB
 #include "context/CallerController.h"
 #include "context/CallerController.h"
 #include "context/CallerData.h"
@@ -20,13 +21,13 @@ private:
     std::string type;
     std::string address;
     Date* creationTime;
-    std::map<std::string, std::string> properties;
+	std::map<std::string, std::string> properties;
 
 public:
     bool isLoggedIn();
     bool isPermissionCheckingEnabled();
-    boost::shared_ptr<PermissionCache> getPermissionCache();
-    boost::shared_ptr<CallerData> getCallerData();
+	PermissionCache* getPermissionCache();
+	boost::shared_ptr<CallerData> getCallerData();
     std::map<std::string, std::string> getProperties();
 
 
@@ -35,7 +36,7 @@ public:
     void sendFeedback(int level, const std::string & message);
     static std::list<CallerController*>  getControllers();
     std::string toString();
-    boost::shared_ptr<Permissions> getPermissions();
+	Permissions *getPermissions();
     std::string getUsername();
 
     void setUsername(const std::string & username);

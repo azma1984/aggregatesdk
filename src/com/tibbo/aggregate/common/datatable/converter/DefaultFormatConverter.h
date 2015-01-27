@@ -8,7 +8,7 @@
 //#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
 //#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
 #include "datatable/TableFormat.h"
-#include "Class.h"
+#include "util/Class.h"
 #include "datatable/converter/AbstractFormatConverter.h"
 
 

@@ -1,4 +1,4 @@
-#ifndef DataTableH
+﻿#ifndef DataTableH
 #define DataTableH
 
 #include <list>
@@ -41,7 +41,7 @@ class DataTable//: public Cloneable
 
 private:
 	//Evaluator * namingEvaluator;
-	std::list<DataRecord> records;
+	std::list<DataRecord*> records;
 	/*
 		static TableFormat* DEFAULT_FORMAT;
 	long  id;

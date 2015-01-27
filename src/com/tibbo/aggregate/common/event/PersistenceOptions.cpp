@@ -63,12 +63,12 @@ bool PersistenceOptions::isDedicatedTablePreferred()
 {
     return dedicatedTablePreferred;
 }
-
+   */
 void PersistenceOptions::setDedicatedTablePreferred(bool dedicatedTablePreferred)
 {
-    this->dedicatedTablePreferred = dedicatedTablePreferred;
+	this->dedicatedTablePreferred = dedicatedTablePreferred;
 }
-
+   /*
 bool PersistenceOptions::isPerContextTablePreferred()
 {
     return perContextTablePreferred;

@@ -4,14 +4,15 @@
 #include <list>
 #include "util/Cloneable.h"
 #include "datatable/FieldFormat.h"
+#include <boost/shared_ptr.hpp>
 
 class DataTable;
 
 class TableFormat : public Cloneable
 { 
 private:
-    std::list<boost::shared_ptr<FieldFormat>> fields;
-public:   
+	std::list< boost::shared_ptr<FieldFormat> > fields;
+public:
     bool immutable;
     
     boost::shared_ptr<TableFormat> addField(const std::string& encodedFormat);
@@ -27,7 +28,7 @@ public:
     /**
        * Returns list of fields in table format.
        */
-    std::list<boost::shared_ptr<FieldFormat>> &getFields();
+	std::list< boost::shared_ptr<FieldFormat> > &getFields();
 
 public:
     TableFormat();
