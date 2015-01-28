@@ -56,7 +56,7 @@ com::tibbo::aggregate::common::util::WindowLocation::WindowLocation(int state, i
     ctor(state,side,index,size);
 }
 
-com::tibbo::aggregate::common::util::WindowLocation::WindowLocation(DataRecord* data) 
+com::tibbo::aggregate::common::util::WindowLocation::WindowLocation(DataRecordPtr data) 
     : WindowLocation(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
@@ -160,12 +160,12 @@ const int com::tibbo::aggregate::common::util::WindowLocation::SIDE_BOTTOM;
 
 const int com::tibbo::aggregate::common::util::WindowLocation::SIDE_RIGHT;
 
-DateTableFormat*& com::tibbo::aggregate::common::util::WindowLocation::FORMAT()
+DateTableFormatPtr& com::tibbo::aggregate::common::util::WindowLocation::FORMAT()
 {
     
     return FORMAT_;
 }
-DateTableFormat* com::tibbo::aggregate::common::util::WindowLocation::FORMAT_;
+DateTableFormatPtr com::tibbo::aggregate::common::util::WindowLocation::FORMAT_;
 
 void com::tibbo::aggregate::common::util::WindowLocation::ctor()
 {
@@ -224,7 +224,7 @@ void com::tibbo::aggregate::common::util::WindowLocation::ctor(int state, int si
     }
 }
 
-void com::tibbo::aggregate::common::util::WindowLocation::ctor(DataRecord* data)
+void com::tibbo::aggregate::common::util::WindowLocation::ctor(DataRecordPtr data)
 {
     super::ctor(FORMAT_, data);
 }
@@ -377,7 +377,7 @@ std::string com::tibbo::aggregate::common::util::WindowLocation::toString()
 
 java::lang::Class* com::tibbo::aggregate::common::util::WindowLocation::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.util.WindowLocation", 46);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.util.WindowLocation", 46);
     return c;
 }
 

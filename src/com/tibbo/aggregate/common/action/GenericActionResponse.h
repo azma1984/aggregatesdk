@@ -10,21 +10,20 @@
 class GenericActionResponse: public ActionResponse
 {
 private:
-    boost::shared_ptr<DataTable> parameters;    
-    boost::shared_ptr<RequestIdentifier> requestId;
+    DataTablePtr parameters;    
+    RequestIdentifierPtr requestId;
     bool remember;
 
 public:
-	GenericActionResponse(DataTable* parameters);
-	GenericActionResponse(DataTable* parameters, bool remember, RequestIdentifier* requestId);
+	GenericActionResponse(DataTablePtr parameters);
+	GenericActionResponse(DataTablePtr parameters, bool remember, RequestIdentifierPtr requestId);
 
-    //TODO:
-	DataTable* getParameters();
+	DataTablePtr getParameters();
 	bool shouldRemember();
-	RequestIdentifier* getRequestId();
-	void setParameters(DataTable* parameters);
+	RequestIdentifierPtr getRequestId();
+	void setParameters(DataTablePtr parameters);
 	void setRemember(bool remember);
-	void setRequestId(RequestIdentifier* requestId);
+	void setRequestId(RequestIdentifierPtr requestId);
 };
 
 #endif

@@ -22,7 +22,7 @@
 #include "context/ContextUtils.h"
 //#include "context/ContextVisitor.h"
 //#include "context/Contexts.h"
-//#include "context/EventData.h"
+//#include "context/EventDataPtr.h"
 #include "context/EventDefinition.h"
 //#include "context/FireChangeEventRequestController.h"
 //#include "context/FunctionData.h"
@@ -75,14 +75,14 @@ private:
 
 	static const int VERY_LOW_PERFORMANCE_THRESHOLD = 120000;
     static const int LOW_PERFORMANCE_THRESHOLD = 20000;
-    ContextManager* contextManager;
-    std::map<std::string, VariableData*> variableData;
+	ContextManagerPtr contextManager;
+	std::map<std::string, VariableDataPtr> variableData;
 	boost::shared_mutex variableDataLock; //много читателей, один писатель
-    std::map<std::string, FunctionData*> functionData;
+    std::map<std::string, FunctionDataPtr> functionData;
     boost::shared_mutex functionDataLock;
-    std::map<std::string, EventData*> eventData;
-    boost::shared_mutex eventDataLock;
-    std::list<ActionDefinition*>  actionDefinitions;
+	std::map<std::string, EventDataPtrPtr> EventDataPtr;
+    boost::shared_mutex EventDataPtrLock;
+    std::list<ActionDefinitionPtr>  actionDefinitions;
     boost::shared_mutex actionDefinitionsLock;
 
     std::string name;
@@ -91,7 +91,7 @@ private:
 	std::string type;
     std::string group;
     std::string iconId;
-    void* parent;
+    AgObjectPtr parent;
 	
     bool setupComplete;
 	
@@ -99,67 +99,67 @@ private:
     int index;
 
     bool permissionCheckingEnabled;
-    boost::shared_ptr<Permissions> permissions;
-    boost::shared_ptr<Permissions> childrenViewPermissions;
-    PermissionChecker* permissionChecker;
-    std::list<void*>  children;
-    std::map<std::string,void*> childrenMap;
+    PermissionsPtr permissions;
+	PermissionsPtr childrenViewPermissions;
+	PermissionCheckerPtr permissionChecker;
+	std::list<AgObjectPtr>  children;
+    std::map<std::string,AgObjectPtr> childrenMap;
     boost::shared_mutex childrenLock;
     bool valueCheckingEnabled;
     bool childrenConcurrencyEnabled;
     bool childrenSortingEnabled;
     bool fireUpdateEvents;
-    ContextStatus* status;
-    std::map<std::string, VariableStatus*> variableStatuses;
+    ContextStatusPtr status;
+    std::map<std::string, VariableStatusPtr> variableStatuses;
     bool variableStatusesUpdated;
     boost::shared_mutex variableStatusesLock;
 
     std::string path;
 
-	bool shouldSeeChild(boost::shared_ptr<CallerController> caller, Context* cur);
-    bool canSee(boost::shared_ptr<CallerController> caller, Context* con);
-    void setContextManager(ContextManager* contextManager);
+	bool shouldSeeChild(CallerControllerPtr caller, ContextPtr cur);
+    bool canSee(CallerControllerPtr caller, ContextPtr con);
+    void setContextManager(ContextManagerPtr contextManager);
 
-	void move(const std::string & oldPath, Context* newParent, const std::string & newName);
-    Context* getChildWithoutCheckingPerms(const std::string & name);
+	void move(const std::string & oldPath, ContextPtr newParent, const std::string & newName);
+    ContextPtr getChildWithoutCheckingPerms(const std::string & name);
 	const std::string & createPath();
-	VariableDefinition* getAndCheckVariableDefinition(const std::string & name) ;
-	boost::shared_ptr<DataTable> executeDefaultGetter(VariableDefinition* def, boost::shared_ptr<CallerController> caller, bool check, bool createDefault) ;
-	boost::shared_ptr<DataTable> getVariable(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request) ;
-	boost::shared_ptr<DataTable> checkVariableValue(VariableDefinition* def, boost::shared_ptr<DataTable> val) ;
-    const std::string & checkVariableValueFormat(VariableDefinition* def, boost::shared_ptr<DataTable> table);
-	boost::shared_ptr<DataTable> executeGetter(VariableData* data, boost::shared_ptr<CallerController> caller, RequestController* request) ;
-	boost::shared_ptr<DataTable> executeGetterMethod(VariableData* data, boost::shared_ptr<CallerController> caller, RequestController* request) ;
+	VariableDefinitionPtr getAndCheckVariableDefinition(const std::string & name) ;
+	DataTablePtr executeDefaultGetter(VariableDefinitionPtr def, CallerControllerPtr caller, bool check, bool createDefault) ;
+	DataTablePtr getVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
+	DataTablePtr checkVariableValue(VariableDefinitionPtr def, DataTablePtr val) ;
+    const std::string & checkVariableValueFormat(VariableDefinitionPtr def, DataTablePtr table);
+	DataTablePtr executeGetter(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request) ;
+	DataTablePtr executeGetterMethod(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request) ;
 	void contextInfoChanded();
-    boost::shared_ptr<DataTable> callFunction(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters) ;
-	boost::shared_ptr<DataTable> executeImplementation(FunctionData* data, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters) ;
-	boost::shared_ptr<DataTable> executeImplementationMethod(FunctionData* data, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters) ;
-    boost::shared_ptr<DataTable> getDefaultFunctionOutput(boost::shared_ptr<FunctionDefinition> def);
-    boost::shared_ptr<FunctionDefinition> getAndCheckFunctionDefinition(const std::string & name) ;
-    void removeVariableDefinition(VariableDefinition* def);
-    boost::shared_ptr<EventDefinition> getAndCheckEventDefinition(const std::string & name);
-    boost::shared_ptr<Event> fireEvent(boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<Event> event, int  listener, boost::shared_ptr<CallerController> caller, FireEventRequestController* request);
+    DataTablePtr callFunction(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
+	DataTablePtr executeImplementation(FunctionDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
+	DataTablePtr executeImplementationMethod(FunctionDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
+    DataTablePtr getDefaultFunctionOutput(FunctionDefinitionPtr def);
+    FunctionDefinitionPtr getAndCheckFunctionDefinition(const std::string & name) ;
+    void removeVariableDefinition(VariableDefinitionPtr def);
+    EventDefinitionPtr getAndCheckEventDefinition(const std::string & name);
+    EventPtr fireEvent(EventDefinitionPtr ed, EventPtr event, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request);
 
-	void processEnrichments(boost::shared_ptr<Event> event, EventProcessingRule* rule, boost::shared_ptr<CallerController> caller);
-    void lock(RequestController *request, boost::mutex lock) ;
-	DataRecord* varDefToDataRecord(VariableDefinition* vd, boost::shared_ptr<CallerController> caller);
-    VariableDefinition* varDefFromDataRecord(DataRecord* rec, boost::shared_ptr<CallerController> caller);
+	void processEnrichments(EventPtr event, EventProcessingRulePtr rule, CallerControllerPtr caller);
+    void lock(RequestControllerPtrrequest, boost::mutex lock) ;
+	DataRecordPtr varDefToDataRecord(VariableDefinitionPtr vd, CallerControllerPtr caller);
+    VariableDefinitionPtr varDefFromDataRecord(DataRecordPtr rec, CallerControllerPtr caller);
 
-	void setVariable(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> value) ;
-	void executeSetter(VariableData* data, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> value);
-	bool executeSetterMethod(VariableData* data, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> value);
-    DataRecord* funcDefToDataRecord(boost::shared_ptr<FunctionDefinition> fd, boost::shared_ptr<CallerController> caller);
-    DataRecord* evtDefToDataRecord(boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<CallerController> caller);
-    boost::shared_ptr<EventDefinition> evtDefFromDataRecord(DataRecord* rec, boost::shared_ptr<CallerController> caller);
-	boost::shared_ptr<DataTable> createVariableStatusesTable();
-    std::map<std::string, VariableStatus*> getVariableStatuses();
+	void setVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value) ;
+	void executeSetter(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value);
+	bool executeSetterMethod(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value);
+    DataRecordPtr funcDefToDataRecord(FunctionDefinitionPtr fd, CallerControllerPtr caller);
+    DataRecordPtr evtDefToDataRecord(EventDefinitionPtr ed, CallerControllerPtr caller);
+    EventDefinitionPtr evtDefFromDataRecord(DataRecordPtr rec, CallerControllerPtr caller);
+	DataTablePtr createVariableStatusesTable();
+    std::map<std::string, VariableStatusPtr> getVariableStatuses();
     void ensureVariableStatuses() ;
-    boost::shared_ptr<DataTable> createContextInfoTable();
+    DataTablePtr createContextInfoTable();
     void init();
 
-	void removeFunctionDefinition(boost::shared_ptr<FunctionDefinition> def);
-    void removeEventDefinition(boost::shared_ptr<EventDefinition> def);
-    boost::shared_ptr<FunctionDefinition> funcDefFromDataRecord(DataRecord* rec, boost::shared_ptr<CallerController> caller);
+	void removeFunctionDefinition(FunctionDefinitionPtr def);
+    void removeEventDefinition(EventDefinitionPtr def);
+    FunctionDefinitionPtr funcDefFromDataRecord(DataRecordPtr rec, CallerControllerPtr caller);
 
 
 	int compareTo(int a1,int a2);
@@ -257,59 +257,59 @@ public:
     static const std::string FIELD_ED_GROUP;
 	static const std::string FIELD_ED_ICON_ID;
 	
-	boost::shared_ptr<TableFormat> VARIABLE_DEFINITION_FORMAT;
-	boost::shared_ptr<TableFormat> EF_VARIABLE_ADDED;
-	boost::shared_ptr<TableFormat> FUNCTION_DEFINITION_FORMAT;
-	boost::shared_ptr<TableFormat> EF_FUNCTION_ADDED;
-	boost::shared_ptr<TableFormat> EVENT_DEFINITION_FORMAT;
-	boost::shared_ptr<TableFormat> EF_EVENT_ADDED;
-	boost::shared_ptr<TableFormat> VFT_CHILDREN;
-	boost::shared_ptr<TableFormat> INFO_DEFINITION_FORMAT;
-	boost::shared_ptr<TableFormat> ACTION_DEF_FORMAT;
-	boost::shared_ptr<TableFormat> RESOURCE_MASKS_FORMAT;
-	boost::shared_ptr<TableFormat> FIFT_GET_COPY_DATA;
-	boost::shared_ptr<TableFormat> FIFT_GET_COPY_DATA_RECIPIENTS;
-	boost::shared_ptr<TableFormat> REPLICATE_INPUT_FORMAT;
-	boost::shared_ptr<TableFormat> FIFT_REPLICATE_FIELDS;
-	boost::shared_ptr<TableFormat> REPLICATE_OUTPUT_FORMAT;
-	boost::shared_ptr<TableFormat> REPLICATE_TO_CHILDREN_OUTPUT_FORMAT;
-	boost::shared_ptr<TableFormat> EF_UPDATED;
-	boost::shared_ptr<TableFormat> EF_CHANGE;
-	boost::shared_ptr<TableFormat> EFT_INFO;
-	boost::shared_ptr<TableFormat> EFT_VARIABLE_REMOVED;
-	boost::shared_ptr<TableFormat> EFT_EVENT_REMOVED;
-    boost::shared_ptr<TableFormat> EFT_FUNCTION_REMOVED;
-    boost::shared_ptr<TableFormat> EFT_CHILD_REMOVED;
-    boost::shared_ptr<TableFormat> EFT_CHILD_ADDED;
-    boost::shared_ptr<TableFormat> EFT_ACTION_REMOVED;
-    static VariableDefinition* VD_INFO;
-    static VariableDefinition* VD_VARIABLES;
-    static VariableDefinition* VD_FUNCTIONS;
-    static VariableDefinition* VD_EVENTS;
-    static VariableDefinition* VD_ACTIONS;
-    static VariableDefinition* VD_CHILDREN;
-    static boost::shared_ptr<FunctionDefinition> FD_GET_COPY_DATA;
-    static boost::shared_ptr<FunctionDefinition> FD_COPY;
-    static boost::shared_ptr<FunctionDefinition> FD_COPY_TO_CHILDREN;
-	static boost::shared_ptr<EventDefinition> ED_INFO;
-    static boost::shared_ptr<EventDefinition> ED_CHILD_ADDED;
-    static boost::shared_ptr<EventDefinition> ED_CHILD_REMOVED;
-    static boost::shared_ptr<EventDefinition> ED_VARIABLE_ADDED;
-    static boost::shared_ptr<EventDefinition> ED_VARIABLE_REMOVED;
-    static boost::shared_ptr<EventDefinition> ED_FUNCTION_ADDED;
-    static boost::shared_ptr<EventDefinition> ED_FUNCTION_REMOVED;
-    static boost::shared_ptr<EventDefinition> ED_EVENT_ADDED;
-    static boost::shared_ptr<EventDefinition> ED_EVENT_REMOVED;
-    static boost::shared_ptr<EventDefinition> ED_ACTION_ADDED;
-    static boost::shared_ptr<EventDefinition> ED_ACTION_REMOVED;
-    static boost::shared_ptr<EventDefinition> ED_ACTION_STATE_CHANGED;
-    static boost::shared_ptr<EventDefinition> ED_INFO_CHANGED;
-    static boost::shared_ptr<EventDefinition> ED_UPDATED;
-    static boost::shared_ptr<EventDefinition> ED_CHANGE;
-    static boost::shared_ptr<EventDefinition> ED_DESTROYED;
-    boost::shared_ptr<TableFormat> VFT_VARIABLE_STATUSES;
+	TableFormatPtr VARIABLE_DEFINITION_FORMAT;
+	TableFormatPtr EF_VARIABLE_ADDED;
+	TableFormatPtr FUNCTION_DEFINITION_FORMAT;
+	TableFormatPtr EF_FUNCTION_ADDED;
+	TableFormatPtr EVENT_DEFINITION_FORMAT;
+	TableFormatPtr EF_EVENT_ADDED;
+	TableFormatPtr VFT_CHILDREN;
+	TableFormatPtr INFO_DEFINITION_FORMAT;
+	TableFormatPtr ACTION_DEF_FORMAT;
+	TableFormatPtr RESOURCE_MASKS_FORMAT;
+	TableFormatPtr FIFT_GET_COPY_DATA;
+	TableFormatPtr FIFT_GET_COPY_DATA_RECIPIENTS;
+	TableFormatPtr REPLICATE_INPUT_FORMAT;
+	TableFormatPtr FIFT_REPLICATE_FIELDS;
+	TableFormatPtr REPLICATE_OUTPUT_FORMAT;
+	TableFormatPtr REPLICATE_TO_CHILDREN_OUTPUT_FORMAT;
+	TableFormatPtr EF_UPDATED;
+	TableFormatPtr EF_CHANGE;
+	TableFormatPtr EFT_INFO;
+	TableFormatPtr EFT_VARIABLE_REMOVED;
+	TableFormatPtr EFT_EVENT_REMOVED;
+    TableFormatPtr EFT_FUNCTION_REMOVED;
+    TableFormatPtr EFT_CHILD_REMOVED;
+    TableFormatPtr EFT_CHILD_ADDED;
+    TableFormatPtr EFT_ACTION_REMOVED;
+    static VariableDefinitionPtr VD_INFO;
+    static VariableDefinitionPtr VD_VARIABLES;
+    static VariableDefinitionPtr VD_FUNCTIONS;
+    static VariableDefinitionPtr VD_EVENTS;
+    static VariableDefinitionPtr VD_ACTIONS;
+    static VariableDefinitionPtr VD_CHILDREN;
+    static FunctionDefinitionPtr FD_GET_COPY_DATA;
+    static FunctionDefinitionPtr FD_COPY;
+    static FunctionDefinitionPtr FD_COPY_TO_CHILDREN;
+	static EventDefinitionPtr ED_INFO;
+    static EventDefinitionPtr ED_CHILD_ADDED;
+    static EventDefinitionPtr ED_CHILD_REMOVED;
+    static EventDefinitionPtr ED_VARIABLE_ADDED;
+    static EventDefinitionPtr ED_VARIABLE_REMOVED;
+    static EventDefinitionPtr ED_FUNCTION_ADDED;
+    static EventDefinitionPtr ED_FUNCTION_REMOVED;
+    static EventDefinitionPtr ED_EVENT_ADDED;
+    static EventDefinitionPtr ED_EVENT_REMOVED;
+    static EventDefinitionPtr ED_ACTION_ADDED;
+    static EventDefinitionPtr ED_ACTION_REMOVED;
+    static EventDefinitionPtr ED_ACTION_STATE_CHANGED;
+    static EventDefinitionPtr ED_INFO_CHANGED;
+    static EventDefinitionPtr ED_UPDATED;
+    static EventDefinitionPtr ED_CHANGE;
+    static EventDefinitionPtr ED_DESTROYED;
+    TableFormatPtr VFT_VARIABLE_STATUSES;
     static const int DEFAULT_EVENT_LEVEL = -1;
-    static boost::shared_ptr<Permissions> DEFAULT_PERMISSIONS;
+    static PermissionsPtr DEFAULT_PERMISSIONS;
 
     static const std::string CALLER_CONTROLLER_PROPERTY_DEBUG;
     static const std::string CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS;
@@ -334,7 +334,7 @@ public:
     static const int DELTA_VERY_LOW = -30;
     static const int DELTA_LOWEST = -400;
 
-    void setup(ContextManager* contextManager);
+    void setup(ContextManagerPtr contextManager);
     void setup();
 
     void setupPermissions();
@@ -344,68 +344,68 @@ public:
     void teardown();
     void start();
     void stop();
-    int compareTo(Context* context);
-    std::list<void*>  getChildren(boost::shared_ptr<CallerController> caller);
+    int compareTo(ContextPtr context);
+    std::list<AgObjectPtr>  getChildren(CallerControllerPtr caller);
 
 
-    std::list<void*>  getChildren();
-    std::list<void*>  getVisibleChildren(boost::shared_ptr<CallerController> caller);
-    std::list<void*>  getVisibleChildren();
+    std::list<AgObjectPtr>  getChildren();
+    std::list<AgObjectPtr>  getVisibleChildren(CallerControllerPtr caller);
+    std::list<AgObjectPtr>  getVisibleChildren();
     bool isMapped();
-    std::list<void*>  getMappedChildren(boost::shared_ptr<CallerController> caller);
-    std::list<void*>  getMappedChildren();
+    std::list<AgObjectPtr>  getMappedChildren(CallerControllerPtr caller);
+    std::list<AgObjectPtr>  getMappedChildren();
 	
     std::string getName();
     std::string getDescription();
    
 	void setDescription(const std::string & description);
-    void* getParent();
-    bool hasParent(Context* parentContext);
-    void* getRoot();
-    void* get(const std::string & contextPath, boost::shared_ptr<CallerController> caller);
-    void* get(const std::string & contextName);
-	boost::shared_ptr<Permissions> getPermissions();
+    AgObjectPtr getParent();
+    bool hasParent(ContextPtr parentContext);
+    AgObjectPtr getRoot();
+    AgObjectPtr get(const std::string & contextPath, CallerControllerPtr caller);
+    AgObjectPtr get(const std::string & contextName);
+	PermissionsPtr getPermissions();
 
     void setName(const std::string &name);
 
-    void setParent(Context* parent);
+    void setParent(ContextPtr parent);
 
     bool isChildrenSortingEnabled();
 
     bool isChildrenConcurrencyEnabled();
 
-    bool checkPermissions(boost::shared_ptr<Permissions> needPermissions, boost::shared_ptr<CallerController> caller, Context* accessedContext);
-    void addChild(Context* child);
-    void addChild(Context* child, int  index);
+    bool checkPermissions(PermissionsPtr needPermissions, CallerControllerPtr caller, ContextPtr accessedContext);
+    void addChild(ContextPtr child);
+    void addChild(ContextPtr child, int  index);
     void removeFromParent();
     void destroy(bool moving);
 
-    void removeChild(Context* child);
+    void removeChild(ContextPtr child);
     void removeChild(const std::string & name);
 
 
-    void destroyChild(Context* child, bool moving);
+    void destroyChild(ContextPtr child, bool moving);
     void destroyChild(const std::string & name, bool moving);
     void removeAllChildren();
 
-	void move(Context* newParent, const std::string & newName);
+	void move(ContextPtr newParent, const std::string & newName);
 
-    void* getChild(const std::string & name, boost::shared_ptr<CallerController> caller);
-    void* getChild(const std::string & name);
+    AgObjectPtr getChild(const std::string & name, CallerControllerPtr caller);
+    AgObjectPtr getChild(const std::string & name);
 
     std::string getPath();
 	
-    bool addEventListener(const std::string & name, ContextEventListener* listener);
-    bool addEventListener(const std::string & name, ContextEventListener* listener, bool weak);
-    bool removeEventListener(const std::string & name, ContextEventListener* listener);
-    std::list<VariableDefinition*> getVariableDefinitions(boost::shared_ptr<CallerController> caller);
-    std::list<VariableDefinition*> getVariableDefinitions(boost::shared_ptr<CallerController> caller, bool includeHidden);
-    std::list<VariableDefinition*> getVariableDefinitions();
-    std::list<VariableDefinition*> getVariableDefinitions(boost::shared_ptr<CallerController> caller, const std::string & group);
-    std::list<VariableDefinition*> getVariableDefinitions(const std::string & group);
-    PermissionChecker* getPermissionChecker();
-    boost::shared_ptr<Permissions> getChildrenViewPermissions();
-    ContextManager* getContextManager();
+    bool addEventListener(const std::string & name, ContextEventListenerPtr listener);
+    bool addEventListener(const std::string & name, ContextEventListenerPtr listener, bool weak);
+    bool removeEventListener(const std::string & name, ContextEventListenerPtr listener);
+    std::list<VariableDefinitionPtr> getVariableDefinitions(CallerControllerPtr caller);
+    std::list<VariableDefinitionPtr> getVariableDefinitions(CallerControllerPtr caller, bool includeHidden);
+    std::list<VariableDefinitionPtr> getVariableDefinitions();
+    std::list<VariableDefinitionPtr> getVariableDefinitions(CallerControllerPtr caller, const std::string & group);
+    std::list<VariableDefinitionPtr> getVariableDefinitions(const std::string & group);
+    PermissionCheckerPtr getPermissionChecker();
+    PermissionsPtr getChildrenViewPermissions();
+	ContextManagerPtr getContextManager();
 
     bool isSetupComplete();
  
@@ -416,11 +416,11 @@ public:
     bool isInitializedFunctions();
     bool isInitializedEvents();
 	
-	std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(boost::shared_ptr<CallerController> caller);
-	std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(boost::shared_ptr<CallerController> caller, bool includeHidden);
-	std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions();
-	std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(boost::shared_ptr<CallerController> caller, const std::string & group);
-	std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(const std::string & group);
+	std::list< FunctionDefinitionPtr >  getFunctionDefinitions(CallerControllerPtr caller);
+	std::list< FunctionDefinitionPtr >  getFunctionDefinitions(CallerControllerPtr caller, bool includeHidden);
+	std::list< FunctionDefinitionPtr >  getFunctionDefinitions();
+	std::list< FunctionDefinitionPtr >  getFunctionDefinitions(CallerControllerPtr caller, const std::string & group);
+	std::list< FunctionDefinitionPtr >  getFunctionDefinitions(const std::string & group);
 
 	boost::shared_mutex getChildrenLock();
 
@@ -443,116 +443,116 @@ public:
 
     void setIndex(int  index);
     void setGroup(const std::string & group);
-	std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(boost::shared_ptr<CallerController> caller);
-	std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(boost::shared_ptr<CallerController> caller, bool includeHidden);
-	std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions();
-	std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(boost::shared_ptr<CallerController> caller, const std::string & group);
-	std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(const std::string & group);
-	boost::shared_ptr<ActionDefinition> getActionDefinition(const std::string & name);
-	boost::shared_ptr<ActionDefinition> getActionDefinition(const std::string & name, boost::shared_ptr<CallerController> caller);
-	boost::shared_ptr<ActionDefinition> getDefaultActionDefinition(boost::shared_ptr<CallerController> caller);
-	std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions(boost::shared_ptr<CallerController> caller);
-	void addActionDefinition(boost::shared_ptr<ActionDefinition> def);
-	std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions(boost::shared_ptr<CallerController> caller, bool includeHidden);
-	std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions();
+	std::list< EventDefinitionPtr >  getEventDefinitions(CallerControllerPtr caller);
+	std::list< EventDefinitionPtr >  getEventDefinitions(CallerControllerPtr caller, bool includeHidden);
+	std::list< EventDefinitionPtr >  getEventDefinitions();
+	std::list< EventDefinitionPtr >  getEventDefinitions(CallerControllerPtr caller, const std::string & group);
+	std::list< EventDefinitionPtr >  getEventDefinitions(const std::string & group);
+	ActionDefinitionPtr getActionDefinition(const std::string & name);
+	ActionDefinitionPtr getActionDefinition(const std::string & name, CallerControllerPtr caller);
+	ActionDefinitionPtr getDefaultActionDefinition(CallerControllerPtr caller);
+	std::list< ActionDefinitionPtr >  getActionDefinitions(CallerControllerPtr caller);
+	void addActionDefinition(ActionDefinitionPtr def);
+	std::list< ActionDefinitionPtr >  getActionDefinitions(CallerControllerPtr caller, bool includeHidden);
+	std::list< ActionDefinitionPtr >  getActionDefinitions();
 	void removeActionDefinition(const std::string & name);
 
-	boost::shared_ptr<DataTable> executeDefaultGetter(const std::string & name, boost::shared_ptr<CallerController> caller);
-	boost::shared_ptr<DataTable> executeDefaultGetter(const std::string & name, boost::shared_ptr<CallerController> caller, bool check);
-	boost::shared_ptr<DataTable> executeDefaultGetter(const std::string & name, boost::shared_ptr<CallerController> caller, bool check, bool createDefault);
+	DataTablePtr executeDefaultGetter(const std::string & name, CallerControllerPtr caller);
+	DataTablePtr executeDefaultGetter(const std::string & name, CallerControllerPtr caller, bool check);
+	DataTablePtr executeDefaultGetter(const std::string & name, CallerControllerPtr caller, bool check, bool createDefault);
 
     int hashCode();
-	bool equals(void* obj);
-	boost::shared_ptr<DataTable> getVariable(const std::string & name, boost::shared_ptr<CallerController> caller, RequestController* request);
-	boost::shared_ptr<DataTable> getVariable(const std::string & name, boost::shared_ptr<CallerController> caller);
-	boost::shared_ptr<DataTable> getVariable(const std::string & name);
+	bool equals(AgObjectPtr obj);
+	DataTablePtr getVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request);
+	DataTablePtr getVariable(const std::string & name, CallerControllerPtr caller);
+	DataTablePtr getVariable(const std::string & name);
 
-    void* getVariableObject(const std::string & name, boost::shared_ptr<CallerController> caller);
+    AgObjectPtr getVariableObject(const std::string & name, CallerControllerPtr caller);
 
-    boost::shared_ptr<DataTable> getDefaultValue(VariableDefinition* def);
-    void executeDefaultSetter(const std::string & name, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> value) ;
-    void executeDefaultSetter(VariableDefinition* def, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> value) ;
+    DataTablePtr getDefaultValue(VariableDefinitionPtr def);
+    void executeDefaultSetter(const std::string & name, CallerControllerPtr caller, DataTablePtr value) ;
+    void executeDefaultSetter(VariableDefinitionPtr def, CallerControllerPtr caller, DataTablePtr value) ;
 
-    void setVariable(const std::string & name, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> value) ;
-    void setVariable(const std::string & name, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> value) ;
-    void setVariable(const std::string & name, boost::shared_ptr<DataTable> value) ;
-	void setVariable(const std::string & name, boost::shared_ptr<CallerController> caller, void* value) ;
-	void setVariable(const std::string & name, void* value) ;
+    void setVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value) ;
+    void setVariable(const std::string & name, CallerControllerPtr caller, DataTablePtr value) ;
+    void setVariable(const std::string & name, DataTablePtr value) ;
+	void setVariable(const std::string & name, CallerControllerPtr caller, AgObjectPtr value) ;
+	void setVariable(const std::string & name, AgObjectPtr value) ;
 
-    bool setVariableField(const std::string & variable, const std::string & field, void* value, boost::shared_ptr<CallerController> cc) ;
-    bool setVariableField(const std::string & variable, const std::string & field, int record, void* value, boost::shared_ptr<CallerController> cc) ;
-    void setVariableField(const std::string & variable, const std::string & field, void* value, const std::string & compareField, void* compareValue, boost::shared_ptr<CallerController> cc) ;
-    void addVariableRecord(const std::string & variable, boost::shared_ptr<CallerController> cc, DataRecord* record) ;
-	void addVariableRecord(const std::string & variable, boost::shared_ptr<CallerController> cc, void* recordData) ;
-    void removeVariableRecords(const std::string & variable, boost::shared_ptr<CallerController> cc, const std::string & field, void* value) ;
+    bool setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, CallerControllerPtr cc) ;
+    bool setVariableField(const std::string & variable, const std::string & field, int record, AgObjectPtr value, CallerControllerPtr cc) ;
+    void setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, const std::string & compareField, AgObjectPtr compareValue, CallerControllerPtr cc) ;
+    void addVariableRecord(const std::string & variable, CallerControllerPtr cc, DataRecordPtr record) ;
+	void addVariableRecord(const std::string & variable, CallerControllerPtr cc, AgObjectPtr recordData) ;
+    void removeVariableRecords(const std::string & variable, CallerControllerPtr cc, const std::string & field, AgObjectPtr value) ;
 
-    boost::shared_ptr<DataTable> callFunction(const std::string & name, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters) ;
-    boost::shared_ptr<DataTable> callFunction(const std::string & name, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> parameters) ;
-    boost::shared_ptr<DataTable> callFunction(const std::string & name, boost::shared_ptr<DataTable> parameters) ;
-    boost::shared_ptr<DataTable> callFunction(const std::string & name) ;
-    boost::shared_ptr<DataTable> callFunction(const std::string & name, boost::shared_ptr<CallerController> caller) ;
-	boost::shared_ptr<DataTable> callFunction(const std::string & name, boost::shared_ptr<CallerController> caller, void* parameters) ;
-	boost::shared_ptr<DataTable> callFunction(const std::string & name, void* parameters) ;
+    DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
+    DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller, DataTablePtr parameters) ;
+    DataTablePtr callFunction(const std::string & name, DataTablePtr parameters) ;
+    DataTablePtr callFunction(const std::string & name) ;
+    DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller) ;
+	DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller, AgObjectPtr parameters) ;
+	DataTablePtr callFunction(const std::string & name, AgObjectPtr parameters) ;
 
-    void addVariableDefinition(VariableDefinition* def);
+    void addVariableDefinition(VariableDefinitionPtr def);
     void removeVariableDefinition(const std::string & name);
 
-    void addFunctionDefinition(boost::shared_ptr<FunctionDefinition> def);
+    void addFunctionDefinition(FunctionDefinitionPtr def);
 
 	void removeFunctionDefinition(const std::string & name);
 
-    void addEventDefinition(boost::shared_ptr<EventDefinition> def);
+    void addEventDefinition(EventDefinitionPtr def);
 
 	void removeEventDefinition(const std::string & name);
 
 
-    VariableData* getVariableData(const std::string & name);
-    VariableDefinition* getVariableDefinition(const std::string & name);
-    VariableDefinition* getVariableDefinition(const std::string & name, boost::shared_ptr<CallerController> caller);
-    FunctionData* getFunctionData(const std::string & name);
-    boost::shared_ptr<FunctionDefinition> getFunctionDefinition(const std::string & name);
-    boost::shared_ptr<FunctionDefinition> getFunctionDefinition(const std::string & name, boost::shared_ptr<CallerController> caller);
-	EventData* getEventData(const std::string & name);
-	boost::shared_ptr<EventDefinition> getEventDefinition(const std::string & name);
-	boost::shared_ptr<EventDefinition> getEventDefinition(const std::string & name, boost::shared_ptr<CallerController> caller);
+	VariableDataPtr getVariableData(const std::string & name);
+	VariableDefinitionPtr getVariableDefinition(const std::string & name);
+    VariableDefinitionPtr getVariableDefinition(const std::string & name, CallerControllerPtr caller);
+	FunctionDataPtr getFunctionData(const std::string & name);
+    FunctionDefinitionPtr getFunctionDefinition(const std::string & name);
+    FunctionDefinitionPtr getFunctionDefinition(const std::string & name, CallerControllerPtr caller);
+	EventDataPtr getEventDataPtr(const std::string & name);
+	EventDefinitionPtr getEventDefinition(const std::string & name);
+	EventDefinitionPtr getEventDefinition(const std::string & name, CallerControllerPtr caller);
 
 
-    boost::shared_ptr<Event> fireEvent(const std::string & name, int level, boost::shared_ptr<CallerController> caller, FireEventRequestController* request, boost::shared_ptr<Permissions> permissions, boost::shared_ptr<DataTable> data);
-    boost::shared_ptr<Event> fireEvent(const std::string & name, boost::shared_ptr<DataTable> data, int level, long  id, Date* creationtime, int  listener, boost::shared_ptr<CallerController> caller, FireEventRequestController* request);
-    boost::shared_ptr<Event> fireEvent(const std::string & name, boost::shared_ptr<DataTable> data);
-    boost::shared_ptr<Event> fireEvent(const std::string & name, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> data);
-    boost::shared_ptr<Event> fireEvent(const std::string & name, int level, boost::shared_ptr<DataTable> data);
-    boost::shared_ptr<Event> fireEvent(const std::string & name, int level, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> data);
-    boost::shared_ptr<Event> fireEvent(const std::string & name);
-	boost::shared_ptr<Event> fireEvent(const std::string & name, boost::shared_ptr<CallerController> caller);
-	boost::shared_ptr<Event> fireEvent(const std::string &name, void* data);
+    EventPtr fireEvent(const std::string & name, int level, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions, DataTablePtr data);
+    EventPtr fireEvent(const std::string & name, DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request);
+    EventPtr fireEvent(const std::string & name, DataTablePtr data);
+    EventPtr fireEvent(const std::string & name, CallerControllerPtr caller, DataTablePtr data);
+    EventPtr fireEvent(const std::string & name, int level, DataTablePtr data);
+    EventPtr fireEvent(const std::string & name, int level, CallerControllerPtr caller, DataTablePtr data);
+    EventPtr fireEvent(const std::string & name);
+	EventPtr fireEvent(const std::string & name, CallerControllerPtr caller);
+	EventPtr fireEvent(const std::string &name, AgObjectPtr data);
 
-	std::list<Event*>  getEventHistory(const std::string & name);
+	std::list<EventPtr>  getEventHistory(const std::string & name);
 
     const std::string & toString();
     std::string toDetailedString();
-	void accept(ContextVisitor* visitor) ;
+	void accept(ContextVisitorPtr visitor) ;
 
-    boost::shared_ptr<DataTable> getVvariables(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request) ;
+    DataTablePtr getVvariables(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
 
-    boost::shared_ptr<DataTable> getVfunctions(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request) ;
+    DataTablePtr getVfunctions(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
 
-    boost::shared_ptr<DataTable> getVevents(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request) ;
+    DataTablePtr getVevents(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
 
-	boost::shared_ptr<DataTable> getVactions(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request) ;
+	DataTablePtr getVactions(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
 
-    ContextStatus* getStatus();
+    ContextStatusPtr getStatus();
     void setStatus(int status, const std::string & comment);
 
-    void updateVariableStatus(const std::string & variable, VariableStatus* status, bool persistent) ;
+    void updateVariableStatus(const std::string & variable, VariableStatusPtr status, bool persistent) ;
 
-    VariableStatus* getVariableStatus(const std::string & name) ;
-    boost::shared_ptr<DataTable> getVchildren(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request) ;
-    boost::shared_ptr<DataTable> getVinfo(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request) ;
+    VariableStatusPtr getVariableStatus(const std::string & name) ;
+    DataTablePtr getVchildren(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
+    DataTablePtr getVinfo(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
 
-    boost::shared_ptr<DataTable> callFgetCopyData(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters) ;
-    boost::shared_ptr<DataTable> callFcopy(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters) ;
-	boost::shared_ptr<DataTable> callFcopyToChildren(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters) ;
+    DataTablePtr callFgetCopyData(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
+    DataTablePtr callFcopy(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
+	DataTablePtr callFcopyToChildren(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
 
 
 
@@ -560,60 +560,60 @@ public:
     AbstractContext(const std::string &name);
 
 protected:
-    void setPermissions(boost::shared_ptr<Permissions> permissions);
-    void setPermissionChecker(PermissionChecker* permissionChecker);
+    void setPermissions(PermissionsPtr permissions);
+	void setPermissionChecker(PermissionCheckerPtr permissionChecker);
     void setFireUpdateEvents(bool fireUpdateEvents);
     bool isFireUpdateEvents();
-	void setChildrenViewPermissions(boost::shared_ptr<Permissions> childrenViewPermissions);
+	void setChildrenViewPermissions(PermissionsPtr childrenViewPermissions);
     void setChildrenSortingEnabled(bool childrenSortingEnabled);
 	void setValueCheckingEnabled(bool valueCheckingEnabled);
 	void setChildrenConcurrencyEnabled(bool childrenConcurrencyEnabled);
-	void checkPermissions(boost::shared_ptr<Permissions> needPermissions, boost::shared_ptr<CallerController> caller);
+	void checkPermissions(PermissionsPtr needPermissions, CallerControllerPtr caller);
 	void destroyChildren(bool moving);
-	void reorderChild(Context* child, int index);
+	void reorderChild(ContextPtr child, int index);
 	void movePrepare(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName) ;
 	void moveInternal(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName) ;
 	void moveFinalize(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName);
     void setPermissionCheckingEnabled(bool permissionCheckingEnabled);
     void setIconId(const std::string & iconId);
-	ActionDefinition* actDefFromDataRecord(DataRecord* rec);
-	boost::shared_ptr<DataTable> executeDefaultGetterImpl(VariableDefinition* vd, boost::shared_ptr<CallerController> caller);
-	boost::shared_ptr<DataTable> getVariableImpl(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request) ;
-	void variableUpdated(VariableDefinition* def, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> value) ;
-    void fireUpdatedEvent(VariableDefinition* def, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> value);
-    void fireChangeEvent(VariableDefinition* def, boost::shared_ptr<CallerController> caller, Date* timestamp, boost::shared_ptr<DataTable> value);
+	ActionDefinitionPtr actDefFromDataRecord(DataRecordPtr rec);
+	DataTablePtr executeDefaultGetterImpl(VariableDefinitionPtr vd, CallerControllerPtr caller);
+	DataTablePtr getVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
+	void variableUpdated(VariableDefinitionPtr def, CallerControllerPtr caller, DataTablePtr value) ;
+    void fireUpdatedEvent(VariableDefinitionPtr def, CallerControllerPtr caller, DataTablePtr value);
+    void fireChangeEvent(VariableDefinitionPtr def, CallerControllerPtr caller, DatePtr timestamp, DataTablePtr value);
     void setupVariables() ;
-	void executeDefaultSetterImpl(VariableDefinition* vd, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> value);
-    bool setVariableImpl(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> value);
+	void executeDefaultSetterImpl(VariableDefinitionPtr vd, CallerControllerPtr caller, DataTablePtr value);
+    bool setVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value);
     void setupFunctions();
-	boost::shared_ptr<DataTable> callFunctionImpl(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters);
+	DataTablePtr callFunctionImpl(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters);
     void setupEvents();
-    void postEvent(boost::shared_ptr<Event> ev, boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<CallerController> caller, FireEventRequestController* request) ;
-    void updateEvent(boost::shared_ptr<Event> ev, boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<CallerController> caller, FireEventRequestController* request) ;
-	boost::shared_ptr<Event> fireEvent(boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<DataTable> data, int level, long  id, Date* creationtime, int  listener, boost::shared_ptr<CallerController> caller, FireEventRequestController* request, boost::shared_ptr<Permissions> permissions);
-    boost::shared_ptr<Event> fireEvent(boost::shared_ptr<Event> event);
-	EventProcessingRule* getEventProcessingRule(boost::shared_ptr<Event> event);
-	void processBindings(boost::shared_ptr<Event> event);
-	boost::shared_ptr<CallerController> getEventProcessingCallerController();
-    boost::shared_ptr<EventDefinition> getChangeEventDefinition();
-	const std::string & encodeFormat(boost::shared_ptr<TableFormat> format, boost::shared_ptr<CallerController> caller);
-	boost::shared_ptr<TableFormat> decodeFormat(const std::string & source, boost::shared_ptr<CallerController> caller);
-    DataRecord* varDefToDataRecord(VariableDefinition* vd);
-	VariableDefinition* varDefFromDataRecord(DataRecord* rec);
-	DataRecord* funcDefToDataRecord(boost::shared_ptr<FunctionDefinition> fd);
-	boost::shared_ptr<FunctionDefinition> funcDefFromDataRecord(DataRecord* rec);
-	DataRecord* evtDefToDataRecord(boost::shared_ptr<EventDefinition> ed);
-	boost::shared_ptr<EventDefinition> evtDefFromDataRecord(DataRecord* rec);
-	DataRecord* actDefToDataRecord(ActionDefinition* def);
+    void postEvent(EventPtr ev, EventDefinitionPtr ed, CallerControllerPtr caller, FireEventRequestControllerPtr request) ;
+    void updateEvent(EventPtr ev, EventDefinitionPtr ed, CallerControllerPtr caller, FireEventRequestControllerPtr request) ;
+	EventPtr fireEvent(EventDefinitionPtr ed, DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions);
+    EventPtr fireEvent(EventPtr event);
+	EventProcessingRulePtr getEventProcessingRule(EventPtr event);
+	void processBindings(EventPtr event);
+	CallerControllerPtr getEventProcessingCallerController();
+    EventDefinitionPtr getChangeEventDefinition();
+	const std::string & encodeFormat(TableFormatPtr format, CallerControllerPtr caller);
+	TableFormatPtr decodeFormat(const std::string & source, CallerControllerPtr caller);
+    DataRecordPtr varDefToDataRecord(VariableDefinitionPtr vd);
+	VariableDefinitionPtr varDefFromDataRecord(DataRecordPtr rec);
+	DataRecordPtr funcDefToDataRecord(FunctionDefinitionPtr fd);
+	FunctionDefinitionPtr funcDefFromDataRecord(DataRecordPtr rec);
+	DataRecordPtr evtDefToDataRecord(EventDefinitionPtr ed);
+	EventDefinitionPtr evtDefFromDataRecord(DataRecordPtr rec);
+	DataRecordPtr actDefToDataRecord(ActionDefinitionPtr def);
 	void executeTasks(std::list<boost::thread*>  tasks);
-	void enableStatus() ;
+	void enableStatus();
 	void fireStatusChanged(int status, const std::string & comment, int oldStatus);
     void enableVariableStatuses(bool persistent);
-	boost::shared_ptr<DataTable> fetchVariableStatuses() ;
+	DataTablePtr fetchVariableStatuses() ;
 	void clearVariableStatuses() ;
     void saveVariableStatuses() ;
-	void persistVariableStatuses(boost::shared_ptr<DataTable> statuses) ;
-	boost::shared_ptr<DataTable> copyTo(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, boost::shared_ptr<DataTable> parameters, std::list<void*>  children);
+	void persistVariableStatuses(DataTablePtr statuses) ;
+	DataTablePtr copyTo(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters, std::list<AgObjectPtr>  children);
 
 };
 #endif

@@ -11,7 +11,7 @@
 namespace Contexts
 {
 
-//   static const std::string CURRENT = ContextUtils::CONTEXT_NAME_SEPARATOR;
+	static const std::string CURRENT = ContextUtils::CONTEXT_NAME_SEPARATOR;
 
     static const std::string CTX_ADMINISTRATION = "administration";
     static const std::string CTX_ALERTS = "alerts";

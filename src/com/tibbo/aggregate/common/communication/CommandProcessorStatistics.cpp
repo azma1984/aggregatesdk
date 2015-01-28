@@ -48,12 +48,12 @@ com::tibbo::aggregate::common::communication::CommandProcessorStatistics::Comman
     ctor();
 }
 
-DateTableFormat*& com::tibbo::aggregate::common::communication::CommandProcessorStatistics::FORMAT()
+DateTableFormatPtr& com::tibbo::aggregate::common::communication::CommandProcessorStatistics::FORMAT()
 {
     
     return FORMAT_;
 }
-DateTableFormat* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::FORMAT_;
+DateTableFormatPtr com::tibbo::aggregate::common::communication::CommandProcessorStatistics::FORMAT_;
 
 void com::tibbo::aggregate::common::communication::CommandProcessorStatistics::update(ReplyMonitor* monitor)
 {
@@ -62,15 +62,15 @@ void com::tibbo::aggregate::common::communication::CommandProcessorStatistics::u
     }
     commandCount++;
     averageResponseTime = (averageResponseTime * ((new ::java::lang::Float(static_cast< float >(commandCount))))->floatValue() - int(1)) + (new ::java::lang::Float(static_cast< float >(::java::lang::System::currentTimeMillis() - monitor)->getStartTime()))))->floatValue()) / (new ::java::lang::Float(static_cast< float >(commandCount))))->floatValue();
-    outgoingTraffic += java_cast< Command* >(monitor)->getCommand()))->size();
-    if(java_cast< Command* >(monitor)->getReply()) != 0) {
-        incomingTraffic += java_cast< Command* >(monitor)->getReply()))->size();
+    outgoingTraffic += java_cast< CommandPtr >(monitor)->getCommand()))->size();
+    if(java_cast< CommandPtr >(monitor)->getReply()) != 0) {
+        incomingTraffic += java_cast< CommandPtr >(monitor)->getReply()))->size();
     } else {
         unrepliedCommandCount++;
     }
 }
 
-DateDataTable* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::toDataTable()
+DateDataTablePtr com::tibbo::aggregate::common::communication::CommandProcessorStatistics::toDataTable()
 {
     try {
         return DataTableConversion::beanToTable(this, FORMAT_);
@@ -118,7 +118,7 @@ long com::tibbo::aggregate::common::communication::CommandProcessorStatistics::g
 
 java::lang::Class* com::tibbo::aggregate::common::communication::CommandProcessorStatistics::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.communication.CommandProcessorStatistics", 67);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.communication.CommandProcessorStatistics", 67);
     return c;
 }
 
@@ -135,7 +135,7 @@ struct clinit_ {
                 ->append(u"><E="_j)
                 ->append(field::LongFieldFormat::EDITOR_PERIOD())
                 ->append(u"><O="_j)
-                ->append(field::LongFieldFormat::encodePeriodEditorOptions(::com::tibbo::aggregate::common::util::TimeHelper::SECOND, ::com::tibbo::aggregate::common::util::TimeHelper::DAY))
+                ->append(field::LongFieldFormat::encodePeriodEditorOptions(TimeHelper::SECOND, TimeHelper::DAY))
                 ->append(u">"_j)->toString());
             FORMAT_)->addField(std::stringBuilder().append(u"<commandCount><L><D="_j)->append(Cres::get())->getString(u"commCommandCount"_j))
                 ->append(u">"_j)->toString());
@@ -143,7 +143,7 @@ struct clinit_ {
                 ->append(u"><E="_j)
                 ->append(field::LongFieldFormat::EDITOR_PERIOD())
                 ->append(u"><O="_j)
-                ->append(field::LongFieldFormat::encodePeriodEditorOptions(::com::tibbo::aggregate::common::util::TimeHelper::MILLISECOND, ::com::tibbo::aggregate::common::util::TimeHelper::MILLISECOND))
+                ->append(field::LongFieldFormat::encodePeriodEditorOptions(TimeHelper::MILLISECOND, TimeHelper::MILLISECOND))
                 ->append(u">"_j)->toString());
             FORMAT_)->addField(std::stringBuilder().append(u"<incomingTraffic><L><D="_j)->append(Cres::get())->getString(u"commIncomingTraffic"_j))
                 ->append(u"><E="_j)

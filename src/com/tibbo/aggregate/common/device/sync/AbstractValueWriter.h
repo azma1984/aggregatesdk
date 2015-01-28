@@ -19,7 +19,7 @@ class AbstractValueWriter : public ValueWriter
     std::string name;
 
  public:
-    void write(boost::shared_ptr<DataTable> value, boost::shared_ptr<CallerController> callerController,boost::shared_ptr<RequestController> requestController);
+    void write(DataTablePtr value, CallerControllerPtr callerController,RequestControllerPtr requestController);
 
 	static AbstractValueWriter& getInstance()
     {

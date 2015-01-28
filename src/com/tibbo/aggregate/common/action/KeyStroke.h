@@ -1,5 +1,7 @@
-#pragma once
+#ifndef KeyStrokeH
+#define KeyStrokeH
 
+//This class is necessary?
 class KeyStroke
 {
 /*

@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/BatchContext.java
 #ifndef BatchContextH
 #define BatchContextH
 #include <list>
@@ -7,17 +6,17 @@
 class BatchContext
 {
  private:
-	std::list<BatchEntry*> entries;
-	BatchEntry* currentEntry;
+	std::list<BatchEntryPtr> entries;
+	BatchEntryPtr currentEntry;
 
 public:
-	void addBatchEntry(BatchEntry* batchEntry);
+	void addBatchEntry(BatchEntryPtr batchEntry);
 
-	std::list<BatchEntry*>* getEntries();
-    BatchEntry* getCurrentEntry();
-	void markAsPerfomed(BatchEntry* entry);
+	std::list<BatchEntryPtr> getEntries();
+    BatchEntryPtr getCurrentEntry();
+	void markAsPerfomed(BatchEntryPtr entry);
 
-	void setCurrentEntry(BatchEntry* currentEntry);
+	void setCurrentEntry(BatchEntryPtr currentEntry);
 };
 
 

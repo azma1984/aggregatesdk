@@ -84,7 +84,7 @@ std::string SettingSynchronizationOptions::getFilter()
     return filter;
 }
 
-Expression* SettingSynchronizationOptions::getFilterExpression()
+ExpressionPtr SettingSynchronizationOptions::getFilterExpression()
 {
     if((filterExpression == 0) && (filter.empty() == false) && (filter.length() > 0)) 
 	{
@@ -104,7 +104,7 @@ std::string SettingSynchronizationOptions::getCondition()
     return condition;
 }
 
-Expression* SettingSynchronizationOptions::getConditionExpression()
+ExpressionPtr SettingSynchronizationOptions::getConditionExpression()
 {
     if((conditionExpression == 0) && (condition.empty() == false) && (condition.length() > 0)) 
 	{
@@ -119,12 +119,12 @@ void SettingSynchronizationOptions::setCondition(const std::string & condition)
     conditionExpression=0;
 }
 
-SynchronizationHandler* SettingSynchronizationOptions::getSynchronizationHandler()
+SynchronizationHandlerPtr SettingSynchronizationOptions::getSynchronizationHandler()
 {
     return synchronizationHandler;
 }
 
-void SettingSynchronizationOptions::setSynchronizationHandler(SynchronizationHandler* synchronizationHandler)
+void SettingSynchronizationOptions::setSynchronizationHandler(SynchronizationHandlerPtr synchronizationHandler)
 {
     this->synchronizationHandler = synchronizationHandler;
 }
@@ -141,9 +141,9 @@ void SettingSynchronizationOptions::incrementSynchronizationsCounter()
 
 
 
-SettingSynchronizationOptions* SettingSynchronizationOptions::clone() const
+SettingSynchronizationOptionsPtr SettingSynchronizationOptions::clone() const
 {
-  SettingSynchronizationOptions *sso = new  SettingSynchronizationOptions;
+  SettingSynchronizationOptionsPtrsso = new  SettingSynchronizationOptions;
 
   sso->mode = mode;
   sso->updateHistoryStorageTime = updateHistoryStorageTime;

@@ -1,34 +1,46 @@
-#pragma once
+#ifndef WindowLocationH
+#define WindowLocationH
 
 #include "datatable/AggreGateBean.h"
-/*
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableBindingProvider.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/datatable/validator/ValidatorHelper.h"
-#include <com/tibbo/aggregate/common/expression/DefaultReferenceResolver.h"
-*/
+
+#include "Cres.h"
+#include "datatable/DataTableBindingProvider.h"
+#include "datatable/FieldFormat.h"
+#include "datatable/TableFormat.h"
+#include "datatable/validator/ValidatorHelper.h"
+#include "expression/DefaultReferenceResolver.h"
 
 
 class WindowLocation : public AggreGateBean
 {
-   /*
 
 private:
-    static const std::string FIELD_STATE_;
-    static const std::string FIELD_SIDE_;
-    static const std::string FIELD_INDEX_;
-    static const std::string FIELD_WIDTH_;
-    static const std::string FIELD_HEIGHT_;
-    static const std::string FIELD_RESIZABLE_;
-    static const std::string FIELD_CLOSABLE_;
-    static const std::string FIELD_MOVABLE_;
-    static const std::string FIELD_FLOATABLE_;
-    static const std::string FIELD_MAXIMIZABLE_;
-    static const std::string FIELD_AUTOHIDABLE_;
-    static const std::string FIELD_KEY_;
+	static const std::string FIELD_STATE_;
+	static const std::string FIELD_SIDE_;
+	static const std::string FIELD_INDEX_;
+	static const std::string FIELD_WIDTH_;
+	static const std::string FIELD_HEIGHT_;
+	static const std::string FIELD_RESIZABLE_;
+	static const std::string FIELD_CLOSABLE_;
+	static const std::string FIELD_MOVABLE_;
+	static const std::string FIELD_FLOATABLE_;
+	static const std::string FIELD_MAXIMIZABLE_;
+	static const std::string FIELD_AUTOHIDABLE_;
+	static const std::string FIELD_KEY_;
 
+	static TableFormatPtr FORMAT_;
+	int state;
+	int side;
+	int index;
+	int  width;
+	int  height;
+	bool resizable;
+	bool closable;
+	bool movable;
+	bool floatable;
+	bool maximizable;
+	bool autohidable;
+	const std::string & key;
 public:
 	static const int STATE_DOCKED=0;
 	static const int STATE_FLOATING = 1;
@@ -38,32 +50,7 @@ public:
 	static const int SIDE_BOTTOM = 2;
 	static const int SIDE_RIGHT = 3;
 
-private:
-    static TableFormat* FORMAT_;
-    int state;
-    int side;
-    int index;
-    int  width;
-    int  height;
-    bool resizable;
-    bool closable;
-    bool movable;
-    bool floatable;
-    bool maximizable;
-    bool autohidable;
-    const std::string & key;
-protected:
-    void ctor();
-    void ctor(int state);
-    void ctor(::java::awt::Dimension* size);
-    void ctor(int side, int index);
-    void ctor(int side, int index, ::java::awt::Dimension* size);
-    void ctor(int column, ::java::awt::Dimension* size);
-    void ctor(int state, int side, int index);
-    void ctor(int state, int side, int index, ::java::awt::Dimension* size);
-    void ctor(DataRecord* data);
 
-public:
     void applyDefaultSize(::java::awt::Dimension* defaultSize);
     int getState();
     void setState(int state);
@@ -91,8 +78,7 @@ public:
     void setKey(const std::string & key);
     const std::string & toString();
 
-    // Generated
-    WindowLocation();
+	WindowLocation();
     WindowLocation(int state);
     WindowLocation(::java::awt::Dimension* size);
     WindowLocation(int side, int index);
@@ -100,15 +86,10 @@ public:
     WindowLocation(int column, ::java::awt::Dimension* size);
     WindowLocation(int state, int side, int index);
     WindowLocation(int state, int side, int index, ::java::awt::Dimension* size);
-    WindowLocation(DataRecord* data);
-protected:
-    WindowLocation(const ::default_init_tag&);
+    WindowLocation(DataRecordPtr data);
 
 
-public:
-    
-    static void 
-    static const std::string& FIELD_STATE();
+	static const std::string& FIELD_STATE();
     static const std::string& FIELD_SIDE();
     static const std::string& FIELD_INDEX();
     static const std::string& FIELD_WIDTH();
@@ -120,8 +101,8 @@ public:
     static const std::string& FIELD_MAXIMIZABLE();
     static const std::string& FIELD_AUTOHIDABLE();
     static const std::string& FIELD_KEY();
-	static TableFormat*& FORMAT();
-*/
+	static TableFormatPtr& FORMAT();
+
 };
 
 #endif

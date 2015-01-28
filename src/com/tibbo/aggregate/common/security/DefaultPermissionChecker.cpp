@@ -1,13 +1,13 @@
-#include "security/DefaultPermissionChecker.h"
+﻿#include "security/DefaultPermissionChecker.h"
 #include "context/UncheckedCallerController.h"
 #include "context/ContextUtils.h"
 #include "Cres.h"
 
 DefaultPermissionChecker::DefaultPermissionChecker()
 {
-    boost::shared_ptr<CallerController> unchecked = new UncheckedCallerController();
+    CallerControllerPtr unchecked = new UncheckedCallerController();
 
-    boost::shared_ptr<PermissionType> nullType = new PermissionType(0, NULL_PERMISSIONS_, Cres::get().getString("secNoPerms"));
+    PermissionTypePtr nullType = new PermissionType(0, NULL_PERMISSIONS_, Cres::get().getString("secNoPerms"));
     permissionTypes.push_back( nullType );
 }
 
@@ -16,21 +16,21 @@ const std::string DefaultPermissionChecker::NULL_PERMISSIONS()
     return NULL_PERMISSIONS_;
 }
 
-void DefaultPermissionChecker::setPermissionTypes(std::vector<boost::shared_ptr<PermissionType>> perms)
+void DefaultPermissionChecker::setPermissionTypes(std::vector<PermissionTypePtr> perms)
 {
     this->permissionTypes = perms;
 }
 
-boost::shared_ptr<Permissions> DefaultPermissionChecker::getNullPermissions()
+PermissionsPtr DefaultPermissionChecker::getNullPermissions()
 {
-    boost::shared_ptr<Permissions> newPermiss = new Permissions();
+    PermissionsPtr newPermiss = new Permissions();
     return newPermiss;
 }
 
 bool DefaultPermissionChecker::has(
-    boost::shared_ptr<CallerController> caller,
-    boost::shared_ptr<Permissions> requiredPermissions,
-    boost::shared_ptr<Context> accessedContext
+    CallerControllerPtr caller,
+    PermissionsPtr requiredPermissions,
+    ContextPtr accessedContext
 ) {
     try
     {
@@ -42,7 +42,7 @@ bool DefaultPermissionChecker::has(
             return true;
         }
 
-        Permissions* existingPermissions = caller->getPermissions();
+        PermissionsPtr existingPermissions = caller->getPermissions();
 
         if (existingPermissions == NULL) {
             if (logger.isDebugEnabled()) {
@@ -118,9 +118,9 @@ bool DefaultPermissionChecker::has(
 }
 
 std::string DefaultPermissionChecker::getLevel(
-    boost::shared_ptr<Permissions> permissions,
+    PermissionsPtr permissions,
     const std::string& context,
-    boost::shared_ptr<ContextManager> cm
+    ContextManagerPtr cm
 ) {
     try
     {
@@ -156,7 +156,7 @@ std::string DefaultPermissionChecker::getLevel(
     }
 }
 
-bool DefaultPermissionChecker::canSee(Permissions permissions, const std::string& context, boost::shared_ptr<ContextManager> cm)
+bool DefaultPermissionChecker::canSee(Permissions permissions, const std::string& context, ContextManagerPtr cm)
 {
     try {
         if (permissions == NULL) {
@@ -196,9 +196,9 @@ bool DefaultPermissionChecker::canSee(Permissions permissions, const std::string
 }
 
 virtual std::string DefaultPermissionChecker::canActivate(
-    boost::shared_ptr<Permissions> existingPermissions,
-    boost::shared_ptr<Permissions> requiredPermissions,
-    boost::shared_ptr<ContextManager> cm
+    PermissionsPtr existingPermissions,
+    PermissionsPtr requiredPermissions,
+    ContextManagerPtr cm
 ) {
     //TODO: Permissions need iterable
 //    for (Permission requiredPermission : requiredPermissions) {
@@ -268,9 +268,9 @@ int DefaultPermissionChecker::findPattern(const std::string &level) /* throws(Se
 }
 
 bool DefaultPermissionChecker::contextMatches(
-    boost::shared_ptr<Permission> existingPermission,
-    boost::shared_ptr<Permission> requiredPermission,
-    boost::shared_ptr<Context> accessedContext
+    PermissionPtr existingPermission,
+    PermissionPtr requiredPermission,
+    ContextPtr accessedContext
 ){
     if (existingPermission->getContext() == NULL) {
         return true;
@@ -293,7 +293,7 @@ bool DefaultPermissionChecker::contextMatches(
     return false;
 }
 
-std::list<std::string> DefaultPermissionChecker::getAllowedPaths(boost::shared_ptr<Permission> permission, boost::shared_ptr<ContextManager> cm)
+std::list<std::string> DefaultPermissionChecker::getAllowedPaths(PermissionPtr permission, ContextManagerPtr cm)
 {
     if (cm != NULL && permission->getContext().endsWith(ContextUtils.CONTEXT_NAME_SEPARATOR + ContextUtils.CONTEXT_GROUP_MASK)) {
         std::string truncated = permission->getContext().substr(0, permission->getContext().length() - 2);

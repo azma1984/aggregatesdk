@@ -5,7 +5,7 @@
 
 java::lang::Class* com::tibbo::aggregate::common::protocol::AggreGateDeviceController::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.AggreGateDeviceController", 61);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.AggreGateDeviceController", 61);
     return c;
 }
 

@@ -15,17 +15,17 @@ AbstractBindingProvider::AbstractBindingProvider()
 
 }
 
-AbstractBindingProvider::AbstractBindingProvider(shared_ptr<ErrorCollector> errorCollector)
+AbstractBindingProvider::AbstractBindingProvider(ErrorCollectorPtr errorCollector)
 {
     this->errorCollector = errorCollector;
 }
 
 void AbstractBindingProvider::processExecution(
     int event,
-    boost::shared_ptr<Binding> binding,
-    boost::shared_ptr<EvaluationOptions> options,
-    boost::shared_ptr<Reference> cause,
-    void* result
+    boost::BindingPtr binding,
+    boost::EvaluationOptionsPtr options,
+    boost::ReferencePtr cause,
+    AgObjectPtr result
 ) {
     switch (event)
     {
@@ -53,10 +53,10 @@ void AbstractBindingProvider::processExecution(
 }
 
 void AbstractBindingProvider::processError(
-    boost::shared_ptr<Binding> binding,
+    boost::BindingPtr binding,
     int method,
-    boost::shared_ptr<Reference> cause,
-    boost::shared_ptr<Exception> error
+    boost::ReferencePtr cause,
+    boost::ExceptionPtr error
 ) {
 //    std::string message = MessageFormat.format(Cres::get()->getString("binBindingError"), binding) + error.getMessage();
     std::string message = std::string(Cres::get()->getString("binBindingError")).append(binding->toString())

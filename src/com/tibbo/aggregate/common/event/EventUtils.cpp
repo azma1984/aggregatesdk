@@ -86,12 +86,12 @@ std::string& EventUtils::FIELD_SEVERITY_STATS_LEVEL()
 }
 std::string EventUtils::FIELD_SEVERITY_STATS_LEVEL_;
 
-DateTableFormat*& EventUtils::SEVERITY_STATS_FORMAT()
+DateTableFormatPtr& EventUtils::SEVERITY_STATS_FORMAT()
 {
     
     return SEVERITY_STATS_FORMAT_;
 }
-DateTableFormat* EventUtils::SEVERITY_STATS_FORMAT_;
+DateTableFormatPtr EventUtils::SEVERITY_STATS_FORMAT_;
 
 java::util::Random*& EventUtils::ID_GENERATOR()
 {
@@ -106,27 +106,27 @@ long EventUtils::generateEventId()
     return ::java::lang::Math::abs(ID_GENERATOR_)->nextLong());
 }
 
-std::list  EventUtils::getEventDefinitions(ContextManager* cm, const std::string & contextMask, const std::string & eventsMask, CallerController* caller)
+std::list  EventUtils::getEventDefinitions(ContextManagerPtr cm, const std::string & contextMask, const std::string & eventsMask, CallerControllerPtr caller)
 {
     
     std::list  events = new ::java::util::LinkedList();
     auto contexts = ContextUtils::expandMaskToContexts(contextMask, cm, caller);
     for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-        Context* context = java_cast< Context* >(_i->next());
+        ContextPtr context = java_cast< ContextPtr >(_i->next());
         {
-            events)->addAll(static_cast< ::java::util::Collection* >(getEvents(context, eventsMask, caller)));
+            events)->addAll(static_cast< std::list >(getEvents(context, eventsMask, caller)));
         }
     }
     return events;
 }
 
-std::list  EventUtils::getEvents(Context* context, const std::string & eventsMask, CallerController* caller)
+std::list  EventUtils::getEvents(ContextPtr context, const std::string & eventsMask, CallerControllerPtr caller)
 {
     
     std::list  events = new ::java::util::LinkedList();
     if(eventsMask)->equals(ContextUtils::ENTITY_GROUP_MASK()))) {
         for (auto _i = context)->getEventDefinitions(caller))->iterator(); _i->hasNext(); ) {
-            EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
+            EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
             {
                 if(ed)->getGroup() != 0 && !context::ContextUtils::GROUP_SYSTEM())->equals(ed)->getGroup()))) {
                     events)->add(ed));
@@ -142,7 +142,7 @@ std::list  EventUtils::getEvents(Context* context, const std::string & eventsMas
     return events;
 }
 
-bool EventUtils::matchesToMask(const std::string & eventMask, EventDefinition* ed)
+bool EventUtils::matchesToMask(const std::string & eventMask, EventDefinitionPtr ed)
 {
     
     if(context::ContextUtils::ENTITY_GROUP_MASK())->equals(eventMask))) {
@@ -157,10 +157,10 @@ bool EventUtils::matchesToMask(const std::string & eventMask, const std::string 
     if(context::ContextUtils::ENTITY_GROUP_MASK())->equals(eventMask))) {
         return true;
     }
-    return ::com::tibbo::aggregate::common::util::Util::equals(event, eventMask);
+    return Util::equals(event, eventMask);
 }
 
-DateDataTable* EventUtils::createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal)
+DateDataTablePtr EventUtils::createSeverityStatisticsTable(int none, int notice, int info, int warning, int error, int fatal)
 {
     
     auto stats = new DataTable(SEVERITY_STATS_FORMAT_);
@@ -183,7 +183,7 @@ java::awt::Color* EventUtils::getEventColor(int level)
 
 java::lang::Class* EventUtils::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.event.EventUtils", 43);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.event.EventUtils", 43);
     return c;
 }
 

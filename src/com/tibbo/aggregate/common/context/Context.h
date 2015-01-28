@@ -5,7 +5,7 @@
 #include <boost/shared_ptr.hpp>
 #include "context/ContextManager.h"
 #include "context/ContextStatus.h"
-#include "context/FunctionData.h"
+//#include "context/FunctionData.h"
 //#include "context/VariableData.h"
 //#include "context/ContextVisitor.h"
 //#include "context/CallerController.h"
@@ -14,13 +14,15 @@
 #include "util/Date.h"
 #include "event/FireEventRequestController.h"
 #include "action/ActionDefinition.h"
-#include "security/Permissions.h"
+//#include "security/Permissions.h"
 
 class ContextVisitor;
 class VariableData;
 class VariableDefinition;
 class CallerController;
 class EventDefinition;
+class Permissions;
+class FunctionData;
 /**
  * Context interface is used to provide a unified way to access any object in AggreGate. It may be some server object (e.g. alert or event filters storage), hardware device or widget component. When
  * server contexts are accessed remotely, so-called proxy contexts are created for operating server-side objects through the same interface.
@@ -42,10 +44,9 @@ class Context
        * This method is called after the context has been added to a context tree and it became aware of its full path. Note, that default implementation of this method in AbstractContext calls tree
        * methods: setupPermissions(), setupMyself() and setupChildren(). These methods should provide initialization logic in inherited classes instead of overridden setup() method.
        *
-       * @param contextManager
-       *          ContextManager heading current context tree
+       * @param ContextManagerPtr          ContextManager heading current context tree
        */
-    virtual void setup(boost::shared_ptr<ContextManager> contextManager)=0;
+    virtual void setup(ContextManagerPtr contextManager)=0;
 
   /*
    Этот метод вызывают, когда контекст удаляется из дерева контекста..
@@ -172,32 +173,32 @@ class Context
   /**
    * Returns context status or null if status is not enabled;
    */
-	virtual ContextStatus* getStatus()=0;
+	virtual ContextStatusPtr getStatus()=0;
 
   /**
    * Returns context manager those context tree contains this context.
    */
-	virtual ContextManager* getContextManager()=0;
+	virtual ContextManagerPtr getContextManager()=0;
 
   /**
    * Returns list of children contexts that are accessible by the specified <code>CallerController</code>.
    */
-	virtual std::list<void*>  getChildren(CallerController* caller)=0;
+	virtual std::list<AgObjectPtr>  getChildren(CallerControllerPtr caller)=0;
 	
   /**
    * Returns list of children contexts.
    */
-	virtual std::list<void*>  getChildren()=0;
+	virtual std::list<AgObjectPtr>  getChildren()=0;
 
   /**
    * Returns list of visible children contexts.
    */
-	virtual std::list<void*>  getVisibleChildren(CallerController* caller)=0;
+	virtual std::list<AgObjectPtr>  getVisibleChildren(CallerControllerPtr caller)=0;
 
   /**
    * Returns list of visible children contexts.
    */
-	virtual std::list<void*>  getVisibleChildren()=0;
+	virtual std::list<AgObjectPtr>  getVisibleChildren()=0;
 
   /**
    * Returns true if context's visible children are mapped (e.g. for group and aggregation contexts).
@@ -207,23 +208,23 @@ class Context
   /**
    * Returns list of mapped children contexts.
    */
-	virtual std::list<void*>  getMappedChildren(CallerController* caller)=0;
+	virtual std::list<AgObjectPtr>  getMappedChildren(CallerControllerPtr caller)=0;
 	
   /**
    * Returns list of mapped children contexts.
    */
-	virtual std::list<void*>  getMappedChildren()=0;
+	virtual std::list<AgObjectPtr>  getMappedChildren()=0;
 	
   /**
    * Returns root context of the context tree containing this context.
    */
-	virtual void* getRoot()=0;
+	virtual AgObjectPtr getRoot()=0;
   /**
    * Returns context with the selected path.
    * 
    * <code>path</code> argument may be absolute of relative to this context. This method uses provided <code>CallerController</code> for permission checking.
    */
-	virtual void* get(const std::string & path, CallerController* caller)=0;
+	virtual AgObjectPtr get(const std::string & path, CallerControllerPtr caller)=0;
   /**
    * Returns context with the selected path.
    * 
@@ -232,7 +233,7 @@ class Context
    * Note: if this Context is a part of distributed context tree and path argument is not relative, the method will return local context matching its remote "peer" with given path. To get the local
    * context with the given path, use {@link ContextManager#get(String)} instead.
    */
-	virtual void* get(const std::string & path)=0;
+	virtual AgObjectPtr get(const std::string & path)=0;
   /**
    * Returns child of this context with the specified name.
    * 
@@ -243,21 +244,21 @@ class Context
    * 
    * This method uses provided <code>CallerController</code> for permission checking.
    */
-	virtual void* getChild(const std::string & name, CallerController* caller)=0;
+	virtual AgObjectPtr getChild(const std::string & name, CallerControllerPtr caller)=0;
   /**
    * Returns child of this context with the specified name.
    */
-	virtual void* getChild(const std::string & name)=0;
+	virtual AgObjectPtr getChild(const std::string & name)=0;
 	
   /**
    * Adds new child to the current context.
    */
-	virtual void addChild(void* child)=0;
+	virtual void addChild(AgObjectPtr child)=0;
 
   /**
    * Removes child of current context.
    */
-	virtual void removeChild(void* child)=0;
+	virtual void removeChild(AgObjectPtr child)=0;
 
   /**
    * Removes child with specified name.
@@ -266,7 +267,7 @@ class Context
   /**
    * Permanently destroys child of current context.
    */
-	virtual void destroyChild(void* child, bool moving)=0;
+	virtual void destroyChild(AgObjectPtr child, bool moving)=0;
 
   /**
    * Permanently destroys child with specified name.
@@ -281,24 +282,24 @@ class Context
   /**
    * Moves and/or renames the context.
    */
-	virtual void move(void* newParent, const std::string & newName)=0;
-	virtual void setParent(void* parent)=0;
+	virtual void move(AgObjectPtr newParent, const std::string & newName)=0;
+	virtual void setParent(AgObjectPtr parent)=0;
 	
 	
   /**
    * Returns parent of this context.
    */
-	virtual void* getParent()=0;
+	virtual AgObjectPtr getParent()=0;
 
   /**
    * Returns true if parentContext is a parent of this context or some of its parents.
    */
-	virtual bool hasParent(void* parentContext)=0;
+	virtual bool hasParent(AgObjectPtr parentContext)=0;
 	
   /**
    * Adds variable definition to this context.
    */
-	virtual void addVariableDefinition(VariableDefinition* def)=0;
+	virtual void addVariableDefinition(VariableDefinitionPtr def)=0;
 
   /**
    * Removes variable definition from this context.
@@ -307,39 +308,39 @@ class Context
   /**
    * Returns data of variable with specified name.
    */
-	virtual VariableData* getVariableData(const std::string & name)=0;
+	virtual VariableDataPtr getVariableData(const std::string & name)=0;
   /**
    * Returns definition of variable with specified name.
    */
-	virtual VariableDefinition* getVariableDefinition(const std::string & name)=0;
+	virtual VariableDefinitionPtr getVariableDefinition(const std::string & name)=0;
   /**
    * Returns definition of variable with specified name if it's accessible by caller controller.
    */
-	virtual VariableDefinition* getVariableDefinition(const std::string & name, CallerController* caller)=0;
+	virtual VariableDefinitionPtr getVariableDefinition(const std::string & name, CallerControllerPtr caller)=0;
   /**
    * Returns list of variables available for specified <code>CallerController</code>.
    */
-	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller)=0;
+	virtual std::list<VariableDefinitionPtr>  getVariableDefinitions(CallerControllerPtr caller)=0;
   /**
    * Returns list of variables.
    */
-	virtual std::list<VariableDefinition*>  getVariableDefinitions()=0;
+	virtual std::list<VariableDefinitionPtr>  getVariableDefinitions()=0;
   /**
    * Returns list of variables belonging to <code>group</code> that are available for specified <code>CallerController</code>.
    */
-	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller, const std::string & group)=0;
+	virtual std::list<VariableDefinitionPtr>  getVariableDefinitions(CallerControllerPtr caller, const std::string & group)=0;
   /**
    * Returns list of variables belonging to <code>group</code>.
    */
-	virtual std::list<VariableDefinition*>  getVariableDefinitions(const std::string & group)=0;
+	virtual std::list<VariableDefinitionPtr>  getVariableDefinitions(const std::string & group)=0;
   /**
    * Returns list of variables.
    */
-	virtual std::list<VariableDefinition*>  getVariableDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list<VariableDefinitionPtr>  getVariableDefinitions(CallerControllerPtr caller, bool includeHidden)=0;
   /**
    * Adds function definition to this context.
    */
-	virtual void addFunctionDefinition(boost::shared_ptr<FunctionDefinition> def)=0;
+	virtual void addFunctionDefinition(FunctionDefinitionPtr def)=0;
   /**
    * Removes function definition from this context.
    */
@@ -347,43 +348,43 @@ class Context
   /**
    * Returns data of function with specified name.
    */
-	virtual FunctionData* getFunctionData(const std::string & name)=0;
+	virtual FunctionDataPtr getFunctionData(const std::string & name)=0;
   /**
    * Returns definition of function with specified name.
    */
-	virtual boost::shared_ptr<FunctionDefinition> getFunctionDefinition(const std::string & name)=0;
+	virtual FunctionDefinitionPtr getFunctionDefinition(const std::string & name)=0;
 
   /**
    * Returns definition of function with specified name if it's accessible by caller controller.
    */
-	virtual boost::shared_ptr<FunctionDefinition> getFunctionDefinition(const std::string & name, CallerController* caller)=0;
+	virtual FunctionDefinitionPtr getFunctionDefinition(const std::string & name, CallerControllerPtr caller)=0;
 
   /**
    * Returns list of functions available for specified <code>CallerController</code>.
    */
-	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(CallerController* caller)=0;
+	virtual std::list< FunctionDefinitionPtr >  getFunctionDefinitions(CallerControllerPtr caller)=0;
   /**
    * Returns list of functions.
    */
-	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions()=0;
+	virtual std::list< FunctionDefinitionPtr >  getFunctionDefinitions()=0;
   /**
    * Returns list of functions belonging to <code>group</code> that are available for specified <code>CallerController</code>.
    */
-	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(CallerController* caller, const std::string & group)=0;
+	virtual std::list< FunctionDefinitionPtr >  getFunctionDefinitions(CallerControllerPtr caller, const std::string & group)=0;
   /**
    * Returns list of functions belonging to <code>group</code>.
    */
-	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(const std::string & group)=0;
+	virtual std::list< FunctionDefinitionPtr >  getFunctionDefinitions(const std::string & group)=0;
 
   /**
    * Returns list of functions.
    */
-	virtual std::list< boost::shared_ptr<FunctionDefinition> >  getFunctionDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list< FunctionDefinitionPtr >  getFunctionDefinitions(CallerControllerPtr caller, bool includeHidden)=0;
 
   /**
    * Adds event definition to this context.
    */
-	virtual void addEventDefinition(EventDefinition* def)=0;
+	virtual void addEventDefinition(EventDefinitionPtr def)=0;
   /**
    * Removes event definition from this context.
    */
@@ -391,107 +392,107 @@ class Context
   /**
    * Returns definition of event with specified name.
    */
-	virtual  boost::shared_ptr<EventDefinition> getEventDefinition(const std::string & name)=0;
+	virtual  EventDefinitionPtr getEventDefinition(const std::string & name)=0;
 
   /**
    * Returns definition of event with specified name if it's accessible by caller controller.
    */
-	virtual  boost::shared_ptr<EventDefinition> getEventDefinition(const std::string & name, CallerController* caller)=0;
+	virtual  EventDefinitionPtr getEventDefinition(const std::string & name, CallerControllerPtr caller)=0;
 
   /**
-   * Returns <code>EventData</code> of event with specified name.
+   * Returns <code>EventDataPtr</code> of event with specified name.
    */
-	virtual EventData* getEventData(const std::string & name)=0;
+	virtual EventDataPtr getEventDataPtr(const std::string & name)=0;
   /**
    * Returns list of events available for specified <code>CallerController</code>.
    */
-	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(CallerController* caller)=0;
+	virtual std::list< EventDefinitionPtr >  getEventDefinitions(CallerControllerPtr caller)=0;
   /**
    * Returns list of events.
    */
-	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions()=0;
+	virtual std::list< EventDefinitionPtr >  getEventDefinitions()=0;
   /**
    * Returns list of events belonging to <code>group</code> that are available for specified <code>CallerController</code>.
    */
-	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(CallerController* caller, const std::string & group)=0;
+	virtual std::list< EventDefinitionPtr >  getEventDefinitions(CallerControllerPtr caller, const std::string & group)=0;
  /**
    * Returns list of events belonging to <code>group</code>.
    */
-	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(const std::string & group)=0;
+	virtual std::list< EventDefinitionPtr >  getEventDefinitions(const std::string & group)=0;
   /**
    * Returns list of events.
    */
-	virtual std::list< boost::shared_ptr<EventDefinition> >  getEventDefinitions(CallerController* caller, bool includeHidden)=0;
+	virtual std::list< EventDefinitionPtr >  getEventDefinitions(CallerControllerPtr caller, bool includeHidden)=0;
   /**
    * Gets variable from context and returns its value.
    */
-	virtual boost::shared_ptr<DataTable> getVariable(const std::string & name, CallerController* caller, RequestController* request)=0;
+	virtual DataTablePtr getVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request)=0;
 
    /**
     * Gets variable from context and returns its value.
     */
-    virtual boost::shared_ptr<DataTable> getVariable(const std::string& name, boost::shared_ptr<CallerController> caller) = 0;
+    virtual DataTablePtr getVariable(const std::string& name, CallerControllerPtr caller) = 0;
 
   /**
    * Gets variable from context and returns its value.
    */
-	virtual boost::shared_ptr<DataTable> getVariable(const std::string & name)=0;
+	virtual DataTablePtr getVariable(const std::string & name)=0;
 	
 	  /**
    * Returns value of variable as bean or list of beans.
    */
-	virtual void* getVariableObject(const std::string & name, CallerController* caller)=0;
+	virtual AgObjectPtr getVariableObject(const std::string & name, CallerControllerPtr caller)=0;
 
 	  /**
    * Sets context variable to specified <code>value</code>.
    */
-	virtual void setVariable(const std::string & name, CallerController* caller, boost::shared_ptr<DataTable> value)=0;
+	virtual void setVariable(const std::string & name, CallerControllerPtr caller, DataTablePtr value)=0;
 	  /**
    * Sets context variable to specified <code>value</code>.
    */
-	virtual void setVariable(const std::string & name, CallerController* caller, RequestController* request, boost::shared_ptr<DataTable> value)=0;
+	virtual void setVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value)=0;
 	  /**
    * Sets context variable to specified <code>value</code>.
    */
-	virtual void setVariable(const std::string & name, CallerController* caller, void* value) =0;
+	virtual void setVariable(const std::string & name, CallerControllerPtr caller, AgObjectPtr value) =0;
 	  /**
    * Sets context variable to specified <code>value</code>.
    */
-	virtual void setVariable(const std::string & name, boost::shared_ptr<DataTable> value) =0;
+	virtual void setVariable(const std::string & name, DataTablePtr value) =0;
 	  /**
    * Sets context variable to specified <code>value</code>.
    */
-	virtual void setVariable(const std::string & name, void* value) =0;
+	virtual void setVariable(const std::string & name, AgObjectPtr value) =0;
 	
 	  /**
    * Gets variable, updates field value in the first record, and sets variable.
    */
-	virtual bool setVariableField(const std::string & variable, const std::string & field, void* value, CallerController* cc) =0;
+	virtual bool setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, CallerControllerPtr cc) =0;
 	  /**
    * Gets variable, updates field value in the specified record, and sets variable.
    */
-	virtual bool setVariableField(const std::string & variable, const std::string & field, int record, void* value, CallerController* cc) =0;
+	virtual bool setVariableField(const std::string & variable, const std::string & field, int record, AgObjectPtr value, CallerControllerPtr cc) =0;
 	  /**
    * Gets variable, updates field value in the records for those value of compareField equals compareValue, and sets variable.
    */
-	virtual void setVariableField(const std::string & variable, const std::string & field, void* value, const std::string & compareField, void* compareValue, CallerController* cc) =0;
+	virtual void setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, const std::string & compareField, AgObjectPtr compareValue, CallerControllerPtr cc) =0;
 	
 	/**
    * Executes context function with specified <code>parameters</code> and returns its output.
    */
-	virtual boost::shared_ptr<DataTable> callFunction(const std::string & name, CallerController* caller, boost::shared_ptr<DataTable> parameters)=0;
+	virtual DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller, DataTablePtr parameters)=0;
 
-	virtual boost::shared_ptr<DataTable> callFunction(const std::string & name, boost::shared_ptr<DataTable> parameters)=0;
+	virtual DataTablePtr callFunction(const std::string & name, DataTablePtr parameters)=0;
 
-	virtual boost::shared_ptr<DataTable> callFunction(const std::string & name)=0 ;
+	virtual DataTablePtr callFunction(const std::string & name)=0 ;
 
-	virtual boost::shared_ptr<DataTable> callFunction(const std::string & name, CallerController* caller, RequestController* request, boost::shared_ptr<DataTable> parameters)=0 ;
+	virtual DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)=0 ;
 
-	virtual boost::shared_ptr<DataTable> callFunction(const std::string & name, CallerController* caller, void* parameters)=0 ;
+	virtual DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller, AgObjectPtr parameters)=0 ;
     
-	virtual boost::shared_ptr<DataTable> callFunction(const std::string & name, void* parameters)=0 ;
+	virtual DataTablePtr callFunction(const std::string & name, AgObjectPtr parameters)=0 ;
     
-	virtual boost::shared_ptr<DataTable> callFunction(const std::string & name, CallerController* caller)=0 ;
+	virtual DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller)=0 ;
     
 
   /**
@@ -499,14 +500,14 @@ class Context
    * 
    * @return Event object or null if event was suppressed by context.
    */
-	virtual boost::shared_ptr<Event> fireEvent(const std::string & name)=0;
-    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, CallerController* caller)=0;
-    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, boost::shared_ptr<DataTable> data)=0;
-    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, CallerController* caller, boost::shared_ptr<DataTable> data)=0;
-    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, int level, boost::shared_ptr<DataTable> data)=0;
-    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, int level, CallerController* caller, boost::shared_ptr<DataTable> data)=0;
-	virtual boost::shared_ptr<Event> fireEvent(const std::string & name, void* data)=0;
-    virtual boost::shared_ptr<Event> fireEvent(const std::string & name, boost::shared_ptr<DataTable> data, int level, long id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request)=0;
+	virtual EventPtr fireEvent(const std::string & name)=0;
+    virtual EventPtr fireEvent(const std::string & name, CallerControllerPtr caller)=0;
+    virtual EventPtr fireEvent(const std::string & name, DataTablePtr data)=0;
+    virtual EventPtr fireEvent(const std::string & name, CallerControllerPtr caller, DataTablePtr data)=0;
+    virtual EventPtr fireEvent(const std::string & name, int level, DataTablePtr data)=0;
+    virtual EventPtr fireEvent(const std::string & name, int level, CallerControllerPtr caller, DataTablePtr data)=0;
+	virtual EventPtr fireEvent(const std::string & name, AgObjectPtr data)=0;
+    virtual EventPtr fireEvent(const std::string & name, DataTablePtr data, int level, long id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request)=0;
    
 	  /**
    * Add a new action definition to the context.
@@ -514,7 +515,7 @@ class Context
    * @param def
    *          ActionDefinition to add
    */
-	virtual void addActionDefinition(ActionDefinition* def)=0;
+	virtual void addActionDefinition(ActionDefinitionPtr def)=0;
      /**
    * Remove an action definition from the context.
    * 
@@ -526,62 +527,59 @@ class Context
    * Returns action definition by name.
    * 
    * @param name
-   *          Name of action
-   */
-	virtual boost::shared_ptr<ActionDefinition> getActionDefinition(const std::string & name)=0;
-	virtual boost::shared_ptr<ActionDefinition> getActionDefinition(const std::string & name, CallerController* caller)=0;
+   *          Name of ActionPtr/
+	virtual ActionDefinitionPtr getActionDefinition(const std::string & name)=0;
+	virtual ActionDefinitionPtr getActionDefinition(const std::string & name, CallerControllerPtr caller)=0;
 	  /**
    * Returns default action definition or NULL if there is no default action or it's not available to the caller.
    * 
    * @param caller
-   *          Caller controller
    */
-	virtual boost::shared_ptr<ActionDefinition> getDefaultActionDefinition(CallerController* caller)=0;
+	virtual ActionDefinitionPtr getDefaultActionDefinition(CallerControllerPtr caller)=0;
   /**
    * Returns action definitions.
    */
-   virtual  std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions()=0;
+   virtual  std::list< ActionDefinitionPtr >  getActionDefinitions()=0;
   /**
    * Returns action definitions that are accessible for the caller.
    * 
    * @param caller
-   *          Caller controller
    */
-	virtual std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions(CallerController* caller)=0;
-	virtual std::list< boost::shared_ptr<ActionDefinition> >  getActionDefinitions(CallerController* caller, bool includeHidden)=0;
-	  /**
+	virtual std::list< ActionDefinitionPtr >  getActionDefinitions(CallerControllerPtr caller)=0;
+	virtual std::list< ActionDefinitionPtr >  getActionDefinitions(CallerControllerPtr caller, bool includeHidden)=0;
+   /**
    * Returns context permissions.
    */
-    virtual boost::shared_ptr<Permissions> getPermissions()=0;
-	  /**
+	virtual PermissionsPtr getPermissions()=0;
+   /**
    * Returns permissions required to access children of this context.
    */
-    virtual boost::shared_ptr<Permissions> getChildrenViewPermissions()=0;
+	virtual PermissionsPtr getChildrenViewPermissions()=0;
 
 
 
   /**
    * Adds listener of event with specified name.
    */
-    virtual bool addEventListener(const std::string & name, ContextEventListener* listener)=0;
+    virtual bool addEventListener(const std::string & name, ContextEventListenerPtr listener)=0;
  
   /**
    * Adds listener of event with specified name. This method allows to add auto-cleaned listeners by setting weak flag to true.
    */
-    virtual bool addEventListener(const std::string & name, ContextEventListener* listener, bool weak)=0;
+    virtual bool addEventListener(const std::string & name, ContextEventListenerPtr listener, bool weak)=0;
 
-	  /**
+  /**
    * Removes listener of event with specified name.
    */
-    virtual  bool removeEventListener(const std::string & name, ContextEventListener* listener)=0;
-	  /**
+	virtual  bool removeEventListener(const std::string & name, ContextEventListenerPtr listener)=0;
+  /**
    * Returns in-memory event history.
    */
-	virtual std::list<Event*>  getEventHistory(const std::string & name)=0;
-	  /**
+	virtual std::list<EventPtr>  getEventHistory(const std::string & name)=0;
+  /**
    * Accepts context visitor, i.e. calls visitor.visit(this).
    */
-	virtual  void accept(ContextVisitor* visitor)=0;
+	virtual  void accept(ContextVisitorPtr visitor)=0;
 
 };
 

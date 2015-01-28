@@ -66,7 +66,7 @@ std::vector<char> Data::getBlob()
 	return this->data;
 }
 
-std::map<std::string, boost::shared_ptr<AgObject>> Data::getAttachments()
+std::map<std::string, AgObjectPtr> Data::getAttachments()
 {
 	return this->attachments;
 }
@@ -81,7 +81,7 @@ int Data::checksum(const std::vector<char> &bytes)
     return sum;
 }
 
-std::vector<char> Data::fetchData(ContextManager* cm, CallerController* cc)
+std::vector<char> Data::fetchData(ContextManagerPtr cm, CallerControllerPtr cc)
 {
     if (!data.empty())
     {
@@ -138,14 +138,14 @@ std::string Data::toCleanString()
 }
 
 
-void Data::setAttachments(std::map<std::string, boost::shared_ptr<AgObject> > &attachments)
+void Data::setAttachments(std::map<std::string, AgObjectPtr > &attachments)
 {
 	this->attachments = attachments;
 }
 
-Data* Data::clone() const
+DataPtr Data::clone() const
 {
-	Data* cl = new Data();
+	DataPtr cl = new Data();
  
   //  try
   //  {
@@ -159,12 +159,12 @@ Data* Data::clone() const
     cl->id = id;
     cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
     cl->data = data;//(byte[]) CloneUtils.deepClone(data);
-    //TODO: копирование std::map<std::string, void*> attachments;
+    //TODO: копирование std::map<std::string, AgObjectPtr> attachments;
 
     return cl;
 }
 	
-bool Data::equals(Data *data)
+bool Data::equals(DataPtrdata)
 {
     return (this->id == data->id) && (this->name == data->name) && (this->preview == data->preview) && (this->data == data->data);
 }

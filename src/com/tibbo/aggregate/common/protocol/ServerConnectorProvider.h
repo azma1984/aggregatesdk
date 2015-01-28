@@ -1,17 +1,12 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/ServerConnectorProvider.java
 
-#pragma once
+#ifndef ServerConnectorProviderH
+#define ServerConnectorProviderH
 
-#include <com/tibbo/aggregate/common/protocol/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
-struct com::tibbo::aggregate::common::protocol::ServerConnectorProvider
-    
+class ServerConnectorProvider
 {
-    ::com::tibbo::aggregate::common::util::RemoteConnector* getConnector(const std::string & name);
+   virtual RemoteConnectorPtr getConnector(const std::string & name)=0;
 
-    // Generated
     
 };
+
+#endif

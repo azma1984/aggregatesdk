@@ -10,6 +10,6 @@
 class ValueWriter : public Interface
 {
 public:
-    virtual void write(boost::shared_ptr<DataTable> value, boost::shared_ptr<CallerController> callerController,boost::shared_ptr<RequestController> requestController) = 0;
+    virtual void write(DataTablePtr value, CallerControllerPtr callerController,RequestControllerPtr requestController) = 0;
 };
 #endif 

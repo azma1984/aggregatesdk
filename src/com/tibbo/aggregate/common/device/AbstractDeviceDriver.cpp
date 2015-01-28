@@ -6,12 +6,12 @@ AbstractDeviceDriver::AbstractDeviceDriver()
 
 }
 
-AbstractDeviceDriver::AbstractDeviceDriver(const std::string & description, boost::shared_ptr<TableFormat> connectionPropertiesFormat):BasePlugin(description) 
+AbstractDeviceDriver::AbstractDeviceDriver(const std::string & description, TableFormatPtr connectionPropertiesFormat):BasePlugin(description) 
 {
     this->connectionPropertiesFormat = connectionPropertiesFormat;
 }
 
-AbstractDeviceDriver::AbstractDeviceDriver(const std::string & description, const std::string & protocol, boost::shared_ptr<TableFormat> connectionProperties) 
+AbstractDeviceDriver::AbstractDeviceDriver(const std::string & description, const std::string & protocol, TableFormatPtr connectionProperties) 
 {
 	//todo - cannot instantiate abstract class
 //	AbstractDeviceDriver(description, connectionProperties);
@@ -46,18 +46,18 @@ std::string AbstractDeviceDriver::getStatus()
 }
 
 //Function is not used!
-//std::list<Expression>  AbstractDeviceDriver::getStatusExpressions(CallerController* aCallerController)
+//std::list<Expression>  AbstractDeviceDriver::getStatusExpressions(CallerControllerPtr aCallerController)
 //{
 //	std::list<Expression> list;
 //  return list;
 //}
 //
-void AbstractDeviceDriver::setupDeviceContext(boost::shared_ptr<DeviceContext> deviceContext) 
+void AbstractDeviceDriver::setupDeviceContext(DeviceContextPtr deviceContext) 
 {
     this->deviceContext = deviceContext;
 }
 
-void AbstractDeviceDriver::configureDeviceAccount(boost::shared_ptr<DeviceContext> deviceContext, CallerController* caller) 
+void AbstractDeviceDriver::configureDeviceAccount(DeviceContextPtr deviceContext, CallerControllerPtr caller) 
 {
 }
 
@@ -65,7 +65,7 @@ void AbstractDeviceDriver::accessSettingUpdated(const std::string & name)
 {
 }
 
-bool AbstractDeviceDriver::shouldSynchronize(::SynchronizationParameters* parameters) 
+bool AbstractDeviceDriver::shouldSynchronize(::SynchronizationParametersPtr parameters) 
 {
     return true;
 }
@@ -138,30 +138,30 @@ bool AbstractDeviceDriver::isUseDeviceSideValuesCache()
 //    return 0;
 //}
 
-//DataTable* AbstractDeviceDriver::readVariableValue(VariableDefinition* vd) 
+//DataTablePtr AbstractDeviceDriver::readVariableValue(VariableDefinitionPtr vd) 
 //{
 //  //  return 0;
 //}
 
-void AbstractDeviceDriver::writeVariableValue(VariableDefinition* vd, DataTable* value, DataTable* deviceValue) 
+void AbstractDeviceDriver::writeVariableValue(VariableDefinitionPtr vd, DataTablePtr value, DataTablePtr deviceValue) 
 {
 }
 	//todo - functions is not used
-//DataTable* AbstractDeviceDriver::executeFunction(FunctionDefinition* fd, DataTable* parameters) 
+//DataTablePtr AbstractDeviceDriver::executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters) 
 //{
  //   throw new ::java::lang::UnsupportedOperationException();
 //}
 
-boost::shared_ptr<Date> AbstractDeviceDriver::getVariableModificationTime(const std::string & name) 
+DatePtr AbstractDeviceDriver::getVariableModificationTime(const std::string & name) 
 {
     return 0;
 }
 //
-//void AbstractDeviceDriver::updateVariableModificationTime(const std::string & name, Date* value) 
+//void AbstractDeviceDriver::updateVariableModificationTime(const std::string & name, DatePtr value) 
 //{
 //}
 //
-//VariableStatus* AbstractDeviceDriver::getCustomVariableStatus(const std::string & name) 
+//VariableStatusPtr AbstractDeviceDriver::getCustomVariableStatus(const std::string & name) 
 //{
 //    return 0;
 //}
@@ -183,12 +183,12 @@ void AbstractDeviceDriver::setConnected(bool connected)
 
 	//todo - functions is not used
 //
-//DeviceContext* AbstractDeviceDriver::getDeviceContext()
+//DeviceContextPtr AbstractDeviceDriver::getDeviceContext()
 //{
 //    return deviceContext;
 //}
 //
-//DiscoveryProvider* AbstractDeviceDriver::createDiscoveryProvider()
+//DiscoveryProviderPtr AbstractDeviceDriver::createDiscoveryProvider()
 //{
 //    return 0;
 //}
@@ -198,12 +198,12 @@ void AbstractDeviceDriver::setConnected(bool connected)
 //    return protocol;
 //}
 //
-//DateTableFormat* AbstractDeviceDriver::getConnectionPropertiesFormat()
+//DateTableFormatPtr AbstractDeviceDriver::getConnectionPropertiesFormat()
 //{
 //    return connectionPropertiesFormat;
 //}
 //
-//DateTableFormat* AbstractDeviceDriver::createConnectionPropertiesFormat()
+//DateTableFormatPtr AbstractDeviceDriver::createConnectionPropertiesFormat()
 //{
 //    auto format = getConnectionPropertiesFormat();
 //    if(format == 0) {
@@ -216,31 +216,31 @@ void AbstractDeviceDriver::setConnected(bool connected)
 //    return format;
 //}
 //
-//VariableDefinition* AbstractDeviceDriver::discoverVariable(const std::string & name, void* helper)
+//VariableDefinitionPtr AbstractDeviceDriver::discoverVariable(const std::string & name, AgObjectPtr helper)
 //{
 //    return 0;
 //}
 //
-//FunctionDefinition* AbstractDeviceDriver::discoverFunction(const std::string & name, void* helper)
+//FunctionDefinitionPtr AbstractDeviceDriver::discoverFunction(const std::string & name, AgObjectPtr helper)
 //{
 //    return 0;
 //}
 //
-//EventDefinition* AbstractDeviceDriver::discoverEvent(const std::string & name, void* helper)
+//EventDefinitionPtr AbstractDeviceDriver::discoverEvent(const std::string & name, AgObjectPtr helper)
 //{
 //    return 0;
 //}
 //
 //
 //
-//Context* AbstractDeviceDriver::createGlobalConfigContext(Context* rootContext, bool requestReboot, VariableDefinitionArray* properties)
+//ContextPtr AbstractDeviceDriver::createGlobalConfigContext(ContextPtr rootContext, bool requestReboot, VariableDefinitionPtr properties)
 //{
-//    return (Context*)BasePlugin::createGlobalConfigContext(rootContext, requestReboot, properties);
+//    return (ContextPtr)BasePlugin::createGlobalConfigContext(rootContext, requestReboot, properties);
 //}
 //
-//Context* AbstractDeviceDriver::createUserConfigContext(Context* userContext, bool requestReboot, VariableDefinitionArray* properties)
+//ContextPtr AbstractDeviceDriver::createUserConfigContext(ContextPtr userContext, bool requestReboot, VariableDefinitionPtr properties)
 //{
-//    return (Context* )BasePlugin::createUserConfigContext(userContext, requestReboot, properties);
+//    return (ContextPtr )BasePlugin::createUserConfigContext(userContext, requestReboot, properties);
 //}
 //
 //std::string AbstractDeviceDriver::getDescription()
@@ -248,9 +248,9 @@ void AbstractDeviceDriver::setConnected(bool connected)
 //    return BasePlugin::getDescription();
 //}
 //
-//Context* AbstractDeviceDriver::getGlobalConfigContext()
+//ContextPtr AbstractDeviceDriver::getGlobalConfigContext()
 //{
-//    return (Context*)(BasePlugin::getGlobalConfigContext());
+//    return (ContextPtr)(BasePlugin::getGlobalConfigContext());
 //}
 //
 //std::string AbstractDeviceDriver::getId()
@@ -268,17 +268,17 @@ void AbstractDeviceDriver::setConnected(bool connected)
 //    return BasePlugin::getSortIndex();
 //}
 //
-//Context* AbstractDeviceDriver::getUserConfigContext(const std::string & username)
+//ContextPtr AbstractDeviceDriver::getUserConfigContext(const std::string & username)
 //{
-//    return (Context*)BasePlugin::getUserConfigContext(username);
+//    return (ContextPtr)BasePlugin::getUserConfigContext(username);
 //}
 //
-//void AbstractDeviceDriver::globalDeinit(Context* rootContext)
+//void AbstractDeviceDriver::globalDeinit(ContextPtr rootContext)
 //{
 //    BasePlugin::globalDeinit(rootContext);
 //}
 //
-//void AbstractDeviceDriver::globalInit(Context* rootContext)
+//void AbstractDeviceDriver::globalInit(ContextPtr rootContext)
 //{
 //    BasePlugin::globalInit(rootContext);
 //}
@@ -293,12 +293,12 @@ void AbstractDeviceDriver::setConnected(bool connected)
 //    BasePlugin::globalStop();
 //}
 //
-//void AbstractDeviceDriver::userDeinit(Context* userContext)
+//void AbstractDeviceDriver::userDeinit(ContextPtr userContext)
 //{
 //    BasePlugin::userDeinit(userContext);
 //}
 //
-//void AbstractDeviceDriver::userInit(Context* userContext)
+//void AbstractDeviceDriver::userInit(ContextPtr userContext)
 //{
 //    BasePlugin::userInit(userContext);
 //}

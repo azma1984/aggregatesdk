@@ -20,7 +20,7 @@ class FireEventRequestController  : public DefaultRequestController
 //    void setCustomExpirationPeriod(long  customExpirationPeriod);
 //    bool isIgnoreStorageErrors();
 //    void setIgnoreStorageErrors(bool ignoreStorageErrors);
-//    Event* process(Event* event);
+//    EventPtr process(EventPtr event);
 //
 //    // Generated
 //    FireEventRequestController(long  customExpirationPeriod);

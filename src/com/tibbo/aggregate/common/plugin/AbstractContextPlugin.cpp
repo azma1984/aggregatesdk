@@ -40,19 +40,19 @@
 //{
 //}
 //
-//void AbstractContextPlugin::install(ContextManager* cm) /* throws(ContextException, PluginException) */
+//void AbstractContextPlugin::install(ContextManagerPtr cm) /* throws(ContextException, PluginException) */
 //{
 //}
 //
-//void AbstractContextPlugin::deinstall(ContextManager* cm) /* throws(ContextException, PluginException) */
+//void AbstractContextPlugin::deinstall(ContextManagerPtr cm) /* throws(ContextException, PluginException) */
 //{
 //}
 //
-//void AbstractContextPlugin::install(::com::tibbo::aggregate::common::server::ServerContext* context) /* throws(ContextException, PluginException) */
+//void AbstractContextPlugin::install(::com::tibbo::aggregate::common::server::ServerContextPtr context) /* throws(ContextException, PluginException) */
 //{
 //}
 //
-//void AbstractContextPlugin::deinstall(::com::tibbo::aggregate::common::server::ServerContext* context) /* throws(ContextException, PluginException) */
+//void AbstractContextPlugin::deinstall(::com::tibbo::aggregate::common::server::ServerContextPtr context) /* throws(ContextException, PluginException) */
 //{
 //}
 //
@@ -68,18 +68,18 @@
 //
 //java::lang::Class* AbstractContextPlugin::class_()
 //{
-//    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.plugin.AbstractContextPlugin", 55);
+//    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.plugin.AbstractContextPlugin", 55);
 //    return c;
 //}
 //
-//Context* AbstractContextPlugin::createGlobalConfigContext(Context* rootContext, bool requestReboot, VariableDefinitionArray* properties)
+//ContextPtr AbstractContextPlugin::createGlobalConfigContext(ContextPtr rootContext, bool requestReboot, VariableDefinitionPtr properties)
 //{
-//    return java_cast< Context* >(BasePlugin::createGlobalConfigContext(rootContext, requestReboot, properties));
+//    return java_cast< ContextPtr >(BasePlugin::createGlobalConfigContext(rootContext, requestReboot, properties));
 //}
 //
-//Context* AbstractContextPlugin::createUserConfigContext(Context* userContext, bool requestReboot, VariableDefinitionArray* properties)
+//ContextPtr AbstractContextPlugin::createUserConfigContext(ContextPtr userContext, bool requestReboot, VariableDefinitionPtr properties)
 //{
-//    return java_cast< Context* >(BasePlugin::createUserConfigContext(userContext, requestReboot, properties));
+//    return java_cast< ContextPtr >(BasePlugin::createUserConfigContext(userContext, requestReboot, properties));
 //}
 //
 //std::string AbstractContextPlugin::getDescription()
@@ -87,9 +87,9 @@
 //    return BasePlugin::getDescription();
 //}
 //
-//Context* AbstractContextPlugin::getGlobalConfigContext()
+//ContextPtr AbstractContextPlugin::getGlobalConfigContext()
 //{
-//    return java_cast< Context* >(BasePlugin::getGlobalConfigContext());
+//    return java_cast< ContextPtr >(BasePlugin::getGlobalConfigContext());
 //}
 //
 //std::string AbstractContextPlugin::getId()
@@ -107,17 +107,17 @@
 //    return BasePlugin::getSortIndex();
 //}
 //
-//Context* AbstractContextPlugin::getUserConfigContext(const std::string & username)
+//ContextPtr AbstractContextPlugin::getUserConfigContext(const std::string & username)
 //{
-//    return java_cast< Context* >(BasePlugin::getUserConfigContext(username));
+//    return java_cast< ContextPtr >(BasePlugin::getUserConfigContext(username));
 //}
 //
-//void AbstractContextPlugin::globalDeinit(Context* rootContext)
+//void AbstractContextPlugin::globalDeinit(ContextPtr rootContext)
 //{
 //    BasePlugin::globalDeinit(rootContext);
 //}
 //
-//void AbstractContextPlugin::globalInit(Context* rootContext)
+//void AbstractContextPlugin::globalInit(ContextPtr rootContext)
 //{
 //    BasePlugin::globalInit(rootContext);
 //}
@@ -132,12 +132,12 @@
 //    BasePlugin::globalStop();
 //}
 //
-//void AbstractContextPlugin::userDeinit(Context* userContext)
+//void AbstractContextPlugin::userDeinit(ContextPtr userContext)
 //{
 //    BasePlugin::userDeinit(userContext);
 //}
 //
-//void AbstractContextPlugin::userInit(Context* userContext)
+//void AbstractContextPlugin::userInit(ContextPtr userContext)
 //{
 //    BasePlugin::userInit(userContext);
 //}

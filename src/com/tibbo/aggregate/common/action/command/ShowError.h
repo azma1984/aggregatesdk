@@ -1,46 +1,36 @@
-#pragma once
-
+#ifndef ShowErrorH
+#define ShowErrorH
 #include "action/GenericActionCommand.h"
 
 
 
 class ShowError : public GenericActionCommand
 {
-//private:
-//    static const std::string CF_LEVEL_;
-//    static const std::string CF_MESSAGE_;
-//    static const std::string CF_EXCEPTION_;
-//    static TableFormat* CFT_SHOW_ERROR_;
-//    ::java::lang::Throwable* exception;
-//    int level;
-//    const std::string & message;
-//protected:
-//    void ctor();
-//    void ctor(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception);
+private:
+    static const std::string CF_LEVEL_;
+    static const std::string CF_MESSAGE_;
+    static const std::string CF_EXCEPTION_;
+    static TableFormatPtr CFT_SHOW_ERROR_;
+   // ::java::lang::Throwable* exception; //todo
+    int level;
+    const std::string & message;
 
-//public: /* protected */
-//    DataTable* constructParameters();
+public:
+    DataTablePtr constructParameters();
 
-//public:
-//    int getLevel();
-//    void setLevel(int level);
-//    const std::string & getMessage();
-//    void setMessage(const std::string & message);
-//    ::java::lang::Throwable* getException();
-//    void setException(::java::lang::Throwable* exception);
+    int getLevel();
+    void setLevel(int level);
+    const std::string & getMessage();
+    void setMessage(const std::string & message);
+   // ::java::lang::Throwable* getException();//todo
+  //  void setException(::java::lang::Throwable* exception); todo
 
-//    // Generated
-//    ShowError();
-//    ShowError(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception);
-//protected:
-//    ShowError(const ::default_init_tag&);
+    ShowError();
+    //ShowError(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception); todo
 
-
-//public:
-    
-//    static void
-//    static const std::string& CF_LEVEL();
-//    static const std::string& CF_MESSAGE();
-//    static const std::string& CF_EXCEPTION();
-//    static TableFormat*& CFT_SHOW_ERROR();
+    static const std::string& CF_LEVEL();
+    static const std::string& CF_MESSAGE();
+    static const std::string& CF_EXCEPTION();
+	static TableFormatPtr& CFT_SHOW_ERROR();
 };
+#endif

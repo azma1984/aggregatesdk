@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TimeUnitH
+#define TimeUnitH
 
 #include <string>
 #include <stdint.h>
@@ -20,7 +21,9 @@ class TimeUnit
     bool isSecondary();
     std::string toString();
     int hashCode();
-    bool equals(void* obj);
+    bool equals(AgObjectPtr obj);
 
     TimeUnit(int unit, uint64_t length, std::string description, int calendarField, bool secondary);
 };
+
+#endif

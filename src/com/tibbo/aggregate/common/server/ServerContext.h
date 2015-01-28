@@ -39,7 +39,7 @@ class ServerContext : public Context
    *          Definition of the variable those default value to return
    * @return Default value of the variable
    */
-    virtual DataTable* getDefaultValue(VariableDefinition* vd)=0;
+    virtual DataTablePtr getDefaultValue(VariableDefinitionPtr vd)=0;
 	
 	/**
    * Permanently deletes variable value from the database. This method should be used only before variable definition is going to be removed from the context.
@@ -50,17 +50,17 @@ class ServerContext : public Context
     virtual void removeVariableValue(const std::string & name)=0;
 
 	 // The following methods should not be called via public API
-    virtual bool checkPermissions(Permissions* needPermissions, CallerController* caller, Context* accessedContext)=0;
+    virtual bool checkPermissions(PermissionsPtr needPermissions, CallerControllerPtr caller, ContextPtr accessedContext)=0;
 
-  //  ::java::util::Collection* getMembers(bool includeSubgroups);
-    virtual void addedToGroup(GroupContext* groupContext)=0;
-    virtual void removedFromGroup(GroupContext* groupContext)=0;
+  //  std::list getMembers(bool includeSubgroups);
+    virtual void addedToGroup(GroupContextPtr groupContext)=0;
+    virtual void removedFromGroup(GroupContextPtr groupContext)=0;
   //  ::std::set  getGroups();
-    virtual void alertActivated(Event* alert, int type)=0;
-    virtual void alertDeactivated(Event* alert)=0;
+    virtual void alertActivated(EventPtr alert, int type)=0;
+    virtual void alertDeactivated(EventPtr alert)=0;
     virtual bool shouldBeHidden()=0;
     virtual void setIndex(int index)=0;
-    virtual void createDefaultStatisticsChannels(VariableDefinition* vd)=0;
+    virtual void createDefaultStatisticsChannels(VariableDefinitionPtr vd)=0;
     virtual std::string getShortDescription()=0;
 };
   #endif

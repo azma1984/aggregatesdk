@@ -7,16 +7,16 @@
 
 class Browse : public GenericActionCommand
 {
-/*
+
 private:
 	URI url;
 
 protected:
-    DataTable* constructParameters();  // todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+    DataTablePtr constructParameters();  // todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
 	static std::string CF_BROWSE_URI;
-   //TableFormat* CFT_BROWSE; todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+   //TableFormatPtr CFT_BROWSE; todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
 
 	URI getUrl();
 	void setUrl(URI url);
@@ -24,7 +24,7 @@ public:
     Browse();
 	Browse(URI url);
 	void init();
-    */
+
 };
 
 #endif  //BrowseH

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ReferenceWriterH
+#define ReferenceWriterH
 
 #include "expression/Reference.h"
 #include "util/Interface.h"
@@ -7,5 +8,7 @@
 class ReferenceWriter : public Interface
 {
 public:
-    virtual void writeReference(boost::shared_ptr<Reference> ref, void*/*Object*/ value) = 0/* throws(BindingException) */;
+    virtual void writeReference(ReferencePtr ref, AgObjectPtr value) = 0;
 };
+
+#endif

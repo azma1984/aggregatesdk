@@ -6,11 +6,11 @@
  const std::string DeviceSettingStatus::FIELD_UPDATED = "updated";
  const std::string DeviceSettingStatus::FIELD_DIRECTION = "direction";
  const std::string DeviceSettingStatus::FIELD_ERROR = "error";
- boost::shared_ptr<TableFormat> DeviceSettingStatus::FORMAT;
+ TableFormatPtr DeviceSettingStatus::FORMAT;
 
 DeviceSettingStatus::DeviceSettingStatus()
 {
-  FORMAT = boost::shared_ptr<TableFormat>(new TableFormat());
+  FORMAT = TableFormatPtr(new TableFormat());
   FORMAT->addField("<" + FIELD_NAME +"><S>");
   FORMAT->addField("<" + FIELD_TIME + "><D><F=N>");
   FORMAT->addField("<" + FIELD_DURATION + "><L><F=N>");
@@ -23,12 +23,12 @@ DeviceSettingStatus::DeviceSettingStatus()
 }
 
 
-boost::shared_ptr<Date> DeviceSettingStatus::getTime()
+DatePtr DeviceSettingStatus::getTime()
 {
   return time;
 }
 
-void DeviceSettingStatus::setTime(boost::shared_ptr<Date> time)
+void DeviceSettingStatus::setTime(DatePtr time)
 {
   this->time = time;
 }

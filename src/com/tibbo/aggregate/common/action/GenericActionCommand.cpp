@@ -1,4 +1,4 @@
-#include "action/GenericActionCommand.h"
+﻿#include "action/GenericActionCommand.h"
 
 #include "AggreGateException.h"
 
@@ -9,8 +9,8 @@ GenericActionCommand::GenericActionCommand()
 
 GenericActionCommand::GenericActionCommand(
     const std::string& type,
-    boost::shared_ptr<TableFormat> requestFormat,
-    boost::shared_ptr<TableFormat> responseFormat
+    TableFormatPtr requestFormat,
+    TableFormatPtr responseFormat
 ) {
     ctor(type,requestFormat,responseFormat);
 }
@@ -23,8 +23,8 @@ GenericActionCommand::GenericActionCommand(const std::string& type, const std::s
 GenericActionCommand::GenericActionCommand(
     const std::string& type,
     const std::string& title,
-    boost::shared_ptr<DataTable> parameters,
-    boost::shared_ptr<TableFormat> format
+    DataTablePtr parameters,
+    TableFormatPtr format
 ) {
     ctor(type,title,parameters,format);
 }
@@ -32,7 +32,7 @@ GenericActionCommand::GenericActionCommand(
 GenericActionCommand::GenericActionCommand(
     const std::string& requestId,
     const std::string& title,
-    boost::shared_ptr<DataTable> parameters
+    DataTablePtr parameters
 ) {
     ctor(requestId,title,parameters);
 }
@@ -46,8 +46,8 @@ void GenericActionCommand::init()
 
 void GenericActionCommand::ctor(
     const std::string& type,
-    boost::shared_ptr<TableFormat> requestFormat,
-    boost::shared_ptr<TableFormat> responseFormat
+    TableFormatPtr requestFormat,
+    TableFormatPtr responseFormat
 ) {
     ctor();
     init();
@@ -67,8 +67,8 @@ void GenericActionCommand::ctor(const std::string& type, const std::string& titl
 void GenericActionCommand::ctor(
     const std::string& type,
     const std::string& title,
-    boost::shared_ptr<DataTable> parameters,
-    boost::shared_ptr<TableFormat> format
+    DataTablePtr parameters,
+    TableFormatPtr format
 ) {
     ctor(type, title);
     try {
@@ -78,7 +78,7 @@ void GenericActionCommand::ctor(
     }
 }
 
-void GenericActionCommand::ctor(const std::string & requestId, const std::string & title, boost::shared_ptr<DataTable> parameters)
+void GenericActionCommand::ctor(const std::string & requestId, const std::string & title, DataTablePtr parameters)
 {
     ctor(requestId, title);
     setParameters(parameters);
@@ -95,20 +95,20 @@ void GenericActionCommand::setType(const std::string &type)
     this->type = type;
 }
 
-boost::shared_ptr<GenericActionResponse> GenericActionCommand::createDefaultResponse()
+GenericActionResponsePtr GenericActionCommand::createDefaultResponse()
 {    
-    TableFormat* format = NULL;
+    TableFormatPtr format = NULL;
 
     if (responseFormat == 0) {
-        GenericActionCommand* command = ActionCommandRegistry::getCommand(getType();
+        GenericActionCommandPtr command = ActionCommandRegistry::getCommand(getType();
         format = (command != 0) ? command->getResponseFormat() : ( (getParameters() != 0) ? getParameters()->getFormat() : NULL);
     }
-    DataTable* responseTable = (format != 0) ? new DataTable(format, true) : 0;
+    DataTablePtr responseTable = (format != 0) ? new DataTable(format, true) : 0;
 
     return new GenericActionResponse(responseTable);
 }
 
-void GenericActionCommand::setParameters(boost::shared_ptr<DataTable> parameters)
+void GenericActionCommand::setParameters(DataTablePtr parameters)
 {
     *this->parameters = *parameters;
 }
@@ -128,7 +128,7 @@ void GenericActionCommand::setBatchEntry(bool batchEntry)
     this->batchEntry = batchEntry;
 }
 
-void GenericActionCommand::setRequestId(boost::shared_ptr<RequestIdentifier> requestId)
+void GenericActionCommand::setRequestId(RequestIdentifierPtr requestId)
 {
     this->requestId = requestId;
 }
@@ -138,12 +138,12 @@ std::string GenericActionCommand::getType()
     return type;
 }
 
-boost::shared_ptr<DataTable> GenericActionCommand::getParameters()
+DataTablePtr GenericActionCommand::getParameters()
 {
     return parameters != 0 ? parameters : constructParameters();
 }
 
-DataTable* GenericActionCommand::constructParameters()
+DataTablePtr GenericActionCommand::constructParameters()
 {
     return 0;
 }
@@ -163,17 +163,17 @@ bool GenericActionCommand::isBatchEntry()
     return batchEntry;
 }
 
-RequestIdentifier* GenericActionCommand::getRequestId()
+RequestIdentifierPtr GenericActionCommand::getRequestId()
 {
     return requestId;
 }
 
-bool GenericActionCommand::isResponseValid(ActionResponse* actionRequest)
+bool GenericActionCommand::isResponseValid(ActionResponsePtr actionRequest)
 {
     return true;
 }
 
-boost::shared_ptr<TableFormat> GenericActionCommand::getResponseFormat()
+TableFormatPtr GenericActionCommand::getResponseFormat()
 {
     return responseFormat;
 }
@@ -205,9 +205,9 @@ int GenericActionCommand::hashCode()
 }
 
 //TODO: возможно правильнее заменить на operator==()
-bool GenericActionCommand::equals(void* obj)
+bool GenericActionCommand::equals(AgObjectPtr obj)
 {
-    GenericActionCommand* gac = static_cast<obj>;
+    GenericActionCommandPtr gac = static_cast<obj>;
 
 
     if (gac == 0) {
@@ -249,17 +249,17 @@ bool GenericActionCommand::equals(void* obj)
     return true;
 }
 //TODO:
-ActionCommand* GenericActionCommand::clone()
+ActionCommandPtr GenericActionCommand::clone()
 {
     /*
     try {
-        return java_cast< ActionCommand* >(super::clone());
+        return java_cast< ActionCommandPtr >(super::clone());
     } catch (CloneNotSupportedException* ex) {
         throw new ::java::lang::AssertionError();
     }
     */
 
-    return static_cast<ActionCommand*>(0);
+    return static_cast<ActionCommandPtr>(0);
 }
 
 std::string GenericActionCommand::toString()

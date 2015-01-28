@@ -1,53 +1,41 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/CommandProcessorStatistics.java
 
-#pragma once
+#ifndef CommandProcessorStatisticsH
+#define CommandProcessorStatisticsH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/communication/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#include "Cres.h"
+#include "communication/Command.h"
+#include "communication/ReplyMonitor.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataTableConversion.h"
+#include "datatable/DataTableException.h"
+#include "datatable/TableFormat.h"
+#include "datatable/field/LongFieldFormat.h"
+#include "util/TimeHelper.h"
 
-
-
-class com::tibbo::aggregate::common::communication::CommandProcessorStatistics
-    
+class CommandProcessorStatistics
 {
 
-public:
-    typedef void super;
-
 private:
-    static TableFormat* FORMAT_;
-    long  startTime;
-    long commandCount;
-    float averageResponseTime;
-    long outgoingTraffic;
-    long incomingTraffic;
-    long unrepliedCommandCount;
-
+	static TableFormatPtr FORMAT_;
+	long  startTime;
+	long commandCount;
+	float averageResponseTime;
+	long outgoingTraffic;
+	long incomingTraffic;
+	long unrepliedCommandCount;
+	static TableFormatPtr& FORMAT();
 public:
-    void update(ReplyMonitor* monitor);
-    DataTable* toDataTable();
+	void update(ReplyMonitor* monitor);
+	DataTablePtr toDataTable();
     long  getStartTime();
-    long  getConnectionTime();
+	long  getConnectionTime();
     long getCommandCount();
-    long getAverageResponseTime();
-    long getOutgoingTraffic();
-    long getIncomingTraffic();
+	long getAverageResponseTime();
+	long getOutgoingTraffic();
+	long getIncomingTraffic();
     long getUnrepliedCommandCount();
 
-    // Generated
-    CommandProcessorStatistics();
-protected:
-    CommandProcessorStatistics(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-
-private:
-    static TableFormat*& FORMAT();
-    ::java::lang::Class* getClass0();
+	CommandProcessorStatistics();
 };
+
+#endif

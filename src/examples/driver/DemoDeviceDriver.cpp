@@ -8,22 +8,22 @@ DemoDeviceDriver::DemoDeviceDriver()
 }
 
 
-//void setupDeviceContext(DeviceContext* deviceContext) 
+//void setupDeviceContext(DeviceContextPtr deviceContext) 
 //{
 //    super::setupDeviceContext(deviceContext);
-//    deviceContext)->setDefaultSynchronizationPeriod(int(30) * ::com::tibbo::aggregate::common::util::TimeHelper::SECOND_IN_MS);
+//    deviceContext)->setDefaultSynchronizationPeriod(int(30) * TimeHelper::SECOND_IN_MS);
 //    deviceContext)->setDeviceType(u"demo"_j);
 //}
 //
-VariableDefinition* DemoDeviceDriver::readVariableDefinitions() 
+VariableDefinitionPtr DemoDeviceDriver::readVariableDefinitions() 
 {
  ////Creating String field format
  // boost::shared_ptr<FieldFormat<bool>> ff = FieldFormat<bool>::create("demoSettingField", FieldFormat<bool>::STRING_FIELD);
  ////Creating single-cell (scalar) setting
- // TableFormat *format = new TableFormat(1, 1,ff);
+ // TableFormatPtrformat = new TableFormat(1, 1,ff);
 	//
  ////Creating variable (setting) definition. Note that variable group should not be changed.
- // VariableDefinition *vd = new VariableDefinition("demoSetting", format, true, true,"Demo Setting", ContextUtils::GROUP_REMOTE);
+ // VariableDefinitionPtrvd = new VariableDefinition("demoSetting", format, true, true,"Demo Setting", ContextUtils::GROUP_REMOTE);
  //
  // return vd;
 
@@ -31,36 +31,36 @@ VariableDefinition* DemoDeviceDriver::readVariableDefinitions()
 	return 0;
 }
 
-FunctionDefinition*  DemoDeviceDriver::readFunctionDefinitions() 
+FunctionDefinitionPtr  DemoDeviceDriver::readFunctionDefinitions() 
 {
 	//// Creating function input format (scalar, integer)
  //   boost::shared_ptr<FieldFormat<bool>> iff = FieldFormat<bool>::create("demoOperationInputField", FieldFormat<bool>::INTEGER_FIELD);
- //   TableFormat *inputFormat = new TableFormat(1, 1, iff);
+ //   TableFormatPtrinputFormat = new TableFormat(1, 1, iff);
 	//    // Creating function output format (scalar, string)
  //   boost::shared_ptr<FieldFormat<bool>>  off = FieldFormat<bool>::create("demoOperationOutputField", FieldFormat<bool>::STRING_FIELD);
- //   TableFormat *outputFormat = new TableFormat(1, 1, off);
+ //   TableFormatPtroutputFormat = new TableFormat(1, 1, off);
 	// // Creating function (operation) definition. Note that function group should not be changed.
- //   FunctionDefinition *fd = new FunctionDefinition("demoOperation", inputFormat, outputFormat, "Demo Operation", ContextUtils::GROUP_DEFAULT);
+ //   FunctionDefinitionPtrfd = new FunctionDefinition("demoOperation", inputFormat, outputFormat, "Demo Operation", ContextUtils::GROUP_DEFAULT);
  //   return fd;
 
 	//todo - function stub
 	return 0;
 }
 
-EventDefinition*  DemoDeviceDriver::readEventDefinitions() 
+EventDefinitionPtr  DemoDeviceDriver::readEventDefinitions() 
 {
-	// Creating event data format (scalar, string)
+	// Creating EventDataPtr format (scalar, string)
  //   boost::shared_ptr<FieldFormat<bool>> ff = FieldFormat<bool>::create("demoEventField", FieldFormat<bool>::STRING_FIELD);
- //   TableFormat *format = new TableFormat(1,1, ff);
+ //   TableFormatPtrformat = new TableFormat(1,1, ff);
 	    // Creating event definition
-//    EventDefinition *ed = new EventDefinition("demoEvent", format, "Demo Event", ContextUtils::GROUP_DEFAULT);
+//    EventDefinitionPtred = new EventDefinition("demoEvent", format, "Demo Event", ContextUtils::GROUP_DEFAULT);
  //   return ed;
 
 	//todo - function stub
 	return 0;
 }
 //
-DataTable* DemoDeviceDriver::readVariableValue(VariableDefinition* vd) 
+DataTablePtr DemoDeviceDriver::readVariableValue(VariableDefinitionPtr vd) 
 {
 	  // React, if our demo setting is being read
  //   if(vd->getName()->equals("demoSetting")) 
@@ -75,7 +75,7 @@ DataTable* DemoDeviceDriver::readVariableValue(VariableDefinition* vd)
 return 0;
 }
 
-void DemoDeviceDriver::writeVariableValue(VariableDefinition* vd, DataTable* value, DataTable* deviceValue) 
+void DemoDeviceDriver::writeVariableValue(VariableDefinitionPtr vd, DataTablePtr value, DataTablePtr deviceValue) 
 {
 //    if(vd)->getName())->equals(u"demoSetting"_j))) {
 //        demoSettingValue = value)->rec())->getString(u"demoSettingField"_j);
@@ -84,7 +84,7 @@ void DemoDeviceDriver::writeVariableValue(VariableDefinition* vd, DataTable* val
 //    std::cout <<"Unknown demo device setting: "_j)->append(vd)->getName())->toString());
 }
 
-DataTable* DemoDeviceDriver::executeFunction(FunctionDefinition* fd, DataTable* parameters) 
+DataTablePtr DemoDeviceDriver::executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters) 
 {
 //    if(fd)->getName())->equals(u"demoOperation"_j))) {
 //        int inputParameter = (parameters)->rec())->getInt(u"demoOperationInputField"_j)))->intValue();
@@ -97,7 +97,7 @@ DataTable* DemoDeviceDriver::executeFunction(FunctionDefinition* fd, DataTable* 
 
 void DemoDeviceDriver::finishSynchronization() 
 {
-//    getDeviceContext())->fireEvent(u"demoEvent"_j, new voidArray({std::stringBuilder().append(u"Demo Event Data: "_j)->append(::java::lang::Math::random())->toString())}));
+//    getDeviceContext())->fireEvent(u"demoEvent"_j, new voidArray({std::stringBuilder().append(u"Demo EventDataPtr: "_j)->append(::java::lang::Math::random())->toString())}));
 }
 
 

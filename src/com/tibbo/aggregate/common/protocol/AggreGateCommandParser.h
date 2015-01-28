@@ -1,38 +1,22 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateCommandParser.java
 
-#pragma once
+#ifndef AggreGateCommandParserH
+#define AggreGateCommandParserH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/protocol/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/nio/channels/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/communication/SimpleCommandParser.h"
-#include <com/tibbo/aggregate/common/protocol/IncomingAggreGateCommand.h"
+
+#include "communication/SimpleCommandParser.h"
+#include "protocol/IncomingAggreGateCommand.h"
 
 
 
-class com::tibbo::aggregate::common::protocol::AggreGateCommandParser
-    : public ::com::tibbo::aggregate::common::communication::SimpleCommandParser
+class AggreGateCommandParser  : public SimpleCommandParser
 {
 
 public:
-    typedef ::com::tibbo::aggregate::common::communication::SimpleCommandParser super;
-protected:
-    void ctor(::java::nio::channels::ReadableByteChannel* channel, int8_t startChar, int8_t endChar);
-
-public: /* protected */
-    IncomingAggreGateCommand* createCommandFromBufferContent() /* throws(SyntaxErrorException) */;
-
-    // Generated
-
-public:
-    AggreGateCommandParser(::java::nio::channels::ReadableByteChannel* channel, int8_t startChar, int8_t endChar);
-protected:
-    AggreGateCommandParser(const ::default_init_tag&);
+	IncomingAggreGateCommandPtr createCommandFromBufferContent();
 
 
-public:
-    
+    AggreGateCommandParser(::java::nio::channels::ReadableByteChannel* channel, unsigned char startChar, unsigned char endChar);
 
-private:
-    ::java::lang::Class* getClass0();
 };
+
+#endif

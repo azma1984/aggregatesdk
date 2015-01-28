@@ -15,6 +15,6 @@ class ServiceFunction : public Interface
 {
     virtual FunctionDefinition getFunctionDefinition() = 0;
 
-    virtual boost::shared_ptr<DataTable> execute(boost::shared_ptr<DataTable> parametersDataTable) = 0;//throws DeviceException;
+    virtual DataTablePtr execute(DataTablePtr parametersDataTable) = 0;//throws DeviceException;
 };
 #endif  //_ServiceFunction_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TimeUnitsManagerH
+#define TimeUnitsManagerH
 
 #include "util/TimeUnit.h"
 #include <list>
@@ -31,3 +32,5 @@ public:
     TimeUnitsManager(const std::string & editorOptions);
     TimeUnitsManager(int minUnit, int maxUnit);
 };
+
+#endif

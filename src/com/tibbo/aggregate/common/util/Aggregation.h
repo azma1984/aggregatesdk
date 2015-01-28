@@ -1,4 +1,4 @@
-#ifndef _AGGREGATION_H_
+﻿#ifndef _AGGREGATION_H_
 #define _AGGREGATION_H_
 
 #include "../CRes.h"
@@ -19,7 +19,7 @@ public:
 	static int MINIMUM_DATE = 10;
 	static int MAXIMUM_DATE = 11;
 
-	// TODO: можно оптимизироватьб при каждом обращении не заполнять map
+	// TODO: можно оптимизировать при каждом обращении не заполнять map
 	static std::map<int, std::string> getSelectionValues() {
 		SELECTION_VALUES.clear();
 		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("average") ) );

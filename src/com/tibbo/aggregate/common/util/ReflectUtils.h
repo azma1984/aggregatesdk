@@ -1,34 +1,20 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/ReflectUtils.java
 
-#pragma once
-
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#ifndef ReflectUtilsH
+#define ReflectUtilsH
 
 
-
-class com::tibbo::aggregate::common::util::ReflectUtils
-    
+class ReflectUtils
 {
 
 public:
-    typedef void super;
-    static void* getPrivateField(void* obj, const std::string & fieldName);
-    static void* getPrivateField(void* obj, const std::string & fieldName, ::java::lang::Class* c) /* throws(NoSuchFieldException, IllegalAccessException) */;
-    static void setPrivateField(void* obj, const std::string & fieldName, void* value);
-    static void setPrivateField(void* obj, const std::string & fieldName, void* value, ::java::lang::Class* c) /* throws(NoSuchFieldException, IllegalAccessException) */;
-    static /* <F, T> */void copyProperties(void* from, ::java::lang::Class* stopFromClass, void* to, ::java::lang::Class* stopToClass);
 
-    // Generated
-    ReflectUtils();
-protected:
-    ReflectUtils(const ::default_init_tag&);
+    static AgObjectPtr getPrivateField(AgObjectPtr obj, const std::string & fieldName);
+    static AgObjectPtr getPrivateField(AgObjectPtr obj, const std::string & fieldName, AgClassPtr c) /* throws(NoSuchFieldException, IllegalAccessException) */;
+    static void setPrivateField(AgObjectPtr obj, const std::string & fieldName, AgObjectPtr value);
+    static void setPrivateField(AgObjectPtr obj, const std::string & fieldName, AgObjectPtr value, AgClassPtr c) /* throws(NoSuchFieldException, IllegalAccessException) */;
+    static /* <F, T> */void copyProperties(AgObjectPtr from, AgClassPtr stopFromClass, AgObjectPtr to, AgClassPtr stopToClass);
 
+	ReflectUtils();
 
-public:
-    
-
-private:
-    ::java::lang::Class* getClass0();
 };
+#endif

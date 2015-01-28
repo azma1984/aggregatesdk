@@ -13,7 +13,7 @@ class ServerDeviceController : public Interface
 
     virtual std::string getType() = 0;
     virtual std::string getTypeName() = 0;
-    virtual void install(boost::shared_ptr<DeviceContext> deviceContext) = 0;
+    virtual void install(DeviceContextPtr deviceContext) = 0;
     virtual void uninstall() = 0;
     virtual void start() = 0;
     virtual void stop() = 0;

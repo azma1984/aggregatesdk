@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EditCodeH
+#define EditCodeH
 
 #include "action/GenericActionCommand.h"
 #include <string>
@@ -7,8 +8,8 @@
 class EditCode : public GenericActionCommand
 {
 private:    
-    static boost::shared_ptr<TableFormat> CFT_EDIT_CODE_;
-    static boost::shared_ptr<TableFormat> RFT_EDIT_CODE_;
+    static TableFormatPtr CFT_EDIT_CODE_;
+    static TableFormatPtr RFT_EDIT_CODE_;
     std::string code;
     std::string mode;
 
@@ -18,8 +19,8 @@ public:
     static const std::string RF_RESULT_;
     static const std::string RF_CODE_;
 
-public: /* protected */
-    boost::shared_ptr<DataTable> constructParameters();
+public:
+    DataTablePtr constructParameters();
 
 public:
     std::string getCode();
@@ -27,12 +28,13 @@ public:
     std::string getMode();
     void setMode(const std::string& mode);
 
-    // Generated
+
     EditCode();
     EditCode(const std::string & title, const std::string & code, const std::string & mode);
-    EditCode(const std::string & title, boost::shared_ptr<DataTable> parameters);
+    EditCode(const std::string & title, DataTablePtr parameters);
 
 public:
-    static boost::shared_ptr<TableFormat> CFT_EDIT_CODE();
-    static boost::shared_ptr<TableFormat> RFT_EDIT_CODE();
+    static TableFormatPtr CFT_EDIT_CODE();
+    static TableFormatPtr RFT_EDIT_CODE();
 };
+#endif

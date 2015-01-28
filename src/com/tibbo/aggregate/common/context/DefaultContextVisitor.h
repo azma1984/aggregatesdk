@@ -1,13 +1,15 @@
+#ifndef DefaultContextVisitorH
+#define DefaultContextVisitorH
 
-#pragma once
-
-//todo - class stub
 class DefaultContextVisitor: public ContextVisitor
 {
-//public:
-//    
-//    bool shouldVisit(Context* context) ;
-//
-//    DefaultContextVisitor();
+public:
+
+	bool shouldVisit(ContextPtr context)
+	{
+	  return !context.isDistributed();
+    }
 
 };
+
+#endif

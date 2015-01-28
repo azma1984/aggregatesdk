@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/RemoteServerController.java
 #include <RemoteServerController.h>
 
-RemoteServerController::RemoteServerController(RemoteServer *device, bool async, bool useContextManager)
+RemoteServerController::RemoteServerController(RemoteServerPtrdevice, bool async, bool useContextManager)
 {
 	if(useContextManager)
 	{
@@ -10,7 +10,7 @@ RemoteServerController::RemoteServerController(RemoteServer *device, bool async,
 }
 
 
-void RemoteServerController::setContextManager(RemoteContextManager* contextManager)
+void RemoteServerController::setContextManager(RemoteContextManagerPtr contextManager)
 {
 	this->contextManager = contextManager;
 }
@@ -21,7 +21,7 @@ bool RemoteServerController::connectImpl()
 		if(dataChannel == NULL && getDevice()->getAddress() != NULL)
 		{
 
-			Log::PROTOCOL())->debug(std::stringBuilder().append(u"Connecting to remote server ("_j)->append(java_cast< RemoteServer* >(getDevice())))
+			Log::PROTOCOL())->debug(std::stringBuilder().append(u"Connecting to remote server ("_j)->append(java_cast< RemoteServerPtr >(getDevice())))
 				->append(u")"_j)->toString());
 
 
@@ -31,7 +31,7 @@ bool RemoteServerController::connectImpl()
 
 			try
 			{
-				sslSocket = java_cast< ::javax::net::ssl::SSLSocket* >(sslFactory)->createSocket(java_cast< RemoteServer* >(getDevice()))->getAddress(), java_cast< RemoteServer* >(getDevice()))->getPort()));
+				sslSocket = java_cast< ::javax::net::ssl::SSLSocket* >(sslFactory)->createSocket(java_cast< RemoteServerPtr >(getDevice()))->getAddress(), java_cast< RemoteServerPtr >(getDevice()))->getPort()));
 			}
 			catch (std::exception* ex)
 			{
@@ -43,27 +43,27 @@ bool RemoteServerController::connectImpl()
 				}
 			}
 			sslSocket)->setEnabledCipherSuites(sslSocket)->getSupportedCipherSuites());
-			sslSocket)->setSoTimeout((new ::java::lang::Long(java_cast< RemoteServer* >(getDevice()))->getConnectionTimeout()))->intValue());
+			sslSocket)->setSoTimeout((new ::java::lang::Long(java_cast< RemoteServerPtr >(getDevice()))->getConnectionTimeout()))->intValue());
 			sslSocket)->startHandshake();
-			dataChannel = new ::com::tibbo::aggregate::common::util::BlockingChannel(sslSocket);
+			dataChannel = new BlockingChannel(sslSocket);
 		}
 
 		if(dataChannel != 0)
 		{
-            setCommandParser(static_cast< ::com::tibbo::aggregate::common::communication::CommandParser* >(new AggreGateCommandParser(dataChannel, AggreGateCommand::START_CHAR, AggreGateCommand::END_CHAR)));
+            setCommandParser(static_cast< ::com::tibbo::aggregate::common::communication::CommandParserPtr >(new AggreGateCommandParser(dataChannel, AggreGateCommand::START_CHAR, AggreGateCommand::END_CHAR)));
         }
         Log::PROTOCOL())->debug(u"Connection with remote server established"_j);
 	}
 	catch (std::exception* ex)
 	{
-        throw new RemoteDeviceErrorException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"devErrConnecting"_j), new voidArray({std::stringBuilder().append(java_cast< RemoteServer* >(getDevice()))->getDescription())->append(u" ("_j)
-            ->append(java_cast< RemoteServer* >(getDevice()))->getInfo())
+        throw new RemoteDeviceErrorException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"devErrConnecting"_j), new voidArray({std::stringBuilder().append(java_cast< RemoteServerPtr >(getDevice()))->getDescription())->append(u" ("_j)
+            ->append(java_cast< RemoteServerPtr >(getDevice()))->getInfo())
             ->append(u")"_j)->toString())})))->append(ex)->getMessage())->toString(), static_cast< ::java::lang::Throwable* >(ex));
     }
     super::connectImpl();
-    if(java_cast< RemoteContextManager* >(getContextManager()) != 0) {
-        java_cast< RemoteContextManager* >(getContextManager()))->setRoot(new ProxyContext(Contexts::CTX_ROOT(), this));
-        java_cast< RemoteContextManager* >(getContextManager()))->restart();
+    if(java_cast< RemoteContextManagerPtr >(getContextManager()) != 0) {
+        java_cast< RemoteContextManagerPtr >(getContextManager()))->setRoot(new ProxyContext(Contexts::CTX_ROOT(), this));
+        java_cast< RemoteContextManagerPtr >(getContextManager()))->restart();
     }
     return true;
 }
@@ -77,13 +77,13 @@ std::string RemoteServerController::getConnectionErrorMessage()
 
 bool RemoteServerController::loginImpl()
 {
-    if(java_cast< RemoteContextManager* >(getContextManager()) != 0) {
-        java_cast< RemoteContextManager* >(getContextManager()))->restart();
+    if(java_cast< RemoteContextManagerPtr >(getContextManager()) != 0) {
+        java_cast< RemoteContextManagerPtr >(getContextManager()))->restart();
     }
-    auto loginInput = new DataTable(::com::tibbo::aggregate::common::server::CommonServerFormats::FIFT_LOGIN(), new voidArray({java_cast< RemoteServer* >(getDevice()))->getUsername()), java_cast< RemoteServer* >(getDevice()))->getPassword())}));
+    auto loginInput = new DataTable(::com::tibbo::aggregate::common::server::CommonServerFormats::FIFT_LOGIN(), new voidArray({java_cast< RemoteServerPtr >(getDevice()))->getUsername()), java_cast< RemoteServerPtr >(getDevice()))->getPassword())}));
     callRemoteFunction(Contexts::CTX_ROOT(), ::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGIN(), 0, loginInput);
-    if(java_cast< RemoteContextManager* >(getContextManager()) != 0) {
-        java_cast< ProxyContext* >(java_cast< RemoteContextManager* >(getContextManager()))->getRoot()))->reinitialize();
+    if(java_cast< RemoteContextManagerPtr >(getContextManager()) != 0) {
+        java_cast< ProxyContextPtr >(java_cast< RemoteContextManagerPtr >(getContextManager()))->getRoot()))->reinitialize();
     }
     return true;
 }
@@ -105,17 +105,17 @@ void RemoteServerController::disconnectImpl()
     super::disconnectImpl();
 }
 
-void RemoteServerController::send(OutgoingAggreGateCommand* cmd)
+void RemoteServerController::send(OutgoingAggreGateCommandPtr cmd)
 {
     cmd)->send(static_cast< ::java::nio::channels::ByteChannel* >(dataChannel));
 }
 
-void RemoteServerController::send(::com::tibbo::aggregate::common::communication::Command* cmd)
+void RemoteServerController::send(::com::tibbo::aggregate::common::communication::CommandPtr cmd)
 { 
-    send(dynamic_cast< OutgoingAggreGateCommand* >(cmd));
+    send(dynamic_cast< OutgoingAggreGateCommandPtr >(cmd));
 }
 
-void RemoteServerController::setDataChannel(::com::tibbo::aggregate::common::util::BlockingChannel* socketChannel)
+void RemoteServerController::setDataChannel(BlockingChannel* socketChannel)
 {
     this->dataChannel = socketChannel;
 }

@@ -1,13 +1,7 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/Command.java
 
 #include "Command.h"
 
 /*
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/communication/SocketDisconnectionException.h"
-#include <com/tibbo/aggregate/common/device/DisconnectionException.h"
-#include <com/tibbo/aggregate/common/util/StringUtils.h"
-
 
 Command::Command(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
@@ -27,7 +21,7 @@ Command::Command(const std::string & data)
     ctor(data);
 }
 
-Command::Command(::int8_tArray* data)
+Command::Command(::unsigned charArray* data)
     : Command(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
@@ -44,7 +38,7 @@ void Command::ctor(const std::string & data)
     add(data);
 }
 
-void Command::ctor(::int8_tArray* data)
+void Command::ctor(::unsigned charArray* data)
 {
     super::ctor();
     write(data, int(0), data)->length);
@@ -72,7 +66,7 @@ std::string Command::getContent()
 void Command::add(const std::string & data)
 {
     try {
-        write(data)->getBytes(::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET()));
+        write(data)->getBytes(StringUtils::UTF8_CHARSET()));
     } catch (std::exception* ex) {
         throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
     }
@@ -95,11 +89,11 @@ void Command::send(::java::nio::channels::ByteChannel* byteChannel, bool encapsu
         auto buff = ::java::nio::ByteBuffer::allocate(size);
         buff)->clear();
         if(header != 0) {
-            buff)->put(header)->getBytes(::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET()));
+            buff)->put(header)->getBytes(StringUtils::UTF8_CHARSET()));
         }
         buff)->put(toByteArray_());
         if(footer != 0) {
-            buff)->put(footer)->getBytes(::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET()));
+            buff)->put(footer)->getBytes(StringUtils::UTF8_CHARSET()));
         }
         buff)->flip();
         auto sent = int(0);
@@ -119,12 +113,12 @@ void Command::send(::java::io::OutputStream* stream)
 {
     auto header = this->header();
     if(header != 0) {
-        stream)->write(header)->getBytes(::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET()));
+        stream)->write(header)->getBytes(StringUtils::UTF8_CHARSET()));
     }
     stream)->write(toByteArray_());
     auto footer = this->footer();
     if(footer != 0) {
-        stream)->write(footer)->getBytes(::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET()));
+        stream)->write(footer)->getBytes(StringUtils::UTF8_CHARSET()));
     }
 }
 
@@ -150,14 +144,4 @@ void Command::setTimeout(long  timeout)
 
 
 
-java::lang::Class* Command::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.communication.Command", 48);
-    return c;
-}
-
-java::lang::Class* Command::getClass0()
-{
-    return class_();
-}
 

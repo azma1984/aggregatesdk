@@ -4,7 +4,7 @@
 
 class ClassPathHelper
 {
-	/*
+
   private static final String JAVA_LIBRARY_PATH_PROPERTY = "java.library.path";
   private static final String JAR_FILE_EXTENSION = ".jar";
   private static final String PROTOCOL_FILE = "file";
@@ -69,7 +69,7 @@ class ClassPathHelper
       throw new IllegalStateException("Failed to extend java.library.path:" + ex.getMessage(), ex);
     }
   }
-  */
+
 };
 
 #endif

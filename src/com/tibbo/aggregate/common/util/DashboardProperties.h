@@ -20,7 +20,7 @@ public:
   
 	static int LAYOUT_DOCKABLE;
 	static int LAYOUT_SCROLLABLE;
-    static boost::shared_ptr<TableFormat> FORMAT();
+    static TableFormatPtr FORMAT();
 
 	DashboardProperties();
     DashboardProperties(DataRecord& data);
@@ -49,7 +49,7 @@ private:
 	int columns;
 	bool closable;
     bool cleanup;
-    static boost::shared_ptr<TableFormat> FORMAT_ ;
+    static TableFormatPtr FORMAT_ ;
 };
 
 #endif

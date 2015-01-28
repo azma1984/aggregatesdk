@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/AbstractEntityDefinition.java
-
 #ifndef AbstractEntityDefinitionH
 #define AbstractEntityDefinitionH
 
@@ -18,7 +16,7 @@ private:
     std::string group;
     int index;
     std::string iconId;
-    void *owner;
+    AgObjectPtr owner;
 
 public:
     std::string getName();
@@ -33,8 +31,8 @@ public:
     void setIndex(int index);
     void setIconId(const std::string &iconId);
     std::string getIconId();
-    void* getOwner();
-    void setOwner(void* owner);
+    AgObjectPtr getOwner();
+    void setOwner(AgObjectPtr owner);
     std::string toString();
     std::string toDetailedString();
 };

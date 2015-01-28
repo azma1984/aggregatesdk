@@ -26,15 +26,15 @@ void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::ctor()
 
 std::string com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::header()
 {
-    return ::java::lang::Character::toString(static_cast< char16_t >(AggreGateCommand::START_CHAR));
+    return ::java::lang::Character::toString(static_cast< int >(AggreGateCommand::START_CHAR));
 }
 
 std::string com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::footer()
 {
-    return ::java::lang::Character::toString(static_cast< char16_t >(AggreGateCommand::END_CHAR));
+    return ::java::lang::Character::toString(static_cast< int >(AggreGateCommand::END_CHAR));
 }
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::addParam(const std::string & param)
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::addParam(const std::string & param)
 {
     if(paramCount != 0) {
         write(AggreGateCommand::CLIENT_COMMAND_SEPARATOR())->getBytes(), int(0), AggreGateCommand::CLIENT_COMMAND_SEPARATOR())->getBytes())->length);
@@ -42,7 +42,7 @@ com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::a
     if(paramCount == AggreGateCommand::INDEX_ID) {
         this->id = param;
     }
-    write(param)->getBytes(::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET()), int(0), param)->getBytes(::com::tibbo::aggregate::common::util::StringUtils::UTF8_CHARSET()))->length);
+    write(param)->getBytes(StringUtils::UTF8_CHARSET()), int(0), param)->getBytes(StringUtils::UTF8_CHARSET()))->length);
     paramCount++;
     return this;
 }
@@ -74,7 +74,7 @@ void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::construc
     addParam(DataTableUtils::transferEncode(details));
 }
 
-void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, long  eventId, Date* creationtime, int  listener)
+void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, long  eventId, DatePtr creationtime, int  listener)
 {
     this->id = new std::string();
     addParam(std::string::valueOf(AggreGateCommand::COMMAND_CODE_MESSAGE));
@@ -93,7 +93,7 @@ void com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::construc
 
 java::lang::Class* com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.OutgoingAggreGateCommand", 60);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.OutgoingAggreGateCommand", 60);
     return c;
 }
 

@@ -6,23 +6,23 @@
 #include "event/ContextEventListenerInfo.h"
 #include "util/AgObject.h"
 
-#include <unordered_set>
+#include <boost/unordered_set.hpp>
 
 class ContextEventListenerSet
 {
 
 private:
-  //using namespace std; 
-    std::unordered_set <AgObject*> listeners;
-    std::unordered_set <AgObject*> listeners_info;
-    static ContextEventListenerInfo* getListenerInfo(void* ref);
+  //using namespace std;
+	boost::unordered_set <AgObjectPtr> listeners;
+	boost::unordered_set <AgObjectPtr> listeners_info;
+	static ContextEventListenerInfoPtr getListenerInfo(AgObjectPtr ref);
 
 public:
-  //  std::unordered_set<ContextEventListener*>    getListeners();
-    std::unordered_set<ContextEventListenerInfo*> getListenersInfo();
-    bool addListener(ContextEventListener* listener, bool weak);
-    bool removeListener(ContextEventListener* listener);
-    bool contains(ContextEventListener* listener);
+  //  std::unordered_set<ContextEventListenerPtr>    getListeners();
+    boost::unordered_set<ContextEventListenerInfoPtr> getListenersInfo();
+    bool addListener(ContextEventListenerPtr listener, bool weak);
+    bool removeListener(ContextEventListenerPtr listener);
+    bool contains(ContextEventListenerPtr listener);
     void clear();
     int size();
 

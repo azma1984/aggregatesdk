@@ -10,21 +10,21 @@
 class UncheckedCallerController// : public AbstractCallerController
 {
 
-//private:
-//    Permissions* permissions;
-//
-//
-//public:
-//    Permissions* getPermissions();
-//    bool isPermissionCheckingEnabled();
-//    bool isLoggedIn();
-//    void logout();
-//    bool isHeadless();
-//    void handleContextEvent(Event* event);
-//
-//
-//    UncheckedCallerController();
-//    UncheckedCallerController(const std::string & username);
+private:
+    PermissionsPtr permissions;
+
+
+public:
+    PermissionsPtr getPermissions();
+    bool isPermissionCheckingEnabled();
+    bool isLoggedIn();
+    void logout();
+    bool isHeadless();
+    void handleContextEvent(EventPtr event);
+
+
+    UncheckedCallerController();
+	UncheckedCallerController(const std::string & username);
 };
 
 #endif

@@ -7,7 +7,7 @@ SynchronizationHandler::SynchronizationHandler()
   synchronizationEnabled = true;   
 }
 
-void SynchronizationHandler::initialize(DeviceContext* deviceContext, const std::string & variable, SettingSynchronizationOptions* synchronizationOptions, bool check) 
+void SynchronizationHandler::initialize(DeviceContextPtr deviceContext, const std::string & variable, SettingSynchronizationOptionsPtr synchronizationOptions, bool check) 
 {
     this->deviceContext = deviceContext;
     this->variable = variable;
@@ -32,12 +32,12 @@ void SynchronizationHandler::setSynchronizationEnabled(bool synchronizationEnabl
     this->synchronizationEnabled = synchronizationEnabled;
 }
 
-DataTable* SynchronizationHandler::readFromCache(CallerController* caller, RequestController* request)
+DataTablePtr SynchronizationHandler::readFromCache(CallerControllerPtr caller, RequestControllerPtr request)
 {
     return 0;
 }
 
-void SynchronizationHandler::writeToCache(CallerController* caller, RequestController* request, DataTable* value) 
+void SynchronizationHandler::writeToCache(CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value) 
 {
 }
 
@@ -68,17 +68,17 @@ ValueReader* SynchronizationHandler::createServerReader()
   //  };
 }
 
-boost::shared_ptr<Date> SynchronizationHandler::getServerModificationTime() 
+DatePtr SynchronizationHandler::getServerModificationTime() 
 {
   return deviceContext->getSettingStatus(variable)->getTime();
 }
 
-boost::shared_ptr<Date> SynchronizationHandler::getDeviceModificationTime() 
+DatePtr SynchronizationHandler::getDeviceModificationTime() 
 {
     return deviceContext->getDriver()->getVariableModificationTime(getVariable());
 }
 
-bool SynchronizationHandler::isUpdatedOnTheServer(CallerController* caller) 
+bool SynchronizationHandler::isUpdatedOnTheServer(CallerControllerPtr caller) 
 {
     return deviceContext->getSettingStatus(variable)->isUpdated();
 }
@@ -88,19 +88,19 @@ int SynchronizationHandler::getDirectionOverride()
     return DeviceContext::DIRECTION_AUTO;
 }
 
-VariableDefinition* SynchronizationHandler::getPersistentDefinition(VariableDefinition* vd)
+VariableDefinitionPtr SynchronizationHandler::getPersistentDefinition(VariableDefinitionPtr vd)
 {
 	//todo - Clone() is undefined
    // return vd->clone();
 	return 0;
 }
 
-SettingSynchronizationOptions* SynchronizationHandler::getSynchronizationOptions()
+SettingSynchronizationOptionsPtr SynchronizationHandler::getSynchronizationOptions()
 {
     return synchronizationOptions;
 }
 
-DeviceContext* SynchronizationHandler::getDeviceContext()
+DeviceContextPtr SynchronizationHandler::getDeviceContext()
 {
     return deviceContext;
 }
@@ -110,12 +110,12 @@ std::string SynchronizationHandler::getVariable()
     return variable;
 }
 
-VariableStatus* SynchronizationHandler::getCustomStatus()
+VariableStatusPtr SynchronizationHandler::getCustomStatus()
 {
     return customStatus;
 }
 
-void SynchronizationHandler::setCustomStatus(VariableStatus* customStatus)
+void SynchronizationHandler::setCustomStatus(VariableStatusPtr customStatus)
 {
     this->customStatus = customStatus;
 }

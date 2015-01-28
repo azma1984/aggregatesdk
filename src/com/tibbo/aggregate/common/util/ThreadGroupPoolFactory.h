@@ -1,45 +1,22 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/ThreadGroupPoolFactory.java
 
-#pragma once
+#ifndef ThreadGroupPoolFactoryH
+#define ThreadGroupPoolFactoryH
 
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/atomic/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/util/concurrent/ThreadFactory.h"
-
-
-
-class com::tibbo::aggregate::common::util::ThreadGroupPoolFactory
-    
-    , public ::java::util::concurrent::ThreadFactory
+class ThreadGroupPoolFactory //  , public ::java::util::concurrent::ThreadFactory todo
 {
-
-public:
-    typedef void super;
 
 private:
     static ::java::util::concurrent::atomic::AtomicInteger* poolNumber_;
     ::java::lang::ThreadGroup* group;
-    ::java::util::concurrent::atomic::AtomicInteger* threadNumber;
-    const std::string & namePrefix;
-protected:
-    void ctor(::java::lang::ThreadGroup* group, const std::string & name);
-
-public:
-    ::java::lang::Thread* newThread(::java::lang::Runnable* r);
-
-    // Generated
-    ThreadGroupPoolFactory(::java::lang::ThreadGroup* group, const std::string & name);
-protected:
-    ThreadGroupPoolFactory(const ::default_init_tag&);
+	::java::util::concurrent::atomic::AtomicInteger* threadNumber;
+	const std::string & namePrefix;
+	static ::java::util::concurrent::atomic::AtomicInteger*& poolNumber();
 
 
 public:
-    
-    static void 
+	::java::lang::Thread* newThread(::java::lang::Runnable* r);
 
-private:
-    static ::java::util::concurrent::atomic::AtomicInteger*& poolNumber();
-    ::java::lang::Class* getClass0();
+	ThreadGroupPoolFactory(::java::lang::ThreadGroup* group, const std::string & name);
+
 };
+#endif

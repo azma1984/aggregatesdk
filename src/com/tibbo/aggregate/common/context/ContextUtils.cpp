@@ -358,46 +358,46 @@
 //    return path)->replace(CONTEXT_NAME_SEPARATOR_)->charAt(int(0)), u"_"_j)->charAt(int(0)));
 //}
 //
-//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager)
+//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManagerPtr contextManager)
 //{
 //    
 //    return expandMaskListToContexts(masks, contextManager, 0, false);
 //}
 //
-//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager, CallerController* caller)
+//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManagerPtr contextManager, CallerControllerPtr caller)
 //{
 //    
 //    return expandMaskListToContexts(masks, contextManager, caller, false);
 //}
 //
-//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
+//std::list  ContextUtils::expandMaskListToContexts(const std::string & masks, ContextManagerPtr contextManager, CallerControllerPtr caller, bool useVisibleChildren)
 //{
 //    
 //    std::list  result = new ::java::util::LinkedList();
-//    auto maskList = ::com::tibbo::aggregate::common::util::std::stringUtils::split(masks, MASK_LIST_SEPARATOR_)->charAt(int(0)));
+//    auto maskList = std::stringUtils::split(masks, MASK_LIST_SEPARATOR_)->charAt(int(0)));
 //    for (auto _i = maskList)->iterator(); _i->hasNext(); ) {
 //        const std::string & mask = java_cast< const std::string & >(_i->next());
 //        {
 //            auto contexts = expandMaskToContexts(mask, contextManager, caller, useVisibleChildren);
-//            result)->addAll(static_cast< ::java::util::Collection* >(contexts));
+//            result)->addAll(static_cast< std::list >(contexts));
 //        }
 //    }
 //    return result;
 //}
 //
-//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager)
+//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManagerPtr contextManager)
 //{
 //    
 //    return expandMaskToContexts(mask, contextManager, 0, false);
 //}
 //
-//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager, CallerController* caller)
+//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManagerPtr contextManager, CallerControllerPtr caller)
 //{
 //    
 //    return expandMaskToContexts(mask, contextManager, caller, false);
 //}
 //
-//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
+//std::list  ContextUtils::expandMaskToContexts(const std::string & mask, ContextManagerPtr contextManager, CallerControllerPtr caller, bool useVisibleChildren)
 //{
 //    
 //    std::list  res = new ::java::util::LinkedList();
@@ -405,7 +405,7 @@
 //    for (auto _i = paths)->iterator(); _i->hasNext(); ) {
 //        const std::string & path = java_cast< const std::string & >(_i->next());
 //        {
-//            auto con = java_cast< Context* >(contextManager)->get(path, caller));
+//            auto con = java_cast< ContextPtr >(contextManager)->get(path, caller));
 //            if(con != 0) {
 //                res)->add(con));
 //            }
@@ -414,23 +414,23 @@
 //    return res;
 //}
 //
-//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager)
+//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManagerPtr contextManager)
 //{
 //    
 //    return expandMaskToPaths(mask, contextManager, 0, false);
 //}
 //
-//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller)
+//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManagerPtr contextManager, CallerControllerPtr caller)
 //{
 //    
 //    return expandMaskToPaths(mask, contextManager, caller, false);
 //}
 //
-//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
+//std::list  ContextUtils::expandMaskToPaths(const std::string & mask, ContextManagerPtr contextManager, CallerControllerPtr caller, bool useVisibleChildren)
 //{
 //    
 //    std::list  result = new ::java::util::LinkedList();
-//    auto parts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(mask, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto parts = std::stringUtils::split(mask, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
 //    for (auto i = int(0); i < parts)->size(); i++) {
 //        if(java_cast< const std::string & >(parts)->get(i)))->equals(CONTEXT_GROUP_MASK_))) {
 //            auto head = new std::stringBuffer();
@@ -446,28 +446,28 @@
 //                tail)->append(java_cast< const std::string & >(parts)->get(j)));
 //            }
 //            auto res = expandMaskPart(head)->tostd::string(), tail)->tostd::string(), contextManager, caller, useVisibleChildren);
-//            result)->addAll(static_cast< ::java::util::Collection* >(res));
+//            result)->addAll(static_cast< std::list >(res));
 //            return result;
 //        }
 //    }
-//    if(java_cast< Context* >(contextManager)->get(mask, caller)) != 0) {
+//    if(java_cast< ContextPtr >(contextManager)->get(mask, caller)) != 0) {
 //        result)->add(mask));
 //    }
 //    return result;
 //}
 //
-//std::list  ContextUtils::expandMaskPart(const std::string & head, const std::string & tail, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren)
+//std::list  ContextUtils::expandMaskPart(const std::string & head, const std::string & tail, ContextManagerPtr contextManager, CallerControllerPtr caller, bool useVisibleChildren)
 //{
 //    
 //    std::list  result = new ::java::util::LinkedList();
-//    auto con = java_cast< Context* >(contextManager)->get(head, caller));
+//    auto con = java_cast< ContextPtr >(contextManager)->get(head, caller));
 //    if(con == 0) {
 //        return result;
 //    }
 //    if(con)->isMapped()) {
 //        auto const mappedChildren = con)->getMappedChildren(caller);
 //        for (auto _i = mappedChildren)->iterator(); _i->hasNext(); ) {
-//            Context* child = java_cast< Context* >(_i->next());
+//            ContextPtr child = java_cast< ContextPtr >(_i->next());
 //            {
 //                result)->add(child)->getPath()));
 //            }
@@ -475,17 +475,17 @@
 //    } else {
 //        auto children = useVisibleChildren ? static_cast< std::list  >(con)->getVisibleChildren(caller)) : static_cast< std::list  >(con)->getChildren(caller));
 //        for (auto _i = children)->iterator(); _i->hasNext(); ) {
-//            Context* child = java_cast< Context* >(_i->next());
+//            ContextPtr child = java_cast< ContextPtr >(_i->next());
 //            {
 //                if(useVisibleChildren) {
-//                    auto realChild = java_cast< Context* >(con)->getChild(child)->getName()));
+//                    auto realChild = java_cast< ContextPtr >(con)->getChild(child)->getName()));
 //                    if(realChild == 0 || !realChild)->getPath())->equals(child)->getPath()))) {
 //                        auto res = expandMaskToPaths(std::stringBuilder().append(child)->getPath())->append(tail)->tostd::string(), contextManager, caller, useVisibleChildren);
-//                        result)->addAll(static_cast< ::java::util::Collection* >(res));
+//                        result)->addAll(static_cast< std::list >(res));
 //                        continue;
 //                    }
 //                }
-//                result)->addAll(static_cast< ::java::util::Collection* >(expandMaskToPaths(std::stringBuilder().append(head)->append(CONTEXT_NAME_SEPARATOR_)
+//                result)->addAll(static_cast< std::list >(expandMaskToPaths(std::stringBuilder().append(head)->append(CONTEXT_NAME_SEPARATOR_)
 //                    ->append(child)->getName())
 //                    ->append(tail)->tostd::string(), contextManager, caller, useVisibleChildren)));
 //            }
@@ -494,20 +494,20 @@
 //    return result;
 //}
 //
-//std::list  ContextUtils::findChildren(const std::string & rootsMask, ::java::lang::Class* contextClass, ContextManager* manager, CallerController* caller, bool resolveGroups)
+//std::list  ContextUtils::findChildren(const std::string & rootsMask, AgClassPtr contextClass, ContextManagerPtr manager, CallerControllerPtr caller, bool resolveGroups)
 //{
 //    
 //    return findChildren(rootsMask, getTypeForClass(contextClass), manager, caller, resolveGroups);
 //}
 //
-//std::list  ContextUtils::findChildren(const std::string & rootsMask, const std::string & type, ContextManager* manager, CallerController* caller, bool resolveGroups)
+//std::list  ContextUtils::findChildren(const std::string & rootsMask, const std::string & type, ContextManagerPtr manager, CallerControllerPtr caller, bool resolveGroups)
 //{
 //    
 //    std::list  const res = new ::java::util::ArrayList();
-//    ContextVisitor* visitor = new ContextUtils_findChildren_1(type, res);
+//    ContextVisitorPtr visitor = new ContextUtils_findChildren_1(type, res);
 //    auto roots = expandMaskToContexts(rootsMask, manager, caller);
 //    for (auto _i = roots)->iterator(); _i->hasNext(); ) {
-//        Context* root = java_cast< Context* >(_i->next());
+//        ContextPtr root = java_cast< ContextPtr >(_i->next());
 //        {
 //            try {
 //                acceptFinder(root, visitor, caller, resolveGroups);
@@ -519,13 +519,13 @@
 //    return res;
 //}
 //
-//void ContextUtils::acceptFinder(Context* context, ContextVisitor* visitor, CallerController* caller, bool resolveGroups) 
+//void ContextUtils::acceptFinder(ContextPtr context, ContextVisitorPtr visitor, CallerControllerPtr caller, bool resolveGroups) 
 //{
 //    
 //    visitor->visit(context);
 //    auto children = resolveGroups ? static_cast< std::list  >(context)->getMappedChildren(caller)) : static_cast< std::list  >(context)->getChildren(caller));
 //    for (auto _i = children)->iterator(); _i->hasNext(); ) {
-//        Context* child = java_cast< Context* >(_i->next());
+//        ContextPtr child = java_cast< ContextPtr >(_i->next());
 //        {
 //            acceptFinder(child, visitor, caller, resolveGroups);
 //        }
@@ -538,7 +538,7 @@
 //    return matchesToMask(mask, name, false, false);
 //}
 //
-//bool ContextUtils::matchesToType(const std::string & type, ::java::util::Collection* requiredTypes)
+//bool ContextUtils::matchesToType(const std::string & type, std::list requiredTypes)
 //{
 //    
 //    if(requiredTypes == 0 || requiredTypes)->isEmpty() || type == 0) {
@@ -558,7 +558,7 @@
 //    return false;
 //}
 //
-//bool ContextUtils::matchesToType(::java::util::Collection* types, ::java::util::Collection* requiredTypes)
+//bool ContextUtils::matchesToType(std::list types, std::list requiredTypes)
 //{
 //    
 //    auto result = true;
@@ -592,8 +592,8 @@
 //            }
 //        }
 //    }
-//    auto maskParts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(mask, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
-//    auto nameParts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(context, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto maskParts = std::stringUtils::split(mask, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto nameParts = std::stringUtils::split(context, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
 //    if(maskParts)->size() > nameParts)->size() && !maskMayExtendContext) {
 //        return false;
 //    }
@@ -615,8 +615,8 @@
 //bool ContextUtils::masksIntersect(const std::string & mask1, const std::string & mask2, bool mask2MayExtendMask1, bool mask1MayExtendMask2)
 //{
 //    
-//    auto mask1Parts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(mask1, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
-//    auto mask2Parts = ::com::tibbo::aggregate::common::util::std::stringUtils::split(mask2, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto mask1Parts = std::stringUtils::split(mask1, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
+//    auto mask2Parts = std::stringUtils::split(mask2, CONTEXT_NAME_SEPARATOR_)->charAt(int(0)));
 //    if(mask1Parts)->size() > mask2Parts)->size() && !mask1MayExtendMask2) {
 //        return false;
 //    }
@@ -639,7 +639,8 @@
 
 bool ContextUtils::isRelative(const std::string & name)
 {
-    return (name->find(CONTEXT_NAME_SEPARATOR) == 0);
+   // return name->find(CONTEXT_NAME_SEPARATOR) == 0;
+   return 0;
 }
 
 //bool ContextUtils::isMask(const std::string & name)
@@ -748,7 +749,7 @@ return false;
 //    return index == -int(1) ? static_cast< const std::string & >(0) : type)->substd::string(index + int(1), type)->length());
 //}
 //
-//std::string ContextUtils::getTypeForClass(::java::lang::Class* clazz)
+//std::string ContextUtils::getTypeForClass(AgClassPtr clazz)
 //{
 //    
 //    auto name = clazz)->getSimpleName();
@@ -759,15 +760,15 @@ return false;
 //    return name;
 //}
 //
-//java::util::Map* ContextUtils::getEventFields(const std::string & mask, const std::string & event, CallerController* caller, ContextManager* contextManager)
+//java::util::Map* ContextUtils::getEventFields(const std::string & mask, const std::string & event, CallerControllerPtr caller, ContextManagerPtr contextManager)
 //{
 //    
 //    auto contexts = expandMaskToContexts(mask, contextManager, caller);
 //    std::map fields = new ::java::util::LinkedHashMap();
 //    for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-//        Context* con = java_cast< Context* >(_i->next());
+//        ContextPtr con = java_cast< ContextPtr >(_i->next());
 //        {
-//            auto edata = con)->getEventData(event);
+//            auto edata = con)->getEventDataPtr(event);
 //            if(edata != 0) {
 //                auto rf = edata)->getDefinition())->getFormat();
 //                if(rf != 0) {
@@ -784,13 +785,13 @@ return false;
 //    return fields;
 //}
 //
-//java::util::Map* ContextUtils::getVariableFields(const std::string & mask, const std::string & variable, CallerController* caller, ContextManager* contextManager)
+//java::util::Map* ContextUtils::getVariableFields(const std::string & mask, const std::string & variable, CallerControllerPtr caller, ContextManagerPtr contextManager)
 //{
 //    
 //    auto contexts = expandMaskToContexts(mask, contextManager, caller);
 //    std::map fields = new ::java::util::LinkedHashMap();
 //    for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-//        Context* con = java_cast< Context* >(_i->next());
+//        ContextPtr con = java_cast< ContextPtr >(_i->next());
 //        {
 //            auto vd = con)->getVariableDefinition(variable);
 //            if(vd != 0) {
@@ -812,12 +813,12 @@ return false;
 //    return fields;
 //}
 //
-//com::tibbo::aggregate::common::action::ActionDefinition* ContextUtils::getDefaultActionDefinition(Context* context, CallerController* caller)
+//com::tibbo::aggregate::common::action::ActionDefinitionPtr ContextUtils::getDefaultActionDefinition(ContextPtr context, CallerControllerPtr caller)
 //{
 //    
 //    auto actions = context)->getActionDefinitions(caller);
 //    for (auto _i = actions)->iterator(); _i->hasNext(); ) {
-//        ::com::tibbo::aggregate::common::action::ActionDefinition* def = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
+//        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr def = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
 //        {
 //            if(def)->isDefault()) {
 //                return def;
@@ -827,14 +828,14 @@ return false;
 //    return 0;
 //}
 //
-//std::string ContextUtils::createType(::java::lang::Class* clazz, const std::string & deviceType)
+//std::string ContextUtils::createType(AgClassPtr clazz, const std::string & deviceType)
 //{
 //    
 //    return std::stringBuilder().append(getTypeForClass(clazz))->append(CONTEXT_TYPE_SEPARATOR_)
 //        ->append(deviceType)->tostd::string();
 //}
 //
-//bool ContextUtils::isValidContextNameChar(char16_t c)
+//bool ContextUtils::isValidContextNameChar(int c)
 //{
 //    
 //    return (c >= u'a' && c <= u'z') || (c >= u'A' && c <= u'Z') || (c >= u'0' && c <= u'9')|| c == u'_';

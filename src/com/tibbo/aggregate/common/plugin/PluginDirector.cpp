@@ -10,7 +10,7 @@
 //    
 //}
 //
-//PluginDirector::PluginDirector(const std::string & homeDir, const std::string & additionalPluginDirs, ::java::util::Collection* allowedPlugins)  /* throws(AggreGateException) */
+//PluginDirector::PluginDirector(const std::string & homeDir, const std::string & additionalPluginDirs, std::list allowedPlugins)  /* throws(AggreGateException) */
 //    : PluginDirector(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(homeDir,additionalPluginDirs,allowedPlugins);
@@ -42,7 +42,7 @@
 //}
 //std::string PluginDirector::EXTENSIONS_PLUGIN_ID_;
 //
-//void PluginDirector::ctor(const std::string & homeDir, const std::string & additionalPluginDirs, ::java::util::Collection* allowedPlugins) /* throws(AggreGateException) */
+//void PluginDirector::ctor(const std::string & homeDir, const std::string & additionalPluginDirs, std::list allowedPlugins) /* throws(AggreGateException) */
 //{
 //    super::ctor();
 //    init();
@@ -120,7 +120,7 @@
 //    auto buf = new std::stringBuffer();
 //    buf)->append(u"Plugin integrity check report\n"_j);
 //    for (auto *it = report)->getItems())->iterator(); it)->hasNext(); ) {
-//        auto item = java_cast< ::org::java::plugin::registry::IntegrityCheckReport_ReportItem* >(java_cast< void* >(it)->next()));
+//        auto item = java_cast< ::org::java::plugin::registry::IntegrityCheckReport_ReportItem* >(java_cast< AgObjectPtr >(it)->next()));
 //        buf)->append(u"\tSeverity="_j))->append(item)->getSeverity())))->append(u", code="_j))->append(item)->getCode())))->append(u", message="_j))->append(item)->getMessage()))->append(u", source="_j))->append(item)->getSource())))->append(u"\n"_j);
 //    }
 //    return buf)->toString();
@@ -214,7 +214,7 @@
 //
 //java::lang::Class* PluginDirector::class_()
 //{
-//    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.plugin.PluginDirector", 48);
+//    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.plugin.PluginDirector", 48);
 //    return c;
 //}
 //

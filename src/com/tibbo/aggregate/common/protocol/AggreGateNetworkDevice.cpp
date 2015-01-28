@@ -60,7 +60,7 @@ int AggreGateNetworkDevice::hashCode()
 	return 0;
 }
 
-bool AggreGateNetworkDevice::equals(void* obj)
+bool AggreGateNetworkDevice::equals(AgObjectPtr obj)
 {
 
 	if(this == obj) {

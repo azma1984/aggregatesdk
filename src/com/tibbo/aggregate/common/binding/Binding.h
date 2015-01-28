@@ -7,25 +7,25 @@
 //#include "expression/ExpressionUtils.h"
 #include <boost/shared_ptr.hpp>
 
-//todo - Required Expression.h and Reference.h
+//Required Expression.h and Reference.h
 class Binding : public Cloneable
 {
 public:
-  //  Binding(boost::shared_ptr<Reference> reference, boost::shared_ptr<Expression> expression);
- //   Binding(const std::string& reference, const std::string& expression);
+	Binding(ReferencePtr reference, ExpressionPtr expression);
+	Binding(const std::string& reference, const std::string& expression);
 
-  //  boost::shared_ptr<Expression> getExpression();
-  //  boost::shared_ptr<Reference> getReference();
+	ExpressionPtr getExpression();
+	ReferencePtr getReference();
     int hashCode();
-    bool equals(Binding* obj);
-    Binding* clone();
+    bool equals(BindingPtr obj);
+    BindingPtr clone();
     std::string toString();
     long getId() const;
     void setId(long id);
 
 private:
-  //  boost::shared_ptr<Reference> reference;
-  //  boost::shared_ptr<Expression> expression;
+	ReferencePtr reference;
+	ExpressionPtr expression;
     long id;
 };
 

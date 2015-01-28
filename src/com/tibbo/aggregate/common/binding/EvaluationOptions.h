@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EvaluationOptionsH
+#define EvaluationOptionsH
 
 #include "expression/Expression.h"
 #include "expression/Reference.h"
@@ -18,8 +19,8 @@ public:
 private:
     int pattern;
     long period;
-    boost::shared_ptr<Reference> activator;
-    boost::shared_ptr<Expression> condition;
+    boost::ReferencePtr activator;
+    ExpressionPtr condition;
 
 protected:
     void ctor();
@@ -29,19 +30,19 @@ protected:
 public:
     int getPattern();
     long getPeriod();
-    boost::shared_ptr<Reference> getActivator();
-    boost::shared_ptr<Expression> getCondition();
+    boost::ReferencePtr getActivator();
+    ExpressionPtr getCondition();
     void setPattern(int pattern);
     void setPeriod(long period);
-    void setActivator(boost::shared_ptr<Reference> activator);
-    void setCondition(boost::shared_ptr<Expression> condition);
+    void setActivator(boost::ReferencePtr activator);
+    void setCondition(ExpressionPtr condition);
     bool isProcessOnStartup();
     bool isProcessOnEvent();
     bool isProcessPeriodically();
     void setProcessOnStartup(bool processOnStartup);
     void setProcessOnEvent(bool processOnEvent);
     void setProcessPeriodically(bool processPeriodically);
-    EvaluationOptions* clone();
+    EvaluationOptionsPtr clone();
     const std::string toString();
 
     EvaluationOptions();
@@ -51,3 +52,5 @@ public:
     EvaluationOptions(bool startup, const std::string & activator, const std::string & condition);
     EvaluationOptions(bool startup, const std::string & activator);
 };
+
+#endif

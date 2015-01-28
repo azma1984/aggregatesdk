@@ -14,11 +14,11 @@ private:
     static const std::string ENGINEER_PERMISSIONS_;
     static const std::string ADMIN_PERMISSIONS_;
 
-    static boost::shared_ptr<Permissions> getObserverPermissions();
-    static boost::shared_ptr<Permissions> getOperatorPermissions();
-    static boost::shared_ptr<Permissions> getManagerPermissions();
-    static boost::shared_ptr<Permissions> getEngineerPermissions();
-    static boost::shared_ptr<Permissions> getAdminPermissions();
+    static PermissionsPtr getObserverPermissions();
+    static PermissionsPtr getOperatorPermissions();
+    static PermissionsPtr getManagerPermissions();
+    static PermissionsPtr getEngineerPermissions();
+    static PermissionsPtr getAdminPermissions();
 
     ServerPermissionChecker();
 };

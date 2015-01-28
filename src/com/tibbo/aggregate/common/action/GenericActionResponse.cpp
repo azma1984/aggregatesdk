@@ -2,20 +2,20 @@
 
 
 
-GenericActionResponse::GenericActionResponse(DataTable* parameters)
+GenericActionResponse::GenericActionResponse(DataTablePtr parameters)
 {
    this(parameters, false, 0);
 }
 
 
-void GenericActionResponse::GenericActionResponse(DataTable* parameters, bool remember, RequestIdentifier* requestId)
+void GenericActionResponse::GenericActionResponse(DataTablePtr parameters, bool remember, RequestIdentifierPtr requestId)
 {
   this->parameters = parameters->clone();
   this->remember = remember;
   *this->requestId = requestId;
 }
 
-DataTable* GenericActionResponse::getParameters()
+DataTablePtr GenericActionResponse::getParameters()
 {
     return parameters.get();
 }
@@ -25,12 +25,12 @@ bool GenericActionResponse::shouldRemember()
     return remember;
 }
 
-RequestIdentifier* GenericActionResponse::getRequestId()
+RequestIdentifierPtr GenericActionResponse::getRequestId()
 {
     return requestId.get();
 }
 
-void GenericActionResponse::setParameters(DataTable* parameters)
+void GenericActionResponse::setParameters(DataTablePtr parameters)
 {
     this->parameters = parameters;
 }
@@ -40,7 +40,7 @@ void GenericActionResponse::setRemember(bool remember)
     this->remember = remember;
 }
 
-void GenericActionResponse::setRequestId(RequestIdentifier* requestId)
+void GenericActionResponse::setRequestId(RequestIdentifierPtr requestId)
 {
     this->requestId = requestId;
 }

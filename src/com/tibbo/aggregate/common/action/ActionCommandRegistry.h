@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ActionCommandRegistryH
+#define ActionCommandRegistryH
 
 #include "action/GenericActionCommand.h"
 #include <map>
@@ -8,11 +9,13 @@
 class ActionCommandRegistry
 {
 private:
-    std::map<std::string, boost::shared_ptr<GenericActionCommand> COMMANDS;
+    std::map<std::string, GenericActionCommandPtr COMMANDS;
 
-    void register1(boost::shared_ptr<GenericActionCommand> command);
+    void register1(GenericActionCommandPtr command);
 
 public:
-    boost::shared_ptr<GenericActionCommand> getCommand(const std::string& type);
+    GenericActionCommandPtr getCommand(const std::string& type);
 	ActionCommandRegistry();
 };
+
+#endif

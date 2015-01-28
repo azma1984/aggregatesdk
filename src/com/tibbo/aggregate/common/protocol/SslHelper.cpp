@@ -46,12 +46,12 @@ com::tibbo::aggregate::common::protocol::SslHelper::SslHelper()
     ctor();
 }
 
-javax::net::ssl::SSLContext*& com::tibbo::aggregate::common::protocol::SslHelper::SSL_CONTEXT()
+javax::net::ssl::SSLContextPtr& com::tibbo::aggregate::common::protocol::SslHelper::SSL_CONTEXT()
 {
     
     return SSL_CONTEXT_;
 }
-javax::net::ssl::SSLContext* com::tibbo::aggregate::common::protocol::SslHelper::SSL_CONTEXT_;
+javax::net::ssl::SSLContextPtr com::tibbo::aggregate::common::protocol::SslHelper::SSL_CONTEXT_;
 
 javax::net::ssl::SSLSocketFactory* com::tibbo::aggregate::common::protocol::SslHelper::getTrustedSocketFactory()
 {
@@ -63,7 +63,7 @@ javax::net::ssl::SSLSocketFactory* com::tibbo::aggregate::common::protocol::SslH
 
 java::lang::Class* com::tibbo::aggregate::common::protocol::SslHelper::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.SslHelper", 45);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.SslHelper", 45);
     return c;
 }
 

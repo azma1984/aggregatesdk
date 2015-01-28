@@ -47,7 +47,7 @@ int TimeUnit::hashCode()
     return result;
 }
 
-bool TimeUnit::equals(void* obj)
+bool TimeUnit::equals(AgObjectPtr obj)
 {
     if(this == obj)
     {

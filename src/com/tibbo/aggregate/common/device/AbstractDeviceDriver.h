@@ -21,73 +21,73 @@ class AbstractDeviceDriver : public BasePlugin , public DeviceDriver
 {
 
 private:
-    boost::shared_ptr<DeviceContext> deviceContext;
+    DeviceContextPtr deviceContext;
     bool connected;
     std::string protocol;
-    boost::shared_ptr<TableFormat> connectionPropertiesFormat;
+    TableFormatPtr connectionPropertiesFormat;
 
 public:
 	AbstractDeviceDriver();
-    AbstractDeviceDriver(const std::string& description, boost::shared_ptr<TableFormat> connectionPropertiesFormat);
-    AbstractDeviceDriver(const std::string& description, const std::string& protocol, boost::shared_ptr<TableFormat> connectionProperties);
+    AbstractDeviceDriver(const std::string& description, TableFormatPtr connectionPropertiesFormat);
+    AbstractDeviceDriver(const std::string& description, const std::string& protocol, TableFormatPtr connectionProperties);
 
     std::string getPrimaryAddress();
-   // std::set<std::string> getAddresses(); //Function is not used!
-    std::string getStatus();
-   // std::list<Expression>  getStatusExpressions(CallerController* aCallerController);//Function is not used!
-    void setupDeviceContext(boost::shared_ptr<DeviceContext> deviceContext) ;
-    void configureDeviceAccount(boost::shared_ptr<DeviceContext> deviceContext, CallerController* caller) ;
+	std::set<std::string> getAddresses();
+	std::string getStatus();
+	std::list<Expression>  getStatusExpressions(CallerControllerPtr aCallerController);
+    void setupDeviceContext(DeviceContextPtr deviceContext) ;
+    void configureDeviceAccount(DeviceContextPtr deviceContext, CallerControllerPtr caller) ;
     void accessSettingUpdated(const std::string& name);
-    bool shouldSynchronize(SynchronizationParameters* parameters) ;
+    bool shouldSynchronize(SynchronizationParametersPtr parameters) ;
     void startSynchronization() ;
     bool isUsesConnections();
     bool isConnected();
     void connect() ;
     bool isUsesAssets();
-   // std::list<DeviceAssetDefinition>  readAssets();//Function is not used!
+	std::list<DeviceAssetDefinition>  readAssets();
     bool isUseDeviceSideValuesCache();
 
-    virtual VariableDefinition*  readVariableDefinitions()=0;
-   // std::list<VariableDefinition>  readVariableDefinitions(std::list<DeviceAssetDefinition>  groups) ;
+    virtual VariableDefinitionPtr  readVariableDefinitions()=0;
+	std::list<VariableDefinition>  readVariableDefinitions(std::list<DeviceAssetDefinition>  groups) ;
 
-    virtual FunctionDefinition*  readFunctionDefinitions()=0;
-    //virtual std::list<FunctionDefinition>  readFunctionDefinitions(std::list<DeviceAssetDefinition>  groups)=0;
+    virtual FunctionDefinitionPtr  readFunctionDefinitions()=0;
+	virtual std::list<FunctionDefinition>  readFunctionDefinitions(std::list<DeviceAssetDefinition>  groups)=0;
 
-    virtual EventDefinition*     readEventDefinitions()=0;
-    //virtual std::list<EventDefinition>     readEventDefinitions(std::list<DeviceAssetDefinition>  groups)=0;
+    virtual EventDefinitionPtr     readEventDefinitions()=0;
+	virtual std::list<EventDefinition>     readEventDefinitions(std::list<DeviceAssetDefinition>  groups)=0;
 
-    virtual DataTable* readVariableValue(VariableDefinition* vd)=0;
-    virtual void writeVariableValue(VariableDefinition* vd, DataTable* value, DataTable* deviceValue)=0;
-    virtual DataTable* executeFunction(FunctionDefinition* fd, DataTable* parameters)=0;
-    boost::shared_ptr<Date> getVariableModificationTime(const std::string& name) ;
-    void updateVariableModificationTime(const std::string& name, Date* value) ;
-    VariableStatus* getCustomVariableStatus(const std::string& name) ;
+    virtual DataTablePtr readVariableValue(VariableDefinitionPtr vd)=0;
+    virtual void writeVariableValue(VariableDefinitionPtr vd, DataTablePtr value, DataTablePtr deviceValue)=0;
+    virtual DataTablePtr executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters)=0;
+    DatePtr getVariableModificationTime(const std::string& name) ;
+    void updateVariableModificationTime(const std::string& name, DatePtr value) ;
+    VariableStatusPtr getCustomVariableStatus(const std::string& name) ;
     void disconnect();
     virtual void finishSynchronization()=0 ;
     void setConnected(bool connected);
-    DeviceContext* getDeviceContext();
-    DiscoveryProvider* createDiscoveryProvider();
+    DeviceContextPtr getDeviceContext();
+    DiscoveryProviderPtr createDiscoveryProvider();
     std::string getProtocol();
-    TableFormat* getConnectionPropertiesFormat();
-	//todo - functions is not used
-   // TableFormat* createConnectionPropertiesFormat();
-    //VariableDefinition* discoverVariable(const std::string& name, void* helper);
-   // FunctionDefinition* discoverFunction(const std::string& name, void* helper);
-   // EventDefinition* discoverEvent(const std::string& name, void* helper);
-    
-  ////  Context* createGlobalConfigContext(Context* rootContext, bool requestReboot, VariableDefinitionArray* properties);
-  // // Context* createUserConfigContext(Context* userContext, bool requestReboot, VariableDefinitionArray* properties);
-  ////  std::string getDescription();
-  //  Context* getGlobalConfigContext();
-  // // std::string getId();
-  ////  std::string getShortId();
-  //  int getSortIndex();
-  //  Context* getUserConfigContext(const std::string& username);
-  //  void globalDeinit(Context* rootContext);
-  //  void globalInit(Context* rootContext);
-  //  void globalStart();
-  //  void globalStop();
-  //  void userDeinit(Context* userContext);
-  //  void userInit(Context* userContext);
+	TableFormatPtr getConnectionPropertiesFormat();
+
+    TableFormatPtr createConnectionPropertiesFormat();
+    VariableDefinitionPtr discoverVariable(const std::string& name, AgObjectPtr helper);
+	FunctionDefinitionPtr discoverFunction(const std::string& name, AgObjectPtr helper);
+    EventDefinitionPtr discoverEvent(const std::string& name, AgObjectPtr helper);
+
+	ContextPtr createGlobalConfigContext(ContextPtr rootContext, bool requestReboot, VariableDefinitionPtr properties);
+	ContextPtr createUserConfigContext(ContextPtr userContext, bool requestReboot, VariableDefinitionPtr properties);
+	std::string getDescription();
+    ContextPtr getGlobalConfigContext();
+	std::string getId();
+	std::string getShortId();
+    int getSortIndex();
+    ContextPtr getUserConfigContext(const std::string& username);
+    void globalDeinit(ContextPtr rootContext);
+    void globalInit(ContextPtr rootContext);
+    void globalStart();
+    void globalStop();
+	void userDeinit(ContextPtr userContext);
+	void userInit(ContextPtr userContext);
 };
 #endif  //_AbstractDeviceDriver_H_

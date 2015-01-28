@@ -12,7 +12,7 @@ std::string StringIdentifier::getId()
 	return id;
 }
 
-bool StringIdentifier::equals(void* obj)
+bool StringIdentifier::equals(AgObjectPtr obj)
 {
   StringIdentifier *sid =  (StringIdentifier*)obj;
 

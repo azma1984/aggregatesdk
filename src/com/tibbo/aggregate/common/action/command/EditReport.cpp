@@ -15,20 +15,20 @@ EditReport::EditReport()
 {    
 }
 
-EditReport::EditReport(const std::string& title, const std::string& template_, boost::shared_ptr<DataTable> data)
+EditReport::EditReport(const std::string& title, const std::string& template_, DataTablePtr data)
     : GenericActionCommand(title,template_,data)
 {    
     this->template_ = template_;
     this->data = data;
 }
 
-EditReport::EditReport(const std::string& title, boost::shared_ptr<DataTable> parameters)
+EditReport::EditReport(const std::string& title, DataTablePtr parameters)
     : GenericActionCommand(ActionUtils::CMD_EDIT_REPORT, title, parameters, CFT_EDIT_REPORT())
 {    
 }
 
 
-boost::shared_ptr<TableFormat> EditReport::CFT_EDIT_REPORT()
+TableFormatPtr EditReport::CFT_EDIT_REPORT()
 {
     if (!CFT_EDIT_REPORT_) {
         CFT_EDIT_REPORT_.reset(new TableFormat(1, 1));
@@ -40,7 +40,7 @@ boost::shared_ptr<TableFormat> EditReport::CFT_EDIT_REPORT()
     return CFT_EDIT_REPORT_;
 }
 
-boost::shared_ptr<TableFormat> EditReport::RFT_EDIT_REPORT()
+TableFormatPtr EditReport::RFT_EDIT_REPORT()
 {
     if (!RFT_EDIT_REPORT_) {
         RFT_EDIT_REPORT_.reset(new TableFormat(1, 1));
@@ -62,12 +62,12 @@ void EditReport::setTemplate(const std::string & template_)
     this->template_ = template_;
 }
 
-boost::shared_ptr<DataTable> EditReport::getData()
+DataTablePtr EditReport::getData()
 {
     return data;
 }
 
-void EditReport::setData(boost::shared_ptr<DataTable> data)
+void EditReport::setData(DataTablePtr data)
 {
     this->data = data;
 }

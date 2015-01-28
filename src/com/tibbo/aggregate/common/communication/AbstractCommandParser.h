@@ -1,53 +1,34 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/AbstractCommandParser.java
 
-#pragma once
+#ifndef AbstractCommandParserH
+#define AbstractCommandParserH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/communication/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/io/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-#include <com/tibbo/aggregate/common/communication/CommandParser.h"
+#include "communication/CommandParser.h"
+
+#include "communication/CommandParserListener.h"
 
 
 
-class com::tibbo::aggregate::common::communication::AbstractCommandParser
-    
-    , public CommandParser
+class AbstractCommandParser, public CommandParser
 {
-
-public:
-    typedef void super;
 
 private:
     ::java::io::ByteArrayOutputStream* data;
-    CommandParserListener* listener;
-protected:
-    void ctor();
-    /*Command* readCommand(); (already declared) */
+    CommandParserListenerPtr listener;
 
+	CommandPtr readCommand();
+	void init();
 public:
-    void reset();
-    ::int8_tArray* getData();
-    void addData(int dataByte);
-    void setListener(CommandParserListener* listener);
-
-public: /* protected */
-    CommandParserListener* getListener();
-
-public:
-    const std::string & toString();
-
-    // Generated
-    AbstractCommandParser();
-protected:
-    AbstractCommandParser(const ::default_init_tag&);
+	void reset();
+	::unsigned charArray* getData();
+	void addData(int dataByte);
+	void setListener(CommandParserListenerPtr listener);
 
 
-public:
-    
+	CommandParserListenerPtr getListener();
 
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+	const std::string & toString();
+
+	AbstractCommandParser();
+
 };
+#endif

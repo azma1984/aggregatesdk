@@ -36,7 +36,7 @@ com::tibbo::aggregate::common::action::command::EditWidget::EditWidget(const std
     ctor(title,defaultContext,widgetContext,widget);
 }
 
-com::tibbo::aggregate::common::action::command::EditWidget::EditWidget(const std::string & title, DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::EditWidget::EditWidget(const std::string & title, DataTablePtr parameters) 
     : EditWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -77,19 +77,19 @@ std::string& com::tibbo::aggregate::common::action::command::EditWidget::RF_RESU
 }
 std::string com::tibbo::aggregate::common::action::command::EditWidget::RF_RESULT_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::EditWidget::CFT_EDIT_WIDGET()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::EditWidget::CFT_EDIT_WIDGET()
 {
     
     return CFT_EDIT_WIDGET_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::EditWidget::CFT_EDIT_WIDGET_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::EditWidget::CFT_EDIT_WIDGET_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::EditWidget::RFT_EDIT_WIDGET()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::EditWidget::RFT_EDIT_WIDGET()
 {
     
     return RFT_EDIT_WIDGET_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::EditWidget::RFT_EDIT_WIDGET_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::EditWidget::RFT_EDIT_WIDGET_;
 
 void com::tibbo::aggregate::common::action::command::EditWidget::ctor()
 {
@@ -104,12 +104,12 @@ void com::tibbo::aggregate::common::action::command::EditWidget::ctor(const std:
     this->widget = widget;
 }
 
-void com::tibbo::aggregate::common::action::command::EditWidget::ctor(const std::string & title, DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::EditWidget::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_WIDGET(), title, parameters, CFT_EDIT_WIDGET_);
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::EditWidget::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::EditWidget::constructParameters()
 {
     return new DataTable(CFT_EDIT_WIDGET_, new voidArray({defaultContext), widgetContext), widget)}));
 }
@@ -148,7 +148,7 @@ void com::tibbo::aggregate::common::action::command::EditWidget::setWidget(const
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::EditWidget::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.EditWidget", 52);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.EditWidget", 52);
     return c;
 }
 

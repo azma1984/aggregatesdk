@@ -19,9 +19,9 @@ private:
     std::string filter;
     std::string master;
     std::string condition;
-    Expression* filterExpression;
-    Expression* conditionExpression;
-    SynchronizationHandler* synchronizationHandler;
+    ExpressionPtr filterExpression;
+    ExpressionPtr conditionExpression;
+    SynchronizationHandlerPtr synchronizationHandler;
     int synchronizationsCounter;
 
 
@@ -37,16 +37,16 @@ public:
     int getHistoryRate();
     void setHistoryRate(int historyRate);
     std::string getFilter();
-    Expression* getFilterExpression();
+    ExpressionPtr getFilterExpression();
     void setFilter(const std::string & filter);
     std::string getCondition();
-    Expression* getConditionExpression();
+    ExpressionPtr getConditionExpression();
     void setCondition(const std::string & condition);
-    SynchronizationHandler* getSynchronizationHandler();
-    void setSynchronizationHandler(SynchronizationHandler* synchronizationHandler);
+    SynchronizationHandlerPtr getSynchronizationHandler();
+    void setSynchronizationHandler(SynchronizationHandlerPtr synchronizationHandler);
     int getSynchronizationsCounter();
     void incrementSynchronizationsCounter();
-    SettingSynchronizationOptions* clone() const;
+    SettingSynchronizationOptionsPtr clone() const;
 
     SettingSynchronizationOptions();
     SettingSynchronizationOptions(long  syncPeriod);

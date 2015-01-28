@@ -10,32 +10,32 @@ UserSettings::UserSettings()
      weekStartDay = 2;//Calendar.MONDAY
 }
 
-UserSettings::UserSettings(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> callerController)
+UserSettings::UserSettings(ContextManagerPtr cm, CallerControllerPtr callerController)
 {
     weekStartDay = 2;//Calendar.MONDAY
     fill(cm, callerController);
 }
 
-void UserSettings::fill(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> callerController) /* throws(ContextException, RemoteDeviceErrorException) */
+void UserSettings::fill(ContextManagerPtr cm, CallerControllerPtr callerController) /* throws(ContextException, RemoteDeviceErrorException) */
 {
     fillBasicProperties(cm, callerController);
     fillActions(cm, callerController);
 }
 
-void UserSettings::fillBasicProperties(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> callerController) /* throws(ContextException, RemoteDeviceErrorException) */
+void UserSettings::fillBasicProperties(ContextManagerPtr cm, CallerControllerPtr callerController) /* throws(ContextException, RemoteDeviceErrorException) */
 {
     if (callerController == NULL) {
         return;
     }
 
     // Distributed: ok, getting info from directly connected server
-    boost::shared_ptr<Context> userContext = cm->get(ContextUtils::userContextPath(callerController->getUsername()), callerController);
+    ContextPtr userContext = cm->get(ContextUtils::userContextPath(callerController->getUsername()), callerController);
 
     if (userContext == NULL) {
         return;
     }
 
-    DataRecord* userInfo = userContext->getVariable(EditableChildContextConstants::V_CHILD_INFO, callerController)->rec();
+    DataRecordPtr userInfo = userContext->getVariable(EditableChildContextConstants::V_CHILD_INFO, callerController)->rec();
 
     setDatePattern(userInfo->getString(User::FIELD_DATEPATTERN));
     setTimePattern(userInfo->getString(User::FIELD_TIMEPATTERN));
@@ -46,15 +46,15 @@ void UserSettings::fillBasicProperties(boost::shared_ptr<ContextManager> cm, boo
     }
 }
 
-void UserSettings::fillActions(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> callerController)
+void UserSettings::fillActions(ContextManagerPtr cm, CallerControllerPtr callerController)
 {
     try
     {
       // Distributed: ok, getting data from directly connected server
-       boost::shared_ptr<Context> utilities = cm->get(Contexts::CTX_UTILITIES, callerController);
+       ContextPtr utilities = cm->get(Contexts::CTX_UTILITIES, callerController);
 
       if (utilities != NULL) {
-        DataTable* variableActions = utilities->callFunction(UtilitiesContextConstants::F_VARIABLE_ACTIONS, callerController);
+        DataTablePtr variableActions = utilities->callFunction(UtilitiesContextConstants::F_VARIABLE_ACTIONS, callerController);
         setVariableActions(DataTableConversion::beansFromTable(variableActions, EntityRelatedActionDescriptor.class, EntityRelatedActionDescriptor.FORMAT, false));
 
         DataTable eventActions = utilities.callFunction(UtilitiesContextConstants.F_EVENT_ACTIONS, callerController);
@@ -132,11 +132,11 @@ void UserSettings::setEventActions(std::list<boost::shared_ptr<EntityRelatedActi
     this->variableActions = variableActions;
 }
 
-UserSettings* UserSettings::clone()
+UserSettingsPtr UserSettings::clone()
 {
 //    try
 //    {
-        UserSettings* clone = new UserSettings();
+        UserSettingsPtr clone = new UserSettings();
 
         /*
          * TODO: копирование списка

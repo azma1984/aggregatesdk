@@ -8,7 +8,7 @@
 //    
 //}
 //
-//VariableData::VariableData(VariableDefinition* definition) 
+//VariableData::VariableData(VariableDefinitionPtr definition) 
 //{
 //    ctor(definition);
 //}
@@ -18,7 +18,7 @@
 //    readWriteLock = new ::java::util::concurrent::locks::ReentrantReadWriteLock();
 //}
 //
-//void VariableData::ctor(VariableDefinition* definition)
+//void VariableData::ctor(VariableDefinitionPtr definition)
 //{
 //    super::ctor();
 //    init();
@@ -35,17 +35,17 @@
 //    setCount++;
 //}
 //
-//VariableDefinition* VariableData::getDefinition()
+//VariableDefinitionPtr VariableData::getDefinition()
 //{
 //    return definition;
 //}
 //
-//void* VariableData::getValue()
+//AgObjectPtr VariableData::getValue()
 //{
 //    return value;
 //}
 //
-//void VariableData::setValue(void* value)
+//void VariableData::setValue(AgObjectPtr value)
 //{
 //    this->value = value;
 //}
@@ -105,7 +105,7 @@
 //    this->setterMethod = setter;
 //}
 //
-//int VariableData::compareTo(VariableData* d)
+//int VariableData::compareTo(VariableDataPtr d)
 //{
 //    if(d != 0) {
 //        return definition)->compareTo(d)->getDefinition());
@@ -113,9 +113,9 @@
 //    return 0;
 //}
 //
-//int VariableData::compareTo(void* arg0)
+//int VariableData::compareTo(AgObjectPtr arg0)
 //{ 
-//    return compareTo(dynamic_cast< VariableData* >(arg0));
+//    return compareTo(dynamic_cast< VariableDataPtr >(arg0));
 //}
 //
 //

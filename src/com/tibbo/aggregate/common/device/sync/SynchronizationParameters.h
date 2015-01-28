@@ -29,8 +29,8 @@ public:
     int getDirectionOverride();
     std::string toString();
     int hashCode();
-    bool equals(SynchronizationParameters* obj);
-    SynchronizationParameters* clone() const;
+    bool equals(SynchronizationParametersPtr obj);
+    SynchronizationParametersPtr clone() const;
 
     SynchronizationParameters();
     SynchronizationParameters(const std::string& setting);

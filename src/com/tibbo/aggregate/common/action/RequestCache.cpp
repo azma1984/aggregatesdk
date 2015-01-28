@@ -4,22 +4,22 @@
 #include "ActionResponse.h"
 #include "RequestIdentifier.h"
 
-std::map<RequestIdentifier*, ActionResponse*>*  RequestCache::getRequests()
+std::map<RequestIdentifierPtr, ActionResponsePtr>*  RequestCache::getRequests()
 {
 	return &requests;
 }
 
-ActionResponse* RequestCache::getRequest(RequestIdentifier* requestId)
+ActionResponsePtr RequestCache::getRequest(RequestIdentifierPtr requestId)
 {
 	return requests[requestId];
 }
 
-void RequestCache::addRequest(RequestIdentifier* requestId, ActionResponse* actionRequest)
+void RequestCache::addRequest(RequestIdentifierPtr requestId, ActionResponsePtr actionRequest)
 {
 	requests[requestId] = actionRequest;
 }
 
-void RequestCache::removeRequest(RequestIdentifier* requestId)
+void RequestCache::removeRequest(RequestIdentifierPtr requestId)
 {
 	requests.erase(requestId);
 }

@@ -55,16 +55,16 @@ TableFormat BindingEventsHelper::EFT_BINDING_ERROR_EXT()
     return EFT_BINDING_ERROR_EXT_;
 }
 
-boost::shared_ptr<DataTable> BindingEventsHelper::createBindingErrorEventData(
-    boost::shared_ptr<Context> con,
-    boost::shared_ptr<Binding> binding,
+DataTablePtr BindingEventsHelper::createBindingErrorEventDataPtr(
+    ContextPtr con,
+    boost::BindingPtr binding,
     int method,
     const std::string & activator,
-    boost::shared_ptr<Exception> error
+    boost::ExceptionPtr error
 ){
     
-    boost::shared_ptr<DataTable> dt = new DataTable(con == NULL ? EFT_BINDING_ERROR() : EFT_BINDING_ERROR_EXT();
-    DataRecord* record = dt->addRecord();
+    DataTablePtr dt = new DataTable(con == NULL ? EFT_BINDING_ERROR() : EFT_BINDING_ERROR_EXT();
+    DataRecordPtr record = dt->addRecord();
     if(con != 0) {
         record->setValue(EF_BINDING_CONTEXT_, con->getPath());
     }
@@ -75,7 +75,7 @@ boost::shared_ptr<DataTable> BindingEventsHelper::createBindingErrorEventData(
     if(error != 0) {
         record->setValue(EF_BINDING_ERROR_, error->getMessage());
         //TODO: ThreadUtils::createStackTraceTable
-        DataTable* stackTable = ThreadUtils::createStackTraceTable(error->getStackTrace());
+        DataTablePtr stackTable = ThreadUtils::createStackTraceTable(error->getStackTrace());
         record->setValue(EF_BINDING_ERROR_STACK_, stackTable);
     }
     record->setValue(EF_BINDING_ACTIVATOR_, activator);
@@ -84,15 +84,15 @@ boost::shared_ptr<DataTable> BindingEventsHelper::createBindingErrorEventData(
     return dt;
 }
 
-boost::shared_ptr<DataTable> BindingEventsHelper::createBindingExecutionEventData(
-    boost::shared_ptr<Context> con, int method,
-    boost::shared_ptr<Binding> binding,
-    boost::shared_ptr<EvaluationOptions> options,
-    boost::shared_ptr<Reference> cause,
-    void* result
+DataTablePtr BindingEventsHelper::createBindingExecutionEventDataPtr(
+    ContextPtr con, int method,
+    boost::BindingPtr binding,
+    boost::EvaluationOptionsPtr options,
+    boost::ReferencePtr cause,
+    AgObjectPtr result
 ) {
     
-    DataRecord* data = new DataRecord(con == NULL ? EFT_BINDING_EXECUTION() : EFT_BINDING_EXECUTION_EXT();
+    DataRecordPtr data = new DataRecord(con == NULL ? EFT_BINDING_EXECUTION() : EFT_BINDING_EXECUTION_EXT();
     if(con != 0) {
         data->setValue(EF_BINDING_CONTEXT_, con->getPath());
     }

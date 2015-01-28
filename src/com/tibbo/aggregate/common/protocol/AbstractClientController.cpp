@@ -16,13 +16,13 @@ AbstractClientController::AbstractClientController()
     ctor();
 }
 
-AbstractClientController::AbstractClientController(ContextManager* contextManager) 
+AbstractClientController::AbstractClientController(ContextManagerPtr contextManager) 
     : AbstractClientController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(contextManager);
 }
 
-AbstractClientController::AbstractClientController(ContextManager* contextManager, CallerController* callerController) 
+AbstractClientController::AbstractClientController(ContextManagerPtr contextManager, CallerControllerPtr callerController) 
     : AbstractClientController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(contextManager,callerController);
@@ -39,14 +39,14 @@ void AbstractClientController::ctor()
     init();
 }
 
-void AbstractClientController::ctor(ContextManager* contextManager)
+void AbstractClientController::ctor(ContextManagerPtr contextManager)
 {
     super::ctor();
     init();
     this->contextManager = contextManager;
 }
 
-void AbstractClientController::ctor(ContextManager* contextManager, CallerController* callerController)
+void AbstractClientController::ctor(ContextManagerPtr contextManager, CallerControllerPtr callerController)
 {
     super::ctor();
     init();
@@ -54,17 +54,17 @@ void AbstractClientController::ctor(ContextManager* contextManager, CallerContro
     this->callerController = callerController;
 }
 
-CallerController* AbstractClientController::getCallerController()
+CallerControllerPtr AbstractClientController::getCallerController()
 {
     return callerController;
 }
 
-void AbstractClientController::setCallerController(CallerController* callerController)
+void AbstractClientController::setCallerController(CallerControllerPtr callerController)
 {
     this->callerController = callerController;
 }
 
-void AbstractClientController::addMaskListener(const std::string & context, const std::string & name, ContextEventListener* cel, bool weak)
+void AbstractClientController::addMaskListener(const std::string & context, const std::string & name, ContextEventListenerPtr cel, bool weak)
 {
     contextManager)->addMaskEventListener(context, name, cel, weak);
     if(weak) {
@@ -73,7 +73,7 @@ void AbstractClientController::addMaskListener(const std::string & context, cons
             contextListeners = new ::java::util::HashMap();
             listeners)->put(context, contextListeners);
         }
-        auto eventListeners = java_cast< ContextEventListenerSet* >(contextListeners)->get(name));
+        auto eventListeners = java_cast< ContextEventListenerSetPtr >(contextListeners)->get(name));
         if(eventListeners == 0) {
             eventListeners = new ContextEventListenerSet();
             contextListeners)->put(name, eventListeners);
@@ -82,13 +82,13 @@ void AbstractClientController::addMaskListener(const std::string & context, cons
     }
 }
 
-void AbstractClientController::removeMaskListener(const std::string & context, const std::string & name, ContextEventListener* cel)
+void AbstractClientController::removeMaskListener(const std::string & context, const std::string & name, ContextEventListenerPtr cel)
 {
     contextManager)->removeMaskEventListener(context, name, cel);
     listeners)->remove(cel);
 }
 
-ContextManager* AbstractClientController::getContextManager()
+ContextManagerPtr AbstractClientController::getContextManager()
 {
     return contextManager;
 }
@@ -102,7 +102,7 @@ void AbstractClientController::shutdown()
 
 java::lang::Class* AbstractClientController::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.AbstractClientController", 60);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.AbstractClientController", 60);
     return c;
 }
 

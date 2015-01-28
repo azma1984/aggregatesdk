@@ -8,32 +8,25 @@
 //todo - class stub
 class DefaultRequestController: public RequestController
 {
+ private:
+    AgObjectPtr originator;
+    long  lockTimeout;
+    EvaluatorPtr evaluator;
 
-//
-//private:
-//    void* originator;
-//    long  lockTimeout;
-//    Evaluator* evaluator;
-//
-//public:
-//    void* getOriginator();
-//    void setOriginator(void* originator);
-//    long  getLockTimeout();
-//    void setLockTimeout(long  lockTimeout);
-//    Evaluator* getEvaluator();
-//    void setEvaluator(Evaluator* evaluator);
-//
-//
-//    DefaultRequestController();
-//    DefaultRequestController(long  lockTimeout);
-//    DefaultRequestController(void* originator);
-//    DefaultRequestController(Evaluator* evaluator);
-//protected:
-//    DefaultRequestController(const ::default_init_tag&);
-//
-//
-//public:
-//
+public:
+    AgObjectPtr getOriginator();
+    void setOriginator(AgObjectPtr originator);
+    long  getLockTimeout();
+    void setLockTimeout(long  lockTimeout);
+    EvaluatorPtr getEvaluator();
+    void setEvaluator(EvaluatorPtr evaluator);
+
+
+    DefaultRequestController();
+    DefaultRequestController(long  lockTimeout);
+    DefaultRequestController(AgObjectPtr originator);
+	DefaultRequestController(EvaluatorPtr evaluator);
+
 };
 
 #endif

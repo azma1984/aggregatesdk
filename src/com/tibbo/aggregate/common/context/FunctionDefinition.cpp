@@ -4,17 +4,17 @@
 
 
 
-FunctionDefinition::FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat)
+FunctionDefinition::FunctionDefinition(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat)
 {
   init(name, inputFormat, outputFormat, 0, 0);
 }
 
-FunctionDefinition::FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat,  const std::string &description)
+FunctionDefinition::FunctionDefinition(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat,  const std::string &description)
 {
   init(name, inputFormat, outputFormat, description, 0);
 }
 
-FunctionDefinition::FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description, const std::string &group)
+FunctionDefinition::FunctionDefinition(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat, const std::string &description, const std::string &group)
 {
   init(name, inputFormat, outputFormat, description, group);
 }
@@ -22,7 +22,7 @@ FunctionDefinition::FunctionDefinition(const std::string &name, boost::shared_pt
 
 
 
-void FunctionDefinition::init(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description, const std::string &group)
+void FunctionDefinition::init(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat, const std::string &description, const std::string &group)
 {
     hidden = false;
     permissions=0;
@@ -37,12 +37,12 @@ void FunctionDefinition::init(const std::string &name, boost::shared_ptr<TableFo
     setGroup(group);
 }
 
-boost::shared_ptr<TableFormat> FunctionDefinition::getInputFormat()
+TableFormatPtr FunctionDefinition::getInputFormat()
 {
     return inputFormat;
 }
 
-boost::shared_ptr<TableFormat> FunctionDefinition::getOutputFormat()
+TableFormatPtr FunctionDefinition::getOutputFormat()
 {
     return outputFormat;
 }
@@ -52,30 +52,30 @@ bool FunctionDefinition::isHidden()
     return hidden;
 }
 
-Permissions* FunctionDefinition::getPermissions()
+PermissionsPtr FunctionDefinition::getPermissions()
 {
     return permissions;
 }
 
-FunctionImplementation* FunctionDefinition::getImplementation()
+FunctionImplementationPtr FunctionDefinition::getImplementation()
 {
     return implementation;
 }
 
-void FunctionDefinition::setInputFormat(boost::shared_ptr<TableFormat> inputFormat)
+void FunctionDefinition::setInputFormat(TableFormatPtr inputFormat)
 {
-    if(inputFormat != 0) 
+	if(inputFormat != 0)
 	{
-       inputFormat->makeImmutable(0);
-    }
-    this->inputFormat = inputFormat;
+	   inputFormat->makeImmutable(DataTablePtr());
+	}
+	this->inputFormat = inputFormat;
 }
 
-void FunctionDefinition::setOutputFormat(boost::shared_ptr<TableFormat> outputFormat)
+void FunctionDefinition::setOutputFormat(TableFormatPtr outputFormat)
 {
-    if(outputFormat != 0) 
+	if(outputFormat != 0)
 	{
-        outputFormat->makeImmutable(0);
+		outputFormat->makeImmutable(DataTablePtr());
     }
     this->outputFormat = outputFormat;
 }
@@ -85,7 +85,7 @@ void FunctionDefinition::setHidden(bool hidden)
     this->hidden = hidden;
 }
 
-void FunctionDefinition::setPermissions(Permissions* perms)
+void FunctionDefinition::setPermissions(PermissionsPtr perms)
 {
     this->permissions = perms;
 }
@@ -100,16 +100,16 @@ void FunctionDefinition::setConcurrent(bool concurrent)
     this->concurrent = concurrent;
 }
 
-void FunctionDefinition::setImplementation(FunctionImplementation* implementation)
+void FunctionDefinition::setImplementation(FunctionImplementationPtr implementation)
 {
     this->implementation = implementation;
 }
 
-FunctionDefinition* FunctionDefinition::clone()
+FunctionDefinitionPtr FunctionDefinition::clone()
 {
 	/*
     try {
-        return java_cast< FunctionDefinition* >(super::clone());
+        return java_cast< FunctionDefinitionPtr >(super::clone());
     } catch (::java::lang::CloneNotSupportedException* ex) {
         throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
     }
@@ -118,7 +118,7 @@ FunctionDefinition* FunctionDefinition::clone()
 	return 0;
 }
 
-int FunctionDefinition::compareTo(FunctionDefinition* d)
+int FunctionDefinition::compareTo(FunctionDefinitionPtr d)
 {
    /*
 	if(getIndex() != 0 || d)->getIndex() != 0) 
@@ -151,7 +151,7 @@ int FunctionDefinition::hashCode()
     return result;
 }
 
-bool FunctionDefinition::equals(void* obj)
+bool FunctionDefinition::equals(AgObjectPtr obj)
 {
     /*
 	if(this) == obj) {
@@ -163,7 +163,7 @@ bool FunctionDefinition::equals(void* obj)
     if(getClass() != obj->getClass()) {
         return false;
     }
-    auto other = java_cast< FunctionDefinition* >(obj);
+    auto other = java_cast< FunctionDefinitionPtr >(obj);
     if(getDescription() == 0) {
         if(other)->getDescription() != 0) {
             return false;

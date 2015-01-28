@@ -35,7 +35,7 @@ ActivateDashboard::ActivateDashboard()
 }   */
 
 /*
-void ActivateDashboard::ActivateDashboard(const std::string & title, DataTable* parameters)
+void ActivateDashboard::ActivateDashboard(const std::string & title, DataTablePtr parameters)
 {
   GenericActionCommand::GenericActionCommand(ActionUtils::CMD_ACTIVATE_DASHBOARD, title, parameters, CFT_ACTIVATE_DASHBOARD);
 }
@@ -47,7 +47,7 @@ ActivateDashboard::ActivateDashboard(const std::string &name)
 }
 
 
-DataTable* ActivateDashboard::constructParameters()
+DataTablePtr ActivateDashboard::constructParameters()
 {
  return new DataTable(CFT_ACTIVATE_DASHBOARD, name, path, location != 0 ? location->toDataTable() : 0, dashboard != 0 ? dashboard->toDataTable() : 0);
 }
@@ -73,22 +73,22 @@ void ActivateDashboard::setPath(std::string path)
 }
 
 /*
-WindowLocation* ActivateDashboard::getLocation()
+WindowLocationPtr ActivateDashboard::getLocation()
 {
 	return location;
 }
 
-void ActivateDashboard::setLocation(WindowLocation* location)
+void ActivateDashboard::setLocation(WindowLocationPtr location)
 {
 	this->location = location;
 }
 
-DashboardProperties* ActivateDashboard::getDashboard()
+DashboardPropertiesPtr ActivateDashboard::getDashboard()
 {
 	return dashboard;
 }
 
-void ActivateDashboard::setDashboard(DashboardProperties* dashboard)
+void ActivateDashboard::setDashboard(DashboardPropertiesPtr dashboard)
 {
 	this->dashboard = dashboard;
 }

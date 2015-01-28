@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RemoteConnectorH
+#define RemoteConnectorH
 
 #include "util/Interface.h"
 #include "util/UserSettings.h"
@@ -8,7 +9,9 @@
 class RemoteConnector
 {
 public:
-    virtual boost::shared_ptr<ContextManager> getContextManager() = 0;
-    virtual boost::shared_ptr<CallerController> getCallerController() = 0;
+    virtual ContextManagerPtr getContextManager() = 0;
+    virtual CallerControllerPtr getCallerController() = 0;
     virtual boost::shared_ptr<UserSettings> getSettings() = 0;
 };
+
+#endif

@@ -21,13 +21,13 @@ class DemoDeviceDriver : public AbstractDeviceDriver
     std::string demoSettingValue;
 
 public:
-    void setupDeviceContext(DeviceContext* deviceContext);
-    VariableDefinition* readVariableDefinitions();
-    FunctionDefinition*  readFunctionDefinitions();
-    EventDefinition*     readEventDefinitions();
-    DataTable* readVariableValue(VariableDefinition* vd);
-    void writeVariableValue(VariableDefinition* vd, DataTable* value, DataTable* deviceValue);
-    DataTable* executeFunction(FunctionDefinition* fd, DataTable* parameters);
+    void setupDeviceContext(DeviceContextPtr deviceContext);
+    VariableDefinitionPtr readVariableDefinitions();
+    FunctionDefinitionPtr  readFunctionDefinitions();
+    EventDefinitionPtr     readEventDefinitions();
+    DataTablePtr readVariableValue(VariableDefinitionPtr vd);
+    void writeVariableValue(VariableDefinitionPtr vd, DataTablePtr value, DataTablePtr deviceValue);
+    DataTablePtr executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters);
     void finishSynchronization();
 
     DemoDeviceDriver();

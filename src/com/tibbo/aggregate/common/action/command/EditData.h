@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EditDataH
+#define EditDataH
 
 #include "action/GenericActionCommand.h"
 #include "action/EditDataMerger.h"
@@ -11,17 +12,17 @@ class EditData : public GenericActionCommand
 {
 private:
 
-    static boost::shared_ptr<TableFormat> CFT_EDIT_DATA_;
-    boost::shared_ptr<EditDataMerger> merger;
-    boost::shared_ptr<DataTable> data;
+    static TableFormatPtr CFT_EDIT_DATA_;
+    EditDataMergerPtr merger;
+    DataTablePtr data;
     bool useDockableFrame;
     bool readOnly;
     std::string iconId;
     std::string helpId;
     std::string help;
     std::string defaultContext;
-    boost::shared_ptr<WindowLocation> location;
-    boost::shared_ptr<DashboardProperties> dashboard;
+    WindowLocationPtr location;
+    DashboardPropertiesPtr dashboard;
     const std::string expression;
     long  period;
 
@@ -38,13 +39,12 @@ public:
     static const std::string CF_EXPRESSION_;
     static const std::string CF_PERIOD_;
 
-public: /* protected */
-    DataTable* constructParameters();
+    DataTablePtr constructParameters();
 
 public:
-    boost::shared_ptr<GenericActionResponse> createDefaultResponse();
-    boost::shared_ptr<DataTable> getData();
-    void setData(boost::shared_ptr<DataTable> data);
+    GenericActionResponsePtr createDefaultResponse();
+    DataTablePtr getData();
+    void setData(DataTablePtr data);
     bool isUseDockableFrame();
     void setUseDockableFrame(bool useDockableFrame);
     bool isReadOnly();
@@ -57,22 +57,23 @@ public:
     void setHelp(const std::string & help);
     std::string getDefaultContext();
     void setDefaultContext(const std::string & defaultContext);
-    boost::shared_ptr<WindowLocation> getLocation();
-    void setLocation(boost::shared_ptr<WindowLocation> location);
-    boost::shared_ptr<DashboardProperties> getDashboard();
-    void setDashboard(boost::shared_ptr<DashboardProperties> dashboard);
+    WindowLocationPtr getLocation();
+    void setLocation(WindowLocationPtr location);
+    DashboardPropertiesPtr getDashboard();
+    void setDashboard(DashboardPropertiesPtr dashboard);
     std::string getExpression();
     void setExpression(const std::string & expression);
     long  getPeriod();
     void setPeriod(long  period);
-    boost::shared_ptr<EditDataMerger> getMerger();
-    void setMerger(boost::shared_ptr<EditDataMerger> merger);
+    EditDataMergerPtr getMerger();
+    void setMerger(EditDataMergerPtr merger);
 
-    // Generated
-    EditData();
-    EditData(const std::string & title, boost::shared_ptr<DataTable> parameters);
-    EditData(const std::string & title, boost::shared_ptr<DataTable> data, bool readonly);
+	EditData();
+    EditData(const std::string & title, DataTablePtr parameters);
+    EditData(const std::string & title, DataTablePtr data, bool readonly);
     EditData(const std::string & title, const std::string & iconId, const std::string & expression, long  period);
 
-    static boost::shared_ptr<TableFormat> CFT_EDIT_DATA();
+    static TableFormatPtr CFT_EDIT_DATA();
 };
+
+#endif

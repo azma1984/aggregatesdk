@@ -15,10 +15,10 @@ class CommonServerFormats
    
    CommonServerFormats(CommonServerFormats const&);
    void operator=(CommonServerFormats const&);
-   TableFormat* FIFT_LOGIN;
-   TableFormat* FOFT_LOGIN;
-   TableFormat* FIFT_GET_FORMAT;
-   TableFormat* FOFT_GET_FORMAT;
+   TableFormatPtr FIFT_LOGIN;
+   TableFormatPtr FOFT_LOGIN;
+   TableFormatPtr FIFT_GET_FORMAT;
+   TableFormatPtr FOFT_GET_FORMAT;
 public:
   
    static CommonServerFormats& getInstance()

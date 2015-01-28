@@ -91,14 +91,14 @@ java::util::Locale*& ResourceManager::LOCALE()
 }
 java::util::Locale* ResourceManager::LOCALE_;
 
-void ResourceManager::initialize(::java::lang::Class* resClass)
+void ResourceManager::initialize(AgClassPtr resClass)
 {
     
     RESOURCE_CLASS_ = resClass;
     RESOURCES_ = new ::java::util::Hashtable();
 }
 
-void ResourceManager::initialize(::java::net::URI* customizationUrl, ::java::lang::Class* resClass)
+void ResourceManager::initialize(::java::net::URI* customizationUrl, AgClassPtr resClass)
 {
     
     initialize(resClass);
@@ -139,7 +139,7 @@ void ResourceManager::processCustomizationFile(::java::net::URI* customizationUr
             if(je)->isDirectory()) {
                 continue;
             }
-            auto bytes = new ::int8_tArray(int(1024));
+            auto bytes = new ::unsigned charArray(int(1024));
             auto baos = new ::java::io::ByteArrayOutputStream();
             auto read = -int(1);
             while ((read = jis)->read(bytes)) != -int(1)) {
@@ -211,10 +211,10 @@ javax::swing::ImageIcon* ResourceManager::getImageIcon(const std::string & id, c
     }
 }
 
-int8_tArray* ResourceManager::getResource(const std::string & name)
+unsigned charArray* ResourceManager::getResource(const std::string & name)
 {
     
-    return RESOURCES_ != 0 ? java_cast< ::int8_tArray* >(RESOURCES_)->get(name)) : static_cast< ::int8_tArray* >(0);
+    return RESOURCES_ != 0 ? java_cast< ::unsigned charArray* >(RESOURCES_)->get(name)) : static_cast< ::unsigned charArray* >(0);
 }
 
 void ResourceManager::process(WrappingResourceBundle* bundle)

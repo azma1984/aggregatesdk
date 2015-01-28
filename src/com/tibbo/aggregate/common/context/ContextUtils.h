@@ -1,8 +1,6 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/ContextUtils.java
-
 #ifndef ContextUtilsH
 #define ContextUtilsH
-
+ #define BOOST_THREAD_USE_LIB
 //#include "action/ActionDefinition.h"
 #include "context/Context.h"
 //#include "context/ContextManager.h"
@@ -10,7 +8,7 @@
 //#include "context/ContextUtils_findChildren_1.h"
 #include "context/ContextVisitor.h"
 //#include "context/Contexts.h"
-//#include "context/EventData.h"
+//#include "context/EventDataPtr.h"
 //#include "context/EventDefinition.h"
 //#include "context/VariableDefinition.h"
 //#include "datatable/FieldFormat.h"
@@ -26,8 +24,8 @@
 class ContextUtils
 {
 private:
-    static std::list<std::string>  expandMaskPart(const std::string & head, const std::string & tail, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren);
-    static void acceptFinder(Context* context, ContextVisitor* visitor, CallerController* caller, bool resolveGroups);
+    static std::list<std::string>  expandMaskPart(const std::string & head, const std::string & tail, ContextManagerPtr contextManager, CallerControllerPtr caller, bool useVisibleChildren);
+    static void acceptFinder(ContextPtr context, ContextVisitorPtr visitor, CallerControllerPtr caller, bool resolveGroups);
 	
 	static const std::string CONTEXT_CLASS_SUFFIX;
 
@@ -66,10 +64,10 @@ public:
 
     static const std::string USERNAME_PATTERN;
     static const std::string VARIABLES_GROUP_DS_SETTINGS;
-/*
 
-    static const std::string createName(std::stringArray* parts);
-    static const std::string createGroup(std::stringArray* parts);
+
+	static const std::string createName(std::string parts);
+	static const std::string createGroup(std::string parts);
     static const std::string userContextPath(const std::string & username);
     static const std::string deviceServersContextPath(const std::string & owner);
     static const std::string dsGroupsContextPath(const std::string & owner);
@@ -117,33 +115,33 @@ public:
     static const std::string pluginIdToContextName(const std::string & pluginId);
     static const std::string getChildFullName(const std::string & parent, const std::string & childShortName);
     static const std::string contextPathToContextName(const std::string & path);
-    static std::list  expandMaskListToContexts(const std::string & masks, ContextManager* contextManager);
-    static std::list  expandMaskListToContexts(const std::string & masks, ContextManager* contextManager, CallerController* caller);
-    static std::list  expandMaskListToContexts(const std::string & masks, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren);
-    static std::list  expandMaskToContexts(const std::string & mask, ContextManager* contextManager);
-    static std::list  expandMaskToContexts(const std::string & mask, ContextManager* contextManager, CallerController* caller);
-    static std::list  expandMaskToContexts(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren);
-    static std::list  expandMaskToPaths(const std::string & mask, ContextManager* contextManager);
-    static std::list  expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller);
-    static std::list  expandMaskToPaths(const std::string & mask, ContextManager* contextManager, CallerController* caller, bool useVisibleChildren);
+	static std::list<ContextPtr>  expandMaskListToContexts(const std::string & masks, ContextManagerPtr contextManager);
+	static std::list<ContextPtr>  expandMaskListToContexts(const std::string & masks, ContextManagerPtr contextManager, CallerControllerPtr caller);
+	static std::list<ContextPtr>  expandMaskListToContexts(const std::string & masks, ContextManagerPtr contextManager, CallerControllerPtr caller, bool useVisibleChildren);
+	static std::list<ContextPtr>  expandMaskToContexts(const std::string & mask, ContextManagerPtr contextManager);
+	static std::list<ContextPtr>  expandMaskToContexts(const std::string & mask, ContextManagerPtr contextManager, CallerControllerPtr caller);
+	static std::list<ContextPtr>  expandMaskToContexts(const std::string & mask, ContextManagerPtr contextManager, CallerControllerPtr caller, bool useVisibleChildren);
+	static std::list<std::string> expandMaskToPaths(const std::string & mask, ContextManagerPtr contextManager);
+	static std::list<std::string> expandMaskToPaths(const std::string & mask, ContextManagerPtr contextManager, CallerControllerPtr caller);
+	static std::list<std::string> expandMaskToPaths(const std::string & mask, ContextManagerPtr contextManager, CallerControllerPtr caller, bool useVisibleChildren);
 
 
-    static std::list  findChildren(const std::string & rootsMask, ::java::lang::Class* contextClass, ContextManager* manager, CallerController* caller, bool resolveGroups);
-    static std::list  findChildren(const std::string & rootsMask, const std::string & type, ContextManager* manager, CallerController* caller, bool resolveGroups);
+	static std::list<ContextPtr>   findChildren(const std::string & rootsMask, AgClassPtr contextClass, ContextManagerPtr manager, CallerControllerPtr caller, bool resolveGroups);
+	static std::list<ContextPtr>   findChildren(const std::string & rootsMask, const std::string & type, ContextManagerPtr manager, CallerControllerPtr caller, bool resolveGroups);
 
 
     static bool matchesToMask(const std::string & mask, const std::string & name);
-    static bool matchesToType(const std::string & type, ::java::util::Collection* requiredTypes);
-    static bool matchesToType(::java::util::Collection* types, ::java::util::Collection* requiredTypes);
+	static bool matchesToType(const std::string & type, std::list< std::string > requiredTypes);
+	static bool matchesToType(std::list<std::string> types, std::list< std::string > requiredTypes);
     static bool matchesToMask(const std::string & mask, const std::string & context, bool contextMayExtendMask, bool maskMayExtendContext);
     static bool masksIntersect(const std::string & mask1, const std::string & mask2, bool mask2MayExtendMask1, bool mask1MayExtendMask2);
-    */
+
     static bool isRelative(const std::string & name);
-    /*
+
     static bool isMask(const std::string & name);
-    static bool isValidContextType(const std::string & s);*/
+	static bool isValidContextType(const std::string & s);
     static bool isValidContextName(const std::string & s);
-	/*
+
     static bool isValidContextMask(const std::string & s);
     static bool isValidIdentifier(const std::string & s);
     static bool isDerivedFrom(const std::string & childType, const std::string & parentType);
@@ -152,14 +150,13 @@ public:
     static const std::string getVisualGroup(const std::string & group);
     static const std::string getBaseType(const std::string & type);
     static const std::string getSubtype(const std::string & type);
-    static const std::string getTypeForClass(::java::lang::Class* clazz);
-    static std::map getEventFields(const std::string & mask, const std::string & event, CallerController* caller, ContextManager* contextManager);
-    static std::map getVariableFields(const std::string & mask, const std::string & variable, CallerController* caller, ContextManager* contextManager);
-    static ::com::tibbo::aggregate::common::action::ActionDefinition* getDefaultActionDefinition(Context* context, CallerController* caller);
-    static const std::string createType(::java::lang::Class* clazz, const std::string & deviceType);
-    static bool isValidContextNameChar(char16_t c);
+	static const std::string getTypeForClass(AgClassPtr clazz);
+	static std::map<std::string,std::string> getEventFields(const std::string & mask, const std::string & event, CallerControllerPtr caller, ContextManagerPtr contextManager);
+	static std::map<std::string,std::string> getVariableFields(const std::string & mask, const std::string & variable, CallerControllerPtr caller, ContextManagerPtr contextManager);
+	static ActionDefinitionPtr getDefaultActionDefinition(ContextPtr context, CallerControllerPtr caller);
+    static const std::string createType(AgClassPtr clazz, const std::string & deviceType);
+    static bool isValidContextNameChar(int c);
 
-	*/
 };
 
 #endif

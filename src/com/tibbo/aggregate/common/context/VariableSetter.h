@@ -8,7 +8,7 @@
 class VariableSetter
 {
 public:
-  virtual  bool set(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request, DataTable* value);
+  virtual  bool set(ContextPtr con, VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value);
 
 };
 #endif

@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/DefaultClientController.java
 
 #ifndef DefaultClientControllerH
 #define DefaultClientControllerH
@@ -50,89 +49,87 @@
 class DefaultClientController : public AbstractClientController
 {
 private:
-/*
 
-    ::com::tibbo::aggregate::common::util::BlockingChannel* dataChannel;
-    ::com::tibbo::aggregate::common::communication::CommandParser* commandParser;
-    bool startMessageReceived;
+    BlockingChannel* dataChannel;
+	CommandParserPtr commandParser;
+	bool startMessageReceived;
     bool shutDown;
-    */
-    ContextEventListener* defaultEventListener;
-    /*
-    ::java::util::concurrent::ExecutorService* commandExecutionService;
-    ::java::util::concurrent::BlockingQueue* pendingCommandsQueue;
+
+    ContextEventListenerPtr defaultEventListener;
+
+   // ::java::util::concurrent::ExecutorService* commandExecutionService; todo
+  //  ::java::util::concurrent::BlockingQueue* pendingCommandsQueue;      todo
 protected:
-    void ctor(::com::tibbo::aggregate::common::util::BlockingChannel* dataChannel, ContextManager* contextManager, ::java::util::concurrent::ExecutorService* commandExecutionService, int maxEventQueueLength);
-*/
-public:
-   ContextEventListener *getDefaultEventListener();
+    void ctor(BlockingChannel* dataChannel, ContextManagerPtr contextManager, ::java::util::concurrent::ExecutorService* commandExecutionService, int maxEventQueueLength);
 
- /*
-  void processOperationGetVar(const std::string & id, Context* con, const std::string & name, OutgoingAggreGateCommand* ans) ;
+public:
+   ContextEventListenerPtrgetDefaultEventListener();
+
+
+  void processOperationGetVar(const std::string & id, ContextPtr con, const std::string & name, OutgoingAggreGateCommandPtr ans) ;
 
 public: 
-    DataTable* getVariable(Context* con, const std::string & name) ;
+    DataTablePtr getVariable(ContextPtr con, const std::string & name) ;
 
 public:
-    void processOperationSetVar(const std::string & id, Context* con, const std::string & name, const std::string & encodedValue, OutgoingAggreGateCommand* ans) ;
+    void processOperationSetVar(const std::string & id, ContextPtr con, const std::string & name, const std::string & encodedValue, OutgoingAggreGateCommandPtr ans) ;
 
 public:
-    VariableDefinition* getVariableDefinition(Context* con, const std::string & name);
-    void setVariable(Context* con, const std::string & name, DataTable* value) ;
+    VariableDefinitionPtr getVariableDefinition(ContextPtr con, const std::string & name);
+    void setVariable(ContextPtr con, const std::string & name, DataTablePtr value) ;
 
 public:
-    void processOperationCallFunction(const std::string & id, Context* con, const std::string & name, const std::string & encodedParameters, OutgoingAggreGateCommand* ans) ;
+    void processOperationCallFunction(const std::string & id, ContextPtr con, const std::string & name, const std::string & encodedParameters, OutgoingAggreGateCommandPtr ans) ;
 
 public: 
-    FunctionDefinition* getFunctionDefinition(Context* con, const std::string & name);
-    DataTable* callFunction(Context* con, const std::string & name, DataTable* parameters) ;
-  */
-    bool addNormalListener(const std::string &context,const std::string &name, ContextEventListener* cel);
-/*
+    FunctionDefinitionPtr getFunctionDefinition(ContextPtr con, const std::string & name);
+    DataTablePtr callFunction(ContextPtr con, const std::string & name, DataTablePtr parameters) ;
+
+    bool addNormalListener(const std::string &context,const std::string &name, ContextEventListenerPtr cel);
+
 public:
-    void processOperationAddEventListener(const std::string & id, const std::string & context, const std::string & name, int  listener, const std::string & filter, OutgoingAggreGateCommand* ans) ;
-    void processOperationRemoveEventListener(const std::string & id, const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter, OutgoingAggreGateCommand* ans) ;
-    void processMessageStart(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
-*/
+    void processOperationAddEventListener(const std::string & id, const std::string & context, const std::string & name, int  listener, const std::string & filter, OutgoingAggreGateCommandPtr ans) ;
+    void processOperationRemoveEventListener(const std::string & id, const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter, OutgoingAggreGateCommandPtr ans) ;
+    void processMessageStart(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans);
+
 	void shutdown();
 	bool run();
     void runImpl() ;
 
 protected: 
-    static void processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) ;
- /*
-	void addCustomListeners(Context* con);
-    void processMessage(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
+    static void processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) ;
+
+	void addCustomListeners(ContextPtr con);
+    void processMessage(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans);
 
 public:
-    OutgoingAggreGateCommand* processCommand(IncomingAggreGateCommand* cmd) ;
-	*/
-    
+    OutgoingAggreGateCommandPtr processCommand(IncomingAggreGateCommandPtr cmd) ;
+
 	
    
-/*
+
 public: 
     const std::string & getErrorDetails(::java::lang::Throwable* error);
 
 public:
-    void sendCommand(OutgoingAggreGateCommand* cmd) ;
-    ContextEventListener* createListener(int  listenerHashCode, Expression* filter);
+    void sendCommand(OutgoingAggreGateCommandPtr cmd) ;
+    ContextEventListenerPtr createListener(int  listenerHashCode, ExpressionPtr filter);
 
 private:
     void processPendingEvents();
- */
 
-   Context* getContext(const std::string &path);
-/*
 
-    bool controllerShouldHandle(Event* ev, ContextEventListener* listener);
-    ContextEventListener* getDefaultEventListener();
+   ContextPtr getContext(const std::string &path);
+
+
+    bool controllerShouldHandle(EventPtr ev, ContextEventListenerPtr listener);
+    ContextEventListenerPtr getDefaultEventListener();
 
 public: 
-    encoding::ClassicEncodingSettings* createClassicEncodingSettings(bool useFormatCache);
+    encoding::ClassicEncodingSettingsPtr createClassicEncodingSettings(bool useFormatCache);
 
 public:
-    OutgoingAggreGateCommand* constructEventCommand(Event* event, int  listenerCode);
+    OutgoingAggreGateCommandPtr constructEventCommand(EventPtr event, int  listenerCode);
     bool isConnected();
     const std::string & getAddress();
 
@@ -141,13 +138,13 @@ public:
 
 private:
     void init();
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
     friend class DefaultClientController_ForwardingEventListener;
     friend class DefaultClientController_ProcessCommandTask;
-    friend class DefaultClientController_PendingEventProcessingTask;*/
+	friend class DefaultClientController_PendingEventProcessingTask;
 
 
-    DefaultClientController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService* */void* commandExecutionService, int maxEventQueueLength);
+    DefaultClientController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService* */AgObjectPtr commandExecutionService, int maxEventQueueLength);
 
 
 };

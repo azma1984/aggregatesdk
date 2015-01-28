@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef ContextStatusH
+#define ContextStatusH
 #include <string>
 
 class ContextStatus
@@ -36,3 +36,6 @@ public:
         this->comment = comment;
     }
 };
+
+
+#endif

@@ -5,7 +5,7 @@
 const std::string Acknowledgement::FIELD_AUTHOR = "author";
 const std::string Acknowledgement::FIELD_TIME = "time";
 const std::string Acknowledgement::FIELD_TEXT = "text";
-boost::shared_ptr<TableFormat> Acknowledgement::FORMAT;
+TableFormatPtr Acknowledgement::FORMAT;
 
 Acknowledgement::Acknowledgement()
 {
@@ -24,7 +24,7 @@ void Acknowledgement::initFormat()
 {
     if (FORMAT.get() == NULL)
     {
-        FORMAT = boost::shared_ptr<TableFormat>(new TableFormat());
+        FORMAT = TableFormatPtr(new TableFormat());
         FORMAT->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
         FORMAT->addField("<"+FIELD_TIME+"><D><D="+Cres::get()->getString("time")+">");
         FORMAT->addField("<"+FIELD_TEXT+"><S><D="+Cres::get()->getString("text")+">");
@@ -67,7 +67,7 @@ void Acknowledgement::setTime(Date time)
     this->time = time;
 }
 
-boost::shared_ptr<TableFormat> Acknowledgement::getFormat()
+TableFormatPtr Acknowledgement::getFormat()
 {
     initFormat();
     return FORMAT;

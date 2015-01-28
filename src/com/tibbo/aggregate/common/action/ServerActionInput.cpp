@@ -8,7 +8,7 @@ ServerActionInput::ServerActionInput()
     init();
 }
 
-ServerActionInput::ServerActionInput(GenericActionResponse* request)
+ServerActionInput::ServerActionInput(GenericActionResponsePtr request)
 {
     init();
 
@@ -21,7 +21,7 @@ ServerActionInput::ServerActionInput(GenericActionResponse* request)
     }
 }
 
-ServerActionInput::ServerActionInput(DataTable* dataTable)
+ServerActionInput::ServerActionInput(DataTablePtr dataTable)
 {
 	init();
     if (dataTable != 0) {
@@ -35,7 +35,7 @@ void ServerActionInput::init()
     data = new DataTable();
 }
 
-DataTable* ServerActionInput::getData()
+DataTablePtr ServerActionInput::getData()
 {
     return data.get();
 }
@@ -50,12 +50,12 @@ void ServerActionInput::setRemember(bool flag)
     this->remember = flag;
 }
 
-void ServerActionInput::setRequestId(RequestIdentifier* requestId)
+void ServerActionInput::setRequestId(RequestIdentifierPtr requestId)
 {
     this->requestId = requestId;
 }
 
-RequestIdentifier* ServerActionInput::getRequestId()
+RequestIdentifierPtr ServerActionInput::getRequestId()
 {
     return requestId.get();
 }

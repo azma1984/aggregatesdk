@@ -1,47 +1,33 @@
 #ifndef FunctionDataH
 #define FunctionDataH
 
+#define BOOST_THREAD_USE_LIB
 
-//todo -class stub
-class FunctionData//: public ::java::lang::Comparable
+#include "context/FunctionDefinition.h"
+
+//todo - class stub
+class FunctionData: public Comparable
 {
 
-/*
 private:
-    FunctionDefinition* definition;
-    ::java::util::concurrent::locks::std::mutex ** executionLock;
-    long executionCount;
-    bool implementationCached;
-    ::java::lang::reflect::Method* implementationMethod;
-protected:
-    void ctor(FunctionDefinition* definition);
-
+	FunctionDefinitionPtr definition;
+	std::mutex executionLock;
+	long executionCount;
+	bool implementationCached;
+  //	::java::lang::reflect::Method* implementationMethod;  todo
+	void init();
 public:
-    void registerExecution();
-    FunctionDefinition* getDefinition();
-    ::java::util::concurrent::locks::std::mutex ** getExecutionLock();
-    long getExecutionCount();
-    bool isImplementationCached();
-    void setImplementationCached(bool implementationCached);
-    ::java::lang::reflect::Method* getImplementationMethod();
-    void setImplementationMethod(::java::lang::reflect::Method* implementationMethod);
-    int compareTo(FunctionData* d);
+	void registerExecution();
+	FunctionDefinitionPtr getDefinition();
+	std::mutex  getExecutionLock();
+	long getExecutionCount();
+	bool isImplementationCached();
+	void setImplementationCached(bool implementationCached);
+  //	::java::lang::reflect::Method* getImplementationMethod(); todo
+ //	void setImplementationMethod(::java::lang::reflect::Method* implementationMethod); //todo
+	int compareTo(FunctionDataPtr d);
 
-    // Generated
-    FunctionData(FunctionDefinition* definition);
-protected:
-    FunctionData(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-
-public:
-    int compareTo(void* arg0);
-*/
+	FunctionData(FunctionDefinitionPtr definition);
 };
 
 #endif

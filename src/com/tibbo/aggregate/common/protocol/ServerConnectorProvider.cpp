@@ -5,7 +5,7 @@
 
 java::lang::Class* com::tibbo::aggregate::common::protocol::ServerConnectorProvider::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.ServerConnectorProvider", 59);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.ServerConnectorProvider", 59);
     return c;
 }
 

@@ -24,7 +24,7 @@
 class FunctionImplementation1 :public FunctionImplementation
 {
  
-  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
   {
   /*
     std::string challenge = parameters.rec().getString(FIF_LOGIN_CHALLENGE);
@@ -40,7 +40,7 @@ class FunctionImplementation1 :public FunctionImplementation
 class FunctionImplementation2 :public FunctionImplementation
 {
   
-  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
   {
    //return new DataRecord(FOFT_REGISTER).addString(server.getPassword()).wrap(); 
   } 
@@ -51,7 +51,7 @@ class FunctionImplementation2 :public FunctionImplementation
 class FunctionImplementation3 :public FunctionImplementation
 {
  
-  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
   {
    //setSynchronized(true);
    return 0;
@@ -62,7 +62,7 @@ class FunctionImplementation3 :public FunctionImplementation
 
 class FunctionImplementation4 :public FunctionImplementation
 {
-  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
   {
   // confirmEvent(parameters.rec().getLong(FIF_CONFIRM_EVENT_ID));
    return 0;
@@ -72,7 +72,7 @@ class FunctionImplementation4 :public FunctionImplementation
 
 class FunctionImplementation5 :public FunctionImplementation
 {
-  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
   {
      /*
     DataTable res = new DataTable(def.getOutputFormat());
@@ -100,7 +100,7 @@ class AgentContext: public AbstractContext//<Context>
 {
 
 private:
-    RemoteServer* server;
+    RemoteServerPtr server;
     std::string name;
     bool eventConfirmation;
     bool isSynchronized;
@@ -131,17 +131,17 @@ public:
     static const std::string EF_EVENT_CONFIRMED_ID;
     
     
-    static TableFormat* FIFT_LOGIN;
-    static TableFormat* FOFT_LOGIN;
-    static TableFormat* FOFT_REGISTER;
-    static TableFormat* FOFT_GET_HISTORY;
-    static TableFormat* FIFT_CONFIRM_EVENT;
-    static TableFormat* EFT_EVENT_CONFIRMED; 
+    static TableFormatPtr FIFT_LOGIN;
+    static TableFormatPtr FOFT_LOGIN;
+    static TableFormatPtr FOFT_REGISTER;
+    static TableFormatPtr FOFT_GET_HISTORY;
+    static TableFormatPtr FIFT_CONFIRM_EVENT;
+    static TableFormatPtr EFT_EVENT_CONFIRMED; 
 
 
     bool isSynchronized1();
     void setSynchronized(bool isSynchronized);
-    RemoteServer* getServer();
+    RemoteServerPtr getServer();
 
 
     std::list<HistoricalValue>  getHistory();
@@ -155,7 +155,7 @@ public:
 
     void setupMyself(); 
 
-    AgentContext(RemoteServer* server, const std::string &name, bool eventConfirmation);
+    AgentContext(RemoteServerPtr server, const std::string &name, bool eventConfirmation);
 
 };
 #endif

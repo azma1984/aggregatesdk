@@ -14,7 +14,7 @@ IncomingAggreGateCommand::IncomingAggreGateCommand(const ::default_init_tag&)
     
 }
 
-IncomingAggreGateCommand::IncomingAggreGateCommand(::int8_tArray* data)
+IncomingAggreGateCommand::IncomingAggreGateCommand(::unsigned charArray* data)
     : IncomingAggreGateCommand(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
@@ -44,7 +44,7 @@ std::string& IncomingAggreGateCommand::EMPTY_ID()
 }
 std::string IncomingAggreGateCommand::EMPTY_ID_;
 
-void IncomingAggreGateCommand::ctor(::int8_tArray* data)
+void IncomingAggreGateCommand::ctor(::unsigned charArray* data)
 {
     super::ctor();
     init();
@@ -71,9 +71,9 @@ void IncomingAggreGateCommand::ctor(::java::io::ByteArrayOutputStream* s)
 void IncomingAggreGateCommand::parse()
 {
     if(getContent())->length() == 0) {
-        throw new ::com::tibbo::aggregate::common::util::SyntaxErrorException(u"Zero length command received"_j);
+        throw new SyntaxErrorException(u"Zero length command received"_j);
     }
-    parameters = ::com::tibbo::aggregate::common::util::StringUtils::split(getContent(), AggreGateCommand::CLIENT_COMMAND_SEPARATOR())->charAt(int(0)));
+    parameters = StringUtils::split(getContent(), AggreGateCommand::CLIENT_COMMAND_SEPARATOR())->charAt(int(0)));
 }
 
 int IncomingAggreGateCommand::getNumberOfParameters()
@@ -191,7 +191,7 @@ bool IncomingAggreGateCommand::isAsync()
 
 java::lang::Class* IncomingAggreGateCommand::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.IncomingAggreGateCommand", 60);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.IncomingAggreGateCommand", 60);
     return c;
 }
 

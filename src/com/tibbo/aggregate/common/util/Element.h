@@ -5,9 +5,9 @@
 
 class Element
 {
-  /*
+
 public:  
-	Element::Element(std::string name, std::string value);
+	Element(std::string name, std::string value);
 
 	std::string Element::getName();
 	std::string Element::getValue();
@@ -15,7 +15,7 @@ public:
   
 private:
 	std::string name;
-	std::string value;*/
+	std::string value;
 };
 
 #endif

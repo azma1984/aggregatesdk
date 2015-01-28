@@ -30,7 +30,7 @@ std::vector<char> Util::readStream(std::iostream& is)
 }
 
 //TODO:
-long/*Number*/ Util::convertToNumber(void* value, bool validate, bool allowNull)
+long/*Number*/ Util::convertToNumber(AgObjectPtr value, bool validate, bool allowNull)
 {
 /*
 if (value == null)
@@ -96,7 +96,7 @@ if (value == null)
 }
 
 //TODO:
-static bool Util::convertToBoolean(void* value, bool validate, bool allowNull)
+static bool Util::convertToBoolean(AgObjectPtr value, bool validate, bool allowNull)
 {
     /*
     if (value == null)
@@ -161,7 +161,7 @@ static bool isFloatingPoint(Number& n)
 */
 
 //TODO:
-std::string Util::getObjectDescription(void* obj) const
+std::string Util::getObjectDescription(AgObjectPtr obj) const
 {
     /*
     if (o == null)

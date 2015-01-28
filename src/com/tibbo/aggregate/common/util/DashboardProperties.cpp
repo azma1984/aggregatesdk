@@ -13,7 +13,7 @@ int DashboardProperties::LAYOUT_DOCKABLE = 0;
 int DashboardProperties::LAYOUT_SCROLLABLE = 1;
 
 
-boost::shared_ptr<TableFormat> DashboardProperties::FORMAT()
+TableFormatPtr DashboardProperties::FORMAT()
 {
     if (!FORMAT_) {
         FORMAT_.reset( new TableFormat(1, 1) );

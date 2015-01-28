@@ -11,7 +11,7 @@
  */
 
 
-RemoteContextManager::RemoteContextManager(AggreGateDevice* server, bool async)
+RemoteContextManager::RemoteContextManager(AggreGateDevicePtr server, bool async)
 {
 
  initialized = false;
@@ -43,12 +43,12 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::stop()
     super::stop();
 }
 
-com::tibbo::aggregate::common::protocol::AbstractAggreGateDeviceController* com::tibbo::aggregate::common::protocol::RemoteContextManager::getController()
+com::tibbo::aggregate::common::protocol::AbstractAggreGateDeviceControllerPtr com::tibbo::aggregate::common::protocol::RemoteContextManager::getController()
 {
     return controller;
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendAddListener(const std::string & context, const std::string & event, ContextEventListener* listener)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendAddListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener)
 {
     try {
 		auto filterText = listener)->getFilter() != 0 ? listener)->getFilter())->getText() : static_cast< const std::string & >(0);
@@ -60,7 +60,7 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendAddListe
     }
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendRemoveListener(const std::string & context, const std::string & event, ContextEventListener* listener)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendRemoveListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener)
 {
     try {
         auto filter = listener)->getFilter() != 0 ? listener)->getFilter())->getText() : static_cast< const std::string & >(0);
@@ -72,56 +72,56 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendRemoveLi
     }
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerToContext(ProxyContext* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerToContext(ProxyContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak)
 {
     con)->addEventListener(event, listener, false, !mask);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerToContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerToContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak)
 { 
-    addListenerToContext(dynamic_cast< ProxyContext* >(con), event, listener, mask, weak);
+    addListenerToContext(dynamic_cast< ProxyContextPtr >(con), event, listener, mask, weak);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListenerFromContext(ProxyContext* con, const std::string & event, ContextEventListener* listener, bool mask)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListenerFromContext(ProxyContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask)
 {
     con)->removeEventListener(event, listener, !mask);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListenerFromContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListenerFromContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask)
 { 
-    removeListenerFromContext(dynamic_cast< ProxyContext* >(con), event, listener, mask);
+    removeListenerFromContext(dynamic_cast< ProxyContextPtr >(con), event, listener, mask);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener)
 {
     super::addMaskEventListener(mask, event, listener);
     sendAddListener(mask, event, listener);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener)
 {
     super::removeMaskEventListener(mask, event, listener);
 	sendRemoveListener(mask, event, listener);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemoved(ProxyContext* con)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemoved(ProxyContextPtr con)
 {
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemoved(Context* con)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemoved(ContextPtr con)
 { 
-    contextRemoved(dynamic_cast< ProxyContext* >(con));
+    contextRemoved(dynamic_cast< ProxyContextPtr >(con));
 }
 
 
 
 java::lang::Class* com::tibbo::aggregate::common::protocol::RemoteContextManager::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.RemoteContextManager", 56);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.RemoteContextManager", 56);
     return c;
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener, bool weak)
+void com::tibbo::aggregate::common::protocol::RemoteContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener, bool weak)
 {
     super::addMaskEventListener(mask, event, listener, weak);
 }

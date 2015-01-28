@@ -1,7 +1,7 @@
 #include "ActionIdGenerator.h"
 
 
-ActionIdentifier* ActionIdGenerator::generate(Action<InitialRequest,ActionCommand,ActionResponse> * action)
+ActionIdentifierPtr ActionIdGenerator::generate(Action<InitialRequest,ActionCommand,ActionResponse> * action)
 {
     std::string id = "ActionIdGenerator::generate";
     //action->getClass()->getSimpleName()+"@"+

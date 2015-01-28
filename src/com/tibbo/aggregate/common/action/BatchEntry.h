@@ -1,16 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/BatchEntry.java
 #ifndef BatchEntryH
 #define BatchEntryH
 
-//#include "ActionContext.h"
+#include "ActionContext.h"
 #include "InitialRequest.h"
  #include <exception>
 
 class BatchEntry
 {
  private:
-   //	ActionContext* actionContext;
-	InitialRequest* initialRequest;
+	ActionContextPtr actionContext;
+	InitialRequestPtr initialRequest;
 	bool fulfilled;
 
 
@@ -19,12 +18,11 @@ class BatchEntry
 
 
  public:
-   //	BatchEntry(ActionContext* actionContext, InitialRequest* initialRequest);
-    //todo
-   //	ActionContext* getActionContext();
-	InitialRequest* getInitialRequest();
+	BatchEntry(ActionContextPtr actionContext, InitialRequestPtr initialRequest);
+	ActionContextPtr getActionContext();
+	InitialRequestPtr getInitialRequest();
 	bool isFulfilled();
-   // std::string toString();
+	std::string toString();
 
 };
 

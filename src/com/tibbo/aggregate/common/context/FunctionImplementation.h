@@ -11,7 +11,7 @@ class FunctionDefinition;
 class Context;
 class FunctionImplementation
 {
-  DataTable* execute(Context* con, FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters);
+  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters);
 
 };
 #endif

@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/OutgoingAggreGateCommand.java
 
 #ifndef OutgoingAggreGateCommandH
 #define OutgoingAggreGateCommandH
@@ -8,31 +7,24 @@
 
 class OutgoingAggreGateCommand : public AggreGateCommand
 {
- /*
+
 private:
     int paramCount;
     const std::string & id;
-protected:
-    void ctor();
 
 public:
     const std::string & header();
     const std::string & footer();
 
-public:
-    OutgoingAggreGateCommand* addParam(const std::string & param);
+	OutgoingAggreGateCommandPtr addParam(const std::string & param);
     const std::string & getId();
     void constructReply(const std::string & id, const std::string & code);
     void constructReply(const std::string & id, const std::string & code, const std::string & message);
     void constructReply(const std::string & id, const std::string & code, const std::string & message, const std::string & details);
-    void constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, long  eventId, Date* creationtime, int  listener);
+    void constructEvent(const std::string & context, const std::string & name, int level, const std::string & encodedDataTable, long  eventId, DatePtr creationtime, int  listener);
 
-    // Generated
-    OutgoingAggreGateCommand();
-protected:
-    OutgoingAggreGateCommand(const ::default_init_tag&);
+	OutgoingAggreGateCommand();
 
-*/
 };
 
 #endif

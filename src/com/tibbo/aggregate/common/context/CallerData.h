@@ -5,6 +5,6 @@
 
 class CallerData
 {
-    virtual ActionManager* getActionManager() = 0;
+    virtual ActionManagerPtr getActionManager() = 0;
 };
 #endif  //_CallerData_H_

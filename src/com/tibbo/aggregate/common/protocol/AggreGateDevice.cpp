@@ -92,7 +92,7 @@ int AggreGateDevice::hashCode()
 	return result;     */
 }
 
-bool AggreGateDevice::equals(void* obj)
+bool AggreGateDevice::equals(AgObjectPtr obj)
 {
 /*
 	if(this == obj)
@@ -104,7 +104,7 @@ bool AggreGateDevice::equals(void* obj)
      return false;
     }
 
-     AggreGateDevice *other = (AggreGateDevice)obj;
+     AggreGateDevicePtrother = (AggreGateDevice)obj;
     if(description == 0) {
         if(other->description != 0) {
             return false;

@@ -17,7 +17,7 @@ class DiscoveryProvider;
 class DiscoverableServiceDefinition //: public Cloneable
 {
 private:
-    boost::shared_ptr<DiscoveryProvider> discoveryProvider;
+    DiscoveryProviderPtr discoveryProvider;
     std::string name;
     std::string description;
 
@@ -27,36 +27,36 @@ private:
    * Some services, such as TCP port checker, use the whole table for a single check.
    */
 
-    boost::shared_ptr<DataTable> connectionOptions;
+    DataTablePtr connectionOptions;
     long discoveryTimeout;
     int discoveryRetries;
     bool useService;
     bool isEnabledByDefault_;
 
 public:
-    virtual boost::shared_ptr<DiscoverableService> createServiceInstance();
+    virtual DiscoverableServicePtr createServiceInstance();
     std::string getName();
-    boost::shared_ptr<DataTable> getConnectionOptions();
-    void setConnectionOptions(boost::shared_ptr<DataTable> connectionOptions);
+    DataTablePtr getConnectionOptions();
+    void setConnectionOptions(DataTablePtr connectionOptions);
     std::string getDescription();
     long getDiscoveryTimeout();
     void setDiscoveryTimeout(long defaultDiscoveryTimeoutInt);
     int getDiscoveryRetries();
     void setDiscoveryRetries(int defaultDiscoveryRetries);
-    boost::shared_ptr<DiscoveryProvider> getDiscoveryProvider();
+    DiscoveryProviderPtr getDiscoveryProvider();
     std::string deviceType(const std::string& addressStrings);
     int priority();
-    boost::shared_ptr<DiscoverableServiceDefinition> clone();
+	DiscoverableServiceDefinitionPtr clone();
 	DiscoverableServiceDefinition(DiscoverableServiceDefinition&); //copy constructor
 
-    void setUseService(bool useService);
+	void setUseService(bool useService);
     bool isUseService();
     bool isEnabledByDefault();
-    std::list<DiscoveryResultItem>  check(const std::string& addressString, long timeoutMilliseconds, int triesCountInt);
-    std::string toString();
+	std::list<DiscoveryResultItemPtr>  check(const std::string& addressString, long timeoutMilliseconds, int triesCountInt);
+	std::string toString();
 
-    DiscoverableServiceDefinition(boost::shared_ptr<DiscoveryProvider> discoveryProvider, const std::string& name, const std::string& description,
-                                  boost::shared_ptr<DataTable> connectionOptions, int defaultDiscoveryTimeout, int defaultDiscoveryRetries,
+    DiscoverableServiceDefinition(DiscoveryProviderPtr discoveryProvider, const std::string& name, const std::string& description,
+                                  DataTablePtr connectionOptions, int defaultDiscoveryTimeout, int defaultDiscoveryRetries,
                                   bool isEnabledByDefault1);
 	
 };

@@ -9,8 +9,8 @@ class PermissionCache
 {
 private:
     std::map<std::string, std::string> effectiveLevels;
-    //TODO: mutex
-    boost::mutex lock;//ReentrantReadWriteLock*
+
+	boost::shared_mutex lock;//ReentrantReadWriteLock*
 
 public:
     std::string getLevel(const std::string& context);

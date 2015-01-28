@@ -8,7 +8,7 @@
     
 //	std::unordered_set<ContextEventListener> localListeners;
    /* for (auto *iterator = listeners)->iterator(); iterator)->hasNext(); ) {
-        auto ref = java_cast< void* >(iterator)->next());
+        auto ref = java_cast< AgObjectPtr >(iterator)->next());
         auto li = getListenerInfo(ref);
         if(li == 0) {
             iterator)->remove();
@@ -28,7 +28,7 @@ std::unordered_set<ContextEventListenerInfo> ContextEventListenerSet::getListene
     std::unordered_set<ContextEventListenerInfo> localListeners;
    /* 
     for (auto *iterator = listeners)->iterator(); iterator)->hasNext(); ) {
-        auto ref = java_cast< void* >(iterator)->next());
+        auto ref = java_cast< AgObjectPtr >(iterator)->next());
         auto li = getListenerInfo(ref);
         if(li == 0) {
             iterator)->remove();
@@ -43,7 +43,7 @@ std::unordered_set<ContextEventListenerInfo> ContextEventListenerSet::getListene
 	return localListeners;
 }
 
-bool ContextEventListenerSet::addListener(ContextEventListener* listener, bool weak)
+bool ContextEventListenerSet::addListener(ContextEventListenerPtr listener, bool weak)
 {
    /*
 	if(contains(listener)) {
@@ -54,11 +54,11 @@ bool ContextEventListenerSet::addListener(ContextEventListener* listener, bool w
 	return true;
 }
 
-bool ContextEventListenerSet::removeListener(ContextEventListener* listener)
+bool ContextEventListenerSet::removeListener(ContextEventListenerPtr listener)
 {
     /*
 	for (auto *iterator = listeners)->iterator(); iterator)->hasNext(); ) {
-        auto ref = java_cast< void* >(iterator)->next());
+        auto ref = java_cast< AgObjectPtr >(iterator)->next());
         auto li = getListenerInfo(ref);
         if(li == 0) {
             iterator)->remove();
@@ -73,11 +73,11 @@ bool ContextEventListenerSet::removeListener(ContextEventListener* listener)
     return false;
 }
 
-bool ContextEventListenerSet::contains(ContextEventListener* listener)
+bool ContextEventListenerSet::contains(ContextEventListenerPtr listener)
 {
     /*
 	for (auto *iterator = listeners)->iterator(); iterator)->hasNext(); ) {
-        auto ref = java_cast< void* >(iterator)->next());
+        auto ref = java_cast< AgObjectPtr >(iterator)->next());
         auto li = getListenerInfo(ref);
         if(li == 0) {
             iterator)->remove();
@@ -106,14 +106,14 @@ int ContextEventListenerSet::size()
   return listeners.size();
 }
 
-ContextEventListenerInfo* ContextEventListenerSet::getListenerInfo(void* ref)
+ContextEventListenerInfo* ContextEventListenerSet::getListenerInfo(AgObjectPtr ref)
 {
 	/*
     
-    if(dynamic_cast< ContextEventListener* >(ref) != 0) {
-        return new ContextEventListenerInfo(java_cast< ContextEventListener* >(ref), false);
-    } else if(dynamic_cast< ::java::lang::ref::Reference* >(ref) != 0) {
-        auto cel = java_cast< ContextEventListener* >((java_cast< ::java::lang::ref::Reference* >(ref)))->get());
+    if(dynamic_cast< ContextEventListenerPtr >(ref) != 0) {
+        return new ContextEventListenerInfo(java_cast< ContextEventListenerPtr >(ref), false);
+    } else if(dynamic_cast< ::java::lang::ref::ReferencePtr >(ref) != 0) {
+        auto cel = java_cast< ContextEventListenerPtr >((java_cast< ::java::lang::ref::ReferencePtr >(ref)))->get());
         return cel != 0 ? new ContextEventListenerInfo(cel, true) : static_cast< ContextEventListenerInfo* >(0);
     } else {
         throw new ContextRuntimeException(std::stringBuilder().append(u"Unexpected reference: "_j)->append(ref))->toString());

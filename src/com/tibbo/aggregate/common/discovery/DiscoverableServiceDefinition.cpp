@@ -3,10 +3,10 @@
 
 
 DiscoverableServiceDefinition::DiscoverableServiceDefinition(
-        boost::shared_ptr<DiscoveryProvider> discoveryProvider,
+        DiscoveryProviderPtr discoveryProvider,
         const std::string& name,
         const std::string& description,
-        boost::shared_ptr<DataTable> connectionOptions,
+        DataTablePtr connectionOptions,
         int defaultDiscoveryTimeout,
         int defaultDiscoveryRetries,
         bool isEnabledByDefault1
@@ -21,7 +21,7 @@ DiscoverableServiceDefinition::DiscoverableServiceDefinition(
 }
 
 // TODO: abstarct?
-boost::shared_ptr<DiscoverableService> DiscoverableServiceDefinition::createServiceInstance()
+DiscoverableServicePtr DiscoverableServiceDefinition::createServiceInstance()
 {
     return NULL;
 }
@@ -31,12 +31,12 @@ std::string DiscoverableServiceDefinition::getName()
     return name;
 }
 
-boost::shared_ptr<DataTable> DiscoverableServiceDefinition::getConnectionOptions()
+DataTablePtr DiscoverableServiceDefinition::getConnectionOptions()
 {
     return connectionOptions;
 }
 
-void DiscoverableServiceDefinition::setConnectionOptions(boost::shared_ptr<DataTable> connectionOptions)
+void DiscoverableServiceDefinition::setConnectionOptions(DataTablePtr connectionOptions)
 {
     this->connectionOptions =connectionOptions;
 }
@@ -66,7 +66,7 @@ void DiscoverableServiceDefinition::setDiscoveryRetries(int defaultDiscoveryRetr
     this->discoveryRetries = defaultDiscoveryRetries;
 }
 
-boost::shared_ptr<DiscoveryProvider> DiscoverableServiceDefinition::getDiscoveryProvider()
+DiscoveryProviderPtr DiscoverableServiceDefinition::getDiscoveryProvider()
 {
     return discoveryProvider;
 }
@@ -81,12 +81,12 @@ int DiscoverableServiceDefinition::priority()
     return 0;
 }
 
-boost::shared_ptr<DiscoverableServiceDefinition> DiscoverableServiceDefinition::clone()
+DiscoverableServiceDefinitionPtr DiscoverableServiceDefinition::clone()
 {
 
    try
     {
-      return (boost::shared_ptr<DiscoverableServiceDefinition>)(new DiscoverableServiceDefinition(*this));
+      return (DiscoverableServiceDefinitionPtr)(new DiscoverableServiceDefinition(*this));
     }
     catch (...)
     {

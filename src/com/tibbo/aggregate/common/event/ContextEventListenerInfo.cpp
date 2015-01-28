@@ -4,14 +4,14 @@
 
 
 
-ContextEventListenerInfo::ContextEventListenerInfo(boost::shared_ptr<ContextEventListener> listener, bool weak) 
+ContextEventListenerInfo::ContextEventListenerInfo(ContextEventListenerPtr listener, bool weak) 
 {
   this->listener = listener;
   this->weak = weak;
 }
 
 
-boost::shared_ptr<ContextEventListener> ContextEventListenerInfo::getListener()
+ContextEventListenerPtr ContextEventListenerInfo::getListener()
 {
     return listener;
 }

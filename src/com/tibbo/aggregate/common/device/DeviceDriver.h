@@ -26,7 +26,7 @@ public:
     * <p>
     * This method is defined in AtestbstractDeviceDriver and should not be overridden in most cases.
     */
-    virtual boost::shared_ptr<TableFormat> createConnectionPropertiesFormat() = 0;
+    virtual TableFormatPtr createConnectionPropertiesFormat() = 0;
 
     /**
     * <p>
@@ -36,13 +36,13 @@ public:
     * <p>
     * Variable definitions representing device communication settings should belong to ContextUtils.GROUP_ACCESS variable group.
     */
-    virtual void setupDeviceContext(boost::shared_ptr<DeviceContext> deviceContext) = 0;
+    virtual void setupDeviceContext(DeviceContextPtr deviceContext) = 0;
 
     /**
     * In contrast to {@link #setupDeviceContext(DeviceContext)}, this method it called only once in the end of initial device account creation. Its implementation can correct necessary default values
     * of device context variables, such as metadata reading mode or device settings caching mode. Overriding this method is not necessary for most drivers.
     */
-    virtual void configureDeviceAccount(boost::shared_ptr<DeviceContext> deviceContext, boost::shared_ptr<CallerController> caller) = 0 ;//throws ContextException;
+    virtual void configureDeviceAccount(DeviceContextPtr deviceContext, CallerControllerPtr caller) = 0 ;//throws ContextException;
 
    /**
     * <p>
@@ -70,7 +70,7 @@ public:
     *           Should be thrown by the driver to force generating Info event in addition to skipping the synchronization. This Info event contains exception message that is supposed to describe the
     *           reason of synchronization skip, e.g. "device address not specified". In order to avoid event flooding, driver should throw an exception only if full synchronization is performed.
     */
-    virtual bool shouldSynchronize(boost::shared_ptr<SynchronizationParameters> parameters) = 0;//throws ContextException;
+    virtual bool shouldSynchronize(SynchronizationParametersPtr parameters) = 0;//throws ContextException;
 
    /**
     * Called in the beginning of every synchronization cycle. Driver implementations may read communication settings from device context at this point.
@@ -241,7 +241,7 @@ public:
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual boost::shared_ptr<DataTable> readVariableValue(boost::shared_ptr<VariableDefinition> vd) =0;//throws ContextException, DeviceException, DisconnectionException;
+    virtual DataTablePtr readVariableValue(VariableDefinitionPtr vd) =0;//throws ContextException, DeviceException, DisconnectionException;
 
     /**
     * Implementation of this method should write server-side value of device setting into a hardware. This method will be called only if device setting definition is writable (e.g server-side changes
@@ -258,8 +258,8 @@ public:
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual void writeVariableValue(boost::shared_ptr<VariableDefinition> vd, boost::shared_ptr<DataTable> value,
-                                    boost::shared_ptr<DataTable> deviceValue) = 0;//throws ContextException, DeviceException, DisconnectionException;
+    virtual void writeVariableValue(VariableDefinitionPtr vd, DataTablePtr value,
+                                    DataTablePtr deviceValue) = 0;//throws ContextException, DeviceException, DisconnectionException;
 
     /**
     * This method should implement the call of the device-side operation (function). It should decode parameters Data Table to a device native format, pass this input to the device and call requested
@@ -272,7 +272,7 @@ public:
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual DataTable executeFunction(boost::shared_ptr<FunctionDefinition> fd, boost::shared_ptr<DataTable> parameters) = 0;//throws ContextException, DeviceException, DisconnectionException;
+    virtual DataTable executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters) = 0;//throws ContextException, DeviceException, DisconnectionException;
 
     /**
     * This method should return timestamp of device setting last modification time as reported by the hardware. If modification-time-based synchronization is not supported, the method should return
@@ -283,7 +283,7 @@ public:
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual boost::shared_ptr<Date> getVariableModificationTime(const std::string& name) = 0;//throws DeviceException, DisconnectionException;
+    virtual DatePtr getVariableModificationTime(const std::string& name) = 0;//throws DeviceException, DisconnectionException;
 
    /**
     * This method should update device-side modification time of a setting pointed by name argument or do nothing if modification-time-based synchronization is not supported.
@@ -293,12 +293,12 @@ public:
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual void updateVariableModificationTime(const std::string& name, boost::shared_ptr<Date> value) = 0;//throws DeviceException, DisconnectionException;
+    virtual void updateVariableModificationTime(const std::string& name, DatePtr value) = 0;//throws DeviceException, DisconnectionException;
 
     /**
     * This method allows the driver to report custom variable status to the system core. It should return null if no custom status should be used.
     */
-//    virtual VariableStatus* getCustomVariableStatus(const std::string& name) = 0;//throws DeviceException, DisconnectionException;
+//    virtual VariableStatusPtr getCustomVariableStatus(const std::string& name) = 0;//throws DeviceException, DisconnectionException;
 
     /**
     * This method is called in the end of every synchronization. Its implementations may perform some cleanup.
@@ -353,20 +353,20 @@ public:
     *
     * @return Variable definition or null if nothing was found
     */
-    virtual boost::shared_ptr<VariableDefinition> discoverVariable(const std::string& name, void *helper)=0;
+    virtual VariableDefinitionPtr discoverVariable(const std::string& name, AgObjectPtrhelper)=0;
 
     /**
     * Tries to discover device variable that was not found during automatic metadata reading.
     *
     * @return Variable definition or null if nothing was found
     */
-    virtual boost::shared_ptr<FunctionDefinition> discoverFunction(const std::string& name, void *helper)=0;
+    virtual FunctionDefinitionPtr discoverFunction(const std::string& name, AgObjectPtrhelper)=0;
 
     /**
     * Tries to discover device event that was not found during automatic metadata reading.
     *
     * @return Event definition or null if nothing was found
     */
-    virtual boost::shared_ptr<EventDefinition> discoverEvent(const std::string& name, void *helper)=0;
+    virtual EventDefinitionPtr discoverEvent(const std::string& name, AgObjectPtrhelper)=0;
 };
 #endif  //_DeviceDriver_H_

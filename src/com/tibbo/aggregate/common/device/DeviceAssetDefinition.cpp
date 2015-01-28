@@ -1,7 +1,7 @@
 #include "device/DeviceAssetDefinition.h"
   
 
- boost::shared_ptr<TableFormat> DeviceAssetDefinition::FORMAT;
+ TableFormatPtr DeviceAssetDefinition::FORMAT;
 
 
   const std::string DeviceAssetDefinition::FIELD_ID = "id";
@@ -16,7 +16,7 @@ DeviceAssetDefinition::DeviceAssetDefinition():AggreGateBean(FORMAT)
     this->enabled = false;
 }
 
-DeviceAssetDefinition::DeviceAssetDefinition(boost::shared_ptr<DataRecord> data):AggreGateBean(FORMAT, data)
+DeviceAssetDefinition::DeviceAssetDefinition(DataRecordPtr data):AggreGateBean(FORMAT, data)
 {  
 	Init();
     
@@ -37,7 +37,7 @@ DeviceAssetDefinition::DeviceAssetDefinition(const std::string& id, const std::s
 
 void DeviceAssetDefinition::Init()
 {
-   FORMAT =  boost::shared_ptr<TableFormat>(new TableFormat());
+   FORMAT =  TableFormatPtr(new TableFormat());
  
    FORMAT->setUnresizable(true);
     
@@ -84,22 +84,22 @@ void DeviceAssetDefinition::setEnabled(bool enabled)
     this->enabled = enabled;
 }
 
-std::list<boost::shared_ptr<DeviceAssetDefinition>> DeviceAssetDefinition::getChildren()
+std::list<DeviceAssetDefinitionPtr> DeviceAssetDefinition::getChildren()
 {
     return children;
 }
 
-void DeviceAssetDefinition::setChildren(std::list<boost::shared_ptr<DeviceAssetDefinition>>  children)
+void DeviceAssetDefinition::setChildren(std::list<DeviceAssetDefinitionPtr>  children)
 {
   this->children = children;
 }
 
-void DeviceAssetDefinition::addSubgroup(boost::shared_ptr<DeviceAssetDefinition> child)
+void DeviceAssetDefinition::addSubgroup(DeviceAssetDefinitionPtr child)
 {
    getChildren().push_back(child);
 }
 
-int DeviceAssetDefinition::compareTo(boost::shared_ptr<DeviceAssetDefinition> other)
+int DeviceAssetDefinition::compareTo(DeviceAssetDefinitionPtr other)
 {
     return description.compare(other->description);
 }
@@ -121,7 +121,7 @@ int DeviceAssetDefinition::hashCode()
     return result;
 }
 
-bool DeviceAssetDefinition::equals(DeviceAssetDefinition* obj)
+bool DeviceAssetDefinition::equals(DeviceAssetDefinitionPtr obj)
 {
     if (this == obj)
         return true;
@@ -129,7 +129,7 @@ bool DeviceAssetDefinition::equals(DeviceAssetDefinition* obj)
     if (obj == NULL)
         return false;
 
-    DeviceAssetDefinition* other = (DeviceAssetDefinition*)(obj);
+    DeviceAssetDefinitionPtr other = (DeviceAssetDefinitionPtr)(obj);
     if (other == NULL)
         return false;
 

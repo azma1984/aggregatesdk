@@ -1,14 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateNetworkDevice.java
 
-#pragma once
+#ifndef AggreGateNetworkDeviceH
+#define AggreGateNetworkDeviceH
 
 #include "AggreGateDevice.h"
 
-
-
 class AggreGateNetworkDevice: public AggreGateDevice
 {
-
 
 private:
 	std::string DEFAULT_ADDRESS;
@@ -26,9 +23,11 @@ public:
     void setConnectionTimeout(long connectionTimeout);
 	std::string getInfo();
     int hashCode();
-	bool equals(void* obj);
+	bool equals(AgObjectPtr obj);
 
 	AggreGateNetworkDevice();
 	AggreGateNetworkDevice(std::string address, int port);
 
 };
+
+#endif

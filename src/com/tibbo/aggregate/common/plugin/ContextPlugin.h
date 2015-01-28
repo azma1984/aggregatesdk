@@ -19,9 +19,7 @@ struct ContextPlugin : public AggreGatePlugin
     /**
     * This method is called when server context tree is fully loaded.
     *
-    * @param contextManager
-    *          Server context manager
-    * @throws ContextException
+    * @param ContextManagerPtr          Server ContextManagerPtr @throws ContextException
     *           If some context API calls from within this method have thrown an exception
     * @throws PluginException
     *           If plugin internal error occurred
@@ -31,9 +29,7 @@ struct ContextPlugin : public AggreGatePlugin
     /**
     * This method is called before server context tree is destroyed.
     *
-    * @param contextManager
-    *          Server context manager
-    * @throws ContextException
+    * @param ContextManagerPtr          Server ContextManagerPtr @throws ContextException
     *           If some context API calls from within this method have thrown an exception
     * @throws PluginException
     *           If plugin internal error occurred
@@ -43,9 +39,7 @@ struct ContextPlugin : public AggreGatePlugin
     /**
     * This method is called when a new server context is created or loaded upon server startup.
     *
-    * @param context
-    *          Server context
-    * @throws ContextException
+    * @param ContextPtr          Server ContextPtr @throws ContextException
     *           If some context API calls from within this method have thrown an exception
     * @throws PluginException
     *           If plugin internal error occurred
@@ -55,9 +49,7 @@ struct ContextPlugin : public AggreGatePlugin
     /**
     * This method is called when a server context is destroyed or removed upon server shutdown.
     *
-    * @param context
-    *          Server context
-    * @throws ContextException
+    * @param ContextPtr          Server ContextPtr @throws ContextException
     *           If some context API calls from within this method have thrown an exception
     * @throws PluginException
     *           If plugin internal error occurred

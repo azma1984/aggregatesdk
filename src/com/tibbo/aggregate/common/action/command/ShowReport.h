@@ -1,54 +1,39 @@
-#pragma once
-
+#ifndef ShowReportH
+#define ShowReportH
 #include "action/GenericActionCommand.h"
 
 
 
 class ShowReport : public GenericActionCommand
 {
+private:
+    static const std::string CF_REPORT_DATA_;
+    static const std::string CF_LOCATION_;
+    static const std::string CF_DASHBOARD_;
+    static TableFormatPtr CFT_SHOW_REPORT_;
+    ::unsigned charArray* reportData;
+    WindowLocationPtr location;
+    DashboardPropertiesPtr dashboard;
 
-//public:
-//    typedef ::com::tibbo::aggregate::common::action::GenericActionCommand super;
+public:
+    DataTablePtr constructParameters();
 
-//private:
-//    static const std::string CF_REPORT_DATA_;
-//    static const std::string CF_LOCATION_;
-//    static const std::string CF_DASHBOARD_;
-//    static TableFormat* CFT_SHOW_REPORT_;
-//    ::int8_tArray* reportData;
-//    ::com::tibbo::aggregate::common::util::WindowLocation* location;
-//    ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard;
-//protected:
-//    void ctor();
-//    void ctor(const std::string & title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
-//    void ctor(const std::string & title, DataTable* parameters);
+	::unsigned charArray* getReportData();
+    void setReportData(::unsigned charArray* reportData);
+    WindowLocationPtr getLocation();
+    void setLocation(WindowLocationPtr location);
+    DashboardPropertiesPtr getDashboard();
+    void setDashboard(DashboardPropertiesPtr dashboard);
 
-//public: /* protected */
-//    DataTable* constructParameters();
-
-//public:
-//    ::int8_tArray* getReportData();
-//    void setReportData(::int8_tArray* reportData);
-//    ::com::tibbo::aggregate::common::util::WindowLocation* getLocation();
-//    void setLocation(::com::tibbo::aggregate::common::util::WindowLocation* location);
-//    ::com::tibbo::aggregate::common::util::DashboardProperties* getDashboard();
-//    void setDashboard(::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
-
-//    // Generated
-//    ShowReport();
-//    ShowReport(const std::string & title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard);
-//    ShowReport(const std::string & title, DataTable* parameters);
-//protected:
-//    ShowReport(const ::default_init_tag&);
+    ShowReport();
+    ShowReport(const std::string & title, ::unsigned charArray* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard);
+    ShowReport(const std::string & title, DataTablePtr parameters);
 
 
-//public:
-    
-//    static void
-//    static const std::string& CF_REPORT_DATA();
-//    static const std::string& CF_LOCATION();
-//    static const std::string& CF_DASHBOARD();
-//    static TableFormat*& CFT_SHOW_REPORT();
+    static const std::string& CF_REPORT_DATA();
+    static const std::string& CF_LOCATION();
+    static const std::string& CF_DASHBOARD();
+    static TableFormatPtr& CFT_SHOW_REPORT();
 
 };
-//#endif  /_ShowReport_H_
+#endif

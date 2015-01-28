@@ -1,84 +1,76 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/AbstractDeviceController.java
+#ifndef AbstractDeviceControllerH
+#define AbstractDeviceControllerH
 
-#pragma once
-
-#include <CommandParserListener.h>
-
-
+#include "communication/CommandParserListener.h"
+#include "communication/AsyncCommandProcessor.h"
+#include "communication/Command.h"
+#include "communication/CommandParser.h"
+#include "communication/CommandProcessorStatistics.h"
+#include "device/DisconnectionException.h"
 
 template <class I,class O> class AbstractDeviceController:public CommandParserListener
 {
-
-
-private: /*
+ private:
 	long commandTimeout;
 	bool resetTimeoutsOnData;
-	::org::apache::log4j::Logger* logger;
-	CommandParser* commandParser; */
+   //	::org::apache::log4j::Logger* logger;  todo
+	CommandParserPtr commandParser;
 
-	AsyncCommandProcessor* processor;
+	AsyncCommandProcessorPtr processor;
 
 	bool connecting;
 
 	bool connected;
- /*	bool loggingIn;
+	bool loggingIn;
 	bool loggedIn;
-protected:
-    void ctor(long commandTimeout, ::org::apache::log4j::Logger* logger);
 
-public:
+ public:
 	bool connectImpl();
 	bool loginImpl();
 	void disconnectImpl();
-	void send(Command* cmd);
-	   */
-public:
+	void send(CommandPtr cmd);
+
 	void connect();
-	   /*
-public:
+
 	void checkAndConnect();
 
-public:
+
 	void login();
 	void disconnect();
-	Command* sendCommand(Command* cmd);
+	CommandPtr sendCommand(CommandPtr cmd);
     bool isActive();
 
-public:
-    void processAsyncCommand(Command* cmd);
 
-public:
+    void processAsyncCommand(CommandPtr cmd);
+
+
     void newDataReceived();
 
-public:
+
     void resetCommandTimeouts();
     void startCommandProcessor();
-    void setCommandParser(CommandParser* commandParser);
+    void setCommandParser(CommandParserPtr commandParser);
 
-public:
+
     bool isConnected();
 
-public:
+
     void setConnected(bool connected);
 
-public:
+
     bool isLoggedIn();
     void setLoggedIn(bool loggedIn);
 
-public:
-    CommandParser* getCommandParser();
 
-public:
+    CommandParserPtr getCommandParser();
+
     void setResetTimeoutsOnData(bool resetTimeoutWhenDataReceived);
     std::list  getActiveCommands();
     long getCommandTimeout();
-    ::org::apache::log4j::Logger* getLogger();
-    CommandProcessorStatistics* getStatistics();
+  //  ::org::apache::log4j::Logger* getLogger();  //todo
+    CommandProcessorStatisticsPtr getStatistics();
 
-    // Generated
-    AbstractDeviceController(long commandTimeout, ::org::apache::log4j::Logger* logger);
-protected:
-    AbstractDeviceController(const ::default_init_tag&);
-
-*/
+  //  AbstractDeviceController(long commandTimeout, ::org::apache::log4j::Logger* logger); todo
 };
+
+#endif

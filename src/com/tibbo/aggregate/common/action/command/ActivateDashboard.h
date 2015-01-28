@@ -11,22 +11,22 @@ class ActivateDashboard : public GenericActionCommand
 private:
 	std::string name;
 	std::string path;
-      //WindowLocation* location;  //todo it is defined in com/tibbo/aggregate/common/util/WindowLocation.h
-      //DashboardProperties* dashboard; //todo it is defined in  com/tibbo/aggregate/common/util/DashboardProperties.h
+      //WindowLocationPtr location;  //todo it is defined in com/tibbo/aggregate/common/util/WindowLocation.h
+      //DashboardPropertiesPtr dashboard; //todo it is defined in  com/tibbo/aggregate/common/util/DashboardProperties.h
 
 protected:
-   //	DataTable* constructParameters();  todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+   //	DataTablePtr constructParameters();  todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
 	static std::string  CF_NAME;
 	static std::string  CF_PATH;
 	static std::string  CF_LOCATION;
 	static std::string  CF_DASHBOARD;
-       //TableFormat* CFT_ACTIVATE_DASHBOARD; todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+       //TableFormatPtr CFT_ACTIVATE_DASHBOARD; todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
 
 	void Init();
 	ActivateDashboard();
-   //	ActivateDashboard(std::string title, DataTable* parameters);
+   //	ActivateDashboard(std::string title, DataTablePtr parameters);
 	ActivateDashboard(const std::string &name);
 
 	std::string getName();
@@ -35,11 +35,11 @@ public:
 	std::string getPath();
 	void setPath(std::string path);
 
-   //	WindowLocation* getLocation();  ////todo it is defined in com/tibbo/aggregate/common/util/WindowLocation.h
+   //	WindowLocationPtr getLocation();  ////todo it is defined in com/tibbo/aggregate/common/util/WindowLocation.h
   //	void setLocation(WindowLocation location);
 
-  //	DashboardProperties* getDashboard(); //todo it is defined in  com/tibbo/aggregate/common/util/DashboardProperties.h"
-  //	void setDashboard(DashboardProperties* dashboard);
+  //	DashboardPropertiesPtr getDashboard(); //todo it is defined in  com/tibbo/aggregate/common/util/DashboardProperties.h"
+  //	void setDashboard(DashboardPropertiesPtr dashboard);
 };
 
 #endif

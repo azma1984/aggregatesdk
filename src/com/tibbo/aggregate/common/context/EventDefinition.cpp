@@ -1,23 +1,23 @@
 #include "EventDefinition.h"
 
 
-EventDefinition::EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format)
+EventDefinition::EventDefinition(const std::string & name, TableFormatPtr format)
 {
    init(name, format, 0);
 }
 
-EventDefinition::EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, const std::string & description)
+EventDefinition::EventDefinition(const std::string & name, TableFormatPtr format, const std::string & description)
 {
   init(name, format, description);
 }
 
-EventDefinition::EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, const std::string & description, const std::string & group)
+EventDefinition::EventDefinition(const std::string & name, TableFormatPtr format, const std::string & description, const std::string & group)
 {
   init(name, format, description);
   setGroup(group);
 }
 
-void EventDefinition::init(const std::string & name, boost::shared_ptr<TableFormat> format, const std::string & description)
+void EventDefinition::init(const std::string & name, TableFormatPtr format, const std::string & description)
 {
   // persistenceOptions = new PersistenceOptions();
   
@@ -27,7 +27,7 @@ void EventDefinition::init(const std::string & name, boost::shared_ptr<TableForm
 }
 
 /*
-void EventDefinition::setFormat(boost::shared_ptr<TableFormat> format)
+void EventDefinition::setFormat(TableFormatPtr format)
 {
     if(format != 0) {
         format)->makeImmutable(0);
@@ -40,7 +40,7 @@ void EventDefinition::setHidden(bool hidden)
     this->hidden = hidden;
 }
 
-void EventDefinition::setPermissions(Permissions* perms)
+void EventDefinition::setPermissions(  PermissionsPtr perms)
 {
 	this->permissions = perms;
 }
@@ -59,22 +59,22 @@ void EventDefinition::setSynchronous(bool synchronous)
 {
     this->synchronous = synchronous;
 }
- /*
-Dateboost::shared_ptr<TableFormat> EventDefinition::getFormat()
+
+DateTableFormatPtr EventDefinition::getFormat()
 {
-    return format;
+	return format;
 }
 
 bool EventDefinition::isHidden()
 {
-    return hidden;
+	return hidden;
 }
 
-com::tibbo::aggregate::common::security::Permissions* EventDefinition::getPermissions()
+PermissionsPtr EventDefinition::getPermissions()
 {
-    return permissions;
+	return permissions;
 }
-
+  /*
 long EventDefinition::getExpirationPeriod()
 {
     return expirationPeriod;
@@ -85,12 +85,12 @@ int EventDefinition::getLevel()
     return level;
 }
 
-com::tibbo::aggregate::common::security::Permissions* EventDefinition::getFirePermissions()
+com::tibbo::aggregate::common::security::PermissionsPtr EventDefinition::getFirePermissions()
 {
     return firePermissions;
 }
 
-void EventDefinition::setFirePermissions(Permissions* firePermissions)
+void EventDefinition::setFirePermissions(PermissionsPtr firePermissions)
 {
     this->firePermissions = firePermissions;
 }
@@ -100,7 +100,7 @@ bool EventDefinition::isSynchronous()
     return synchronous;
 }
 */
-PersistenceOptions* EventDefinition::getPersistenceOptions()
+PersistenceOptionsPtr EventDefinition::getPersistenceOptions()
 {
 	return persistenceOptions;
 }
@@ -115,10 +115,10 @@ void EventDefinition::setMemoryStorageSize(int  memoryStorageSize)
     this->memoryStorageSize = memoryStorageSize;
 }
 
-EventDefinition* EventDefinition::clone()
+EventDefinitionPtr EventDefinition::clone()
 {
     try {
-        auto clone = java_cast< EventDefinition* >(super::clone());
+        auto clone = java_cast< EventDefinitionPtr >(super::clone());
         clone)->persistenceOptions = persistenceOptions)->clone();
         return clone;
     } catch (::java::lang::CloneNotSupportedException* ex) {
@@ -126,7 +126,7 @@ EventDefinition* EventDefinition::clone()
     }
 }
 
-int EventDefinition::compareTo(EventDefinition* d)
+int EventDefinition::compareTo(EventDefinitionPtr d)
 {
     if(getIndex() != 0 || d)->getIndex() != 0) {
         auto my = getIndex() != 0 ? getIndex() : new ::java::lang::Integer(int(0));
@@ -136,9 +136,9 @@ int EventDefinition::compareTo(EventDefinition* d)
     return 0;
 }
 
-int EventDefinition::compareTo(void* arg0)
+int EventDefinition::compareTo(AgObjectPtr arg0)
 { 
-    return compareTo(dynamic_cast< EventDefinition* >(arg0));
+    return compareTo(dynamic_cast< EventDefinitionPtr >(arg0));
 }
 
 int EventDefinition::hashCode()
@@ -160,7 +160,7 @@ int EventDefinition::hashCode()
     return result;
 }
 
-bool EventDefinition::equals(void* obj)
+bool EventDefinition::equals(AgObjectPtr obj)
 {
     if(this) == obj)
         return true;
@@ -171,7 +171,7 @@ bool EventDefinition::equals(void* obj)
     if(getClass()) != obj)->getClass()))
         return false;
 
-    auto other = java_cast< EventDefinition* >(obj);
+    auto other = java_cast< EventDefinitionPtr >(obj);
     if(getDescription() == 0) {
         if(other)->getDescription() != 0)
             return false;

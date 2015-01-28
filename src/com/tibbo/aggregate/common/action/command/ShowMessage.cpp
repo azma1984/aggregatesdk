@@ -37,7 +37,7 @@ com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(const s
     ctor(title,message,level);
 }
 
-com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(const std::string & title, DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(const std::string & title, DataTablePtr parameters) 
     : ShowMessage(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -57,16 +57,16 @@ std::string& com::tibbo::aggregate::common::action::command::ShowMessage::CF_LEV
 }
 std::string com::tibbo::aggregate::common::action::command::ShowMessage::CF_LEVEL_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE()
 {
     
     return CFT_SHOW_MESSAGE_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE_;
 
 void com::tibbo::aggregate::common::action::command::ShowMessage::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), CFT_SHOW_MESSAGE_, static_cast< TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), CFT_SHOW_MESSAGE_, static_cast< TableFormatPtr >(0));
 }
 
 void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std::string & title, const std::string & message, int level)
@@ -76,12 +76,12 @@ void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std
     this->level = level;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std::string & title, DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), title, parameters, CFT_SHOW_MESSAGE_);
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::ShowMessage::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::ShowMessage::constructParameters()
 {
     return new DataTable(CFT_SHOW_MESSAGE_, new voidArray({message), level))}));
 }
@@ -110,7 +110,7 @@ void com::tibbo::aggregate::common::action::command::ShowMessage::setLevel(int l
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::ShowMessage::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowMessage", 53);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowMessage", 53);
     return c;
 }
 

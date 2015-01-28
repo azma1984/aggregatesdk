@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UserH
+#define UserH
 
 #include <string>
 
@@ -27,8 +28,6 @@ private:
     std::string datepattern;
     std::string timepattern;
     int weekStart;
-protected:
-    void ctor();
 
 public:
     std::string getAddress1();
@@ -106,5 +105,8 @@ public:
     static std::string DEFAULT_ADMIN_USERNAME;
     static std::string DEFAULT_ADMIN_PASSWORD;
 
-    static std::string DEFAULT_LOCALE;
+	static std::string DEFAULT_LOCALE;
 };
+
+
+#endif

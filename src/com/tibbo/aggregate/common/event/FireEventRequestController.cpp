@@ -54,7 +54,7 @@ void FireEventRequestController::setIgnoreStorageErrors(bool ignoreStorageErrors
     this->ignoreStorageErrors = ignoreStorageErrors;
 }
 
-Event* FireEventRequestController::process(Event* event)
+EventPtr FireEventRequestController::process(EventPtr event)
 {
     return event;
 }

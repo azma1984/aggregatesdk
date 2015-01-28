@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/device/DeviceContext.java
-
 #ifndef _DeviceContext_H_
 #define _DeviceContext_H_
 
@@ -12,8 +10,8 @@
 #include "util/date.h"
 #include "device/sync/SynchronizationResult.h"
 #include "device/sync/SynchronizationParameters.h"
-//#include <mutex>
-//#include <thread>
+#include <boost/thread/mutex.hpp>
+#include <boost/thread.hpp>
 class SettingSynchronizationOptions;
 
 class DeviceSettingStatus;
@@ -57,16 +55,15 @@ public:
   /**
    * Returns caller controller with effective permissions of the user owning this device account.
    * 
-   * @return Caller controller
+   * @return
    */
-    virtual CallerController* getCallerController()=0;
+    virtual CallerControllerPtr getCallerController()=0;
 
   /**
    * Returns device driver used by this device account.
    * 
-   * @return Device driver
-   */
-    virtual DeviceDriver* getDriver()=0;
+   * @return DeviceDriverPtr/
+    virtual DeviceDriverPtr getDriver()=0;
 
   /**
    * This method returns string representation of device address or null if device has no address. The call is delegated to device driver.
@@ -87,7 +84,7 @@ public:
    *          Name of variable
    * @return Synchronization options
    */
-   virtual  SettingSynchronizationOptions* getSynchronizationOptions(const std::string &variable)=0;
+   virtual  SettingSynchronizationOptionsPtr getSynchronizationOptions(const std::string &variable)=0;
  /**
    * Returns synchronization status of a device setting variable.
    * 
@@ -95,7 +92,7 @@ public:
    *          Name of variable
    * @return Synchronization status
    */
-	virtual DeviceSettingStatus* getSettingStatus(const std::string &variable)=0;
+	virtual DeviceSettingStatusPtr getSettingStatus(const std::string &variable)=0;
  /**
    * Returns device online status. Note that online status may be reported incorrectly if device is suspended.
    * 
@@ -118,8 +115,6 @@ public:
    * 
    * The default status expression will be used only for newly created device accounts. This method will have no effect if default status expression has already been changed for an account.
    * 
-   * @param expression
-   *          New default status expression
    */
    virtual  void setDefaultStatusExpression(const std::string & expression)=0;
   /**
@@ -127,8 +122,6 @@ public:
    * 
    * The default color expression will be used only for newly created device accounts. This method will have no effect if default color expression has already been changed for an account.
    * 
-   * @param expression
-   *          New default color expression
    */
    virtual  void setDefaultColorExpression(const std::string & expression)=0;
   /**
@@ -136,8 +129,6 @@ public:
    * 
    * The default latitude expression will be used only for newly created device accounts. This method will have no effect if default latitude expression has already been changed for an account.
    * 
-   * @param expression
-   *          New default latitude expression
    */
    virtual  void setDefaultLatitudeExpression(const std::string & expression)=0;
 
@@ -146,8 +137,6 @@ public:
    * 
    * The default longitude expression will be used only for newly created device accounts. This method will have no effect if default longitude expression has already been changed for an account.
    * 
-   * @param expression
-   *          New default longitude expression
    */
     virtual void setDefaultLongitudeExpression(const std::string & expression)=0;
   /**
@@ -171,7 +160,7 @@ public:
    * @param options
    *          Default synchronization options
    */
-    virtual void setDefaultSynchronizationOptions(const std::string &variable, SettingSynchronizationOptions* options)=0;
+    virtual void setDefaultSynchronizationOptions(const std::string &variable, SettingSynchronizationOptionsPtr options)=0;
   /**
    * Sets default synchronization options for a device setting variable. This call can modify system-wide or local (account-wide) list of default synchronization options.
    * 
@@ -182,18 +171,17 @@ public:
    * @param options
    *          Default synchronization options
    */
-	virtual void setDefaultSynchronizationOptions(const std::string &variable, bool local, SettingSynchronizationOptions* options)=0;
+	virtual void setDefaultSynchronizationOptions(const std::string &variable, bool local, SettingSynchronizationOptionsPtr options)=0;
   /**
    * Sets custom synchronization handler for a device setting variable.
    * 
    * @param variable
    *          Name of variable
    * @param handler
-   *          Synchronization handler
-   * @param forceCustomSyncMode
+   *          SynchronizationHandlerPtr @param forceCustomSyncMode
    *          Switch setting to a custom synchronization mode if true
    */
-    virtual void setCustomSynchronizationHandler(const std::string &variable, SynchronizationHandler* handler, bool forceCustomSyncMode)=0;
+    virtual void setCustomSynchronizationHandler(const std::string &variable, SynchronizationHandlerPtr handler, bool forceCustomSyncMode)=0;
 
   /**
    * Removes custom synchronization handler of a device setting variable.
@@ -212,8 +200,7 @@ public:
    * @param deviceType
    *          Device type string
    * @throws ContextException
-   *           If device type change fails since device controller of a new device type cannot be applied to current device context
-   */
+   *           If device type change fails since device controller of a new device type cannot be applied to current device */
    virtual  void setDeviceType(const std::string & deviceType)=0 ;
   /**
    * Sets an access setting reinitializer in the device context. The reinitializer is supposed to react to a changed device access setting change. However, in most cases the system just reconnects to
@@ -246,12 +233,12 @@ public:
   /**
    * Should be called by the device driver once new setting's value was asynchronously received from the hardware. This method updates settings cache.
    */
-    virtual void asyncVariableUpdate(const std::string &variable, DataTable* value)=0 /* throws(DisconnectionException, ContextException, DeviceException) */;
+    virtual void asyncVariableUpdate(const std::string &variable, DataTablePtr value)=0 /* throws(DisconnectionException, ContextException, DeviceException) */;
   /**
    * Should be called by the device driver once a new historical value of a device setting was received from hardware. This method stores value in the server database and updates associated
    * statistical channels.
    */
-	virtual void processHistoricalValue(const std::string &variable, Date* timestamp, DataTable* value)=0 ;
+	virtual void processHistoricalValue(const std::string &variable, DatePtr timestamp, DataTablePtr value)=0 ;
 
   /**
    * Returns synchronization lock.
@@ -262,7 +249,7 @@ public:
    * 
    * Warning: the synchronization lock must be obtained before the call to this method and released later on.
    */
-   virtual  SynchronizationResult* executeSynchronization(SynchronizationParameters* parameters)=0;
+   virtual  SynchronizationResultPtr executeSynchronization(SynchronizationParametersPtr parameters)=0;
   /**
    * Sets new synchronization status for the device. This method must be called by the driver in the end of synchronization only for devices those
    * {@link com.tibbo.aggregate.common.device.DeviceDriver#isUsesConnections()} method returns false. The method is normally called from
@@ -277,19 +264,19 @@ public:
    * 
    * @return Definition of new variable if added or null otherwise
    */
-   virtual  VariableDefinition* discoverDeviceVariable(const std::string &name, int timeout, void* helper)=0 ;
+   virtual  VariableDefinitionPtr discoverDeviceVariable(const std::string &name, int timeout, AgObjectPtr helper)=0 ;
   /**
    * Forces the device driver to discover a new function and adds it to context if found.
    * 
    * @return Definition of new function if added or null otherwise
    */
-   virtual  FunctionDefinition* discoverDeviceFunction(const std::string &name, int timeout, void* helper)=0 ;
+   virtual  FunctionDefinitionPtr discoverDeviceFunction(const std::string &name, int timeout, AgObjectPtr helper)=0 ;
   /**
    * Forces the device driver to discover a new event and adds it to context if found.
    * 
    * @return Definition of new event if added or null otherwise
    */
-   virtual  EventDefinition* discoverDeviceEvent(const std::string &name, int timeout, void* helper)=0 ;
+   virtual  EventDefinitionPtr discoverDeviceEvent(const std::string &name, int timeout, AgObjectPtr helper)=0 ;
 };
 
 

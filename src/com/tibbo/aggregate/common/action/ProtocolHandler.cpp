@@ -104,28 +104,28 @@ std::string& com::tibbo::aggregate::common::action::ProtocolHandler::FIELD_ACTIO
 }
 std::string com::tibbo::aggregate::common::action::ProtocolHandler::FIELD_ACTION_ID_ACTION_ID_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_ID_FORMAT()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_ID_FORMAT()
 {
     
     return FORMAT_ACTION_ID_FORMAT_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_ID_FORMAT_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_ID_FORMAT_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_COMMAND()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_COMMAND()
 {
     
     return FORMAT_ACTION_COMMAND_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_COMMAND_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_COMMAND_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_RESPONSE()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_RESPONSE()
 {
     
     return FORMAT_ACTION_RESPONSE_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_RESPONSE_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::ProtocolHandler::FORMAT_ACTION_RESPONSE_;
 
-DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionIdToDataTable(ActionIdentifier* id)
+DateDataTablePtr com::tibbo::aggregate::common::action::ProtocolHandler::actionIdToDataTable(ActionIdentifierPtr id)
 {
     
     auto stringId = id != 0 ? id)->toString() : static_cast< const std::string & >(0);
@@ -134,7 +134,7 @@ DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionIdT
     return dataTable;
 }
 
-com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::common::action::ProtocolHandler::actionIdFromDataTable(DataTable* table)
+com::tibbo::aggregate::common::action::ActionIdentifierPtr com::tibbo::aggregate::common::action::ProtocolHandler::actionIdFromDataTable(DataTablePtr table)
 {
     
     if(table == 0) {
@@ -147,7 +147,7 @@ com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::
     return actionId;
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandToDataTable(GenericActionCommand* cmd)
+DateDataTablePtr com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandToDataTable(GenericActionCommandPtr cmd)
 {
     
     auto table = new DataTable(FORMAT_ACTION_COMMAND_);
@@ -164,7 +164,7 @@ DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionCom
     return table;
 }
 
-com::tibbo::aggregate::common::action::GenericActionCommand* com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandFromDataTable(DataTable* table)
+com::tibbo::aggregate::common::action::GenericActionCommandPtr com::tibbo::aggregate::common::action::ProtocolHandler::actionCommandFromDataTable(DataTablePtr table)
 {
     
     if(table == 0) {
@@ -179,11 +179,11 @@ com::tibbo::aggregate::common::action::GenericActionCommand* com::tibbo::aggrega
     actionCmd)->setLast((table)->rec())->getBoolean(FIELD_ACTION_COMMAND_LAST_)))->booleanValue());
     actionCmd)->setBatchEntry((table)->rec())->getBoolean(FIELD_ACTION_COMMAND_BATCH_MEMBER_)))->booleanValue());
     auto requestIdString = table)->rec())->getString(FIELD_ACTION_COMMAND_REQUEST_ID_);
-    actionCmd)->setRequestId((requestIdString != 0 && requestIdString)->length() > 0) ? new RequestIdentifier(requestIdString) : static_cast< RequestIdentifier* >(0));
+    actionCmd)->setRequestId((requestIdString != 0 && requestIdString)->length() > 0) ? new RequestIdentifier(requestIdString) : static_cast< RequestIdentifierPtr >(0));
     return actionCmd;
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseToDataTable(GenericActionResponse* response)
+DateDataTablePtr com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseToDataTable(GenericActionResponsePtr response)
 {
     
     auto table = new DataTable(FORMAT_ACTION_RESPONSE_);
@@ -197,7 +197,7 @@ DateDataTable* com::tibbo::aggregate::common::action::ProtocolHandler::actionRes
     return table;
 }
 
-com::tibbo::aggregate::common::action::GenericActionResponse* com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseFromDataTable(DataTable* table)
+com::tibbo::aggregate::common::action::GenericActionResponsePtr com::tibbo::aggregate::common::action::ProtocolHandler::actionResponseFromDataTable(DataTablePtr table)
 {
     
     if(table == 0 || table)->getRecordCount() == 0) {
@@ -207,7 +207,7 @@ com::tibbo::aggregate::common::action::GenericActionResponse* com::tibbo::aggreg
         std::cout <<"Illegal action response table format: "_j)->append(table)->getFormat()))->toString());
     }
     auto requestIdString = table)->rec())->getString(FIELD_ACTION_RESPONSE_REQUEST_ID_);
-    RequestIdentifier* requestId;
+    RequestIdentifierPtr requestId;
     if(requestIdString != 0 && requestIdString)->length() > 0) {
         requestId = new RequestIdentifier(requestIdString);
     }
@@ -219,7 +219,7 @@ com::tibbo::aggregate::common::action::GenericActionResponse* com::tibbo::aggreg
 
 java::lang::Class* com::tibbo::aggregate::common::action::ProtocolHandler::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.ProtocolHandler", 49);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.ProtocolHandler", 49);
     return c;
 }
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef AcknowledgementH
+#define AcknowledgementH
 
 #include <string>
 #include <boost/shared_ptr.hpp>
@@ -17,7 +18,7 @@ private:
     static const std::string FIELD_AUTHOR;
     static const std::string FIELD_TIME;
     static const std::string FIELD_TEXT;
-    static boost::shared_ptr<TableFormat> FORMAT;
+    static TableFormatPtr FORMAT;
     std::string author;
     Date time;
     std::string text;
@@ -31,10 +32,12 @@ public:
     void setAuthor(const std::string& author);
     void setText(const std::string& text);
     void setTime(Date time);
-	boost::shared_ptr<TableFormat> getFormat();
+	TableFormatPtr getFormat();
     
     virtual Acknowledgement *clone() const;
 
     Acknowledgement();
     Acknowledgement(const std::string& author, Date time, const std::string& text);
 };
+
+#endif

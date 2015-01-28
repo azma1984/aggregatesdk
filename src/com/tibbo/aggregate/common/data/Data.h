@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DataH
+#define DataH
 
 #include "util/Cloneable.h"
 #include "util/AgObject.h"
@@ -29,26 +30,28 @@ public:
 	long getId();
 	std::vector<char> getData();
 	std::vector<char> getBlob();
-    std::map< std::string,  boost::shared_ptr<AgObject> > getAttachments();
+    std::map< std::string,  AgObjectPtr > getAttachments();
 
-    std::vector<char> fetchData(ContextManager* cm, CallerController* cc);
+    std::vector<char> fetchData(ContextManagerPtr cm, CallerControllerPtr cc);
 
     std::string toDetailedString();
     std::string toString();
     std::string toCleanString();
 
-    void setAttachments(std::map<std::string, boost::shared_ptr<AgObject> > &attachments);
+    void setAttachments(std::map<std::string, AgObjectPtr > &attachments);
 
-    virtual Data* clone() const;
-    bool equals(Data *data);
+    virtual DataPtr clone() const;
+    bool equals(DataPtrdata);
 		
 private:
 	long id;
 	std::string name;
 	std::vector<char> preview;
 	std::vector<char> data;
-    std::map<std::string, boost::shared_ptr<AgObject> > attachments;
+    std::map<std::string, AgObjectPtr > attachments;
 
     int checksum(const std::vector<char> &bytes);
 
 };
+
+#endif

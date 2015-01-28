@@ -20,13 +20,13 @@
 //    ctor(lockTimeout);
 //}
 //
-//DefaultRequestController::DefaultRequestController(void* originator) 
+//DefaultRequestController::DefaultRequestController(AgObjectPtr originator) 
 //    : DefaultRequestController(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(originator);
 //}
 //
-//DefaultRequestController::DefaultRequestController(Evaluator* evaluator) 
+//DefaultRequestController::DefaultRequestController(EvaluatorPtr evaluator) 
 //    : DefaultRequestController(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(evaluator);
@@ -43,24 +43,24 @@
 //    this->lockTimeout = lockTimeout;
 //}
 //
-//void DefaultRequestController::ctor(void* originator)
+//void DefaultRequestController::ctor(AgObjectPtr originator)
 //{
 //    super::ctor();
 //    this->originator = originator;
 //}
 //
-//void DefaultRequestController::ctor(Evaluator* evaluator)
+//void DefaultRequestController::ctor(EvaluatorPtr evaluator)
 //{
 //    super::ctor();
 //    this->evaluator = evaluator;
 //}
 //
-//void* DefaultRequestController::getOriginator()
+//AgObjectPtr DefaultRequestController::getOriginator()
 //{
 //    return originator;
 //}
 //
-//void DefaultRequestController::setOriginator(void* originator)
+//void DefaultRequestController::setOriginator(AgObjectPtr originator)
 //{
 //    this->originator = originator;
 //}
@@ -75,12 +75,12 @@
 //    this->lockTimeout = lockTimeout;
 //}
 //
-//Evaluator* DefaultRequestController::getEvaluator()
+//EvaluatorPtr DefaultRequestController::getEvaluator()
 //{
 //    return evaluator;
 //}
 //
-//void DefaultRequestController::setEvaluator(Evaluator* evaluator)
+//void DefaultRequestController::setEvaluator(EvaluatorPtr evaluator)
 //{
 //    this->evaluator = evaluator;
 //}

@@ -1,9 +1,9 @@
-#pragma once
+#ifndef PersistentPropertiesH
+#define PersistentPropertiesH
 
-class PersistentProperties   
+class PersistentProperties
 {
-//TODO: not used
-/*
+
 public:
     PersistentProperties() {}
 	
@@ -16,5 +16,7 @@ public:
 	
 private:
     std::map<std::string, DataTable> properties;
-*/
+
 };
+
+#endif

@@ -9,31 +9,30 @@
 //#include "datatable/TableFormat.h"
 //#include "datatable/field/StringFieldFormat.h"
 
-//Singleton //todo - class stub
+//todo - class stub
+//Singleton
 class VariableInfo
 {
-// private:
-//   VariableInfo();
-//   ~VariableInfo();
-//   VariableInfo(VariableInfo const&);
-//   void operator=(VariableInfo const&);
-//
-//   static TableFormat *FORMAT;
-//
-//public:
-//    static boost::shared_ptr<DataTable> createInfoTable(VariableDefinition* vd);
-//
-//    
-//   static VariableInfo& getInstance()
-//    {
-//     static VariableInfo instance;
-//     return instance;
-//    }
-// 
-//
-//
-//    static TableFormat& getFORMAT();
+ private:
+   VariableInfo();
+   ~VariableInfo();
+   VariableInfo(VariableInfo const&);
+   void operator=(VariableInfo const&);
 
+   static TableFormatPtrFORMAT;
+
+public:
+    static DataTablePtr createInfoTable(VariableDefinitionPtr vd);
+
+
+   static VariableInfo& getInstance()
+    {
+     static VariableInfo instance;
+     return instance;
+    }
+
+
+	static TableFormat& getFORMAT();
 };
 
 

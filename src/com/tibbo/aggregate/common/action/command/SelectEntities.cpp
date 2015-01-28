@@ -31,7 +31,7 @@ com::tibbo::aggregate::common::action::command::SelectEntities::SelectEntities()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::SelectEntities::SelectEntities(const std::string & title, ::java::util::Collection* contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection) 
+com::tibbo::aggregate::common::action::command::SelectEntities::SelectEntities(const std::string & title, std::list contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection) 
     : SelectEntities(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,contextTypes,rootContext,defaultContext,expandedContext,showChildren,allowMasks,showVars,showFuncs,showEvents,showFields,singleSelection);
@@ -128,33 +128,33 @@ std::string& com::tibbo::aggregate::common::action::command::SelectEntities::RF_
 }
 std::string com::tibbo::aggregate::common::action::command::SelectEntities::RF_REFERENCE_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES()
 {
     
     return CFT_SELECT_ENTITIES_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES()
 {
     
     return CFT_SELECT_ENTITIES_TYPES_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES()
 {
     
     return RFT_SELECT_ENTITIES_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES_;
 
 void com::tibbo::aggregate::common::action::command::SelectEntities::ctor()
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SELECT_ENTITIES(), CFT_SELECT_ENTITIES_, RFT_SELECT_ENTITIES_);
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::ctor(const std::string & title, ::java::util::Collection* contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection)
+void com::tibbo::aggregate::common::action::command::SelectEntities::ctor(const std::string & title, std::list contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SELECT_ENTITIES(), title);
     this->contextTypes = contextTypes;
@@ -170,9 +170,9 @@ void com::tibbo::aggregate::common::action::command::SelectEntities::ctor(const 
     this->singleSelection = singleSelection;
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::SelectEntities::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::SelectEntities::constructParameters()
 {
-    DataTable* types;
+    DataTablePtr types;
     if(contextTypes != 0) {
         types = new DataTable(CFT_SELECT_ENTITIES_TYPES_);
         for (auto _i = contextTypes)->iterator(); _i->hasNext(); ) {
@@ -190,7 +190,7 @@ java::util::Collection* com::tibbo::aggregate::common::action::command::SelectEn
     return contextTypes;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setContextTypes(::java::util::Collection* contextTypes)
+void com::tibbo::aggregate::common::action::command::SelectEntities::setContextTypes(std::list contextTypes)
 {
     this->contextTypes = contextTypes;
 }
@@ -299,7 +299,7 @@ void com::tibbo::aggregate::common::action::command::SelectEntities::setSingleSe
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::SelectEntities::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.SelectEntities", 56);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.SelectEntities", 56);
     return c;
 }
 

@@ -69,7 +69,7 @@ std::string Location::toString()
 
 java::lang::Class* Location::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.data.Location", 40);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.data.Location", 40);
     return c;
 }
 

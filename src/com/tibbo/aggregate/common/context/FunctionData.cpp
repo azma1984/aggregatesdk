@@ -1,7 +1,7 @@
 
 #include "context/FunctionData.h"
 
-#include "context/FunctionDefinition.h"
+
 
 
 //FunctionData::FunctionData(const ::default_init_tag&)
@@ -9,7 +9,7 @@
 //    
 //}
 //
-//FunctionData::FunctionData(FunctionDefinition* definition) 
+//FunctionData::FunctionData(FunctionDefinitionPtr definition) 
 //{
 //    ctor(definition);
 //}
@@ -19,7 +19,7 @@
 //    executionLock = new ::java::util::concurrent::locks::std::mutex *();
 //}
 //
-//void FunctionData::ctor(FunctionDefinition* definition)
+//void FunctionData::ctor(FunctionDefinitionPtr definition)
 //{
 //    super::ctor();
 //    init();
@@ -31,7 +31,7 @@
 //    executionCount++;
 //}
 //
-//FunctionDefinition* FunctionData::getDefinition()
+//FunctionDefinitionPtr FunctionData::getDefinition()
 //{
 //    return definition;
 //}
@@ -66,7 +66,7 @@
 //    this->implementationMethod = implementationMethod;
 //}
 //
-//int FunctionData::compareTo(FunctionData* d)
+//int FunctionData::compareTo(FunctionDataPtr d)
 //{
 //    if(d != 0) {
 //        return definition)->compareTo(d)->getDefinition());
@@ -74,9 +74,9 @@
 //    return 0;
 //}
 //
-//int FunctionData::compareTo(void* arg0)
+//int FunctionData::compareTo(AgObjectPtr arg0)
 //{ 
-//    return compareTo(dynamic_cast< FunctionData* >(arg0));
+//    return compareTo(dynamic_cast< FunctionDataPtr >(arg0));
 //}
 //
 //

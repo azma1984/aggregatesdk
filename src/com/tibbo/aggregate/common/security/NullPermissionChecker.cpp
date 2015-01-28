@@ -7,19 +7,19 @@ std::map<std::string, std::string> NullPermissionChecker::getPermissionLevels()
 }
 
 bool NullPermissionChecker::has(
-    boost::shared_ptr<CallerController> caller,
-    boost::shared_ptr<Permissions> requiredPermissions,
-    boost::shared_ptr<Context> accessedContext
+    CallerControllerPtr caller,
+    PermissionsPtr requiredPermissions,
+    ContextPtr accessedContext
 ){
     return true;
 }
 
-bool NullPermissionChecker::canSee(Permissions perms, const std::string& context, boost::shared_ptr<ContextManager> cm)
+bool NullPermissionChecker::canSee(Permissions perms, const std::string& context, ContextManagerPtr cm)
 {
     return true;
 }
 
-std::string NullPermissionChecker::getLevel(boost::shared_ptr<Permissions> perms, const std::string& context, boost::shared_ptr<ContextManager> cm)
+std::string NullPermissionChecker::getLevel(PermissionsPtr perms, const std::string& context, ContextManagerPtr cm)
 {
     return DefaultPermissionChecker::NULL_PERMISSIONS();
 }
@@ -30,9 +30,9 @@ bool NullPermissionChecker::isValid(const std::string& permissionLevel)
 }
 
 std::string NullPermissionChecker::canActivate(
-    boost::shared_ptr<Permissions> has,
-    boost::shared_ptr<Permissions> need,
-    boost::shared_ptr<ContextManager> cm
+    PermissionsPtr has,
+    PermissionsPtr need,
+    ContextManagerPtr cm
 ){
     return "";
 }

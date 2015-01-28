@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ThreadUtilsH
+#define ThreadUtilsH
 
 #include "datatable/DataTable.h"
 #include "datatable/TableFormat.h"
@@ -7,18 +8,18 @@
 class ThreadUtils
 {
 private:
-    static boost::shared_ptr<TableFormat> FORMAT_STACK_;
+    static TableFormatPtr FORMAT_STACK_;
 
 public:
     /*
      * TODO: StackTraceElemen
-    static DataTable* createStackTraceTable(vector<StackTraceElemen>& elements)
+    static DataTablePtr createStackTraceTable(vector<StackTraceElemen>& elements)
     {
 
     }
     /*
 
-    static boost::shared_ptr<TableFormat> FORMAT_STACK()
+    static TableFormatPtr FORMAT_STACK()
     {
         if (!FORMAT_STACK_) {
             FORMAT_STACK_.reset(new TableFormat());
@@ -34,3 +35,5 @@ public:
         return FORMAT_STACK_;
     }
 };
+
+#endif

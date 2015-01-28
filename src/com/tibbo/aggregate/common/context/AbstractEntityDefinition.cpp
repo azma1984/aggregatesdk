@@ -63,12 +63,12 @@ std::string AbstractEntityDefinition::getIconId()
     return iconId;
 }
 
-void* AbstractEntityDefinition::getOwner()
+AgObjectPtr AbstractEntityDefinition::getOwner()
 {
     return owner;
 }
 
-void AbstractEntityDefinition::setOwner(void* owner)
+void AbstractEntityDefinition::setOwner(AgObjectPtr owner)
 {
     this->owner = owner;
 }

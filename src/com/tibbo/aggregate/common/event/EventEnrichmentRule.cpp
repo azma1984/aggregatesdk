@@ -13,7 +13,7 @@ EventEnrichmentRule::EventEnrichmentRule()
 }
 
 
-EventEnrichmentRule::EventEnrichmentRule(DataRecord* data) 
+EventEnrichmentRule::EventEnrichmentRule(DataRecordPtr data) 
 {
   Init();
   //AggreGateBean::AggreGateBean(FORMAT,data);
@@ -41,7 +41,7 @@ void EventEnrichmentRule::setExpression(const std::string & expression)
     enrichmentExpression;
 }
 
-Expression* EventEnrichmentRule::getEnrichmentExpression()
+ExpressionPtr EventEnrichmentRule::getEnrichmentExpression()
 //{
 //    if(enrichmentExpression == 0) 
 //	{

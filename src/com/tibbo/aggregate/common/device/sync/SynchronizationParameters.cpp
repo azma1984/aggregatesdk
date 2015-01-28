@@ -120,7 +120,7 @@ int SynchronizationParameters::hashCode()
 }
 
 
-bool SynchronizationParameters::equals(SynchronizationParameters* obj)
+bool SynchronizationParameters::equals(SynchronizationParametersPtr obj)
 {
     if (this == obj)
         return true;
@@ -128,7 +128,7 @@ bool SynchronizationParameters::equals(SynchronizationParameters* obj)
     if (obj == NULL)
         return false;
 
-    SynchronizationParameters* other = dynamic_cast<SynchronizationParameters*>(obj);
+    SynchronizationParametersPtr other = dynamic_cast<SynchronizationParametersPtr>(obj);
     if (other == NULL)
         return false;
 
@@ -151,9 +151,9 @@ bool SynchronizationParameters::equals(SynchronizationParameters* obj)
     return true;
 }
 
-SynchronizationParameters* SynchronizationParameters::clone() const
+SynchronizationParametersPtr SynchronizationParameters::clone() const
 {
-    SynchronizationParameters* cl = new SynchronizationParameters(this);
+    SynchronizationParametersPtr cl = new SynchronizationParameters(this);
 
 	cl->connectOnly=connectOnly;
     cl->shouldReadMetadata=shouldReadMetadata;

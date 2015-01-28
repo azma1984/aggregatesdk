@@ -4,60 +4,48 @@
 
 
 //todo - class stub
-class VariableData//: public ::java::lang::Comparable
+class VariableData:Comparable
 {
-	/*
 private:
-    VariableDefinition* definition;
-    void* value;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* readWriteLock;
+    VariableDefinitionPtr definition;
+    AgObjectPtr value;
+    boost::shared_mutex readWriteLock;
     long getCount;
     long setCount;
     bool getterCached;
     bool setterCached;
-    ::java::lang::reflect::Method* getterMethod;
-    ::java::lang::reflect::Method* setterMethod;
-protected:
-    void ctor(VariableDefinition* definition);
+   //	::java::lang::reflect::Method* getterMethod;    todo
+   //	::java::lang::reflect::Method* setterMethod;    todo
+	 void init();
 
 public:
     void registerGetOperation();
     void registerSetOperation();
-    VariableDefinition* getDefinition();
+    VariableDefinitionPtr getDefinition();
 
 public: 
-    void* getValue();
-    void setValue(void* value);
+    AgObjectPtr getValue();
+    void setValue(AgObjectPtr value);
 
 public:
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* getReadWriteLock();
+    boost::shared_mutex getReadWriteLock();
     long getGetCount();
     long getSetCount();
     bool isGetterCached();
     void setGetterCached(bool getterCached);
     bool isSetterCached();
     void setSetterCached(bool setterCached);
-    ::java::lang::reflect::Method* getGetterMethod();
-    void setGetterMethod(::java::lang::reflect::Method* getter);
-    ::java::lang::reflect::Method* getSetterMethod();
-    void setSetterMethod(::java::lang::reflect::Method* setter);
-    int compareTo(VariableData* d);
-
-    // Generated
-    VariableData(VariableDefinition* definition);
-protected:
-    VariableData(const ::default_init_tag&);
+  //  ::java::lang::reflect::Method* getGetterMethod();  todo
+  //  void setGetterMethod(::java::lang::reflect::Method* getter); todo
+   // ::java::lang::reflect::Method* getSetterMethod(); todo
+  //  void setSetterMethod(::java::lang::reflect::Method* setter); todo
+    int compareTo(VariableDataPtr d);
 
 
-public:
-    
+    VariableData(VariableDefinitionPtr definition);
 
-private:
-    void init();
 
-public:
-    int compareTo(void* arg0);
-	*/
+
 };
 
 #endif

@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/plugin/DemoServerPlugin.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
 #include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
@@ -23,11 +24,11 @@ private:
     static const std::string TRACKER_NAME_;
     static const std::string VARIABLE_CONFIG_;
     static const std::string FIELD_CREATE_TRACKERS_;
-    static TableFormat* FORMAT_CONFIG_;
+    static TableFormatPtr FORMAT_CONFIG_;
 
 public:
-    void globalInit(Context* rootContext) /* throws(PluginException) */;
-    void install(::com::tibbo::aggregate::common::server::ServerContext* context) /* throws(ContextException, PluginException) */;
+    void globalInit(ContextPtr rootContext) /* throws(PluginException) */;
+    void install(::com::tibbo::aggregate::common::server::ServerContextPtr context) /* throws(ContextException, PluginException) */;
 
     // Generated
     DemoServerPlugin();
@@ -38,13 +39,13 @@ protected:
 public:
     
     static void 
-    void install(ContextManager* cm);
+    void install(ContextManagerPtr cm);
 
 private:
     static const std::string& CONTEXT_TYPE_TRACKERS();
     static const std::string& TRACKER_NAME();
     static const std::string& VARIABLE_CONFIG();
     static const std::string& FIELD_CREATE_TRACKERS();
-    static TableFormat*& FORMAT_CONFIG();
-    ::java::lang::Class* getClass0();
+    static TableFormatPtr& FORMAT_CONFIG();
+    AgClassPtr getClass0();
 };

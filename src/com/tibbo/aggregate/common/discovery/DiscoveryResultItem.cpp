@@ -2,34 +2,34 @@
 
 
 DiscoveryResultItem::DiscoveryResultItem(
-        boost::shared_ptr<DiscoverableServiceDefinition> aDiscoverableServiceDefinition,
-        boost::shared_ptr<DataRecord> parametersDataRecord
+        DiscoverableServiceDefinitionPtr aDiscoverableServiceDefinition,
+        DataRecordPtr parametersDataRecord
 ){
     this->serviceDefinition = aDiscoverableServiceDefinition;
     setParameters(parametersDataRecord);
 }
 
 DiscoveryResultItem::DiscoveryResultItem(
-        boost::shared_ptr<DiscoverableServiceDefinition> aDiscoverableServiceDefinition,
-        boost::shared_ptr<DataRecord> parametersDataRecord,
-        boost::shared_ptr<DeviceRecommendation> aDeviceRecommendation
+        DiscoverableServiceDefinitionPtr aDiscoverableServiceDefinition,
+        DataRecordPtr parametersDataRecord,
+        DeviceRecommendationPtr aDeviceRecommendation
 ){
     this->deviceRecommendation = aDeviceRecommendation;
     this->serviceDefinition = aDiscoverableServiceDefinition;
     setParameters(parametersDataRecord);
 }
 
-boost::shared_ptr<DiscoverableServiceDefinition> DiscoveryResultItem::getServiceDefinition()
+DiscoverableServiceDefinitionPtr DiscoveryResultItem::getServiceDefinition()
 {
     return serviceDefinition;
 }
 
-boost::shared_ptr<DataRecord> DiscoveryResultItem::getParameters()
+DataRecordPtr DiscoveryResultItem::getParameters()
 {
     return parameters;
 }
 
-void DiscoveryResultItem::setParameters(boost::shared_ptr<DataRecord> parametersDataRecord)
+void DiscoveryResultItem::setParameters(DataRecordPtr parametersDataRecord)
 {
     this->parameters = parametersDataRecord;
 }
@@ -50,7 +50,7 @@ std::string DiscoveryResultItem::getDeviceDescription()
     return "";
 }
 
-boost::shared_ptr<DiscoveryProvider> DiscoveryResultItem::getDiscoveryProvider()
+DiscoveryProviderPtr DiscoveryResultItem::getDiscoveryProvider()
 {
     return serviceDefinition->getDiscoveryProvider();
 }
@@ -70,12 +70,12 @@ bool DiscoveryResultItem::isEnabledByDefault()
     return serviceDefinition->isEnabledByDefault();
 }
 
-boost::shared_ptr<DataTable> DiscoveryResultItem::getParametersTable()
+DataTablePtr DiscoveryResultItem::getParametersTable()
 {
-    return (boost::shared_ptr<DataTable>)parameters->wrap();
+    return (DataTablePtr)parameters->wrap();
 }
 
-boost::shared_ptr<DeviceRecommendation> DiscoveryResultItem::getDeviceRecommendation()
+DeviceRecommendationPtr DiscoveryResultItem::getDeviceRecommendation()
 {
     return deviceRecommendation;
 }

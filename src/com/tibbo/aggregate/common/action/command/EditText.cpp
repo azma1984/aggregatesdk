@@ -19,13 +19,13 @@ EditText::EditText(const std::string & title, const std::string & text, const st
     this->mode = mode;
 }
 
-EditText::EditText(const std::string & title, boost::shared_ptr<DataTable> parameters)
+EditText::EditText(const std::string & title, DataTablePtr parameters)
 {
     GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, title, parameters, CFT_EDIT_TEXT());
 }
 
 
-boost::shared_ptr<TableFormat> EditText::CFT_EDIT_TEXT()
+TableFormatPtr EditText::CFT_EDIT_TEXT()
 {
     if (!CFT_EDIT_TEXT_) {
         CFT_EDIT_TEXT_.reset(new TableFormat(1, 1));
@@ -37,7 +37,7 @@ boost::shared_ptr<TableFormat> EditText::CFT_EDIT_TEXT()
     return CFT_EDIT_TEXT_;
 }
 
-boost::shared_ptr<TableFormat> EditText::RFT_EDIT_TEXT()
+TableFormatPtr EditText::RFT_EDIT_TEXT()
 {
     if (!RFT_EDIT_TEXT_) {
         RFT_EDIT_TEXT_.reset(new TableFormat(1, 1));
@@ -50,7 +50,7 @@ boost::shared_ptr<TableFormat> EditText::RFT_EDIT_TEXT()
 }
 
 
-DataTable* EditText::constructParameters()
+DataTablePtr EditText::constructParameters()
 {
     return new DataTable(CFT_EDIT_TEXT(), text, mode);
 }

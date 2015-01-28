@@ -1,55 +1,35 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/ReplyMonitor.java
 
-#pragma once
+#ifndef ReplyMonitorH
+#define ReplyMonitorH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/communication/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/locks/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+//#include "Log.h"
+#include "communication/Command.h"
 
-
-
-class com::tibbo::aggregate::common::communication::ReplyMonitor
-    
+class ReplyMonitor
 {
-
-public:
-    typedef void super;
-
-private:
-    Command* command;
-    Command* reply;
+ private:
+    CommandPtr command;
+    CommandPtr reply;
     long startTime;
     long time;
-    ::java::util::concurrent::locks::Lock* lock;
-    ::java::util::concurrent::locks::Condition* commandReceivedCondition;
+   // ::java::util::concurrent::locks::Lock* lock;    todo
+   // ::java::util::concurrent::locks::Condition* commandReceivedCondition; todo
     bool timeoutReset;
-    bool terminated;
-protected:
-    void ctor(Command* command);
+	bool terminated;
+	void init();
 
 public:
-    Command* getCommand();
-    Command* getReply();
-    void setReply(Command* reply);
-    void terminate();
-    void reset();
-    bool waitReply(long timeout) /* throws(InterruptedException) */;
-    long getTime();
-    long getStartTime();
-    const std::string & toString();
+	CommandPtr getCommand();
+	CommandPtr getReply();
+	void setReply(CommandPtr reply);
+	void terminate();
+	void reset();
+	bool waitReply(long timeout);
+	long getTime();
+	long getStartTime();
+	const std::string & toString();
 
-    // Generated
-    ReplyMonitor(Command* command);
-protected:
-    ReplyMonitor(const ::default_init_tag&);
+	ReplyMonitor(CommandPtr command);
 
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
 };
+#endif

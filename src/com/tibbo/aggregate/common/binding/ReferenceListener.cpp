@@ -5,7 +5,7 @@
 
 java::lang::Class* com::tibbo::aggregate::common::binding::ReferenceListener::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.binding.ReferenceListener", 52);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.binding.ReferenceListener", 52);
     return c;
 }
 

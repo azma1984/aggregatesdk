@@ -5,18 +5,18 @@
 
 
 
-void AgentImplementationController::processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) 
+void AgentImplementationController::processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) 
 {
     DefaultClientController::processMessageOperation(cmd, ans);
     std::string context = cmd->getParameter(AggreGateCommand::INDEX_OPERATION_CONTEXT);
-    Context* con = getContext(context);
+    ContextPtr con = getContext(context);
     if(con != 0) 
     {
      addNormalListener(con->getPath(),AbstractContext::E_UPDATED, getDefaultEventListener());
     }
 }
 
-bool AgentImplementationController::controllerShouldHandle(Event* ev, ContextEventListener* listener) 
+bool AgentImplementationController::controllerShouldHandle(EventPtr ev, ContextEventListenerPtr listener) 
 {
     return true;
 }

@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ServerActionInput.java
-
 #ifndef ServerActionInputH
 #define ServerActionInputH
 
@@ -13,20 +11,20 @@
 class ServerActionInput : public InitialRequest
 {
  private:
-    boost::shared_ptr<DataTable> data;
-    boost::shared_ptr<RequestIdentifier> requestId;
+    DataTablePtr data;
+    RequestIdentifierPtr requestId;
     bool remember;
 
  public:
 	ServerActionInput();
-	ServerActionInput(GenericActionResponse* request);
-	ServerActionInput(DataTable* dataTable);
+	ServerActionInput(GenericActionResponsePtr request);
+	ServerActionInput(DataTablePtr dataTable);
 
-	DataTable* getData();	
+	DataTablePtr getData();	
 	void setRemember(bool flag);
-	void setRequestId(RequestIdentifier* requestId);
+	void setRequestId(RequestIdentifierPtr requestId);
     virtual bool shouldRemember();
-    virtual RequestIdentifier* getRequestId();
+    virtual RequestIdentifierPtr getRequestId();
 	void init();
 };
 

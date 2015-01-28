@@ -1,45 +1,28 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateCommandUtils.java
-
-#pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/protocol/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
+#ifndef AggreGateCommandUtilsH
+#define AggreGateCommandUtilsH
 
 
-
-class com::tibbo::aggregate::common::protocol::AggreGateCommandUtils
-    
+class AggreGateCommandUtils
 {
-
-public:
-    typedef void super;
-    static const int CLIENT_PROTOCOL_VERSION = 2) };
-    static OutgoingAggreGateCommand* startMessage();
-    static OutgoingAggreGateCommand* operationMessage();
-    static OutgoingAggreGateCommand* getVariableOperation(const std::string & context, const std::string & name);
-    static OutgoingAggreGateCommand* setVariableOperation(const std::string & context, const std::string & name, const std::string & encodedValue);
-    static OutgoingAggreGateCommand* callFunctionOperation(const std::string & context, const std::string & name, const std::string & encodedParameters);
-    static OutgoingAggreGateCommand* addEventListenerOperation(const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter);
-    static OutgoingAggreGateCommand* removeEventListenerOperation(const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter);
-
 private:
-    static const std::string CLIENT_COMMAND_SEPARATOR_;
-
-    // Generated
+	static const std::string CLIENT_COMMAND_SEPARATOR_;
 
 public:
+
+	static const int CLIENT_PROTOCOL_VERSION = 2;
+	static OutgoingAggreGateCommandPtr startMessage();
+	static OutgoingAggreGateCommandPtr operationMessage();
+	static OutgoingAggreGateCommandPtr getVariableOperation(const std::string & context, const std::string & name);
+	static OutgoingAggreGateCommandPtr setVariableOperation(const std::string & context, const std::string & name, const std::string & encodedValue);
+	static OutgoingAggreGateCommandPtr callFunctionOperation(const std::string & context, const std::string & name, const std::string & encodedParameters);
+	static OutgoingAggreGateCommandPtr addEventListenerOperation(const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter);
+	static OutgoingAggreGateCommandPtr removeEventListenerOperation(const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter);
+
+
     AggreGateCommandUtils();
-protected:
-    AggreGateCommandUtils(const ::default_init_tag&);
 
 
-public:
-    
-    static void 
     static const std::string& CLIENT_COMMAND_SEPARATOR();
 
-private:
-    ::java::lang::Class* getClass0();
 };
+#endif

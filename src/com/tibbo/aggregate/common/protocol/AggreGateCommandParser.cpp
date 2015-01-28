@@ -10,18 +10,18 @@ com::tibbo::aggregate::common::protocol::AggreGateCommandParser::AggreGateComman
     
 }
 
-com::tibbo::aggregate::common::protocol::AggreGateCommandParser::AggreGateCommandParser(::java::nio::channels::ReadableByteChannel* channel, int8_t startChar, int8_t endChar) 
+com::tibbo::aggregate::common::protocol::AggreGateCommandParser::AggreGateCommandParser(::java::nio::channels::ReadableByteChannel* channel, unsigned char startChar, unsigned char endChar) 
     : AggreGateCommandParser(*static_cast< ::default_init_tag* >(0))
 {
     ctor(channel,startChar,endChar);
 }
 
-void com::tibbo::aggregate::common::protocol::AggreGateCommandParser::ctor(::java::nio::channels::ReadableByteChannel* channel, int8_t startChar, int8_t endChar)
+void com::tibbo::aggregate::common::protocol::AggreGateCommandParser::ctor(::java::nio::channels::ReadableByteChannel* channel, unsigned char startChar, unsigned char endChar)
 {
     super::ctor(channel, ::java::lang::Byte::valueOf(startChar), endChar);
 }
 
-com::tibbo::aggregate::common::protocol::IncomingAggreGateCommand* com::tibbo::aggregate::common::protocol::AggreGateCommandParser::createCommandFromBufferContent() /* throws(SyntaxErrorException) */
+com::tibbo::aggregate::common::protocol::IncomingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::AggreGateCommandParser::createCommandFromBufferContent() /* throws(SyntaxErrorException) */
 {
     return new IncomingAggreGateCommand(getData());
 }
@@ -30,7 +30,7 @@ com::tibbo::aggregate::common::protocol::IncomingAggreGateCommand* com::tibbo::a
 
 java::lang::Class* com::tibbo::aggregate::common::protocol::AggreGateCommandParser::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.AggreGateCommandParser", 58);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.AggreGateCommandParser", 58);
     return c;
 }
 

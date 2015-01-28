@@ -20,20 +20,20 @@ class EventEnrichmentRule : public AggreGateBean
   
     std::string name;
     std::string expression;
-    Expression* enrichmentExpression;
+    ExpressionPtr enrichmentExpression;
 
 
 public:
-	static TableFormat* FORMAT;
+	static TableFormatPtr FORMAT;
     std::string getName();
     void setName(const std::string & name);
     std::string getExpression();
     void setExpression(const std::string & expression);
-    Expression* getEnrichmentExpression();
+    ExpressionPtr getEnrichmentExpression();
 
 	void Init();
     EventEnrichmentRule();
-    EventEnrichmentRule(DataRecord* data);
+    EventEnrichmentRule(DataRecordPtr data);
 
 };
 #endif

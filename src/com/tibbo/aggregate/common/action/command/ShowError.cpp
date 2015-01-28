@@ -63,16 +63,16 @@ std::string& com::tibbo::aggregate::common::action::command::ShowError::CF_EXCEP
 }
 std::string com::tibbo::aggregate::common::action::command::ShowError::CF_EXCEPTION_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowError::CFT_SHOW_ERROR()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::ShowError::CFT_SHOW_ERROR()
 {
     
     return CFT_SHOW_ERROR_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::ShowError::CFT_SHOW_ERROR_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::ShowError::CFT_SHOW_ERROR_;
 
 void com::tibbo::aggregate::common::action::command::ShowError::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_ERROR(), CFT_SHOW_ERROR_, static_cast< TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_ERROR(), CFT_SHOW_ERROR_, static_cast< TableFormatPtr >(0));
 }
 
 void com::tibbo::aggregate::common::action::command::ShowError::ctor(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception)
@@ -83,7 +83,7 @@ void com::tibbo::aggregate::common::action::command::ShowError::ctor(const std::
     this->exception = exception;
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::ShowError::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::ShowError::constructParameters()
 {
     auto t = new DataTable(CFT_SHOW_ERROR_);
     auto exTrace = new ::java::io::StringWriter();
@@ -128,7 +128,7 @@ void com::tibbo::aggregate::common::action::command::ShowError::setException(::j
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::ShowError::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowError", 51);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowError", 51);
     return c;
 }
 

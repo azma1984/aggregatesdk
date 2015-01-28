@@ -1,16 +1,16 @@
-#include "data/Event.h"
+﻿#include "data/Event.h"
 #include "util/TimeHelper.h"
 
 //const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD = 100 * TimeHelper::DAY_IN_MS; // Milliseconds
 
 
-/*Event::Event(const std::string& context, boost::shared_ptr<EventDefinition> def, int level,
-             boost::shared_ptr<DataTable> data, long id, boost::shared_ptr<Date> creationtime, boost::shared_ptr<Permissions> permissions)
+/*Event::Event(const std::string& context, EventDefinitionPtr def, int level,
+             DataTablePtr data, long id, DatePtr creationtime, PermissionsPtr permissions)
 {
     ctor(context,def,level,data,id,creationtime,permissions);
 }
 
-Event::Event(const std::string& context, const std::string& name, int level, boost::shared_ptr<DataTable> data, long id)
+Event::Event(const std::string& context, const std::string& name, int level, DataTablePtr data, long id)
 {
     ctor(context,name,level,data,id);
 }
@@ -18,8 +18,8 @@ Event::Event(const std::string& context, const std::string& name, int level, boo
 void Event::init()
 {
     instantiationtime = new Date();
-    data;
-    count = int(1);
+    data = 0;
+	count = 1;
 }
 
 const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD;
@@ -31,7 +31,7 @@ void Event::ctor()
     setCreationtime(new Date(::java::lang::System::currentTimeMillis()));
 }
 
-void Event::ctor(const std::string & context, EventDefinition* def, int level, DataTable* data, long  id, Date* creationtime, Permissions* permissions)
+void Event::ctor(const std::string & context, EventDefinitionPtr def, int level, DataTablePtr data, long  id, DatePtr creationtime, PermissionsPtr permissions)
 {
     ctor();
     init_(context, def)->getName(), level, data, id);
@@ -45,13 +45,13 @@ void Event::ctor(const std::string & context, EventDefinition* def, int level, D
     }
 }
 
-void Event::ctor(const std::string & context, const std::string & name, int level, DataTable* data, long  id)
+void Event::ctor(const std::string & context, const std::string & name, int level, DataTablePtr data, long  id)
 {
     ctor();
     init_(context, name, level, data, id);
 }
 
-void Event::init_(const std::string & context, const std::string & name, int level, DataTable* data, long  id)
+void Event::init_(const std::string & context, const std::string & name, int level, DataTablePtr data, long  id)
 {
     this->context = context;
     this->name = name;
@@ -65,12 +65,12 @@ long Event::getId()
     return id;
 }
 
-boost::shared_ptr<Date> Event::getInstantiationtime()
+DatePtr Event::getInstantiationtime()
 {
     return instantiationtime;
 }
 
-boost::shared_ptr<Date> Event::getCreationtime()
+DatePtr Event::getCreationtime()
 {
     return creationtime;
 }
@@ -85,12 +85,12 @@ std::string Event::getName()
     return name;
 }
 
-boost::shared_ptr<Date> Event::getExpirationtime()
+DatePtr Event::getExpirationtime()
 {
     return expirationtime;
 }
 
-boost::shared_ptr<DataTable> Event::getAcknowledgementsTable()
+DataTablePtr Event::getAcknowledgementsTable()
 {
     try {
         return DataTableConversion::beansToTable(acknowledgements, Acknowledgement::FORMAT(), false);
@@ -99,7 +99,7 @@ boost::shared_ptr<DataTable> Event::getAcknowledgementsTable()
     }
 }
 
-boost::shared_ptr<DataTable> Event::getEnrichmentsTable()
+DataTablePtr Event::getEnrichmentsTable()
 {
     try {
         return DataTableConversion::beansToTable(enrichments, Enrichment::FORMAT(), false);
@@ -108,7 +108,7 @@ boost::shared_ptr<DataTable> Event::getEnrichmentsTable()
     }
 }
 
-void Event::setAcknowledgementsTable(boost::shared_ptr<DataTable> data)
+void Event::setAcknowledgementsTable(DataTablePtr data)
 {
     try {
         acknowledgements = DataTableConversion::beansFromTable(data, Acknowledgement::class_(), Acknowledgement::FORMAT, false);
@@ -117,7 +117,7 @@ void Event::setAcknowledgementsTable(boost::shared_ptr<DataTable> data)
     }
 }
 
-void Event::setEnrichmentsTable(boost::shared_ptr<DataTable> data)
+void Event::setEnrichmentsTable(DataTablePtr data)
 {
     try {
         enrichments = DataTableConversion::beansFromTable(data, Enrichment::class_(), Enrichment::FORMAT, false);
@@ -126,22 +126,22 @@ void Event::setEnrichmentsTable(boost::shared_ptr<DataTable> data)
     }
 }
 
-void Event::addAcknowledgement(boost::shared_ptr<Acknowledgement> ack)
+void Event::addAcknowledgement(AcknowledgementPtr ack)
 {
     acknowledgements.push_back(ack);
 }
 
-std::list<boost::shared_ptr<Acknowledgement>> Event::getAcknowledgements()
+std::list<AcknowledgementPtr> Event::getAcknowledgements()
 {
     return this->acknowledgements;
 }
 
-void Event::addEnrichment(boost::shared_ptr<Enrichment> enrichment)
+void Event::addEnrichment(EnrichmentPtr enrichment)
 {
     enrichments.push_back(enrichment);
 }
 
-std::list<boost::shared_ptr<Enrichment>> Event::getEnrichments()
+std::list<EnrichmentPtr> Event::getEnrichments()
 {
     return enrichments;
 }
@@ -151,7 +151,7 @@ void Event::setId(long id)
     this->id = id;
 }
 
-void Event::setCreationtime(boost::shared_ptr<Date> creationtime)
+void Event::setCreationtime(DatePtr creationtime)
 {
     this->creationtime = creationtime;
 }
@@ -166,12 +166,12 @@ void Event::setContext(const std::string& context)
     this->context = context;
 }
 
-void Event::setExpirationtime(boost::shared_ptr<Date> expirationtime)
+void Event::setExpirationtime(DatePtr expirationtime)
 {
     this->expirationtime = expirationtime;
 }
 
-void Event::setData(boost::shared_ptr<DataTable> data)
+void Event::setData(DataTablePtr data)
 {
     this->data = data;
 }
@@ -186,12 +186,12 @@ void Event::setLevel(int level)
     this->level = level;
 }
 
-void Event::setOriginator(void* originator)
+void Event::setOriginator(AgObjectPtr originator)
 {
     this->originator = originator;
 }
 
-boost::shared_ptr<DataTable> Event::getData()
+DataTablePtr Event::getData()
 {
     return data;
 }
@@ -205,18 +205,18 @@ int Event::getLevel()
 {
     return level;
 }
-
-boost::shared_ptr<Permissions> Event::getPermissions()
+  */
+PermissionsPtr Event::getPermissions()
 {
     return this->permissions;
 }
-
-void Event::setPermissions(boost::shared_ptr<Permissions> permissions)
+/*
+void Event::setPermissions(PermissionsPtr permissions)
 {
     this->permissions = permissions;
 }
 
-void* Event::getOriginator()
+AgObjectPtr Event::getOriginator()
 {
     return originator;
 }
@@ -242,13 +242,13 @@ void Event::setDeduplicationId(const std::string& deduplicationId)
 }
 
 //TODO: копирование списков
-boost::shared_ptr<Event> Event::clone()
+EventPtr Event::clone()
 {
 //    try {
-        boost::shared_ptr<Event> clone = new Event(this);
+        EventPtr clone = new Event(this);
       
-        //clone->acknowledgements = java_cast< std::list  >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(acknowledgements));
-        //clone->enrichments = java_cast< std::list  >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(enrichments));
+        //clone->acknowledgements = java_cast< std::list  >(CloneUtils::deepClone(acknowledgements));
+        //clone->enrichments = java_cast< std::list  >(CloneUtils::deepClone(enrichments));
        
         return clone;
 //    } catch (::java::lang::CloneNotSupportedException* ex) {
@@ -264,7 +264,7 @@ boost::shared_ptr<Event> Event::clone()
 //    return result;
 //}
 
-bool Event::equals(Event* obj)
+bool Event::equals(EventPtr obj)
 {
     if(this == obj)
         return true;

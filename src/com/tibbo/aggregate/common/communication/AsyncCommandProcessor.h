@@ -1,71 +1,51 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/AsyncCommandProcessor.java
 
-#pragma once
+#ifndef AsyncCommandProcessorH
+#define AsyncCommandProcessorH
+#include "Cres.h"
+#include "Log.h"
+#include "communication/AbstractDeviceController.h"
+#include "communication/AsyncCommandProcessor_sendCommand_1.h"
+#include "communication/Command.h"
+#include "communication/CommandParser.h"
+#include "communication/CommandProcessorStatistics.h"
+#include "communication/ReplyMonitor.h"
+#include "device/DisconnectionException.h"
+#include "util/NamedThreadFactory.h"
+#include "util/Util.h"
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/communication/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/fwd-aggregate_sdk_5.11.00.h"
-//#include <org/apache/log4j/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Thread.h"
 
-
-
-class com::tibbo::aggregate::common::communication::AsyncCommandProcessor
-    : public ::java::lang::Thread
+class AsyncCommandProcessor  //: public ::java::lang::Thread
 {
-
-public:
-    typedef ::java::lang::Thread super;
-
 private:
     static const long PENDING_COMMAND_TIMEOUT { long(86400000LL) };
-    static ::java::util::concurrent::ThreadPoolExecutor* SENDERS_POOL_;
+   // static ::java::util::concurrent::ThreadPoolExecutor* SENDERS_POOL_; todo
     AbstractDeviceController* controller;
     std::list  sentCommandsQueue;
-    CommandProcessorStatistics* statistics;
-protected:
-    void ctor(AbstractDeviceController* controller);
+	CommandProcessorStatisticsPtr statistics;
+	  void init();
+  //	static ::java::util::concurrent::ThreadPoolExecutor*& SENDERS_POOL();todo
+	void sendCommandImplementation(CommandPtr cmd);
+	ReplyMonitor* sendCommand(CommandPtr cmd);
+	CommandPtr waitReplyMonitor(ReplyMonitor* mon);
+	void addSentCommand(ReplyMonitor* mon);
+ //	void processError(::org::apache::log4j::Level* priority, const std::string & message, ::java::lang::Exception* ex); todo
+
 
 public:
-    Command* sendSyncCommand(Command* cmd) /* throws(DisconnectionException, IOException, InterruptedException) */;
-    void sendUnrepliedCommand(Command* cmd) /* throws(DisconnectionException, IOException) */;
-    void resetSentCommandTimeouts();
+	CommandPtr sendSyncCommand(CommandPtr cmd);
+	void sendUnrepliedCommand(CommandPtr cmd);
+	void resetSentCommandTimeouts();
 
-private:
-    void sendCommandImplementation(Command* cmd) /* throws(DisconnectionException, IOException) */;
-    ReplyMonitor* sendCommand(Command* cmd) /* throws(DisconnectionException, IOException, InterruptedException) */;
-    Command* waitReplyMonitor(ReplyMonitor* mon) /* throws(IOException, InterruptedException) */;
-    void addSentCommand(ReplyMonitor* mon);
+	void run();
 
-public:
-    void run();
-
-private:
-    void processError(::org::apache::log4j::Level* priority, const std::string & message, ::java::lang::Exception* ex);
-
-public:
-    bool isActive();
+	bool isActive();
     std::list  getActiveCommands();
     void interrupt();
     AbstractDeviceController* getController();
-    CommandProcessorStatistics* getStatistics();
-    static ::java::util::concurrent::ThreadPoolExecutor* getSendersPool();
+    CommandProcessorStatisticsPtr getStatistics();
+   // static ::java::util::concurrent::ThreadPoolExecutor* getSendersPool(); todo
 
-    // Generated
-    AsyncCommandProcessor(AbstractDeviceController* controller);
-protected:
-    AsyncCommandProcessor(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-
-private:
-    void init();
-    static ::java::util::concurrent::ThreadPoolExecutor*& SENDERS_POOL();
-    ::java::lang::Class* getClass0();
-    friend class AsyncCommandProcessor_sendCommand_1;
+	AsyncCommandProcessor(AbstractDeviceController* controller);
 };
+
+#endif

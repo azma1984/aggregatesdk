@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EditWidgetH
+#define EditWidgetH
 
 #include "action/GenericActionCommand.h"
 
@@ -6,52 +7,44 @@
 
 class EditWidget : public GenericActionCommand
 {
-//private:
-//    static const std::string CF_DEFAULT_CONTEXT_;
-//    static const std::string CF_WIDGET_CONTEXT_;
-//    static const std::string CF_WIDGET_;
-//    static const std::string RF_WIDGET_;
-//    static const std::string RF_RESULT_;
-//    static TableFormat* CFT_EDIT_WIDGET_;
-//    static TableFormat* RFT_EDIT_WIDGET_;
-//    const std::string & defaultContext;
-//    const std::string & widgetContext;
-//    const std::string & widget;
-//protected:
-//    void ctor();
-//    void ctor(const std::string & title, const std::string & defaultContext, const std::string & widgetContext, const std::string & widget);
-//    void ctor(const std::string & title, DataTable* parameters);
+private:
+    static const std::string CF_DEFAULT_CONTEXT_;
+    static const std::string CF_WIDGET_CONTEXT_;
+    static const std::string CF_WIDGET_;
+    static const std::string RF_WIDGET_;
+    static const std::string RF_RESULT_;
+    static TableFormatPtr CFT_EDIT_WIDGET_;
+    static TableFormatPtr RFT_EDIT_WIDGET_;
+    const std::string & defaultContext;
+    const std::string & widgetContext;
+    const std::string & widget;
 
-//public: /* protected */
-//    DataTable* constructParameters();
+public:
+    DataTablePtr constructParameters();
 
-//public:
-//    const std::string & getDefaultContext();
-//    void setDefaultContext(const std::string & defaultContext);
-//    const std::string & getWidgetContext();
-//    void setWidgetContext(const std::string & widgetContext);
-//    const std::string & getWidget();
-//    void setWidget(const std::string & widget);
+    const std::string & getDefaultContext();
+    void setDefaultContext(const std::string & defaultContext);
+    const std::string & getWidgetContext();
+    void setWidgetContext(const std::string & widgetContext);
+    const std::string & getWidget();
+    void setWidget(const std::string & widget);
 
-//    // Generated
-//    EditWidget();
-//    EditWidget(const std::string & title, const std::string & defaultContext, const std::string & widgetContext, const std::string & widget);
-//    EditWidget(const std::string & title, DataTable* parameters);
-//protected:
-//    EditWidget(const ::default_init_tag&);
+    EditWidget();
+    EditWidget(const std::string & title, const std::string & defaultContext, const std::string & widgetContext, const std::string & widget);
+    EditWidget(const std::string & title, DataTablePtr parameters);
+
+public:
+
+    static void
+    static const std::string& CF_DEFAULT_CONTEXT();
+    static const std::string& CF_WIDGET_CONTEXT();
+    static const std::string& CF_WIDGET();
+    static const std::string& RF_WIDGET();
+    static const std::string& RF_RESULT();
+    static TableFormatPtr& CFT_EDIT_WIDGET();
+    static TableFormatPtr& RFT_EDIT_WIDGET();
 
 
-//public:
-    
-//    static void
-//    static const std::string& CF_DEFAULT_CONTEXT();
-//    static const std::string& CF_WIDGET_CONTEXT();
-//    static const std::string& CF_WIDGET();
-//    static const std::string& RF_WIDGET();
-//    static const std::string& RF_RESULT();
-//    static TableFormat*& CFT_EDIT_WIDGET();
-//    static TableFormat*& RFT_EDIT_WIDGET();
-
-//private:
-//    ::java::lang::Class* getClass0();
 };
+
+#endif

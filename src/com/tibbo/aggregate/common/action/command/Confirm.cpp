@@ -33,15 +33,15 @@ Confirm::Confirm(const std::string &title, const std::string &message, int optio
 }
 
 
-Confirm::Confirm(const std::string& title, DataTable* parameters)
+Confirm::Confirm(const std::string& title, DataTablePtr parameters)
 {
     GenericActionCommand(ActionUtils::CMD_CONFIRM, title, parameters, CFT_CONFIRM);
 }
 
 
-DataTable* Confirm::constructParameters()
+DataTablePtr Confirm::constructParameters()
 {
-    DataRecord* dr = new DataRecord(CFT_CONFIRM.get());
+    DataRecordPtr dr = new DataRecord(CFT_CONFIRM.get());
     dr->addString(message);
     dr->addInt(optionType);
     dr->addInt(messageType);
@@ -51,7 +51,7 @@ DataTable* Confirm::constructParameters()
 
 GenericActionResponse Confirm::createDefaultResponse()
 {
-	TableFormat *responseFormat = RFT_CONFIRM->clone();
+	TableFormatPtrresponseFormat = RFT_CONFIRM->clone();
     std::map<int, std::string> selectionValues;
 	int optionType = getParameters()->rec()->getInt(Confirm::CF_OPTION_TYPE);
 
@@ -72,9 +72,9 @@ GenericActionResponse Confirm::createDefaultResponse()
     return new GenericActionResponse(new ::DataTable(responseFormat, true));
 }
 
-int Confirm::parseConfirm(GenericActionResponse* resp)
+int Confirm::parseConfirm(GenericActionResponsePtr resp)
 {
-    DataTable* dt = NULL;
+    DataTablePtr dt = NULL;
     if (resp) {
         dt = resp->getParameters();
     }

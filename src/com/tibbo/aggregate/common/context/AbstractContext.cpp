@@ -113,7 +113,7 @@ AbstractContext::AbstractContext(const std::string &name)
 	fireUpdateEvents = true;
 
 
-	VARIABLE_DEFINITION_FORMAT = boost::shared_ptr<TableFormat>(new TableFormat);
+	VARIABLE_DEFINITION_FORMAT = TableFormatPtr(new TableFormat);
 
 	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_NAME + "><S>");
 	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_FORMAT + "><S><F=N>");
@@ -126,11 +126,11 @@ AbstractContext::AbstractContext(const std::string &name)
 	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_HELP_ID + "><S><F=N>");
 	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_CACHE_TIME + "><L><F=N>");
 
-	EF_VARIABLE_ADDED = boost::shared_ptr<TableFormat>(VARIABLE_DEFINITION_FORMAT->clone());
+	EF_VARIABLE_ADDED = TableFormatPtr(VARIABLE_DEFINITION_FORMAT->clone());
    //	EF_VARIABLE_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
    //	EF_VARIABLE_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
 
-	FUNCTION_DEFINITION_FORMAT= boost::shared_ptr<TableFormat>(new TableFormat);
+	FUNCTION_DEFINITION_FORMAT= TableFormatPtr(new TableFormat);
 	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_NAME+"><S>");
 	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_INPUTFORMAT+"><S><F=N>");
 	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_OUTPUTFORMAT+"><S><F=N>");
@@ -139,11 +139,11 @@ AbstractContext::AbstractContext(const std::string &name)
 	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_GROUP+"><S><F=N>");
 	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_ICON_ID+"><S><F=N>");
 
-	EF_FUNCTION_ADDED = boost::shared_ptr<TableFormat>(FUNCTION_DEFINITION_FORMAT->clone());
+	EF_FUNCTION_ADDED = TableFormatPtr(FUNCTION_DEFINITION_FORMAT->clone());
    //	EF_FUNCTION_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
    //	EF_FUNCTION_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
 
-	EVENT_DEFINITION_FORMAT= boost::shared_ptr<TableFormat>(new TableFormat);
+	EVENT_DEFINITION_FORMAT= TableFormatPtr(new TableFormat);
 	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_NAME+"><S>");
 	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_FORMAT+"><S><F=N>");
 	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_DESCRIPTION+"><S><F=N>");
@@ -152,13 +152,13 @@ AbstractContext::AbstractContext(const std::string &name)
 	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_GROUP+"><S><F=N>");
 	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_ICON_ID+"><S><F=N>");
 
-	EF_EVENT_ADDED = boost::shared_ptr<TableFormat>(EVENT_DEFINITION_FORMAT->clone());
+	EF_EVENT_ADDED = TableFormatPtr(EVENT_DEFINITION_FORMAT->clone());
    //	EF_EVENT_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
    //	EF_EVENT_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
 
    //	VFT_CHILDREN = FieldFormat::create("<"+VF_CHILDREN_NAME+"><S>")->wrap();  //todo - not make in datatable/FieldFormat.h
 
-	INFO_DEFINITION_FORMAT = boost::shared_ptr<TableFormat>(new TableFormat(1,1));
+	INFO_DEFINITION_FORMAT = TableFormatPtr(new TableFormat(1,1));
 	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_DESCRIPTION+"><S><F=N><D="+Cres::get()->getString("description")+">");
 	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_TYPE+"><S><D="+Cres::get()->getString("type")+">");
 	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_GROUP+"><S><F=N><D="+Cres::get()->getString("group")+">");
@@ -169,7 +169,7 @@ AbstractContext::AbstractContext(const std::string &name)
 	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_REMOTE_PRIMARY_ROOT+"><S><F=N><D="+Cres::get()->getString("conRemotePrimaryRoot")+">");
 	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_MAPPED+"><B><D="+Cres::get()->getString("conMapped")+">");
 
-	ACTION_DEF_FORMAT= boost::shared_ptr<TableFormat>(new TableFormat);
+	ACTION_DEF_FORMAT= TableFormatPtr(new TableFormat);
 	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_NAME+"><S>");
 	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_DESCRIPTION+"><S><F=N>");
 	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_HELP+"><S><F=N>");
@@ -184,54 +184,54 @@ AbstractContext::AbstractContext(const std::string &name)
 
    //	RESOURCE_MASKS_FORMAT= FieldFormat::create("<"+ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK+"><S><F=N>")->wrap();//todo - not make in datatable/FieldFormat.h
 
-	FIFT_GET_COPY_DATA = boost::shared_ptr<TableFormat>(new TableFormat(1, 1));
+	FIFT_GET_COPY_DATA = TableFormatPtr(new TableFormat(1, 1));
 	FIFT_GET_COPY_DATA->addField("<"+FIF_COPY_DATA_GROUP+"><S><F=N>");
 	FIFT_GET_COPY_DATA->addField("<"+FIF_COPY_DATA_RECIPIENTS+"><T><F=N>");
    //	FIFT_GET_COPY_DATA_RECIPIENTS = FieldFormat::create("<"+FIF_COPY_DATA_RECIPIENTS_RECIPIENT+"><S>")->wrap(); //todo - not make in datatable/FieldFormat.h
-	REPLICATE_INPUT_FORMAT= boost::shared_ptr<TableFormat>(new TableFormat);
+	REPLICATE_INPUT_FORMAT= TableFormatPtr(new TableFormat);
 
 	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_NAME+"><S><F=RHK>");
 	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_DESCRIPTION+"><S><F=R><D="+Cres::get()->getString("variable")+">");
 	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_REPLICATE+"><B><A=0><D="+Cres::get()->getString("replicate")+">");
 	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_FIELDS+"><T><D="+Cres::get()->getString("fields")+">");
 	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_VALUE+"><T><D="+Cres::get()->getString("value")+">");
-	FIFT_REPLICATE_FIELDS= boost::shared_ptr<TableFormat>(new TableFormat);
+	FIFT_REPLICATE_FIELDS= TableFormatPtr(new TableFormat);
 
 	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_NAME+"><S><F=RHK>");
 	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_DESCRIPTION+"><S><F=R><D="+Cres::get()->getString("field")+">");
 	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_REPLICATE+"><B><A=1><D="+Cres::get()->getString("replicate")+">");
 	FIFT_REPLICATE_FIELDS->setNamingExpression("print({}, '{"+FIF_REPLICATE_FIELDS_REPLICATE+"} ? {"+FIF_REPLICATE_FIELDS_DESCRIPTION+"} : 0', ', ')");
 
-	REPLICATE_OUTPUT_FORMAT= boost::shared_ptr<TableFormat>(new TableFormat);
+	REPLICATE_OUTPUT_FORMAT= TableFormatPtr(new TableFormat);
 	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_VARIABLE+"><S><D="+Cres::get()->getString("variable") +">");
 	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_SUCCESSFUL+"><B><D="+Cres::get()->getString("successful")+">");
 	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_ERRORS+"><S><D="+Cres::get()->getString("errors")+">");
 
-	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT= boost::shared_ptr<TableFormat>(new TableFormat);
+	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT= TableFormatPtr(new TableFormat);
 	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_CONTEXT+"><S><D="+Cres::get()->getString("context")+">");
 	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_VARIABLE+"><S><D="+Cres::get()->getString("variable")+">");
 	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_SUCCESSFUL+"><B><D="+Cres::get()->getString("successful")+">");
 	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_ERRORS+"><S><D="+Cres::get()->getString("errors")+">");
 
-	EF_UPDATED= boost::shared_ptr<TableFormat>(new TableFormat(1,1));
+	EF_UPDATED= TableFormatPtr(new TableFormat(1,1));
 
 	EF_UPDATED->addField("<"+EF_UPDATED_VARIABLE+"><S>");
 	EF_UPDATED->addField("<"+EF_UPDATED_VALUE+"><T>");
 	EF_UPDATED->addField("<"+EF_UPDATED_USER+"><S><F=N>");
 
-	EF_CHANGE= boost::shared_ptr<TableFormat>(new TableFormat(1, 1));
+	EF_CHANGE= TableFormatPtr(new TableFormat(1, 1));
 
 	EF_CHANGE->addField("<"+EF_CHANGE_VARIABLE+"><S>");
 	EF_CHANGE->addField("<"+EF_CHANGE_VALUE+"><T><F=N>");
 	EF_CHANGE->addField("<"+EF_CHANGE_DATA+"><S><F=N>");
 
-	EFT_INFO= boost::shared_ptr<TableFormat>(new TableFormat(1, 1, "<"+EF_INFO_INFO+"><S><D="+Cres::get()->getString("info")+">"));
-	EFT_VARIABLE_REMOVED= boost::shared_ptr<TableFormat>(new TableFormat(1,1, "<"+EF_VARIABLE_REMOVED_NAME+"><S>"));
-	EFT_EVENT_REMOVED= boost::shared_ptr<TableFormat>(new TableFormat(1,1, "<"+EF_EVENT_REMOVED_NAME+"><S>"));
-	EFT_FUNCTION_REMOVED= boost::shared_ptr<TableFormat>(new TableFormat(1,1, "<"+EF_FUNCTION_REMOVED_NAME+"><S>"));
-	EFT_CHILD_REMOVED= boost::shared_ptr<TableFormat>(new TableFormat(1,1, "<"+EF_CHILD_REMOVED_CHILD+"><S>"));
-	EFT_CHILD_ADDED= boost::shared_ptr<TableFormat>(new TableFormat(1,1, "<"+EF_CHILD_ADDED_CHILD+"><S>"));
-	EFT_ACTION_REMOVED= boost::shared_ptr<TableFormat>(new TableFormat(1,1, "<"+AbstractContext::EF_ACTION_REMOVED_NAME+"><S>"));
+	EFT_INFO= TableFormatPtr(new TableFormat(1, 1, "<"+EF_INFO_INFO+"><S><D="+Cres::get()->getString("info")+">"));
+	EFT_VARIABLE_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_VARIABLE_REMOVED_NAME+"><S>"));
+	EFT_EVENT_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_EVENT_REMOVED_NAME+"><S>"));
+	EFT_FUNCTION_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_FUNCTION_REMOVED_NAME+"><S>"));
+	EFT_CHILD_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_CHILD_REMOVED_CHILD+"><S>"));
+	EFT_CHILD_ADDED= TableFormatPtr(new TableFormat(1,1, "<"+EF_CHILD_ADDED_CHILD+"><S>"));
+	EFT_ACTION_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+AbstractContext::EF_ACTION_REMOVED_NAME+"><S>"));
 
 	VD_INFO= new VariableDefinition(V_INFO, INFO_DEFINITION_FORMAT, true, false, Cres::get()->getString("conContextProps"), ContextUtils::GROUP_SYSTEM);
 	VD_INFO->setHidden(true);
@@ -257,84 +257,84 @@ AbstractContext::AbstractContext(const std::string &name)
 	VD_CHILDREN->setHidden(true);
 	VD_CHILDREN->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	FD_GET_COPY_DATA= boost::shared_ptr<FunctionDefinition>(new FunctionDefinition(F_GET_COPY_DATA, FIFT_GET_COPY_DATA, REPLICATE_INPUT_FORMAT));
+	FD_GET_COPY_DATA= FunctionDefinitionPtr(new FunctionDefinition(F_GET_COPY_DATA, FIFT_GET_COPY_DATA, REPLICATE_INPUT_FORMAT));
 	FD_GET_COPY_DATA->setHidden(true);
 
-	FD_COPY= boost::shared_ptr<FunctionDefinition>(new FunctionDefinition(F_COPY, REPLICATE_INPUT_FORMAT, REPLICATE_OUTPUT_FORMAT, Cres::get()->getString("conCopyProperties")));
+	FD_COPY= FunctionDefinitionPtr(new FunctionDefinition(F_COPY, REPLICATE_INPUT_FORMAT, REPLICATE_OUTPUT_FORMAT, Cres::get()->getString("conCopyProperties")));
 	FD_COPY->setHidden(true);
 
-	FD_COPY_TO_CHILDREN= boost::shared_ptr<FunctionDefinition>(new FunctionDefinition(F_COPY_TO_CHILDREN, REPLICATE_INPUT_FORMAT, REPLICATE_TO_CHILDREN_OUTPUT_FORMAT, Cres::get()->getString("conCopyToChildren")));
+	FD_COPY_TO_CHILDREN= FunctionDefinitionPtr(new FunctionDefinition(F_COPY_TO_CHILDREN, REPLICATE_INPUT_FORMAT, REPLICATE_TO_CHILDREN_OUTPUT_FORMAT, Cres::get()->getString("conCopyToChildren")));
 	FD_COPY_TO_CHILDREN->setHidden(true);
 
-	ED_INFO= boost::shared_ptr<EventDefinition>(new EventDefinition(E_INFO, EFT_INFO, Cres::get()->getString("info"), ContextUtils::GROUP_DEFAULT));
+	ED_INFO= EventDefinitionPtr(new EventDefinition(E_INFO, EFT_INFO, Cres::get()->getString("info"), ContextUtils::GROUP_DEFAULT));
 	ED_INFO->setLevel(EventLevel::INFO);
 	ED_INFO->setIconId(Icons::EVT_INFO);
 	ED_INFO->getPersistenceOptions()->setDedicatedTablePreferred(true);
 
-	ED_CHILD_ADDED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_CHILD_ADDED, EFT_CHILD_ADDED, Cres::get()->getString("conChildAdded"), ContextUtils::GROUP_SYSTEM));
+	ED_CHILD_ADDED= EventDefinitionPtr(new EventDefinition(E_CHILD_ADDED, EFT_CHILD_ADDED, Cres::get()->getString("conChildAdded"), ContextUtils::GROUP_SYSTEM));
 	ED_CHILD_ADDED->setSynchronous(true);
 	ED_CHILD_ADDED->setHidden(true);
 	ED_CHILD_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_CHILD_REMOVED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_CHILD_REMOVED, EFT_CHILD_REMOVED, Cres::get()->getString("conChildRemoved"), ContextUtils::GROUP_SYSTEM));
+	ED_CHILD_REMOVED= EventDefinitionPtr(new EventDefinition(E_CHILD_REMOVED, EFT_CHILD_REMOVED, Cres::get()->getString("conChildRemoved"), ContextUtils::GROUP_SYSTEM));
 	ED_CHILD_REMOVED->setSynchronous(true);
 	ED_CHILD_REMOVED->setHidden(true);
 	ED_CHILD_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_VARIABLE_ADDED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_VARIABLE_ADDED, EF_VARIABLE_ADDED, Cres::get()->getString("conVarAdded"), ContextUtils::GROUP_SYSTEM));
+	ED_VARIABLE_ADDED= EventDefinitionPtr(new EventDefinition(E_VARIABLE_ADDED, EF_VARIABLE_ADDED, Cres::get()->getString("conVarAdded"), ContextUtils::GROUP_SYSTEM));
 	ED_VARIABLE_ADDED->setHidden(true);
 	ED_VARIABLE_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_VARIABLE_REMOVED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_VARIABLE_REMOVED, EFT_VARIABLE_REMOVED, Cres::get()->getString("conVarRemoved"), ContextUtils::GROUP_SYSTEM));
+	ED_VARIABLE_REMOVED= EventDefinitionPtr(new EventDefinition(E_VARIABLE_REMOVED, EFT_VARIABLE_REMOVED, Cres::get()->getString("conVarRemoved"), ContextUtils::GROUP_SYSTEM));
 	ED_VARIABLE_REMOVED->setHidden(true);
 	ED_VARIABLE_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_FUNCTION_ADDED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_FUNCTION_ADDED, EF_FUNCTION_ADDED, Cres::get()->getString("conFuncAdded"), ContextUtils::GROUP_SYSTEM));
+	ED_FUNCTION_ADDED= EventDefinitionPtr(new EventDefinition(E_FUNCTION_ADDED, EF_FUNCTION_ADDED, Cres::get()->getString("conFuncAdded"), ContextUtils::GROUP_SYSTEM));
 	ED_FUNCTION_ADDED->setHidden(true);
 	ED_FUNCTION_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_FUNCTION_REMOVED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_FUNCTION_REMOVED, EFT_FUNCTION_REMOVED, Cres::get()->getString("conFuncRemoved"), ContextUtils::GROUP_SYSTEM));
+	ED_FUNCTION_REMOVED= EventDefinitionPtr(new EventDefinition(E_FUNCTION_REMOVED, EFT_FUNCTION_REMOVED, Cres::get()->getString("conFuncRemoved"), ContextUtils::GROUP_SYSTEM));
 	ED_FUNCTION_REMOVED->setHidden(true);
 	ED_FUNCTION_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_EVENT_ADDED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_EVENT_ADDED, EF_EVENT_ADDED, Cres::get()->getString("conEvtAdded"), ContextUtils::GROUP_SYSTEM));
+	ED_EVENT_ADDED= EventDefinitionPtr(new EventDefinition(E_EVENT_ADDED, EF_EVENT_ADDED, Cres::get()->getString("conEvtAdded"), ContextUtils::GROUP_SYSTEM));
 	ED_EVENT_ADDED->setHidden(true);
 	ED_EVENT_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_EVENT_REMOVED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_EVENT_REMOVED, EFT_EVENT_REMOVED, Cres::get()->getString("conEvtRemoved"), ContextUtils::GROUP_SYSTEM));
+	ED_EVENT_REMOVED= EventDefinitionPtr(new EventDefinition(E_EVENT_REMOVED, EFT_EVENT_REMOVED, Cres::get()->getString("conEvtRemoved"), ContextUtils::GROUP_SYSTEM));
 	ED_EVENT_REMOVED->setHidden(true);
 	ED_EVENT_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 	//todo - 'setMinRecords' is not a member of 'TableFormat'
-   //	ED_ACTION_ADDED= boost::shared_ptr<EventDefinition>(new EventDefinition(AbstractContext::E_ACTION_ADDED, ACTION_DEF_FORMAT->clone()->setMinRecords(1))->setMaxRecords(1), Cres::get()->getString("conActionAdded"));
+   //	ED_ACTION_ADDED= EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_ADDED, ACTION_DEF_FORMAT->clone()->setMinRecords(1))->setMaxRecords(1), Cres::get()->getString("conActionAdded"));
 	ED_ACTION_ADDED->setHidden(true);
 	ED_ACTION_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_ACTION_REMOVED = boost::shared_ptr<EventDefinition>(new EventDefinition(AbstractContext::E_ACTION_REMOVED, EFT_ACTION_REMOVED, Cres::get()->getString("conActionRemoved")));
+	ED_ACTION_REMOVED = EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_REMOVED, EFT_ACTION_REMOVED, Cres::get()->getString("conActionRemoved")));
 	ED_ACTION_REMOVED->setHidden(true);
 	ED_ACTION_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_ACTION_STATE_CHANGED= boost::shared_ptr<EventDefinition>(new EventDefinition(AbstractContext::E_ACTION_STATE_CHANGED, ACTION_DEF_FORMAT, Cres::get()->getString("conActionStateChanged")));
+	ED_ACTION_STATE_CHANGED= EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_STATE_CHANGED, ACTION_DEF_FORMAT, Cres::get()->getString("conActionStateChanged")));
 	ED_ACTION_STATE_CHANGED->setHidden(true);
 	ED_ACTION_STATE_CHANGED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_INFO_CHANGED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_INFO_CHANGED, INFO_DEFINITION_FORMAT, Cres::get()->getString("conInfoChanged"), ContextUtils::GROUP_SYSTEM));
+	ED_INFO_CHANGED= EventDefinitionPtr(new EventDefinition(E_INFO_CHANGED, INFO_DEFINITION_FORMAT, Cres::get()->getString("conInfoChanged"), ContextUtils::GROUP_SYSTEM));
 	ED_INFO_CHANGED->setHidden(true);
 	ED_INFO_CHANGED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	ED_UPDATED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_UPDATED, EF_UPDATED, Cres::get()->getString("conUpdated"), ContextUtils::GROUP_SYSTEM));
+	ED_UPDATED= EventDefinitionPtr(new EventDefinition(E_UPDATED, EF_UPDATED, Cres::get()->getString("conUpdated"), ContextUtils::GROUP_SYSTEM));
 	ED_UPDATED->setHidden(true);
 
-	ED_CHANGE= boost::shared_ptr<EventDefinition>(new EventDefinition(E_CHANGE, EF_CHANGE, Cres::get()->getString("change"), ContextUtils::GROUP_SYSTEM));
+	ED_CHANGE= EventDefinitionPtr(new EventDefinition(E_CHANGE, EF_CHANGE, Cres::get()->getString("change"), ContextUtils::GROUP_SYSTEM));
 	ED_CHANGE->setHidden(true);
 	ED_CHANGE->getPersistenceOptions()->setDedicatedTablePreferred(true);
 
 	// E2451 Undefined symbol 'EMPTY_FORMAT'
-	 //	ED_DESTROYED= boost::shared_ptr<EventDefinition>(new EventDefinition(E_DESTROYED, TableFormat::EMPTY_FORMAT, Cres::get()->getString("conDestroyedPermanently"), ContextUtils::GROUP_SYSTEM));
+	 //	ED_DESTROYED= EventDefinitionPtr(new EventDefinition(E_DESTROYED, TableFormat::EMPTY_FORMAT, Cres::get()->getString("conDestroyedPermanently"), ContextUtils::GROUP_SYSTEM));
 	ED_DESTROYED->setSynchronous(true);
 	ED_DESTROYED->setHidden(true);
 	ED_DESTROYED->setPermissions(DefaultPermissionChecker::getNullPermissions());
 
-	VFT_VARIABLE_STATUSES= boost::shared_ptr<TableFormat>(new TableFormat);
+	VFT_VARIABLE_STATUSES= TableFormatPtr(new TableFormat);
 	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_NAME+"><S>");
 	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_STATUS+"><S><F=N>");
 	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_COMMENT+"><S><F=N>");
@@ -342,7 +342,7 @@ AbstractContext::AbstractContext(const std::string &name)
 
 }
 
-void AbstractContext::setup(ContextManager* contextManager)
+void AbstractContext::setup(ContextManagerPtr contextManager)
 {
 	setContextManager(contextManager);
 	setup();
@@ -410,7 +410,7 @@ void AbstractContext::teardown()
 }
 
 //todo - thread start
-//void* call()
+//AgObjectPtr call()
 // {
 //  //long startTime = std::time System.currentTimeMillis(); //todo - std current time?
 //
@@ -426,10 +426,10 @@ void AbstractContext::start()
 //  childrenLock.lock_shared();
 //  try
 //   {
-//	std::list<void*>::const_iterator child1;
+//	std::list<AgObjectPtr>::const_iterator child1;
 //	for (child1 = children.begin(); child1!= children.end(); ++child1)
 //	{
-//	 Context* child = (Context*)*child1;
+//	 ContextPtr child = (ContextPtr)*child1;
 //
 //	 boost::thread task(call());
 //
@@ -446,7 +446,7 @@ void AbstractContext::start()
 //  executeTasks(tasks);
 //  started = true;
 } //todo - thread stop
-  //void* call1()
+  //AgObjectPtr call1()
 //   {
  //	long startTime = System.currentTimeMillis();
 
@@ -463,10 +463,10 @@ void AbstractContext::stop()
 //	childrenLock.lock_shared();
 //	try
 //	{
-//	 std::list<void*>::const_iterator child1;
+//	 std::list<AgObjectPtr>::const_iterator child1;
 //	 for (child1 = children.begin(); child1!= children.end(); ++child1)
 //	 {
-//	  Context* child = (Context*)*child1;
+//	  ContextPtr child = (ContextPtr)*child1;
 //
 //	  boost::thread task(call1());
 //
@@ -489,7 +489,7 @@ int AbstractContext::compareTo(int a1,int a2)
  if (a1>a2) return 1;
 }
 
-int AbstractContext::compareTo(Context* context)
+int AbstractContext::compareTo(ContextPtr context)
 {
 	if(getIndex() != 0 || context->getIndex() != 0)
 	{
@@ -503,7 +503,7 @@ int AbstractContext::compareTo(Context* context)
 	}
 }
 
-//std::list<void*>  AbstractContext::getChildren(boost::shared_ptr<CallerController> caller)
+//std::list<AgObjectPtr>  AbstractContext::getChildren(CallerControllerPtr caller)
 //{
 ////    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
 ////        if(Log::CONTEXT_CHILDREN())->isDebugEnabled()) {
@@ -516,48 +516,48 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////    std::list  childList = new ::java::util::LinkedList(children);
 ////    for (auto *iterator = childList)->iterator(); iterator)->hasNext(); ) {
-////        auto cur = java_cast< Context* >(iterator)->next());
+////        auto cur = java_cast< ContextPtr >(iterator)->next());
 ////        if(!shouldSeeChild(caller, cur)) {
 ////            iterator)->remove();
 ////        }
 ////    }
 ////    return childList;
 //
-//	std::list<void*> list;
+//	std::list<AgObjectPtr> list;
 //	return list;
 //}
 //
-////bool AbstractContext::shouldSeeChild(boost::shared_ptr<CallerController> caller, Context* cur)
+////bool AbstractContext::shouldSeeChild(CallerControllerPtr caller, ContextPtr cur)
 ////{
 ////    return checkPermissions(cur)->getPermissions(), caller, cur) || canSee(caller, cur);
 ////}
 ////
-////bool AbstractContext::canSee(boost::shared_ptr<CallerController> caller, Context* con)
+////bool AbstractContext::canSee(CallerControllerPtr caller, ContextPtr con)
 ////{
 ////    if(!permissionCheckingEnabled) {
 ////        return true;
 ////    }
-////    return getPermissionChecker())->canSee(caller != 0 ? caller)->getPermissions() : static_cast< boost::shared_ptr<Permissions> >(0), con)->getPath(), getContextManager());
+////    return getPermissionChecker())->canSee(caller != 0 ? caller)->getPermissions() : static_cast< PermissionsPtr >(0), con)->getPath(), getContextManager());
 ////}
 ////
-//std::list<void*>  AbstractContext::getChildren()
+//std::list<AgObjectPtr>  AbstractContext::getChildren()
 //{
-////    return getChildren(static_cast< boost::shared_ptr<CallerController> >(0));
-//	std::list<void*> list;
+////    return getChildren(static_cast< CallerControllerPtr >(0));
+//	std::list<AgObjectPtr> list;
 //	return list;
 //}
 ////
-//std::list<void*>   AbstractContext::getVisibleChildren(boost::shared_ptr<CallerController> caller)
+//std::list<AgObjectPtr>   AbstractContext::getVisibleChildren(CallerControllerPtr caller)
 //{
 ////    return getChildren(caller);
-//		std::list<void*> list;
+//		std::list<AgObjectPtr> list;
 //	return list;
 //}
 ////
-//std::list<void*>   AbstractContext::getVisibleChildren()
+//std::list<AgObjectPtr>   AbstractContext::getVisibleChildren()
 //{
-////    return getVisibleChildren(static_cast< boost::shared_ptr<CallerController> >(0));
-//		std::list<void*> list;
+////    return getVisibleChildren(static_cast< CallerControllerPtr >(0));
+//		std::list<AgObjectPtr> list;
 //	return list;
 //}
 //
@@ -566,17 +566,17 @@ int AbstractContext::compareTo(Context* context)
 //    return false;
 //}
 //
-//std::list<void*>   AbstractContext::getMappedChildren(boost::shared_ptr<CallerController> caller)
+//std::list<AgObjectPtr>   AbstractContext::getMappedChildren(CallerControllerPtr caller)
 //{
 ////    return isMapped() ? getVisibleChildren(caller) : getChildren(caller);
-//		std::list<void*> list;
+//		std::list<AgObjectPtr> list;
 //	return list;
 //}
 //
-//std::list<void*>   AbstractContext::getMappedChildren()
+//std::list<AgObjectPtr>   AbstractContext::getMappedChildren()
 //{
-////    return getMappedChildren(static_cast< boost::shared_ptr<CallerController> >(0));
-//		std::list<void*> list;
+////    return getMappedChildren(static_cast< CallerControllerPtr >(0));
+//		std::list<AgObjectPtr> list;
 //	return list;
 //}
 //
@@ -599,34 +599,34 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////}
 ////
-//void* AbstractContext::getParent()
+//AgObjectPtr AbstractContext::getParent()
 //{
-//    return (void*)parent;
+//    return (AgObjectPtr)parent;
 //}
 ////
-////bool AbstractContext::hasParent(Context* parentContext)
+////bool AbstractContext::hasParent(ContextPtr parentContext)
 ////{
-////    Context* root = this;
+////    ContextPtr root = this;
 ////    do {
-////        root = java_cast< Context* >(root)->getParent());
-////        if(root == static_cast< Context* >(parentContext)) {
+////        root = java_cast< ContextPtr >(root)->getParent());
+////        if(root == static_cast< ContextPtr >(parentContext)) {
 ////            return true;
 ////        }
-////    } while (java_cast< Context* >(root)->getParent()) != 0);
+////    } while (java_cast< ContextPtr >(root)->getParent()) != 0);
 ////    return false;
 ////}
 ////
-//void* AbstractContext::getRoot()
+//AgObjectPtr AbstractContext::getRoot()
 //{
-//    Context* root = this;
+//    ContextPtr root = this;
 //    while (root->getParent() != 0) 
 //	{
-//     root =  (Context*)root->getParent();
+//     root =  (ContextPtr)root->getParent();
 //    }
-//    return (void*)(root);
+//    return (AgObjectPtr)(root);
 //}
 //
-//void* AbstractContext::get(const std::string & contextPath, boost::shared_ptr<CallerController> caller)
+//AgObjectPtr AbstractContext::get(const std::string & contextPath, CallerControllerPtr caller)
 //{
 ////    if(contextPath == 0) {
 ////        return 0;
@@ -635,12 +635,12 @@ int AbstractContext::compareTo(Context* context)
 ////    if(relative) {
 ////        contextPath = contextPath)->substring(1);
 ////    }
-////    auto cur = relative ? java_cast< Context* >(this) : java_cast< Context* >(getRoot());
+////    auto cur = relative ? java_cast< ContextPtr >(this) : java_cast< ContextPtr >(getRoot());
 ////    if(contextPath)->length() == 0) {
 ////        return cur;
 ////    }
-////    auto lastName = java_cast< Context* >(getRoot()))->getName();
-////    auto names = ::com::tibbo::aggregate::common::util::StringUtils::split(contextPath, ContextUtils::CONTEXT_NAME_SEPARATOR())->charAt(int(0)));
+////    auto lastName = java_cast< ContextPtr >(getRoot()))->getName();
+////    auto names = StringUtils::split(contextPath, ContextUtils::CONTEXT_NAME_SEPARATOR())->charAt(int(0)));
 ////    for (auto _i = names)->iterator(); _i->hasNext(); ) {
 ////        const std::string & child = java_cast< const std::string & >(_i->next());
 ////        {
@@ -651,7 +651,7 @@ int AbstractContext::compareTo(Context* context)
 ////                break;
 ////            }
 ////            lastName = cur)->getName();
-////            cur = java_cast< Context* >(java_cast< Context* >(cur)->getChild(child, caller)));
+////            cur = java_cast< ContextPtr >(java_cast< ContextPtr >(cur)->getChild(child, caller)));
 ////        }
 ////    }
 ////    if(cur == 0) {
@@ -666,27 +666,27 @@ int AbstractContext::compareTo(Context* context)
 //	return 0;
 //}
 //
-//void* AbstractContext::get(const std::string & contextName)
+//AgObjectPtr AbstractContext::get(const std::string & contextName)
 //{
-////    return java_cast< Context* >(get(contextName, static_cast< boost::shared_ptr<CallerController> >(0)));
+////    return java_cast< ContextPtr >(get(contextName, static_cast< CallerControllerPtr >(0)));
 //	return 0;
 //}
 //
-//boost::shared_ptr<Permissions> AbstractContext::getPermissions()
-//{
+PermissionsPtr AbstractContext::getPermissions()
+{
 ////    if(!permissionCheckingEnabled) {
 ////        return DEFAULT_PERMISSIONS();
 ////    }
 ////    if(permissions != 0) {
 ////        return permissions;
 ////    }
-////    if(java_cast< Context* >(getParent()) != 0) {
-////        return java_cast< Context* >(getParent()))->getPermissions();
+////    if(java_cast< ContextPtr >(getParent()) != 0) {
+////        return java_cast< ContextPtr >(getParent()))->getPermissions();
 ////    }
 ////    return DEFAULT_PERMISSIONS();
 //
-//	return 0;
-//}
+	return 0;
+}
 //
 //void AbstractContext::setName(const std::string &name)
 //{
@@ -698,12 +698,12 @@ int AbstractContext::compareTo(Context* context)
 //    this->name = name;
 //}
 ////
-////void AbstractContext::setParent(Context* parent)
+////void AbstractContext::setParent(ContextPtr parent)
 ////{
 ////    this->parent = parent;
 ////}
 ////
-////void AbstractContext::setPermissions(boost::shared_ptr<Permissions> permissions)
+////void AbstractContext::setPermissions(PermissionsPtr permissions)
 ////{
 ////    this->permissions = permissions;
 ////}
@@ -723,15 +723,15 @@ int AbstractContext::compareTo(Context* context)
 ////    return fireUpdateEvents;
 ////}
 ////
-////void AbstractContext::setContextManager(ContextManager* contextManager)
+////void AbstractContext::setContextManager(ContextManagerPtr contextManager)
 ////{
-////    if(java_cast< ContextManager* >(this->contextManager) != 0 && java_cast< ContextManager* >(this->contextManager)) != contextManager)) {
+////    if(java_cast< ContextManagerPtr >(this->contextManager) != 0 && java_cast< ContextManagerPtr >(this->contextManager)) != contextManager)) {
 ////        throw new ::java::lang::IllegalStateException("Context manager already set");
 ////    }
 ////    this->contextManager = contextManager;
 ////}
 ////
-////void AbstractContext::setChildrenViewPermissions(boost::shared_ptr<Permissions> childrenViewPermissions)
+////void AbstractContext::setChildrenViewPermissions(PermissionsPtr childrenViewPermissions)
 ////{
 ////    this->childrenViewPermissions = childrenViewPermissions;
 ////}
@@ -761,14 +761,14 @@ int AbstractContext::compareTo(Context* context)
 ////    this->childrenConcurrencyEnabled = childrenConcurrencyEnabled;
 ////}
 ////
-////void AbstractContext::checkPermissions(boost::shared_ptr<Permissions> needPermissions, boost::shared_ptr<CallerController> caller)
+////void AbstractContext::checkPermissions(PermissionsPtr needPermissions, CallerControllerPtr caller)
 ////{
 ////    if(!checkPermissions(needPermissions, caller, this)) {
 ////        throw new ContextSecurityException(::java::text::MessageFormat::format(Cres::get()->getString("conAccessDenied"), new voidArray({getPath()), caller != 0 ? caller)->getPermissions()) : ""), needPermissions)})));
 ////    }
 ////}
 ////
-////bool AbstractContext::checkPermissions(boost::shared_ptr<Permissions> needPermissions, boost::shared_ptr<CallerController> caller, Context* accessedContext)
+////bool AbstractContext::checkPermissions(PermissionsPtr needPermissions, CallerControllerPtr caller, ContextPtr accessedContext)
 ////{
 ////    if(!permissionCheckingEnabled) {
 ////        return true;
@@ -776,12 +776,12 @@ int AbstractContext::compareTo(Context* context)
 ////    return getPermissionChecker())->has(caller, needPermissions, accessedContext);
 ////}
 ////
-////void AbstractContext::addChild(Context* child)
+////void AbstractContext::addChild(ContextPtr child)
 ////{
 ////    addChild(child, 0);
 ////}
 ////
-////void AbstractContext::addChild(Context* child, int  index)
+////void AbstractContext::addChild(ContextPtr child, int  index)
 ////{
 ////    auto startTime = ::java::lang::System::currentTimeMillis();
 ////    childrenLock)->writeLock())->lock();
@@ -790,7 +790,7 @@ int AbstractContext::compareTo(Context* context)
 ////            childrenLock)->writeLock())->unlock();
 ////        });
 ////        {
-////            auto existing = java_cast< Context* >(getChildWithoutCheckingPerms(child)->getName()));
+////            auto existing = java_cast< ContextPtr >(getChildWithoutCheckingPerms(child)->getName()));
 ////            if(existing != 0) {
 ////                throw new ::java::lang::IllegalArgumentException(::java::text::MessageFormat::format(Cres::get()->getString("conChildExists"), new voidArray({child)->getName()), getPath())})));
 ////            }
@@ -846,9 +846,9 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////void AbstractContext::removeFromParent()
 ////{
-////    if(java_cast< Context* >(getParent()) != 0) {
-////        java_cast< Context* >(getParent()))->removeChild(static_cast< Context* >(this));
-////        setParent(static_cast< Context* >(0));
+////    if(java_cast< ContextPtr >(getParent()) != 0) {
+////        java_cast< ContextPtr >(getParent()))->removeChild(static_cast< ContextPtr >(this));
+////        setParent(static_cast< ContextPtr >(0));
 ////    } else {
 ////        Log::CONTEXT_CHILDREN())->debug("Can't remove context '"+getPath())
 ////            +"' from its parent: no parent context was set");
@@ -867,14 +867,14 @@ int AbstractContext::compareTo(Context* context)
 ////            fireEvent(ed)->getName());
 ////        }
 ////    }
-////    eventDataLock)->readLock())->lock();
+////    EventDataPtrLock)->readLock())->lock();
 ////    {
 ////        auto finally4 = finally([&] {
-////            eventDataLock)->readLock())->unlock();
+////            EventDataPtrLock)->readLock())->unlock();
 ////        });
 ////        {
-////            for (auto _i = eventData)->values())->iterator(); _i->hasNext(); ) {
-////                EventData* ed = java_cast< EventData* >(_i->next());
+////            for (auto _i = EventDataPtr)->values())->iterator(); _i->hasNext(); ) {
+////                EventDataPtr ed = java_cast< EventDataPtr >(_i->next());
 ////                {
 ////                    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
 ////                    if(logger)->isDebugEnabled()) {
@@ -898,8 +898,8 @@ int AbstractContext::compareTo(Context* context)
 ////            childrenLock)->writeLock())->unlock();
 ////        });
 ////        {
-////            for (auto _i = new ::java::util::ArrayList(static_cast< ::java::util::Collection* >(children))->iterator(); _i->hasNext(); ) {
-////                Context* child = java_cast< Context* >(_i->next());
+////            for (auto _i = new ::java::util::ArrayList(static_cast< std::list >(children))->iterator(); _i->hasNext(); ) {
+////                ContextPtr child = java_cast< ContextPtr >(_i->next());
 ////                {
 ////                    child)->destroy(moving);
 ////                }
@@ -909,7 +909,7 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////}
 ////
-//void AbstractContext::removeChild(Context* child)
+//void AbstractContext::removeChild(ContextPtr child)
 //{
 ////    child)->teardown();
 ////    childrenLock)->writeLock())->lock();
@@ -939,7 +939,7 @@ int AbstractContext::compareTo(Context* context)
 //
 //void AbstractContext::removeChild(const std::string & name)
 //{
-////    auto con = java_cast< Context* >(getChildWithoutCheckingPerms(name));
+////    auto con = java_cast< ContextPtr >(getChildWithoutCheckingPerms(name));
 ////    if(con != 0) {
 ////        removeChild(con);
 ////        return;
@@ -949,7 +949,7 @@ int AbstractContext::compareTo(Context* context)
 ////        +getPath())->toString());
 //}
 ////
-////void AbstractContext::reorderChild(Context* child, int index)
+////void AbstractContext::reorderChild(ContextPtr child, int index)
 ////{
 ////    if(childrenSortingEnabled) {
 ////        throw new ::java::lang::IllegalStateException("Cannot reorder children when children sorting is enabled");
@@ -969,14 +969,14 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////}
 ////
-//void AbstractContext::destroyChild(Context* child, bool moving)
+//void AbstractContext::destroyChild(ContextPtr child, bool moving)
 //{
 ////    child)->destroy(moving);
 //}
 ////
 //void AbstractContext::destroyChild(const std::string & name, bool moving)
 //{
-////    auto con = java_cast< Context* >(getChildWithoutCheckingPerms(name));
+////    auto con = java_cast< ContextPtr >(getChildWithoutCheckingPerms(name));
 ////    if(con != 0) {
 ////        destroyChild(con, moving);
 ////        return;
@@ -995,7 +995,7 @@ int AbstractContext::compareTo(Context* context)
 ////        });
 ////        {
 ////            for (auto _i = children)->iterator(); _i->hasNext(); ) {
-////                Context* child = java_cast< Context* >(_i->next());
+////                ContextPtr child = java_cast< ContextPtr >(_i->next());
 ////                {
 ////                    removeChild(child);
 ////                }
@@ -1019,9 +1019,9 @@ int AbstractContext::compareTo(Context* context)
 ////        });
 ////        {
 ////            for (auto _i = children)->iterator(); _i->hasNext(); ) {
-////                Context* child = java_cast< Context* >(_i->next());
+////                ContextPtr child = java_cast< ContextPtr >(_i->next());
 ////                {
-////                    (java_cast< AbstractContext* >(child)))->moveInternal(ContextUtils::createName(new std::stringArray({oldPath, child)->getName()})), child)->getName(), ContextUtils::createName(new std::stringArray({newPath, child)->getName()})), child)->getName());
+////                    (java_cast< AbstractContextPtr >(child)))->moveInternal(ContextUtils::createName(new std::stringArray({oldPath, child)->getName()})), child)->getName(), ContextUtils::createName(new std::stringArray({newPath, child)->getName()})), child)->getName());
 ////                }
 ////            }
 ////        }
@@ -1033,12 +1033,12 @@ int AbstractContext::compareTo(Context* context)
 ////{
 ////}
 ////
-////void AbstractContext::move(Context* newParent, const std::string & newName)
+////void AbstractContext::move(ContextPtr newParent, const std::string & newName)
 ////{
 ////    move(getPath(), newParent, newName);
 ////}
 ////
-////void AbstractContext::move(const std::string & oldPath, Context* newParent, const std::string & newName)
+////void AbstractContext::move(const std::string & oldPath, ContextPtr newParent, const std::string & newName)
 ////{
 ////    Log::CONTEXT())->debug("Moving context "+getPath())
 ////        +" to ")
@@ -1048,38 +1048,38 @@ int AbstractContext::compareTo(Context* context)
 ////    auto oldName = getName();
 ////    auto newPath = ContextUtils::createName(new std::stringArray({newParent)->getPath(), newName}));
 ////    movePrepare(oldPath, oldName, newPath, newName);
-////    java_cast< Context* >(getParent()))->destroyChild(static_cast< Context* >(this), true);
+////    java_cast< ContextPtr >(getParent()))->destroyChild(static_cast< ContextPtr >(this), true);
 ////    moveInternal(oldPath, oldName, newPath, newName);
 ////    newParent)->addChild(this);
 ////    moveFinalize(oldPath, oldName, newPath, newName);
 ////}
 ////
-//void* AbstractContext::getChild(const std::string & name, boost::shared_ptr<CallerController> caller)
+//AgObjectPtr AbstractContext::getChild(const std::string & name, CallerControllerPtr caller)
 //{
 ////    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
 ////        return 0;
 ////    }
-////    auto child = java_cast< Context* >(getChildWithoutCheckingPerms(name));
+////    auto child = java_cast< ContextPtr >(getChildWithoutCheckingPerms(name));
 ////    if(child != 0 && shouldSeeChild(caller, child)) {
 ////        return child;
 ////    }
 //    return 0;
 //}
 //
-//void* AbstractContext::getChild(const std::string & name)
+//AgObjectPtr AbstractContext::getChild(const std::string & name)
 //{
-////    return java_cast< Context* >(getChild(name, static_cast< boost::shared_ptr<CallerController> >(0)));
+////    return java_cast< ContextPtr >(getChild(name, static_cast< CallerControllerPtr >(0)));
 //	return 0;
 //}
 //
-////Context* AbstractContext::getChildWithoutCheckingPerms(const std::string & name)
+////ContextPtr AbstractContext::getChildWithoutCheckingPerms(const std::string & name)
 ////{
-////    return java_cast< Context* >(childrenMap)->get(name));
+////    return java_cast< ContextPtr >(childrenMap)->get(name));
 ////}
 ////
 ////std::string AbstractContext::getPath()
 ////{
-////    if(java_cast< Context* >(getParent()) == 0) {
+////    if(java_cast< ContextPtr >(getParent()) == 0) {
 ////        return createPath();
 ////    }
 ////    if(path == 0) {
@@ -1090,12 +1090,12 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////std::string AbstractContext::createPath()
 ////{
-////    Context* con = this;
+////    ContextPtr con = this;
 ////    auto nm = getName();
 ////    do {
-////        con = java_cast< Context* >(con)->getParent());
+////        con = java_cast< ContextPtr >(con)->getParent());
 ////        if(con != 0) {
-////            if(java_cast< Context* >(con)->getParent()) != 0) {
+////            if(java_cast< ContextPtr >(con)->getParent()) != 0) {
 ////                nm = con)->getName())+ContextUtils::CONTEXT_NAME_SEPARATOR())
 ////    +nm)->toString();
 ////            }
@@ -1104,14 +1104,14 @@ int AbstractContext::compareTo(Context* context)
 ////    return nm;
 ////}
 ////
-//bool AbstractContext::addEventListener(const std::string & name, ContextEventListener* listener)
+//bool AbstractContext::addEventListener(const std::string & name, ContextEventListenerPtr listener)
 //{
 //    return addEventListener(name, listener, false);
 //}
 //
-//bool AbstractContext::addEventListener(const std::string & name, ContextEventListener* listener, bool weak)
+//bool AbstractContext::addEventListener(const std::string & name, ContextEventListenerPtr listener, bool weak)
 //{
-////    auto ed = getEventData(name);
+////    auto ed = getEventDataPtr(name);
 ////    if(ed == 0) {
 ////        throw new ::java::lang::IllegalArgumentException(Cres::get()->getString("conEvtNotAvail"))+name)->toString());
 ////    }
@@ -1145,9 +1145,9 @@ int AbstractContext::compareTo(Context* context)
 // return true;
 //}
 //
-//bool AbstractContext::removeEventListener(const std::string & name, ContextEventListener* listener)
+//bool AbstractContext::removeEventListener(const std::string & name, ContextEventListenerPtr listener)
 //{
-////    auto ed = getEventData(name);
+////    auto ed = getEventDataPtr(name);
 ////    if(ed == 0) {
 ////        Log::CONTEXT_EVENTS())->warn("Error removing listener of event '"+name)
 ////            +"' in context '")
@@ -1174,16 +1174,16 @@ int AbstractContext::compareTo(Context* context)
 // return true;
 //}
 //
-//std::list<VariableDefinition*>  AbstractContext::getVariableDefinitions(boost::shared_ptr<CallerController> caller)
+//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller)
 //{
 ////return getVariableDefinitions(caller, false);
-//std::list<VariableDefinition*> list;
+//std::list<VariableDefinitionPtr> list;
 // return list;
 //}
 //
-//std::list<VariableDefinition*>  AbstractContext::getVariableDefinitions(boost::shared_ptr<CallerController> caller, bool includeHidden)
+//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller, bool includeHidden)
 //{
-//    std::list<VariableDefinition*>  list;
+//    std::list<VariableDefinitionPtr>  list;
 ////    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
 ////    variableDataLock)->readLock())->lock();
 ////    {
@@ -1192,7 +1192,7 @@ int AbstractContext::compareTo(Context* context)
 ////        });
 ////        {
 ////            for (auto _i = variableData)->values())->iterator(); _i->hasNext(); ) {
-////                VariableData* d = java_cast< VariableData* >(_i->next());
+////                VariableDataPtr d = java_cast< VariableDataPtr >(_i->next());
 ////                {
 ////                    auto def = d)->getDefinition();
 ////                    if((caller == 0 || caller)->isPermissionCheckingEnabled()) && !includeHidden && def)->isHidden()&& !debug) {
@@ -1219,18 +1219,18 @@ int AbstractContext::compareTo(Context* context)
 //    return list;
 //}
 //
-//std::list<VariableDefinition*>  AbstractContext::getVariableDefinitions()
+//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions()
 //{
 //   return getVariableDefinitions(0);
 //}
 //
-//std::list<VariableDefinition*>  AbstractContext::getVariableDefinitions(boost::shared_ptr<CallerController> caller, const std::string & group)
+//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller, const std::string & group)
 //{
-//  std::list<VariableDefinition*>  defs;
+//  std::list<VariableDefinitionPtr>  defs;
 ////    for (auto _i = getVariableDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        VariableDefinition* vd = java_cast< VariableDefinition* >(_i->next());
+////        VariableDefinitionPtr vd = java_cast< VariableDefinitionPtr >(_i->next());
 ////        {
-////            if(vd)->getGroup() != 0 && (::com::tibbo::aggregate::common::util::Util::equals(group, vd)->getGroup()) || vd)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
+////            if(vd)->getGroup() != 0 && (Util::equals(group, vd)->getGroup()) || vd)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
 ////                defs)->add(vd));
 ////            }
 ////        }
@@ -1238,7 +1238,7 @@ int AbstractContext::compareTo(Context* context)
 //  return defs;
 //}
 //
-//std::list<VariableDefinition*>  AbstractContext::getVariableDefinitions(const std::string & group)
+//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(const std::string & group)
 //{
 //   return getVariableDefinitions(0, group);
 //}
@@ -1248,12 +1248,12 @@ int AbstractContext::compareTo(Context* context)
 ////    return permissionChecker;
 ////}
 ////
-//boost::shared_ptr<Permissions> AbstractContext::getChildrenViewPermissions()
+//PermissionsPtr AbstractContext::getChildrenViewPermissions()
 //{
 //    return childrenViewPermissions != 0 ? childrenViewPermissions : getPermissions();
 //}
 ////
-//ContextManager* AbstractContext::getContextManager()
+//ContextManagerPtr AbstractContext::getContextManager()
 //{
 //    return contextManager;
 //}
@@ -1293,14 +1293,14 @@ int AbstractContext::compareTo(Context* context)
 //    return setupComplete;
 //}
 //
-//std::list<boost::shared_ptr<FunctionDefinition>>  AbstractContext::getFunctionDefinitions(boost::shared_ptr<CallerController> caller)
+//std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions(CallerControllerPtr caller)
 //{
 //  return getFunctionDefinitions(caller, false);
 //}
 //
-//std::list<boost::shared_ptr<FunctionDefinition>>  AbstractContext::getFunctionDefinitions(boost::shared_ptr<CallerController> caller, bool includeHidden)
+//std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions(CallerControllerPtr caller, bool includeHidden)
 //{
-//   std::list<boost::shared_ptr<FunctionDefinition>>  list;
+//   std::list<FunctionDefinitionPtr>  list;
 ////    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
 ////    functionDataLock)->readLock())->lock();
 ////    {
@@ -1309,7 +1309,7 @@ int AbstractContext::compareTo(Context* context)
 ////        });
 ////        {
 ////            for (auto _i = functionData)->values())->iterator(); _i->hasNext(); ) {
-////                FunctionData* d = java_cast< FunctionData* >(_i->next());
+////                FunctionDataPtr d = java_cast< FunctionDataPtr >(_i->next());
 ////                {
 ////                    auto def = d)->getDefinition();
 ////                    if(!checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller, this)) {
@@ -1327,18 +1327,18 @@ int AbstractContext::compareTo(Context* context)
 //    return list;
 //}
 //
-//std::list<boost::shared_ptr<FunctionDefinition>>  AbstractContext::getFunctionDefinitions()
+//std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions()
 //{
 //    return getFunctionDefinitions(0);
 //}
 //
-//std::list<boost::shared_ptr<FunctionDefinition>>  AbstractContext ::getFunctionDefinitions(boost::shared_ptr<CallerController> caller, const std::string & group)
+//std::list<FunctionDefinitionPtr>  AbstractContext ::getFunctionDefinitions(CallerControllerPtr caller, const std::string & group)
 //{
-//  std::list<boost::shared_ptr<FunctionDefinition>> defs;
+//  std::list<FunctionDefinitionPtr> defs;
 ////    for (auto _i = getFunctionDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        boost::shared_ptr<FunctionDefinition> fd = java_cast< boost::shared_ptr<FunctionDefinition> >(_i->next());
+////        FunctionDefinitionPtr fd = java_cast< FunctionDefinitionPtr >(_i->next());
 ////        {
-////            if(fd)->getGroup() != 0 && (::com::tibbo::aggregate::common::util::Util::equals(group, fd)->getGroup()) || fd)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
+////            if(fd)->getGroup() != 0 && (Util::equals(group, fd)->getGroup()) || fd)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
 ////                defs)->add(fd));
 ////            }
 ////        }
@@ -1346,7 +1346,7 @@ int AbstractContext::compareTo(Context* context)
 //  return defs;
 //}
 //
-//std::list<boost::shared_ptr<FunctionDefinition>>  /*template <class C> */AbstractContext/*<C>*/ ::getFunctionDefinitions(const std::string & group)
+//std::list<FunctionDefinitionPtr>  /*template <class C> */AbstractContext/*<C>*/ ::getFunctionDefinitions(const std::string & group)
 //{
 //  return getFunctionDefinitions(0, group);
 //}
@@ -1468,23 +1468,23 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////}
 ////
-////std::list  AbstractContext::getEventDefinitions(boost::shared_ptr<CallerController> caller)
+////std::list  AbstractContext::getEventDefinitions(CallerControllerPtr caller)
 ////{
 ////    return getEventDefinitions(caller, false);
 ////}
 ////
-////std::list  AbstractContext::getEventDefinitions(boost::shared_ptr<CallerController> caller, bool includeHidden)
+////std::list  AbstractContext::getEventDefinitions(CallerControllerPtr caller, bool includeHidden)
 ////{
 ////    std::list  list = new ::java::util::LinkedList();
 ////    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
-////    eventDataLock)->readLock())->lock();
+////    EventDataPtrLock)->readLock())->lock();
 ////    {
 ////        auto finally12 = finally([&] {
-////            eventDataLock)->readLock())->unlock();
+////            EventDataPtrLock)->readLock())->unlock();
 ////        });
 ////        {
-////            for (auto _i = eventData)->values())->iterator(); _i->hasNext(); ) {
-////                EventData* d = java_cast< EventData* >(_i->next());
+////            for (auto _i = EventDataPtr)->values())->iterator(); _i->hasNext(); ) {
+////                EventDataPtr d = java_cast< EventDataPtr >(_i->next());
 ////                {
 ////                    if(!checkPermissions(d)->getDefinition())->getPermissions() != 0 ? d)->getDefinition())->getPermissions() : getPermissions(), caller, this)) {
 ////                        continue;
@@ -1503,16 +1503,16 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////std::list  AbstractContext::getEventDefinitions()
 ////{
-////    return getEventDefinitions(static_cast< boost::shared_ptr<CallerController> >(0));
+////    return getEventDefinitions(static_cast< CallerControllerPtr >(0));
 ////}
 ////
-////std::list  AbstractContext::getEventDefinitions(boost::shared_ptr<CallerController> caller, const std::string & group)
+////std::list  AbstractContext::getEventDefinitions(CallerControllerPtr caller, const std::string & group)
 ////{
 ////    std::list  res = new ::java::util::LinkedList();
 ////    for (auto _i = getEventDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        boost::shared_ptr<EventDefinition> ed = java_cast< boost::shared_ptr<EventDefinition> >(_i->next());
+////        EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
 ////        {
-////            if(ed)->getGroup() != 0 && (::com::tibbo::aggregate::common::util::Util::equals(group, ed)->getGroup()) || ed)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
+////            if(ed)->getGroup() != 0 && (Util::equals(group, ed)->getGroup()) || ed)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
 ////                res)->add(ed));
 ////            }
 ////        }
@@ -1522,10 +1522,10 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////std::list  AbstractContext::getEventDefinitions(const std::string & group)
 ////{
-////    return getEventDefinitions(static_cast< boost::shared_ptr<CallerController> >(0), group);
+////    return getEventDefinitions(static_cast< CallerControllerPtr >(0), group);
 ////}
 ////
-////com::tibbo::aggregate::common::action::ActionDefinition* AbstractContext::getActionDefinition(const std::string & name)
+////com::tibbo::aggregate::common::action::ActionDefinitionPtr AbstractContext::getActionDefinition(const std::string & name)
 ////{
 ////    actionDefinitionsLock)->readLock())->lock();
 ////    {
@@ -1534,7 +1534,7 @@ int AbstractContext::compareTo(Context* context)
 ////        });
 ////        {
 ////            for (auto _i = actionDefinitions)->iterator(); _i->hasNext(); ) {
-////                ::com::tibbo::aggregate::common::action::ActionDefinition* def = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
+////                ::com::tibbo::aggregate::common::action::ActionDefinitionPtr def = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
 ////                {
 ////                    if(def)->getName())->equals(name))) {
 ////                        return def;
@@ -1547,10 +1547,10 @@ int AbstractContext::compareTo(Context* context)
 ////    return 0;
 ////}
 ////
-////com::tibbo::aggregate::common::action::ActionDefinition* AbstractContext::getActionDefinition(const std::string & name, boost::shared_ptr<CallerController> caller)
+////com::tibbo::aggregate::common::action::ActionDefinitionPtr AbstractContext::getActionDefinition(const std::string & name, CallerControllerPtr caller)
 ////{
 ////    for (auto _i = getActionDefinitions(caller, true))->iterator(); _i->hasNext(); ) {
-////        ::com::tibbo::aggregate::common::action::ActionDefinition* ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
+////        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
 ////        {
 ////            if(ad)->getName())->equals(name))) {
 ////                return ad;
@@ -1560,10 +1560,10 @@ int AbstractContext::compareTo(Context* context)
 ////    return 0;
 ////}
 ////
-////com::tibbo::aggregate::common::action::ActionDefinition* AbstractContext::getDefaultActionDefinition(boost::shared_ptr<CallerController> caller)
+////com::tibbo::aggregate::common::action::ActionDefinitionPtr AbstractContext::getDefaultActionDefinition(CallerControllerPtr caller)
 ////{
 ////    for (auto _i = getActionDefinitions(caller, true))->iterator(); _i->hasNext(); ) {
-////        ::com::tibbo::aggregate::common::action::ActionDefinition* ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
+////        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
 ////        {
 ////            if(ad)->isDefault()) {
 ////                return ad;
@@ -1573,12 +1573,12 @@ int AbstractContext::compareTo(Context* context)
 ////    return 0;
 ////}
 ////
-////std::list  AbstractContext::getActionDefinitions(boost::shared_ptr<CallerController> caller)
+////std::list  AbstractContext::getActionDefinitions(CallerControllerPtr caller)
 ////{
 ////    return getActionDefinitions(caller, false);
 ////}
 ////
-////void AbstractContext::addActionDefinition(::com::tibbo::aggregate::common::action::ActionDefinition* def)
+////void AbstractContext::addActionDefinition(::com::tibbo::aggregate::common::action::ActionDefinitionPtr def)
 ////{
 ////    if(def)->getName() == 0) {
 ////        throw new ::java::lang::NullPointerException("Action name can't be NULL");
@@ -1608,7 +1608,7 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////}
 ////
-////std::list  AbstractContext::getActionDefinitions(boost::shared_ptr<CallerController> caller, bool includeHidden)
+////std::list  AbstractContext::getActionDefinitions(CallerControllerPtr caller, bool includeHidden)
 ////{
 ////    std::list  list = new ::java::util::LinkedList();
 ////    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
@@ -1619,7 +1619,7 @@ int AbstractContext::compareTo(Context* context)
 ////        });
 ////        {
 ////            for (auto _i = actionDefinitions)->iterator(); _i->hasNext(); ) {
-////                ::com::tibbo::aggregate::common::action::ActionDefinition* d = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
+////                ::com::tibbo::aggregate::common::action::ActionDefinitionPtr d = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
 ////                {
 ////                    if(!checkPermissions(d)->getPermissions() != 0 ? d)->getPermissions() : getPermissions(), caller, this)) {
 ////                        continue;
@@ -1638,7 +1638,7 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////std::list  AbstractContext::getActionDefinitions()
 ////{
-////    return getActionDefinitions(static_cast< boost::shared_ptr<CallerController> >(0));
+////    return getActionDefinitions(static_cast< CallerControllerPtr >(0));
 ////}
 ////
 ////void AbstractContext::removeActionDefinition(const std::string & name)
@@ -1663,7 +1663,7 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////}
 ////
-////com::tibbo::aggregate::common::action::ActionDefinition* AbstractContext::actDefFromDataRecord(::DataRecord* rec)
+////com::tibbo::aggregate::common::action::ActionDefinitionPtr AbstractContext::actDefFromDataRecord(::DataRecordPtr* rec)
 ////{
 ////    auto def = new ::com::tibbo::aggregate::common::action::BasicActionDefinition(rec)->getString(ActionConstants::FIELD_AD_NAME()));
 ////    def)->setDescription(rec)->getString(ActionConstants::FIELD_AD_DESCRIPTION()));
@@ -1676,7 +1676,7 @@ int AbstractContext::compareTo(Context* context)
 ////    if(dropSourcesTable != 0 && dropSourcesTable)->getRecordCount() > 0) {
 ////        std::list  dropSources = new ::java::util::LinkedList();
 ////        for (auto _i = dropSourcesTable)->iterator(); _i->hasNext(); ) {
-////            ::DataRecord* ds = java_cast< ::DataRecord* >(_i->next());
+////            ::DataRecordPtr* ds = java_cast< ::DataRecordPtr* >(_i->next());
 ////            {
 ////                dropSources)->add(new ::com::tibbo::aggregate::common::action::TreeMask(ds)->getString(ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK()))));
 ////            }
@@ -1695,7 +1695,7 @@ int AbstractContext::compareTo(Context* context)
 ////    return def;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVariable(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    auto startTime = ::java::lang::System::currentTimeMillis();
 ////    setupVariables();
@@ -1739,7 +1739,7 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::checkVariableValue(VariableDefinition* def, ::boost::shared_ptr<DataTable> val)
+////DataTablePtr AbstractContext::checkVariableValue(VariableDefinitionPtr def, ::DataTablePtr val)
 ////{
 ////    if(!valueCheckingEnabled) {
 ////        return val;
@@ -1755,7 +1755,7 @@ int AbstractContext::compareTo(Context* context)
 ////        auto converters = def)->getCompatibilityConverters();
 ////        if(converters != 0) {
 ////            for (auto _i = converters)->iterator(); _i->hasNext(); ) {
-////                CompatibilityConverter* converter = java_cast< CompatibilityConverter* >(_i->next());
+////                CompatibilityConverterPtr converter = java_cast< CompatibilityConverterPtr >(_i->next());
 ////                {
 ////                    try {
 ////                        newValue = converter)->convert(value, newValue);
@@ -1775,7 +1775,7 @@ int AbstractContext::compareTo(Context* context)
 ////    return value;
 ////}
 ////
-////std::string AbstractContext::checkVariableValueFormat(VariableDefinition* def, ::boost::shared_ptr<DataTable> table)
+////std::string AbstractContext::checkVariableValueFormat(VariableDefinitionPtr def, ::DataTablePtr table)
 ////{
 ////    if(!valueCheckingEnabled) {
 ////        return 0;
@@ -1790,7 +1790,7 @@ int AbstractContext::compareTo(Context* context)
 ////    return 0;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeGetter(VariableData* data, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::executeGetter(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    auto result = executeGetterMethod(data, caller, request);
 ////    if(result != 0) {
@@ -1810,13 +1810,13 @@ int AbstractContext::compareTo(Context* context)
 ////    return executeDefaultGetter(def, caller, false, true);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeGetterMethod(VariableData* data, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::executeGetterMethod(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    if(!data)->isGetterCached()) {
 ////        auto params = (new ::java::lang::ClassArray({
-////            static_cast< ::java::lang::Class* >(VariableDefinition::class_())
-////            , static_cast< ::java::lang::Class* >(CallerController::class_())
-////            , static_cast< ::java::lang::Class* >(RequestController::class_())
+////            static_cast< AgClassPtr >(VariableDefinition::class_())
+////            , static_cast< AgClassPtr >(CallerController::class_())
+////            , static_cast< AgClassPtr >(RequestController::class_())
 ////        }));
 ////        {
 ////            auto finally18 = finally([&] {
@@ -1833,7 +1833,7 @@ int AbstractContext::compareTo(Context* context)
 ////    auto getter = data)->getGetterMethod();
 ////    if(getter != 0) {
 ////        try {
-////            return java_cast< ::boost::shared_ptr<DataTable> >(getter)->invoke(this, new voidArray({
+////            return java_cast< ::DataTablePtr >(getter)->invoke(this, new voidArray({
 ////                data)->getDefinition())
 ////                , caller)
 ////                , request)
@@ -1845,17 +1845,17 @@ int AbstractContext::compareTo(Context* context)
 ////    return 0;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeDefaultGetter(const std::string & name, boost::shared_ptr<CallerController> caller)
+////DataTablePtr AbstractContext::executeDefaultGetter(const std::string & name, CallerControllerPtr caller)
 ////{
 ////    return executeDefaultGetter(name, caller, true);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeDefaultGetter(const std::string & name, boost::shared_ptr<CallerController> caller, bool check)
+////DataTablePtr AbstractContext::executeDefaultGetter(const std::string & name, CallerControllerPtr caller, bool check)
 ////{
 ////    return executeDefaultGetter(name, caller, check, true);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeDefaultGetter(const std::string & name, boost::shared_ptr<CallerController> caller, bool check, bool createDefault)
+////DataTablePtr AbstractContext::executeDefaultGetter(const std::string & name, CallerControllerPtr caller, bool check, bool createDefault)
 ////{
 ////    auto def = getVariableDefinition(name);
 ////    if(def == 0) {
@@ -1864,36 +1864,36 @@ int AbstractContext::compareTo(Context* context)
 ////    return executeDefaultGetter(def, caller, check, createDefault);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeDefaultGetter(VariableDefinition* def, boost::shared_ptr<CallerController> caller, bool check, bool createDefault)
+////DataTablePtr AbstractContext::executeDefaultGetter(VariableDefinitionPtr def, CallerControllerPtr caller, bool check, bool createDefault)
 ////{
 ////    auto value = executeDefaultGetterImpl(def, caller);
 ////    if(value == 0) {
-////        return createDefault ? getDefaultValue(def) : static_cast< ::boost::shared_ptr<DataTable> >(0);
+////        return createDefault ? getDefaultValue(def) : static_cast< ::DataTablePtr >(0);
 ////    }
 ////    return check ? checkVariableValue(def, value) : value;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeDefaultGetterImpl(VariableDefinition* vd, boost::shared_ptr<CallerController> caller)
+////DataTablePtr AbstractContext::executeDefaultGetterImpl(VariableDefinitionPtr vd, CallerControllerPtr caller)
 ////{
 ////    auto value = getVariableData(vd)->getName()))->getValue();
-////    return value != 0 ? java_cast< ::boost::shared_ptr<DataTable> >(value) : getDefaultValue(vd);
+////    return value != 0 ? java_cast< ::DataTablePtr >(value) : getDefaultValue(vd);
 ////}
 ////
 ////int AbstractContext::hashCode()
 ////{
-////    if(java_cast< Context* >(getParent()) == 0) {
+////    if(java_cast< ContextPtr >(getParent()) == 0) {
 ////        return super::hashCode();
 ////    }
 ////    auto const prime = int(31);
 ////    auto result = int(1);
-////    auto root = java_cast< Context* >(getRoot());
+////    auto root = java_cast< ContextPtr >(getRoot());
 ////    auto path = getPath();
 ////    result = prime * result + ((root == 0) ? int(0) : root)->hashCode());
 ////    result = prime * result + ((path == 0) ? int(0) : path)->hashCode());
 ////    return result;
 ////}
 ////
-////bool AbstractContext::equals(void* obj)
+////bool AbstractContext::equals(AgObjectPtr obj)
 ////{
 ////    if(this) == obj) {
 ////        return true;
@@ -1901,37 +1901,37 @@ int AbstractContext::compareTo(Context* context)
 ////    if(obj == 0) {
 ////        return false;
 ////    }
-////    auto other = java_cast< AbstractContext* >(obj);
-////    if(java_cast< Context* >(getRoot())) != java_cast< Context* >(other)->getRoot()))) {
+////    auto other = java_cast< AbstractContextPtr >(obj);
+////    if(java_cast< ContextPtr >(getRoot())) != java_cast< ContextPtr >(other)->getRoot()))) {
 ////        return false;
 ////    }
-////    if(!::com::tibbo::aggregate::common::util::Util::equals(getPath(), other)->getPath())) {
+////    if(!Util::equals(getPath(), other)->getPath())) {
 ////        return false;
 ////    }
 ////    return true;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVariable(const std::string & name, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    return getVariable(getAndCheckVariableDefinition(name), caller, request);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVariable(const std::string & name, boost::shared_ptr<CallerController> caller)
+////DataTablePtr AbstractContext::getVariable(const std::string & name, CallerControllerPtr caller)
 ////{
-////    return getVariable(getAndCheckVariableDefinition(name), caller, static_cast< RequestController* >(0));
+////    return getVariable(getAndCheckVariableDefinition(name), caller, static_cast< RequestControllerPtr >(0));
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVariable(const std::string & name)
+////DataTablePtr AbstractContext::getVariable(const std::string & name)
 ////{
-////    return getVariable(getAndCheckVariableDefinition(name), static_cast< boost::shared_ptr<CallerController> >(0), static_cast< RequestController* >(0));
+////    return getVariable(getAndCheckVariableDefinition(name), static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0));
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVariableImpl(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    return 0;
 ////}
 ////
-////void* AbstractContext::getVariableObject(const std::string & name, boost::shared_ptr<CallerController> caller)
+////AgObjectPtr AbstractContext::getVariableObject(const std::string & name, CallerControllerPtr caller)
 ////{
 ////    try {
 ////        auto def = getAndCheckVariableDefinition(name);
@@ -1948,11 +1948,11 @@ int AbstractContext::compareTo(Context* context)
 ////                if(def)->getValueClass() == 0) {
 ////                    throw new ContextException("Value class not defined for variable: "+def)->toDetailedString())->toString());
 ////                }
-////                void* value;
+////                AgObjectPtr value;
 ////                auto table = getVariable(name, caller);
 ////                auto list = ::DataTableConversion::beansFromTable(table, def)->getValueClass(), def)->getFormat(), true);
 ////                if(def)->getFormat())->isSingleRecord()) {
-////                    value = java_cast< void* >(list)->get(0));
+////                    value = java_cast< AgObjectPtr >(list)->get(0));
 ////                } else {
 ////                    value = list;
 ////                }
@@ -1968,7 +1968,7 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////}
 ////
-////void AbstractContext::setVariable(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::setVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
 ////{
 ////    auto startTime = ::java::lang::System::currentTimeMillis();
 ////    setupVariables();
@@ -2046,13 +2046,13 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////}
 ////
-////void AbstractContext::variableUpdated(VariableDefinition* def, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::variableUpdated(VariableDefinitionPtr def, CallerControllerPtr caller, ::DataTablePtr value)
 ////{
 ////    fireUpdatedEvent(def, caller, value);
 ////    fireChangeEvent(def, caller, new Date(), value);
 ////}
 ////
-////void AbstractContext::fireUpdatedEvent(VariableDefinition* def, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::fireUpdatedEvent(VariableDefinitionPtr def, CallerControllerPtr caller, ::DataTablePtr value)
 ////{
 ////    auto callerAllowsUpdatedEvents = caller == 0 || !caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS());
 ////    if(setupComplete && fireUpdateEvents && def)->isAllowUpdateEvents()&& callerAllowsUpdatedEvents) {
@@ -2063,15 +2063,15 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////}
 ////
-////void AbstractContext::fireChangeEvent(VariableDefinition* def, boost::shared_ptr<CallerController> caller, Date* timestamp, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::fireChangeEvent(VariableDefinitionPtr def, CallerControllerPtr caller, DatePtr timestamp, ::DataTablePtr value)
 ////{
 ////    auto callerAllowsChangeEvents = caller == 0 || !caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS());
 ////    if(setupComplete && fireUpdateEvents && def)->isAllowUpdateEvents()&& callerAllowsChangeEvents) {
 ////        auto ed = getEventDefinition(E_CHANGE());
 ////        if(ed != 0) {
-////            FireEventRequestController* fer = new FireChangeEventRequestController(def)->getChangeEventsExpirationPeriod(), def, value);
-////            auto eventData = new ::DataTable(ed)->getFormat(), new voidArray({def)->getName())}));
-////            fireEvent(ed, eventData, EventLevel::NONE, 0, timestamp, 0, caller, fer, 0);
+////            FireEventRequestControllerPtr fer = new FireChangeEventRequestController(def)->getChangeEventsExpirationPeriod(), def, value);
+////            auto EventDataPtr = new ::DataTable(ed)->getFormat(), new voidArray({def)->getName())}));
+////            fireEvent(ed, EventDataPtr, EventLevel::NONE, 0, timestamp, 0, caller, fer, 0);
 ////        }
 ////    }
 ////}
@@ -2080,7 +2080,7 @@ int AbstractContext::compareTo(Context* context)
 ////{
 ////}
 ////
-////void AbstractContext::executeSetter(VariableData* data, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::executeSetter(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
 ////{
 ////    auto def = data)->getDefinition();
 ////    if(executeSetterMethod(data, caller, request, value)) {
@@ -2097,14 +2097,14 @@ int AbstractContext::compareTo(Context* context)
 ////    executeDefaultSetter(def, caller, value);
 ////}
 ////
-////bool AbstractContext::executeSetterMethod(VariableData* data, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> value)
+////bool AbstractContext::executeSetterMethod(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
 ////{
 ////    if(!data)->isSetterCached()) {
 ////        auto params = (new ::java::lang::ClassArray({
-////            static_cast< ::java::lang::Class* >(VariableDefinition::class_())
-////            , static_cast< ::java::lang::Class* >(CallerController::class_())
-////            , static_cast< ::java::lang::Class* >(RequestController::class_())
-////            , static_cast< ::java::lang::Class* >(::DataTable::class_())
+////            static_cast< AgClassPtr >(VariableDefinition::class_())
+////            , static_cast< AgClassPtr >(CallerController::class_())
+////            , static_cast< AgClassPtr >(RequestController::class_())
+////            , static_cast< AgClassPtr >(::DataTable::class_())
 ////        }));
 ////        {
 ////            auto finally21 = finally([&] {
@@ -2135,7 +2135,7 @@ int AbstractContext::compareTo(Context* context)
 ////    return false;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getDefaultValue(VariableDefinition* def)
+////DataTablePtr AbstractContext::getDefaultValue(VariableDefinitionPtr def)
 ////{
 ////    if(def)->getDefaultValue() != 0) {
 ////        return def)->getDefaultValue();
@@ -2143,7 +2143,7 @@ int AbstractContext::compareTo(Context* context)
 ////    return new ::DataTable(def)->getFormat(), true);
 ////}
 ////
-////void AbstractContext::executeDefaultSetter(const std::string & name, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::executeDefaultSetter(const std::string & name, CallerControllerPtr caller, ::DataTablePtr value)
 ////{
 ////    auto def = getVariableDefinition(name);
 ////    if(def == 0) {
@@ -2152,49 +2152,49 @@ int AbstractContext::compareTo(Context* context)
 ////    executeDefaultSetter(def, caller, value);
 ////}
 ////
-////void AbstractContext::executeDefaultSetter(VariableDefinition* def, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::executeDefaultSetter(VariableDefinitionPtr def, CallerControllerPtr caller, ::DataTablePtr value)
 ////{
 ////    executeDefaultSetterImpl(def, caller, value);
 ////}
 ////
-////void AbstractContext::executeDefaultSetterImpl(VariableDefinition* vd, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::executeDefaultSetterImpl(VariableDefinitionPtr vd, CallerControllerPtr caller, ::DataTablePtr value)
 ////{
 ////    getVariableData(vd)->getName()))->setValue(value);
 ////}
 ////
-////void AbstractContext::setVariable(const std::string & name, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
 ////{
 ////    auto def = getAndCheckVariableDefinition(name);
 ////    setVariable(def, caller, request, value);
 ////}
 ////
-////void AbstractContext::setVariable(const std::string & name, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, ::DataTablePtr value)
 ////{
-////    setVariable(name, caller, static_cast< RequestController* >(0), value);
+////    setVariable(name, caller, static_cast< RequestControllerPtr >(0), value);
 ////}
 ////
-////void AbstractContext::setVariable(const std::string & name, ::boost::shared_ptr<DataTable> value)
+////void AbstractContext::setVariable(const std::string & name, ::DataTablePtr value)
 ////{
-////    setVariable(name, static_cast< boost::shared_ptr<CallerController> >(0), static_cast< RequestController* >(0), value);
+////    setVariable(name, static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0), value);
 ////}
 ////
-////void AbstractContext::setVariable(const std::string & name, boost::shared_ptr<CallerController> caller, voidArray* value)
+////void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, voidArray* value)
 ////{
 ////    auto def = getAndCheckVariableDefinition(name);
-////    setVariable(name, caller, static_cast< RequestController* >(0), new ::DataTable(def)->getFormat(), value));
+////    setVariable(name, caller, static_cast< RequestControllerPtr >(0), new ::DataTable(def)->getFormat(), value));
 ////}
 ////
 ////void AbstractContext::setVariable(const std::string & name, voidArray* value)
 ////{
-////    setVariable(name, static_cast< boost::shared_ptr<CallerController> >(0), value);
+////    setVariable(name, static_cast< CallerControllerPtr >(0), value);
 ////}
 ////
-////bool AbstractContext::setVariableImpl(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> value)
+////bool AbstractContext::setVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
 ////{
 ////    return false;
 ////}
 ////
-////VariableDefinition* AbstractContext::getAndCheckVariableDefinition(const std::string & name)
+////VariableDefinitionPtr AbstractContext::getAndCheckVariableDefinition(const std::string & name)
 ////{
 ////    setupVariables();
 ////    auto def = getVariableDefinition(name);
@@ -2204,12 +2204,12 @@ int AbstractContext::compareTo(Context* context)
 ////    return def;
 ////}
 ////
-////bool AbstractContext::setVariableField(const std::string & variable, const std::string & field, void* value, boost::shared_ptr<CallerController> cc)
+////bool AbstractContext::setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, CallerControllerPtr cc)
 ////{
 ////    return setVariableField(variable, field, int(0), value, cc);
 ////}
 ////
-////bool AbstractContext::setVariableField(const std::string & variable, const std::string & field, int record, void* value, boost::shared_ptr<CallerController> cc)
+////bool AbstractContext::setVariableField(const std::string & variable, const std::string & field, int record, AgObjectPtr value, CallerControllerPtr cc)
 ////{
 ////    auto tab = getVariable(variable, cc);
 ////    auto old = tab)->getRecord(record))->getValue(field);
@@ -2218,7 +2218,7 @@ int AbstractContext::compareTo(Context* context)
 ////    return old == 0 ? value != 0 : !old)->equals(value);
 ////}
 ////
-////void AbstractContext::setVariableField(const std::string & variable, const std::string & field, void* value, const std::string & compareField, void* compareValue, boost::shared_ptr<CallerController> cc)
+////void AbstractContext::setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, const std::string & compareField, AgObjectPtr compareValue, CallerControllerPtr cc)
 ////{
 ////    auto tab = getVariable(variable, cc);
 ////    auto rec = tab)->select(compareField, compareValue);
@@ -2233,14 +2233,14 @@ int AbstractContext::compareTo(Context* context)
 ////    setVariable(variable, cc, tab);
 ////}
 ////
-////void AbstractContext::addVariableRecord(const std::string & variable, boost::shared_ptr<CallerController> cc, ::DataRecord* record)
+////void AbstractContext::addVariableRecord(const std::string & variable, CallerControllerPtr cc, ::DataRecordPtr* record)
 ////{
 ////    auto tab = getVariable(variable, cc);
 ////    tab)->addRecord(record);
 ////    setVariable(variable, cc, tab);
 ////}
 ////
-////void AbstractContext::addVariableRecord(const std::string & variable, boost::shared_ptr<CallerController> cc, voidArray* recordData)
+////void AbstractContext::addVariableRecord(const std::string & variable, CallerControllerPtr cc, voidArray* recordData)
 ////{
 ////    auto tab = getVariable(variable, cc);
 ////    auto rec = tab)->addRecord();
@@ -2250,19 +2250,19 @@ int AbstractContext::compareTo(Context* context)
 ////    setVariable(variable, cc, tab);
 ////}
 ////
-////void AbstractContext::removeVariableRecords(const std::string & variable, boost::shared_ptr<CallerController> cc, const std::string & field, void* value)
+////void AbstractContext::removeVariableRecords(const std::string & variable, CallerControllerPtr cc, const std::string & field, AgObjectPtr value)
 ////{
 ////    auto tab = getVariable(variable, cc);
 ////    for (auto *i = tab)->iterator(); i)->hasNext(); ) {
-////        auto rec = java_cast< ::DataRecord* >(java_cast< void* >(i)->next()));
-////        if(::com::tibbo::aggregate::common::util::Util::equals(rec)->getValue(field), value)) {
+////        auto rec = java_cast< ::DataRecordPtr* >(java_cast< AgObjectPtr >(i)->next()));
+////        if(Util::equals(rec)->getValue(field), value)) {
 ////            i)->remove();
 ////        }
 ////    }
 ////    setVariable(variable, cc, tab);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFunction(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::callFunction(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    auto startTime = ::java::lang::System::currentTimeMillis();
 ////    setupFunctions();
@@ -2345,7 +2345,7 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeImplementation(FunctionData* data, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::executeImplementation(FunctionDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    auto result = executeImplementationMethod(data, caller, request, parameters);
 ////    if(result != 0) {
@@ -2366,15 +2366,15 @@ int AbstractContext::compareTo(Context* context)
 ////    throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conFuncNotImpl"), new voidArray({def)->getName()), getPath())})));
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::executeImplementationMethod(FunctionData* data, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::executeImplementationMethod(FunctionDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    auto def = data)->getDefinition();
 ////    if(!data)->isImplementationCached()) {
 ////        auto callerParams = (new ::java::lang::ClassArray({
-////            static_cast< ::java::lang::Class* >(FunctionDefinition::class_())
-////            , static_cast< ::java::lang::Class* >(CallerController::class_())
-////            , static_cast< ::java::lang::Class* >(RequestController::class_())
-////            , static_cast< ::java::lang::Class* >(::DataTable::class_())
+////            static_cast< AgClassPtr >(FunctionDefinition::class_())
+////            , static_cast< AgClassPtr >(CallerController::class_())
+////            , static_cast< AgClassPtr >(RequestController::class_())
+////            , static_cast< AgClassPtr >(::DataTable::class_())
 ////        }));
 ////        {
 ////            auto finally23 = finally([&] {
@@ -2391,7 +2391,7 @@ int AbstractContext::compareTo(Context* context)
 ////    auto implementation = data)->getImplementationMethod();
 ////    if(implementation != 0) {
 ////        try {
-////            auto result = java_cast< ::boost::shared_ptr<DataTable> >(implementation)->invoke(this, new voidArray({
+////            auto result = java_cast< ::DataTablePtr >(implementation)->invoke(this, new voidArray({
 ////                def)
 ////                , caller)
 ////                , request)
@@ -2409,7 +2409,7 @@ int AbstractContext::compareTo(Context* context)
 ////    return 0;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getDefaultFunctionOutput(boost::shared_ptr<FunctionDefinition> def)
+////DataTablePtr AbstractContext::getDefaultFunctionOutput(FunctionDefinitionPtr def)
 ////{
 ////    auto const format = def)->getOutputFormat();
 ////    return format != 0 ? new ::DataTable(format, true) : new ::DataTable();
@@ -2419,51 +2419,51 @@ int AbstractContext::compareTo(Context* context)
 ////{
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFunction(const std::string & name, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    auto def = getAndCheckFunctionDefinition(name);
 ////    return callFunction(def, caller, request, parameters);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFunction(const std::string & name, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller, ::DataTablePtr parameters)
 ////{
-////    return callFunction(name, caller, static_cast< RequestController* >(0), parameters);
+////    return callFunction(name, caller, static_cast< RequestControllerPtr >(0), parameters);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFunction(const std::string & name, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::callFunction(const std::string & name, ::DataTablePtr parameters)
 ////{
-////    return callFunction(getAndCheckFunctionDefinition(name), static_cast< boost::shared_ptr<CallerController> >(0), static_cast< RequestController* >(0), parameters);
+////    return callFunction(getAndCheckFunctionDefinition(name), static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0), parameters);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFunction(const std::string & name)
-////{
-////    auto def = getAndCheckFunctionDefinition(name);
-////    return callFunction(def, static_cast< boost::shared_ptr<CallerController> >(0), static_cast< RequestController* >(0), new ::DataTable(def)->getInputFormat(), true));
-////}
-////
-////boost::shared_ptr<DataTable> AbstractContext::callFunction(const std::string & name, boost::shared_ptr<CallerController> caller)
+////DataTablePtr AbstractContext::callFunction(const std::string & name)
 ////{
 ////    auto def = getAndCheckFunctionDefinition(name);
-////    return callFunction(def, caller, static_cast< RequestController* >(0), new ::DataTable(def)->getInputFormat(), true));
+////    return callFunction(def, static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0), new ::DataTable(def)->getInputFormat(), true));
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFunction(const std::string & name, boost::shared_ptr<CallerController> caller, voidArray* parameters)
+////DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller)
+////{
+////    auto def = getAndCheckFunctionDefinition(name);
+////    return callFunction(def, caller, static_cast< RequestControllerPtr >(0), new ::DataTable(def)->getInputFormat(), true));
+////}
+////
+////DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller, voidArray* parameters)
 ////{
 ////    auto def = getAndCheckFunctionDefinition(name);
 ////    return callFunction(name, caller, new ::DataTable(def)->getInputFormat(), parameters));
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFunction(const std::string & name, voidArray* parameters)
+////DataTablePtr AbstractContext::callFunction(const std::string & name, voidArray* parameters)
 ////{
-////    return callFunction(name, static_cast< boost::shared_ptr<CallerController> >(0), parameters);
+////    return callFunction(name, static_cast< CallerControllerPtr >(0), parameters);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFunctionImpl(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::callFunctionImpl(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    return 0;
 ////}
 ////
-////boost::shared_ptr<FunctionDefinition> AbstractContext::getAndCheckFunctionDefinition(const std::string & name)
+////FunctionDefinitionPtr AbstractContext::getAndCheckFunctionDefinition(const std::string & name)
 ////{
 ////    setupFunctions();
 ////    auto def = getFunctionDefinition(name);
@@ -2473,7 +2473,7 @@ int AbstractContext::compareTo(Context* context)
 ////    return def;
 ////}
 ////
-////void AbstractContext::addVariableDefinition(VariableDefinition* def)
+////void AbstractContext::addVariableDefinition(VariableDefinitionPtr def)
 ////{
 ////    if(getVariableDefinition(def)->getName()) != 0) {
 ////        throw new ::java::lang::IllegalArgumentException("Variable '"+def)->getName())
@@ -2495,7 +2495,7 @@ int AbstractContext::compareTo(Context* context)
 ////                }
 ////            }
 ////            if(getContextManager() != 0) {
-////                getContextManager())->variableAdded(java_cast< Context* >(this), def);
+////                getContextManager())->variableAdded(java_cast< ContextPtr >(this), def);
 ////            }
 ////        }
 ////    }
@@ -2507,19 +2507,19 @@ int AbstractContext::compareTo(Context* context)
 ////    removeVariableDefinition(getVariableDefinition(name));
 ////}
 ////
-////void AbstractContext::removeVariableDefinition(VariableDefinition* def)
+////void AbstractContext::removeVariableDefinition(VariableDefinitionPtr def)
 ////{
 ////    if(def == 0) {
 ////        return;
 ////    }
-////    VariableData* data;
+////    VariableDataPtr data;
 ////    variableDataLock)->writeLock())->lock();
 ////    {
 ////        auto finally25 = finally([&] {
 ////            variableDataLock)->writeLock())->unlock();
 ////        });
 ////        {
-////            data = java_cast< VariableData* >(variableData)->remove(def)->getName()));
+////            data = java_cast< VariableDataPtr >(variableData)->remove(def)->getName()));
 ////        }
 ////    }
 ////
@@ -2548,14 +2548,14 @@ int AbstractContext::compareTo(Context* context)
 ////                }
 ////            }
 ////            if(getContextManager() != 0) {
-////                getContextManager())->variableRemoved(java_cast< Context* >(this), def);
+////                getContextManager())->variableRemoved(java_cast< ContextPtr >(this), def);
 ////            }
 ////        }
 ////    }
 ////
 ////}
 ////
-//void AbstractContext::addFunctionDefinition(boost::shared_ptr<FunctionDefinition> def)
+//void AbstractContext::addFunctionDefinition(FunctionDefinitionPtr def)
 //{
 //    /*if(getFunctionDefinition(def)->getName()) != 0) {
 //        throw new ::java::lang::IllegalArgumentException("Function '"+def)->getName())
@@ -2577,7 +2577,7 @@ int AbstractContext::compareTo(Context* context)
 //                }
 //            }
 //            if(getContextManager() != 0) {
-//                getContextManager())->functionAdded(java_cast< Context* >(this), def);
+//                getContextManager())->functionAdded(java_cast< ContextPtr >(this), def);
 //            }
 //        }
 //    }*/
@@ -2589,19 +2589,19 @@ int AbstractContext::compareTo(Context* context)
 ////    removeFunctionDefinition(getFunctionDefinition(name));
 ////}
 ////
-////void AbstractContext::removeFunctionDefinition(boost::shared_ptr<FunctionDefinition> def)
+////void AbstractContext::removeFunctionDefinition(FunctionDefinitionPtr def)
 ////{
 ////    if(def == 0) {
 ////        return;
 ////    }
-////    FunctionData* data;
+////    FunctionDataPtr data;
 ////    functionDataLock)->writeLock())->lock();
 ////    {
 ////        auto finally29 = finally([&] {
 ////            functionDataLock)->writeLock())->unlock();
 ////        });
 ////        {
-////            data = java_cast< FunctionData* >(functionData)->remove(def)->getName()));
+////            data = java_cast< FunctionDataPtr >(functionData)->remove(def)->getName()));
 ////        }
 ////    }
 ////
@@ -2618,14 +2618,14 @@ int AbstractContext::compareTo(Context* context)
 ////                }
 ////            }
 ////            if(getContextManager() != 0) {
-////                getContextManager())->functionRemoved(java_cast< Context* >(this), def);
+////                getContextManager())->functionRemoved(java_cast< ContextPtr >(this), def);
 ////            }
 ////        }
 ////    }
 ////
 ////}
 ////
-//void AbstractContext::addEventDefinition(boost::shared_ptr<EventDefinition> def)
+//void AbstractContext::addEventDefinition(EventDefinitionPtr def)
 //{
 ////    if(getEventDefinition(def)->getName()) != 0) {
 ////        throw new ::java::lang::IllegalArgumentException("Event '"+def)->getName())
@@ -2633,13 +2633,13 @@ int AbstractContext::compareTo(Context* context)
 ////            +getPath())
 ////            +"'");
 ////    }
-////    eventDataLock)->writeLock())->lock();
+////    EventDataPtrLock)->writeLock())->lock();
 ////    {
 ////        auto finally31 = finally([&] {
-////            eventDataLock)->writeLock())->unlock();
+////            EventDataPtrLock)->writeLock())->unlock();
 ////        });
 ////        {
-////            eventData)->put(def)->getName(), new EventData(def));
+////            EventDataPtr)->put(def)->getName(), new EventDataPtr(def));
 ////            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
 ////                auto ed = getEventDefinition(E_EVENT_ADDED());
 ////                if(ed != 0) {
@@ -2647,7 +2647,7 @@ int AbstractContext::compareTo(Context* context)
 ////                }
 ////            }
 ////            if(getContextManager() != 0) {
-////                getContextManager())->eventAdded(java_cast< Context* >(this), def);
+////                getContextManager())->eventAdded(java_cast< ContextPtr >(this), def);
 ////            }
 ////        }
 ////    }
@@ -2659,18 +2659,18 @@ int AbstractContext::compareTo(Context* context)
 ////    removeEventDefinition(getEventDefinition(name));
 ////}
 ////
-////void AbstractContext::removeEventDefinition(boost::shared_ptr<EventDefinition> def)
+////void AbstractContext::removeEventDefinition(EventDefinitionPtr def)
 ////{
 ////    if(def == 0) {
 ////        return;
 ////    }
-////    eventDataLock)->writeLock())->lock();
+////    EventDataPtrLock)->writeLock())->lock();
 ////    {
 ////        auto finally32 = finally([&] {
-////            eventDataLock)->writeLock())->unlock();
+////            EventDataPtrLock)->writeLock())->unlock();
 ////        });
 ////        {
-////            if(java_cast< EventData* >(eventData)->remove(def)->getName())) != 0) {
+////            if(java_cast< EventDataPtr >(EventDataPtr)->remove(def)->getName())) != 0) {
 ////                if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
 ////                    auto ed = getEventDefinition(E_EVENT_REMOVED());
 ////                    if(ed != 0) {
@@ -2678,7 +2678,7 @@ int AbstractContext::compareTo(Context* context)
 ////                    }
 ////                }
 ////                if(getContextManager() != 0) {
-////                    getContextManager())->eventRemoved(java_cast< Context* >(this), def);
+////                    getContextManager())->eventRemoved(java_cast< ContextPtr >(this), def);
 ////                }
 ////            }
 ////        }
@@ -2686,7 +2686,7 @@ int AbstractContext::compareTo(Context* context)
 ////
 ////}
 ////
-////VariableData* AbstractContext::getVariableData(const std::string & name)
+////VariableDataPtr AbstractContext::getVariableData(const std::string & name)
 ////{
 ////    variableDataLock)->readLock())->lock();
 ////    {
@@ -2694,19 +2694,19 @@ int AbstractContext::compareTo(Context* context)
 ////            variableDataLock)->readLock())->unlock();
 ////        });
 ////        {
-////            return java_cast< VariableData* >(variableData)->get(name));
+////            return java_cast< VariableDataPtr >(variableData)->get(name));
 ////        }
 ////    }
 ////
 ////}
 ////
-////VariableDefinition* AbstractContext::getVariableDefinition(const std::string & name)
+////VariableDefinitionPtr AbstractContext::getVariableDefinition(const std::string & name)
 ////{
 ////    auto data = getVariableData(name);
-////    return data != 0 ? data)->getDefinition() : static_cast< VariableDefinition* >(0);
+////    return data != 0 ? data)->getDefinition() : static_cast< VariableDefinitionPtr >(0);
 ////}
 ////
-////VariableDefinition* AbstractContext::getVariableDefinition(const std::string & name, boost::shared_ptr<CallerController> caller)
+////VariableDefinitionPtr AbstractContext::getVariableDefinition(const std::string & name, CallerControllerPtr caller)
 ////{
 ////    auto def = getVariableDefinition(name);
 ////    if(def == 0) {
@@ -2714,10 +2714,10 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////    auto readAccessGranted = checkPermissions(def)->getReadPermissions() != 0 ? def)->getReadPermissions() : getPermissions(), caller, this);
 ////    auto writeAccessGranted = checkPermissions(def)->getWritePermissions() != 0 ? def)->getWritePermissions() : getPermissions(), caller, this);
-////    return (readAccessGranted || writeAccessGranted) ? def : static_cast< VariableDefinition* >(0);
+////    return (readAccessGranted || writeAccessGranted) ? def : static_cast< VariableDefinitionPtr >(0);
 ////}
 ////
-////FunctionData* AbstractContext::getFunctionData(const std::string & name)
+////FunctionDataPtr AbstractContext::getFunctionData(const std::string & name)
 ////{
 ////    functionDataLock)->readLock())->lock();
 ////    {
@@ -2725,61 +2725,61 @@ int AbstractContext::compareTo(Context* context)
 ////            functionDataLock)->readLock())->unlock();
 ////        });
 ////        {
-////            return java_cast< FunctionData* >(functionData)->get(name));
+////            return java_cast< FunctionDataPtr >(functionData)->get(name));
 ////        }
 ////    }
 ////
 ////}
 ////
-////boost::shared_ptr<FunctionDefinition> AbstractContext::getFunctionDefinition(const std::string & name)
+////FunctionDefinitionPtr AbstractContext::getFunctionDefinition(const std::string & name)
 ////{
 ////    auto data = getFunctionData(name);
-////    return data != 0 ? data)->getDefinition() : static_cast< boost::shared_ptr<FunctionDefinition> >(0);
+////    return data != 0 ? data)->getDefinition() : static_cast< FunctionDefinitionPtr >(0);
 ////}
 ////
-////boost::shared_ptr<FunctionDefinition> AbstractContext::getFunctionDefinition(const std::string & name, boost::shared_ptr<CallerController> caller)
+////FunctionDefinitionPtr AbstractContext::getFunctionDefinition(const std::string & name, CallerControllerPtr caller)
 ////{
 ////    auto def = getFunctionDefinition(name);
 ////    if(def == 0) {
 ////        return 0;
 ////    }
 ////    auto accessGranted = checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller, this);
-////    return accessGranted ? def : static_cast< boost::shared_ptr<FunctionDefinition> >(0);
+////    return accessGranted ? def : static_cast< FunctionDefinitionPtr >(0);
 ////}
 ////
-////EventData* AbstractContext::getEventData(const std::string & name)
+////EventDataPtr AbstractContext::getEventDataPtr(const std::string & name)
 ////{
-////    eventDataLock)->readLock())->lock();
+////    EventDataPtrLock)->readLock())->lock();
 ////    {
 ////        auto finally35 = finally([&] {
-////            eventDataLock)->readLock())->unlock();
+////            EventDataPtrLock)->readLock())->unlock();
 ////        });
 ////        {
-////            return java_cast< EventData* >(eventData)->get(name));
+////            return java_cast< EventDataPtr >(EventDataPtr)->get(name));
 ////        }
 ////    }
 ////
 ////}
 ////
-//boost::shared_ptr<EventDefinition> AbstractContext::getEventDefinition(const std::string & name)
+//EventDefinitionPtr AbstractContext::getEventDefinition(const std::string & name)
 //{
-////    auto ed = getEventData(name);
-////    return ed != 0 ? ed)->getDefinition() : static_cast< boost::shared_ptr<EventDefinition> >(0);
+////    auto ed = getEventDataPtr(name);
+////    return ed != 0 ? ed)->getDefinition() : static_cast< EventDefinitionPtr >(0);
 //
 //	return 0;
 //}
 ////
-////boost::shared_ptr<EventDefinition> AbstractContext::getEventDefinition(const std::string & name, boost::shared_ptr<CallerController> caller)
+////EventDefinitionPtr AbstractContext::getEventDefinition(const std::string & name, CallerControllerPtr caller)
 ////{
 ////    auto def = getEventDefinition(name);
 ////    if(def == 0) {
 ////        return 0;
 ////    }
 ////    auto accessGranted = checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller, this);
-////    return accessGranted ? def : static_cast< boost::shared_ptr<EventDefinition> >(0);
+////    return accessGranted ? def : static_cast< EventDefinitionPtr >(0);
 ////}
 ////
-////boost::shared_ptr<EventDefinition> AbstractContext::getAndCheckEventDefinition(const std::string & name)
+////EventDefinitionPtr AbstractContext::getAndCheckEventDefinition(const std::string & name)
 ////{
 ////    setupEvents();
 ////    auto def = getEventDefinition(name);
@@ -2793,15 +2793,15 @@ int AbstractContext::compareTo(Context* context)
 ////{
 ////}
 ////
-////void AbstractContext::postEvent(boost::shared_ptr<Event> ev, boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<CallerController> caller, FireEventRequestController* request)
+////void AbstractContext::postEvent(EventPtr ev, EventDefinitionPtr ed, CallerControllerPtr caller, FireEventRequestControllerPtr request)
 ////{
 ////}
 ////
-////void AbstractContext::updateEvent(boost::shared_ptr<Event> ev, boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<CallerController> caller, FireEventRequestController* request)
+////void AbstractContext::updateEvent(EventPtr ev, EventDefinitionPtr ed, CallerControllerPtr caller, FireEventRequestControllerPtr request)
 ////{
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(boost::shared_ptr<EventDefinition> ed, ::boost::shared_ptr<DataTable> data, int level, long  id, Date* creationtime, int  listener, boost::shared_ptr<CallerController> caller, FireEventRequestController* request, boost::shared_ptr<Permissions> permissions)
+////EventPtr AbstractContext::fireEvent(EventDefinitionPtr ed, ::DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions)
 ////{
 ////    if(id == 0) {
 ////        id = ::java::lang::Long::valueOf(EventUtils::generateEventId());
@@ -2810,12 +2810,12 @@ int AbstractContext::compareTo(Context* context)
 ////    return fireEvent(ed, event, listener, caller, request);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(boost::shared_ptr<Event> event)
+////EventPtr AbstractContext::fireEvent(EventPtr event)
 ////{
 ////    return fireEvent(getAndCheckEventDefinition(event)->getName()), event, 0, 0, 0);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<Event> event, int  listener, boost::shared_ptr<CallerController> caller, FireEventRequestController* request)
+////EventPtr AbstractContext::fireEvent(EventDefinitionPtr ed, EventPtr event, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request)
 ////{
 ////    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
 ////    if(caller != 0) {
@@ -2826,7 +2826,7 @@ int AbstractContext::compareTo(Context* context)
 ////        }
 ////    }
 ////    auto rule = getEventProcessingRule(event);
-////    auto prefilter = rule != 0 ? rule)->getPrefilterExpression() : static_cast< Expression* >(0);
+////    auto prefilter = rule != 0 ? rule)->getPrefilterExpression() : static_cast< ExpressionPtr >(0);
 ////    if(prefilter != 0) {
 ////        try {
 ////            auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
@@ -2859,9 +2859,9 @@ int AbstractContext::compareTo(Context* context)
 ////    if(request != 0) {
 ////        event)->setOriginator(request)->getOriginator());
 ////    }
-////    auto edata = getEventData(ed)->getName());
+////    auto edata = getEventDataPtr(ed)->getName());
 ////    edata)->registerFiredEvent();
-////    auto deduplicator = rule != 0 ? rule)->getDeduplicatorExpression() : static_cast< Expression* >(0);
+////    auto deduplicator = rule != 0 ? rule)->getDeduplicatorExpression() : static_cast< ExpressionPtr >(0);
 ////    if(deduplicator != 0) {
 ////        try {
 ////            auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
@@ -2934,66 +2934,66 @@ int AbstractContext::compareTo(Context* context)
 ////    return event;
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name, int level, boost::shared_ptr<CallerController> caller, FireEventRequestController* request, boost::shared_ptr<Permissions> permissions, ::boost::shared_ptr<DataTable> data)
+////EventPtr AbstractContext::fireEvent(const std::string & name, int level, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions, ::DataTablePtr data)
 ////{
 ////    auto ed = getAndCheckEventDefinition(name);
 ////    return fireEvent(ed, data, level, 0, 0, 0, caller, request, permissions);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name, ::boost::shared_ptr<DataTable> data, int level, long  id, Date* creationtime, int  listener, boost::shared_ptr<CallerController> caller, FireEventRequestController* request)
+////EventPtr AbstractContext::fireEvent(const std::string & name, ::DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request)
 ////{
 ////    return fireEvent(getAndCheckEventDefinition(name), data, level, id, creationtime, listener, caller, request, 0);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name, ::boost::shared_ptr<DataTable> data)
+////EventPtr AbstractContext::fireEvent(const std::string & name, ::DataTablePtr data)
 ////{
 ////    return fireEvent(getAndCheckEventDefinition(name), data, DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> data)
+////EventPtr AbstractContext::fireEvent(const std::string & name, CallerControllerPtr caller, ::DataTablePtr data)
 ////{
 ////    return fireEvent(getAndCheckEventDefinition(name), data, DEFAULT_EVENT_LEVEL, 0, 0, 0, caller, 0, 0);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name, int level, ::boost::shared_ptr<DataTable> data)
+////EventPtr AbstractContext::fireEvent(const std::string & name, int level, ::DataTablePtr data)
 ////{
 ////    return fireEvent(getAndCheckEventDefinition(name), data, level, 0, 0, 0, 0, 0, 0);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name, int level, boost::shared_ptr<CallerController> caller, ::boost::shared_ptr<DataTable> data)
+////EventPtr AbstractContext::fireEvent(const std::string & name, int level, CallerControllerPtr caller, ::DataTablePtr data)
 ////{
 ////    return fireEvent(getAndCheckEventDefinition(name), data, level, 0, 0, 0, caller, 0, 0);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name)
+////EventPtr AbstractContext::fireEvent(const std::string & name)
 ////{
 ////    auto ed = getAndCheckEventDefinition(name);
 ////    return fireEvent(ed, new ::DataTable(ed)->getFormat(), true), DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
 ////}
 ////
-////boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name, boost::shared_ptr<CallerController> caller)
+////EventPtr AbstractContext::fireEvent(const std::string & name, CallerControllerPtr caller)
 ////{
 ////    auto ed = getAndCheckEventDefinition(name);
 ////    return fireEvent(ed, new ::DataTable(ed)->getFormat(), true), DEFAULT_EVENT_LEVEL, 0, 0, 0, caller, 0, 0);
 ////}
 ////
-//boost::shared_ptr<Event> AbstractContext::fireEvent(const std::string & name, void* data)
+//EventPtr AbstractContext::fireEvent(const std::string & name, AgObjectPtr data)
 //{
 ////    auto ed = getAndCheckEventDefinition(name);
 ////    return fireEvent(ed, new ::DataTable(ed)->getFormat(), data), DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
 //	return 0;
 //}
 ////
-////EventProcessingRule* AbstractContext::getEventProcessingRule(boost::shared_ptr<Event> event)
+////EventProcessingRulePtr AbstractContext::getEventProcessingRule(EventPtr event)
 ////{
 ////    return 0;
 ////}
 ////
-////void AbstractContext::processBindings(boost::shared_ptr<Event> event)
+////void AbstractContext::processBindings(EventPtr event)
 ////{
 ////}
 ////
-////void AbstractContext::processEnrichments(boost::shared_ptr<Event> event, EventProcessingRule* rule, boost::shared_ptr<CallerController> caller)
+////void AbstractContext::processEnrichments(EventPtr event, EventProcessingRulePtr rule, CallerControllerPtr caller)
 ////{
 ////    if(rule == 0 || rule)->getEnrichments() == 0) {
 ////        return;
@@ -3004,7 +3004,7 @@ int AbstractContext::compareTo(Context* context)
 ////        {
 ////            auto name = enrichmentRule)->getName();
 ////            try {
-////                void* result = evaluator)->evaluateToString(enrichmentRule)->getEnrichmentExpression());
+////                AgObjectPtr result = evaluator)->evaluateToString(enrichmentRule)->getEnrichmentExpression());
 ////                if(result == 0) {
 ////                    continue;
 ////                }
@@ -3020,21 +3020,21 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////}
 ////
-////boost::shared_ptr<CallerController> AbstractContext::getEventProcessingCallerController()
+////CallerControllerPtr AbstractContext::getEventProcessingCallerController()
 ////{
 ////    return getContextManager())->getCallerController();
 ////}
 ////
 ////std::list  AbstractContext::getEventHistory(const std::string & name)
 ////{
-////    auto ed = getEventData(name);
+////    auto ed = getEventDataPtr(name);
 ////    if(ed == 0) {
 ////        throw new ::java::lang::IllegalStateException(Cres::get()->getString("conEvtNotAvail"))+name)->toString());
 ////    }
 ////    return ed)->getHistory();
 ////}
 ////
-////void AbstractContext::lock(RequestController* request, ::java::util::concurrent::locks::Lock* lock)
+////void AbstractContext::lock(RequestControllerPtr request, ::java::util::concurrent::locks::Lock* lock)
 ////{
 ////    auto lockTimeout = (request != 0 && request)->getLockTimeout() != 0) ? request)->getLockTimeout() : static_cast< long  >(0);
 ////    if(lockTimeout != 0) {
@@ -3065,7 +3065,7 @@ int AbstractContext::compareTo(Context* context)
 //	return "";
 //}
 //
-////void AbstractContext::accept(ContextVisitor* visitor)
+////void AbstractContext::accept(ContextVisitorPtr visitor)
 ////{
 ////    if(visitor->shouldVisit(this)) {
 ////        visitor->visit(this);
@@ -3076,7 +3076,7 @@ int AbstractContext::compareTo(Context* context)
 ////            });
 ////            {
 ////                for (auto _i = children)->iterator(); _i->hasNext(); ) {
-////                    Context* child = java_cast< Context* >(_i->next());
+////                    ContextPtr child = java_cast< ContextPtr >(_i->next());
 ////                    {
 ////                        child)->accept(visitor);
 ////                    }
@@ -3087,16 +3087,16 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////}
 ////
-////boost::shared_ptr<EventDefinition> AbstractContext::getChangeEventDefinition()
+////EventDefinitionPtr AbstractContext::getChangeEventDefinition()
 ////{
 ////    return ED_CHANGE();
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVvariables(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVvariables(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    auto ans = new ::DataTable(def)->getFormat());
 ////    for (auto _i = getVariableDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        VariableDefinition* vardef = java_cast< VariableDefinition* >(_i->next());
+////        VariableDefinitionPtr vardef = java_cast< VariableDefinitionPtr >(_i->next());
 ////        {
 ////            ans)->addRecord(varDefToDataRecord(vardef, caller));
 ////        }
@@ -3104,37 +3104,37 @@ int AbstractContext::compareTo(Context* context)
 ////    return ans;
 ////}
 ////
-////std::string AbstractContext::encodeFormat(::TableFormat* format, boost::shared_ptr<CallerController> caller)
+////std::string AbstractContext::encodeFormat(::TableFormatPtr format, CallerControllerPtr caller)
 ////{
 ////    return format != 0 ? format)->encode(false) : static_cast< const std::string & >(0);
 ////}
 ////
-////TableFormat* AbstractContext::decodeFormat(const std::string & source, boost::shared_ptr<CallerController> caller)
+////TableFormatPtr AbstractContext::decodeFormat(const std::string & source, CallerControllerPtr caller)
 ////{
-////    return source != 0 ? new ::TableFormat(source, new ::encoding::ClassicEncodingSettings(false)) : static_cast< ::TableFormat* >(0);
+////    return source != 0 ? new ::TableFormat(source, new ::encoding::ClassicEncodingSettings(false)) : static_cast< ::TableFormatPtr >(0);
 ////}
 ////
-////DataRecord* AbstractContext::varDefToDataRecord(VariableDefinition* vd)
+////DataRecordPtr* AbstractContext::varDefToDataRecord(VariableDefinitionPtr vd)
 ////{
 ////    return varDefToDataRecord(vd, 0);
 ////}
 ////
-////DataRecord* AbstractContext::varDefToDataRecord(VariableDefinition* vd, boost::shared_ptr<CallerController> caller)
+////DataRecordPtr* AbstractContext::varDefToDataRecord(VariableDefinitionPtr vd, CallerControllerPtr caller)
 ////{
-////    return (new ::DataRecord(VARIABLE_DEFINITION_FORMAT()))->addString(vd)->getName()))->addString(encodeFormat(vd)->getFormat(), caller)))->addString(vd)->getDescription()))->addBoolean(::java::lang::Boolean::valueOf(vd)->isReadable())))->addBoolean(::java::lang::Boolean::valueOf(vd)->isWritable())))->addString(vd)->getHelp()))->addString(vd)->getGroup()))->addString(vd)->getIconId()))->addString(vd)->getHelpId()))->addLong(vd)->getRemoteCacheTime());
+////    return (new ::DataRecordPtr(VARIABLE_DEFINITION_FORMAT()))->addString(vd)->getName()))->addString(encodeFormat(vd)->getFormat(), caller)))->addString(vd)->getDescription()))->addBoolean(::java::lang::Boolean::valueOf(vd)->isReadable())))->addBoolean(::java::lang::Boolean::valueOf(vd)->isWritable())))->addString(vd)->getHelp()))->addString(vd)->getGroup()))->addString(vd)->getIconId()))->addString(vd)->getHelpId()))->addLong(vd)->getRemoteCacheTime());
 ////}
 ////
-////VariableDefinition* AbstractContext::varDefFromDataRecord(::DataRecord* rec)
+////VariableDefinitionPtr AbstractContext::varDefFromDataRecord(::DataRecordPtr* rec)
 ////{
 ////    return varDefFromDataRecord(rec, 0);
 ////}
 ////
-////VariableDefinition* AbstractContext::varDefFromDataRecord(::DataRecord* rec, boost::shared_ptr<CallerController> caller)
+////VariableDefinitionPtr AbstractContext::varDefFromDataRecord(::DataRecordPtr* rec, CallerControllerPtr caller)
 ////{
 ////    auto const variable = rec)->getString(FIELD_VD_NAME());
 ////    bool readable = (rec)->getBoolean(FIELD_VD_READABLE())))->booleanValue();
 ////    bool writable = (rec)->getBoolean(FIELD_VD_WRITABLE())))->booleanValue();
-////    ::TableFormat* format;
+////    ::TableFormatPtr format;
 ////    try {
 ////        format = decodeFormat(rec)->getString(FIELD_VD_FORMAT()), caller);
 ////    } catch (::java::lang::Exception* ex) {
@@ -3154,11 +3154,11 @@ int AbstractContext::compareTo(Context* context)
 ////    return def;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVfunctions(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVfunctions(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    auto ans = new ::DataTable(def)->getFormat());
 ////    for (auto _i = getFunctionDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        boost::shared_ptr<FunctionDefinition> funcdef = java_cast< boost::shared_ptr<FunctionDefinition> >(_i->next());
+////        FunctionDefinitionPtr funcdef = java_cast< FunctionDefinitionPtr >(_i->next());
 ////        {
 ////            ans)->addRecord(funcDefToDataRecord(funcdef, caller));
 ////        }
@@ -3166,25 +3166,25 @@ int AbstractContext::compareTo(Context* context)
 ////    return ans;
 ////}
 ////
-////DataRecord* AbstractContext::funcDefToDataRecord(boost::shared_ptr<FunctionDefinition> fd)
+////DataRecordPtr* AbstractContext::funcDefToDataRecord(FunctionDefinitionPtr fd)
 ////{
 ////    return funcDefToDataRecord(fd, 0);
 ////}
 ////
-////DataRecord* AbstractContext::funcDefToDataRecord(boost::shared_ptr<FunctionDefinition> fd, boost::shared_ptr<CallerController> caller)
+////DataRecordPtr* AbstractContext::funcDefToDataRecord(FunctionDefinitionPtr fd, CallerControllerPtr caller)
 ////{
-////    return (new ::DataRecord(FUNCTION_DEFINITION_FORMAT)->addString(fd)->getName()))->addString(encodeFormat(fd)->getInputFormat(), caller)))->addString(encodeFormat(fd)->getOutputFormat(), caller)))->addString(fd)->getDescription()))->addString(fd)->getHelp()))->addString(fd)->getGroup()))->addString(fd)->getIconId());
+////    return (new ::DataRecordPtr(FUNCTION_DEFINITION_FORMAT)->addString(fd)->getName()))->addString(encodeFormat(fd)->getInputFormat(), caller)))->addString(encodeFormat(fd)->getOutputFormat(), caller)))->addString(fd)->getDescription()))->addString(fd)->getHelp()))->addString(fd)->getGroup()))->addString(fd)->getIconId());
 ////}
 ////
-////boost::shared_ptr<FunctionDefinition> AbstractContext::funcDefFromDataRecord(::DataRecord* rec)
+////FunctionDefinitionPtr AbstractContext::funcDefFromDataRecord(::DataRecordPtr* rec)
 ////{
 ////    return funcDefFromDataRecord(rec, 0);
 ////}
 ////
-////boost::shared_ptr<FunctionDefinition> AbstractContext::funcDefFromDataRecord(::DataRecord* rec, boost::shared_ptr<CallerController> caller)
+////FunctionDefinitionPtr AbstractContext::funcDefFromDataRecord(::DataRecordPtr* rec, CallerControllerPtr caller)
 ////{
 ////    auto const function = rec)->getString(FIELD_FD_NAME());
-////    ::TableFormat* inputFormat;
+////    ::TableFormatPtr inputFormat;
 ////    try {
 ////        inputFormat = decodeFormat(rec)->getString(FIELD_FD_INPUTFORMAT()), caller);
 ////    } catch (::java::lang::Exception* ex) {
@@ -3192,7 +3192,7 @@ int AbstractContext::compareTo(Context* context)
 ////            +"': ")
 ////            +ex)->getMessage())->toString(), ex);
 ////    }
-////    ::TableFormat* outputFormat;
+////    ::TableFormatPtr outputFormat;
 ////    try {
 ////        outputFormat = decodeFormat(rec)->getString(FIELD_FD_OUTPUTFORMAT()), caller);
 ////    } catch (::java::lang::Exception* ex) {
@@ -3200,17 +3200,17 @@ int AbstractContext::compareTo(Context* context)
 ////            +"': ")
 ////            +ex)->getMessage())->toString(), ex);
 ////    }
-////    auto def = boost::shared_ptr<FunctionDefinition>(function, inputFormat, outputFormat, rec)->getString(FIELD_FD_DESCRIPTION()), rec)->getString(FIELD_FD_GROUP()));
+////    auto def = FunctionDefinitionPtr(function, inputFormat, outputFormat, rec)->getString(FIELD_FD_DESCRIPTION()), rec)->getString(FIELD_FD_GROUP()));
 ////    def)->setHelp(rec)->getString(FIELD_FD_HELP()));
 ////    def)->setIconId(rec)->getString(FIELD_FD_ICON_ID()));
 ////    return def;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVevents(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVevents(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    auto ans = new ::DataTable(def)->getFormat());
 ////    for (auto _i = getEventDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        boost::shared_ptr<EventDefinition> ed = java_cast< boost::shared_ptr<EventDefinition> >(_i->next());
+////        EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
 ////        {
 ////            ans)->addRecord(evtDefToDataRecord(ed, caller));
 ////        }
@@ -3218,25 +3218,25 @@ int AbstractContext::compareTo(Context* context)
 ////    return ans;
 ////}
 ////
-////DataRecord* AbstractContext::evtDefToDataRecord(boost::shared_ptr<EventDefinition> ed)
+////DataRecordPtr* AbstractContext::evtDefToDataRecord(EventDefinitionPtr ed)
 ////{
 ////    return evtDefToDataRecord(ed, 0);
 ////}
 ////
-////DataRecord* AbstractContext::evtDefToDataRecord(boost::shared_ptr<EventDefinition> ed, boost::shared_ptr<CallerController> caller)
+////DataRecordPtr* AbstractContext::evtDefToDataRecord(EventDefinitionPtr ed, CallerControllerPtr caller)
 ////{
-////    return (new ::DataRecord(EVENT_DEFINITION_FORMAT)->addString(ed)->getName()))->addString(encodeFormat(ed)->getFormat(), caller)))->addString(ed)->getDescription()))->addString(ed)->getHelp()))->addInt(ed)->getLevel())))->addString(ed)->getGroup()))->addString(ed)->getIconId());
+////    return (new ::DataRecordPtr(EVENT_DEFINITION_FORMAT)->addString(ed)->getName()))->addString(encodeFormat(ed)->getFormat(), caller)))->addString(ed)->getDescription()))->addString(ed)->getHelp()))->addInt(ed)->getLevel())))->addString(ed)->getGroup()))->addString(ed)->getIconId());
 ////}
 ////
-////boost::shared_ptr<EventDefinition> AbstractContext::evtDefFromDataRecord(::DataRecord* rec)
+////EventDefinitionPtr AbstractContext::evtDefFromDataRecord(::DataRecordPtr* rec)
 ////{
 ////    return evtDefFromDataRecord(rec, 0);
 ////}
 ////
-////boost::shared_ptr<EventDefinition> AbstractContext::evtDefFromDataRecord(::DataRecord* rec, boost::shared_ptr<CallerController> caller)
+////EventDefinitionPtr AbstractContext::evtDefFromDataRecord(::DataRecordPtr* rec, CallerControllerPtr caller)
 ////{
 ////    auto const event = rec)->getString(FIELD_ED_NAME());
-////    ::TableFormat* format;
+////    ::TableFormatPtr format;
 ////    try {
 ////        format = decodeFormat(rec)->getString(FIELD_ED_FORMAT()), caller);
 ////    } catch (::java::lang::Exception* ex) {
@@ -3244,18 +3244,18 @@ int AbstractContext::compareTo(Context* context)
 ////            +"': ")
 ////            +ex)->getMessage())->toString(), ex);
 ////    }
-////    auto def = boost::shared_ptr<EventDefinition>(new EventDefinition(event, format, rec)->getString(FIELD_ED_DESCRIPTION()), rec)->getString(FIELD_ED_GROUP()));
+////    auto def = EventDefinitionPtr(new EventDefinition(event, format, rec)->getString(FIELD_ED_DESCRIPTION()), rec)->getString(FIELD_ED_GROUP()));
 ////    def)->setLevel((rec)->getInt(FIELD_ED_LEVEL())))->intValue());
 ////    def)->setHelp(rec)->getString(FIELD_ED_HELP()));
 ////    def)->setIconId(rec)->getString(FIELD_ED_ICON_ID()));
 ////    return def;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVactions(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVactions(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    auto ans = new ::DataTable(def)->getFormat());
 ////    for (auto _i = getActionDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        ::com::tibbo::aggregate::common::action::ActionDefinition* adef = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
+////        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr adef = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
 ////        {
 ////            ans)->addRecord(actDefToDataRecord(adef));
 ////        }
@@ -3263,18 +3263,18 @@ int AbstractContext::compareTo(Context* context)
 ////    return ans;
 ////}
 ////
-////DataRecord* AbstractContext::actDefToDataRecord(::com::tibbo::aggregate::common::action::ActionDefinition* def)
+////DataRecordPtr* AbstractContext::actDefToDataRecord(::com::tibbo::aggregate::common::action::ActionDefinitionPtr def)
 ////{
 ////    auto resourceMasks = new ::DataTable(AbstractContext::RESOURCE_MASKS_FORMAT());
 ////    if(def)->getDropSources() != 0) {
 ////        for (auto _i = def)->getDropSources())->iterator(); _i->hasNext(); ) {
-////            ::com::tibbo::aggregate::common::action::ResourceMask* resourceMask = java_cast< ::com::tibbo::aggregate::common::action::ResourceMask* >(_i->next());
+////            ::com::tibbo::aggregate::common::action::ResourceMaskPtr resourceMask = java_cast< ::com::tibbo::aggregate::common::action::ResourceMaskPtr >(_i->next());
 ////            {
 ////                resourceMasks)->addRecord())->addString(resourceMask)->toString());
 ////            }
 ////        }
 ////    }
-////    auto rec = new ::DataRecord(AbstractContext::ACTION_DEF_FORMAT;
+////    auto rec = new ::DataRecordPtr(AbstractContext::ACTION_DEF_FORMAT;
 ////    rec)->addString(def)->getName());
 ////    rec)->addString(def)->getDescription());
 ////    rec)->addString(def)->getHelp());
@@ -3312,7 +3312,7 @@ int AbstractContext::compareTo(Context* context)
 ////    status = new ContextStatus();
 ////}
 ////
-////ContextStatus* AbstractContext::getStatus()
+////ContextStatusPtr AbstractContext::getStatus()
 ////{
 ////    return status;
 ////}
@@ -3320,7 +3320,7 @@ int AbstractContext::compareTo(Context* context)
 ////void AbstractContext::setStatus(int status, const std::string & comment)
 ////{
 ////    auto statusChanged = this->status)->getStatus() != status;
-////    auto commentChanged = !::com::tibbo::aggregate::common::util::Util::equals(this->status)->getComment(), comment);
+////    auto commentChanged = !Util::equals(this->status)->getComment(), comment);
 ////    auto oldStatus = this->status)->getStatus();
 ////    this->status)->setStatus(status);
 ////    this->status)->setComment(comment);
@@ -3340,11 +3340,11 @@ int AbstractContext::compareTo(Context* context)
 ////    vd)->setLocalCachingEnabled(false);
 ////    vd)->setGetter(new AbstractContext_enableVariableStatuses_4(this));
 ////    addVariableDefinition(vd);
-////    auto ed = boost::shared_ptr<EventDefinition>(new EventDefinition(E_VARIABLE_STATUS_CHANGED(), VFT_VARIABLE_STATUSES());
+////    auto ed = EventDefinitionPtr(new EventDefinition(E_VARIABLE_STATUS_CHANGED(), VFT_VARIABLE_STATUSES());
 ////    addEventDefinition(ed);
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::createVariableStatusesTable()
+////DataTablePtr AbstractContext::createVariableStatusesTable()
 ////{
 ////    variableStatusesLock)->readLock())->lock();
 ////    {
@@ -3357,7 +3357,7 @@ int AbstractContext::compareTo(Context* context)
 ////            for (auto _i = statuses)->keySet())->iterator(); _i->hasNext(); ) {
 ////                const std::string & name = java_cast< const std::string & >(_i->next());
 ////                {
-////                    auto vs = java_cast< VariableStatus* >(statuses)->get(name));
+////                    auto vs = java_cast< VariableStatusPtr >(statuses)->get(name));
 ////                    table)->addRecord())->addString(name))->addString(vs)->getStatus()))->addString(vs)->getComment());
 ////                }
 ////            }
@@ -3379,7 +3379,7 @@ int AbstractContext::compareTo(Context* context)
 ////        variableStatuses = ::java::util::Collections::synchronizedMap(new ::java::util::LinkedHashMap());
 ////        auto statuses = fetchVariableStatuses();
 ////        for (auto _i = statuses)->iterator(); _i->hasNext(); ) {
-////            ::DataRecord* rec = java_cast< ::DataRecord* >(_i->next());
+////            ::DataRecordPtr* rec = java_cast< ::DataRecordPtr* >(_i->next());
 ////            {
 ////                variableStatuses)->put(rec)->getString(VF_VARIABLE_STATUSES_NAME()), new VariableStatus(rec)->getString(VF_VARIABLE_STATUSES_STATUS()), rec)->getString(VF_VARIABLE_STATUSES_COMMENT())));
 ////            }
@@ -3387,14 +3387,14 @@ int AbstractContext::compareTo(Context* context)
 ////    }
 ////}
 ////
-//boost::shared_ptr<DataTable> AbstractContext::fetchVariableStatuses()
+//DataTablePtr AbstractContext::fetchVariableStatuses()
 //{
-//	return boost::shared_ptr<DataTable>(new DataTable(VFT_VARIABLE_STATUSES));
+//	return DataTablePtr(new DataTable(VFT_VARIABLE_STATUSES));
 //}
 ////
-////void AbstractContext::updateVariableStatus(const std::string & variable, VariableStatus* status, bool persistent)
+////void AbstractContext::updateVariableStatus(const std::string & variable, VariableStatusPtr status, bool persistent)
 ////{
-////    VariableStatus* old;
+////    VariableStatusPtr old;
 ////    variableStatusesLock)->writeLock())->lock();
 ////    {
 ////        auto finally38 = finally([&] {
@@ -3402,11 +3402,11 @@ int AbstractContext::compareTo(Context* context)
 ////        });
 ////        {
 ////            ensureVariableStatuses();
-////            old = java_cast< VariableStatus* >(variableStatuses)->put(variable, status));
+////            old = java_cast< VariableStatusPtr >(variableStatuses)->put(variable, status));
 ////        }
 ////    }
 ////
-////    if(old == 0 || !::com::tibbo::aggregate::common::util::Util::equals(old)->getStatus(), status)->getStatus())) {
+////    if(old == 0 || !Util::equals(old)->getStatus(), status)->getStatus())) {
 ////        variableStatusesUpdated = true;
 ////        fireEvent(E_VARIABLE_STATUS_CHANGED(), new voidArray({variable), status)->getStatus()), status)->getComment())}));
 ////    }
@@ -3440,11 +3440,11 @@ int AbstractContext::compareTo(Context* context)
 ////    variableStatusesUpdated = false;
 ////}
 ////
-////void AbstractContext::persistVariableStatuses(::boost::shared_ptr<DataTable> statuses)
+////void AbstractContext::persistVariableStatuses(::DataTablePtr statuses)
 ////{
 ////}
 ////
-////VariableStatus* AbstractContext::getVariableStatus(const std::string & name)
+////VariableStatusPtr AbstractContext::getVariableStatus(const std::string & name)
 ////{
 ////    variableStatusesLock)->readLock())->lock();
 ////    {
@@ -3452,17 +3452,17 @@ int AbstractContext::compareTo(Context* context)
 ////            variableStatusesLock)->readLock())->unlock();
 ////        });
 ////        {
-////            return java_cast< VariableStatus* >(getVariableStatuses())->get(name));
+////            return java_cast< VariableStatusPtr >(getVariableStatuses())->get(name));
 ////        }
 ////    }
 ////
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVchildren(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVchildren(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    auto ans = new ::DataTable(def)->getFormat());
 ////    for (auto _i = getChildren(caller))->iterator(); _i->hasNext(); ) {
-////        Context* con = java_cast< Context* >(_i->next());
+////        ContextPtr con = java_cast< ContextPtr >(_i->next());
 ////        {
 ////            ans)->addRecord())->addString(con)->getName());
 ////        }
@@ -3470,17 +3470,17 @@ int AbstractContext::compareTo(Context* context)
 ////    return ans;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::getVinfo(VariableDefinition* def, boost::shared_ptr<CallerController> caller, RequestController* request)
+////DataTablePtr AbstractContext::getVinfo(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    return createContextInfoTable();
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::createContextInfoTable()
+////DataTablePtr AbstractContext::createContextInfoTable()
 ////{
 ////    return new ::DataTable(INFO_DEFINITION_FORMAT(), new voidArray({getDescription()), getType()), getGroup()), getIconId()), getLocalRoot()), getRemoteRoot()), getRemotePath()), getRemotePrimaryRoot()), ::java::lang::Boolean::valueOf(isMapped()))}));
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFgetCopyData(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::callFgetCopyData(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    auto result = new ::DataTable(def)->getOutputFormat())->clone());
 ////    auto group = parameters)->rec())->getString(VF_INFO_GROUP());
@@ -3489,9 +3489,9 @@ int AbstractContext::compareTo(Context* context)
 ////    if(recipientsTable != 0) {
 ////        recipients = new ::java::util::LinkedList();
 ////        for (auto _i = recipientsTable)->iterator(); _i->hasNext(); ) {
-////            ::DataRecord* rec = java_cast< ::DataRecord* >(_i->next());
+////            ::DataRecordPtr* rec = java_cast< ::DataRecordPtr* >(_i->next());
 ////            {
-////                auto recipient = java_cast< Context* >(getContextManager())->get(rec)->getString(FIF_COPY_DATA_RECIPIENTS_RECIPIENT()), caller));
+////                auto recipient = java_cast< ContextPtr >(getContextManager())->get(rec)->getString(FIF_COPY_DATA_RECIPIENTS_RECIPIENT()), caller));
 ////                if(recipient != 0) {
 ////                    recipients)->add(recipient));
 ////                }
@@ -3499,9 +3499,9 @@ int AbstractContext::compareTo(Context* context)
 ////        }
 ////    }
 ////    for (auto _i = getVariableDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        VariableDefinition* vd = java_cast< VariableDefinition* >(_i->next());
+////        VariableDefinitionPtr vd = java_cast< VariableDefinitionPtr >(_i->next());
 ////        {
-////            if(group != 0 && !::com::tibbo::aggregate::common::util::Util::equals(ContextUtils::getBaseGroup(vd)->getGroup()), group)) {
+////            if(group != 0 && !Util::equals(ContextUtils::getBaseGroup(vd)->getGroup()), group)) {
 ////                continue;
 ////            }
 ////            if(group == 0 && vd)->getGroup() == 0) {
@@ -3516,7 +3516,7 @@ int AbstractContext::compareTo(Context* context)
 ////            if(recipients != 0) {
 ////                auto skip = true;
 ////                for (auto _i = recipients)->iterator(); _i->hasNext(); ) {
-////                    Context* recipient = java_cast< Context* >(_i->next());
+////                    ContextPtr recipient = java_cast< ContextPtr >(_i->next());
 ////                    {
 ////                        auto rvd = recipient)->getVariableDefinition(vd)->getName());
 ////                        if(rvd != 0 && rvd)->isWritable() && (rvd)->getFormat() == 0 || rvd)->getFormat())->isReplicated())) {
@@ -3549,11 +3549,11 @@ int AbstractContext::compareTo(Context* context)
 ////    return result;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFcopy(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::callFcopy(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    auto result = new ::DataTable(def)->getOutputFormat());
 ////    for (auto _i = parameters)->iterator(); _i->hasNext(); ) {
-////        ::DataRecord* rec = java_cast< ::DataRecord* >(_i->next());
+////        ::DataRecordPtr* rec = java_cast< ::DataRecordPtr* >(_i->next());
 ////        {
 ////            if(!(rec)->getBoolean(FOF_COPY_DATA_REPLICATE())))->booleanValue()) {
 ////                continue;
@@ -3571,7 +3571,7 @@ int AbstractContext::compareTo(Context* context)
 ////                result)->addRecord())->addString(varDesc))->addBoolean(::java::lang::Boolean::valueOf(false)))->addString(Cres::get()->getString("conVarNotWritableInTgt"));
 ////                continue;
 ////            }
-////            ::boost::shared_ptr<DataTable> tgtVal;
+////            ::DataTablePtr tgtVal;
 ////            try {
 ////                tgtVal = getVariable(varName, caller);
 ////            } catch (ContextException* ex) {
@@ -3580,7 +3580,7 @@ int AbstractContext::compareTo(Context* context)
 ////            }
 ////            std::list  fields = new ::java::util::LinkedList();
 ////            for (auto _i = rec)->getDataTable(FOF_COPY_DATA_FIELDS()))->iterator(); _i->hasNext(); ) {
-////                ::DataRecord* fieldRec = java_cast< ::DataRecord* >(_i->next());
+////                ::DataRecordPtr* fieldRec = java_cast< ::DataRecordPtr* >(_i->next());
 ////                {
 ////                    if((fieldRec)->getBoolean(FIF_REPLICATE_FIELDS_REPLICATE())))->booleanValue()) {
 ////                        fields)->add(fieldRec)->getString(FIF_REPLICATE_FIELDS_NAME())));
@@ -3597,7 +3597,7 @@ int AbstractContext::compareTo(Context* context)
 ////                continue;
 ////            }
 ////            if(tableCopyErrors)->size() > 0) {
-////                result)->addRecord())->addString(varDesc))->addBoolean(::java::lang::Boolean::valueOf(false)))->addString(::com::tibbo::aggregate::common::util::StringUtils::print(static_cast< ::java::util::Collection* >(tableCopyErrors), "; "));
+////                result)->addRecord())->addString(varDesc))->addBoolean(::java::lang::Boolean::valueOf(false)))->addString(StringUtils::print(static_cast< std::list >(tableCopyErrors), "; "));
 ////            } else {
 ////                result)->addRecord())->addString(varDesc))->addBoolean(::java::lang::Boolean::valueOf(true));
 ////            }
@@ -3606,20 +3606,20 @@ int AbstractContext::compareTo(Context* context)
 ////    return result;
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::callFcopyToChildren(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters)
+////DataTablePtr AbstractContext::callFcopyToChildren(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////   // return copyTo(def, caller, request, parameters, getChildren(caller));
 ////}
 ////
-////boost::shared_ptr<DataTable> AbstractContext::copyTo(boost::shared_ptr<FunctionDefinition> def, boost::shared_ptr<CallerController> caller, RequestController* request, ::boost::shared_ptr<DataTable> parameters, std::list  children)
+////DataTablePtr AbstractContext::copyTo(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters, std::list  children)
 ////{
 ////
 ////	auto result = new ::DataTable(def)->getOutputFormat());
 ////    for (auto _i = children)->iterator(); _i->hasNext(); ) {
-////        Context* child = java_cast< Context* >(_i->next());
+////        ContextPtr child = java_cast< ContextPtr >(_i->next());
 ////        {
 ////            auto conDesc = child)->getDescription() != 0 ? child)->getDescription() : child)->getPath();
-////            ::boost::shared_ptr<DataTable> conRes;
+////            ::DataTablePtr conRes;
 ////            try {
 ////                conRes = child)->callFunction(F_COPY(), caller, request, parameters);
 ////            } catch (ContextException* ex) {
@@ -3627,7 +3627,7 @@ int AbstractContext::compareTo(Context* context)
 ////                continue;
 ////            }
 ////            for (auto _i = conRes)->iterator(); _i->hasNext(); ) {
-////                ::DataRecord* rec = java_cast< ::DataRecord* >(_i->next());
+////                ::DataRecordPtr* rec = java_cast< ::DataRecordPtr* >(_i->next());
 ////				{
 ////					result)->addRecord())->addString(conDesc))->addString(rec)->getString(FIELD_REPLICATE_VARIABLE())))->addBoolean(rec)->getBoolean(FIELD_REPLICATE_SUCCESSFUL())))->addString(rec)->getString(FIELD_REPLICATE_ERRORS()));
 ////                }

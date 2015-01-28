@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BindingProviderH
+#define BindingProviderH
 
 #include "binding/Binding.h"
 #include "binding/EvaluationOptions.h"
@@ -8,19 +9,19 @@
 
 class BindingProvider
 {
-    using namespace boost;
-
-public:
-    virtual std::map<shared_ptr<Binding>, shared_ptr<EvaluationOptions>> createBindings() = 0;
+ public:
+    virtual std::map<BindingPtr, EvaluationOptionsPtr> createBindings() = 0;
     virtual void start() = 0;
     virtual void stop() = 0;
-    //TODO: void*
-    virtual void writeReference(int method, shared_ptr<Reference> destination, shared_ptr<Reference> cause,
-                                void* value, shared_ptr<ChangeCache> cache) = 0/* throws(BindingException) */ ;
-    virtual void addReferenceListener(shared_ptr<Reference> ref, shared_ptr<ReferenceListener> listener) = 0/* throws(BindingException) */;
-    virtual void removeReferenceListener(shared_ptr<ReferenceListener> listener) = 0;
-    //TODO:
-    virtual void processExecution(int event, shared_ptr<Binding> binding, shared_ptr<EvaluationOptions> options,
-                                  shared_ptr<Reference> cause, void* result) = 0;
-    virtual void processError(shared_ptr<Binding> binding, int method, shared_ptr<Reference> cause, shared_ptr<Exception> error) = 0;
+
+    virtual void writeReference(int method, ReferencePtr destination, ReferencePtr cause,
+								AgObjectPtr value, ChangeCachePtr cache) = 0;
+	virtual void addReferenceListener(ReferencePtr ref, ReferenceListenerPtr listener) = 0;
+    virtual void removeReferenceListener(ReferenceListenerPtr listener) = 0;
+
+    virtual void processExecution(int event, BindingPtr binding, EvaluationOptionsPtr options,
+                                  ReferencePtr cause, AgObjectPtr result) = 0;
+    virtual void processError(BindingPtr binding, int method, ReferencePtr cause, ExceptionPtr error) = 0;
 };
+
+#endif

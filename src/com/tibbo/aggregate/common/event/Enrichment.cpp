@@ -12,7 +12,7 @@ const std::string Enrichment::FIELD_AUTHOR = "author";
 
 void Enrichment::Init()
 {
-  FORMAT = boost::shared_ptr<TableFormat>(new TableFormat());
+  FORMAT = TableFormatPtr(new TableFormat());
 
   FORMAT->addField("<"+FIELD_NAME+"><S><D="+Cres::get()->getString("name")+">");
   FORMAT->addField("<"+FIELD_VALUE+"><S><D="+Cres::get()->getString("value")+">");
@@ -30,7 +30,7 @@ Enrichment::Enrichment()
  Init();
 }
 
-Enrichment::Enrichment(const std::string& name, const std::string& value, boost::shared_ptr<Date> date, const std::string& author)
+Enrichment::Enrichment(const std::string& name, const std::string& value, DatePtr date, const std::string& author)
 {
    Init();
    
@@ -65,12 +65,12 @@ void Enrichment::setValue(const std::string& value)
     this->value = value;
 }
 
-boost::shared_ptr<Date> Enrichment::getDate()
+DatePtr Enrichment::getDate()
 {
     return date;
 }
 
-void Enrichment::setDate(boost::shared_ptr<Date> date)
+void Enrichment::setDate(DatePtr date)
 {
     this->date = date;
 }

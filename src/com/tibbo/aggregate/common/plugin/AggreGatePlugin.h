@@ -48,7 +48,7 @@ class AggreGatePlugin : public Interface
     * @throws PluginException
     *           If an error occurred during initialization
     */
-    virtual void globalInit(boost::shared_ptr<Context> rootContext) = 0;// throws PluginException;
+    virtual void globalInit(ContextPtr rootContext) = 0;// throws PluginException;
 
     /**
     * This method is called once for every system user upon its creation or server startup. Its implementation will in most cases call createUserConfigContext() to create plugin user-level
@@ -59,7 +59,7 @@ class AggreGatePlugin : public Interface
     * @throws PluginException
     *           If an error occurred during initialization
     */
-    virtual void userInit(boost::shared_ptr<Context> userContext) = 0;// throws PluginException;
+    virtual void userInit(ContextPtr userContext) = 0;// throws PluginException;
 
     /**
     * This method is called once during server shutdown. It's usually used to terminate any threads created by the plugin and close all server sockets opened by it.
@@ -67,7 +67,7 @@ class AggreGatePlugin : public Interface
     * @throws PluginException
     *           If an error occurred during de-initialization
     */
-    virtual void globalDeinit(boost::shared_ptr<Context> rootContext) = 0;//throws PluginException;
+    virtual void globalDeinit(ContextPtr rootContext) = 0;//throws PluginException;
 
     /**
     * This method is called once for every system user upon its deletion or server shutdown. The method will be called even if user-level configuration is disabled for the user.
@@ -75,7 +75,7 @@ class AggreGatePlugin : public Interface
     * @throws PluginException
     *           If an error occurred during de-initialization
     */
-    virtual void userDeinit(boost::shared_ptr<Context> userContext) = 0;//throws PluginException;
+    virtual void userDeinit(ContextPtr userContext) = 0;//throws PluginException;
 
     /**
     * This method is called once for every plugin at the moment when server context tree is fully initialized and all contexts are available.
@@ -97,44 +97,36 @@ class AggreGatePlugin : public Interface
     * This method creates and returns context containing plugin's global configuration. There is no need to keep reference to this context for future use as it may be accessed via
     * getGlobalConfigContext() method.
     *
-    * @param rootContext
-    *          Server root context
-    * @param requestReboot
+    * @param rootContextPtr          Server root ContextPtr @param requestReboot
     *          Prompt an operator to reboot server after a global plugin property change
     * @param properties
     *          List of global plugin properties
-    * @return Plugin global config context
-    */
-    virtual Context *createGlobalConfigContext(boost::shared_ptr<Context> rootContext, bool requestReboot,
-                                               boost::shared_ptr<VariableDefinition> properties) = 0;
+	* @return Plugin global config Context*/
+    virtual ContextPtrcreateGlobalConfigContext(ContextPtr rootContext, bool requestReboot,
+                                               VariableDefinitionPtr properties) = 0;
 
     /**
     * This method creates and returns context containing plugin's user-level configuration. There is no need to keep reference to this context for future use as it may be accessed via
     * getUserConfigContext() method.
     *
-    * @param userContext
-    *          Context of user to associate the configuration with
+    * @param userContextPtr          Context of user to associate the configuration with
     * @param requestReboot
     *          Prompt an operator to reboot server after a global plugin property change
     * @param properties
     *          List of user-level plugin properties
-    * @return Plugin user-level config context
-    */
-    virtual Context *createUserConfigContext(boost::shared_ptr<Context> userContext, bool requestReboot,
-                                            boost::shared_ptr<VariableDefinition> properties) = 0;
+	* @return Plugin user-level config Context*/
+    virtual ContextPtrcreateUserConfigContext(ContextPtr userContext, bool requestReboot,
+                                            VariableDefinitionPtr properties) = 0;
 
     /**
-    * Returns plugin's global configuration context
-    *
-    * @return Global configuration context
-    */
-    virtual Context *getGlobalConfigContext() = 0;
+	* Returns plugin's global configuration Context*
+	* @return Global configuration Context*/
+    virtual ContextPtrgetGlobalConfigContext() = 0;
 
     /**
     * Returns plugin's user-level configuration context or NULL if user-level configuration is disabled for the user.
     *
-    * @return User-level configuration context
-    */
-    virtual Context *getUserConfigContext(const std::string& username) = 0;
+    * @return User-level configuration Context*/
+    virtual ContextPtrgetUserConfigContext(const std::string& username) = 0;
 };
 #endif  //_AggreGatePlugin_H_

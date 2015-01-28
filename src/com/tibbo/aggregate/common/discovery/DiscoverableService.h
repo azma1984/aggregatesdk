@@ -10,7 +10,7 @@ class DiscoveryResultItem;
 class DiscoverableServiceDefinition;
 class DiscoverableService :  public Interface
 {
-    virtual std::list<boost::shared_ptr<DiscoveryResultItem>>  check(boost::shared_ptr<DiscoverableServiceDefinition> definition,
+    virtual std::list<DiscoveryResultItemPtr>  check(DiscoverableServiceDefinitionPtr definition,
                                                   const std::string& address, long timeout, int retriesCount) = 0;
 };
 #endif  //_DiscoverableService_H_

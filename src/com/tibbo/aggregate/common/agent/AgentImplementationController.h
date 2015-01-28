@@ -19,17 +19,17 @@
 class AgentImplementationController : public DefaultClientController
 {
   protected: 
-   void processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans);
+   void processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans);
   
   public:  
  //todo ExecutorService
-  AgentImplementationController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService**/void* commandExecutionService, int maxEventQueueLength)
+  AgentImplementationController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService**/AgObjectPtr commandExecutionService, int maxEventQueueLength)
 :DefaultClientController(dataChannel,contextManager,commandExecutionService,maxEventQueueLength)
 {
 }
 
    
-  bool controllerShouldHandle(Event* ev, ContextEventListener* listener);
+  bool controllerShouldHandle(EventPtr ev, ContextEventListenerPtr listener);
 
 
   

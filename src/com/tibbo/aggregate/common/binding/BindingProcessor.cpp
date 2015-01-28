@@ -5,7 +5,7 @@
 
 java::lang::Class* com::tibbo::aggregate::common::binding::BindingProcessor::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.binding.BindingProcessor", 51);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.binding.BindingProcessor", 51);
     return c;
 }
 

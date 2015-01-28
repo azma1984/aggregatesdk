@@ -1,6 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/RemoteServer.java
-
-#pragma once
+#ifndef RemoteServerH
+#define RemoteServerH
 
 #include <AggreGateNetworkDevice.h>
 
@@ -9,12 +8,8 @@ class RemoteServer: public AggreGateNetworkDevice
 private:
 	std::string username;
 	std::string password;
-protected:
-	void ctor();
-	void ctor(const std::string & address, int port, const std::string & username, const std::string & password);
 
 public:
-	typedef AggreGateNetworkDevice super;
 	static const int DEFAULT_PORT = 6460;
 	std::string DEFAULT_USERNAME;
 	std::string DEFAULT_PASSWORD;
@@ -24,9 +19,10 @@ public:
 	void setPassword(std::string password);
 	std::string getInfo();
 	int hashCode();
-	bool equals(void* obj);
+	bool equals(AgObjectPtr obj);
 
-    // Generated
-    RemoteServer();
+	RemoteServer();
 	RemoteServer(std::string address, int port, std::string username, std::string password);
 };
+
+#endif

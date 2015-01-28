@@ -39,9 +39,6 @@
 
 class ActionUtils
 {
- private:
-	  //It is not used anywhere!
-	//static Class* getActionCommandClass(std::string type);
 
 public:
 	static std::string CMD_SHOW_MESSAGE;
@@ -62,9 +59,6 @@ public:
 	static std::string CMD_SHOW_SYSTEM_TREE;
 	static std::string CMD_ACTIVATE_DASHBOARD;
 	static std::string CMD_SHOW_DIFF;
-
-	//variable not used anywhere!
-  //	static std::map<std::string,void *> COMMANDS;
 
 
 	static const int INDEX_HIGHEST = 400;
@@ -94,7 +88,7 @@ public:
     
     
 	//todo Dialog boxes
-    	static const int YES_NO_OPTION = 0;
+	static const int YES_NO_OPTION = 0;
 	static const int YES_NO_CANCEL_OPTION = 1;
 	static const int OK_CANCEL_OPTION = 2;
 	static const int YES_OPTION = 3;
@@ -124,30 +118,24 @@ public:
 	static std::string FIELD_ACTION_FROM_CONTEXT;
 	static std::string FIELD_ACTION_EXECUTION_PARAMETERS;
 
-  // todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
-  //	TableFormat* FORMAT_NORMAL_ACTION;
-  //	TableFormat* FORMAT_DND_ACTION;
-  //	TableFormat* FORMAT_PROPAGATED_ACTION;
-	//ActionInitializer* ACTION_INITIALIZER;
+  // it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+	TableFormatPtr FORMAT_NORMAL_ACTION;
+	TableFormatPtr FORMAT_DND_ACTION;
+	TableFormatPtr FORMAT_PROPAGATED_ACTION;
+	ActionInitializerPtr ACTION_INITIALIZER;
 
-	 void setActionInitializer(ActionInitializer* initializer);
-
-   //It is not used anywhere!
-   //GenericActionCommand* createActionCommand(std::string type, std::string title, DataTable* parameters);
-    //It is not used anywhere!
-   //TableFormat* getActionCommandFormat(std::string type);
+	 void setActionInitializer(ActionInitializerPtr initializer);
 
 	void checkResponseCode(const std::string & result);
-   //	DataTable* createDndActionParameters(Context* acceptedContext); // todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
-	//DataTable* createDndActionParameters(const std::string & accepterContextPath);// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+	DataTablePtr createDndActionParameters(ContextPtr acceptedContext); //  it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+	DataTablePtr createDndActionParameters(const std::string & accepterContextPath);//  it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 
-   //	ServerActionInput* createActionInput(DataTable* executionParameters);
+	ServerActionInputPtr createActionInput(DataTablePtr executionParameters);
 
-
-  //	ActionIdentifier* initAction(Context* context, const std::string & actionName, ServerActionInput* initialParameters, DataTable* inputData, ActionExecutionMode* mode, CallerController* callerController);
-  //	ActionIdentifier* initAction(Context* context, const std::string & actionName, ServerActionInput* initialParameters, DataTable* inputData, std::map<std::string,void*> environment, ActionExecutionMode* mode, CallerController* callerController, ErrorCollector* collector);
-  //	GenericActionCommand* stepAction(Context* context, ActionIdentifier* actionId, GenericActionResponse* actionResponse, CallerController* callerController);
+  	ActionIdentifierPtr initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController);
+  	ActionIdentifierPtr initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, std::map<std::string,AgObjectPtr> environment, ActionExecutionModePtr mode, CallerControllerPtr callerController, ErrorCollectorPtr collector);
+  	GenericActionCommandPtr stepAction(ContextPtr context, ActionIdentifierPtr actionId, GenericActionResponsePtr actionResponse, CallerControllerPtr callerController);
 
 
 };

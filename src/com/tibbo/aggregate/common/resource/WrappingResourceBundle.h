@@ -1,53 +1,32 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/resource/WrappingResourceBundle.java
 
-#pragma once
+#ifndef WrappingResourceBundleH
+#define WrappingResourceBundleH
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/resource/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/ResourceBundle.h"
+//  #include "Log.h"  todo
+#include "resource/ResourceManager.h"
+#include "util/ReflectUtils.h"
+#include "util/Util.h"
+#include "util/ResourceAccessor.h"
 
-
-
-class com::tibbo::aggregate::common::resource::WrappingResourceBundle
-    : public ::java::util::ResourceBundle
+class WrappingResourceBundle : public ResourceBundle
 {
-
-public:
-    typedef ::java::util::ResourceBundle super;
-
-private:
+ private:
     const std::string & baseName;
-    ::java::util::PropertyResourceBundle* wrapped;
-    std::map replacements;
-protected:
-    void ctor(::java::util::PropertyResourceBundle* wrapped);
+   // ::java::util::PropertyResourceBundle* wrapped;  todo
+	std::map<std::string,std::string> replacements;
+	AgObjectPtr getEnglishValue(const std::string & key);
+	void init();
 
 public:
-    void addReplacement(const std::string & key, const std::string & value);
+	void addReplacement(const std::string & key, const std::string & value);
 
-public: /* protected */
-    void* handleGetObject(const std::string & key);
+	AgObjectPtr handleGetObject(const std::string & key);
 
-private:
-    void* getEnglishValue(const std::string & key);
+   //::java::util::Enumeration* getKeys(); todo
+	bool equals(AgObjectPtr obj);
+	int hashCode();
 
-public:
-    ::java::util::Enumeration* getKeys();
-    bool equals(void* obj);
-    int hashCode();
+   //	WrappingResourceBundle(::java::util::PropertyResourceBundle* wrapped); todo
 
-    // Generated
-    WrappingResourceBundle(::java::util::PropertyResourceBundle* wrapped);
-protected:
-    WrappingResourceBundle(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
 };
+#endif

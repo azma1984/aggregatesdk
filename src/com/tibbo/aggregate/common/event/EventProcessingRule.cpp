@@ -24,7 +24,7 @@ EventProcessingRule::EventProcessingRule(const std::string& mask, const std::str
     this->event = event;
 }
 
-boost::shared_ptr<TableFormat>& EventProcessingRule::FORMAT()
+TableFormatPtr& EventProcessingRule::FORMAT()
 {
     if (FORMAT_.get() == NULL) {
         FORMAT_->addTableValidator(new TableKeyFieldsValidator());
@@ -115,7 +115,7 @@ void EventProcessingRule::setPrefilter(const std::string& prefilter)
     this->prefilterExpression.reset();
 }
 
-boost::shared_ptr<Expression> EventProcessingRule::getPrefilterExpression()
+ExpressionPtr EventProcessingRule::getPrefilterExpression()
 {
     if (prefilterExpression.get() == NULL)
     {
@@ -136,7 +136,7 @@ void EventProcessingRule::setDeduplicator(const std::string& deduplicator)
     this->deduplicatorExpression.reset();
 }
 
-boost::shared_ptr<Expression> EventProcessingRule::getDeduplicatorExpression()
+ExpressionPtr EventProcessingRule::getDeduplicatorExpression()
 {
     if (deduplicatorExpression.get() == NULL)
     {
@@ -146,12 +146,12 @@ boost::shared_ptr<Expression> EventProcessingRule::getDeduplicatorExpression()
     return deduplicatorExpression;
 }
 
-std::list<boost::shared_ptr<EventEnrichmentRule> > EventProcessingRule::getEnrichments()
+std::list<EventEnrichmentRulePtr > EventProcessingRule::getEnrichments()
 {
     return enrichments;
 }
 
-void EventProcessingRule::setEnrichments(std::list<boost::shared_ptr<EventEnrichmentRule> enrichments)
+void EventProcessingRule::setEnrichments(std::list<EventEnrichmentRulePtr enrichments)
 {
     this->enrichments = enrichments;
 }
@@ -222,7 +222,7 @@ int EventProcessingRule::hashCode()
 }
 */
 
-bool EventProcessingRule::equals(EventProcessingRule* other)
+bool EventProcessingRule::equals(EventProcessingRulePtr other)
 {
     if (this == other)
         return true;

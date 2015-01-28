@@ -1,4 +1,5 @@
-#pragma once
+#ifndef AgClassH
+#define AgClassH
 
 //todo - Class stub!
 class AgClass
@@ -8,3 +9,5 @@ class AgClass
  public:
 
 };
+
+#endif

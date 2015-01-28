@@ -13,7 +13,7 @@ EditData::EditData()
     this->period = 0;
 }
 
-EditData::EditData(const std::string & title, boost::shared_ptr<DataTable> parameters)
+EditData::EditData(const std::string & title, DataTablePtr parameters)
     : GenericActionCommand(ActionUtils::CMD_EDIT_DATA, title, parameters, CFT_EDIT_DATA()
 {
     this->useDockableFrame = false;
@@ -21,7 +21,7 @@ EditData::EditData(const std::string & title, boost::shared_ptr<DataTable> param
     this->period = 0;
 }
 
-EditData::EditData(const std::string & title, boost::shared_ptr<DataTable> data, bool readonly)
+EditData::EditData(const std::string & title, DataTablePtr data, bool readonly)
     : GenericActionCommand(ActionUtils::CMD_EDIT_DATA, title)
 {    
     this->data = data;
@@ -41,7 +41,7 @@ EditData::EditData(const std::string & title, const std::string & iconId, const 
    this->readOnly = readonly;
 }
 
-boost::shared_ptr<TableFormat> EditData::CFT_EDIT_DATA()
+TableFormatPtr EditData::CFT_EDIT_DATA()
 {
     if (CFT_EDIT_DATA_) {
         CFT_EDIT_DATA_.reset( new TableFormat(1, 1) );
@@ -70,9 +70,9 @@ boost::shared_ptr<TableFormat> EditData::CFT_EDIT_DATA()
 }
 
 
-DataTable* EditData::constructParameters()
+DataTablePtr EditData::constructParameters()
 {
-    DataRecord* rec = new DataRecord(CFT_EDIT_DATA();
+    DataRecordPtr rec = new DataRecord(CFT_EDIT_DATA();
     rec->addDataTable(data);
     rec->addBoolean(useDockableFrame);
     rec->addBoolean(readOnly);
@@ -80,27 +80,27 @@ DataTable* EditData::constructParameters()
     rec->addString(helpId);
     rec->addString(help);
     rec->addString(defaultContext);
-    rec->addDataTable(location != 0 ? location->toDataTable() : static_cast< DataTable* >(0));
-    rec->addDataTable(dashboard != 0 ? dashboard->toDataTable() : static_cast< DataTable* >(0));
+    rec->addDataTable(location != 0 ? location->toDataTable() : static_cast< DataTablePtr >(0));
+    rec->addDataTable(dashboard != 0 ? dashboard->toDataTable() : static_cast< DataTablePtr >(0));
     rec->addString(expression);
     rec->addLong(period);
 
     return rec->wrap();
 }
 
-boost::shared_ptr<GenericActionResponse> EditData::createDefaultResponse()
+GenericActionResponsePtr EditData::createDefaultResponse()
 {
-    boost::shared_ptr<DataTable> table = getParameters()->rec()->getDataTable(CF_DATA_);
+    DataTablePtr table = getParameters()->rec()->getDataTable(CF_DATA_);
 
     return new GenericActionResponse(table);
 }
 
-boost::shared_ptr<DataTable> EditData::getData()
+DataTablePtr EditData::getData()
 {
     return data;
 }
 
-void EditData::setData(boost::shared_ptr<DataTable> data)
+void EditData::setData(DataTablePtr data)
 {
     this->data = data;
 }
@@ -165,22 +165,22 @@ void EditData::setDefaultContext(const std::string & defaultContext)
     this->defaultContext = defaultContext;
 }
 
-boost::shared_ptr<WindowLocation> EditData::getLocation()
+WindowLocationPtr EditData::getLocation()
 {
     return location;
 }
 
-void EditData::setLocation(boost::shared_ptr<WindowLocation> location)
+void EditData::setLocation(WindowLocationPtr location)
 {
     this->location = location;
 }
 
-boost::shared_ptr<DashboardProperties> EditData::getDashboard()
+DashboardPropertiesPtr EditData::getDashboard()
 {
     return dashboard;
 }
 
-void EditData::setDashboard(boost::shared_ptr<DashboardProperties> dashboard)
+void EditData::setDashboard(DashboardPropertiesPtr dashboard)
 {
     this->dashboard = dashboard;
 }
@@ -205,12 +205,12 @@ void EditData::setPeriod(long  period)
     this->period = period;
 }
 
-boost::shared_ptr<EditDataMerger> EditData::getMerger()
+EditDataMergerPtr EditData::getMerger()
 {
     return merger;
 }
 
-void EditData::setMerger(boost::shared_ptr<EditDataMerger> merger)
+void EditData::setMerger(EditDataMergerPtr merger)
 {
     this->merger = merger;
 }

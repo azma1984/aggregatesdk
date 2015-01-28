@@ -13,43 +13,38 @@
 #include <string>
 
 //todo - class stub
-class BasePlugin //: public AggreGatePlugin
+class BasePlugin : public AggreGatePlugin
 {
-
-
 private:
-//    PluginDirector* pluginDirector;
-      std::string id;
-      std::string description;
-//    int index;
+	PluginDirector* pluginDirector;
+	std::string id;
+	std::string description;
+	int index;
+	void init();
 
-//public:
-//    const std::string & getId();
-//    void setId(const std::string & id);
-//    const std::string & getShortId();
-//    const std::string & getDescription();
-//    void setDescription(const std::string & description);
-//    PluginDirector* getPluginDirector();
-//    void setPluginDirector(PluginDirector* pluginDirector);
-//    Context* createGlobalConfigContext(Context* rootContext, bool requestReboot, VariableDefinitionArray*/*...*/ properties);
-//    Context* createUserConfigContext(Context* userContext, bool requestReboot, VariableDefinitionArray*/*...*/ properties);
-//    Context* getGlobalConfigContext();
-//    Context* getUserConfigContext(const std::string & username);
-//    int getSortIndex();
-
-//public: /* protected */
-//    void setIndex(int index);
-
-//public:
-//    int compareTo(AggreGatePlugin* other);
-
-//public: /* protected */
-//    void doStart() /* throws(Exception) */;
-//    void doStop() /* throws(Exception) */;
 
 public:
+    const std::string & getId();
+    void setId(const std::string & id);
+    const std::string & getShortId();
+    const std::string & getDescription();
+    void setDescription(const std::string & description);
+    PluginDirector* getPluginDirector();
+    void setPluginDirector(PluginDirector* pluginDirector);
+    ContextPtr createGlobalConfigContext(ContextPtr rootContext, bool requestReboot, VariableDefinitionPtr/*...*/ properties);
+    ContextPtr createUserConfigContext(ContextPtr userContext, bool requestReboot, VariableDefinitionPtr/*...*/ properties);
+    ContextPtr getGlobalConfigContext();
+    ContextPtr getUserConfigContext(const std::string & username);
+    int getSortIndex();
 
-	    static const int INDEX_HIGHEST = 400;
+   void setIndex(int index);
+
+   int compareTo(AggreGatePlugin* other);
+
+   void doStart();
+   void doStop();
+
+	static const int INDEX_HIGHEST = 400;
     static const int INDEX_VERY_HIGH = 300;
     static const int INDEX_HIGH = 200;
     static const int INDEX_HIGHER = 100;
@@ -59,23 +54,16 @@ public:
     static const int INDEX_VERY_LOW = -300;
     static const int INDEX_LOWEST = -400;
 
-//    void globalInit(Context* rootContext) ;
-//    void globalDeinit(Context* rootContext) ;
-//    void userInit(Context* userContext) ;
-//    void userDeinit(Context* userContext) ;
-//    void globalStart() ;
-//    void globalStop() ;
+    void globalInit(ContextPtr rootContext) ;
+    void globalDeinit(ContextPtr rootContext) ;
+    void userInit(ContextPtr userContext) ;
+    void userDeinit(ContextPtr userContext) ;
+    void globalStart() ;
+	void globalStop() ;
 
 
-    BasePlugin();
+	BasePlugin();
     BasePlugin(const std::string & description);
-
-
-//private:
-//    void init();
-
-//public:
-//    int compareTo(void* arg0);
 
 };
 #endif

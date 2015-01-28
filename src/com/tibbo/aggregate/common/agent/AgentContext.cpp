@@ -21,15 +21,15 @@
    const std::string AgentContext::EF_EVENT_CONFIRMED_ID= "id";
 
 
-   TableFormat* AgentContext::FIFT_LOGIN;
-   TableFormat* AgentContext::FOFT_LOGIN;
-   TableFormat* AgentContext::FOFT_REGISTER;
-   TableFormat* AgentContext::FOFT_GET_HISTORY;
-   TableFormat* AgentContext::FIFT_CONFIRM_EVENT;
-   TableFormat* AgentContext::EFT_EVENT_CONFIRMED; 
+   TableFormatPtr AgentContext::FIFT_LOGIN;
+   TableFormatPtr AgentContext::FOFT_LOGIN;
+   TableFormatPtr AgentContext::FOFT_REGISTER;
+   TableFormatPtr AgentContext::FOFT_GET_HISTORY;
+   TableFormatPtr AgentContext::FIFT_CONFIRM_EVENT;
+   TableFormatPtr AgentContext::EFT_EVENT_CONFIRMED; 
 
 
-AgentContext::AgentContext(RemoteServer* server, const std::string &name, bool eventConfirmation) 
+AgentContext::AgentContext(RemoteServerPtr server, const std::string &name, bool eventConfirmation) 
 {   
    FIFT_LOGIN= new TableFormat(1, 1, "<" + FIF_LOGIN_CHALLENGE + "><S>");
    FOFT_LOGIN= new TableFormat(1, 1);
@@ -70,7 +70,7 @@ void AgentContext::setupMyself()
 {
     AbstractContext::setupMyself();
    
-    FunctionDefinition *fd = new FunctionDefinition(F_LOGIN, FIFT_LOGIN, FOFT_LOGIN, ""/*Cres::get()->getString("login")*/);
+    FunctionDefinitionPtrfd = new FunctionDefinition(F_LOGIN, FIFT_LOGIN, FOFT_LOGIN, ""/*Cres::get()->getString("login")*/);
     fd->setImplementation(loginImpl);
     addFunctionDefinition(fd);
     fd = new FunctionDefinition(F_REGISTER, TableFormat::EMPTY_FORMAT, FOFT_REGISTER,""/* Cres::get()->getString("register")*/);
@@ -87,7 +87,7 @@ void AgentContext::setupMyself()
     addFunctionDefinition(fd);
     if(eventConfirmation) 
 	{
-     EventDefinition *ed = new EventDefinition(E_EVENT_CONFIRMED, EFT_EVENT_CONFIRMED);
+     EventDefinitionPtred = new EventDefinition(E_EVENT_CONFIRMED, EFT_EVENT_CONFIRMED);
      addEventDefinition(ed);
     }
   
@@ -97,7 +97,7 @@ void AgentContext::confirmEvent(int id)
 {
     if(getEventDefinition(E_EVENT_CONFIRMED) != 0) 
     {
-      fireEvent(E_EVENT_CONFIRMED,(void*)id);
+      fireEvent(E_EVENT_CONFIRMED,(AgObjectPtr)id);
     }
 }
 
@@ -111,7 +111,7 @@ void AgentContext::setSynchronized(bool isSynchronized)
     this->isSynchronized= isSynchronized;
 }
 
-RemoteServer* AgentContext::getServer()
+RemoteServerPtr AgentContext::getServer()
 {
     return server;
 }

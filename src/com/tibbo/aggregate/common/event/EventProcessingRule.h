@@ -26,7 +26,7 @@ private:
     static const std::string FIELD_DUPLICATE_DISPATCHING_;
     static const std::string FIELD_PERIOD_;
     static const std::string FIELD_ENRICHMENTS_;
-    static boost::shared_ptr<TableFormat> FORMAT_;
+    static TableFormatPtr FORMAT_;
     std::string mask;
     std::string event;
     std::string prefilter;
@@ -34,9 +34,9 @@ private:
     int queue;
     bool duplicateDispatching;
     long period;
-	std::list< boost::shared_ptr<EventEnrichmentRule> >  enrichments;
-    boost::shared_ptr<Expression> prefilterExpression;
-    boost::shared_ptr<Expression> deduplicatorExpression;
+	std::list< EventEnrichmentRulePtr >  enrichments;
+    ExpressionPtr prefilterExpression;
+    ExpressionPtr deduplicatorExpression;
     long filtered;
     long saved;
     long duplicates;
@@ -50,12 +50,12 @@ public:
     void setPeriod(long period);
     std::string getPrefilter();
     void setPrefilter(const std::string& prefilter);
-    boost::shared_ptr<Expression> getPrefilterExpression();
+    ExpressionPtr getPrefilterExpression();
     std::string getDeduplicator();
     void setDeduplicator(const std::string& deduplicator);
-    boost::shared_ptr<Expression> getDeduplicatorExpression();
-	std::list< boost::shared_ptr<EventEnrichmentRule> >  getEnrichments();
-    void setEnrichments(std::list<boost::shared_ptr<EventEnrichmentRule> >  enrichments);
+    ExpressionPtr getDeduplicatorExpression();
+	std::list< EventEnrichmentRulePtr >  getEnrichments();
+    void setEnrichments(std::list<EventEnrichmentRulePtr >  enrichments);
     int getQueue();
     void setQueue(int queue);
     bool isDuplicateDispatching();
@@ -68,12 +68,12 @@ public:
     long getDuplicates();
     std::string toString();
     int hashCode();
-    bool equals(EventProcessingRule* obj);
+    bool equals(EventProcessingRulePtr obj);
 
     // Generated
     EventProcessingRule();
     EventProcessingRule(const std::string& mask, const std::string& event);
 
-    static boost::shared_ptr<TableFormat>& FORMAT();
+    static TableFormatPtr& FORMAT();
 };
 #endif  //_EventProcessingRule_H_

@@ -16,7 +16,7 @@ ShowDiff::ShowDiff()
 {    
 }
 
-ShowDiff::ShowDiff(const std::string& title, boost::shared_ptr<DataTable> parameters)
+ShowDiff::ShowDiff(const std::string& title, DataTablePtr parameters)
     : GenericActionCommand(ActionUtils::CMD_SHOW_DIFF, title, parameters, CFT_SHOW_DIFF())
 {    
 }
@@ -31,10 +31,10 @@ ShowDiff::ShowDiff(const std::string& title, const std::string& _firstFileTitle,
     this->secondFile = _secondFile;
 }
 
-DataTable* ShowDiff::constructParameters()
+DataTablePtr ShowDiff::constructParameters()
 {
-    DataTable* dt = new DataTable(CFT_SHOW_DIFF());
-    DataRecord* rec = dt->addRecord();
+    DataTablePtr dt = new DataTable(CFT_SHOW_DIFF());
+    DataRecordPtr rec = dt->addRecord();
 
     rec->setValue(CF_FIRST_FILE_TITLE, firstFileTitle);
     rec->setValue(CF_FIRST_FILE, firstFile);
@@ -45,7 +45,7 @@ DataTable* ShowDiff::constructParameters()
 }
 
 //TODO: FieldFormat
-boost::shared_ptr<TableFormat> ShowDiff::CFT_SHOW_DIFF()
+TableFormatPtr ShowDiff::CFT_SHOW_DIFF()
 {
     if (!CFT_SHOW_DIFF_) {
         CFT_SHOW_DIFF_.reset( new TableFormat(1, 1) );

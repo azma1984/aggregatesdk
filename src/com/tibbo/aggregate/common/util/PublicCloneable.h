@@ -5,6 +5,6 @@
 
 class PublicCloneable
 {
-  void *clone();
+  AgObjectPtrclone();
 };
 #endif

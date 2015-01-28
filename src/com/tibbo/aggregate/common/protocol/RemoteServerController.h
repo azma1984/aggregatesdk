@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/RemoteServerController.java
 
-#pragma once
+#ifndef H
+#define H
 
 #include <AbstractAggreGateDeviceController.h>
 #include <string>
@@ -41,49 +42,49 @@ class RemoteServerController
 	void start();
 
 	void disconnectImpl();
-  //	void send(OutgoingAggreGateCommand* cmd);
+  //	void send(OutgoingAggreGateCommandPtr cmd);
  //	void setDataChannel(BlockingChannel* socketChannel);
   //	BlockingChannel* getDataChannel();
 
 	bool isConnected();
 	std::string getAddress();
 
-	RemoteServerController(RemoteServer* device, bool async, bool useContextManager);
+	RemoteServerController(RemoteServerPtr device, bool async, bool useContextManager);
 
-   // void send(Command* cmd);
+   // void send(CommandPtr cmd);
 
- /* AbstractAggreGateDeviceController*/
+ /* AbstractAggreGateDeviceControllerPtr/
    public:
    /*
 private:
-	AggreGateDevice* device;
+	AggreGateDevicePtr device;
 	*/
-	RemoteContextManager *contextManager;
+	RemoteContextManagerPtrcontextManager;
 	/*
-	CallerController* callerController;
-	::com::tibbo::aggregate::common::util::UserSettings* userSettings;
+	CallerControllerPtr callerController;
+	UserSettingsPtr userSettings;
 	bool avoidSendingFormats;
-	encoding::FormatCache* formatCache;
+	encoding::FormatCachePtr formatCache;
 	::java::util::concurrent::ExecutorService* eventPreprocessor;
 protected:
-	void ctor(AggreGateDevice* device, ::org::apache::log4j::Logger* logger);
+	void ctor(AggreGateDevicePtr device, ::org::apache::log4j::Logger* logger);
 
 
-	RemoteContextManager* getContextManager();
+	RemoteContextManagerPtr getContextManager();
 	*/
-	void setContextManager(RemoteContextManager* contextManager);
+	void setContextManager(RemoteContextManagerPtr contextManager);
 	/*
-	void setDevice(AggreGateDevice* device);
-    AggreGateDevice* getDevice();
-    CallerController* getCallerController();
+	void setDevice(AggreGateDevicePtr device);
+    AggreGateDevicePtr getDevice();
+    CallerControllerPtr getCallerController();
 
 public:
-    void setCallerController(CallerController* callerController);
+    void setCallerController(CallerControllerPtr callerController);
 
 public:
-    encoding::FormatCache* getFormatCache();
-    ::com::tibbo::aggregate::common::util::UserSettings* getSettings();
-    encoding::ClassicEncodingSettings* createClassicEncodingSettings(bool forSending);
+    encoding::FormatCachePtr getFormatCache();
+    UserSettingsPtr getSettings();
+    encoding::ClassicEncodingSettingsPtr createClassicEncodingSettings(bool forSending);
 
 public:
     void setAvoidSendingFormats(bool avoidSendingFormats);
@@ -103,24 +104,24 @@ public:
     ::java::util::concurrent::ExecutorService* getEventPreprocessor();
 
 public:
-	IncomingAggreGateCommand* sendCommandAndCheckReplyCode(OutgoingAggreGateCommand* cmd);
+	IncomingAggreGateCommandPtr sendCommandAndCheckReplyCode(OutgoingAggreGateCommandPtr cmd);
 
 public:
-    void processAsyncCommand(IncomingAggreGateCommand* cmd);
+    void processAsyncCommand(IncomingAggreGateCommandPtr cmd);
 
 private:
-    void processEvent(IncomingAggreGateCommand* cmd);
+    void processEvent(IncomingAggreGateCommandPtr cmd);
 
 public:
-	void confirmEvent(Context* con, EventDefinition* def, Event* event);
-    void setCommandParser(::com::tibbo::aggregate::common::communication::CommandParser* commandBuffer);
+	void confirmEvent(ContextPtr con, EventDefinitionPtr def, EventPtr event);
+    void setCommandParser(::com::tibbo::aggregate::common::communication::CommandParserPtr commandBuffer);
 
 public:
     const std::string & toString();
-	DataTable* callRemoteFunction(const std::string & context, const std::string & name, TableFormat* outputFormat, DataTable* parameters);
+	DataTablePtr callRemoteFunction(const std::string & context, const std::string & name, TableFormatPtr outputFormat, DataTablePtr parameters);
 
 public:
-    DataTable* decodeRemoteDataTable(TableFormat* format, const std::string & encodedReply);
+    DataTablePtr decodeRemoteDataTable(TableFormatPtr format, const std::string & encodedReply);
 
 
 
@@ -136,19 +137,19 @@ public:
   /*	void disconnect();
 
 	std::list  getActiveCommands();
-	::com::tibbo::aggregate::common::communication::CommandProcessorStatistics* getStatistics();
+	::com::tibbo::aggregate::common::communication::CommandProcessorStatisticsPtr getStatistics();
 	bool isActive();
 	void login();
-	IncomingAggreGateCommand* sendCommand(::com::tibbo::aggregate::common::communication::Command* cmd);
+	IncomingAggreGateCommandPtr sendCommand(::com::tibbo::aggregate::common::communication::CommandPtr cmd);
 
 public:
-	void processAsyncCommand(::com::tibbo::aggregate::common::communication::Command* cmd);
+	void processAsyncCommand(::com::tibbo::aggregate::common::communication::CommandPtr cmd);
 
 private:
-	::java::lang::Class* getClass0();
+	AgClassPtr getClass0();
 	friend class AbstractAggreGateDeviceController_processEvent_1;
 	friend class AbstractAggreGateDeviceController_setCommandParser_2;
 
-   //	AbstractAggreGateDeviceController(AggreGateDevice* device);
+   //	AbstractAggreGateDeviceController(AggreGateDevicePtr device);
    public: */
 };

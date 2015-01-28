@@ -5,7 +5,7 @@
 
 
 
-BatchAction::BatchAction(ActionManager* actionManager)
+BatchAction::BatchAction(ActionManagerPtr actionManager)
 {
    if(actionManager == 0)
    {
@@ -15,7 +15,7 @@ BatchAction::BatchAction(ActionManager* actionManager)
    this->actionManager = actionManager;
 }
 
-void BatchAction::init(ActionContext* actionContext, InitialRequest* initialParameters)
+void BatchAction::init(ActionContextPtr actionContext, InitialRequestPtr initialParameters)
 {
 	if(actionContext == 0)
 	{
@@ -24,19 +24,19 @@ void BatchAction::init(ActionContext* actionContext, InitialRequest* initialPara
     this->actionContext = actionContext;
 }
 
-ActionCommand* BatchAction::service(ActionResponse* actionRequest)
+ActionCommandPtr BatchAction::service(ActionResponsePtr actionRequest)
 {
-	BatchAction* batchContext = actionContext->getBatchContext();
+	BatchActionPtr batchContext = actionContext->getBatchContext();
 	if(batchContext == 0)
 	{
 	 // It's incorrect to use BatchAction without BatchContext
 	 std::cout<< "AssertionError()";
     }
 	do {
-        ActionCommand* actionCommand;
+        ActionCommandPtr actionCommand;
 		if(currentActionId == 0)
 		{
-			BatchEntry* batchEntry = getNextEntry(batchContext);
+			BatchEntryPtr batchEntry = getNextEntry(batchContext);
 			if(batchEntry == 0)
 			{
                 return 0;
@@ -61,7 +61,7 @@ ActionCommand* BatchAction::service(ActionResponse* actionRequest)
     } while (true);
 }
 
-BatchEntry* BatchAction::getNextEntry(BatchContext* batchContext)
+BatchEntryPtr BatchAction::getNextEntry(BatchContextPtr batchContext)
 {
 	std::list<BatchEntry> entries = batchContext->getEntries()
 	std::list<BatchEntry>::const_iterator BatchEntry;

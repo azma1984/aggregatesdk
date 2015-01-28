@@ -24,7 +24,7 @@ Browse::Browse(URI url)
  */
 
 /*
-DataTable* Browse::constructParameters()
+DataTablePtr Browse::constructParameters()
 {
 	return new DataTable(CFT_BROWSE, new voidArray({url)->toString())}));
 }

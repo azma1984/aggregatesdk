@@ -1,6 +1,6 @@
 #ifndef FunctionDefinitionH
 #define FunctionDefinitionH
-
+#define BOOST_THREAD_USE_LIB
 #include "AbstractEntityDefinition.h"
 
 #include "context/FunctionImplementation.h"
@@ -12,36 +12,36 @@
 class FunctionDefinition : public AbstractEntityDefinition
 {
  private:
-    boost::shared_ptr<TableFormat> inputFormat;
-    boost::shared_ptr<TableFormat> outputFormat;
-    bool hidden;
-    Permissions* permissions;
-    FunctionImplementation* implementation;
+	TableFormatPtr inputFormat;
+    TableFormatPtr outputFormat;
+	bool hidden;
+    PermissionsPtr permissions;
+    FunctionImplementationPtr implementation;
     bool concurrent;
 
-    void init(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description, const std::string &group);
+    void init(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat, const std::string &description, const std::string &group);
 
 public:
-    boost::shared_ptr<TableFormat> getInputFormat();
-    boost::shared_ptr<TableFormat> getOutputFormat();
+    TableFormatPtr getInputFormat();
+    TableFormatPtr getOutputFormat();
     bool isHidden();
-    Permissions* getPermissions();
-    FunctionImplementation* getImplementation();
-    void setInputFormat(boost::shared_ptr<TableFormat> inputFormat);
-    void setOutputFormat(boost::shared_ptr<TableFormat> outputFormat);
+    PermissionsPtr getPermissions();
+    FunctionImplementationPtr getImplementation();
+    void setInputFormat(TableFormatPtr inputFormat);
+    void setOutputFormat(TableFormatPtr outputFormat);
     void setHidden(bool hidden);
-    void setPermissions(Permissions* perms);
+    void setPermissions(PermissionsPtr perms);
     bool isConcurrent();
     void setConcurrent(bool concurrent);
-    void setImplementation(FunctionImplementation* implementation);
-    FunctionDefinition* clone();
-    int compareTo(FunctionDefinition* d);
+    void setImplementation(FunctionImplementationPtr implementation);
+    FunctionDefinitionPtr clone();
+    int compareTo(FunctionDefinitionPtr d);
     int hashCode();
-    bool equals(void* obj);
+    bool equals(AgObjectPtr obj);
 
-    FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat);
-    FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description);
-    FunctionDefinition(const std::string &name, boost::shared_ptr<TableFormat> inputFormat, boost::shared_ptr<TableFormat> outputFormat, const std::string &description, const std::string &group);
+    FunctionDefinition(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat);
+    FunctionDefinition(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat, const std::string &description);
+    FunctionDefinition(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat, const std::string &description, const std::string &group);
 
 };
 

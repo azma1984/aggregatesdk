@@ -1,15 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/EntityRelatedActionDescriptor.java
-
-#pragma once
+#ifndef EntityRelatedActionDescriptorH
+#define EntityRelatedActionDescriptorH
 
 #include "datatable/AggreGateBean.h"
 
 
 class EntityRelatedActionDescriptor : public AggreGateBean
-{/*
-public:
-    typedef AggreGateBean super;
-
+{
 private:
     static const std::string FIELD_MASK_;
     static const std::string FIELD_ENTITY_;
@@ -17,17 +13,13 @@ private:
     static const std::string FIELD_ACTION_;
     static const std::string FIELD_DESCRIPTION_;
     static const std::string FIELD_ICON_;
-    static TableFormat* FORMAT_;
+    static TableFormatPtr FORMAT_;
     const std::string & mask;
     const std::string & entity;
     const std::string & target;
     const std::string & action;
     const std::string & description;
     const std::string & icon;
-protected:
-    void ctor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId);
-    void ctor(DataRecord* data);
-    void ctor();
 
 public:
     const std::string & getMask();
@@ -43,26 +35,18 @@ public:
     void setDescription(const std::string & description);
     void setIcon(const std::string & icon);
 
-    // Generated
-    EntityRelatedActionDescriptor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId);
-    EntityRelatedActionDescriptor(DataRecord* data);
+	EntityRelatedActionDescriptor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId);
+    EntityRelatedActionDescriptor(DataRecordPtr data);
     EntityRelatedActionDescriptor();
-protected:
-    EntityRelatedActionDescriptor(const ::default_init_tag&);
 
-
-public:
-    
-    static void 
     static const std::string& FIELD_MASK();
     static const std::string& FIELD_ENTITY();
     static const std::string& FIELD_TARGET();
     static const std::string& FIELD_ACTION();
     static const std::string& FIELD_DESCRIPTION();
     static const std::string& FIELD_ICON();
-    static TableFormat*& FORMAT();
+    static TableFormatPtr& FORMAT();
 
-private:
-    ::java::lang::Class* getClass0();
-    */
 };
+
+#endif

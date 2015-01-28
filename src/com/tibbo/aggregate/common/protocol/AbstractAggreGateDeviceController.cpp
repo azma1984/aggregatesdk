@@ -34,7 +34,7 @@ template <class D,class C> AbstractAggreGateDeviceController<D,C>::AbstractAggre
  i++;
 }
  /*
-AbstractAggreGateDeviceController::AbstractAggreGateDeviceController(AggreGateDevice* device, ::org::apache::log4j::Logger* logger)
+AbstractAggreGateDeviceController::AbstractAggreGateDeviceController(AggreGateDevicePtr device, ::org::apache::log4j::Logger* logger)
     : AbstractAggreGateDeviceController(*static_cast< ::default_init_tag* >(0))
 {
     ctor(device,logger);
@@ -42,20 +42,20 @@ AbstractAggreGateDeviceController::AbstractAggreGateDeviceController(AggreGateDe
 
 void AbstractAggreGateDeviceController::init()
 {
-    userSettings = new ::com::tibbo::aggregate::common::util::UserSettings();
+    userSettings = new UserSettings();
     formatCache = new encoding::FormatCache(this);
 }
 
-void AbstractAggreGateDeviceController::ctor(AggreGateDevice* device, ::org::apache::log4j::Logger* logger)
+void AbstractAggreGateDeviceController::ctor(AggreGateDevicePtr device, ::org::apache::log4j::Logger* logger)
 {
     super::ctor(device)->getCommandTimeout(), logger);
     init();
     this->device = device;
 }
 
-RemoteContextManager* AbstractAggreGateDeviceController::getContextManager()
+RemoteContextManagerPtr AbstractAggreGateDeviceController::getContextManager()
 {
-    return java_cast< RemoteContextManager* >(contextManager);
+    return java_cast< RemoteContextManagerPtr >(contextManager);
 }
 	 */
 template <class D,class C> void AbstractAggreGateDeviceController<D,C>::setContextManager(C* contextManager)
@@ -63,37 +63,37 @@ template <class D,class C> void AbstractAggreGateDeviceController<D,C>::setConte
     this->contextManager = contextManager;
 }
  /*
-void AbstractAggreGateDeviceController::setDevice(AggreGateDevice* device)
+void AbstractAggreGateDeviceController::setDevice(AggreGateDevicePtr device)
 {
     this->device = device;
 }
 
-AggreGateDevice* AbstractAggreGateDeviceController::getDevice()
+AggreGateDevicePtr AbstractAggreGateDeviceController::getDevice()
 {
-    return java_cast< AggreGateDevice* >(device);
+    return java_cast< AggreGateDevicePtr >(device);
 }
 
-CallerController* AbstractAggreGateDeviceController::getCallerController()
+CallerControllerPtr AbstractAggreGateDeviceController::getCallerController()
 {
     return callerController;
 }
 
-void AbstractAggreGateDeviceController::setCallerController(CallerController* callerController)
+void AbstractAggreGateDeviceController::setCallerController(CallerControllerPtr callerController)
 {
     this->callerController = callerController;
 }
 
-Dateencoding::FormatCache* AbstractAggreGateDeviceController::getFormatCache()
+Dateencoding::FormatCachePtr AbstractAggreGateDeviceController::getFormatCache()
 {
     return formatCache;
 }
 
-com::tibbo::aggregate::common::util::UserSettings* AbstractAggreGateDeviceController::getSettings()
+com::tibbo::aggregate::common::util::UserSettingsPtr AbstractAggreGateDeviceController::getSettings()
 {
     return userSettings;
 }
 
-Dateencoding::ClassicEncodingSettings* AbstractAggreGateDeviceController::createClassicEncodingSettings(bool forSending)
+Dateencoding::ClassicEncodingSettingsPtr AbstractAggreGateDeviceController::createClassicEncodingSettings(bool forSending)
 {
     auto es = new encoding::ClassicEncodingSettings(false);
     if(!forSending) {
@@ -115,7 +115,7 @@ bool AbstractAggreGateDeviceController::isAvoidSendingFormats()
 
 bool AbstractAggreGateDeviceController::connectImpl()
 {
-	auto ans = java_cast< IncomingAggreGateCommand* >(sendCommand(AggreGateCommandUtils::startMessage()));
+	auto ans = java_cast< IncomingAggreGateCommandPtr >(sendCommand(AggreGateCommandUtils::startMessage()));
     if(!ans)->getReplyCode())->equals(AggreGateCommand::REPLY_CODE_OK()))) {
         throw new RemoteDeviceErrorException(Cres::get())->getString(u"devUncompatibleVersion"_j));
     }
@@ -129,8 +129,8 @@ void AbstractAggreGateDeviceController::destroy()
 
 void AbstractAggreGateDeviceController::disconnectImpl()
 {
-    if(java_cast< RemoteContextManager* >(contextManager) != 0) {
-        java_cast< RemoteContextManager* >(contextManager))->stop();
+    if(java_cast< RemoteContextManagerPtr >(contextManager) != 0) {
+        java_cast< RemoteContextManagerPtr >(contextManager))->stop();
     }
     if(eventPreprocessor != 0) {
         eventPreprocessor)->shutdown();
@@ -140,7 +140,7 @@ void AbstractAggreGateDeviceController::disconnectImpl()
 
 std::list  AbstractAggreGateDeviceController::getProxyContexts(const std::string & path)
 {
-    auto con = java_cast< ProxyContext* >(java_cast< RemoteContextManager* >(getContextManager()))->get(path));
+    auto con = java_cast< ProxyContextPtr >(java_cast< RemoteContextManagerPtr >(getContextManager()))->get(path));
 	return con != 0 ? ::java::util::Collections::singletonList(con) : ::java::util::Collections::emptyList();
 }
 
@@ -149,9 +149,9 @@ java::util::concurrent::ExecutorService* AbstractAggreGateDeviceController::getE
     return eventPreprocessor;
 }
 
-IncomingAggreGateCommand* AbstractAggreGateDeviceController::sendCommandAndCheckReplyCode(OutgoingAggreGateCommand* cmd)
+IncomingAggreGateCommandPtr AbstractAggreGateDeviceController::sendCommandAndCheckReplyCode(OutgoingAggreGateCommandPtr cmd)
 {
-	auto ans = java_cast< IncomingAggreGateCommand* >(sendCommand(cmd));
+	auto ans = java_cast< IncomingAggreGateCommandPtr >(sendCommand(cmd));
     if(ans)->getReplyCode())->equals(AggreGateCommand::REPLY_CODE_DENIED()))) {
         auto message = ans)->getNumberOfParameters() > AggreGateCommand::INDEX_REPLY_MESSAGE ? std::stringBuilder().append(u": "_j)->append(DataTableUtils::transferDecode(ans)->getParameter(AggreGateCommand::INDEX_REPLY_MESSAGE)))->toString() : u""_j;
         throw new ContextSecurityException(std::stringBuilder().append(Cres::get())->getString(u"devAccessDeniedReply"_j))->append(message)->toString());
@@ -171,7 +171,7 @@ IncomingAggreGateCommand* AbstractAggreGateDeviceController::sendCommandAndCheck
     return ans;
 }
 
-void AbstractAggreGateDeviceController::processAsyncCommand(IncomingAggreGateCommand* cmd)
+void AbstractAggreGateDeviceController::processAsyncCommand(IncomingAggreGateCommandPtr cmd)
 {
     if(Log::COMMANDS())->isDebugEnabled()) {
         Log::COMMANDS())->debug(std::stringBuilder().append(u"Async command received from server: "_j)->append(cmd))->toString());
@@ -181,12 +181,12 @@ void AbstractAggreGateDeviceController::processAsyncCommand(IncomingAggreGateCom
     }
 }
 
-void AbstractAggreGateDeviceController::processAsyncCommand(::com::tibbo::aggregate::common::communication::Command* cmd)
+void AbstractAggreGateDeviceController::processAsyncCommand(::com::tibbo::aggregate::common::communication::CommandPtr cmd)
 { 
-    processAsyncCommand(dynamic_cast< IncomingAggreGateCommand* >(cmd));
+    processAsyncCommand(dynamic_cast< IncomingAggreGateCommandPtr >(cmd));
 }
 
-void AbstractAggreGateDeviceController::processEvent(IncomingAggreGateCommand* cmd)
+void AbstractAggreGateDeviceController::processEvent(IncomingAggreGateCommandPtr cmd)
 {
     if(eventPreprocessor == 0 || eventPreprocessor)->isShutdown()) {
         return;
@@ -194,11 +194,11 @@ void AbstractAggreGateDeviceController::processEvent(IncomingAggreGateCommand* c
     eventPreprocessor)->execute(new AbstractAggreGateDeviceController_processEvent_1(this, cmd));
 }
 
-void AbstractAggreGateDeviceController::confirmEvent(Context* con, EventDefinition* def, Event* event)
+void AbstractAggreGateDeviceController::confirmEvent(ContextPtr con, EventDefinitionPtr def, EventPtr event)
 {
 }
 
-void AbstractAggreGateDeviceController::setCommandParser(::com::tibbo::aggregate::common::communication::CommandParser* commandBuffer)
+void AbstractAggreGateDeviceController::setCommandParser(::com::tibbo::aggregate::common::communication::CommandParserPtr commandBuffer)
 {
     super::setCommandParser(commandBuffer);
     eventPreprocessor = ::java::util::concurrent::Executors::newSingleThreadExecutor(new AbstractAggreGateDeviceController_setCommandParser_2(this));
@@ -206,10 +206,10 @@ void AbstractAggreGateDeviceController::setCommandParser(::com::tibbo::aggregate
 
 std::string AbstractAggreGateDeviceController::toString()
 {
-    return java_cast< AggreGateDevice* >(getDevice()))->toString();
+    return java_cast< AggreGateDevicePtr >(getDevice()))->toString();
 }
 
-DateDataTable* AbstractAggreGateDeviceController::callRemoteFunction(const std::string & context, const std::string & name, TableFormat* outputFormat, DataTable* parameters)
+DateDataTablePtr AbstractAggreGateDeviceController::callRemoteFunction(const std::string & context, const std::string & name, TableFormatPtr outputFormat, DataTablePtr parameters)
 {
     try {
         auto const encodedParameters = parameters)->encode(createClassicEncodingSettings(true));
@@ -222,7 +222,7 @@ DateDataTable* AbstractAggreGateDeviceController::callRemoteFunction(const std::
     }
 }
 
-DateDataTable* AbstractAggreGateDeviceController::decodeRemoteDataTable(TableFormat* format, const std::string & encodedReply)
+DateDataTablePtr AbstractAggreGateDeviceController::decodeRemoteDataTable(TableFormatPtr format, const std::string & encodedReply)
 {
     if(isAvoidSendingFormats()) {
         auto settings = new encoding::ClassicEncodingSettings(false, format);
@@ -241,7 +241,7 @@ DateDataTable* AbstractAggreGateDeviceController::decodeRemoteDataTable(TableFor
 
 java::lang::Class* AbstractAggreGateDeviceController::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.AbstractAggreGateDeviceController", 69);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.AbstractAggreGateDeviceController", 69);
     return c;
 }
  */
@@ -260,7 +260,7 @@ std::list  AbstractAggreGateDeviceController::getActiveCommands()
     return java_cast< std::list  >(AbstractDeviceController::getActiveCommands());
 }
 
-com::tibbo::aggregate::common::communication::CommandProcessorStatistics* AbstractAggreGateDeviceController::getStatistics()
+com::tibbo::aggregate::common::communication::CommandProcessorStatisticsPtr AbstractAggreGateDeviceController::getStatistics()
 {
     return AbstractDeviceController::getStatistics();
 }
@@ -275,9 +275,9 @@ void AbstractAggreGateDeviceController::login()
     AbstractDeviceController::login();
 }
 
-IncomingAggreGateCommand* AbstractAggreGateDeviceController::sendCommand(::com::tibbo::aggregate::common::communication::Command* cmd)
+IncomingAggreGateCommandPtr AbstractAggreGateDeviceController::sendCommand(::com::tibbo::aggregate::common::communication::CommandPtr cmd)
 {
-    return java_cast< IncomingAggreGateCommand* >(AbstractDeviceController::sendCommand(java_cast< OutgoingAggreGateCommand* >(cmd)));
+    return java_cast< IncomingAggreGateCommandPtr >(AbstractDeviceController::sendCommand(java_cast< OutgoingAggreGateCommandPtr >(cmd)));
 }
 
 java::lang::Class* AbstractAggreGateDeviceController::getClass0()

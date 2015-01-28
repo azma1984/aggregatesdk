@@ -7,6 +7,6 @@
 class CompatibilityConverter : public Interface
 {
 public:
-    virtual boost::shared_ptr<DataTable> convert(boost::shared_ptr<DataTable> oldValue, boost::shared_ptr<DataTable> newValue) = 0;
+    virtual DataTablePtr convert(DataTablePtr oldValue, DataTablePtr newValue) = 0;
 };
 #endif 

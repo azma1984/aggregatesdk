@@ -3,7 +3,6 @@
 
 #define BOOST_THREAD_USE_LIB
 #include "context/CallerController.h"
-#include "context/CallerController.h"
 #include "context/CallerData.h"
 #include "util/date.h"
 
@@ -14,29 +13,29 @@ class AbstractCallerController : public CallerController
 {
 
 private:
-    static std::set<CallerController*>  CONTROLLERS;
+	static std::set<CallerControllerPtr>  CONTROLLERS;
     std::string username;
-    boost::shared_ptr<CallerData> callerData;
+	CallerDataPtr callerData;
     bool loggedIn;
     std::string type;
     std::string address;
-    Date* creationTime;
+	DatePtr creationTime;
 	std::map<std::string, std::string> properties;
 
 public:
     bool isLoggedIn();
     bool isPermissionCheckingEnabled();
-	PermissionCache* getPermissionCache();
-	boost::shared_ptr<CallerData> getCallerData();
+	PermissionCachePtr getPermissionCache();
+	CallerDataPtr getCallerData();
     std::map<std::string, std::string> getProperties();
 
 
     void setLoggedIn(bool loggedIn);
 
     void sendFeedback(int level, const std::string & message);
-    static std::list<CallerController*>  getControllers();
+	static std::list< CallerControllerPtr >  getControllers();
     std::string toString();
-	Permissions *getPermissions();
+	PermissionPtr getPermissions();
     std::string getUsername();
 
     void setUsername(const std::string & username);
@@ -47,11 +46,11 @@ public:
     void setType(const std::string & type);
     std::string getAddress();
     void setAddress(const std::string & address);
-    void login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) ;
-    Date* getCreationTime();
+    void login(const std::string & username, const std::string & inheritedUsername, PermissionsPtr permissons) ;
+    DatePtr getCreationTime();
     void logout();
 
-    AbstractCallerController(boost::shared_ptr<CallerData> callerData);
+	AbstractCallerController(CallerDataPtr callerData);
 
 };
 

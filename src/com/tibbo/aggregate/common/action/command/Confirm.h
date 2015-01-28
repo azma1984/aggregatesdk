@@ -17,11 +17,11 @@ class Confirm : public GenericActionCommand
 
 protected:
     void init();
-    DataTable* constructParameters();// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+    DataTablePtr constructParameters();// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
     GenericActionResponse createDefaultResponse();
-	int parseConfirm(GenericActionResponse* resp);
+	int parseConfirm(GenericActionResponsePtr resp);
 	std::string getMessage();
 	int getOptionType();
 	int getMessageType();
@@ -33,13 +33,13 @@ public:
 	static std::string CF_OPTION_TYPE;
 	static std::string CF_MESSAGE_TYPE;
 	static std::string RF_OPTION;
-    static boost::shared_ptr<TableFormat> CFT_CONFIRM; // todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
-    static boost::shared_ptr<TableFormat> RFT_CONFIRM;
+    static TableFormatPtr CFT_CONFIRM; // todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+    static TableFormatPtr RFT_CONFIRM;
         
     Confirm();
     Confirm(const std::string &message);
     Confirm(const std::string &title, const std::string  &message, int optionType, int messageType);
-    Confirm(const std::string &title, DataTable* parameters);
+    Confirm(const std::string &title, DataTablePtr parameters);
 	
 };
 #endif//_CONFIRM_H_

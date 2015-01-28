@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EditDataMergerH
+#define EditDataMergerH
 
 #include "datatable/DataTable.h"
 #include "util/Interface.h"
@@ -7,5 +8,7 @@
 class EditDataMerger : public Interface
 {
 public:
-    virtual boost::shared_ptr<DataTable> merge(boost::shared_ptr<DataTable> preset, boost::shared_ptr<DataTable> original) = 0;
+    virtual DataTablePtr merge(DataTablePtr preset, DataTablePtr original) = 0;
 };
+
+#endif

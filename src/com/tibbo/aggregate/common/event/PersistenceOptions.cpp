@@ -35,11 +35,11 @@ void PersistenceOptions::init()
     persistData = true;
 }
 
-PersistenceOptions* PersistenceOptions::clone()
+PersistenceOptionsPtr PersistenceOptions::clone()
 {
     try {
-        auto clone = java_cast< PersistenceOptions* >(super::clone());
-        clone)->persistenceBindings = java_cast< std::list  >(::com::tibbo::aggregate::common::util::CloneUtils::deepClone(persistenceBindings));
+        auto clone = java_cast< PersistenceOptionsPtr >(super::clone());
+        clone)->persistenceBindings = java_cast< std::list  >(CloneUtils::deepClone(persistenceBindings));
         return clone;
     } catch (::java::lang::CloneNotSupportedException* ex) {
         throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
@@ -51,7 +51,7 @@ std::list  PersistenceOptions::getPersistenceBindings()
     return persistenceBindings != 0 ? ::java::util::Collections::unmodifiableList(persistenceBindings) : static_cast< std::list  >(0);
 }
 
-void PersistenceOptions::addPersistenceBinding(PersistenceBinding* binding)
+void PersistenceOptions::addPersistenceBinding(PersistenceBindingPtr binding)
 {
     if(persistenceBindings == 0) {
         persistenceBindings = new ::java::util::LinkedList();

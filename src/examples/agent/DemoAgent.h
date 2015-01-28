@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/agent/DemoAgent.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <fwd-aggregate_sdk_5.11.00.h"
 #include <com/tibbo/aggregate/common/agent/fwd-aggregate_sdk_5.11.00.h"
@@ -46,19 +47,19 @@ private:
     static const std::string FIF_OPERATION_LIMIT_;
     static const std::string FOF_OPERATION_RESULT_;
     static const std::string EF_EVENT_DATA_;
-    static TableFormat* VFT_SETTING_;
-    static TableFormat* VFT_PERIOD_;
-    static TableFormat* FIFT_OPERATION_;
-    static TableFormat* FOFT_OPERATION_;
-    static TableFormat* EFT_EVENT_;
-    static DataTable* setting_;
+    static TableFormatPtr VFT_SETTING_;
+    static TableFormatPtr VFT_PERIOD_;
+    static TableFormatPtr FIFT_OPERATION_;
+    static TableFormatPtr FOFT_OPERATION_;
+    static TableFormatPtr EFT_EVENT_;
+    static DataTablePtr setting_;
     static long period_;
 
 public:
     static void main(std::stringArray* args);
 
 private:
-    static void initializeAgentContext(::com::tibbo::aggregate::common::agent::AgentContext* context);
+    static void initializeAgentContext(::com::tibbo::aggregate::common::agent::AgentContextPtr context);
 
     // Generated
 
@@ -83,14 +84,14 @@ private:
     static const std::string& FIF_OPERATION_LIMIT();
     static const std::string& FOF_OPERATION_RESULT();
     static const std::string& EF_EVENT_DATA();
-    static TableFormat*& VFT_SETTING();
-    static TableFormat*& VFT_PERIOD();
-    static TableFormat*& FIFT_OPERATION();
-    static TableFormat*& FOFT_OPERATION();
-    static TableFormat*& EFT_EVENT();
-    static DataTable*& setting();
+    static TableFormatPtr& VFT_SETTING();
+    static TableFormatPtr& VFT_PERIOD();
+    static TableFormatPtr& FIFT_OPERATION();
+    static TableFormatPtr& FOFT_OPERATION();
+    static TableFormatPtr& EFT_EVENT();
+    static DataTablePtr& setting();
     static long& period();
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
     friend class DemoAgent_main_1;
     friend class DemoAgent_initializeAgentContext_2;
     friend class DemoAgent_initializeAgentContext_3;

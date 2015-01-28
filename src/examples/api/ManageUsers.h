@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/api/ManageUsers.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
 #include <examples/api/fwd-aggregate_sdk_5.11.00.h"
@@ -35,8 +36,8 @@ public:
     static void main(std::stringArray* args);
 
 private:
-    static void createEditDeleteUser(ContextManager* cm) ;
-    static void listUserAccounts(ContextManager* cm) ;
+    static void createEditDeleteUser(ContextManagerPtr cm) ;
+    static void listUserAccounts(ContextManagerPtr cm) ;
 
     // Generated
 
@@ -50,5 +51,5 @@ public:
     
 
 private:
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
 };

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef H
+#define H
 
 #include "action/EntityRelatedActionDescriptor.h"
 #include "util/Cloneable.h"
@@ -33,12 +34,12 @@ public:
     void setVariableActions(std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  variableActions);
     std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  getEventActions();
     void setEventActions(std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  eventActions);
-    UserSettings* clone();
-    void fill(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
-    void fillBasicProperties(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
-    void fillActions(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> callerController);
+    UserSettingsPtr clone();
+    void fill(ContextManagerPtr cm, CallerControllerPtr callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
+    void fillBasicProperties(ContextManagerPtr cm, CallerControllerPtr callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
+    void fillActions(ContextManagerPtr cm, CallerControllerPtr callerController);
 
     // Generated
     UserSettings();
-    UserSettings(boost::shared_ptr<ContextManager> cm, boost::shared_ptr<CallerController> callerController);
+    UserSettings(ContextManagerPtr cm, CallerControllerPtr callerController);
 };

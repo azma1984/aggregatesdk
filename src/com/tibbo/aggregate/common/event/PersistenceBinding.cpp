@@ -15,7 +15,7 @@ PersistenceBinding::PersistenceBinding()
     ctor();
 }
 
-PersistenceBinding::PersistenceBinding(DataRecord* record) 
+PersistenceBinding::PersistenceBinding(DataRecordPtr record) 
     : PersistenceBinding(*static_cast< ::default_init_tag* >(0))
 {
     ctor(record);
@@ -76,19 +76,19 @@ std::string& PersistenceBinding::TYPE_TIMESTAMP()
 }
 std::string PersistenceBinding::TYPE_TIMESTAMP_;
 
-DateTableFormat*& PersistenceBinding::FORMAT()
+DateTableFormatPtr& PersistenceBinding::FORMAT()
 {
     
     return FORMAT_;
 }
-DateTableFormat* PersistenceBinding::FORMAT_;
+DateTableFormatPtr PersistenceBinding::FORMAT_;
 
 void PersistenceBinding::ctor()
 {
     super::ctor(FORMAT_);
 }
 
-void PersistenceBinding::ctor(DataRecord* record)
+void PersistenceBinding::ctor(DataRecordPtr record)
 {
     super::ctor(FORMAT_, record);
 }
@@ -125,10 +125,10 @@ std::string PersistenceBinding::getExpression()
     return expression;
 }
 
-Expression* PersistenceBinding::getCompiledExpression()
+ExpressionPtr PersistenceBinding::getCompiledExpression()
 {
     if(compiledExpression == 0) {
-        compiledExpression = expression != 0 ? new Expression(expression) : static_cast< Expression* >(0);
+        compiledExpression = expression != 0 ? new Expression(expression) : static_cast< ExpressionPtr >(0);
     }
     return compiledExpression;
 }
@@ -154,10 +154,10 @@ void PersistenceBinding::setExpression(const std::string & expression)
     compiledExpression;
 }
 
-PersistenceBinding* PersistenceBinding::clone()
+PersistenceBindingPtr PersistenceBinding::clone()
 {
     try {
-        return java_cast< PersistenceBinding* >(super::clone());
+        return java_cast< PersistenceBindingPtr >(super::clone());
     } catch (::java::lang::CloneNotSupportedException* ex) {
         throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
     }
@@ -174,7 +174,7 @@ int PersistenceBinding::hashCode()
     return result;
 }
 
-bool PersistenceBinding::equals(void* obj)
+bool PersistenceBinding::equals(AgObjectPtr obj)
 {
     if(this) == obj)
         return true;
@@ -185,7 +185,7 @@ bool PersistenceBinding::equals(void* obj)
     if(getClass()) != obj)->getClass()))
         return false;
 
-    auto other = java_cast< PersistenceBinding* >(obj);
+    auto other = java_cast< PersistenceBindingPtr >(obj);
     if(expression == 0) {
         if(other)->expression != 0)
             return false;

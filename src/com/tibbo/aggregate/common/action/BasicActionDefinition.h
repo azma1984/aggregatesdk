@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BasicActionDefinitionH
+#define BasicActionDefinitionH
 
 #include "context/AbstractEntityDefinition.h"
 #include "action/ActionDefinition.h"
@@ -7,7 +8,12 @@
 #include "security/Permission.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/mutex.hpp>
-
+  #include "action/Action.h"
+#include "action/ActionCommand.h"
+#include "action/GroupIdentifier.h"
+#include "action/KeyStroke.h"
+#include "action/RequestIdentifier.h"
+#include "action/ResourceMask.h"
 class BasicActionDefinition
     : public AbstractEntityDefinition
     , public ActionDefinition
@@ -25,27 +31,28 @@ private:
     static const std::string PROPERTY_GROUP_ID_;
     static const std::string PROPERTY_ICON_ID_;
     static const std::string PROPERTY_DEFAULT_;
-    //TODO:
-    //PropertyChangeSupport* propertyChangeListeners;
-    //::java::lang::Class* actionClass;
+
+	PropertyChangeSupportPtr propertyChangeListeners;
+	AgClassPtr actionClass;
     bool enabled;
     bool isDefault_;
     bool hidden;
     boost::shared_ptr<GroupIdentifier> executionGroup;
     boost::shared_ptr<KeyStroke> accelerator;
-//    std::list<boost::shared_ptr<ResourceMask>>  dropSources;
-    std::list<boost::shared_ptr<ActionCommand>>  commandList;
-    boost::mutex executionLock;
+	std::list<ResourceMaskPtr>  dropSources;
+    std::list<ActionCommandPtr>  commandList;
+	boost::mutex executionLock;
+
+	void init();
 
 public:
     bool concurrent;
 
-public:
-    GroupIdentifier* getExecutionGroup();
+    GroupIdentifierPtr getExecutionGroup();
     bool isEnabled();
     bool isHidden();
     boost::shared_ptr<KeyStroke> getAccelerator();
-//    std::list  getDropSources();
+	std::list  getDropSources();
     void setIconId(const std::string & iconId);
     void setHelp(const std::string & help);
     void setDescription(const std::string & description);
@@ -54,43 +61,42 @@ public:
     void setEnabled(bool enabled);
     void setHidden(bool hidden);
     void setAccelerator(boost::shared_ptr<KeyStroke> accelerator);
-//    void setDropSources(std::list  dropSources);
+	void setDropSources(std::list  dropSources);
     void setName(const std::string & name);
     bool isDefault();
     void setDefault(bool isDefault);
     bool isConcurrent();
     void setConcurrent(bool allowConcurrentExecution);
-    void addDropSource(ResourceMask* resourceMask);
+    void addDropSource(ResourceMaskPtr resourceMask);
     Action<InitialRequest,ActionCommand,ActionResponse> * instantiate();
-    std::list<boost::shared_ptr<ActionCommand>>  getCommands();
+    std::list<ActionCommandPtr>  getCommands();
 
-public: /* protected */
+
     void registerCommands();
-    void registerCommand(boost::shared_ptr<ActionCommand> cmd);
+    void registerCommand(ActionCommandPtr cmd);
     void unregisterCommand(const std::string & id);
 
-public:
+
     boost::mutex getExecutionLock();
-//    void removePropertyChangeListener(PropertyChangeListener* l);
-//    void addPropertyChangeListener(PropertyChangeListener* l);
+	void removePropertyChangeListener(PropertyChangeListenerPtr l);
+	void addPropertyChangeListener(PropertyChangeListenerPtr l);
     bool isHeadless();
-    boost::shared_ptr<Permissions> getPermissions();
-    int compareTo(BasicActionDefinition* o);
+    PermissionsPtr getPermissions();
+    int compareTo(BasicActionDefinitionPtr o);
 
-    // Generated
+
     BasicActionDefinition(const std::string & name);
-    BasicActionDefinition(const std::string & name, ::java::lang::Class* actionClass);
+    BasicActionDefinition(const std::string & name, AgClassPtr actionClass);
 
-private:
-    void init();
 
-public:
-    std::string getDescription();
+	std::string getDescription();
     std::string getGroup();
     std::string getHelp();
     std::string getIconId();
     int  getIndex();
     std::string getName();
-    void* getOwner();
+    AgObjectPtr getOwner();
     const std::string toDetailedString();
 };
+
+#endif

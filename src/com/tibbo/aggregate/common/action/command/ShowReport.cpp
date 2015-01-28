@@ -23,13 +23,13 @@ com::tibbo::aggregate::common::action::command::ShowReport::ShowReport()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const std::string & title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard) 
+com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const std::string & title, ::unsigned charArray* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard) 
     : ShowReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,reportData,location,dashboard);
 }
 
-com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const std::string & title, DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const std::string & title, DataTablePtr parameters) 
     : ShowReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -56,19 +56,19 @@ std::string& com::tibbo::aggregate::common::action::command::ShowReport::CF_DASH
 }
 std::string com::tibbo::aggregate::common::action::command::ShowReport::CF_DASHBOARD_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT()
 {
     
     return CFT_SHOW_REPORT_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT_;
 
 void com::tibbo::aggregate::common::action::command::ShowReport::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), CFT_SHOW_REPORT_, static_cast< TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), CFT_SHOW_REPORT_, static_cast< TableFormatPtr >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std::string & title, ::int8_tArray* reportData, ::com::tibbo::aggregate::common::util::WindowLocation* location, ::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
+void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std::string & title, ::unsigned charArray* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), title);
     this->reportData = reportData;
@@ -76,47 +76,47 @@ void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std:
     this->dashboard = dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std::string & title, DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), title, parameters, CFT_SHOW_REPORT_);
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::ShowReport::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::ShowReport::constructParameters()
 {
     auto t = new DataTable(CFT_SHOW_REPORT_);
     auto r = t)->addRecord();
     r)->addData(new Data(reportData));
-    r)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTable* >(0));
-    r)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTable* >(0));
+    r)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTablePtr >(0));
+    r)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTablePtr >(0));
     return t;
 }
 
-int8_tArray* com::tibbo::aggregate::common::action::command::ShowReport::getReportData()
+unsigned charArray* com::tibbo::aggregate::common::action::command::ShowReport::getReportData()
 {
     return reportData;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::setReportData(::int8_tArray* reportData)
+void com::tibbo::aggregate::common::action::command::ShowReport::setReportData(::unsigned charArray* reportData)
 {
     this->reportData = reportData;
 }
 
-com::tibbo::aggregate::common::util::WindowLocation* com::tibbo::aggregate::common::action::command::ShowReport::getLocation()
+com::tibbo::aggregate::common::util::WindowLocationPtr com::tibbo::aggregate::common::action::command::ShowReport::getLocation()
 {
     return location;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::setLocation(::com::tibbo::aggregate::common::util::WindowLocation* location)
+void com::tibbo::aggregate::common::action::command::ShowReport::setLocation(WindowLocationPtr location)
 {
     this->location = location;
 }
 
-com::tibbo::aggregate::common::util::DashboardProperties* com::tibbo::aggregate::common::action::command::ShowReport::getDashboard()
+com::tibbo::aggregate::common::util::DashboardPropertiesPtr com::tibbo::aggregate::common::action::command::ShowReport::getDashboard()
 {
     return dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::setDashboard(::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
+void com::tibbo::aggregate::common::action::command::ShowReport::setDashboard(DashboardPropertiesPtr dashboard)
 {
     this->dashboard = dashboard;
 }
@@ -125,7 +125,7 @@ void com::tibbo::aggregate::common::action::command::ShowReport::setDashboard(::
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::ShowReport::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowReport", 52);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowReport", 52);
     return c;
 }
 

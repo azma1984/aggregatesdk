@@ -40,7 +40,7 @@ void Permissions::ctor(const std::string& data, boost::shared_ptr<PermissionChec
 
 std::string Permissions::encode()
 {
-    typedef std::list<boost::shared_ptr<Permission>>::iterator permisionIter;
+    typedef std::list<PermissionPtr>::iterator permisionIter;
     std::stringstream enc;
 
     permissionsLock.lock();//readLock().lock();
@@ -73,7 +73,7 @@ int Permissions::size()
     return permissions.size();
 }
 
-boost::shared_ptr<Permissions> Permissions::add(boost::shared_ptr<Permission> permission)
+PermissionsPtr Permissions::add(PermissionPtr permission)
 {
     permissionsLock.lock();// writeLock().lock();
     try
@@ -101,7 +101,7 @@ int Permissions::hashCode()
 }
 */
 
-bool Permissions::equals(Permissions* obj)
+bool Permissions::equals(PermissionsPtr obj)
 {
     if (this == obj) {
         return true;
@@ -111,7 +111,7 @@ bool Permissions::equals(Permissions* obj)
         return false;
     }
 
-    Permissions* other = dynamic_cast<Permissions>(obj);
+    PermissionsPtr other = dynamic_cast<Permissions>(obj);
     if (other == NULL)
         return false;
 

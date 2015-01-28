@@ -1,33 +1,33 @@
 #include "ActionContext.h"
 
 
-ActionContext::ActionContext(ActionDefinition* actionDefinition, ActionManager* actionManager)
+ActionContext::ActionContext(ActionDefinitionPtr actionDefinition, ActionManagerPtr actionManager)
 {
     setActionDefinition(actionDefinition);
     setActionManager(actionManager);
 }
 
-ActionDefinition* ActionContext::getActionDefinition()
+ActionDefinitionPtr ActionContext::getActionDefinition()
 {
     return actionDefinition;
 }
 
-BatchContext* ActionContext::getBatchContext()
+BatchContextPtr ActionContext::getBatchContext()
 {
     return batchContext;
 }
 
-RequestCache* ActionContext::getRequestCache()
+RequestCachePtr ActionContext::getRequestCache()
 {
     return requestCache;
 }
 
-ActionState* ActionContext::getActionState()
+ActionStatePtr ActionContext::getActionState()
 {
     return actionState;
 }
 
-ActionManager* ActionContext::getActionManager()
+ActionManagerPtr ActionContext::getActionManager()
 {
     return actionManager;
 }
@@ -37,7 +37,7 @@ std::list<RequestIdentifier>* ActionContext::getRequestedIds()
     return &requestedIds;
 }
 
-void ActionContext::setActionDefinition(ActionDefinition* actionDefinition)
+void ActionContext::setActionDefinition(ActionDefinitionPtr actionDefinition)
 {
 	if(actionDefinition == 0)
 	{
@@ -46,17 +46,17 @@ void ActionContext::setActionDefinition(ActionDefinition* actionDefinition)
     this->actionDefinition = actionDefinition;
 }
 
-void ActionContext::setBatchContext(BatchContext* batchContext)
+void ActionContext::setBatchContext(BatchContextPtr batchContext)
 {
     this->batchContext = batchContext;
 }
 
-void ActionContext::setRequestCache(RequestCache* requestCache)
+void ActionContext::setRequestCache(RequestCachePtr requestCache)
 {
     this->requestCache = requestCache;
 }
 
-void ActionContext::setActionState(ActionState* actionState)
+void ActionContext::setActionState(ActionStatePtr actionState)
 {
 	if(actionState == 0)
 	{
@@ -65,7 +65,7 @@ void ActionContext::setActionState(ActionState* actionState)
 	this->actionState = actionState;
 }
 
-void ActionContext::setActionManager(ActionManager* actionManager)
+void ActionContext::setActionManager(ActionManagerPtr actionManager)
 {
 	if(actionManager == 0)
 	{

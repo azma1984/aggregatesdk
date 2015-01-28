@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TimeHelperH
+#define TimeHelperH
 
 #include "util/TimeUnit.h"
 #include "util/AgObject.h"
@@ -98,3 +99,5 @@ public:
     TimeUnit* getTimeUnit(int unit);
     uint64_t convertToMillis(uint64_t period, int unit);
 };
+
+#endif

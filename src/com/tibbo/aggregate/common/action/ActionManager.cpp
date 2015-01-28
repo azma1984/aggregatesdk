@@ -32,7 +32,7 @@ std::list<ActionDefinition>* ActionManager::resolveDefinitions(std::list<ActionL
 
 	for (actionLocator = actionLocators.begin(); actionLocator != actionLocators.end(); ++actionLocator)
 	{
-	  ActionDefinition *actionDefinition = actionDirectory->getActionDefinition(*actionLocator);
+	  ActionDefinitionPtractionDefinition = actionDirectory->getActionDefinition(*actionLocator);
 	   if(actionDefinition == 0)
 		{
 		 std::cout <<"Can't resolve: ";
@@ -43,7 +43,7 @@ std::list<ActionDefinition>* ActionManager::resolveDefinitions(std::list<ActionL
     return actionDefinitions;
 }
 
-ActionIdentifier* ActionManager::initActions(std::list<BatchEntry>  entries, ActionContext* batchActionContext)
+ActionIdentifierPtr ActionManager::initActions(std::list<BatchEntry>  entries, ActionContextPtr batchActionContext)
 {
 	if(entries == 0)
 	{
@@ -55,8 +55,8 @@ ActionIdentifier* ActionManager::initActions(std::list<BatchEntry>  entries, Act
 	 std::exception("Pointer = NULL!");
 	}
 
-	RequestCache* requestCache = new RequestCache();
-	BatchContext* batchContext = new BatchContext();
+	RequestCachePtr requestCache = new RequestCache();
+	BatchContextPtr batchContext = new BatchContext();
 
 
 	std::list<BatchEntry>::const_iterator  BatchEntry;
@@ -77,15 +77,15 @@ ActionIdentifier* ActionManager::initActions(std::list<BatchEntry>  entries, Act
 	batchActionContext->setBatchContext(batchContext);
 	batchActionContext->setRequestCache(requestCache);
 
-	BatchAction *batchAction = new BatchAction(this);
+	BatchActionPtrbatchAction = new BatchAction(this);
 	batchAction->init(batchActionContext, 0);
 	batchActionContext->setActionState(ActionContext.ActionState::INITIALIZED);
     return registerAction(batchActionContext, batchAction, new ActionExecutionMode(ActionExecutionMode::BATCH));
 }
 
-ActionIdentifier* ActionManager::initAction(ActionContext* actionContext, InitialRequest* initialParameters, ActionExecutionMode* mode)
+ActionIdentifierPtr ActionManager::initAction(ActionContextPtr actionContext, InitialRequestPtr initialParameters, ActionExecutionModePtr mode)
 {
-	ActionDefinition *actionDefinition = actionContext->getActionDefinition();
+	ActionDefinitionPtractionDefinition = actionContext->getActionDefinition();
 	ReentrantLock *lock = actionDefinition->getExecutionLock();
 
 	if(lock->isLocked() && !lock->isHeldByCurrentThread())
@@ -100,7 +100,7 @@ ActionIdentifier* ActionManager::initAction(ActionContext* actionContext, Initia
 }
 
 
-Action<InitialRequest,ActionCommand,ActionResponse> * ActionManager::instantiateAction(ActionDefinition* actionDefinition)
+Action<InitialRequest,ActionCommand,ActionResponse> * ActionManager::instantiateAction(ActionDefinitionPtr actionDefinition)
 {
 	if(actionDefinition == 0)
 	{
@@ -109,7 +109,7 @@ Action<InitialRequest,ActionCommand,ActionResponse> * ActionManager::instantiate
 	return actionDefinition->instantiate();
 }
 
-ActionCommand* ActionManager::service(ActionIdentifier* actionId, ActionResponse* actionRequest)
+ActionCommandPtr ActionManager::service(ActionIdentifierPtr actionId, ActionResponsePtr actionRequest)
 {
     if(actionId == 0) {
         std::exception("Pointer = NULL!");
@@ -119,24 +119,24 @@ ActionCommand* ActionManager::service(ActionIdentifier* actionId, ActionResponse
 	{
 	 std::cout<<"Action with id '"+actionId+"' doesn't exists";
     }
-	ActionContext* actionContext = (ActionContext*)(actionContexts)->get(action);
+	ActionContextPtr actionContext = (ActionContextPtr)(actionContexts)->get(action);
 
 	if(actionRequest == 0 && actionContext->getActionState() != ActionContext.ActionState::INITIALIZED)
 	{
 	  std::cout<<"Null actionRequest is allowed only within first call to service()";
     }
 	actionContext->setActionState(ActionContext.ActionState::WORKING);
-	ActionCommand* actionCommand=0;
-	ActionResponse  *activeRequest = actionRequest;
+	ActionCommandPtr actionCommand=0;
+	ActionResponsePtractiveRequest = actionRequest;
 	do
 	{
-		RequestCache *requestCache = actionContext->getRequestCache();
+		RequestCachePtrrequestCache = actionContext->getRequestCache();
 
 		if((activeRequest != 0 && (activeRequest->getRequestId() != 0) && (activeRequest->shouldRemember()==true))
 		{
 			if(requestCache == 0)
 			{
-			  RequestCache*  requestCache = new RequestCache();
+			  RequestCachePtr  requestCache = new RequestCache();
 			  actionContext->setRequestCache(requestCache);
             }
 		   requestCache->addRequest(activeRequest->getRequestId(), activeRequest);
@@ -163,7 +163,7 @@ ActionCommand* ActionManager::service(ActionIdentifier* actionId, ActionResponse
     return actionCommand;
 }
 
-ActionResult* ActionManager::destroyAction(ActionIdentifier* actionId)
+ActionResultPtr ActionManager::destroyAction(ActionIdentifierPtr actionId)
 {
 	if(actionId == 0)
 	{
@@ -196,27 +196,27 @@ void ActionManager::destroyAll()
    //todo That has to be destroyed?
   //	for (;;)
   //	{
-   //	   ActionIdentifier* actionId = ActionIdentifier*Map;
+   //	   ActionIdentifierPtr actionId = ActionIdentifierPtrMap;
    //	   {
 	  //		destroyAction(actionId);
    //	  }
    //	}
 }
 
-ActionContext* ActionManager::getActionContext(ActionIdentifier* actionId)
+ActionContextPtr ActionManager::getActionContext(ActionIdentifierPtr actionId)
 {
 	Action<InitialRequest,ActionCommand,ActionResponse> * action =  actions->get(actionId));
 	return actionContexts->get(action);
 }
 
-ActionDirectory* ActionManager::getActionDirectory()
+ActionDirectoryPtr ActionManager::getActionDirectory()
 {
 	return actionDirectory;
 }
 
-ActionIdentifier* ActionManager::registerAction(ActionContext* actionContext, Action<InitialRequest,ActionCommand,ActionResponse> * action, ActionExecutionMode* mode)
+ActionIdentifierPtr ActionManager::registerAction(ActionContextPtr actionContext, Action<InitialRequest,ActionCommand,ActionResponse> * action, ActionExecutionModePtr mode)
 {
-	ActionIdentifier *actionId = actionIdGenerator->generate(action);
+	ActionIdentifierPtractionId = actionIdGenerator->generate(action);
 	actions->put(actionId, action);
     actionContexts->put(action, actionContext);
     return actionId;

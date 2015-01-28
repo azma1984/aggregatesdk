@@ -1,17 +1,13 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/RequestController.java
 
 #ifndef RequestControllerH
 #define RequestControllerH
 
 
 class RequestController
-    
 {
-    void* getOriginator();
-    long getLockTimeout();
-   // Evaluator* getEvaluator();
+	virtual AgObjectPtr getOriginator()=0;
+	virtual long getLockTimeout()=0;
+	virtual EvaluatorPtr getEvaluator()=0;
 
-
-    
 };
 #endif

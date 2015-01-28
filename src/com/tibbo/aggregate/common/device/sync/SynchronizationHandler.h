@@ -17,14 +17,14 @@
 class SynchronizationHandler
 {
  private:
-    SettingSynchronizationOptions* synchronizationOptions;
-    DeviceContext* deviceContext;
+    SettingSynchronizationOptionsPtr synchronizationOptions;
+    DeviceContextPtr deviceContext;
     std::string variable;
-    VariableStatus* customStatus;
+    VariableStatusPtr customStatus;
     bool synchronizationEnabled;
 
 public:
-    void initialize(DeviceContext* deviceContext, const std::string & variable, SettingSynchronizationOptions* synchronizationOptions, bool check);
+    void initialize(DeviceContextPtr deviceContext, const std::string & variable, SettingSynchronizationOptionsPtr synchronizationOptions, bool check);
     void deinitialize();
     void startSynchronization();
     bool isSynchronizationEnabled();
@@ -33,24 +33,24 @@ public:
     void setSynchronizationEnabled(bool synchronizationEnabled);
 
 
-    DataTable* readFromCache(CallerController* caller, RequestController* request);
-    void writeToCache(CallerController* caller, RequestController* request, DataTable* value);
+    DataTablePtr readFromCache(CallerControllerPtr caller, RequestControllerPtr request);
+    void writeToCache(CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value);
     ValueWriter* createServerWriter();
     ValueReader* createServerReader();
-    boost::shared_ptr<Date> getServerModificationTime();
-    boost::shared_ptr<Date> getDeviceModificationTime();
-    bool isUpdatedOnTheServer(CallerController* caller);
+    DatePtr getServerModificationTime();
+    DatePtr getDeviceModificationTime();
+    bool isUpdatedOnTheServer(CallerControllerPtr caller);
     int getDirectionOverride();
-    VariableDefinition* getPersistentDefinition(VariableDefinition* vd);
-    SettingSynchronizationOptions* getSynchronizationOptions();
+    VariableDefinitionPtr getPersistentDefinition(VariableDefinitionPtr vd);
+    SettingSynchronizationOptionsPtr getSynchronizationOptions();
 
 
-    DeviceContext* getDeviceContext();
+    DeviceContextPtr getDeviceContext();
     std::string getVariable();
 
 
-    VariableStatus* getCustomStatus();
-    void setCustomStatus(VariableStatus* customStatus);
+    VariableStatusPtr getCustomStatus();
+    void setCustomStatus(VariableStatusPtr customStatus);
 
 
     SynchronizationHandler();

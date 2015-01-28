@@ -1,9 +1,9 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/PersistenceOptions.java
 
 #ifndef _PersistenceOptions_H_
 #define _PersistenceOptions_H_
-//#include <com/tibbo/aggregate/common/event/PersistenceBinding.h"
-//#include "util/CloneUtils.h"
+
+#include "event/PersistenceBinding.h"
+#include "util/CloneUtils.h"
 #include "util/cloneable.h"
 
 
@@ -11,28 +11,28 @@
 
 class PersistenceOptions: public Cloneable
 {
-/*
+
 private:
-    std::list  persistenceBindings;
-    bool dedicatedTablePreferred;
-    bool perContextTablePreferred;
-    bool persistContext;
-    bool persistName;
-    bool persistExpirationtime;
-    bool persistLevel;
-    bool persistPermissions;
-    bool persistCount;
-    bool persistAcknowledgements;
-    bool persistEnrichments;
-    bool persistFormat;
-    bool persistData;
-		 */
-public:   /*
-    PersistenceOptions* clone();
-    std::list  getPersistenceBindings();
-    void addPersistenceBinding(PersistenceBinding* binding);
-	bool isDedicatedTablePreferred();  */
-	void setDedicatedTablePreferred(bool dedicatedTablePreferred);  /*
+	std::list<PersistenceBindingPtr>  persistenceBindings;
+	bool dedicatedTablePreferred;
+	bool perContextTablePreferred;
+	bool persistContext;
+	bool persistName;
+	bool persistExpirationtime;
+	bool persistLevel;
+	bool persistPermissions;
+	bool persistCount;
+	bool persistAcknowledgements;
+	bool persistEnrichments;
+	bool persistFormat;
+	bool persistData;
+
+public:
+    PersistenceOptionsPtr clone();
+	std::list< PersistenceBindingPtr >  getPersistenceBindings();
+    void addPersistenceBinding(PersistenceBindingPtr binding);
+	bool isDedicatedTablePreferred();
+	void setDedicatedTablePreferred(bool dedicatedTablePreferred);
     bool isPerContextTablePreferred();
     void setPerContextTablePreferred(bool perContextTablePreferred);
     bool isPersistContext();
@@ -55,17 +55,11 @@ public:   /*
     void setPersistFormat(bool persistFormat);
     bool isPersistData();
     void setPersistData(bool persistData);
-    void setPersistenceBindings(std::list  persistenceBindings);
+	void setPersistenceBindings(std::list<PersistenceBindingPtr>  persistenceBindings);
 
-    // Generated
+
     PersistenceOptions();
-protected:
-    void ctor();
-    PersistenceOptions(const ::default_init_tag&);
 
-
-public:
-*/
 };
 
 #endif 

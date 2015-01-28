@@ -1,65 +1,56 @@
 #ifndef EventDefinitionH
 #define EventDefinitionH
 
-
+#define BOOST_THREAD_USE_LIB
 #include "AbstractEntityDefinition.h"
 
 #include "datatable/TableFormat.h"
 #include "event/PersistenceOptions.h"
-//#include "security/Permissions.h"
+#include "security/Permissions.h"
 //todo - class stub
 class EventDefinition : public AbstractEntityDefinition
 {
 
-
 private:
-	void init(const std::string &name, boost::shared_ptr<TableFormat> format, const std::string & description);
-	/*
-    boost::shared_ptr<TableFormat> format;
-    bool hidden;
-    boost::shared_ptr<Permissions> permissions;
+	void init(const std::string &name, TableFormatPtr format, const std::string & description);
+
+    TableFormatPtr format;
+	bool hidden;
+	PermissionsPtr permissions;
     long expirationPeriod;
-    int level;
-    boost::shared_ptr<Permissions> firePermissions;
-    bool synchronous;
-    PersistenceOptions* persistenceOptions;
-    int  memoryStorageSize;
+	int level;
+	PermissionsPtr firePermissions;
+	bool synchronous;
+	PersistenceOptionsPtr persistenceOptions;
+	int  memoryStorageSize;
 
-
-
-
-     */
 public:
-   /*
-	void setFormat(boost::shared_ptr<TableFormat> format);   */
+	void setFormat(TableFormatPtr format);
 	void setHidden(bool hidden);
-	void setPermissions(boost::shared_ptr<Permissions> perms);
+	void setPermissions(PermissionsPtr perms);
 	void setExpirationPeriod(long expirationPeriod);
 	void setLevel(int level);
-	void setSynchronous(bool synchronous);  /*
-	boost::shared_ptr<TableFormat> getFormat();
+	void setSynchronous(bool synchronous);
+	TableFormatPtr getFormat();
     bool isHidden();
-    boost::shared_ptr<Permissions> getPermissions();
+    PermissionsPtr getPermissions();
     long getExpirationPeriod();
     int getLevel();
-    boost::shared_ptr<Permissions> getFirePermissions();
-    void setFirePermissions(boost::shared_ptr<Permissions> firePermissions);
-	bool isSynchronous();  */
-	PersistenceOptions* getPersistenceOptions();/*
+    PermissionsPtr getFirePermissions();
+    void setFirePermissions(PermissionsPtr firePermissions);
+	bool isSynchronous();
+	PersistenceOptionsPtr getPersistenceOptions();
 	int  getMemoryStorageSize();
     void setMemoryStorageSize(int  memoryStorageSize);
-    EventDefinition* clone();
-    int compareTo(EventDefinition* d);
+    EventDefinitionPtr clone();
+    int compareTo(EventDefinitionPtr d);
     int hashCode();
-    bool equals(void* obj);
-
- */
+    bool equals(AgObjectPtr obj);
 
 public:
-    EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format);
-    EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, const std::string & description);
-    EventDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, const std::string & description, const std::string & group);
-
+    EventDefinition(const std::string & name, TableFormatPtr format);
+    EventDefinition(const std::string & name, TableFormatPtr format, const std::string & description);
+    EventDefinition(const std::string & name, TableFormatPtr format, const std::string & description, const std::string & group);
 
 };
 

@@ -11,33 +11,34 @@
 //#include "expression/Evaluator.h"
 //#include "expression/Expression.h"
 //#include "expression/ReferenceResolver.h"
+
 //todo - class stub
 class DefaultContextEventListener //: public ContextEventListener
 {
-//private:
-//    CallerController* callerController;
-//    int  listenerCode;
-//    Expression* filter;
-//    bool acceptEventsWithoutListenerCode;
-//    Evaluator* evaluator;
-//
-//public:
-//    bool shouldHandle(Event* ev);
-//    CallerController* getCallerController();
-//    int  getListenerCode();
-//    void setCallerController(CallerController* callerController);
-//
-//protected:
-//    void setAcceptEventsWithoutListenerCode(bool acceptEventsWithoutListenerCode);
-//
-//public:
-//    void setFilter(Expression* filter);
-//    Expression* getFilter();
-//
-//    DefaultContextEventListener();
-//    DefaultContextEventListener(CallerController* callerController);
-//    DefaultContextEventListener(CallerController* callerController, int  listenerCode);
-//    DefaultContextEventListener(CallerController* callerController, int  listenerCode, Expression* filter);
-//    DefaultContextEventListener(int  listenerCode);
+private:
+    CallerControllerPtr callerController;
+    int  listenerCode;
+    ExpressionPtr filter;
+    bool acceptEventsWithoutListenerCode;
+    EvaluatorPtr evaluator;
+
+public:
+    bool shouldHandle(EventPtr ev);
+    CallerControllerPtr getCallerController();
+    int  getListenerCode();
+    void setCallerController(CallerControllerPtr callerController);
+
+protected:
+    void setAcceptEventsWithoutListenerCode(bool acceptEventsWithoutListenerCode);
+
+public:
+    void setFilter(ExpressionPtr filter);
+    ExpressionPtr getFilter();
+
+    DefaultContextEventListener();
+    DefaultContextEventListener(CallerControllerPtr callerController);
+    DefaultContextEventListener(CallerControllerPtr callerController, int  listenerCode);
+	DefaultContextEventListener(CallerControllerPtr callerController, int  listenerCode, ExpressionPtr filter);
+	DefaultContextEventListener(int  listenerCode);
 };
 #endif

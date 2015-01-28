@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/agent/DemoAgent.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <fwd-aggregate_sdk_5.11.00.h"
 #include <com/tibbo/aggregate/common/agent/fwd-aggregate_sdk_5.11.00.h"
@@ -25,7 +26,7 @@ public:
     DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, const std::string & arg0);
 
 public: /* package */
-    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::Runnable* arg0, ::java::security::AccessControlContext* arg1);
+    DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::Runnable* arg0, ::java::security::AccessControlContextPtr arg1);
 
 public:
     DemoAgent_main_1(::com::tibbo::aggregate::common::agent::Agent* agent, ::java::lang::ThreadGroup* arg0, ::java::lang::Runnable* arg1);
@@ -37,7 +38,7 @@ public:
     ::com::tibbo::aggregate::common::agent::Agent* agent;
 
 private:
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
     friend class DemoAgent;
     friend class DemoAgent_initializeAgentContext_2;
     friend class DemoAgent_initializeAgentContext_3;

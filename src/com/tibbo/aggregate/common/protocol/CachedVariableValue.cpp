@@ -10,35 +10,35 @@ com::tibbo::aggregate::common::protocol::CachedVariableValue::CachedVariableValu
     
 }
 
-com::tibbo::aggregate::common::protocol::CachedVariableValue::CachedVariableValue(Date* timestamp, DataTable* value) 
+com::tibbo::aggregate::common::protocol::CachedVariableValue::CachedVariableValue(DatePtr timestamp, DataTablePtr value) 
     : CachedVariableValue(*static_cast< ::default_init_tag* >(0))
 {
     ctor(timestamp,value);
 }
 
-void com::tibbo::aggregate::common::protocol::CachedVariableValue::ctor(Date* timestamp, DataTable* value)
+void com::tibbo::aggregate::common::protocol::CachedVariableValue::ctor(DatePtr timestamp, DataTablePtr value)
 {
     super::ctor();
     this->timestamp = timestamp;
     this->value = value;
 }
 
-Date* com::tibbo::aggregate::common::protocol::CachedVariableValue::getTimestamp()
+DatePtr com::tibbo::aggregate::common::protocol::CachedVariableValue::getTimestamp()
 {
     return timestamp;
 }
 
-void com::tibbo::aggregate::common::protocol::CachedVariableValue::setTimestamp(Date* timestamp)
+void com::tibbo::aggregate::common::protocol::CachedVariableValue::setTimestamp(DatePtr timestamp)
 {
     this->timestamp = timestamp;
 }
 
-DateDataTable* com::tibbo::aggregate::common::protocol::CachedVariableValue::getValue()
+DateDataTablePtr com::tibbo::aggregate::common::protocol::CachedVariableValue::getValue()
 {
     return value;
 }
 
-void com::tibbo::aggregate::common::protocol::CachedVariableValue::setValue(DataTable* value)
+void com::tibbo::aggregate::common::protocol::CachedVariableValue::setValue(DataTablePtr value)
 {
     this->value = value;
 }
@@ -47,7 +47,7 @@ void com::tibbo::aggregate::common::protocol::CachedVariableValue::setValue(Data
 
 java::lang::Class* com::tibbo::aggregate::common::protocol::CachedVariableValue::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.CachedVariableValue", 55);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.CachedVariableValue", 55);
     return c;
 }
 

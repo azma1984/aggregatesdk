@@ -10,6 +10,6 @@
 class  ValueReader : public Interface
 {
 public:
-    virtual boost::shared_ptr<DataTable> read(boost::shared_ptr<CallerController> callerController,boost::shared_ptr<RequestController> requestController) = 0;
+    virtual DataTablePtr read(CallerControllerPtr callerController,RequestControllerPtr requestController) = 0;
 };
 #endif 

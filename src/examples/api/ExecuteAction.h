@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/api/ExecuteAction.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <com/tibbo/aggregate/common/action/fwd-aggregate_sdk_5.11.00.h"
 //#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
@@ -36,8 +37,8 @@ public:
     static void main(std::stringArray* args);
 
 private:
-    static void executeDiscoveryAction(ContextManager* cm) ;
-    static ::com::tibbo::aggregate::common::action::GenericActionResponse* processCommand(::com::tibbo::aggregate::common::action::GenericActionCommand* cmd);
+    static void executeDiscoveryAction(ContextManagerPtr cm) ;
+    static ::com::tibbo::aggregate::common::action::GenericActionResponsePtr processCommand(::com::tibbo::aggregate::common::action::GenericActionCommandPtr cmd);
 
     // Generated
 
@@ -51,5 +52,5 @@ public:
     
 
 private:
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
 };

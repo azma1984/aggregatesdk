@@ -17,7 +17,7 @@ class AbstractValueReader: public ValueReader
     std::string name;
 
  public:
-    boost::shared_ptr<DataTable> read(boost::shared_ptr<CallerController> callerController,boost::shared_ptr<RequestController> requestController);
+    DataTablePtr read(CallerControllerPtr callerController,RequestControllerPtr requestController);
 
 	static AbstractValueReader& getInstance()
     {

@@ -83,12 +83,12 @@ long EvaluationOptions::getPeriod()
     return period;
 }
 
-boost::shared_ptr<Reference> EvaluationOptions::getActivator()
+boost::ReferencePtr EvaluationOptions::getActivator()
 {
     return activator;
 }
 
-boost::shared_ptr<Expression> EvaluationOptions::getCondition()
+ExpressionPtr EvaluationOptions::getCondition()
 {
     return condition;
 }
@@ -103,12 +103,12 @@ void EvaluationOptions::setPeriod(long period)
     this->period = period;
 }
 
-void EvaluationOptions::setActivator(boost::shared_ptr<Reference> activator)
+void EvaluationOptions::setActivator(boost::ReferencePtr activator)
 {
     this->activator = activator;
 }
 
-void EvaluationOptions::setCondition(boost::shared_ptr<Expression> condition)
+void EvaluationOptions::setCondition(ExpressionPtr condition)
 {
     this->condition = condition;
 }
@@ -143,7 +143,7 @@ void EvaluationOptions::setProcessPeriodically(bool processPeriodically)
     this->pattern |= PERIODIC;
 }
 
-EvaluationOptions* EvaluationOptions::clone()
+EvaluationOptionsPtr EvaluationOptions::clone()
 {
 //    try {
         return new EvaluationOptions(this);

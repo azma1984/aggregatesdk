@@ -18,34 +18,34 @@ class PermissionChecker : public Interface
     /**
     * Returns a map of all permission levels supported by the checker. Each level is defined by a name string and description string.
     */
-   // virtual std::map<std::string, std::string> getPermissionLevels() = 0;
+	virtual std::map<std::string, std::string> getPermissionLevels() = 0;
 
     /**
     * Returns true if permission level {@code permissionLevel} is supported by the checker.
     */
-   // virtual bool isValid(const std::string& permissionLevel) = 0;
+	virtual bool isValid(const std::string& permissionLevel) = 0;
 
     /**
     * Returns true if {@code caller} is allowed to access an object those permissions are {@code requiredPermissions}.
     */
-//    virtual bool has(boost::shared_ptr<CallerController> caller, boost::shared_ptr<Permissions> requiredPermissions,
-  //                   boost::shared_ptr<Context> accessedContext) = 0;
+	virtual bool has(CallerControllerPtr caller, PermissionsPtr requiredPermissions,
+					 ContextPtr accessedContext) = 0;
 
     /**
     * Returns the effective permission level of the calling party (those permissions are identified by {@code perms}) in the {@code context}.
     */
-  //  virtual std::string getLevel(boost::shared_ptr<Permissions> perms, const std::string& context, boost::shared_ptr<ContextManager> cm) = 0;
+	virtual std::string getLevel(PermissionsPtr perms, const std::string& context, ContextManagerPtr cm) = 0;
 
     /**
     * Returns true if the calling party (those permissions are identified by {@code perms}) can see {@code context} among children of its parent context because it has non-null permissions for one or
     * more direct/nested children of {@code context}.
     */
-  //  virtual bool canSee(Permissions perms, const std::string& context, boost::shared_ptr<ContextManager> cm) = 0;
+	virtual bool canSee(Permissions perms, const std::string& context, ContextManagerPtr cm) = 0;
 
     /**
     * Checks whether the calling party (those permissions are identified by {@code has}) can set permissions of some other party to {@code need}.
     */
-   // virtual std::string canActivate(boost::shared_ptr<Permissions> has, boost::shared_ptr<Permissions> need,
-   //                                 boost::shared_ptr<ContextManager> cm) = 0;
+	virtual std::string canActivate(PermissionsPtr has, PermissionsPtr need,
+                                    ContextManagerPtr cm) = 0;
 };
 #endif  //_PermissionChecker_H_

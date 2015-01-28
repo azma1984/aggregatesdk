@@ -69,7 +69,7 @@
 //    return result;
 //}
 //
-//bool EntityReference::equals(void* obj)
+//bool EntityReference::equals(AgObjectPtr obj)
 //{
 //    if(this) == obj)
 //        return true;
@@ -80,7 +80,7 @@
 //    if(getClass()) != obj)->getClass()))
 //        return false;
 //
-//    auto other = java_cast< EntityReference* >(obj);
+//    auto other = java_cast< EntityReferencePtr >(obj);
 //    if(context == 0) {
 //        if(other)->context != 0)
 //            return false;
@@ -98,14 +98,14 @@
 //    return true;
 //}
 //
-//int EntityReference::compareTo(EntityReference* ref)
+//int EntityReference::compareTo(EntityReferencePtr ref)
 //{
 //    return toString())->compareTo(ref)->toString());
 //}
 //
-//int EntityReference::compareTo(void* arg0)
+//int EntityReference::compareTo(AgObjectPtr arg0)
 //{ 
-//    return compareTo(dynamic_cast< EntityReference* >(arg0));
+//    return compareTo(dynamic_cast< EntityReferencePtr >(arg0));
 //}
 //
 //std::string EntityReference::toString()
@@ -114,10 +114,10 @@
 //        ->append(entity)->toString();
 //}
 //
-//EntityReference* EntityReference::clone()
+//EntityReferencePtr EntityReference::clone()
 //{
 //    try {
-//        return java_cast< EntityReference* >(super::clone());
+//        return java_cast< EntityReferencePtr >(super::clone());
 //    } catch (::java::lang::CloneNotSupportedException* ex) {
 //        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
 //    }

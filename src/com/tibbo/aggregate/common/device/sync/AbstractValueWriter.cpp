@@ -17,7 +17,7 @@ const std::string &AbstractValueWriter::toString()
   return name;
 }
 
-void AbstractValueWriter::write(boost::shared_ptr<DataTable> value, boost::shared_ptr<CallerController> callerController,boost::shared_ptr<RequestController> requestController)
+void AbstractValueWriter::write(DataTablePtr value, CallerControllerPtr callerController,RequestControllerPtr requestController)
 {
 
 }

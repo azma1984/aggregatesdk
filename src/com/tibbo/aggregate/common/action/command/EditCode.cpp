@@ -22,12 +22,12 @@ EditCode::EditCode(const std::string & title, const std::string & code, const st
     this->mode = mode;
 }
 
-EditCode::EditCode(const std::string & title, boost::shared_ptr<DataTable> parameters)
+EditCode::EditCode(const std::string & title, DataTablePtr parameters)
 {
     GenericActionCommand(ActionUtils::CMD_EDIT_CODE, title, parameters, CFT_EDIT_CODE());
 }
 
-boost::shared_ptr<TableFormat> EditCode::CFT_EDIT_CODE()
+TableFormatPtr EditCode::CFT_EDIT_CODE()
 {
     if (!CFT_EDIT_CODE_) {
         CFT_EDIT_CODE_.reset(new TableFormat(1, 1));
@@ -39,7 +39,7 @@ boost::shared_ptr<TableFormat> EditCode::CFT_EDIT_CODE()
     return CFT_EDIT_CODE_;
 }
 
-boost::shared_ptr<TableFormat> EditCode::RFT_EDIT_CODE()
+TableFormatPtr EditCode::RFT_EDIT_CODE()
 {
     if (!RFT_EDIT_CODE_) {
         RFT_EDIT_CODE_.reset(new TableFormat(1, 1));
@@ -53,9 +53,9 @@ boost::shared_ptr<TableFormat> EditCode::RFT_EDIT_CODE()
 
 
 
-boost::shared_ptr<DataTable> EditCode::constructParameters()
+DataTablePtr EditCode::constructParameters()
 {
-    return boost::shared_ptr<DataTable>(new DataTable(CFT_EDIT_CODE(), code, mode));
+    return DataTablePtr(new DataTable(CFT_EDIT_CODE(), code, mode));
 }
 
 std::string EditCode::getCode()

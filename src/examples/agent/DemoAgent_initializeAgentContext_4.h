@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/agent/DemoAgent.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
 #include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
@@ -17,14 +18,14 @@ class examples::agent::DemoAgent_initializeAgentContext_4
 
 public:
     typedef void super;
-    DataTable* get(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request) ;
+    DataTablePtr get(ContextPtr con, VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
 
     // Generated
     DemoAgent_initializeAgentContext_4();
     
 
 private:
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
     friend class DemoAgent;
     friend class DemoAgent_main_1;
     friend class DemoAgent_initializeAgentContext_2;

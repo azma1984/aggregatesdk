@@ -13,10 +13,10 @@
 //}
 //
 //
-//Permissions* UncheckedCallerController::getPermissions()
-//{
-//    return permissions;
-//}
+PermissionsPtr UncheckedCallerController::getPermissions()
+{
+	return permissions;
+}
 //
 //bool UncheckedCallerController::isPermissionCheckingEnabled()
 //{
@@ -37,7 +37,7 @@
 //    return true;
 //}
 //
-//void UncheckedCallerController::handleContextEvent(Event* event) 
+//void UncheckedCallerController::handleContextEvent(EventPtr event) 
 //{
 //	//todo - Exception?
 //  //  throw new ::java::lang::UnsupportedOperationException();

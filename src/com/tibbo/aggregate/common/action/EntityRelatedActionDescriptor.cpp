@@ -26,7 +26,7 @@ com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::EntityRela
     ctor(mask,entity,target,action,description,iconId);
 }
 
-com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::EntityRelatedActionDescriptor(DataRecord* data) 
+com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::EntityRelatedActionDescriptor(DataRecordPtr data) 
     : EntityRelatedActionDescriptor(*static_cast< ::default_init_tag* >(0))
 {
     ctor(data);
@@ -80,12 +80,12 @@ std::string& com::tibbo::aggregate::common::action::EntityRelatedActionDescripto
 }
 std::string com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FIELD_ICON_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT()
 {
     
     return FORMAT_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::FORMAT_;
 
 void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(const std::string & mask, const std::string & entity, const std::string & target, const std::string & action, const std::string & description, const std::string & iconId)
 {
@@ -98,7 +98,7 @@ void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(
     this->icon = iconId;
 }
 
-void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(DataRecord* data)
+void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::ctor(DataRecordPtr data)
 {
     super::ctor(FORMAT_, data);
 }
@@ -172,7 +172,7 @@ void com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::setIc
 
 java::lang::Class* com::tibbo::aggregate::common::action::EntityRelatedActionDescriptor::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.EntityRelatedActionDescriptor", 63);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.EntityRelatedActionDescriptor", 63);
     return c;
 }
 

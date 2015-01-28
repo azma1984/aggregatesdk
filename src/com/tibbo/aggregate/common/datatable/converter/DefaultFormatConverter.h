@@ -7,7 +7,7 @@
 //#include "datatable/DataTableConversion.h"
 //#include "datatable/DataTableException.h"
 #include "datatable/TableFormat.h"
-#include "AgClass.h"
+#include "util/AgClass.h"
 #include "datatable/converter/AbstractFormatConverter.h"
 
 

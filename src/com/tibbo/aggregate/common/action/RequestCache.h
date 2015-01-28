@@ -10,13 +10,13 @@ class RequestCache
 {
 
 private:
-	std::map<RequestIdentifier*, ActionResponse*> requests;
+	std::map<RequestIdentifierPtr, ActionResponsePtr> requests;
 public:
-	std::map<RequestIdentifier*, ActionResponse*>* getRequests();
-	ActionResponse* getRequest(RequestIdentifier* requestId);
+	std::map<RequestIdentifierPtr, ActionResponsePtr> getRequests();
+	ActionResponsePtr getRequest(RequestIdentifierPtr requestId);
 
-	void addRequest(RequestIdentifier *requestId, ActionResponse *actionRequest);
-	void removeRequest(RequestIdentifier* requestId);
+	void addRequest(RequestIdentifierPtr requestId, ActionResponsePtr actionRequest);
+	void removeRequest(RequestIdentifierPtr requestId);
 	void clear();
 };
 

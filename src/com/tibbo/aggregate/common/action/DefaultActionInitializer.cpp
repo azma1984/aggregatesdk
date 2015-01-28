@@ -38,7 +38,7 @@ com::tibbo::aggregate::common::action::DefaultActionInitializer::DefaultActionIn
     ctor();
 }
 
-com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::common::action::DefaultActionInitializer::initAction(Context* context, const std::string & actionName, ServerActionInput* initialParametrs, DataTable* inputData, std::map environment, ActionExecutionMode* mode, CallerController* callerController, ::com::tibbo::aggregate::common::util::ErrorCollector* collector) 
+com::tibbo::aggregate::common::action::ActionIdentifierPtr com::tibbo::aggregate::common::action::DefaultActionInitializer::initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParametrs, DataTablePtr inputData, std::map environment, ActionExecutionModePtr mode, CallerControllerPtr callerController, ErrorCollectorPtr collector) 
 {
     auto def = context)->getFunctionDefinition(::com::tibbo::aggregate::common::server::ServerContextConstants::F_INIT_ACTION());
     if(def == 0) {
@@ -62,7 +62,7 @@ com::tibbo::aggregate::common::action::ActionIdentifier* com::tibbo::aggregate::
 
 java::lang::Class* com::tibbo::aggregate::common::action::DefaultActionInitializer::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.DefaultActionInitializer", 58);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.DefaultActionInitializer", 58);
     return c;
 }
 

@@ -7,8 +7,8 @@
 class ContextVisitor : public Context
 {
  public:
-    virtual bool shouldVisit(boost::shared_ptr<Context> context) = 0;
-    virtual void visit(boost::shared_ptr<Context> context) = 0;
+    virtual bool shouldVisit(ContextPtr context) = 0;
+    virtual void visit(ContextPtr context) = 0;
 };
 
 #endif

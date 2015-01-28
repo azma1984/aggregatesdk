@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ChangeCacheH
+#define ChangeCacheH
 
 #include <binding/BindingProvider.h>
 #include <binding/CallerControllerSelector.h>
@@ -12,10 +13,13 @@
 class ChangeCache
 {
 private:
-    std::map<boost::shared_ptr<Context>, std::map<std::string, boost::shared_ptr<DataTable>> variableChanges;
+    std::map<ContextPtr, std::map<std::string, DataTablePtr> variableChanges;
 
 public:
-    void setVariableField(boost::shared_ptr<Context> context, const std::string& variable,
-                          const std::string& field, int record, void* value, boost::shared_ptr<CallerController> cc) ;
-    void commit(boost::shared_ptr<BindingProvider> provider, boost::shared_ptr<CallerControllerSelector> selector);
+    void setVariableField(ContextPtr context, const std::string& variable,
+                          const std::string& field, int record, AgObjectPtr value, CallerControllerPtr cc) ;
+    void commit(BindingProviderPtr provider, CallerControllerSelectorPtr selector);
 };
+
+#endif
+

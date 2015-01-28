@@ -1,24 +1,21 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/Command.java
-
 #ifndef CommandH
 #define CommandH
 
+#include "Cres.h"
+#include "communication/SocketDisconnectionException.h"
+#include "device/DisconnectionException.h"
+#include "util/StringUtils.h"
+
 class Command
 {
-/*
-
-private:
+ private:
     long  timeout;
-protected:
-    void ctor();
-    void ctor(const std::string & data);
-    void ctor(::int8_tArray* data);
 
-public:
+ public:
     const std::string & header();
     const std::string & footer();
 
-public:
+ public:
     const std::string & getContent();
 	void add(const std::string & data);
 	void send(::java::nio::channels::ByteChannel* byteChannel) ;
@@ -29,13 +26,8 @@ public:
     long  getTimeout();
     void setTimeout(long  timeout);
 
-    // Generated
-    Command();
+	Command();
     Command(const std::string & data);
-    Command(::int8_tArray* data);
-protected:
-    Command(const ::default_init_tag&);
-
-	*/
+    Command(::unsigned charArray* data);
 };
 #endif

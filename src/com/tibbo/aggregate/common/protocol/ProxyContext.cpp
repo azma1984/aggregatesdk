@@ -16,7 +16,7 @@
 #include <com/tibbo/aggregate/common/context/ContextUtils.h"
 #include <com/tibbo/aggregate/common/context/ContextVisitor.h"
 #include <com/tibbo/aggregate/common/context/Contexts.h"
-#include <com/tibbo/aggregate/common/context/EventData.h"
+#include <com/tibbo/aggregate/common/context/EventDataPtr.h"
 #include <com/tibbo/aggregate/common/context/EventDefinition.h"
 #include <com/tibbo/aggregate/common/context/FunctionDefinition.h"
 #include <com/tibbo/aggregate/common/context/VariableDefinition.h"
@@ -54,7 +54,7 @@
 #include <com/tibbo/aggregate/common/server/ServerContextConstants.h"
 #include <com/tibbo/aggregate/common/util/Util.h"
 
-ProxyContext::ProxyContext(std::string name, AbstractAggreGateDeviceController* controller)
+ProxyContext::ProxyContext(std::string name, AbstractAggreGateDeviceControllerPtr controller)
 {
 
 	localInitComplete = false;
@@ -111,18 +111,18 @@ void ProxyContext::setupMyself()
     setPermissionCheckingEnabled(false);
     setChildrenSortingEnabled(false);
     addLocalFunctionDefinitions();
-    addEventListener(E_CHILD_ADDED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_4(this)));
-    addEventListener(E_CHILD_REMOVED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_5(this)));
-    addEventListener(E_VARIABLE_ADDED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_6(this)));
-    addEventListener(E_VARIABLE_REMOVED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_7(this)));
-    addEventListener(E_FUNCTION_ADDED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_8(this)));
-    addEventListener(E_FUNCTION_REMOVED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_9(this)));
-    addEventListener(E_EVENT_ADDED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_10(this)));
-    addEventListener(E_EVENT_REMOVED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_11(this)));
-    addEventListener(E_ACTION_ADDED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_12(this)));
-    addEventListener(E_ACTION_REMOVED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_13(this)));
-    addEventListener(E_ACTION_STATE_CHANGED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_14(this)));
-    addEventListener(E_INFO_CHANGED(), static_cast< ContextEventListener* >(new ProxyContext_setupMyself_15(this)));
+    addEventListener(E_CHILD_ADDED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_4(this)));
+    addEventListener(E_CHILD_REMOVED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_5(this)));
+    addEventListener(E_VARIABLE_ADDED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_6(this)));
+    addEventListener(E_VARIABLE_REMOVED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_7(this)));
+    addEventListener(E_FUNCTION_ADDED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_8(this)));
+    addEventListener(E_FUNCTION_REMOVED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_9(this)));
+    addEventListener(E_EVENT_ADDED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_10(this)));
+    addEventListener(E_EVENT_REMOVED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_11(this)));
+    addEventListener(E_ACTION_ADDED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_12(this)));
+    addEventListener(E_ACTION_REMOVED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_13(this)));
+    addEventListener(E_ACTION_STATE_CHANGED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_14(this)));
+    addEventListener(E_INFO_CHANGED(), static_cast< ContextEventListenerPtr >(new ProxyContext_setupMyself_15(this)));
     localInitComplete = true;
 }
 
@@ -131,7 +131,7 @@ void ProxyContext::addLocalFunctionDefinitions()
     addFunctionDefinition(new FunctionDefinition(F_LOCAL_REINITIALIZE(), TableFormat::EMPTY_FORMAT(), TableFormat::EMPTY_FORMAT()));
 }
 
-DateTableFormat* ProxyContext::decodeFormat(const std::string & source, CallerController* caller)
+DateTableFormatPtr ProxyContext::decodeFormat(const std::string & source, CallerControllerPtr caller)
 {
     if(source == 0) {
         return 0;
@@ -149,7 +149,7 @@ DateTableFormat* ProxyContext::decodeFormat(const std::string & source, CallerCo
     source = source)->substring(i);
     auto idSource = idSourceBuilder)->toString();
     auto formatId = idSource)->length() > 0 ? idSource) : static_cast< int  >(0);
-    auto format = source)->length() > 0 ? new TableFormat(source, new encoding::ClassicEncodingSettings(false)) : static_cast< TableFormat* >(0);
+    auto format = source)->length() > 0 ? new TableFormat(source, new encoding::ClassicEncodingSettings(false)) : static_cast< TableFormatPtr >(0);
     if(formatId == 0) {
         return format;
     } else {
@@ -170,7 +170,7 @@ void ProxyContext::clear()
 {
 	try
 	{
-	 accept(static_cast< ContextVisitor* >(new ProxyContext_clear_16(this)));
+	 accept(static_cast< ContextVisitorPtr >(new ProxyContext_clear_16(this)));
 	}
 	catch (ContextException* ex) {
         throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
@@ -183,8 +183,8 @@ void ProxyContext::initInfo()
         if(initializedInfo) {
             return;
         }
-        if(java_cast< RemoteContextManager* >(controller)->getContextManager()) != 0) {
-            java_cast< RemoteContextManager* >(controller)->getContextManager()))->initialize();
+        if(java_cast< RemoteContextManagerPtr >(controller)->getContextManager()) != 0) {
+            java_cast< RemoteContextManagerPtr >(controller)->getContextManager()))->initialize();
         }
         {
             synchronized synchronized_0(initializingInfoLock);
@@ -218,8 +218,8 @@ void ProxyContext::initChildren()
         if(initializedChildren) {
             return;
         }
-        if(java_cast< RemoteContextManager* >(controller)->getContextManager()) != 0) {
-            java_cast< RemoteContextManager* >(controller)->getContextManager()))->initialize();
+        if(java_cast< RemoteContextManagerPtr >(controller)->getContextManager()) != 0) {
+            java_cast< RemoteContextManagerPtr >(controller)->getContextManager()))->initialize();
         }
         {
             synchronized synchronized_1(initializingChildrenLock);
@@ -253,8 +253,8 @@ void ProxyContext::initVariables()
         if(initializedVariables) {
             return;
         }
-        if(java_cast< RemoteContextManager* >(controller)->getContextManager()) != 0) {
-            java_cast< RemoteContextManager* >(controller)->getContextManager()))->initialize();
+        if(java_cast< RemoteContextManagerPtr >(controller)->getContextManager()) != 0) {
+            java_cast< RemoteContextManagerPtr >(controller)->getContextManager()))->initialize();
         }
         {
             synchronized synchronized_2(initializingVariablesLock);
@@ -288,8 +288,8 @@ void ProxyContext::initFunctions()
         if(initializedFunctions) {
             return;
         }
-        if(java_cast< RemoteContextManager* >(controller)->getContextManager()) != 0) {
-            java_cast< RemoteContextManager* >(controller)->getContextManager()))->initialize();
+        if(java_cast< RemoteContextManagerPtr >(controller)->getContextManager()) != 0) {
+            java_cast< RemoteContextManagerPtr >(controller)->getContextManager()))->initialize();
         }
         {
             synchronized synchronized_3(initializingFunctionsLock);
@@ -323,8 +323,8 @@ void ProxyContext::initEvents()
         if(initializedEvents) {
             return;
         }
-        if(java_cast< RemoteContextManager* >(controller)->getContextManager()) != 0) {
-            java_cast< RemoteContextManager* >(controller)->getContextManager()))->initialize();
+        if(java_cast< RemoteContextManagerPtr >(controller)->getContextManager()) != 0) {
+            java_cast< RemoteContextManagerPtr >(controller)->getContextManager()))->initialize();
         }
         {
             synchronized synchronized_4(initializingEventsLock);
@@ -358,8 +358,8 @@ void ProxyContext::initActions()
         if(initializedActions) {
             return;
         }
-        if(java_cast< RemoteContextManager* >(controller)->getContextManager()) != 0) {
-            java_cast< RemoteContextManager* >(controller)->getContextManager()))->initialize();
+        if(java_cast< RemoteContextManagerPtr >(controller)->getContextManager()) != 0) {
+            java_cast< RemoteContextManagerPtr >(controller)->getContextManager()))->initialize();
         }
         {
             synchronized synchronized_5(initializingActionsLock);
@@ -393,8 +393,8 @@ void ProxyContext::initVisibleChildren()
         if(visibleChildren != 0) {
             return;
         }
-        if(java_cast< RemoteContextManager* >(controller)->getContextManager()) != 0) {
-            java_cast< RemoteContextManager* >(controller)->getContextManager()))->initialize();
+        if(java_cast< RemoteContextManagerPtr >(controller)->getContextManager()) != 0) {
+            java_cast< RemoteContextManagerPtr >(controller)->getContextManager()))->initialize();
         }
         {
             synchronized synchronized_6(initializingVisibleChildrenLock);
@@ -427,8 +427,8 @@ void ProxyContext::initStatus()
         if(initializedStatus) {
             return;
         }
-        if(java_cast< RemoteContextManager* >(controller)->getContextManager()) != 0) {
-            java_cast< RemoteContextManager* >(controller)->getContextManager()))->initialize();
+        if(java_cast< RemoteContextManagerPtr >(controller)->getContextManager()) != 0) {
+            java_cast< RemoteContextManagerPtr >(controller)->getContextManager()))->initialize();
         }
         {
             synchronized synchronized_7(initializingStatusLock);
@@ -456,7 +456,7 @@ void ProxyContext::initStatus()
     }
 }
 
-void ProxyContext::initInfoImpl(DataTable* info)
+void ProxyContext::initInfoImpl(DataTablePtr info)
 {
     setDescription(convertRemoteDescription(info)->rec())->getString(VF_INFO_DESCRIPTION())));
     setType(info)->rec())->getString(VF_INFO_TYPE()));
@@ -488,22 +488,22 @@ std::string ProxyContext::convertRemoteDescription(const std::string & remoteDes
     return remoteDescription;
 }
 
-void ProxyContext::initChildrenImpl(DataTable* children)
+void ProxyContext::initChildrenImpl(DataTablePtr children)
 {
     for (auto _i = getChildren(getContextManager())->getCallerController()))->iterator(); _i->hasNext(); ) {
-        Context* child = java_cast< Context* >(_i->next());
+        ContextPtr child = java_cast< ContextPtr >(_i->next());
         {
             if(children)->select(VF_CHILDREN_NAME(), child)->getName()) == 0) {
-                removeChild(static_cast< Context* >(child));
+                removeChild(static_cast< ContextPtr >(child));
             }
         }
     }
     for (auto _i = children)->iterator(); _i->hasNext(); ) {
-        DataRecord* rec = java_cast< DataRecord* >(_i->next());
+        DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
         {
             auto cn = rec)->getString(VF_CHILDREN_NAME());
-            if(java_cast< Context* >(getChild(cn)) == 0) {
-                addChild(static_cast< Context* >(java_cast< Context* >(createChildContextProxy(cn))));
+            if(java_cast< ContextPtr >(getChild(cn)) == 0) {
+                addChild(static_cast< ContextPtr >(java_cast< ContextPtr >(createChildContextProxy(cn))));
             }
         }
     }
@@ -517,7 +517,7 @@ void ProxyContext::initVisibleChildrenImpl()
     addEventListener(::com::tibbo::aggregate::common::server::ServerContextConstants::E_VISIBLE_CHILD_REMOVED(), visibleChildRemovedListener);
     auto visibleChildrenData = getRemoteVariable(getVariableDefinition(::com::tibbo::aggregate::common::server::ServerContextConstants::V_VISIBLE_CHILDREN()));
     for (auto _i = visibleChildrenData)->iterator(); _i->hasNext(); ) {
-        DataRecord* rec = java_cast< DataRecord* >(_i->next());
+        DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
         {
             auto localVisiblePath = getLocalVisiblePath(rec)->getString(::com::tibbo::aggregate::common::server::ServerContextConstants::VF_VISIBLE_CHILDREN_PATH()));
             if(localVisiblePath != 0) {
@@ -527,17 +527,17 @@ void ProxyContext::initVisibleChildrenImpl()
     }
 }
 
-ProxyContext* ProxyContext::createChildContextProxy(const std::string & name)
+ProxyContextPtr ProxyContext::createChildContextProxy(const std::string & name)
 {
     auto proxy = new ProxyContext(name, controller);
     proxy)->setNotManageRemoteListeners(isNotManageRemoteListeners());
     return proxy;
 }
 
-void ProxyContext::initVariablesImpl(DataTable* variables)
+void ProxyContext::initVariablesImpl(DataTablePtr variables)
 {
     for (auto _i = getVariableDefinitions())->iterator(); _i->hasNext(); ) {
-        VariableDefinition* def = java_cast< VariableDefinition* >(_i->next());
+        VariableDefinitionPtr def = java_cast< VariableDefinitionPtr >(_i->next());
         {
             if(variables)->select(FIELD_VD_NAME(), def)->getName()) == 0) {
                 removeVariableDefinition(def)->getName());
@@ -545,7 +545,7 @@ void ProxyContext::initVariablesImpl(DataTable* variables)
         }
     }
     for (auto _i = variables)->iterator(); _i->hasNext(); ) {
-        DataRecord* rec = java_cast< DataRecord* >(_i->next());
+        DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
         {
             auto def = varDefFromDataRecord(rec);
             auto existing = getVariableDefinition(def)->getName());
@@ -559,10 +559,10 @@ void ProxyContext::initVariablesImpl(DataTable* variables)
     }
 }
 
-void ProxyContext::initFunctionsImpl(DataTable* functions)
+void ProxyContext::initFunctionsImpl(DataTablePtr functions)
 {
     for (auto _i = getFunctionDefinitions())->iterator(); _i->hasNext(); ) {
-        FunctionDefinition* def = java_cast< FunctionDefinition* >(_i->next());
+        FunctionDefinitionPtr def = java_cast< FunctionDefinitionPtr >(_i->next());
         {
             if(functions)->select(FIELD_FD_NAME(), def)->getName()) == 0) {
                 removeFunctionDefinition(def)->getName());
@@ -571,7 +571,7 @@ void ProxyContext::initFunctionsImpl(DataTable* functions)
     }
     addLocalFunctionDefinitions();
     for (auto _i = functions)->iterator(); _i->hasNext(); ) {
-        DataRecord* rec = java_cast< DataRecord* >(_i->next());
+        DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
         {
             auto def = funcDefFromDataRecord(rec);
             def)->setConcurrent(true);
@@ -586,10 +586,10 @@ void ProxyContext::initFunctionsImpl(DataTable* functions)
     }
 }
 
-void ProxyContext::initEventsImpl(DataTable* events)
+void ProxyContext::initEventsImpl(DataTablePtr events)
 {
     for (auto _i = getEventDefinitions())->iterator(); _i->hasNext(); ) {
-        EventDefinition* def = java_cast< EventDefinition* >(_i->next());
+        EventDefinitionPtr def = java_cast< EventDefinitionPtr >(_i->next());
         {
             if(events)->select(FIELD_ED_NAME(), def)->getName()) == 0) {
                 removeEventDefinition(def)->getName());
@@ -597,7 +597,7 @@ void ProxyContext::initEventsImpl(DataTable* events)
         }
     }
     for (auto _i = events)->iterator(); _i->hasNext(); ) {
-        DataRecord* rec = java_cast< DataRecord* >(_i->next());
+        DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
         {
             auto def = evtDefFromDataRecord(rec);
             auto existing = getEventDefinition(def)->getName());
@@ -611,10 +611,10 @@ void ProxyContext::initEventsImpl(DataTable* events)
     }
 }
 
-void ProxyContext::initActionsImpl(DataTable* actions)
+void ProxyContext::initActionsImpl(DataTablePtr actions)
 {
     for (auto _i = getActionDefinitions())->iterator(); _i->hasNext(); ) {
-        ::com::tibbo::aggregate::common::action::ActionDefinition* ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinition* >(_i->next());
+        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
         {
             if(actions)->select(ActionConstants::FIELD_AD_NAME(), ad)->getName()) == 0) {
                 removeActionDefinition(ad)->getName());
@@ -622,7 +622,7 @@ void ProxyContext::initActionsImpl(DataTable* actions)
         }
     }
     for (auto _i = actions)->iterator(); _i->hasNext(); ) {
-        DataRecord* rec = java_cast< DataRecord* >(_i->next());
+        DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
         {
             auto def = actDefFromDataRecord(rec);
             auto existing = getActionDefinition(def)->getName());
@@ -700,19 +700,19 @@ bool ProxyContext::isMapped()
     return mapped;
 }
 
-Context* ProxyContext::get(const std::string & contextPath, CallerController* caller)
+ContextPtr ProxyContext::get(const std::string & contextPath, CallerControllerPtr caller)
 {
     if(contextPath == 0) {
         return 0;
     }
     if(ContextUtils::isRelative(contextPath)) {
-        return java_cast< Context* >(super::get(contextPath, caller));
+        return java_cast< ContextPtr >(super::get(contextPath, caller));
     }
     auto localPath = getLocalPath(contextPath);
     if(localPath == 0) {
         return 0;
     }
-    return java_cast< Context* >(super::get(localPath, caller));
+    return java_cast< ContextPtr >(super::get(localPath, caller));
 }
 
 std::string ProxyContext::getIconId()
@@ -726,9 +726,9 @@ std::string ProxyContext::getIconId()
     return super::getIconId();
 }
 
-Context* ProxyContext::getChild(const std::string & name, CallerController* callerController)
+ContextPtr ProxyContext::getChild(const std::string & name, CallerControllerPtr callerController)
 {
-    if(java_cast< Context* >(super::getChild(name, callerController)) == 0) {
+    if(java_cast< ContextPtr >(super::getChild(name, callerController)) == 0) {
         try {
             initChildren();
         } catch (ContextException* ex) {
@@ -736,10 +736,10 @@ Context* ProxyContext::getChild(const std::string & name, CallerController* call
             Log::CONTEXT_CHILDREN())->log(disconnected ? static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::DEBUG()) : static_cast< ::org::apache::log4j::Priority* >(::org::apache::log4j::Level::WARN()), u"Error initializing children of remote context"_j, ex);
         }
     }
-    return java_cast< Context* >(super::getChild(name, callerController));
+    return java_cast< ContextPtr >(super::getChild(name, callerController));
 }
 
-VariableDefinition* ProxyContext::getVariableDefinition(const std::string & name)
+VariableDefinitionPtr ProxyContext::getVariableDefinition(const std::string & name)
 {
     auto sup = super::getVariableDefinition(name);
     if(sup == 0 && isSetupComplete()) {
@@ -750,7 +750,7 @@ VariableDefinition* ProxyContext::getVariableDefinition(const std::string & name
     }
 }
 
-FunctionDefinition* ProxyContext::getFunctionDefinition(const std::string & name)
+FunctionDefinitionPtr ProxyContext::getFunctionDefinition(const std::string & name)
 {
     auto sup = super::getFunctionDefinition(name);
     if(sup == 0 && isSetupComplete()) {
@@ -761,48 +761,48 @@ FunctionDefinition* ProxyContext::getFunctionDefinition(const std::string & name
     }
 }
 
-EventData* ProxyContext::getEventData(const std::string & name)
+EventDataPtr ProxyContext::getEventDataPtr(const std::string & name)
 {
-    auto sup = super::getEventData(name);
+    auto sup = super::getEventDataPtr(name);
     if(sup == 0 && isSetupComplete()) {
         initEventsLoggingErrors();
-        return super::getEventData(name);
+        return super::getEventDataPtr(name);
     } else {
         return sup;
     }
 }
 
-com::tibbo::aggregate::common::action::ActionDefinition* ProxyContext::getActionDefinition(const std::string & name)
+com::tibbo::aggregate::common::action::ActionDefinitionPtr ProxyContext::getActionDefinition(const std::string & name)
 {
     initActionsLoggingErrors();
     return super::getActionDefinition(name);
 }
 
-std::list  ProxyContext::getVariableDefinitions(CallerController* caller, bool hidden)
+std::list  ProxyContext::getVariableDefinitions(CallerControllerPtr caller, bool hidden)
 {
     initVariablesLoggingErrors();
     return java_cast< std::list  >(super::getVariableDefinitions(caller, hidden));
 }
 
-std::list  ProxyContext::getFunctionDefinitions(CallerController* caller, bool hidden)
+std::list  ProxyContext::getFunctionDefinitions(CallerControllerPtr caller, bool hidden)
 {
     initFunctionsLoggingErrors();
     return java_cast< std::list  >(super::getFunctionDefinitions(caller, hidden));
 }
 
-std::list  ProxyContext::getEventDefinitions(CallerController* caller, bool hidden)
+std::list  ProxyContext::getEventDefinitions(CallerControllerPtr caller, bool hidden)
 {
     initEventsLoggingErrors();
     return java_cast< std::list  >(super::getEventDefinitions(caller, hidden));
 }
 
-std::list  ProxyContext::getActionDefinitions(CallerController* caller, bool hidden)
+std::list  ProxyContext::getActionDefinitions(CallerControllerPtr caller, bool hidden)
 {
     initActionsLoggingErrors();
     return java_cast< std::list  >(super::getActionDefinitions(caller, hidden));
 }
 
-ContextStatus* ProxyContext::getStatus()
+ContextStatusPtr ProxyContext::getStatus()
 {
     initStatusLoggingErrors();
     return super::getStatus();
@@ -874,14 +874,14 @@ void ProxyContext::initStatusLoggingErrors()
     }
 }
 
-IncomingAggreGateCommand* ProxyContext::sendGetVariable(const std::string & name, long  timeout)
+IncomingAggreGateCommandPtr ProxyContext::sendGetVariable(const std::string & name, long  timeout)
 {
     auto const cmd = AggreGateCommandUtils::getVariableOperation(getPeerPath(), name);
     cmd)->setTimeout(timeout);
     return controller)->sendCommandAndCheckReplyCode(cmd);
 }
 
-DateDataTable* ProxyContext::getRemoteVariable(TableFormat* format, const std::string & name, long  timeout)
+DateDataTablePtr ProxyContext::getRemoteVariable(TableFormatPtr format, const std::string & name, long  timeout)
 {
     auto encodedReply = sendGetVariable(name, timeout))->getEncodedDataTableFromReply();
     try {
@@ -893,7 +893,7 @@ DateDataTable* ProxyContext::getRemoteVariable(TableFormat* format, const std::s
     }
 }
 
-AbstractAggreGateDeviceController* ProxyContext::getController()
+AbstractAggreGateDeviceControllerPtr ProxyContext::getController()
 {
     return controller;
 }
@@ -904,12 +904,12 @@ void ProxyContext::setupVariables()
     super::setupVariables();
 }
 
-DateDataTable* ProxyContext::getVariableImpl(VariableDefinition* def, CallerController* caller, RequestController* request)
+DateDataTablePtr ProxyContext::getVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 {
     return getRemoteVariable(def);
 }
 
-DateDataTable* ProxyContext::getRemoteVariable(VariableDefinition* def)
+DateDataTablePtr ProxyContext::getRemoteVariable(VariableDefinitionPtr def)
 {
     try {
         auto cleanup = false;
@@ -920,7 +920,7 @@ DateDataTable* ProxyContext::getRemoteVariable(VariableDefinition* def)
                     variableCacheLock)->readLock())->unlock();
                 });
                 {
-                    auto ref = java_cast< ::java::lang::ref::SoftReference* >(variableCache)->get(def)->getName()));
+                    auto ref = java_cast< ::java::lang::ref::SoftReferencePtr >(variableCache)->get(def)->getName()));
                     if(ref != 0) {
                         auto cachedValue = java_cast< CachedVariableValue* >(ref)->get());
                         if(cachedValue != 0) {
@@ -964,7 +964,7 @@ DateDataTable* ProxyContext::getRemoteVariable(VariableDefinition* def)
     }
 }
 
-bool ProxyContext::setVariableImpl(VariableDefinition* def, CallerController* caller, RequestController* request, DataTable* value)
+bool ProxyContext::setVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value)
 {
     try {
         auto const encoded = value)->encode(controller)->createClassicEncodingSettings(true));
@@ -985,7 +985,7 @@ void ProxyContext::setupFunctions()
     super::setupFunctions();
 }
 
-DateDataTable* ProxyContext::callFunctionImpl(FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters)
+DateDataTablePtr ProxyContext::callFunctionImpl(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
 {
     if(def)->getName())->equals(F_LOCAL_REINITIALIZE()))) {
         reinitialize();
@@ -994,7 +994,7 @@ DateDataTable* ProxyContext::callFunctionImpl(FunctionDefinition* def, CallerCon
     return callRemoteFunction(def)->getName(), def)->getOutputFormat(), parameters);
 }
 
-DateDataTable* ProxyContext::callRemoteFunction(const std::string & name, TableFormat* outputFormat, DataTable* parameters)
+DateDataTablePtr ProxyContext::callRemoteFunction(const std::string & name, TableFormatPtr outputFormat, DataTablePtr parameters)
 {
     try {
         return controller)->callRemoteFunction(getPeerPath(), name, outputFormat, parameters);
@@ -1007,16 +1007,16 @@ DateDataTable* ProxyContext::callRemoteFunction(const std::string & name, TableF
     }
 }
 
-bool ProxyContext::addEventListener(const std::string & name, ContextEventListener* contextEventListener, bool weak)
+bool ProxyContext::addEventListener(const std::string & name, ContextEventListenerPtr contextEventListener, bool weak)
 {
     return addEventListener(name, contextEventListener, weak, true);
 }
 
-bool ProxyContext::addEventListener(const std::string & name, ContextEventListener* contextEventListener, bool weak, bool sendRemoteCommand)
+bool ProxyContext::addEventListener(const std::string & name, ContextEventListenerPtr contextEventListener, bool weak, bool sendRemoteCommand)
 {
     try {
         initEvents();
-        auto ed = getEventData(name);
+        auto ed = getEventDataPtr(name);
         if(ed == 0) {
             throw new ContextException(std::stringBuilder().append(Cres::get())->getString(u"conEvtNotAvail"_j))->append(name)->toString());
         }
@@ -1031,12 +1031,12 @@ bool ProxyContext::addEventListener(const std::string & name, ContextEventListen
     }
 }
 
-bool ProxyContext::removeEventListener(const std::string & name, ContextEventListener* contextEventListener)
+bool ProxyContext::removeEventListener(const std::string & name, ContextEventListenerPtr contextEventListener)
 {
     return removeEventListener(name, contextEventListener, true);
 }
 
-bool ProxyContext::removeEventListener(const std::string & name, ContextEventListener* listener, bool sendRemoteCommand)
+bool ProxyContext::removeEventListener(const std::string & name, ContextEventListenerPtr listener, bool sendRemoteCommand)
 {
     try {
         if(!isInitializedEvents()) {
@@ -1047,7 +1047,7 @@ bool ProxyContext::removeEventListener(const std::string & name, ContextEventLis
             ->append(getPathDescription())
             ->append(u"'"_j)->toString());
         auto res = super::removeEventListener(name, listener);
-        auto ed = getEventData(name);
+        auto ed = getEventDataPtr(name);
         if(sendRemoteCommand && ed != 0 && ed)->getListeners())->size() == 0) {
             if(!notManageRemoteListeners) {
                 auto hashCode = listener)->getListenerCode();
@@ -1071,7 +1071,7 @@ bool ProxyContext::removeEventListener(const std::string & name, ContextEventLis
     }
 }
 
-void ProxyContext::addRemoteListener(const std::string & ename, ContextEventListener* contextEventListener)
+void ProxyContext::addRemoteListener(const std::string & ename, ContextEventListenerPtr contextEventListener)
 {
     auto hashCode = contextEventListener)->getListenerCode();
     if(hashCode == 0 && AUTO_LISTENED_EVENTS())->contains(ename))) {
@@ -1085,7 +1085,7 @@ void ProxyContext::addRemoteListener(const std::string & ename, ContextEventList
     }
 }
 
-std::list  ProxyContext::getChildren(CallerController* caller)
+std::list  ProxyContext::getChildren(CallerControllerPtr caller)
 {
     try {
         initChildren();
@@ -1096,7 +1096,7 @@ std::list  ProxyContext::getChildren(CallerController* caller)
     return java_cast< std::list  >(super::getChildren(caller));
 }
 
-std::list  ProxyContext::getVisibleChildren(CallerController* caller)
+std::list  ProxyContext::getVisibleChildren(CallerControllerPtr caller)
 {
     try {
         initVisibleChildren();
@@ -1109,7 +1109,7 @@ std::list  ProxyContext::getVisibleChildren(CallerController* caller)
     for (auto _i = visibleChildren)->iterator(); _i->hasNext(); ) {
         const std::string & path = java_cast< const std::string & >(_i->next());
         {
-            auto con = java_cast< Context* >(java_cast< Context* >(java_cast< Context* >(getRoot()))->get(path, caller)));
+            auto con = java_cast< ContextPtr >(java_cast< ContextPtr >(java_cast< ContextPtr >(getRoot()))->get(path, caller)));
             if(con != 0) {
                 res)->add(con));
             }
@@ -1130,15 +1130,15 @@ void ProxyContext::removeVisibleChild(const std::string & localVisiblePath)
 
 void ProxyContext::restoreEventListeners()
 {
-    for (auto _i = java_cast< std::list  >(super::getEventDefinitions(static_cast< CallerController* >(0))))->iterator(); _i->hasNext(); ) {
-        EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
+    for (auto _i = java_cast< std::list  >(super::getEventDefinitions(static_cast< CallerControllerPtr >(0))))->iterator(); _i->hasNext(); ) {
+        EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
         {
-            auto edata = getEventData(ed)->getName());
+            auto edata = getEventDataPtr(ed)->getName());
             {
                 synchronized synchronized_8(edata)->getListeners());
                 {
                     for (auto _i = edata)->getListeners())->iterator(); _i->hasNext(); ) {
-                        ContextEventListener* listener = java_cast< ContextEventListener* >(_i->next());
+                        ContextEventListenerPtr listener = java_cast< ContextEventListenerPtr >(_i->next());
                         {
                             try {
                                 addRemoteListener(ed)->getName(), listener);
@@ -1160,7 +1160,7 @@ void ProxyContext::reinitialize()
     restoreEventListeners();
 }
 
-Event* ProxyContext::fireEvent(EventDefinition* ed, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions)
+EventPtr ProxyContext::fireEvent(EventDefinitionPtr ed, DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions)
 {
     auto event = super::fireEvent(ed, data, level, id, creationtime, listener, caller, request, permissions);
     if(ed)->getName())->equals(AbstractContext::E_UPDATED())) && isInitializedVariables()) {
@@ -1174,7 +1174,7 @@ Event* ProxyContext::fireEvent(EventDefinition* ed, DataTable* data, int level, 
     return event;
 }
 
-void ProxyContext::cacheVariableValue(const std::string & variable, DataTable* value)
+void ProxyContext::cacheVariableValue(const std::string & variable, DataTablePtr value)
 {
     variableCacheLock)->writeLock())->lock();
     {
@@ -1252,7 +1252,7 @@ std::string ProxyContext::getRemotePrimaryPath(const std::string & remoteFullPat
     if(primaryMount == 0) {
         return 0;
     }
-    if(::com::tibbo::aggregate::common::util::Util::equals(Contexts::CTX_ROOT(), remoteFullPath)) {
+    if(Util::equals(Contexts::CTX_ROOT(), remoteFullPath)) {
         return primaryMount;
     } else {
         return ContextUtils::createName(new std::stringArray({primaryMount, remoteFullPath}));
@@ -1308,7 +1308,7 @@ void ProxyContext::setNotManageRemoteListeners(bool notManageRemoteListeners)
 
 java::lang::Class* ProxyContext::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.ProxyContext", 48);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.ProxyContext", 48);
     return c;
 }
 
@@ -1354,72 +1354,72 @@ struct clinit_ {
     }
 }
 
-bool ProxyContext::addEventListener(const std::string & name, ContextEventListener* listener)
+bool ProxyContext::addEventListener(const std::string & name, ContextEventListenerPtr listener)
 {
     return super::addEventListener(name, listener);
 }
 
-Event* ProxyContext::fireEvent(Event* event)
+EventPtr ProxyContext::fireEvent(EventPtr event)
 {
     return super::fireEvent(event);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, int level, CallerController* caller, FireEventRequestController* request, Permissions* permissions, DataTable* data)
+EventPtr ProxyContext::fireEvent(const std::string & name, int level, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions, DataTablePtr data)
 {
     return super::fireEvent(name, level, caller, request, permissions, data);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request)
+EventPtr ProxyContext::fireEvent(const std::string & name, DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request)
 {
     return super::fireEvent(name, data, level, id, creationtime, listener, caller, request);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, DataTable* data)
+EventPtr ProxyContext::fireEvent(const std::string & name, DataTablePtr data)
 {
     return super::fireEvent(name, data);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, CallerController* caller, DataTable* data)
+EventPtr ProxyContext::fireEvent(const std::string & name, CallerControllerPtr caller, DataTablePtr data)
 {
     return super::fireEvent(name, caller, data);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, int level, DataTable* data)
+EventPtr ProxyContext::fireEvent(const std::string & name, int level, DataTablePtr data)
 {
     return super::fireEvent(name, level, data);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, int level, CallerController* caller, DataTable* data)
+EventPtr ProxyContext::fireEvent(const std::string & name, int level, CallerControllerPtr caller, DataTablePtr data)
 {
     return super::fireEvent(name, level, caller, data);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name)
+EventPtr ProxyContext::fireEvent(const std::string & name)
 {
     return super::fireEvent(name);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, CallerController* caller)
+EventPtr ProxyContext::fireEvent(const std::string & name, CallerControllerPtr caller)
 {
     return super::fireEvent(name, caller);
 }
 
-Event* ProxyContext::fireEvent(const std::string & name, voidArray* data)
+EventPtr ProxyContext::fireEvent(const std::string & name, voidArray* data)
 {
     return super::fireEvent(name, data);
 }
 
-Context* ProxyContext::get(const std::string & contextName)
+ContextPtr ProxyContext::get(const std::string & contextName)
 {
     return super::get(contextName);
 }
 
-com::tibbo::aggregate::common::action::ActionDefinition* ProxyContext::getActionDefinition(const std::string & name, CallerController* caller)
+com::tibbo::aggregate::common::action::ActionDefinitionPtr ProxyContext::getActionDefinition(const std::string & name, CallerControllerPtr caller)
 {
     return super::getActionDefinition(name, caller);
 }
 
-std::list  ProxyContext::getActionDefinitions(CallerController* caller)
+std::list  ProxyContext::getActionDefinitions(CallerControllerPtr caller)
 {
     return super::getActionDefinitions(caller);
 }
@@ -1429,7 +1429,7 @@ std::list  ProxyContext::getActionDefinitions()
     return super::getActionDefinitions();
 }
 
-Context* ProxyContext::getChild(const std::string & name)
+ContextPtr ProxyContext::getChild(const std::string & name)
 {
     return super::getChild(name);
 }
@@ -1439,7 +1439,7 @@ std::list  ProxyContext::getChildren()
     return super::getChildren();
 }
 
-std::list  ProxyContext::getEventDefinitions(CallerController* caller)
+std::list  ProxyContext::getEventDefinitions(CallerControllerPtr caller)
 {
     return super::getEventDefinitions(caller);
 }
@@ -1449,7 +1449,7 @@ std::list  ProxyContext::getEventDefinitions()
     return super::getEventDefinitions();
 }
 
-std::list  ProxyContext::getEventDefinitions(CallerController* caller, const std::string & group)
+std::list  ProxyContext::getEventDefinitions(CallerControllerPtr caller, const std::string & group)
 {
     return super::getEventDefinitions(caller, group);
 }
@@ -1459,12 +1459,12 @@ std::list  ProxyContext::getEventDefinitions(const std::string & group)
     return super::getEventDefinitions(group);
 }
 
-FunctionDefinition* ProxyContext::getFunctionDefinition(const std::string & name, CallerController* caller)
+FunctionDefinitionPtr ProxyContext::getFunctionDefinition(const std::string & name, CallerControllerPtr caller)
 {
     return super::getFunctionDefinition(name, caller);
 }
 
-std::list  ProxyContext::getFunctionDefinitions(CallerController* caller)
+std::list  ProxyContext::getFunctionDefinitions(CallerControllerPtr caller)
 {
     return super::getFunctionDefinitions(caller);
 }
@@ -1474,7 +1474,7 @@ std::list  ProxyContext::getFunctionDefinitions()
     return super::getFunctionDefinitions();
 }
 
-std::list  ProxyContext::getFunctionDefinitions(CallerController* caller, const std::string & group)
+std::list  ProxyContext::getFunctionDefinitions(CallerControllerPtr caller, const std::string & group)
 {
     return super::getFunctionDefinitions(caller, group);
 }
@@ -1484,12 +1484,12 @@ std::list  ProxyContext::getFunctionDefinitions(const std::string & group)
     return super::getFunctionDefinitions(group);
 }
 
-VariableDefinition* ProxyContext::getVariableDefinition(const std::string & name, CallerController* caller)
+VariableDefinitionPtr ProxyContext::getVariableDefinition(const std::string & name, CallerControllerPtr caller)
 {
     return super::getVariableDefinition(name, caller);
 }
 
-std::list  ProxyContext::getVariableDefinitions(CallerController* caller)
+std::list  ProxyContext::getVariableDefinitions(CallerControllerPtr caller)
 {
     return super::getVariableDefinitions(caller);
 }
@@ -1499,7 +1499,7 @@ std::list  ProxyContext::getVariableDefinitions()
     return super::getVariableDefinitions();
 }
 
-std::list  ProxyContext::getVariableDefinitions(CallerController* caller, const std::string & group)
+std::list  ProxyContext::getVariableDefinitions(CallerControllerPtr caller, const std::string & group)
 {
     return super::getVariableDefinitions(caller, group);
 }

@@ -133,7 +133,7 @@ java::security::cert::X509CertificateArray* com::tibbo::aggregate::common::resou
 
 java::lang::Class* com::tibbo::aggregate::common::resource::JarVerifier::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.resource.JarVerifier", 47);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.resource.JarVerifier", 47);
     return c;
 }
 

@@ -17,11 +17,11 @@ public:
     static Throwable getRootCause(Throwable& th);
 	*/
     static std::vector<char> readStream(std::iostream& is) ;
-    static long convertToNumber(void* value, bool validate, bool allowNull);
-    static bool convertToBoolean(void* value, bool validate, bool allowNull);    
+    static long convertToNumber(AgObjectPtr value, bool validate, bool allowNull);
+    static bool convertToBoolean(AgObjectPtr value, bool validate, bool allowNull);    
     //static bool isFloatingPoint(Number* n);
     //TODO:
-  //  static std::string getObjectDescription(void* obj) const;
+  //  static std::string getObjectDescription(AgObjectPtr obj) const;
 	//TODO:
 	/* 
     static Class* getListElementType(Type* listType);

@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/TreeMask.java
-
 #ifndef TreeMaskH
 #define TreeMaskH
 
@@ -18,7 +16,7 @@ public:
 
 	TreeMask();
 	TreeMask(const std::string &mask);
-	bool includes(TreeMask* resourceMask);
+	bool includes(TreeMaskPtr resourceMask);
 
 	std::string toString();
  };

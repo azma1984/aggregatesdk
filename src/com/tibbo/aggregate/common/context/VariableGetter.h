@@ -8,7 +8,7 @@ class VariableGetter
 {
  public:
 
-   virtual  DataTable* get(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request) ;
+   virtual  DataTablePtr get(ContextPtr con, VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
 
    
 };

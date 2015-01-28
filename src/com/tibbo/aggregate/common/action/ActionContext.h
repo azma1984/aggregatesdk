@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ActionContextH
+#define ActionContextH
 
 #include <list>
 #include <exception>
@@ -11,48 +12,47 @@
 #include "context/Context.h"
 
 
-enum ActionState{
-    CREATED, INITIALIZED, WORKING, DESTROYED
-};
+
 
 
 class ActionContext
 {
-	/*
+
  private:
-	ActionDefinition *actionDefinition;
-	BatchContext* batchContext;
-	RequestCache* requestCache;
+	ActionDefinitionPtr actionDefinition;
+	BatchContextPtr batchContext;
+	RequestCachePtr requestCache;
 
 
 
-	ActionState *actionState;
-	ActionManager* actionManager;
+	ActionStatePtr actionState;
+	ActionManagerPtr actionManager;
 	std::list<RequestIdentifier> requestedIds;
 
  public:
+	enum ActionState{CREATED, INITIALIZED, WORKING, DESTROYED};
+	ActionContext(ActionDefinitionPtr actionDefinition, ActionManagerPtr actionManager);
 
-	ActionContext(ActionDefinition* actionDefinition, ActionManager* actionManager);
+	//define com\tibbo\aggregate\common\context\CallerController.h;
+	CallerControllerPtr getCallerController();
 
-	//todo define com\tibbo\aggregate\common\context\CallerController.h;
-	//CallerController* getCallerController();
+	ContextPtr getDefiningContext();
+	ActionDefinitionPtr getActionDefinition();
+	BatchContextPtr getBatchContext();
+	RequestCachePtr getRequestCache();
+	ActionStatePtr getActionState();
+	ActionManagerPtrgetActionManager();
 
-	Context<ActionContext>* getDefiningContext();
-	ActionDefinition* getActionDefinition();
-	BatchContext* getBatchContext();
-	RequestCache* getRequestCache();
-	ActionState* getActionState();
-	ActionManager *getActionManager();
+	std::list<RequestIdentifierPtr> getRequestedIds();
 
-	std::list<RequestIdentifier>* getRequestedIds();
-
-	void setActionDefinition(ActionDefinition* actionDefinition);
+	void setActionDefinition(ActionDefinitionPtr actionDefinition);
 
 
-	void setBatchContext(BatchContext* batchContext);
-	void setRequestCache(RequestCache* requestCache);
+	void setBatchContext(BatchContextPtr batchContext);
+	void setRequestCache(RequestCachePtr requestCache);
 
-	void setActionState(ActionState* actionState);
-	void setActionManager(ActionManager* actionManager);
-	*/
+	void setActionState(ActionStatePtr actionState);
+	void setActionManager(ActionManagerPtr actionManager);
+
 };
+#endif

@@ -44,7 +44,7 @@ void com::tibbo::aggregate::common::binding::BindingException::ctor(const std::s
 
 java::lang::Class* com::tibbo::aggregate::common::binding::BindingException::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.binding.BindingException", 51);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.binding.BindingException", 51);
     return c;
 }
 

@@ -1,8 +1,8 @@
 #include "context/AbstractCallerController.h"
 
- std::set<CallerController*>  AbstractCallerController::CONTROLLERS;
+ std::set<CallerControllerPtr>  AbstractCallerController::CONTROLLERS;
 
-AbstractCallerController::AbstractCallerController(boost::shared_ptr<CallerData> callerData):CallerController() 
+AbstractCallerController::AbstractCallerController(CallerDataPtr callerData):CallerController()
 {  
  loggedIn = false;
  creationTime = new Date();
@@ -26,12 +26,12 @@ bool AbstractCallerController::isPermissionCheckingEnabled()
     return true;
 }
 
-PermissionCache* AbstractCallerController::getPermissionCache()
+PermissionCachePtr AbstractCallerController::getPermissionCache()
 {
-    return 0;
+	return 0;
 }
 
-boost::shared_ptr<CallerData> AbstractCallerController::getCallerData()
+CallerDataPtr AbstractCallerController::getCallerData()
 {
     return callerData;
 }
@@ -50,16 +50,16 @@ void AbstractCallerController::sendFeedback(int level, const std::string & messa
 {
 }
 
-std::list<CallerController*> AbstractCallerController::getControllers()
+std::list<CallerControllerPtr> AbstractCallerController::getControllers()
 {
-   std::list<CallerController*>  list;
+   std::list<CallerControllerPtr>  list;
   // synchronized (CONTROLLERS)//todo
    //  {
-   std::set<CallerController*>::iterator it;
+   std::set<CallerControllerPtr>::iterator it;
    
    for(it = CONTROLLERS.begin(); it != CONTROLLERS.end(); it++) 
 	 {
-      CallerController* cc =  *it;
+	  CallerControllerPtr cc =  *it;
       list.push_front(cc);
      }
    //  }
@@ -73,7 +73,7 @@ std::string AbstractCallerController::toString()
  return (type.empty() ==false)? type : "name_class"/*getClass().getName()*/ + str2 ;
 }
 
-Permissions *AbstractCallerController::getPermissions()
+PermissionsPtr AbstractCallerController::getPermissions()
 {
 	return 0;
 }
@@ -119,12 +119,12 @@ void AbstractCallerController::setAddress(const std::string & address)
     this->address = address;
 }
 
-void AbstractCallerController::login(const std::string & username, const std::string & inheritedUsername, Permissions* permissons) 
+void AbstractCallerController::login(const std::string & username, const std::string & inheritedUsername, PermissionsPtr permissons)
 {
     setUsername(username);
 }
 
-Date* AbstractCallerController::getCreationTime()
+DatePtr AbstractCallerController::getCreationTime()
 {
     return creationTime;
 }

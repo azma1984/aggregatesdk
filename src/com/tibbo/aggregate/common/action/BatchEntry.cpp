@@ -2,7 +2,7 @@
 #include "BatchEntry.h"
 
   /*
-BatchEntry::BatchEntry(ActionContext* actionContext, InitialRequest* initialRequest)
+BatchEntry::BatchEntry(ActionContextPtr actionContext, InitialRequestPtr initialRequest)
 {
    if(actionContext == 0) {
 		std::exception("Pointer = NULL!");
@@ -15,12 +15,12 @@ BatchEntry::BatchEntry(ActionContext* actionContext, InitialRequest* initialRequ
 }   */
 
 /*
-ActionContext* BatchEntry::getActionContext()
+ActionContextPtr BatchEntry::getActionContext()
 {
 	return actionContext;
 }     */
 
-InitialRequest* BatchEntry::getInitialRequest()
+InitialRequestPtr BatchEntry::getInitialRequest()
 {
     return initialRequest;
 }

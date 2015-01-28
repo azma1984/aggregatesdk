@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ReferenceListenerH
+#define ReferenceListenerH
 
 #include "binding/ChangeCache.h"
 #include "binding/BindingProcessor.h"
@@ -11,15 +12,17 @@
 class ReferenceListener : public Interface
 {
 public:
-    //TODO: void*
-    virtual void referenceChanged(boost::shared_ptr<Reference> cause, const std::map<std::string, void*>& environment,
-                                  boost::shared_ptr<ChangeCache> cache) = 0 /* throws(BindingException) */;
-    //TODO: void*
-    virtual void referenceChanged(boost::shared_ptr<Reference> cause, const std::map<std::string, void*>& environment,
-                                  boost::shared_ptr<ChangeCache> cache, bool asynchronousProcessing) = 0/* throws(BindingException) */;
+    //TODO: AgObjectPtr
+    virtual void referenceChanged(boost::ReferencePtr cause, const std::map<std::string, AgObjectPtr>& environment,
+								  boost::ChangeCachePtr cache) = 0 ;
+    //TODO: AgObjectPtr
+    virtual void referenceChanged(boost::ReferencePtr cause, const std::map<std::string, AgObjectPtr>& environment,
+								  boost::ChangeCachePtr cache, bool asynchronousProcessing) = 0;
     virtual boost::shared_ptr<BindingProcessor> getBindingProcessor() = 0;
-    virtual boost::shared_ptr<Binding> getBinding() = 0;
-    virtual boost::shared_ptr<EvaluationOptions> getEvaluationOptions() = 0;
-    virtual void setContent(void*/*T*/ content) = 0; //TODO: T content
-    virtual void*/*T*/ getContent() = 0; // T
+    virtual boost::BindingPtr getBinding() = 0;
+    virtual boost::EvaluationOptionsPtr getEvaluationOptions() = 0;
+    virtual void setContent(AgObjectPtr/*T*/ content) = 0; //TODO: T content
+    virtual AgObjectPtr/*T*/ getContent() = 0; // T
 };
+
+#endif

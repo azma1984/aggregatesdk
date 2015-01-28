@@ -14,9 +14,9 @@ DeviceRecommendation::DeviceRecommendation(const std::string& name, const std::s
 }
 
 
-boost::shared_ptr<DeviceRecommendation> DeviceRecommendation::getBlank() 
+DeviceRecommendationPtr DeviceRecommendation::getBlank() 
 {
- boost::shared_ptr<DeviceRecommendation> blank = boost::shared_ptr<DeviceRecommendation>(new DeviceRecommendation());
+ DeviceRecommendationPtr blank = DeviceRecommendationPtr(new DeviceRecommendation());
  return blank;
 }
 

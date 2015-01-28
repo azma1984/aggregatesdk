@@ -17,19 +17,19 @@ AggreGateCommand::AggreGateCommand()
     ctor();
 }
 
-const int8_t AggreGateCommand::START_CHAR;
+const unsigned char AggreGateCommand::START_CHAR;
 
-const int8_t AggreGateCommand::END_CHAR;
+const unsigned char AggreGateCommand::END_CHAR;
 
-const char16_t AggreGateCommand::COMMAND_CODE_MESSAGE;
+const int AggreGateCommand::COMMAND_CODE_MESSAGE;
 
-const char16_t AggreGateCommand::COMMAND_CODE_REPLY;
+const int AggreGateCommand::COMMAND_CODE_REPLY;
 
-const char16_t AggreGateCommand::MESSAGE_CODE_START;
+const int AggreGateCommand::MESSAGE_CODE_START;
 
-const char16_t AggreGateCommand::MESSAGE_CODE_OPERATION;
+const int AggreGateCommand::MESSAGE_CODE_OPERATION;
 
-const char16_t AggreGateCommand::MESSAGE_CODE_EVENT;
+const int AggreGateCommand::MESSAGE_CODE_EVENT;
 
 std::string& AggreGateCommand::REPLY_CODE_OK()
 {
@@ -52,15 +52,15 @@ std::string& AggreGateCommand::REPLY_CODE_ERROR()
 }
 std::string AggreGateCommand::REPLY_CODE_ERROR_;
 
-const char16_t AggreGateCommand::COMMAND_OPERATION_GET_VAR;
+const int AggreGateCommand::COMMAND_OPERATION_GET_VAR;
 
-const char16_t AggreGateCommand::COMMAND_OPERATION_SET_VAR;
+const int AggreGateCommand::COMMAND_OPERATION_SET_VAR;
 
-const char16_t AggreGateCommand::COMMAND_OPERATION_CALL_FUNCTION;
+const int AggreGateCommand::COMMAND_OPERATION_CALL_FUNCTION;
 
-const char16_t AggreGateCommand::COMMAND_OPERATION_ADD_EVENT_LISTENER;
+const int AggreGateCommand::COMMAND_OPERATION_ADD_EVENT_LISTENER;
 
-const char16_t AggreGateCommand::COMMAND_OPERATION_REMOVE_EVENT_LISTENER;
+const int AggreGateCommand::COMMAND_OPERATION_REMOVE_EVENT_LISTENER;
 
 const int AggreGateCommand::INDEX_COMMAND_CODE;
 
@@ -147,7 +147,7 @@ std::string AggreGateCommand::generateId()
 
 java::lang::Class* AggreGateCommand::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.AggreGateCommand", 52);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.AggreGateCommand", 52);
     return c;
 }
 

@@ -14,6 +14,6 @@ class AccessSettingReinizializer : public Interface
    * 
    * @return True if reconnection to the device and its resynchronization is necessary, false otherwise
    */
-   virtual bool reinitialize(boost::shared_ptr<VariableDefinition> def, boost::shared_ptr<CallerController> caller, boost::shared_ptr<DataTable> value)  = 0;
+   virtual bool reinitialize(VariableDefinitionPtr def, CallerControllerPtr caller, DataTablePtr value)  = 0;
 };
 #endif  //_AccessSettingReinizializer_H_

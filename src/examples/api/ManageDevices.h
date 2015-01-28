@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/api/ManageDevices.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
 //#include <examples/api/fwd-aggregate_sdk_5.11.00.h"
@@ -35,14 +36,14 @@ public:
     static void main(std::stringArray* args);
 
 private:
-    static void executeDeviceOperation(Context* deviceContext) ;
-    static void listenerForDeviceEvents(Context* deviceContext);
-    static void changeDeviceSettings(Context* deviceContext) ;
-    static void deleteDeviceAccount(Context* deviceContext) ;
-    static void listDeviceSettings(Context* deviceContext) ;
-    static void awaitDeviceSynchronization(Context* deviceContext) /* throws(ContextException, InterruptedException) */;
-    static Context* createDeviceAccount(const std::string & username, const std::string & name, const std::string & description, const std::string & driverId, ContextManager* cm) ;
-    static void listDeviceAccounts(const std::string & username, ContextManager* cm) ;
+    static void executeDeviceOperation(ContextPtr deviceContext) ;
+    static void listenerForDeviceEvents(ContextPtr deviceContext);
+    static void changeDeviceSettings(ContextPtr deviceContext) ;
+    static void deleteDeviceAccount(ContextPtr deviceContext) ;
+    static void listDeviceSettings(ContextPtr deviceContext) ;
+    static void awaitDeviceSynchronization(ContextPtr deviceContext) /* throws(ContextException, InterruptedException) */;
+    static ContextPtr createDeviceAccount(const std::string & username, const std::string & name, const std::string & description, const std::string & driverId, ContextManagerPtr cm) ;
+    static void listDeviceAccounts(const std::string & username, ContextManagerPtr cm) ;
 
     // Generated
 
@@ -56,7 +57,7 @@ public:
     
 
 private:
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
     friend class ManageDevices_listenerForDeviceEvents_1;
     friend class ManageDevices_awaitDeviceSynchronization_2;
 };

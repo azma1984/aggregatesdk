@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SyntaxErrorExceptionH
+#define SyntaxErrorExceptionH
 
 #include "AggreGateException.h"
 
@@ -10,3 +11,5 @@ public:
     //SyntaxErrorException(Throwable* cause) : AggreGateException(cause) {}
     SyntaxErrorException(const std::string& message, const std::string& details) : AggreGateException(message, details) {}
 };
+
+#endif

@@ -27,7 +27,7 @@ template <class T> DefaultContextManager<T>::DefaultContextManager(bool async, i
   //  }
 }
 
- template <class T> DefaultContextManager<T>::DefaultContextManager(Context* rootContext, bool async)
+ template <class T> DefaultContextManager<T>::DefaultContextManager(ContextPtr rootContext, bool async)
 {
    // DefaultContextManager(async);
   //  setRoot(rootContext);
@@ -40,8 +40,8 @@ void DefaultContextManager::start()
         ensureDispatcher(::java::lang::Integer::MAX_VALUE);
         eventDispatcher)->start();
     }
-    if(java_cast< Context* >(rootContext) != 0) {
-        java_cast< Context* >(rootContext))->start();
+    if(java_cast< ContextPtr >(rootContext) != 0) {
+        java_cast< ContextPtr >(rootContext))->start();
     }
     started = true;
 }
@@ -53,8 +53,8 @@ void DefaultContextManager::stop()
         eventDispatcher)->interrupt();
         eventDispatcher;
     }
-    if(java_cast< Context* >(rootContext) != 0) {
-        java_cast< Context* >(rootContext))->stop();
+    if(java_cast< ContextPtr >(rootContext) != 0) {
+        java_cast< ContextPtr >(rootContext))->stop();
     }
 }
 
@@ -71,37 +71,37 @@ void DefaultContextManager::ensureDispatcher(int eventQueueLength)
     }
 }
 
-Context* DefaultContextManager::getRoot()
+ContextPtr DefaultContextManager::getRoot()
 {
-    return java_cast< Context* >(rootContext);
+    return java_cast< ContextPtr >(rootContext);
 }
 
-void DefaultContextManager::setRoot(Context* newRoot)
+void DefaultContextManager::setRoot(ContextPtr newRoot)
 {
     rootContext = newRoot;
-    java_cast< Context* >(rootContext))->setup(this);
+    java_cast< ContextPtr >(rootContext))->setup(this);
     contextAdded(newRoot);
 }
 
-Context* DefaultContextManager::get(const std::string & contextName, CallerController* caller)
+ContextPtr DefaultContextManager::get(const std::string & contextName, CallerControllerPtr caller)
 {
-    auto root = java_cast< Context* >(getRoot());
-    return root != 0 ? java_cast< Context* >(java_cast< Context* >(root)->get(contextName, caller))) : static_cast< Context* >(0);
+    auto root = java_cast< ContextPtr >(getRoot());
+    return root != 0 ? java_cast< ContextPtr >(java_cast< ContextPtr >(root)->get(contextName, caller))) : static_cast< ContextPtr >(0);
 }
 
-Context* DefaultContextManager::get(const std::string & contextName)
+ContextPtr DefaultContextManager::get(const std::string & contextName)
 {
-    auto root = java_cast< Context* >(getRoot());
-    return root != 0 ? java_cast< Context* >(java_cast< Context* >(root)->get(contextName))) : static_cast< Context* >(0);
+    auto root = java_cast< ContextPtr >(getRoot());
+    return root != 0 ? java_cast< ContextPtr >(java_cast< ContextPtr >(root)->get(contextName))) : static_cast< ContextPtr >(0);
 }
 
-void DefaultContextManager::addEventListener(const std::string & context, const std::string & event, ContextEventListener* listener, bool mask, bool weak)
+void DefaultContextManager::addEventListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak)
 {
-    auto con = java_cast< Context* >(get(context, listener)->getCallerController()));
+    auto con = java_cast< ContextPtr >(get(context, listener)->getCallerController()));
     if(con != 0) {
         auto events = EventUtils::getEvents(con, event, listener)->getCallerController());
         for (auto _i = events)->iterator(); _i->hasNext(); ) {
-            EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
+            EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
             {
                 addListenerToContext(con, ed)->getName(), listener, mask, weak);
             }
@@ -116,7 +116,7 @@ void DefaultContextManager::addEventListener(const std::string & context, const 
     }
 }
 
-void DefaultContextManager::addListenerToContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask, bool weak)
+void DefaultContextManager::addListenerToContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak)
 {
     auto ed = con)->getEventDefinition(event, listener)->getCallerController());
     if(ed != 0) {
@@ -124,9 +124,9 @@ void DefaultContextManager::addListenerToContext(Context* con, const std::string
     }
 }
 
-void DefaultContextManager::removeEventListener(const std::string & context, const std::string & event, ContextEventListener* listener, bool mask)
+void DefaultContextManager::removeEventListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener, bool mask)
 {
-    auto con = java_cast< Context* >(get(context, listener)->getCallerController()));
+    auto con = java_cast< ContextPtr >(get(context, listener)->getCallerController()));
     if(con != 0) {
         if(con)->getEventDefinition(event) != 0) {
             removeListenerFromContext(con, event, listener, mask);
@@ -141,17 +141,17 @@ void DefaultContextManager::removeEventListener(const std::string & context, con
     }
 }
 
-void DefaultContextManager::removeListenerFromContext(Context* con, const std::string & event, ContextEventListener* listener, bool mask)
+void DefaultContextManager::removeListenerFromContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask)
 {
     con)->removeEventListener(event, listener);
 }
 
-void DefaultContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener)
+void DefaultContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener)
 {
     addMaskEventListener(mask, event, listener, false);
 }
 
-void DefaultContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener, bool weak)
+void DefaultContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener, bool weak)
 {
     auto contexts = ContextUtils::expandMaskToPaths(mask, this, listener)->getCallerController());
     for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
@@ -164,18 +164,18 @@ void DefaultContextManager::addMaskEventListener(const std::string & mask, const
     listeners)->addListener(listener, weak);
 }
 
-void DefaultContextManager::removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListener* listener)
+void DefaultContextManager::removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener)
 {
     auto contexts = ContextUtils::expandMaskToContexts(mask, this, listener)->getCallerController());
     for (auto _i = contexts)->iterator(); _i->hasNext(); ) {
-        Context* con = java_cast< Context* >(_i->next());
+        ContextPtr con = java_cast< ContextPtr >(_i->next());
         {
             if(!con)->isInitializedEvents()) {
                 continue;
             }
             auto events = EventUtils::getEvents(con, event, listener)->getCallerController());
             for (auto _i = events)->iterator(); _i->hasNext(); ) {
-                EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
+                EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
                 {
                     removeEventListener(con)->getPath(), ed)->getName(), listener, true);
                 }
@@ -186,10 +186,10 @@ void DefaultContextManager::removeMaskEventListener(const std::string & mask, co
     listeners)->removeListener(listener);
 }
 
-com::tibbo::aggregate::common::event::ContextEventListenerSet* DefaultContextManager::getListeners(const std::string & context, const std::string & event)
+com::tibbo::aggregate::common::event::ContextEventListenerSetPtr DefaultContextManager::getListeners(const std::string & context, const std::string & event)
 {
     auto cel = getContextListeners(context);
-    auto cels = java_cast< ContextEventListenerSet* >(cel)->get(event));
+    auto cels = java_cast< ContextEventListenerSetPtr >(cel)->get(event));
     if(cels == 0) {
         cels = new ContextEventListenerSet();
         cel)->put(event, cels);
@@ -207,10 +207,10 @@ java::util::Map* DefaultContextManager::getContextListeners(const std::string & 
     return cel;
 }
 
-com::tibbo::aggregate::common::event::ContextEventListenerSet* DefaultContextManager::getMaskListeners(const std::string & mask, const std::string & event)
+com::tibbo::aggregate::common::event::ContextEventListenerSetPtr DefaultContextManager::getMaskListeners(const std::string & mask, const std::string & event)
 {
     auto cel = getContextMaskListeners(mask);
-    auto eel = java_cast< ContextEventListenerSet* >(cel)->get(event));
+    auto eel = java_cast< ContextEventListenerSetPtr >(cel)->get(event));
     if(eel == 0) {
         eel = new ContextEventListenerSet();
         cel)->put(event, eel);
@@ -247,21 +247,21 @@ java::util::Map* DefaultContextManager::getContextMaskListeners(const std::strin
     return cel;
 }
 
-void DefaultContextManager::contextAdded(Context* con)
+void DefaultContextManager::contextAdded(ContextPtr con)
 {
     auto cel = java_cast< std::map >(eventListeners)->get(con)->getPath()));
     if(cel != 0) {
         for (auto _i = cel)->keySet())->iterator(); _i->hasNext(); ) {
             const std::string & event = java_cast< const std::string & >(_i->next());
             {
-                auto cels = java_cast< ContextEventListenerSet* >(cel)->get(event));
+                auto cels = java_cast< ContextEventListenerSetPtr >(cel)->get(event));
                 {
                     synchronized synchronized_0(cels);
                     {
                         for (auto _i = cels)->getListenersInfo())->iterator(); _i->hasNext(); ) {
                             ContextEventListenerInfo* celi = java_cast< ContextEventListenerInfo* >(_i->next());
                             {
-                                if(con)->getEventData(event) != 0) {
+                                if(con)->getEventDataPtr(event) != 0) {
                                     con)->addEventListener(event, celi)->getListener(), celi)->isWeak());
                                 }
                             }
@@ -285,7 +285,7 @@ void DefaultContextManager::contextAdded(Context* con)
                         for (auto _i = mcel)->keySet())->iterator(); _i->hasNext(); ) {
                             const std::string & event = java_cast< const std::string & >(_i->next());
                             {
-                                auto listeners = java_cast< ContextEventListenerSet* >(mcel)->get(event));
+                                auto listeners = java_cast< ContextEventListenerSetPtr >(mcel)->get(event));
                                 {
                                     synchronized synchronized_1(listeners);
                                     {
@@ -294,7 +294,7 @@ void DefaultContextManager::contextAdded(Context* con)
                                             {
                                                 auto events = EventUtils::getEvents(con, event, li)->getListener())->getCallerController());
                                                 for (auto _i = events)->iterator(); _i->hasNext(); ) {
-                                                    EventDefinition* ed = java_cast< EventDefinition* >(_i->next());
+                                                    EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
                                                     {
                                                         addListenerToContext(con, ed)->getName(), li)->getListener(), true, li)->isWeak());
                                                     }
@@ -313,7 +313,7 @@ void DefaultContextManager::contextAdded(Context* con)
 
 }
 
-void DefaultContextManager::contextRemoved(Context* con)
+void DefaultContextManager::contextRemoved(ContextPtr con)
 {
     try {
         con)->accept(new DefaultContextManager_contextRemoved_1(this));
@@ -323,27 +323,27 @@ void DefaultContextManager::contextRemoved(Context* con)
     }
 }
 
-void DefaultContextManager::contextInfoChanged(Context* con)
+void DefaultContextManager::contextInfoChanged(ContextPtr con)
 {
 }
 
-void DefaultContextManager::variableAdded(Context* con, VariableDefinition* vd)
+void DefaultContextManager::variableAdded(ContextPtr con, VariableDefinitionPtr vd)
 {
 }
 
-void DefaultContextManager::variableRemoved(Context* con, VariableDefinition* vd)
+void DefaultContextManager::variableRemoved(ContextPtr con, VariableDefinitionPtr vd)
 {
 }
 
-void DefaultContextManager::functionAdded(Context* con, FunctionDefinition* fd)
+void DefaultContextManager::functionAdded(ContextPtr con, FunctionDefinitionPtr fd)
 {
 }
 
-void DefaultContextManager::functionRemoved(Context* con, FunctionDefinition* fd)
+void DefaultContextManager::functionRemoved(ContextPtr con, FunctionDefinitionPtr fd)
 {
 }
 
-void DefaultContextManager::eventAdded(Context* con, EventDefinition* ed)
+void DefaultContextManager::eventAdded(ContextPtr con, EventDefinitionPtr ed)
 {
     maskListenersLock)->readLock())->lock();
     {
@@ -360,14 +360,14 @@ void DefaultContextManager::eventAdded(Context* con, EventDefinition* ed)
                             const std::string & event = java_cast< const std::string & >(_i->next());
                             {
                                 if(EventUtils::matchesToMask(event, ed)) {
-                                    auto listeners = java_cast< ContextEventListenerSet* >(cel)->get(event));
+                                    auto listeners = java_cast< ContextEventListenerSetPtr >(cel)->get(event));
                                     {
                                         synchronized synchronized_2(listeners);
                                         {
                                             for (auto _i = listeners)->getListenersInfo())->iterator(); _i->hasNext(); ) {
                                                 ContextEventListenerInfo* li = java_cast< ContextEventListenerInfo* >(_i->next());
                                                 {
-                                                    addListenerToContext(java_cast< Context* >(con), ed)->getName(), li)->getListener(), true, li)->isWeak());
+                                                    addListenerToContext(java_cast< ContextPtr >(con), ed)->getName(), li)->getListener(), true, li)->isWeak());
                                                 }
                                             }
                                         }
@@ -383,11 +383,11 @@ void DefaultContextManager::eventAdded(Context* con, EventDefinition* ed)
 
 }
 
-void DefaultContextManager::eventRemoved(Context* con, EventDefinition* ed)
+void DefaultContextManager::eventRemoved(ContextPtr con, EventDefinitionPtr ed)
 {
 }
 
-void DefaultContextManager::queue(EventData* ed, Event* ev)
+void DefaultContextManager::queue(EventDataPtr ed, EventPtr ev)
 {
     if(!async || ed)->getDefinition())->isSynchronous()) {
         ed)->dispatch(ev);
@@ -428,7 +428,7 @@ java::util::concurrent::ThreadPoolExecutor* DefaultContextManager::getExecutorSe
     return executorService;
 }
 
-CallerController* DefaultContextManager::getCallerController()
+CallerControllerPtr DefaultContextManager::getCallerController()
 {
     return callerController;
 }

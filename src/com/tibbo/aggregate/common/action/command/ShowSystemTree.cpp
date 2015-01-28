@@ -77,7 +77,7 @@ com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree()
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree(const std::string & title, Context* root) 
+com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree(const std::string & title, ContextPtr root) 
     : ShowSystemTree(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,root);
@@ -89,7 +89,7 @@ com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree(c
     ctor(title,roots);
 }
 
-com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree(const std::string & title, DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::ShowSystemTree::ShowSystemTree(const std::string & title, DataTablePtr parameters) 
     : ShowSystemTree(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -142,27 +142,27 @@ std::string& com::tibbo::aggregate::common::action::command::ShowSystemTree::CF_
 }
 std::string com::tibbo::aggregate::common::action::command::ShowSystemTree::CF_ROOTS_ROOT_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_ROOTS()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_ROOTS()
 {
     
     return CFT_SHOW_SYSTEM_TREE_ROOTS_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_ROOTS_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_ROOTS_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE()
 {
     
     return CFT_SHOW_SYSTEM_TREE_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::ShowSystemTree::CFT_SHOW_SYSTEM_TREE_;
 
 void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_SYSTEM_TREE(), CFT_SHOW_SYSTEM_TREE_, static_cast< TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_SYSTEM_TREE(), CFT_SHOW_SYSTEM_TREE_, static_cast< TableFormatPtr >(0));
     init();
 }
 
-void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const std::string & title, Context* root)
+void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const std::string & title, ContextPtr root)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_SYSTEM_TREE(), title);
     init();
@@ -176,7 +176,7 @@ void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const 
     this->roots = ::java::util::Arrays::asList(roots);
 }
 
-void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const std::string & title, DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_SYSTEM_TREE(), title);
     init();
@@ -184,7 +184,7 @@ void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const 
     if(parameters)->getFormat())->hasField(CF_ROOTS_)) {
         roots = new ::java::util::LinkedList();
         for (auto _i = parameters)->rec())->getDataTable(CF_ROOTS_))->iterator(); _i->hasNext(); ) {
-            DataRecord* rec = java_cast< DataRecord* >(_i->next());
+            DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
             {
                 roots)->add(rec)->getString(CF_ROOTS_ROOT_)));
             }
@@ -193,22 +193,22 @@ void com::tibbo::aggregate::common::action::command::ShowSystemTree::ctor(const 
     relatedActions = (parameters)->rec())->getBoolean(CF_RELATED_ACTIONS_)))->booleanValue();
     if(parameters)->getFormat())->hasField(CF_LOCATION_)) {
         auto loc = parameters)->rec())->getDataTable(CF_LOCATION_);
-        location = loc != 0 ? new ::com::tibbo::aggregate::common::util::WindowLocation(loc)->rec()) : static_cast< ::com::tibbo::aggregate::common::util::WindowLocation* >(0);
+        location = loc != 0 ? new WindowLocation(loc)->rec()) : static_cast< WindowLocationPtr >(0);
     }
     if(parameters)->getFormat())->hasField(CF_DASHBOARD_)) {
         auto db = parameters)->rec())->getDataTable(CF_DASHBOARD_);
-        dashboard = db != 0 ? new ::com::tibbo::aggregate::common::util::DashboardProperties(db)->rec()) : static_cast< ::com::tibbo::aggregate::common::util::DashboardProperties* >(0);
+        dashboard = db != 0 ? new DashboardProperties(db)->rec()) : static_cast< DashboardPropertiesPtr >(0);
     }
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::ShowSystemTree::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::ShowSystemTree::constructParameters()
 {
     auto res = new DataRecord(CFT_SHOW_SYSTEM_TREE_);
     res)->addString(root);
     auto t = new DataTable(CFT_SHOW_SYSTEM_TREE_ROOTS_);
     if(roots != 0) {
         for (auto _i = roots)->iterator(); _i->hasNext(); ) {
-            void* each = java_cast< void* >(_i->next());
+            AgObjectPtr each = java_cast< AgObjectPtr >(_i->next());
             {
                 t)->addRecord(new voidArray({each}));
             }
@@ -216,8 +216,8 @@ DateDataTable* com::tibbo::aggregate::common::action::command::ShowSystemTree::c
     }
     res)->addDataTable(t);
     res)->addBoolean(::java::lang::Boolean::valueOf(relatedActions));
-    res)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTable* >(0));
-    res)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTable* >(0));
+    res)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTablePtr >(0));
+    res)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTablePtr >(0));
     return res)->wrap();
 }
 
@@ -231,22 +231,22 @@ void com::tibbo::aggregate::common::action::command::ShowSystemTree::setRelatedA
     this->relatedActions = relatedActions;
 }
 
-com::tibbo::aggregate::common::util::WindowLocation* com::tibbo::aggregate::common::action::command::ShowSystemTree::getLocation()
+com::tibbo::aggregate::common::util::WindowLocationPtr com::tibbo::aggregate::common::action::command::ShowSystemTree::getLocation()
 {
     return location;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowSystemTree::setLocation(::com::tibbo::aggregate::common::util::WindowLocation* location)
+void com::tibbo::aggregate::common::action::command::ShowSystemTree::setLocation(WindowLocationPtr location)
 {
     this->location = location;
 }
 
-com::tibbo::aggregate::common::util::DashboardProperties* com::tibbo::aggregate::common::action::command::ShowSystemTree::getDashboard()
+com::tibbo::aggregate::common::util::DashboardPropertiesPtr com::tibbo::aggregate::common::action::command::ShowSystemTree::getDashboard()
 {
     return dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowSystemTree::setDashboard(::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
+void com::tibbo::aggregate::common::action::command::ShowSystemTree::setDashboard(DashboardPropertiesPtr dashboard)
 {
     this->dashboard = dashboard;
 }
@@ -255,7 +255,7 @@ void com::tibbo::aggregate::common::action::command::ShowSystemTree::setDashboar
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::ShowSystemTree::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowSystemTree", 56);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowSystemTree", 56);
     return c;
 }
 
@@ -300,11 +300,11 @@ struct clinit_ {
             CFT_SHOW_SYSTEM_TREE_)->addField(ff);
             ff = FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(CF_LOCATION_)
                 ->append(u"><T><F=N>"_j)->toString());
-            ff)->setDefault((new ::com::tibbo::aggregate::common::util::WindowLocation())->toDataTable());
+            ff)->setDefault((new WindowLocation())->toDataTable());
             CFT_SHOW_SYSTEM_TREE_)->addField(ff);
             ff = FieldFormat::create(std::stringBuilder().append(u"<"_j)->append(CF_DASHBOARD_)
                 ->append(u"><T><F=N>"_j)->toString());
-            ff)->setDefault((new ::com::tibbo::aggregate::common::util::DashboardProperties())->toDataTable());
+            ff)->setDefault((new DashboardProperties())->toDataTable());
             CFT_SHOW_SYSTEM_TREE_)->addField(ff);
         }
     }

@@ -21,17 +21,17 @@ class Enrichment
 
     std::string name;
     std::string value;
-    boost::shared_ptr<Date> date;
+    DatePtr date;
     std::string author;
 
  public:
-	boost::shared_ptr<TableFormat> FORMAT;
+	TableFormatPtr FORMAT;
     std::string getName();
     void setName(const std::string& name);
     std::string getValue();
     void setValue(const std::string& value);
-    boost::shared_ptr<Date> getDate();
-    void setDate(boost::shared_ptr<Date> date);
+    DatePtr getDate();
+    void setDate(DatePtr date);
     std::string getAuthor();
     void setAuthor(const std::string& author);
 
@@ -41,6 +41,6 @@ class Enrichment
 	}
 	void Init();
     Enrichment();
-    Enrichment(const std::string& name, const std::string& value, boost::shared_ptr<Date> date, const std::string& author);
+    Enrichment(const std::string& name, const std::string& value, DatePtr date, const std::string& author);
 };
 #endif  //_Enrichment_H_

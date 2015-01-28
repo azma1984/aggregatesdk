@@ -8,6 +8,6 @@
 
 class ReferredActionExecutor : Interface   
 {
-    virtual bool executeReferredAction(Reference* ref, RemoteConnector* connector, DataTable* parameters);
+    virtual bool executeReferredAction(ReferencePtr ref, RemoteConnectorPtr connector, DataTablePtr parameters);
 };
 #endif	// _ReferredActionExecutor_H_

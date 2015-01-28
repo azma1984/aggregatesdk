@@ -75,24 +75,24 @@ BasePlugin::BasePlugin(const std::string & description)
 //    this->pluginDirector = pluginDirector;
 //}
 //
-//Context* BasePlugin::createGlobalConfigContext(Context* rootContext, bool requestReboot, VariableDefinitionArray*/*...*/ properties)
+//ContextPtr BasePlugin::createGlobalConfigContext(ContextPtr rootContext, bool requestReboot, VariableDefinitionPtr/*...*/ properties)
 //{
 //    return pluginDirector)->createGlobalConfigContext(this, rootContext, requestReboot, properties);
 //}
 //
-//Context* BasePlugin::createUserConfigContext(Context* userContext, bool requestReboot, VariableDefinitionArray*/*...*/ properties)
+//ContextPtr BasePlugin::createUserConfigContext(ContextPtr userContext, bool requestReboot, VariableDefinitionPtr/*...*/ properties)
 //{
 //    return pluginDirector)->createUserConfigContext(this, userContext, requestReboot, properties);
 //}
 //
-//Context* BasePlugin::getGlobalConfigContext()
+//ContextPtr BasePlugin::getGlobalConfigContext()
 //{
-//    return java_cast< Context* >(pluginDirector)->getContextManager())->get(ContextUtils::pluginGlobalConfigContextPath(getId()), pluginDirector)->getCallerController()));
+//    return java_cast< ContextPtr >(pluginDirector)->getContextManager())->get(ContextUtils::pluginGlobalConfigContextPath(getId()), pluginDirector)->getCallerController()));
 //}
 //
-//Context* BasePlugin::getUserConfigContext(const std::string & username)
+//ContextPtr BasePlugin::getUserConfigContext(const std::string & username)
 //{
-//    return java_cast< Context* >(pluginDirector)->getContextManager())->get(ContextUtils::pluginUserConfigContextPath(username, getId()), pluginDirector)->getCallerController()));
+//    return java_cast< ContextPtr >(pluginDirector)->getContextManager())->get(ContextUtils::pluginUserConfigContextPath(username, getId()), pluginDirector)->getCallerController()));
 //}
 //
 //int BasePlugin::getSortIndex()
@@ -116,7 +116,7 @@ BasePlugin::BasePlugin(const std::string & description)
 //    }
 //}
 //
-//int BasePlugin::compareTo(void* arg0)
+//int BasePlugin::compareTo(AgObjectPtr arg0)
 //{ 
 //    return compareTo(dynamic_cast< AggreGatePlugin* >(arg0));
 //}
@@ -137,19 +137,19 @@ BasePlugin::BasePlugin(const std::string & description)
 //        ->append(u")"_j)->toString());
 //}
 //
-//void BasePlugin::globalInit(Context* rootContext) 
+//void BasePlugin::globalInit(ContextPtr rootContext) 
 //{
 //}
 //
-//void BasePlugin::globalDeinit(Context* rootContext) 
+//void BasePlugin::globalDeinit(ContextPtr rootContext) 
 //{
 //}
 //
-//void BasePlugin::userInit(Context* userContext) 
+//void BasePlugin::userInit(ContextPtr userContext) 
 //{
 //}
 //
-//void BasePlugin::userDeinit(Context* userContext) 
+//void BasePlugin::userDeinit(ContextPtr userContext) 
 //{
 //}
 //

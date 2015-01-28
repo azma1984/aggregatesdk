@@ -107,7 +107,7 @@ const int ActionUtils::PLAIN_MESSAGE;
   */
 
 
-void ActionUtils::setActionInitializer(ActionInitializer* initializer)
+void ActionUtils::setActionInitializer(ActionInitializerPtr initializer)
 {
     
 	ACTION_INITIALIZER = initializer;
@@ -122,36 +122,36 @@ void ActionUtils::checkResponseCode(std::string result)
   }
 }
 
-DataTable* ActionUtils::createDndActionParameters(Context* acceptedContext)
+DataTablePtr ActionUtils::createDndActionParameters(ContextPtr acceptedContext)
 {
     
 	return createDndActionParameters(acceptedContext->getPath());
 }
 
-DataTable* ActionUtils::createDndActionParameters(std::string accepterContextPath)
+DataTablePtr ActionUtils::createDndActionParameters(std::string accepterContextPath)
 {
-	DataTable *paramsEntry = new DataTable(FORMAT_DND_ACTION);
+	DataTablePtrparamsEntry = new DataTable(FORMAT_DND_ACTION);
 	paramsEntry->addRecord()->addString(accepterContextPath);
 	return paramsEntry;
 }
 
-ServerActionInput* ActionUtils::createActionInput(DataTable* executionParameters)
+ServerActionInputPtr ActionUtils::createActionInput(DataTablePtr executionParameters)
 {
  return new ServerActionInput(new DataTable(FORMAT_NORMAL_ACTION,executionParameters));
 }
 
-ActionIdentifier* ActionUtils::initAction(Context* context, std::string actionName, ServerActionInput* initialParameters, DataTable* inputData, ActionExecutionMode* mode, CallerController* callerController)
+ActionIdentifierPtr ActionUtils::initAction(ContextPtr context, std::string actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController)
 {
     
 	return initAction(context, actionName, initialParameters, inputData, 0, mode, callerController, 0);
 }
 
-ActionIdentifier* ActionUtils::initAction(Context* context, std::string actionName, ServerActionInput* initialParameters, DataTable* inputData, std::map<string,void*> environment, ActionExecutionMode* mode, CallerController* callerController,ErrorCollector* collector)
+ActionIdentifierPtr ActionUtils::initAction(ContextPtr context, std::string actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, std::map<string,AgObjectPtr> environment, ActionExecutionModePtr mode, CallerControllerPtr callerController,ErrorCollectorPtr collector)
 {
  return ACTION_INITIALIZER->initAction(context, actionName, initialParameters, inputData, environment, mode, callerController, collector);
 }
 
-GenericActionCommand* ActionUtils::stepAction(Context* context, ActionIdentifier* actionId, GenericActionResponse* actionResponse, CallerController* callerController)
+GenericActionCommandPtr ActionUtils::stepAction(ContextPtr context, ActionIdentifierPtr actionId, GenericActionResponsePtr actionResponse, CallerControllerPtr callerController)
 {
  DataTable res = context->callFunction(ServerContextConstants::F_STEP_ACTION, callerController, actionId->toString(), ProtocolHandler::actionResponseToDataTable(actionResponse));
  return ProtocolHandler::actionCommandFromDataTable(res.rec().getDataTable(ServerContextConstants::FOF_STEP_ACTION_ACTION_COMMAND()));

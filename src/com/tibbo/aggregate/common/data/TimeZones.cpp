@@ -63,9 +63,9 @@ const std::string TimeZones::getZoneDescSimple(int offset)
 }
 
 //TODO:
-std::map<void*, std::string> TimeZones::getSelectionValues(bool allowNotSelected)
+std::map<AgObjectPtr, std::string> TimeZones::getSelectionValues(bool allowNotSelected)
 {
-    std::map<void*, std::string> sv;
+    std::map<AgObjectPtr, std::string> sv;
 
     if (allowNotSelected) {
         sv.put(0, /*Cres::get().getString("notSelected")*/"notSelected");

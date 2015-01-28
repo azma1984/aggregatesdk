@@ -35,7 +35,7 @@ LaunchWidget::LaunchWidget(const std::string & title, const std::string & widget
     ctor(title,widgetContext,defaultContext,template_);
 }
 
-LaunchWidget::LaunchWidget(const std::string & title, DataTable* parameters)
+LaunchWidget::LaunchWidget(const std::string & title, DataTablePtr parameters)
     : LaunchWidget(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -77,16 +77,16 @@ std::string LaunchWidget::CF_INPUT()
 }
 std::string LaunchWidget::CF_INPUT_;
 
-TableFormat* com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET()
+TableFormatPtr com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET()
 {
     
     return CFT_LAUNCH_WIDGET_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET_;
 
 void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), CFT_LAUNCH_WIDGET_, static_cast< TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), CFT_LAUNCH_WIDGET_, static_cast< TableFormatPtr >(0));
 }
 
 void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, const std::string & widgetContext, const std::string & defaultContext)
@@ -102,12 +102,12 @@ void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const st
     this->template_ = template_;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), title, parameters, CFT_LAUNCH_WIDGET_);
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::LaunchWidget::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::LaunchWidget::constructParameters()
 {
     return new DataTable(CFT_LAUNCH_WIDGET_, new voidArray({widgetContext), defaultContext), template_), location != 0 ? location)->toDataTable()) : 0), dashboard != 0 ? dashboard)->toDataTable()) : 0), input)}));
 }
@@ -142,32 +142,32 @@ void com::tibbo::aggregate::common::action::command::LaunchWidget::setTemplate(c
     this->template_ = encodedWidgetTemplate;
 }
 
-com::tibbo::aggregate::common::util::WindowLocation* com::tibbo::aggregate::common::action::command::LaunchWidget::getLocation()
+com::tibbo::aggregate::common::util::WindowLocationPtr com::tibbo::aggregate::common::action::command::LaunchWidget::getLocation()
 {
     return location;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setLocation(::com::tibbo::aggregate::common::util::WindowLocation* location)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::setLocation(WindowLocationPtr location)
 {
     this->location = location;
 }
 
-com::tibbo::aggregate::common::util::DashboardProperties* com::tibbo::aggregate::common::action::command::LaunchWidget::getDashboard()
+com::tibbo::aggregate::common::util::DashboardPropertiesPtr com::tibbo::aggregate::common::action::command::LaunchWidget::getDashboard()
 {
     return dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setDashboard(::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::setDashboard(DashboardPropertiesPtr dashboard)
 {
     this->dashboard = dashboard;
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::LaunchWidget::getInput()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::LaunchWidget::getInput()
 {
     return input;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setInput(DataTable* input)
+void com::tibbo::aggregate::common::action::command::LaunchWidget::setInput(DataTablePtr input)
 {
     this->input = input;
 }
@@ -176,7 +176,7 @@ void com::tibbo::aggregate::common::action::command::LaunchWidget::setInput(Data
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::LaunchWidget::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.LaunchWidget", 54);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.LaunchWidget", 54);
     return c;
 }
 

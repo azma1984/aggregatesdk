@@ -56,7 +56,7 @@ int RemoteServer::hashCode()
 	return  0;
 }
 
-bool RemoteServer::equals(void* obj)
+bool RemoteServer::equals(AgObjectPtr obj)
 {
    /*
 	if(this == obj)
@@ -64,7 +64,7 @@ bool RemoteServer::equals(void* obj)
         return true;
     }
 
-	RemoteServer* other = (RemoteServer*) obj;
+	RemoteServerPtr other = (RemoteServerPtr) obj;
     if(password == 0) {
         if(other)->password != 0) {
             return false;

@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/agent/DemoAgent.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <fwd-aggregate_sdk_5.11.00.h"
 //#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
@@ -18,14 +19,14 @@ class examples::agent::DemoAgent_initializeAgentContext_5
 
 public:
     typedef void super;
-    bool set(Context* con, VariableDefinition* def, CallerController* caller, RequestController* request, DataTable* value) ;
+    bool set(ContextPtr con, VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value) ;
 
     // Generated
     DemoAgent_initializeAgentContext_5();
     
 
 private:
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
     friend class DemoAgent;
     friend class DemoAgent_main_1;
     friend class DemoAgent_initializeAgentContext_2;

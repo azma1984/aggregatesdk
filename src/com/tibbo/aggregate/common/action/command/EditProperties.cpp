@@ -65,7 +65,7 @@ com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(c
     ctor(title,contextName,properties);
 }
 
-com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(const std::string & title, DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::EditProperties::EditProperties(const std::string & title, DataTablePtr parameters) 
     : EditProperties(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -176,33 +176,33 @@ std::string& com::tibbo::aggregate::common::action::command::EditProperties::CF_
 }
 std::string com::tibbo::aggregate::common::action::command::EditProperties::CF_SLAVES_CONTEXT_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::CFT_SLAVES()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::EditProperties::CFT_SLAVES()
 {
     
     return CFT_SLAVES_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::EditProperties::CFT_SLAVES_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::EditProperties::CFT_SLAVES_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::FT_PROPERTIES()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::EditProperties::FT_PROPERTIES()
 {
     
     return FT_PROPERTIES_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::EditProperties::FT_PROPERTIES_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::EditProperties::FT_PROPERTIES_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::CFT_EDIT_PROPERTIES()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::EditProperties::CFT_EDIT_PROPERTIES()
 {
     
     return CFT_EDIT_PROPERTIES_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::EditProperties::CFT_EDIT_PROPERTIES_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::EditProperties::CFT_EDIT_PROPERTIES_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::EditProperties::RFT_EDIT_PROPERTIES()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::EditProperties::RFT_EDIT_PROPERTIES()
 {
     
     return RFT_EDIT_PROPERTIES_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::EditProperties::RFT_EDIT_PROPERTIES_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::EditProperties::RFT_EDIT_PROPERTIES_;
 
 void com::tibbo::aggregate::common::action::command::EditProperties::ctor()
 {
@@ -223,12 +223,12 @@ void com::tibbo::aggregate::common::action::command::EditProperties::ctor(const 
     this->properties = properties;
 }
 
-void com::tibbo::aggregate::common::action::command::EditProperties::ctor(const std::string & title, DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::EditProperties::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_EDIT_PROPERTIES(), title, parameters, CFT_EDIT_PROPERTIES_);
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::EditProperties::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::EditProperties::constructParameters()
 {
     auto slavesTable = createSlavesTable(slaves);
     auto table = new DataTable(CFT_EDIT_PROPERTIES_);
@@ -251,12 +251,12 @@ DateDataTable* com::tibbo::aggregate::common::action::command::EditProperties::c
     rec)->addBoolean(::java::lang::Boolean::valueOf(dynamic));
     rec)->addBoolean(::java::lang::Boolean::valueOf(async));
     rec)->addDataTable(slavesTable);
-    rec)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTable* >(0));
-    rec)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTable* >(0));
+    rec)->addDataTable(location != 0 ? location)->toDataTable() : static_cast< DataTablePtr >(0));
+    rec)->addDataTable(dashboard != 0 ? dashboard)->toDataTable() : static_cast< DataTablePtr >(0));
     return rec)->wrap();
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::EditProperties::createSlavesTable(std::list  slaves)
+DateDataTablePtr com::tibbo::aggregate::common::action::command::EditProperties::createSlavesTable(std::list  slaves)
 {
     if(slaves == 0) {
         return 0;
@@ -271,7 +271,7 @@ DateDataTable* com::tibbo::aggregate::common::action::command::EditProperties::c
     return slavesTable;
 }
 
-std::list  com::tibbo::aggregate::common::action::command::EditProperties::getSlaves(::com::tibbo::aggregate::common::action::GenericActionCommand* cmd, Context* base, CallerController* caller)
+std::list  com::tibbo::aggregate::common::action::command::EditProperties::getSlaves(::com::tibbo::aggregate::common::action::GenericActionCommandPtr cmd, ContextPtr base, CallerControllerPtr caller)
 {
     
     auto slavesTable = cmd)->getParameters())->rec())->getDataTable(CF_SLAVES_);
@@ -280,10 +280,10 @@ std::list  com::tibbo::aggregate::common::action::command::EditProperties::getSl
     }
     std::list  slaves = new ::java::util::LinkedList();
     for (auto _i = slavesTable)->iterator(); _i->hasNext(); ) {
-        DataRecord* rec = java_cast< DataRecord* >(_i->next());
+        DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
         {
             auto context = rec)->getString(CF_SLAVES_CONTEXT_);
-            auto slave = java_cast< Context* >(base)->get(context, caller));
+            auto slave = java_cast< ContextPtr >(base)->get(context, caller));
             if(slave != 0) {
                 slaves)->add(slave));
             }
@@ -382,22 +382,22 @@ void com::tibbo::aggregate::common::action::command::EditProperties::setAsync(bo
     this->async = async;
 }
 
-com::tibbo::aggregate::common::util::WindowLocation* com::tibbo::aggregate::common::action::command::EditProperties::getLocation()
+com::tibbo::aggregate::common::util::WindowLocationPtr com::tibbo::aggregate::common::action::command::EditProperties::getLocation()
 {
     return location;
 }
 
-void com::tibbo::aggregate::common::action::command::EditProperties::setLocation(::com::tibbo::aggregate::common::util::WindowLocation* location)
+void com::tibbo::aggregate::common::action::command::EditProperties::setLocation(WindowLocationPtr location)
 {
     this->location = location;
 }
 
-com::tibbo::aggregate::common::util::DashboardProperties* com::tibbo::aggregate::common::action::command::EditProperties::getDashboard()
+com::tibbo::aggregate::common::util::DashboardPropertiesPtr com::tibbo::aggregate::common::action::command::EditProperties::getDashboard()
 {
     return dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::EditProperties::setDashboard(::com::tibbo::aggregate::common::util::DashboardProperties* dashboard)
+void com::tibbo::aggregate::common::action::command::EditProperties::setDashboard(DashboardPropertiesPtr dashboard)
 {
     this->dashboard = dashboard;
 }
@@ -406,7 +406,7 @@ void com::tibbo::aggregate::common::action::command::EditProperties::setDashboar
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::EditProperties::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.EditProperties", 56);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.EditProperties", 56);
     return c;
 }
 

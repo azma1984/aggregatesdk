@@ -29,10 +29,10 @@
 //}
 //
 //
-//boost::shared_ptr<DataTable>  VariableInfo::createInfoTable(VariableDefinition* vd)
+//DataTablePtr  VariableInfo::createInfoTable(VariableDefinitionPtr vd)
 //{
 //	/*
-//    DataRecord *res = new DataRecord(FORMAT);
+//    DataRecordPtrres = new DataRecord(FORMAT);
 //    res->addString(vd)->getName());
 //    res->addString(vd)->getDescription());
 //    res->addDataTable(vd->getFormat() != 0 ? DataTableBuilding::formatToFieldsTable(vd->getFormat(), false) : 0);

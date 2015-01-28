@@ -8,15 +8,15 @@ class ContextEventListenerInfo
 {
 
 private:
-    boost::shared_ptr<ContextEventListener> listener;
+    ContextEventListenerPtr listener;
     bool weak;   
 
 public:
-    boost::shared_ptr<ContextEventListener> getListener(); 
+    ContextEventListenerPtr getListener(); 
 
     bool isWeak(); 
 
-    ContextEventListenerInfo(boost::shared_ptr<ContextEventListener> listener, bool weak); 
+    ContextEventListenerInfo(ContextEventListenerPtr listener, bool weak); 
 
 };
 #endif  //_ContextEventListenerInfo_H_

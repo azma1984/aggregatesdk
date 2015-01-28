@@ -1,6 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/agent/Agent.java
-
-
 #ifndef AgentH
 #define AgentH
 
@@ -28,12 +25,12 @@
  {
   
     public:
-   // AgentContextManager(Context *rootContext, bool async):DefaultContextManager<Context>(rootContext, async)
+   // AgentContextManager(ContextPtrrootContext, bool async):DefaultContextManager<Context>(rootContext, async)
   //  {
    
   //  }
     
-    void eventAdded(Context *con, EventDefinition *ed)
+    void eventAdded(ContextPtrcon, EventDefinitionPtred)
     {
      
      DefaultContextManager<Context>::eventAdded(con, ed);
@@ -56,10 +53,10 @@ private:
 
     static const int SOCKET_TIMEOUT = 20000;
     
-    RemoteServer* server; //it is defined in com\tibbo\aggregate\common\protocol\RemoteServer.h
+    RemoteServerPtr server; //it is defined in com\tibbo\aggregate\common\protocol\RemoteServer.h
     int maxEventQueueLength;
-    AgentContext* context;
-    /*ContextManager<Agent>*/AgentContextManager* contextManager;//it is defined in com\tibbo\aggregate\common\context\ContextManager.h
+    AgentContextPtr context;
+    /*ContextManager<Agent>*/AgentContextManagerPtr contextManager;//it is defined in com\tibbo\aggregate\common\context\ContextManager.h
     AgentImplementationController* controller;
 
  
@@ -68,14 +65,14 @@ public:
 	
     static const int DEFAULT_PORT = 6480;    
 
-    Agent(RemoteServer* server, const std::string &name, bool eventConfirmation);
-    Agent(AgentContext* context);
+    Agent(RemoteServerPtr server, const std::string &name, bool eventConfirmation);
+    Agent(AgentContextPtr context);
 
     void connect();
     void disconnect();
     void run();
-    RemoteServer* getServer();//it is defined in com\tibbo\aggregate\common\protocol\RemoteServer.h
-    AgentContext* getContext();
+    RemoteServerPtr getServer();//it is defined in com\tibbo\aggregate\common\protocol\RemoteServer.h
+    AgentContextPtr getContext();
     int getMaxEventQueueLength();
     void setMaxEventQueueLength(int maxEventQueueLength);
 

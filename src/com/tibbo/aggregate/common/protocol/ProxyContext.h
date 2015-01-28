@@ -1,9 +1,7 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/ProxyContext.java
-
-#pragma once
+#ifndef ProxyContextH
+#define ProxyContextH
 
 #include "AbstractContext.h"
-//#include "AbstractAggreGateDeviceController.h"
 
 
 template <class C> class ProxyContext: public AbstractContext<C>
@@ -12,54 +10,45 @@ template <class C> class ProxyContext: public AbstractContext<C>
 	static const long METADATA_READ_TIMEOUT = 120000;
 	static const long LISTENER_OPERATIONS_TIMEOUT = 120000;
 	std::string F_LOCAL_REINITIALIZE;
-   //	AbstractAggreGateDeviceController* controller;
+	AbstractAggreGateDeviceControllerPtr controller;
 	bool notManageRemoteListeners;
 	bool localInitComplete;
 	bool initializingInfo;
 	bool initializedInfo;
-	void* initializingInfoLock;
+	AgObjectPtr initializingInfoLock;
 	bool initializingChildren;
 	bool initializedChildren;
-	void* initializingChildrenLock;
+	AgObjectPtr initializingChildrenLock;
 	bool initializingVariables;
 	bool initializedVariables;
-	void* initializingVariablesLock;
+	AgObjectPtr initializingVariablesLock;
 	bool initializingFunctions;
 	bool initializedFunctions;
-	void* initializingFunctionsLock;
+	AgObjectPtr initializingFunctionsLock;
 	bool initializingEvents;
 	bool initializedEvents;
-	void* initializingEventsLock;
+	AgObjectPtr initializingEventsLock;
 	bool initializingActions;
 	bool initializedActions;
-	void* initializingActionsLock;
+	AgObjectPtr initializingActionsLock;
 	bool initializingStatus;
 	bool initializedStatus;
-	void* initializingStatusLock;
+	AgObjectPtr initializingStatusLock;
 	bool initializingVisibleChildren;
-	void* initializingVisibleChildrenLock;
-   //	std::list visibleChildren;
+	AgObjectPtr initializingVisibleChildrenLock;
+	std::list visibleChildren;
 	std::string localRoot;
 	std::string remoteRoot;
 	std::string remotePath;
 	std::string remotePrimaryRoot;
 	bool mapped;
- /*
+
 	std::map variableCache;
-	::java::util::concurrent::locks::ReentrantReadWriteLock* variableCacheLock;
+	boost::shared_mutex variableCacheLock;
 	static std::list  AUTO_LISTENED_EVENTS_;
-protected:
-	void ctor(const std::string & name, AbstractAggreGateDeviceController* controller);
 
-public:
-	void setupMyself();
+	static std::list & AUTO_LISTENED_EVENTS();
 
-public:
-	void addLocalFunctionDefinitions();
-	TableFormat* decodeFormat(const std::string & source, CallerController* caller);
-	void clear();
-
-private:
 	void initInfo();
 	void initChildren();
 	void initVariables();
@@ -68,201 +57,170 @@ private:
 	void initActions() ;
 	void initVisibleChildren();
 	void initStatus();
-	void initInfoImpl(DataTable* info);
+	void initInfoImpl(DataTablePtr info);
 
-public:
-	const std::string & convertRemoteDescription(const std::string & remoteDescription);
-
-private:
-    void initChildrenImpl(DataTable* children);
+	void initChildrenImpl(DataTablePtr children);
 	void initVisibleChildrenImpl();
-
-public:
-    ProxyContext* createChildContextProxy(const std::string & name);
-
-private:
-    void initVariablesImpl(DataTable* variables);
-    void initFunctionsImpl(DataTable* functions);
-    void initEventsImpl(DataTable* events);
-    void initActionsImpl(DataTable* actions);
+		void initVariablesImpl(DataTablePtr variables);
+	void initFunctionsImpl(DataTablePtr functions);
+	void initEventsImpl(DataTablePtr events);
+	void initActionsImpl(DataTablePtr actions);
 	void initStatusImpl();
 
+		void initVariablesLoggingErrors();
+	void initFunctionsLoggingErrors();
+	void initEventsLoggingErrors();
+	void initActionsLoggingErrors();
+	void initStatusLoggingErrors();
+	IncomingAggreGateCommandPtr sendGetVariable(const std::string & name, long  timeout);
+
+	DataTablePtr getRemoteVariable(VariableDefinitionPtr def);
+
+	void addRemoteListener(const std::string & ename, ContextEventListenerPtr contextEventListener);
+
+	void restoreEventListeners();
+
+	void cacheVariableValue(const std::string & variable, DataTablePtr value);
+
+	const std::string & getRemotePrimaryPath(const std::string & remoteFullPath);
+
+	ContextEventListenerPtr visibleChildAddedListener;
+	ContextEventListenerPtr visibleChildRemovedListener;
+	ContextEventListenerPtr contextStatusChangedListener;
+
+	void init();
+	EventPtr fireEvent(EventPtr event);
 public:
+	void setupMyself();
+
+
+	void addLocalFunctionDefinitions();
+	TableFormatPtr decodeFormat(const std::string & source, CallerControllerPtr caller);
+	void clear();
+
+
+	const std::string & convertRemoteDescription(const std::string & remoteDescription);
+
+
+	ProxyContextPtr createChildContextProxy(const std::string & name);
+
     const std::string & getDescription();
-    const std::string & getType();
+	const std::string & getType();
     const std::string & getLocalRoot();
     const std::string & getRemoteRoot();
     bool isMapped();
-    Context* get(const std::string & contextPath, CallerController* caller);
+	ContextPtr get(const std::string & contextPath, CallerControllerPtr caller);
     const std::string & getIconId();
-    Context* getChild(const std::string & name, CallerController* callerController);
-	VariableDefinition* getVariableDefinition(const std::string & name);
-    FunctionDefinition* getFunctionDefinition(const std::string & name);
-    EventData* getEventData(const std::string & name);
-    ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(const std::string & name);
-    std::list  getVariableDefinitions(CallerController* caller, bool hidden);
-    std::list  getFunctionDefinitions(CallerController* caller, bool hidden);
-    std::list  getEventDefinitions(CallerController* caller, bool hidden);
-    std::list  getActionDefinitions(CallerController* caller, bool hidden);
-    ContextStatus* getStatus();
+    ContextPtr getChild(const std::string & name, CallerControllerPtr callerController);
+	VariableDefinitionPtr getVariableDefinition(const std::string & name);
+	FunctionDefinitionPtr getFunctionDefinition(const std::string & name);
+    EventDataPtr getEventDataPtr(const std::string & name);
+    ::com::tibbo::aggregate::common::action::ActionDefinitionPtr getActionDefinition(const std::string & name);
+    std::list  getVariableDefinitions(CallerControllerPtr caller, bool hidden);
+	std::list  getFunctionDefinitions(CallerControllerPtr caller, bool hidden);
+    std::list  getEventDefinitions(CallerControllerPtr caller, bool hidden);
+    std::list  getActionDefinitions(CallerControllerPtr caller, bool hidden);
+    ContextStatusPtr getStatus();
 
-private:
-    void initVariablesLoggingErrors();
-    void initFunctionsLoggingErrors();
-    void initEventsLoggingErrors();
-    void initActionsLoggingErrors();
-    void initStatusLoggingErrors();
-	IncomingAggreGateCommand* sendGetVariable(const std::string & name, long  timeout);
+	DataTablePtr getRemoteVariable(TableFormatPtr format, const std::string & name, long  timeout) ;
 
-public:
-	DataTable* getRemoteVariable(TableFormat* format, const std::string & name, long  timeout) ;
-
-public:
-    AbstractAggreGateDeviceController* getController();
+    AbstractAggreGateDeviceControllerPtr getController();
 	void setupVariables();
-	DataTable* getVariableImpl(VariableDefinition* def, CallerController* caller, RequestController* request);
+	DataTablePtr getVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request);
 
-private:
-	DataTable* getRemoteVariable(VariableDefinition* def);
 
-public:
-	bool setVariableImpl(VariableDefinition* def, CallerController* caller, RequestController* request, DataTable* value);
+	bool setVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value);
 	void setupFunctions();
-	DataTable* callFunctionImpl(FunctionDefinition* def, CallerController* caller, RequestController* request, DataTable* parameters);
-	DataTable* callRemoteFunction(const std::string & name, TableFormat* outputFormat, DataTable* parameters);
+	DataTablePtr callFunctionImpl(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters);
+	DataTablePtr callRemoteFunction(const std::string & name, TableFormatPtr outputFormat, DataTablePtr parameters);
 
-public:
-    bool addEventListener(const std::string & name, ContextEventListener* contextEventListener, bool weak);
-	bool addEventListener(const std::string & name, ContextEventListener* contextEventListener, bool weak, bool sendRemoteCommand);
-    bool removeEventListener(const std::string & name, ContextEventListener* contextEventListener);
-    bool removeEventListener(const std::string & name, ContextEventListener* listener, bool sendRemoteCommand);
+	bool addEventListener(const std::string & name, ContextEventListenerPtr contextEventListener, bool weak);
+	bool addEventListener(const std::string & name, ContextEventListenerPtr contextEventListener, bool weak, bool sendRemoteCommand);
+	bool removeEventListener(const std::string & name, ContextEventListenerPtr contextEventListener);
+    bool removeEventListener(const std::string & name, ContextEventListenerPtr listener, bool sendRemoteCommand);
 
-private:
-    void addRemoteListener(const std::string & ename, ContextEventListener* contextEventListener);
 
-public:
-    std::list  getChildren(CallerController* caller);
-    std::list  getVisibleChildren(CallerController* caller);
+
+    std::list  getChildren(CallerControllerPtr caller);
+	std::list  getVisibleChildren(CallerControllerPtr caller);
     void addVisibleChild(const std::string & localVisiblePath);
-    void removeVisibleChild(const std::string & localVisiblePath);
+	void removeVisibleChild(const std::string & localVisiblePath);
 
-private:
-	void restoreEventListeners();
 
-public:
 	void reinitialize();
 
-public:
-    Event* fireEvent(EventDefinition* ed, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request, Permissions* permissions);
 
-private:
-    void cacheVariableValue(const std::string & variable, DataTable* value);
+	EventPtr fireEvent(EventDefinitionPtr ed, DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions);
 
-public:
-    const std::string & getPathDescription();
 
-public:
-    bool isProxy();
+	const std::string & getPathDescription();
+
+
+	bool isProxy();
     bool isDistributed();
 	const std::string & getRemotePath();
-    const std::string & getRemotePrimaryRoot();
+	const std::string & getRemotePrimaryRoot();
 
-public:
-    const std::string & getPeerPath();
 
-public:
-    const std::string & getLocalPath(const std::string & remoteFullPath);
+	const std::string & getPeerPath();
 
-private:
-    const std::string & getRemotePrimaryPath(const std::string & remoteFullPath);
 
-public:
-    const std::string & getLocalVisiblePath(const std::string & remoteFullPath);
+	const std::string & getLocalPath(const std::string & remoteFullPath);
+
+
+	const std::string & getLocalVisiblePath(const std::string & remoteFullPath);
     void setRemotePath(const std::string & remotePath);
 
-public:
+
     bool isInitializedInfo();
     bool isInitializedChildren();
-    bool isInitializedVariables();
+	bool isInitializedVariables();
     bool isInitializedFunctions();
     bool isInitializedEvents();
-    bool isNotManageRemoteListeners();
+	bool isNotManageRemoteListeners();
     void setNotManageRemoteListeners(bool notManageRemoteListeners);
 
-private:
-    ContextEventListener* visibleChildAddedListener;
-    ContextEventListener* visibleChildRemovedListener;
-    ContextEventListener* contextStatusChangedListener;
 
 
-public:
-    
     static void 
 
-private:
-    void init();
 
-public:
-    bool addEventListener(const std::string & name, ContextEventListener* listener);
 
-public:
-    Event* fireEvent(Event* event);
+	bool addEventListener(const std::string & name, ContextEventListenerPtr listener);
 
-public:
-    Event* fireEvent(const std::string & name, int level, CallerController* caller, FireEventRequestController* request, Permissions* permissions, DataTable* data);
-    Event* fireEvent(const std::string & name, DataTable* data, int level, long  id, Date* creationtime, int  listener, CallerController* caller, FireEventRequestController* request);
-    Event* fireEvent(const std::string & name, DataTable* data);
-    Event* fireEvent(const std::string & name, CallerController* caller, DataTable* data);
-    Event* fireEvent(const std::string & name, int level, DataTable* data);
-    Event* fireEvent(const std::string & name, int level, CallerController* caller, DataTable* data);
-    Event* fireEvent(const std::string & name);
-    Event* fireEvent(const std::string & name, CallerController* caller);
-    Event* fireEvent(const std::string & name, voidArray* data);
-    Context* get(const std::string & contextName);
-    ::com::tibbo::aggregate::common::action::ActionDefinition* getActionDefinition(const std::string & name, CallerController* caller);
-    std::list  getActionDefinitions(CallerController* caller);
-    std::list  getActionDefinitions();
-    Context* getChild(const std::string & name);
-    std::list  getChildren();
-    std::list  getEventDefinitions(CallerController* caller);
+
+    EventPtr fireEvent(const std::string & name, int level, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions, DataTablePtr data);
+	EventPtr fireEvent(const std::string & name, DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request);
+    EventPtr fireEvent(const std::string & name, DataTablePtr data);
+    EventPtr fireEvent(const std::string & name, CallerControllerPtr caller, DataTablePtr data);
+	EventPtr fireEvent(const std::string & name, int level, DataTablePtr data);
+    EventPtr fireEvent(const std::string & name, int level, CallerControllerPtr caller, DataTablePtr data);
+    EventPtr fireEvent(const std::string & name);
+	EventPtr fireEvent(const std::string & name, CallerControllerPtr caller);
+    EventPtr fireEvent(const std::string & name, voidArray* data);
+    ContextPtr get(const std::string & contextName);
+	::com::tibbo::aggregate::common::action::ActionDefinitionPtr getActionDefinition(const std::string & name, CallerControllerPtr caller);
+    std::list  getActionDefinitions(CallerControllerPtr caller);
+	std::list  getActionDefinitions();
+    ContextPtr getChild(const std::string & name);
+	std::list  getChildren();
+    std::list  getEventDefinitions(CallerControllerPtr caller);
 	std::list  getEventDefinitions();
-    std::list  getEventDefinitions(CallerController* caller, const std::string & group);
-    std::list  getEventDefinitions(const std::string & group);
-    FunctionDefinition* getFunctionDefinition(const std::string & name, CallerController* caller);
-    std::list  getFunctionDefinitions(CallerController* caller);
-    std::list  getFunctionDefinitions();
-    std::list  getFunctionDefinitions(CallerController* caller, const std::string & group);
-    std::list  getFunctionDefinitions(const std::string & group);
-    VariableDefinition* getVariableDefinition(const std::string & name, CallerController* caller);
-    std::list  getVariableDefinitions(CallerController* caller);
+    std::list  getEventDefinitions(CallerControllerPtr caller, const std::string & group);
+	std::list  getEventDefinitions(const std::string & group);
+    FunctionDefinitionPtr getFunctionDefinition(const std::string & name, CallerControllerPtr caller);
+	std::list  getFunctionDefinitions(CallerControllerPtr caller);
+	std::list  getFunctionDefinitions();
+	std::list  getFunctionDefinitions(CallerControllerPtr caller, const std::string & group);
+	std::list  getFunctionDefinitions(const std::string & group);
+	VariableDefinitionPtr getVariableDefinition(const std::string & name, CallerControllerPtr caller);
+	std::list  getVariableDefinitions(CallerControllerPtr caller);
     std::list  getVariableDefinitions();
-    std::list  getVariableDefinitions(CallerController* caller, const std::string & group);
-    std::list  getVariableDefinitions(const std::string & group);
-    std::list  getVisibleChildren();
-    static const std::string& F_LOCAL_REINITIALIZE();
+	std::list  getVariableDefinitions(CallerControllerPtr caller, const std::string & group);
+	std::list  getVariableDefinitions(const std::string & group);
+	std::list  getVisibleChildren();
+	static const std::string& F_LOCAL_REINITIALIZE();
 
-private:
-    static std::list & AUTO_LISTENED_EVENTS();
-    ::java::lang::Class* getClass0();
-    friend class ProxyContext_setupMyself_4;
-    friend class ProxyContext_setupMyself_5;
-    friend class ProxyContext_setupMyself_6;
-    friend class ProxyContext_setupMyself_7;
-    friend class ProxyContext_setupMyself_8;
-    friend class ProxyContext_setupMyself_9;
-    friend class ProxyContext_setupMyself_10;
-    friend class ProxyContext_setupMyself_11;
-    friend class ProxyContext_setupMyself_12;
-    friend class ProxyContext_setupMyself_13;
-    friend class ProxyContext_setupMyself_14;
-    friend class ProxyContext_setupMyself_15;
-    friend class ProxyContext_clear_16;
-    friend class ProxyContext_1;
-    friend class ProxyContext_2;
-	friend class ProxyContext_3;  */
-
-	public:
-   //	ProxyContext(std::string name, AbstractAggreGateDeviceController* controller);
-
-
+	ProxyContext(std::string name, AbstractAggreGateDeviceControllerPtr controller);
 };
+#endif

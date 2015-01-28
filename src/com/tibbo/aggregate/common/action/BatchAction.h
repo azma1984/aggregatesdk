@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/BatchAction.java
-
 #ifndef BatchActionH
 #define BatchActionH
 
@@ -14,23 +12,22 @@
 
 
 
-class BatchAction:public Action<InitialRequest,ActionCommand,ActionResponse>
+class BatchAction:public Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr >
 {
-	/*
-private:
-    ActionManager* actionManager;
-    ActionContext* actionContext;
-	ActionIdentifier* currentActionId;
 
-	BatchEntry* getNextEntry(BatchContext* batchContext);
+private:
+    ActionManagerPtr actionManager;
+    ActionContextPtr actionContext;
+	ActionIdentifierPtr currentActionId;
+
+	BatchEntryPtr getNextEntry(BatchContextPtr batchContext);
 
 public:
-	BatchAction(ActionManager* actionManager);
-	void init(ActionContext* actionContext, InitialRequest* initialParameters);
-	ActionCommand* service(ActionResponse* actionRequest);
+	BatchAction(ActionManagerPtr actionManager);
+	void init(ActionContextPtr actionContext, InitialRequestPtr initialParameters);
+	ActionCommandPtr service(ActionResponsePtr actionRequest);
 
-	void destroy();
-*/
+	ActionResultPtr  destroy();
 };
 
 

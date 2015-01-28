@@ -3,7 +3,7 @@
 
 
 
-HistoricalValue::HistoricalValue(const std::string &variable, std::time_t  timestamp, DataTable* value) 
+HistoricalValue::HistoricalValue(const std::string &variable, std::time_t  timestamp, DataTablePtr value) 
 {
     this->variable = variable;
     this->timestamp = timestamp;
@@ -30,12 +30,12 @@ void HistoricalValue::setTimestamp(std::time_t  timestamp)
     this->timestamp = timestamp;
 }
 
-DataTable* HistoricalValue::getValue()
+DataTablePtr HistoricalValue::getValue()
 {
     return value;
 }
 
-void HistoricalValue::setValue(DataTable* value)
+void HistoricalValue::setValue(DataTablePtr value)
 {
     this->value = value;
 }

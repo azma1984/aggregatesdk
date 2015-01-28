@@ -5,7 +5,7 @@
 
 java::lang::Class* com::tibbo::aggregate::common::action::EditDataMerger::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.EditDataMerger", 48);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.EditDataMerger", 48);
     return c;
 }
 

@@ -3,21 +3,21 @@
 #include "Agent.h"
 
 
-Agent::Agent(RemoteServer* server, const std::string &name, bool eventConfirmation) 
+Agent::Agent(RemoteServerPtr server, const std::string &name, bool eventConfirmation) 
 {
  this->server = server;
  this->context = new AgentContext(server, name, eventConfirmation);
  //todo
-// this->contextManager = new AgentContextManager((Context *)context, false); 
+// this->contextManager = new AgentContextManager((ContextPtr)context, false); 
 }
 
 
-Agent::Agent(AgentContext* context) 
+Agent::Agent(AgentContextPtr context) 
 {
    this->server = context->getServer();
    this->context = context;
    //todo
-//   this->contextManager = new AgentContextManager((Context *)context, false);
+//   this->contextManager = new AgentContextManager((ContextPtr)context, false);
 }
 
 
@@ -63,12 +63,12 @@ void Agent::run()
     controller->runImpl();
 }
 
-RemoteServer* Agent::getServer()
+RemoteServerPtr Agent::getServer()
 {
     return server;
 }
 
-AgentContext* Agent::getContext()
+AgentContextPtr Agent::getContext()
 {
     return context;
 }

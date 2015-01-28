@@ -36,7 +36,7 @@ com::tibbo::aggregate::common::action::command::ShowGuide::ShowGuide(const std::
     ctor(title,invokerContext,macroName);
 }
 
-com::tibbo::aggregate::common::action::command::ShowGuide::ShowGuide(const std::string & title, DataTable* parameters) 
+com::tibbo::aggregate::common::action::command::ShowGuide::ShowGuide(const std::string & title, DataTablePtr parameters) 
     : ShowGuide(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
@@ -56,16 +56,16 @@ std::string& com::tibbo::aggregate::common::action::command::ShowGuide::CF_MACRO
 }
 std::string com::tibbo::aggregate::common::action::command::ShowGuide::CF_MACRO_NAME_;
 
-DateTableFormat*& com::tibbo::aggregate::common::action::command::ShowGuide::CFT_SHOW_GUIDE()
+DateTableFormatPtr& com::tibbo::aggregate::common::action::command::ShowGuide::CFT_SHOW_GUIDE()
 {
     
     return CFT_SHOW_GUIDE_;
 }
-DateTableFormat* com::tibbo::aggregate::common::action::command::ShowGuide::CFT_SHOW_GUIDE_;
+DateTableFormatPtr com::tibbo::aggregate::common::action::command::ShowGuide::CFT_SHOW_GUIDE_;
 
 void com::tibbo::aggregate::common::action::command::ShowGuide::ctor()
 {
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_GUIDE(), CFT_SHOW_GUIDE_, static_cast< TableFormat* >(0));
+    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_GUIDE(), CFT_SHOW_GUIDE_, static_cast< TableFormatPtr >(0));
 }
 
 void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(const std::string & title, const std::string & invokerContext, const std::string & macroName)
@@ -75,12 +75,12 @@ void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(const std::
     this->macroName = macroName;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(const std::string & title, DataTable* parameters)
+void com::tibbo::aggregate::common::action::command::ShowGuide::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_GUIDE(), title, parameters, CFT_SHOW_GUIDE_);
 }
 
-DateDataTable* com::tibbo::aggregate::common::action::command::ShowGuide::constructParameters()
+DateDataTablePtr com::tibbo::aggregate::common::action::command::ShowGuide::constructParameters()
 {
     return new DataTable(CFT_SHOW_GUIDE_, new voidArray({invokerContext), macroName)}));
 }
@@ -109,7 +109,7 @@ void com::tibbo::aggregate::common::action::command::ShowGuide::setMacroName(con
 
 java::lang::Class* com::tibbo::aggregate::common::action::command::ShowGuide::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowGuide", 51);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowGuide", 51);
     return c;
 }
 

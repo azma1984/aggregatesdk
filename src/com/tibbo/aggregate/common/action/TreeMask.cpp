@@ -12,7 +12,7 @@ TreeMask::TreeMask(const std::string& mask)
 }
 
 
-bool TreeMask::includes(TreeMask* resourceMask)
+bool TreeMask::includes(TreeMaskPtr resourceMask)
 {
     if(resourceMask == 0) {
 		std::cout<<"Pointer = NULL!";

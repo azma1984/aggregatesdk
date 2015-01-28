@@ -12,29 +12,29 @@ class DiscoverableServiceDefinition;
 class DiscoveryResultItem
 {
 private:
-    boost::shared_ptr<DiscoverableServiceDefinition> serviceDefinition;
-    boost::shared_ptr<DeviceRecommendation> deviceRecommendation;
-    boost::shared_ptr<DataRecord> parameters;
+    DiscoverableServiceDefinitionPtr serviceDefinition;
+    DeviceRecommendationPtr deviceRecommendation;
+    DataRecordPtr parameters;
 
 public:
-    boost::shared_ptr<DiscoverableServiceDefinition> getServiceDefinition();
-    boost::shared_ptr<DataRecord> getParameters();
-    void setParameters(boost::shared_ptr<DataRecord> parametersDataRecord);
+    DiscoverableServiceDefinitionPtr getServiceDefinition();
+    DataRecordPtr getParameters();
+    void setParameters(DataRecordPtr parametersDataRecord);
     std::string getDeviceName();
     std::string getDeviceDescription();
-    boost::shared_ptr<DiscoveryProvider> getDiscoveryProvider();
+    DiscoveryProviderPtr getDiscoveryProvider();
     std::string getServiceName();
     std::string getServiceDescription();
     bool isEnabledByDefault();
-    boost::shared_ptr<DataTable> getParametersTable();
-    boost::shared_ptr<DeviceRecommendation> getDeviceRecommendation();
+    DataTablePtr getParametersTable();
+    DeviceRecommendationPtr getDeviceRecommendation();
     std::string toString();
 
-    // Generated
-    DiscoveryResultItem(boost::shared_ptr<DiscoverableServiceDefinition> aDiscoverableServiceDefinition,
-                        boost::shared_ptr<DataRecord> parametersDataRecord);
-    DiscoveryResultItem(boost::shared_ptr<DiscoverableServiceDefinition> aDiscoverableServiceDefinition,
-                        boost::shared_ptr<DataRecord> parametersDataRecord, boost::shared_ptr<DeviceRecommendation> aDeviceRecommendation);
+
+    DiscoveryResultItem(DiscoverableServiceDefinitionPtr aDiscoverableServiceDefinition,
+                        DataRecordPtr parametersDataRecord);
+    DiscoveryResultItem(DiscoverableServiceDefinitionPtr aDiscoverableServiceDefinition,
+                        DataRecordPtr parametersDataRecord, DeviceRecommendationPtr aDeviceRecommendation);
 };
 
 #endif 

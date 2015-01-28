@@ -1,15 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/util/ResourceAccessor.java
 
 #ifndef ResourceAccessorH
 #define ResourceAccessorH
 
 #include <string>
 #include "AgClass.h"
+
+#include "util/pointers.h"
+
 //Strings depending on language (localization)
 
-
-
-//todo - Class stub!
+ //todo - Class stub!
 class Locale
 {
  private:
@@ -40,13 +40,13 @@ class ResourceAccessor
  //   static const std::string RESOURCE_PACKAGE_NAME = "res";
 
  public:
-   static ResourceBundle* fetch(AgClass* clazz, Locale* locale)
+   static ResourceBundle* fetch(AgClassPtr clazz, Locale* locale)
 	{
-     return 0;
+	 return 0;
 	}
 	
 		// static ResourceBundle* fetch(Class* clazz, Locale* locale, ClassLoader* classLoader);
- //   static std::string  getBundleName(::java::lang::Class* clazz);
+ //   static std::string  getBundleName(AgClassPtr clazz);
 
 };
 #endif 

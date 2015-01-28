@@ -2,17 +2,17 @@
 
 
 
-VariableDefinition::VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable)
+VariableDefinition::VariableDefinition(const std::string & name, TableFormatPtr format, bool readable, bool writable)
 {
   init(name,format,readable,writable,0);
 }
 
-VariableDefinition::VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description)
+VariableDefinition::VariableDefinition(const std::string & name, TableFormatPtr format, bool readable, bool writable, const std::string & description)
 {
   init(name,format,readable,writable,description);
 }
 
-VariableDefinition::VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description, const std::string & group)
+VariableDefinition::VariableDefinition(const std::string & name, TableFormatPtr format, bool readable, bool writable, const std::string & description, const std::string & group)
 {
   init(name,format,readable,writable,description);
  // setGroup(group);
@@ -26,7 +26,7 @@ VariableDefinition::VariableDefinition(const std::string & name, boost::shared_p
 //}
 
 
-void VariableDefinition::init(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description)
+void VariableDefinition::init(const std::string & name, TableFormatPtr format, bool readable, bool writable, const std::string & description)
 {
  // setName(name);
 //  setFormat(format);
@@ -35,11 +35,11 @@ void VariableDefinition::init(const std::string & name, boost::shared_ptr<TableF
  // setDescription(description != 0 ? description : name);
 }
 
-void VariableDefinition::setFormat(TableFormat* format)
+void VariableDefinition::setFormat(TableFormatPtr format)
 {
 	if(format != 0)
 	{
-	 format->makeImmutable(0);
+	 format->makeImmutable(DataTablePtr());
     }
 	this->format = format;
 }
@@ -67,12 +67,12 @@ void VariableDefinition::setHidden(bool hidden)
 //    }
 //}
 //
-void VariableDefinition::setReadPermissions(boost::shared_ptr<Permissions> readPermissions)
+void VariableDefinition::setReadPermissions(PermissionsPtr readPermissions)
 {
  this->readPermissions = readPermissions;
 }
 
-void VariableDefinition::setWritePermissions(boost::shared_ptr<Permissions> writePermissions)
+void VariableDefinition::setWritePermissions(PermissionsPtr writePermissions)
 {
     this->writePermissions = writePermissions;
 }
@@ -82,12 +82,12 @@ void VariableDefinition::setSetter(VariableSetter* setter)
     this->setter = setter;
 }
 
-void VariableDefinition::setGetter(VariableGetter* getter)
+void VariableDefinition::setGetter(VariableGetterPtr getter)
 {
     this->getter = getter;
 }
 
-TableFormat* VariableDefinition::getFormat()
+TableFormatPtr VariableDefinition::getFormat()
 {
     return format;
 }
@@ -107,12 +107,12 @@ bool VariableDefinition::isHidden()
     return hidden;
 }
 
-boost::shared_ptr<Permissions> VariableDefinition::getReadPermissions()
+PermissionsPtr VariableDefinition::getReadPermissions()
 {
     return readPermissions;
 }
 
-boost::shared_ptr<Permissions> VariableDefinition::getWritePermissions()
+PermissionsPtr VariableDefinition::getWritePermissions()
 {
     return writePermissions;
 }
@@ -122,7 +122,7 @@ VariableSetter* VariableDefinition::getSetter()
     return setter;
 }
 
-VariableGetter* VariableDefinition::getGetter()
+VariableGetterPtr VariableDefinition::getGetter()
 {
     return getter;
 }
@@ -142,7 +142,7 @@ void VariableDefinition::setHelpId(const std::string & helpId)
 //    return valueClass;
 //}
 //
-//void VariableDefinition::setValueClass(::java::lang::Class* valueClass)
+//void VariableDefinition::setValueClass(AgClassPtr valueClass)
 //{
 //    this->valueClass = valueClass;
 //}
@@ -177,12 +177,12 @@ void VariableDefinition::setHelpId(const std::string & helpId)
 //    this->remoteCacheTime = remoteCacheTime;
 //}
 //
-DataTable* VariableDefinition::getDefaultValue()
+DataTablePtr VariableDefinition::getDefaultValue()
 {
     return defaultValue;
 }
 
-void VariableDefinition::setDefaultValue(DataTable* defaultValue)
+void VariableDefinition::setDefaultValue(DataTablePtr defaultValue)
 {
     this->defaultValue = defaultValue;
 }
@@ -207,7 +207,7 @@ void VariableDefinition::setDefaultValue(DataTable* defaultValue)
 //    this->allowUpdateEvents = allowUpdateEvents;
 //}
 //
-//void VariableDefinition::addCompatibilityConverter(CompatibilityConverter* converter)
+//void VariableDefinition::addCompatibilityConverter(CompatibilityConverterPtr converter)
 //{
 //    if(compatibilityConverters == 0) {
 //        compatibilityConverters = new ::java::util::LinkedList();
@@ -220,10 +220,10 @@ void VariableDefinition::setDefaultValue(DataTable* defaultValue)
 //    return compatibilityConverters;
 //}
 //
-//VariableDefinition* VariableDefinition::clone()
+//VariableDefinitionPtr VariableDefinition::clone()
 //{
 //    try {
-//        return java_cast< VariableDefinition* >(super::clone());
+//        return java_cast< VariableDefinitionPtr >(super::clone());
 //    } catch (::java::lang::CloneNotSupportedException* ex) {
 //        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
 //    }
@@ -251,7 +251,7 @@ void VariableDefinition::setDefaultValue(DataTable* defaultValue)
 //    return result;
 //}
 //
-//bool VariableDefinition::equals(void* obj)
+//bool VariableDefinition::equals(AgObjectPtr obj)
 //{
 //    if(this) == obj) {
 //        return true;
@@ -262,7 +262,7 @@ void VariableDefinition::setDefaultValue(DataTable* defaultValue)
 //    if(getClass()) != obj)->getClass())) {
 //        return false;
 //    }
-//    auto other = java_cast< VariableDefinition* >(obj);
+//    auto other = java_cast< VariableDefinitionPtr >(obj);
 //    if(getDescription() == 0) {
 //        if(other)->getDescription() != 0) {
 //            return false;
@@ -355,7 +355,7 @@ void VariableDefinition::setDefaultValue(DataTable* defaultValue)
 //    return true;
 //}
 //
-//int VariableDefinition::compareTo(VariableDefinition* d)
+//int VariableDefinition::compareTo(VariableDefinitionPtr d)
 //{
 //    if(getIndex() != 0 || d)->getIndex() != 0) {
 //        auto my = getIndex() != 0 ? getIndex() : new ::java::lang::Integer(int(0));
@@ -365,9 +365,9 @@ void VariableDefinition::setDefaultValue(DataTable* defaultValue)
 //    return 0;
 //}
 //
-//int VariableDefinition::compareTo(void* arg0)
+//int VariableDefinition::compareTo(AgObjectPtr arg0)
 //{ 
-//    return compareTo(dynamic_cast< VariableDefinition* >(arg0));
+//    return compareTo(dynamic_cast< VariableDefinitionPtr >(arg0));
 //}
 //
 

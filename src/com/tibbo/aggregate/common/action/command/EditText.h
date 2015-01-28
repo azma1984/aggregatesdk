@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EditTextH
+#define EditTextH
 
 #include "action/GenericActionCommand.h"
 #include <string>
@@ -7,8 +8,8 @@
 class EditText : public GenericActionCommand
 {
 private:
-    static boost::shared_ptr<TableFormat> CFT_EDIT_TEXT_;
-    static boost::shared_ptr<TableFormat> RFT_EDIT_TEXT_;
+    static TableFormatPtr CFT_EDIT_TEXT_;
+    static TableFormatPtr RFT_EDIT_TEXT_;
     std::string text;
     std::string mode;
 
@@ -18,8 +19,8 @@ public:
     static const std::string RF_RESULT_;
     static const std::string RF_TEXT_;
 
-public: /* protected */
-    DataTable* constructParameters();
+public:
+    DataTablePtr constructParameters();
 
 public:
     std::string getText();
@@ -27,11 +28,12 @@ public:
     std::string getMode();
     void setMode(const std::string & mode);
 
-    // Generated
-    EditText();
+	EditText();
     EditText(const std::string & title, const std::string & text, const std::string & mode);
-    EditText(const std::string & title, boost::shared_ptr<DataTable> parameters);
+    EditText(const std::string & title, DataTablePtr parameters);
 
-    static boost::shared_ptr<TableFormat> CFT_EDIT_TEXT();
-    static boost::shared_ptr<TableFormat> RFT_EDIT_TEXT();
+    static TableFormatPtr CFT_EDIT_TEXT();
+	static TableFormatPtr RFT_EDIT_TEXT();
 };
+
+#endif

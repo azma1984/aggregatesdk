@@ -1,10 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/communication/CommandParserListener.java
 
-#pragma once
+#ifndef CommandParserListenerH
+#define CommandParserListenerH
 
-
-struct CommandParserListener
+class CommandParserListener
 {
-	void newDataReceived();
+  virtual void newDataReceived()=0;
 
 };
+
+#endif

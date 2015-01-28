@@ -1,5 +1,5 @@
 #pragma once
-
+ #define BOOST_THREAD_USE_LIB
 #include <list>
 
 #include "datatable/converter/FormatConverter.h"
@@ -10,7 +10,7 @@ class DataTable;
 class DataTableConversion
 {
 private:
-    std::list<boost::shared_ptr<FormatConverter>>  FORMAT_CONVERTERS;
+	std::list< boost::shared_ptr<FormatConverter> >  FORMAT_CONVERTERS;
     DataTableConversion();
 
 public:

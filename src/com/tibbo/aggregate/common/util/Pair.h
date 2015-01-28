@@ -1,8 +1,8 @@
-#pragma once
+#ifndef PairH
+#define PairH
 
 template<class F, class S> class Pair
 {
-	/*
 	Pair(F first, S second) {
 		first = first;
 		second = second;
@@ -36,5 +36,7 @@ template<class F, class S> class Pair
 private: 
 	F first;
 	S second;
-	*/
+
 };
+
+#endif

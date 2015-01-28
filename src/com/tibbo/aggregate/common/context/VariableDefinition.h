@@ -12,76 +12,75 @@
 #include "util/Comparable.h"
 
 //todo - class stub
-class VariableDefinition : public AbstractEntityDefinition//, public Cloneable , public Comparable
+class VariableDefinition : public AbstractEntityDefinition, public Cloneable , public Comparable
 {
 
 private:
-    TableFormat* format;
+    TableFormatPtr format;
     bool readable;
 	bool writable;
       bool hidden;
-	boost::shared_ptr<Permissions> readPermissions;
-	boost::shared_ptr<Permissions> writePermissions;
+	PermissionsPtr readPermissions;
+	PermissionsPtr writePermissions;
 	std::string helpId;
-	VariableGetter* getter;
-    VariableSetter* setter;
-//    bool allowUpdateEvents;
-//    long  changeEventsExpirationPeriod;
-//    bool localCachingEnabled;
-//    long  remoteCacheTime;
-//    ::java::lang::Class* valueClass;
-//    std::list  compatibilityConverters;
-//    bool persistent;
-	DataTable* defaultValue;
+	VariableGetterPtr getter;
+	VariableSetterPtr setter;
+    bool allowUpdateEvents;
+	long  changeEventsExpirationPeriod;
+    bool localCachingEnabled;
+    long  remoteCacheTime;
+    AgClassPtr valueClass;
+    std::list  compatibilityConverters;
+	bool persistent;
+	DataTablePtr defaultValue;
 
 
-   void init(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description);
+   void init(const std::string & name, TableFormatPtr format, bool readable, bool writable, const std::string & description);
 
 public:
-	void setFormat(TableFormat* format);
+	void setFormat(TableFormatPtr format);
     void setReadable(bool readable);
 	void setWritable(bool writable);
 	void setHidden(bool hidden);
 	void setGroup(const std::string & group);
-	void setReadPermissions(boost::shared_ptr<Permissions> readPermissions);
-	void setWritePermissions(boost::shared_ptr<Permissions> writePermissions);
-	void setSetter(VariableSetter* setter);
-	void setGetter(VariableGetter* getter);
-	TableFormat* getFormat();
+	void setReadPermissions(PermissionsPtr readPermissions);
+	void setWritePermissions(PermissionsPtr writePermissions);
+	void setSetter(VariableSetterPtr setter);
+	void setGetter(VariableGetterPtr getter);
+	TableFormatPtr getFormat();
 	bool isReadable();
 	bool isWritable();
 	bool isHidden();
-    boost::shared_ptr<Permissions> getReadPermissions();
-	boost::shared_ptr<Permissions> getWritePermissions();
-    VariableSetter* getSetter();
-	VariableGetter* getGetter();
+    PermissionsPtr getReadPermissions();
+	PermissionsPtr getWritePermissions();
+    VariableSetterPtr getSetter();
+	VariableGetterPtr getGetter();
 	std::string getHelpId();
 	void setHelpId(const std::string & helpId);
-//    ::java::lang::Class* getValueClass();
-//    void setValueClass(::java::lang::Class* valueClass);
-//    long  getChangeEventsExpirationPeriod();
-//    void setChangeEventsExpirationPeriod(long  changeEventsExpirationPeriod);
-//    bool isLocalCachingEnabled();
-//    void setLocalCachingEnabled(bool valueCachingEnabled);
-//    long  getRemoteCacheTime();
-//    void setRemoteCacheTime(long  remoteCacheTime);
-	  DataTable* getDefaultValue();
-	  void setDefaultValue(DataTable* defaultValue);
-//    bool isPersistent();
-//    void setPersistent(bool persistent);
-//    bool isAllowUpdateEvents();
-//    void setAllowUpdateEvents(bool allowUpdateEvents);
-//    void addCompatibilityConverter(CompatibilityConverter* converter);
-//    std::list  getCompatibilityConverters();
-//    VariableDefinition* clone();
-//    int hashCode();
-//    bool equals(void* obj);
-//    int compareTo(VariableDefinition* d);
+    AgClassPtr getValueClass();
+    void setValueClass(AgClassPtr valueClass);
+    long  getChangeEventsExpirationPeriod();
+    void setChangeEventsExpirationPeriod(long  changeEventsExpirationPeriod);
+    bool isLocalCachingEnabled();
+    void setLocalCachingEnabled(bool valueCachingEnabled);
+    long  getRemoteCacheTime();
+	void setRemoteCacheTime(long  remoteCacheTime);
+	  DataTablePtr getDefaultValue();
+	  void setDefaultValue(DataTablePtr defaultValue);
+    bool isPersistent();
+    void setPersistent(bool persistent);
+    bool isAllowUpdateEvents();
+    void setAllowUpdateEvents(bool allowUpdateEvents);
+    void addCompatibilityConverter(CompatibilityConverterPtr converter);
+    std::list  getCompatibilityConverters();
+    VariableDefinitionPtr clone();
+    int hashCode();
+    bool equals(AgObjectPtr obj);
+	int compareTo(VariableDefinitionPtr d);
 
-
-	VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable);
-	VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description);
-	VariableDefinition(const std::string & name, boost::shared_ptr<TableFormat> format, bool readable, bool writable, const std::string & description, const std::string & group);
+ 	VariableDefinition(const std::string & name, TableFormatPtr format, bool readable, bool writable);
+	VariableDefinition(const std::string & name, TableFormatPtr format, bool readable, bool writable, const std::string & description);
+	VariableDefinition(const std::string & name, TableFormatPtr format, bool readable, bool writable, const std::string & description, const std::string & group);
 
 };
 #endif

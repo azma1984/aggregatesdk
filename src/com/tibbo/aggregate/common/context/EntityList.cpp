@@ -16,7 +16,7 @@
 //    ctor();
 //}
 //
-//EntityList::EntityList(DataTable* data) 
+//EntityList::EntityList(DataTablePtr data) 
 //    : EntityList(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(data);
@@ -28,7 +28,7 @@
 //    ctor(context,entity);
 //}
 //
-//EntityList::EntityList(EntityReference* ref) 
+//EntityList::EntityList(EntityReferencePtr ref) 
 //    : EntityList(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(ref);
@@ -53,12 +53,12 @@
 //}
 //std::string EntityList::FIELD_ENTITY_;
 //
-//DateTableFormat*& EntityList::FORMAT()
+//DateTableFormatPtr& EntityList::FORMAT()
 //{
 //    
 //    return FORMAT_;
 //}
-//DateTableFormat* EntityList::FORMAT_;
+//DateTableFormatPtr EntityList::FORMAT_;
 //
 //void EntityList::ctor()
 //{
@@ -66,12 +66,12 @@
 //    init();
 //}
 //
-//void EntityList::ctor(DataTable* data)
+//void EntityList::ctor(DataTablePtr data)
 //{
 //    super::ctor();
 //    init();
 //    for (auto _i = data)->iterator(); _i->hasNext(); ) {
-//        DataRecord* rec = java_cast< DataRecord* >(_i->next());
+//        DataRecordPtr rec = java_cast< DataRecordPtr >(_i->next());
 //        {
 //            entities)->add(new EntityReference(rec)->getString(FIELD_CONTEXT_), rec)->getString(FIELD_ENTITY_))));
 //        }
@@ -85,14 +85,14 @@
 //    add(context, entity);
 //}
 //
-//void EntityList::ctor(EntityReference* ref)
+//void EntityList::ctor(EntityReferencePtr ref)
 //{
 //    super::ctor();
 //    init();
 //    entities)->add(ref));
 //}
 //
-//bool EntityList::includes(EntityReference* ref)
+//bool EntityList::includes(EntityReferencePtr ref)
 //{
 //    return includes(ref)->getContext(), ref)->getEntity());
 //}
@@ -100,7 +100,7 @@
 //bool EntityList::includes(const std::string & context, const std::string & entity)
 //{
 //    for (auto _i = entities)->iterator(); _i->hasNext(); ) {
-//        EntityReference* ref = java_cast< EntityReference* >(_i->next());
+//        EntityReferencePtr ref = java_cast< EntityReferencePtr >(_i->next());
 //        {
 //            if(ref)->getContext())->equals(context)) && ref)->getEntity())->equals(entity))) {
 //                return true;
@@ -110,11 +110,11 @@
 //    return false;
 //}
 //
-//DateDataTable* EntityList::toDataTable()
+//DateDataTablePtr EntityList::toDataTable()
 //{
 //    auto tab = new DataTable(FORMAT_);
 //    for (auto _i = entities)->iterator(); _i->hasNext(); ) {
-//        EntityReference* ref = java_cast< EntityReference* >(_i->next());
+//        EntityReferencePtr ref = java_cast< EntityReferencePtr >(_i->next());
 //        {
 //            tab)->addRecord())->addString(ref)->getContext()))->addString(ref)->getEntity());
 //        }
@@ -134,7 +134,7 @@
 //    }
 //}
 //
-//void EntityList::add(EntityReference* ref)
+//void EntityList::add(EntityReferencePtr ref)
 //{
 //    if(!includes(ref)) {
 //        entities)->add(ref));
@@ -156,13 +156,13 @@
 //    return entities)->toString();
 //}
 //
-//EntityList* EntityList::clone()
+//EntityListPtr EntityList::clone()
 //{
 //    try {
-//        auto clone = java_cast< EntityList* >(super::clone());
+//        auto clone = java_cast< EntityListPtr >(super::clone());
 //        clone)->entities = new ::java::util::LinkedList();
 //        for (auto _i = entities)->iterator(); _i->hasNext(); ) {
-//            EntityReference* er = java_cast< EntityReference* >(_i->next());
+//            EntityReferencePtr er = java_cast< EntityReferencePtr >(_i->next());
 //            {
 //                clone)->entities)->add(er)->clone()));
 //            }
@@ -181,7 +181,7 @@
 //    return result;
 //}
 //
-//bool EntityList::equals(void* obj)
+//bool EntityList::equals(AgObjectPtr obj)
 //{
 //    if(this) == obj)
 //        return true;
@@ -192,7 +192,7 @@
 //    if(getClass()) != obj)->getClass()))
 //        return false;
 //
-//    auto other = java_cast< EntityList* >(obj);
+//    auto other = java_cast< EntityListPtr >(obj);
 //    if(entities == 0) {
 //        if(other)->entities != 0)
 //            return false;

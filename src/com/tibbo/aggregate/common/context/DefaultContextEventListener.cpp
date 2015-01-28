@@ -14,19 +14,19 @@
 //    ctor();
 //}
 //
-//DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController) 
+//DefaultContextEventListener::DefaultContextEventListener(CallerControllerPtr callerController) 
 //    : DefaultContextEventListener(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(callerController);
 //}
 //
-//DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController, int  listenerCode) 
+//DefaultContextEventListener::DefaultContextEventListener(CallerControllerPtr callerController, int  listenerCode) 
 //    : DefaultContextEventListener(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(callerController,listenerCode);
 //}
 //
-//DefaultContextEventListener::DefaultContextEventListener(CallerController* callerController, int  listenerCode, Expression* filter) 
+//DefaultContextEventListener::DefaultContextEventListener(CallerControllerPtr callerController, int  listenerCode, ExpressionPtr filter) 
 //    : DefaultContextEventListener(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(callerController,listenerCode,filter);
@@ -43,19 +43,19 @@
 //    super::ctor();
 //}
 //
-//void DefaultContextEventListener::ctor(CallerController* callerController)
+//void DefaultContextEventListener::ctor(CallerControllerPtr callerController)
 //{
 //    ctor();
 //    this->callerController = callerController;
 //}
 //
-//void DefaultContextEventListener::ctor(CallerController* callerController, int  listenerCode)
+//void DefaultContextEventListener::ctor(CallerControllerPtr callerController, int  listenerCode)
 //{
 //    ctor(callerController);
 //    this->listenerCode = listenerCode;
 //}
 //
-//void DefaultContextEventListener::ctor(CallerController* callerController, int  listenerCode, Expression* filter)
+//void DefaultContextEventListener::ctor(CallerControllerPtr callerController, int  listenerCode, ExpressionPtr filter)
 //{
 //    ctor(callerController, listenerCode);
 //    this->filter = filter;
@@ -67,11 +67,11 @@
 //    this->listenerCode = listenerCode;
 //}
 //
-//bool DefaultContextEventListener::shouldHandle(Event* ev) /* throws(EventHandlingException) */
+//bool DefaultContextEventListener::shouldHandle(EventPtr ev) /* throws(EventHandlingException) */
 //{
 //    if(filter != 0) {
 //        if(evaluator == 0) {
-//            evaluator = new Evaluator(0, 0, ev)->getData(), java_cast< CallerController* >(callerController));
+//            evaluator = new Evaluator(0, 0, ev)->getData(), java_cast< CallerControllerPtr >(callerController));
 //        } else {
 //            evaluator)->getDefaultResolver())->setDefaultTable(ev)->getData());
 //        }
@@ -94,9 +94,9 @@
 //    return true;
 //}
 //
-//CallerController* DefaultContextEventListener::getCallerController()
+//CallerControllerPtr DefaultContextEventListener::getCallerController()
 //{
-//    return java_cast< CallerController* >(callerController);
+//    return java_cast< CallerControllerPtr >(callerController);
 //}
 //
 //java::lang::Integer* DefaultContextEventListener::getListenerCode()
@@ -104,7 +104,7 @@
 //    return listenerCode;
 //}
 //
-//void DefaultContextEventListener::setCallerController(CallerController* callerController)
+//void DefaultContextEventListener::setCallerController(CallerControllerPtr callerController)
 //{
 //    this->callerController = callerController;
 //    if(evaluator != 0) {
@@ -117,12 +117,12 @@
 //    this->acceptEventsWithoutListenerCode = acceptEventsWithoutListenerCode;
 //}
 //
-//void DefaultContextEventListener::setFilter(Expression* filter)
+//void DefaultContextEventListener::setFilter(ExpressionPtr filter)
 //{
 //    this->filter = filter;
 //}
 //
-//Expression* DefaultContextEventListener::getFilter()
+//ExpressionPtr DefaultContextEventListener::getFilter()
 //{
 //    return filter;
 //}

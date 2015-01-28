@@ -3,7 +3,7 @@
 #include "BatchEntry.h"
 #include <iostream>
 
-void BatchContext::addBatchEntry(BatchEntry* batchEntry)
+void BatchContext::addBatchEntry(BatchEntryPtr batchEntry)
 {
 	if(batchEntry == 0)
 	{
@@ -13,19 +13,19 @@ void BatchContext::addBatchEntry(BatchEntry* batchEntry)
    //	entries.insert(batchEntry);
 }
 
-std::list<BatchEntry*>* BatchContext::getEntries()
+std::list<BatchEntryPtr>* BatchContext::getEntries()
 {
  // std::list::iterator iterator =
   //todo
 	//return Collections::unmodifiableList(entries);
 }
 
-BatchEntry* BatchContext::getCurrentEntry()
+BatchEntryPtr BatchContext::getCurrentEntry()
 {
 	return currentEntry;
 }
 
-void BatchContext::markAsPerfomed(BatchEntry* entry)
+void BatchContext::markAsPerfomed(BatchEntryPtr entry)
 {
 //todo
    /*
@@ -36,7 +36,7 @@ void BatchContext::markAsPerfomed(BatchEntry* entry)
 	entry)->setFulfilled(true); */
 }
 
-void BatchContext::setCurrentEntry(BatchEntry* currentEntry)
+void BatchContext::setCurrentEntry(BatchEntryPtr currentEntry)
 {
     this->currentEntry = currentEntry;
 }

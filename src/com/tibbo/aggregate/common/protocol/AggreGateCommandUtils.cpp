@@ -29,7 +29,7 @@ com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::AggreGateCommand
 
 const int com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::CLIENT_PROTOCOL_VERSION;
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::startMessage()
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::startMessage()
 {
     
     auto cmd = new OutgoingAggreGateCommand();
@@ -40,7 +40,7 @@ com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::a
     return cmd;
 }
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::operationMessage()
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::operationMessage()
 {
     
     auto cmd = new OutgoingAggreGateCommand();
@@ -50,7 +50,7 @@ com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::a
     return cmd;
 }
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::getVariableOperation(const std::string & context, const std::string & name)
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::getVariableOperation(const std::string & context, const std::string & name)
 {
     
     auto cmd = operationMessage();
@@ -60,7 +60,7 @@ com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::a
     return cmd;
 }
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::setVariableOperation(const std::string & context, const std::string & name, const std::string & encodedValue)
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::setVariableOperation(const std::string & context, const std::string & name, const std::string & encodedValue)
 {
     
     auto cmd = operationMessage();
@@ -71,7 +71,7 @@ com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::a
     return cmd;
 }
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::callFunctionOperation(const std::string & context, const std::string & name, const std::string & encodedParameters)
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::callFunctionOperation(const std::string & context, const std::string & name, const std::string & encodedParameters)
 {
     
     auto cmd = operationMessage();
@@ -82,7 +82,7 @@ com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::a
     return cmd;
 }
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::addEventListenerOperation(const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter)
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::addEventListenerOperation(const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter)
 {
     
     auto cmd = operationMessage();
@@ -96,7 +96,7 @@ com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::a
     return cmd;
 }
 
-com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand* com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::removeEventListenerOperation(const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter)
+com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommandPtr com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::removeEventListenerOperation(const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter)
 {
     
     auto cmd = operationMessage();
@@ -121,7 +121,7 @@ std::string com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::CLIE
 
 java::lang::Class* com::tibbo::aggregate::common::protocol::AggreGateCommandUtils::class_()
 {
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.protocol.AggreGateCommandUtils", 57);
+    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.AggreGateCommandUtils", 57);
     return c;
 }
 

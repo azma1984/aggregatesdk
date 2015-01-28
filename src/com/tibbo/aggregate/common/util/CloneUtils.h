@@ -11,13 +11,13 @@ class CloneUtils
 {
 /*
 public:
-    static void* genericClone(void* object);
+    static AgObjectPtr genericClone(AgObjectPtr object);
 
-    static void* deepClone(void* object);
+    static AgObjectPtr deepClone(AgObjectPtr object);
 
 
 private:
-    static ::java::lang::Class* getBaseClass(void* object);
+    static AgClassPtr getBaseClass(AgObjectPtr object);
 
 
     // Generated

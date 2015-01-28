@@ -1,10 +1,7 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateDevice.java
-
 #ifndef AggreGateDeviceH
 #define AggreGateDeviceH
 
 #include "TimeHelper.h"
-
 
 class AggreGateDevice
 {
@@ -35,9 +32,8 @@ public:
     std::string getInfo();
     std::string toString();
     int hashCode();
-    bool equals(void* obj);
+    bool equals(AgObjectPtr obj);
 
-    // Generated
     AggreGateDevice();
     AggreGateDevice(std::string name);
 

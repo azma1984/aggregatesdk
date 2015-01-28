@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ActionDefinitionH
+#define ActionDefinitionH
 
 #include "context/EntityDefinition.h"
 #include "action/ResourceMask.h"
@@ -6,8 +7,9 @@
 
 #include "action/ActionCommand.h"
 #include "action/InitialRequest.h"
-//#include <mutex>  mutex is not present in library dinkumware
+#include <boost/thread/mutex.hpp>
 #include <list>
+
 //forward declarations
 template <class I,class C,class R> class Action;
 
@@ -17,32 +19,32 @@ class ActionDefinition: public EntityDefinition
   /**
    * Returns true if action execution is allowed.
    */
-  virtual bool isEnabled();
+  virtual bool isEnabled()=0;
 
   /**
    * Enables/disables action.
    */
-  virtual void setEnabled(bool enabled);
+  virtual void setEnabled(bool enabled)=0;
 
   /**
    * Returns true if action is a default action in context.
    */
-  virtual bool isDefault();
+  virtual bool isDefault()=0;
 
   /**
    * Sets default flag for the action.
    */
-  virtual void setDefault(bool b);
+  virtual void setDefault(bool b)=0;
 
   /**
    * Returns true if action supports non-interactive execution.
    */
-  virtual bool isHeadless();
+  virtual bool isHeadless()=0;
 
   /**
    * Returns true if action is hidden.
    */
-  virtual bool isHidden();
+  virtual bool isHidden()=0;
 
   /**
    * Returns key stroke used to initiate the action in any UI.
@@ -54,33 +56,34 @@ class ActionDefinition: public EntityDefinition
    * Returns the drop source context masks.
    */
 
-  virtual std::list< ResourceMask<ActionDefinition> > getDropSources();
+  virtual std::list< ResourceMask<ActionDefinition> > getDropSources()=0;
 
   /**
    * Returns permissions required to execute action.
    */
   //todo It is defined in the file com\tibbo\aggregate\common\security\Permission.cpp
-//  virtual Permissions getPermissions();
+  virtual Permissions getPermissions()=0;
 
   /**
    * Some category of actions may be applied to groups of objects. To make system know what actions to group the definition has an execution group. If action can't be grouped, execution group should
    * be null.
    */
-  virtual GroupIdentifier *getExecutionGroup();
+  virtual GroupIdentifierPtr getExecutionGroup()=0;
 
   /**
-   * Creates and return an instance of the action
+   * Creates and return an instance of the Action
    */
-  virtual Action<InitialRequest,ActionCommand,ActionResponse> *instantiate();
+
+  virtual Action< InitialRequest,ActionCommand,ActionResponse > *instantiate();
 
   /**
    * If false, parallel execution of several action instances is not allowed
    */
-  virtual bool isConcurrent();
+  virtual bool isConcurrent()=0;
 
   /**
    * Returns the execution lock
    */
-  //todo mutex is not present in library dinkumware
- // virtual std::mutex * getExecutionLock();
+   virtual boost::mutex getExecutionLock()=0;
 };
+#endif

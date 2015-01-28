@@ -12,7 +12,7 @@ class DeviceSettingStatus
 	
 private:
 
-    boost::shared_ptr<Date> time;
+    DatePtr time;
     long duration;
     bool updated;
     int direction;
@@ -25,11 +25,11 @@ public:
     static const std::string FIELD_DIRECTION;
     static const std::string FIELD_ERROR;
 	
-	static boost::shared_ptr<TableFormat> FORMAT;
+	static TableFormatPtr FORMAT;
 
 
-    boost::shared_ptr<Date> getTime();
-    void setTime( boost::shared_ptr<Date> time);
+    DatePtr getTime();
+    void setTime( DatePtr time);
     long getDuration();
     void setDuration(long duration);
     bool isUpdated();

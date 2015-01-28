@@ -5,6 +5,7 @@
 #include "datatable/TableFormat.h"
 #include "Cres.h"
 #include "datatable/DataTableBindingProvider.h"
+#include "util/Comparable.h"
 //#include "Expression/Function/functions.h";
 #include <string>
 #include <list>
@@ -13,19 +14,20 @@
 #include <boost/shared_ptr.hpp>
 
 
-class DeviceAssetDefinition: public AggreGateBean //, public ::java::lang::Comparable
+
+class DeviceAssetDefinition: public AggreGateBean, public Comparable
 {
 private:
     static const std::string FIELD_ID;
     static const std::string FIELD_DESCRIPTION;
     static const std::string FIELD_ENABLED;
     static const std::string FIELD_CHILDREN;
-    static boost::shared_ptr<TableFormat> FORMAT;
+    static TableFormatPtr FORMAT;
     std::string id;
     std::string description;
     bool enabled;
 	
-    std::list<boost::shared_ptr<DeviceAssetDefinition>>  children;
+    std::list<DeviceAssetDefinitionPtr>  children;
 
  public:
     std::string getId();
@@ -34,17 +36,17 @@ private:
     void setDescription(const std::string& description);
     bool isEnabled();
     void setEnabled(bool enabled);
-    std::list<boost::shared_ptr<DeviceAssetDefinition>> getChildren();
-    void setChildren(std::list<boost::shared_ptr<DeviceAssetDefinition>>  children);
-    void addSubgroup(boost::shared_ptr<DeviceAssetDefinition> child);
-    int compareTo(boost::shared_ptr<DeviceAssetDefinition> other);
+    std::list<DeviceAssetDefinitionPtr> getChildren();
+    void setChildren(std::list<DeviceAssetDefinitionPtr>  children);
+    void addSubgroup(DeviceAssetDefinitionPtr child);
+    int compareTo(DeviceAssetDefinitionPtr other);
     std::string toString();
     int hashCode();
-    bool equals(DeviceAssetDefinition* obj);
+    bool equals(DeviceAssetDefinitionPtr obj);
 	void Init();
 
     DeviceAssetDefinition();
-    DeviceAssetDefinition(boost::shared_ptr<DataRecord> data);
+    DeviceAssetDefinition(DataRecordPtr data);
     DeviceAssetDefinition(const std::string& id, const std::string& description);
 
 };

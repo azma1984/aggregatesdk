@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/DefaultClientController.java
 #include "DefaultClientController.h"
 
-DefaultClientController::DefaultClientController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService* */void* commandExecutionService, int maxEventQueueLength)
+DefaultClientController::DefaultClientController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService* */AgObjectPtr commandExecutionService, int maxEventQueueLength)
 {
   /*
     super::ctor(contextManager);
@@ -12,18 +12,18 @@ DefaultClientController::DefaultClientController(BlockingChannel* dataChannel, C
     pendingCommandsQueue = new ::java::util::concurrent::LinkedBlockingQueue(maxEventQueueLength);*/
 }
 /*
-extern void lock(void *);
-extern void unlock(void *);
+extern void lock(AgObjectPtr);
+extern void unlock(AgObjectPtr);
 
 namespace
 {
     struct synchronized
     {
-        synchronized(void *o) : o(o) { ::lock(o); }
+        synchronized(AgObjectPtro) : o(o) { ::lock(o); }
         ~synchronized() { ::unlock(o); }
     private:
         synchronized(const synchronized&); synchronized& operator=(const synchronized&);
-        void *o;
+        AgObjectPtro;
     };
 }
 DefaultClientController::DefaultClientController(const ::default_init_tag&)
@@ -42,9 +42,9 @@ void DefaultClientController::init()
 }
 
 
-void DefaultClientController::processOperationGetVar(const std::string & id, Context* con, const std::string & name, OutgoingAggreGateCommand* ans)
+void DefaultClientController::processOperationGetVar(const std::string & id, ContextPtr con, const std::string & name, OutgoingAggreGateCommandPtr ans)
 {
-    DataTable* result;
+    DataTablePtr result;
     if(Log::CLIENTS())->isDebugEnabled()) {
         Log::CLIENTS())->debug(std::stringBuilder().append(u"Getting variable '"_j)->append(name)
             ->append(u"' from context '"_j)
@@ -61,12 +61,12 @@ void DefaultClientController::processOperationGetVar(const std::string & id, Con
     ans)->addParam(result)->encode(createClassicEncodingSettings(vd)->getFormat() != 0)));
 }
 
-DateDataTable* DefaultClientController::getVariable(Context* con, const std::string & name) 
+DateDataTablePtr DefaultClientController::getVariable(ContextPtr con, const std::string & name) 
 {
     return con)->getVariable(name, getCallerController());
 }
 
-void DefaultClientController::processOperationSetVar(const std::string & id, Context* con, const std::string & name, const std::string & encodedValue, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processOperationSetVar(const std::string & id, ContextPtr con, const std::string & name, const std::string & encodedValue, OutgoingAggreGateCommandPtr ans) 
 {
     if(Log::CLIENTS())->isDebugEnabled()) {
         Log::CLIENTS())->debug(std::stringBuilder().append(u"Setting variable '"_j)->append(name)
@@ -85,19 +85,19 @@ void DefaultClientController::processOperationSetVar(const std::string & id, Con
     ans)->constructReply(id, AggreGateCommand::REPLY_CODE_OK());
 }
 
-VariableDefinition* DefaultClientController::getVariableDefinition(Context* con, const std::string & name)
+VariableDefinitionPtr DefaultClientController::getVariableDefinition(ContextPtr con, const std::string & name)
 {
     return con)->getVariableDefinition(name);
 }
 
-void DefaultClientController::setVariable(Context* con, const std::string & name, DataTable* value) 
+void DefaultClientController::setVariable(ContextPtr con, const std::string & name, DataTablePtr value) 
 {
-    con)->setVariable(name, static_cast< CallerController* >(getCallerController()), value);
+    con)->setVariable(name, static_cast< CallerControllerPtr >(getCallerController()), value);
 }
 
-void DefaultClientController::processOperationCallFunction(const std::string & id, Context* con, const std::string & name, const std::string & encodedParameters, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processOperationCallFunction(const std::string & id, ContextPtr con, const std::string & name, const std::string & encodedParameters, OutgoingAggreGateCommandPtr ans) 
 {
-    DataTable* result;
+    DataTablePtr result;
     if(Log::CLIENTS())->isDebugEnabled()) {
         Log::CLIENTS())->debug(std::stringBuilder().append(u"Calling function '"_j)->append(name)
             ->append(u"' of context '"_j)
@@ -116,22 +116,22 @@ void DefaultClientController::processOperationCallFunction(const std::string & i
     ans)->addParam(result)->encode(createClassicEncodingSettings(fd)->getOutputFormat() != 0)));
 }
 
-FunctionDefinition* DefaultClientController::getFunctionDefinition(Context* con, const std::string & name)
+FunctionDefinitionPtr DefaultClientController::getFunctionDefinition(ContextPtr con, const std::string & name)
 {
     return con)->getFunctionDefinition(name);
 }
 
-DateDataTable* DefaultClientController::callFunction(Context* con, const std::string & name, DataTable* parameters) 
+DateDataTablePtr DefaultClientController::callFunction(ContextPtr con, const std::string & name, DataTablePtr parameters) 
 {
-    return con)->callFunction(name, static_cast< CallerController* >(getCallerController()), parameters);
+    return con)->callFunction(name, static_cast< CallerControllerPtr >(getCallerController()), parameters);
 }
 */
 
-   ContextEventListener *DefaultClientController::getDefaultEventListener()
+   ContextEventListenerPtrDefaultClientController::getDefaultEventListener()
   {
     return defaultEventListener;
   }
-bool DefaultClientController::addNormalListener(const std::string &context,const std::string &name, ContextEventListener* cel)
+bool DefaultClientController::addNormalListener(const std::string &context,const std::string &name, ContextEventListenerPtr cel)
 {
   //  auto con = getContext(context);
   //  if(con != 0) 
@@ -144,7 +144,7 @@ bool DefaultClientController::addNormalListener(const std::string &context,const
   //  }
 }
 /*
-void DefaultClientController::processOperationAddEventListener(const std::string & id, const std::string & context, const std::string & name, int  listener, const std::string & filter, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processOperationAddEventListener(const std::string & id, const std::string & context, const std::string & name, int  listener, const std::string & filter, OutgoingAggreGateCommandPtr ans) 
 {
     if(Log::CLIENTS())->isDebugEnabled()) {
         Log::CLIENTS())->debug(std::stringBuilder().append(u"Adding listener for event '"_j)->append(name)
@@ -152,12 +152,12 @@ void DefaultClientController::processOperationAddEventListener(const std::string
             ->append(context)
             ->append(u"'"_j)->toString());
     }
-    auto cel = createListener(listener, filter != 0 ? new Expression(filter) : static_cast< Expression* >(0));
+    auto cel = createListener(listener, filter != 0 ? new Expression(filter) : static_cast< ExpressionPtr >(0));
     addMaskListener(context, name, cel, true);
     ans)->constructReply(id, AggreGateCommand::REPLY_CODE_OK());
 }
 
-void DefaultClientController::processOperationRemoveEventListener(const std::string & id, const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processOperationRemoveEventListener(const std::string & id, const std::string & context, const std::string & name, int  listenerHashCode, const std::string & filter, OutgoingAggreGateCommandPtr ans) 
 {
     if(Log::CLIENTS())->isDebugEnabled()) {
         Log::CLIENTS())->debug(std::stringBuilder().append(u"Removing listener for event '"_j)->append(name)
@@ -165,12 +165,12 @@ void DefaultClientController::processOperationRemoveEventListener(const std::str
             ->append(context)
             ->append(u"'"_j)->toString());
     }
-    auto cel = createListener(listenerHashCode, filter != 0 ? new Expression(filter) : static_cast< Expression* >(0));
+    auto cel = createListener(listenerHashCode, filter != 0 ? new Expression(filter) : static_cast< ExpressionPtr >(0));
     removeMaskListener(context, name, cel);
     ans)->constructReply(id, AggreGateCommand::REPLY_CODE_OK());
 }
 
-void DefaultClientController::processMessageStart(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processMessageStart(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) 
 {
     int version = (cmd)->getParameter(AggreGateCommand::INDEX_PROTOCOL_VERSION))))->intValue();
     Log::CLIENTS())->debug(std::stringBuilder().append(u"Processing start command, client protocol version: "_j)->append(version)->toString());
@@ -182,7 +182,7 @@ void DefaultClientController::processMessageStart(IncomingAggreGateCommand* cmd,
     }
 }
 */
-void DefaultClientController::processMessageOperation(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) 
 {
 //todo - It is not defined
 	/*
@@ -202,7 +202,7 @@ void DefaultClientController::processMessageOperation(IncomingAggreGateCommand* 
         });
         {
             if(operation)->length() > 1) {
-                throw new ::com::tibbo::aggregate::common::util::SyntaxErrorException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidOpcode"_j))->append(operation)->toString());
+                throw new SyntaxErrorException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidOpcode"_j))->append(operation)->toString());
             }
             if(Log::CLIENTS())->isDebugEnabled()) {
                 Log::CLIENTS())->debug(std::stringBuilder().append(u"Processing message, context '"_j)->append(context)
@@ -262,7 +262,7 @@ void DefaultClientController::processMessageOperation(IncomingAggreGateCommand* 
                 processOperationCallFunction(cmd)->getId(), con, target, cmd)->getEncodedDataTableFromOperationMessage(), ans);
                 break;
             default:
-                throw new ::com::tibbo::aggregate::common::util::SyntaxErrorException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidOpcode"_j))->append(operation)->charAt(int(0)))->toString());
+                throw new SyntaxErrorException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidOpcode"_j))->append(operation)->charAt(int(0)))->toString());
             }
 
         }
@@ -270,15 +270,15 @@ void DefaultClientController::processMessageOperation(IncomingAggreGateCommand* 
 	*/
 }
 /*
-void DefaultClientController::addCustomListeners(Context* con)
+void DefaultClientController::addCustomListeners(ContextPtr con)
 {
 }
 
-void DefaultClientController::processMessage(IncomingAggreGateCommand* cmd, OutgoingAggreGateCommand* ans) 
+void DefaultClientController::processMessage(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) 
 {
     auto messageCode = cmd)->getMessageCode();
     if(messageCode)->length() > 1) {
-        throw new ::com::tibbo::aggregate::common::util::SyntaxErrorException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidMsgCode"_j))->append(messageCode)->toString());
+        throw new SyntaxErrorException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidMsgCode"_j))->append(messageCode)->toString());
     }
     auto code = messageCode)->charAt(int(0));
     if((code != AggreGateCommand::MESSAGE_CODE_START) && (!startMessageReceived)) {
@@ -294,12 +294,12 @@ void DefaultClientController::processMessage(IncomingAggreGateCommand* cmd, Outg
         processMessageOperation(cmd, ans);
         break;
     default:
-        throw new ::com::tibbo::aggregate::common::util::SyntaxErrorException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidMsgCode"_j))->append(messageCode)->charAt(int(0)))->toString());
+        throw new SyntaxErrorException(std::stringBuilder().append(Cres::get())->getString(u"clInvalidMsgCode"_j))->append(messageCode)->charAt(int(0)))->toString());
     }
 
 }
 
-OutgoingAggreGateCommand* DefaultClientController::processCommand(IncomingAggreGateCommand* cmd) 
+OutgoingAggreGateCommandPtr DefaultClientController::processCommand(IncomingAggreGateCommandPtr cmd) 
 {
     auto ans = new OutgoingAggreGateCommand();
     try {
@@ -339,8 +339,8 @@ void DefaultClientController::shutdown()
     //    if(dataChannel != 0) {
     //        dataChannel)->close();
     //    }
-    //    if(java_cast< Context* >(getContextManager())->getRoot()))->getFunctionDefinition(::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGOUT()) != 0) {
-    //        java_cast< Context* >(getContextManager())->getRoot()))->callFunction(::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGOUT(), static_cast< CallerController* >(getCallerController()));
+    //    if(java_cast< ContextPtr >(getContextManager())->getRoot()))->getFunctionDefinition(::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGOUT()) != 0) {
+    //        java_cast< ContextPtr >(getContextManager())->getRoot()))->callFunction(::com::tibbo::aggregate::common::server::RootContextConstants::F_LOGOUT(), static_cast< CallerControllerPtr >(getCallerController()));
     //    }
     //    super::shutdown();
     //} catch (::java::lang::Exception* ex) {
@@ -373,7 +373,7 @@ bool DefaultClientController::run()
 
 void DefaultClientController::runImpl() 
 {
-    //auto command = java_cast< IncomingAggreGateCommand* >(commandParser)->readCommand());
+    //auto command = java_cast< IncomingAggreGateCommandPtr >(commandParser)->readCommand());
     //if(command != 0) {
     //    if(Log::COMMANDS_CLIENT())->isDebugEnabled()) {
     //        Log::COMMANDS_CLIENT())->debug(std::stringBuilder().append(u"Received: "_j)->append(command))->toString());
@@ -404,7 +404,7 @@ std::string DefaultClientController::getErrorDetails(::java::lang::Throwable* er
     return buf)->toString();
 }
 
-void DefaultClientController::sendCommand(OutgoingAggreGateCommand* cmd) 
+void DefaultClientController::sendCommand(OutgoingAggreGateCommandPtr cmd) 
 {
     cmd)->send(static_cast< ::java::nio::channels::ByteChannel* >(dataChannel));
     if(Log::COMMANDS_CLIENT())->isDebugEnabled()) {
@@ -412,7 +412,7 @@ void DefaultClientController::sendCommand(OutgoingAggreGateCommand* cmd)
     }
 }
 
-com::tibbo::aggregate::common::event::ContextEventListener* DefaultClientController::createListener(int  listenerHashCode, Expression* filter)
+com::tibbo::aggregate::common::event::ContextEventListenerPtr DefaultClientController::createListener(int  listenerHashCode, ExpressionPtr filter)
 {
     if(listenerHashCode == 0) {
         return defaultEventListener;
@@ -423,11 +423,11 @@ com::tibbo::aggregate::common::event::ContextEventListener* DefaultClientControl
 void DefaultClientController::processPendingEvents()
 {
     while (true) {
-        OutgoingAggreGateCommand* current;
+        OutgoingAggreGateCommandPtr current;
         {
             synchronized synchronized_0(pendingCommandsQueue);
             {
-                current = java_cast< OutgoingAggreGateCommand* >(pendingCommandsQueue)->poll());
+                current = java_cast< OutgoingAggreGateCommandPtr >(pendingCommandsQueue)->poll());
                 if(current == 0) {
                     return;
                 }
@@ -445,26 +445,26 @@ void DefaultClientController::processPendingEvents()
     }
 }
 */
-Context* DefaultClientController::getContext(const std::string &path)
+ContextPtr DefaultClientController::getContext(const std::string &path)
 {
    
   //return getContextManager()->get(path, getCallerController();
   
-  Context* con=NULL;
+  ContextPtr con=NULL;
   return con;
 }
 /*
-com::tibbo::aggregate::common::event::ContextEventListener* DefaultClientController::getDefaultEventListener()
+com::tibbo::aggregate::common::event::ContextEventListenerPtr DefaultClientController::getDefaultEventListener()
 {
     return defaultEventListener;
 }
 
-Dateencoding::ClassicEncodingSettings* DefaultClientController::createClassicEncodingSettings(bool useFormatCache)
+Dateencoding::ClassicEncodingSettingsPtr DefaultClientController::createClassicEncodingSettings(bool useFormatCache)
 {
     return new encoding::ClassicEncodingSettings(false);
 }
 
-OutgoingAggreGateCommand* DefaultClientController::constructEventCommand(Event* event, int  listenerCode)
+OutgoingAggreGateCommandPtr DefaultClientController::constructEventCommand(EventPtr event, int  listenerCode)
 {
     auto cmd = new OutgoingAggreGateCommand();
     cmd)->constructEvent(event)->getContext(), event)->getName(), event)->getLevel(), event)->getData())->encode(createClassicEncodingSettings(true)), event)->getId(), event)->getCreationtime(), listenerCode);

@@ -4,7 +4,7 @@
 
 
 
-//Binding::Binding(boost::shared_ptr<Reference> reference, boost::shared_ptr<Expression> expression)
+//Binding::Binding(boost::ReferencePtr reference, ExpressionPtr expression)
 //{
 //    id = 0;
 //    this->reference = reference;
@@ -18,12 +18,12 @@
 //    this->expression = new Expression(expression);
 //}
 
-//boost::shared_ptr<Expression> Binding::getExpression()
+//ExpressionPtr Binding::getExpression()
 //{
 //    return expression;
 //}
 
-//boost::shared_ptr<Reference> Binding::getReference()
+//boost::ReferencePtr Binding::getReference()
 //{
 //    return reference;
 //}
@@ -39,7 +39,7 @@ int Binding::hashCode()
 }
 */
 
-bool Binding::equals(Binding *obj)
+bool Binding::equals(BindingPtrobj)
 {
 
     //if(this == obj) {
@@ -50,7 +50,7 @@ bool Binding::equals(Binding *obj)
     //    return false;
     //}
 
-    //Binding* other = dynamic_cast<Binding*>(obj);
+    //BindingPtr other = dynamic_cast<BindingPtr>(obj);
     //if(other == 0) {
     //    return false;
     //}
@@ -78,10 +78,10 @@ bool Binding::equals(Binding *obj)
     return true;
 }
 
-Binding* Binding::clone()
+BindingPtr Binding::clone()
 {
     //try {
-        //Binding* clone = new Binding();
+        //BindingPtr clone = new Binding();
         //clone->reference = reference->clone();
         //clone->expression = (expression != 0) ? expression->clone() : NULL;
         //clone->id = (id == 0) ? 0 : ExpressionUtils::generateBindingId();

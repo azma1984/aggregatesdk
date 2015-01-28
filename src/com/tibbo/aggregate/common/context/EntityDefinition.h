@@ -15,7 +15,7 @@ public:
 	virtual int getIndex()=0;
 	virtual std::string getIconId()=0;
 	virtual std::string toDetailedString()=0;
-	virtual void* getOwner()=0;
+	virtual AgObjectPtr getOwner()=0;
 };
 
 

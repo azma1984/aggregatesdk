@@ -1,6 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/examples/agent/DemoAgent.java
 
-#pragma once
+#ifndef H
+#define H
 
 //#include <fwd-aggregate_sdk_5.11.00.h"
 #include <com/tibbo/aggregate/common/protocol/fwd-aggregate_sdk_5.11.00.h"
@@ -21,7 +22,7 @@ public:
 private:
     bool sentHistory;
 protected:
-    void ctor(::com::tibbo::aggregate::common::protocol::RemoteServer* server, const std::string & name, bool eventConfirmation);
+    void ctor(::com::tibbo::aggregate::common::protocol::RemoteServerPtr server, const std::string & name, bool eventConfirmation);
 
 public: /* protected */
     std::list  getHistory();
@@ -29,7 +30,7 @@ public: /* protected */
     // Generated
 
 public:
-    DemoAgent_DemoAgentContext(::com::tibbo::aggregate::common::protocol::RemoteServer* server, const std::string & name, bool eventConfirmation);
+    DemoAgent_DemoAgentContext(::com::tibbo::aggregate::common::protocol::RemoteServerPtr server, const std::string & name, bool eventConfirmation);
 protected:
     DemoAgent_DemoAgentContext(const ::default_init_tag&);
 
@@ -39,7 +40,7 @@ public:
 
 private:
     void init();
-    ::java::lang::Class* getClass0();
+    AgClassPtr getClass0();
     friend class DemoAgent;
     friend class DemoAgent_main_1;
     friend class DemoAgent_initializeAgentContext_2;

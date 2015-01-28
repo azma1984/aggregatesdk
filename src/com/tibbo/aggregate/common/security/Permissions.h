@@ -9,21 +9,20 @@
 
 class Permissions //TODO: : public ::java::lang::Iterable
 {
-	/*
 private:
-    std::list<boost::shared_ptr<Permission>>  permissions;
+    std::list<PermissionPtr>  permissions;
     boost::mutex permissionsLock;
 
 public:
     std::string encode();
     std::string toString();
     int size();
-    boost::shared_ptr<Permission> add(boost::shared_ptr<Permission> permission);
-    //Iterator* iterator();
-//    int hashCode();
-    bool equals(Permissions* obj);
+    PermissionPtr add(PermissionPtr permission);
+   // Iterator* iterator();  todo
+	int hashCode();
+    bool equals(PermissionsPtr obj);
 
-    // Generated
+
     Permissions();
     Permissions(const std::string& data, boost::shared_ptr<PermissionChecker> checker);
     Permissions(const std::string& context, const std::string& type);
@@ -31,7 +30,5 @@ public:
 
     static const char PERMISSIONS_SEPARATOR;
 
-protected:
-    void ctor(const std::string& data, boost::shared_ptr<PermissionChecker> checker);*/
 };
 #endif

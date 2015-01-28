@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/KeyStroke.java
 #include "KeyStroke.h"
 
 /*
@@ -16,7 +15,7 @@ void KeyStroke::ctor(::javax::swing::KeyStroke* keyStroke)
     this->keyStroke = keyStroke;
 }
 
-KeyStroke* KeyStroke::getKeyStroke(char16_t keyChar)
+KeyStroke* KeyStroke::getKeyStroke(int keyChar)
 {
     return new KeyStroke(::javax::swing::KeyStroke::getKeyStroke(keyChar));
 }

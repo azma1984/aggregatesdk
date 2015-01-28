@@ -11,7 +11,7 @@ private:
     std::string description;
 
 public:
-    static boost::shared_ptr<DeviceRecommendation> getBlank();
+    static DeviceRecommendationPtr getBlank();
     std::string getName();
     std::string getDescription();
     std::string toString(); 

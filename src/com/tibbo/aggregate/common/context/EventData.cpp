@@ -1,71 +1,71 @@
 #include "context/EventData.h"
 
-//EventData::EventData(const ::default_init_tag&)
+//EventDataPtr::EventDataPtr(const ::default_init_tag&)
 //    : super(*static_cast< ::default_init_tag* >(0))
 //{
 //    
 //}
 //
-//EventData::EventData(EventDefinition* definition) 
-//    : EventData(*static_cast< ::default_init_tag* >(0))
+//EventDataPtr::EventDataPtr(EventDefinitionPtr definition) 
+//    : EventDataPtr(*static_cast< ::default_init_tag* >(0))
 //{
 //    ctor(definition);
 //}
 //
-//void EventData::init()
+//void EventDataPtr::init()
 //{
 //    listeners = new ContextEventListenerSet();
 //    history = ::java::util::Collections::synchronizedList(new ::java::util::LinkedList());
 //}
 //
-//void EventData::ctor(EventDefinition* definition)
+//void EventDataPtr::ctor(EventDefinitionPtr definition)
 //{
 //    super::ctor();
 //    init();
 //    this->definition = definition;
 //}
 //
-//void EventData::registerFiredEvent()
+//void EventDataPtr::registerFiredEvent()
 //{
 //    fireCount++;
 //}
 //
-//EventDefinition* EventData::getDefinition()
+//EventDefinitionPtr EventDataPtr::getDefinition()
 //{
 //    return definition;
 //}
 //
-//std::set  EventData::getListeners()
+//std::set  EventDataPtr::getListeners()
 //{
 //    return listeners)->getListeners();
 //}
 //
-//std::set  EventData::getListenersInfo()
+//std::set  EventDataPtr::getListenersInfo()
 //{
 //    return listeners)->getListenersInfo();
 //}
 //
-//long EventData::getFireCount()
+//long EventDataPtr::getFireCount()
 //{
 //    return fireCount;
 //}
 //
-//bool EventData::addListener(ContextEventListener* listener, bool weak)
+//bool EventDataPtr::addListener(ContextEventListenerPtr listener, bool weak)
 //{
 //    return listeners)->addListener(listener, weak);
 //}
 //
-//bool EventData::removeListener(ContextEventListener* listener)
+//bool EventDataPtr::removeListener(ContextEventListenerPtr listener)
 //{
 //    return listeners)->removeListener(listener);
 //}
 //
-//void EventData::clearListeners()
+//void EventDataPtr::clearListeners()
 //{
 //    listeners)->clear();
 //}
 //
-//void EventData::dispatch(Event* event)
+//void EventDataPtr::dispatch(EventPtr event)
 //{
 //    try {
 //        auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
@@ -77,7 +77,7 @@
 //                ->append(u" listeners"_j)->toString());
 //        }
 //        for (auto _i = listenerSet)->iterator(); _i->hasNext(); ) {
-//            ContextEventListener* el = java_cast< ContextEventListener* >(_i->next());
+//            ContextEventListenerPtr el = java_cast< ContextEventListenerPtr >(_i->next());
 //            {
 //                try {
 //                    if(!el)->shouldHandle(event)) {
@@ -106,18 +106,18 @@
 //    }
 //}
 //
-//Event* EventData::store(Event* event, int  customMemoryStorageSize)
+//EventPtr EventDataPtr::store(EventPtr event, int  customMemoryStorageSize)
 //{
 //    auto memoryStorateSize = customMemoryStorageSize != 0 ? customMemoryStorageSize : definition)->getMemoryStorageSize();
 //    if(memoryStorateSize == 0) {
 //        return 0;
 //    }
-//    Event* duplicate;
+//    EventPtr duplicate;
 //    {
 //        synchronized synchronized_0(history);
 //        {
 //            for (auto *iterator = history)->iterator(); iterator)->hasNext(); ) {
-//                auto cur = java_cast< Event* >(iterator)->next());
+//                auto cur = java_cast< EventPtr >(iterator)->next());
 //                if(cur)->getExpirationtime() != 0 && cur)->getExpirationtime())->getTime() < ::java::lang::System::currentTimeMillis()) {
 //                    iterator)->remove();
 //                    continue;
@@ -126,7 +126,7 @@
 //                    iterator)->remove();
 //                    continue;
 //                }
-//                if(event)->getDeduplicationId() != 0 && ::com::tibbo::aggregate::common::util::Util::equals(event)->getDeduplicationId(), cur)->getDeduplicationId())) {
+//                if(event)->getDeduplicationId() != 0 && Util::equals(event)->getDeduplicationId(), cur)->getDeduplicationId())) {
 //                    if(duplicate != 0) {
 //                        Log::CONTEXT_EVENTS())->warn(std::stringBuilder().append(u"Event history of event "_j)->append(event))
 //                            ->append(u" contains more than one duplicate with ID: "_j)
@@ -152,26 +152,26 @@
 //    }
 //}
 //
-//std::list  EventData::getHistory()
+//std::list  EventDataPtr::getHistory()
 //{
 //    return new ::java::util::LinkedList(history);
 //}
 //
-//std::string EventData::toString()
+//std::string EventDataPtr::toString()
 //{
 //    return std::stringBuilder().append(definition))->append(u" - "_j)
 //        ->append(listeners)->size())
 //        ->append(u" listeners"_j)->toString();
 //}
 //
-//int EventData::compareTo(EventData* d)
+//int EventDataPtr::compareTo(EventDataPtr d)
 //{
 //    return definition)->compareTo(d)->getDefinition());
 //}
 //
-//int EventData::compareTo(void* arg0)
+//int EventDataPtr::compareTo(AgObjectPtr arg0)
 //{ 
-//    return compareTo(dynamic_cast< EventData* >(arg0));
+//    return compareTo(dynamic_cast< EventDataPtr >(arg0));
 //}
 //
 //
