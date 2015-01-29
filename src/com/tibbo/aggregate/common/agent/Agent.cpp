@@ -30,7 +30,7 @@ void Agent::connect()
 	//"Connecting to remote server"
       //  auto socket = SocketFactory::getDefault())->createSocket(server)->getAddress(), server->getPort());
       //  socket->setSoTimeout(SOCKET_TIMEOUT);
-        BlockingChannel dataChannel = BlockingChannel(/*socket*/);
+        //BlockingChannel dataChannel = BlockingChannel(/*socket*/);
         //"Connection with remote server established";
     //    contextManager->start();
     //    controller = new AgentImplementationController(dataChannel, contextManager,0 /*newCachedThreadPool()*/, maxEventQueueLength);

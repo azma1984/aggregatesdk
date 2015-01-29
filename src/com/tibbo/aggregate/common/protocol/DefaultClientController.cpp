@@ -1,7 +1,12 @@
 #include "protocol/DefaultClientController.h"
 
-DefaultClientController::DefaultClientController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService* */AgObjectPtr commandExecutionService, int maxEventQueueLength)
+DefaultClientController::DefaultClientController(
+    BlockingChannelPtr dataChannel,
+    ContextManagerPtr contextManager,
+    /*ExecutorService* */AgObjectPtr commandExecutionService,
+    int maxEventQueueLength)
 {
+    //TODO:
   /*
     super::ctor(contextManager);
     init();
@@ -10,6 +15,7 @@ DefaultClientController::DefaultClientController(BlockingChannel* dataChannel, C
     commandParser = new AggreGateCommandParser(dataChannel, AggreGateCommand::START_CHAR, AggreGateCommand::END_CHAR);
     pendingCommandsQueue = new ::java::util::concurrent::LinkedBlockingQueue(maxEventQueueLength);*/
 }
+
 /*
 extern void lock(AgObjectPtr);
 extern void unlock(AgObjectPtr);

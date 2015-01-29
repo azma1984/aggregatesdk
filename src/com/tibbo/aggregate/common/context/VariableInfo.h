@@ -20,7 +20,7 @@ class VariableInfo
    VariableInfo(VariableInfo const&);
    void operator=(VariableInfo const&);
 
-   static TableFormatPtrFORMAT;
+   static TableFormatPtr FORMAT;
 
 public:
     static DataTablePtr createInfoTable(VariableDefinitionPtr vd);

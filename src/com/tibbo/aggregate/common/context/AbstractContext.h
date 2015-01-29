@@ -141,7 +141,7 @@ private:
     EventPtr fireEvent(EventDefinitionPtr ed, EventPtr event, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request);
 
 	void processEnrichments(EventPtr event, EventProcessingRulePtr rule, CallerControllerPtr caller);
-    void lock(RequestControllerPtrrequest, boost::mutex lock) ;
+    void lock(RequestControllerPtr request, boost::mutex lock) ;
 	DataRecordPtr varDefToDataRecord(VariableDefinitionPtr vd, CallerControllerPtr caller);
     VariableDefinitionPtr varDefFromDataRecord(DataRecordPtr rec, CallerControllerPtr caller);
 

@@ -1,13 +1,7 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/ChoicesConverter.java
-
 #pragma once
 
-#include "datatable/fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/converter/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
 #include "datatable/converter/AbstractFormatConverter.h"
-
+#include "util/Pointers.h"
 
 
 class Dateconverter::ChoicesConverter
@@ -19,7 +13,7 @@ public:
 
 private:
     std::list  choices;
-    Choice* defaultChoice;
+    ChoicePtr defaultChoice;
 protected:
     void ctor(::java::lang::Class* valueClass);
 

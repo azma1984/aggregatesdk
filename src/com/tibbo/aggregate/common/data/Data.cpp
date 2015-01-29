@@ -143,31 +143,31 @@ void Data::setAttachments(std::map<std::string, AgObjectPtr > &attachments)
 	this->attachments = attachments;
 }
 
-//DataPtr Data::clone() const
-//{
-////	DataPtr cl = new Data();
-////
-////  //  try
-////  //  {
-////  //    cl = (Data) super.clone();
-////  //  }
-////  //  catch (CloneNotSupportedException ex)
-////  //  {
-////  //    throw new IllegalStateException(ex.getMessage(), ex);
-////  //  }
-////
-////	cl->id = id;
-////	cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
-////	cl->data = data;//(byte[]) CloneUtils.deepClone(data);
-////	//TODO: копирование std::map<std::string, AgObjectPtr> attachments;
-//
-//	return cl;
-//}
+Data* Data::clone() const
+{
+    Data* cl = new Data();
+
+  //  try
+  //  {
+  //    cl = (Data) super.clone();
+  //  }
+  //  catch (CloneNotSupportedException ex)
+  //  {
+  //    throw new IllegalStateException(ex.getMessage(), ex);
+  //  }
+
+    cl->id = id;
+    cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
+    cl->data = data;//(byte[]) CloneUtils.deepClone(data);
+    //TODO: копирование std::map<std::string, AgObjectPtr> attachments;
 
     return cl;
 }
+
 	
 bool Data::equals(Data *eq) const
 {
-	return (this->id == data->id) && (this->name == data->name) && (this->preview == data->preview) && (this->data == data->data);
+    return (this->id == eq->id) && (this->name == eq->name);
+    //TODO: compare vector
+    //&& (this->preview == eq->preview) && (this->eq == data->data);
 }

@@ -20,4 +20,4 @@ public:
     void setTimestamp(DatePtr timestamp);
     DataTablePtr HistoricalValue::getValue();
     void setValue(DataTablePtr value);
-}
+};

@@ -3,7 +3,7 @@
 
 #include "../FieldFormat.h"
 #include "../encoding/ClassicEncodingSettings.h"
-#include "SString.h"
+#include "util/SString.h"
 
 class BooleanFieldFormat : public FieldFormat
 {

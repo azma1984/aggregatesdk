@@ -54,7 +54,6 @@ private:
 	CommandParserPtr commandParser;
 	bool startMessageReceived;
 	bool shutDown;
-
 	ContextEventListenerPtr defaultEventListener;
 
    // ::java::util::concurrent::ExecutorService* commandExecutionService; todo
@@ -62,31 +61,24 @@ private:
 
 
 	void init();
-	void processPendingEvents();
-
-	ContextPtr getContext(const std::string &path);
-
+	void processPendingEvents();	
 	bool controllerShouldHandle(EventPtr ev, ContextEventListenerPtr listener);
-protected:
-    void processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) ;
 
+protected:
+    ContextPtr getContext(const std::string &path);
+    void processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) ;
 	void addCustomListeners(ContextPtr con);
 	void processMessage(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans);
 
 public:
-   ContextEventListenerPtr getDefaultEventListener();
+    ContextEventListenerPtr getDefaultEventListener();
 
 	void processOperationGetVar(const std::string & id, ContextPtr con, const std::string & name, OutgoingAggreGateCommandPtr ans) ;
-
 	DataTablePtr getVariable(ContextPtr con, const std::string & name) ;
-
 	void processOperationSetVar(const std::string & id, ContextPtr con, const std::string & name, const std::string & encodedValue, OutgoingAggreGateCommandPtr ans) ;
-
 	VariableDefinitionPtr getVariableDefinition(ContextPtr con, const std::string & name);
 	void setVariable(ContextPtr con, const std::string & name, DataTablePtr value) ;
-
 	void processOperationCallFunction(const std::string & id, ContextPtr con, const std::string & name, const std::string & encodedParameters, OutgoingAggreGateCommandPtr ans) ;
-
 	FunctionDefinitionPtr getFunctionDefinition(ContextPtr con, const std::string & name);
 	DataTablePtr callFunction(ContextPtr con, const std::string & name, DataTablePtr parameters) ;
 
@@ -107,18 +99,12 @@ public:
 
 	void sendCommand(OutgoingAggreGateCommandPtr cmd) ;
     ContextEventListenerPtr createListener(int  listenerHashCode, ExpressionPtr filter);
-
-
 	ClassicEncodingSettingsPtr createClassicEncodingSettings(bool useFormatCache);
-
-
     OutgoingAggreGateCommandPtr constructEventCommand(EventPtr event, int  listenerCode);
     bool isConnected();
 	std::string getAddress();
 
 
     DefaultClientController(BlockingChannelPtr dataChannel, ContextManagerPtr contextManager,/*ExecutorService* */AgObjectPtr commandExecutionService, int maxEventQueueLength);
-
-
 };
 #endif

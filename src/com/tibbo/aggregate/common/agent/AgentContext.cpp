@@ -50,13 +50,6 @@ AgentContext::AgentContext(RemoteServerPtr server, const std::string &name, bool
 
    EFT_EVENT_CONFIRMED= TableFormatPtr(new TableFormat(1, 1, "<" + EF_EVENT_CONFIRMED_ID + "><L>"));
   
-  loginImpl = new FunctionImplementation1();
-  registerImpl = new FunctionImplementation2();
-  synchronizedImpl = new FunctionImplementation3();
-  confirmEventImpl = new FunctionImplementation4();
-  getHistoryImpl = new FunctionImplementation5();
-
-
  // AbstractContext::AbstractContext(Contexts::CTX_ROOT);//todo
   this->server = server;
   this->name = name;

@@ -2,12 +2,12 @@
 #include "context/AbstractContext.h"
 
 AgentImplementationController::AgentImplementationController(
-    BlockingChannel dataChannel,
-    ContextManager contextManager,
+    BlockingChannelPtr dataChannel,
+    ContextManagerPtr contextManager,
     /*ExecutorService**/AgObjectPtr commandExecutionService,
-    Integer maxEventQueueLength)
+    int maxEventQueueLength)
+    : DefaultClientController(dataChannel, contextManager, commandExecutionService, maxEventQueueLength)
 {
-    DefaultClientController(dataChannel, contextManager, commandExecutionService, maxEventQueueLength);
 }
 
 void AgentImplementationController::processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) 

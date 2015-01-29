@@ -43,10 +43,7 @@
   
 class Agent
 {
-
-private:
-    
-
+private:  
     static const int SOCKET_TIMEOUT = 20000;
     
     RemoteServerPtr server; //it is defined in com\tibbo\aggregate\common\protocol\RemoteServer.h
@@ -55,8 +52,7 @@ private:
 	/*ContextManager<Agent>*/AgentContextManagerPtr contextManager;//it is defined in com\tibbo\aggregate\common\context\ContextManager.h
     AgentImplementationController* controller;
 
- 
-    
+
 public:
 	
     static const int DEFAULT_PORT = 6480;    

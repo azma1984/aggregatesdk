@@ -9,7 +9,7 @@
 #include "protocol/RemoteServer.h"
 #include "DataTable/DataTable.h"
 #include "DataTable/TableFormat.h"
-#include "agent/historicalvalue.h"
+#include "agent/HistoricalValue.h"
 #include <list>
 
 class AgentContext : public AbstractContext//<Context>
@@ -54,20 +54,11 @@ public:
     static TableFormatPtr FIFT_CONFIRM_EVENT;
     static TableFormatPtr EFT_EVENT_CONFIRMED; 
 
-
     bool isSynchronized1();
     void setSynchronized(bool isSynchronized);
     RemoteServerPtr getServer();
 
-
     std::list<HistoricalValue>  getHistory();
-
-
-    FunctionImplementation1* loginImpl;
-    FunctionImplementation2* registerImpl;
-    FunctionImplementation3* synchronizedImpl;
-    FunctionImplementation4* confirmEventImpl;
-    FunctionImplementation5* getHistoryImpl;
 
     void setupMyself(); 
 
