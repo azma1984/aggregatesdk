@@ -1,95 +1,28 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/Evaluator.java
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
+#include "expression/Evaluator.h"
 
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
-#include <com/tibbo/aggregate/common/expression/AbstractEvaluatingVisitor.h"
-#include <com/tibbo/aggregate/common/expression/DefaultEvaluatingVisitor.h"
-#include <com/tibbo/aggregate/common/expression/DefaultReferenceResolver.h"
-#include <com/tibbo/aggregate/common/expression/EnvironmentReferenceResolver.h"
-#include <com/tibbo/aggregate/common/expression/EvaluationEnvironment.h"
-#include <com/tibbo/aggregate/common/expression/EvaluationException.h"
-#include <com/tibbo/aggregate/common/expression/Evaluator_LocalEnvironmentResolver.h"
-#include <com/tibbo/aggregate/common/expression/Expression.h"
-#include <com/tibbo/aggregate/common/expression/ExpressionUtils.h"
-#include <com/tibbo/aggregate/common/expression/Function.h"
-#include <com/tibbo/aggregate/common/expression/Reference.h"
-#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
-#include <com/tibbo/aggregate/common/expression/parser/ASTStart.h"
-#include <com/tibbo/aggregate/common/expression/parser/ExpressionParserVisitor.h"
-#include <com/tibbo/aggregate/common/expression/util/Tracer.h"
-#include <com/tibbo/aggregate/common/util/DateUtils.h"
-#include <com/tibbo/aggregate/common/util/SyntaxErrorException.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
-//#include <java/awt/Color.h"
-//#include <java/lang/Boolean.h"
-//#include <java/lang/ClassCastException.h"
-//#include <java/lang/Comparable.h"
-//#include <java/lang/Exception.h"
-//#include <java/lang/IllegalArgumentException.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Number.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/text/MessageFormat.h"
-//#include <java/text/ParseException.h"
-//#include <java/text/SimpleDateFormat.h"
-//#include <java/util/Collections.h"
-//#include <java/util/Date.h"
-//#include <java/util/HashMap.h"
-//#include <java/util/LinkedHashMap.h"
-//#include <java/util/Map.h"
-//#include <java/util/ResourceBundle.h"
-#include <ObjectArray.h"
+//#include <com/tibbo/aggregate/common/Cres.h"
+//#include <com/tibbo/aggregate/common/datatable/DataTable.h"
+//#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
+//#include <com/tibbo/aggregate/common/expression/AbstractEvaluatingVisitor.h"
+//#include <com/tibbo/aggregate/common/expression/DefaultEvaluatingVisitor.h"
+//#include <com/tibbo/aggregate/common/expression/DefaultReferenceResolver.h"
+//#include <com/tibbo/aggregate/common/expression/EnvironmentReferenceResolver.h"
+//#include <com/tibbo/aggregate/common/expression/EvaluationEnvironment.h"
+//#include <com/tibbo/aggregate/common/expression/EvaluationException.h"
+//#include <com/tibbo/aggregate/common/expression/Evaluator_LocalEnvironmentResolver.h"
+//#include <com/tibbo/aggregate/common/expression/Expression.h"
+//#include <com/tibbo/aggregate/common/expression/ExpressionUtils.h"
+//#include <com/tibbo/aggregate/common/expression/Function.h"
+//#include <com/tibbo/aggregate/common/expression/Reference.h"
+//#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ASTStart.h"
+//#include <com/tibbo/aggregate/common/expression/parser/ExpressionParserVisitor.h"
+//#include <com/tibbo/aggregate/common/expression/util/Tracer.h"
+//#include <com/tibbo/aggregate/common/util/DateUtils.h"
+//#include <com/tibbo/aggregate/common/util/SyntaxErrorException.h"
+//#include <com/tibbo/aggregate/common/util/Util.h"
 
-template<typename T, typename U>
-static T java_cast(U* u)
-{
-    if(!u) return static_cast<T>(0);
-    auto t = dynamic_cast<T>(u);
-    if(!t) throw new ::java::lang::ClassCastException();
-    return t;
-}
 
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
-
-namespace
-{
-    template<typename F>
-    struct finally_
-    {
-        finally_(F f) : f(f), moved(false) { }
-        finally_(finally_ &&x) : f(x.f), moved(false) { x.moved = true; }
-        ~finally_() { if(!moved) f(); }
-    private:
-        finally_(const finally_&); finally_& operator=(const finally_&);
-        F f;
-        bool moved;
-    };
-
-    template<typename F> finally_<F> finally(F f) { return finally_<F>(f); }
-}
-extern void lock(void *);
-extern void unlock(void *);
-
-namespace
-{
-    struct synchronized
-    {
-        synchronized(void *o) : o(o) { ::lock(o); }
-        ~synchronized() { ::unlock(o); }
-    private:
-        synchronized(const synchronized&); synchronized& operator=(const synchronized&);
-        void *o;
-    };
-}
 Evaluator::Evaluator(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {

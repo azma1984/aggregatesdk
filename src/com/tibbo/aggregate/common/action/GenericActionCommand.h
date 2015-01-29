@@ -23,6 +23,14 @@ class GenericActionCommand : public ActionCommand
     RequestIdentifierPtr requestId;
     TableFormatPtr responseFormat;
 
+protected:
+    void ctor();
+    void ctor(const std::string& type, TableFormatPtr requestFormat,
+                         TableFormatPtr responseFormat);
+    void ctor(const std::string& type, const std::string& title);
+    void ctor(const std::string& type, const std::string& title,
+                         DataTablePtr parameters, TableFormatPtr format);
+    void ctor(const std::string& requestId, const std::string& title, DataTablePtr parameters);
 
 public:
     GenericActionCommand();
@@ -51,11 +59,12 @@ public:
     virtual bool isResponseValid(ActionResponsePtr actionRequest);
     virtual void setBatchEntry(bool batchEntry);
     virtual RequestIdentifierPtr getRequestId();
-    virtual ActionCommandPtr clone();
+    virtual ActionCommandPtr clone() const;
 
     int hashCode();
     bool equals(AgObjectPtr obj);
     std::string toString();
+//    virtual Cloneable * clone() const;
 
 protected:
     DataTablePtr constructParameters();        

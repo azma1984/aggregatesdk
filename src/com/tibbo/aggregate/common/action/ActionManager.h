@@ -26,7 +26,7 @@
 class ActionManager
 {
 private:
-	ActionDirectory<ActionLocator>* actionDirectory;
+    ActionDirectory<ActionLocator> actionDirectory;
 
 	ActionIdGeneratorPtr actionIdGenerator;
 	std::map< ActionIdentifierPtr, Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr > > actions;

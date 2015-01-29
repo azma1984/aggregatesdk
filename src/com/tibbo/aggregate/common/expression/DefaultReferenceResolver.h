@@ -3,6 +3,7 @@
 #include "expression/AbstractReferenceResolver.h"
 #include <string>
 #include <boost/shared_ptr.hpp>
+#include "util/Pointers.h"
 
 class DefaultReferenceResolver : public AbstractReferenceResolver
 {
@@ -21,7 +22,7 @@ public:
     static const std::string SELECTION_VALUE_DESCRIPTION;
 
     DefaultReferenceResolver();
-    DefaultReferenceResolver(boost::shared_ptr<DataTable> defaultTable);
+    DefaultReferenceResolver(DataTablePtr defaultTable);
 
     boost::shared_ptr<void> resolveReference(boost::shared_ptr<Reference> ref, boost::shared_ptr<EvaluationEnvironment> environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */;
     std::list<boost::shared_ptr<Context>>  getContexts(boost::shared_ptr<Reference> ref) ;

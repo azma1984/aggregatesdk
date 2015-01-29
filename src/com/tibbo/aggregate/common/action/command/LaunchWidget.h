@@ -1,5 +1,6 @@
 #ifndef _LAUNCHWIDGET_H_
 #define _LAUNCHWIDGET_H_
+
 #include "action/GenericActionCommand.h"
 
 
@@ -28,7 +29,7 @@ public:
     void setDefaultContext(const std::string& defaultContext);
     std::string getWidgetContext();
     void setWidgetContext(const std::string& widgetContext);
-    std::strin* getTemplate();
+    std::string getTemplate();
     void setTemplate(const std::string& encodedWidgetTemplate);
     WindowLocationPtr getLocation();
     void setLocation(WindowLocationPtr location);

@@ -6,6 +6,7 @@
 #include "action/GenericActionResponse.h"
 #include "action/RequestIdentifier.h"
 #include "datatable/DataTable.h"
+#include "util/Pointers.h"
 
 
 class ServerActionInput : public InitialRequest

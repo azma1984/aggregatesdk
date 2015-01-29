@@ -2,6 +2,7 @@
 #ifndef StringIdentifierH
 #define StringIdentifierH
 
+#include "util/Pointers.h"
 #include <string>
 
 class StringIdentifier

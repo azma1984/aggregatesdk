@@ -27,7 +27,7 @@ public:
     virtual bool isHeadless() = 0;
     virtual std::string getType() = 0;
     virtual std::string getAddress() = 0;
-    virtual DatePtrgetCreationTime() = 0;
+    virtual DatePtr getCreationTime() = 0;
     virtual CallerDataPtr getCallerData() = 0;
     virtual std::map<std::string, std::string> getProperties() = 0;
     virtual void sendFeedback(int level, const std::string& message) = 0;

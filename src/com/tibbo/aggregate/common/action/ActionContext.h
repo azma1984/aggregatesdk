@@ -41,7 +41,7 @@ class ActionContext
 	BatchContextPtr getBatchContext();
 	RequestCachePtr getRequestCache();
 	ActionStatePtr getActionState();
-	ActionManagerPtrgetActionManager();
+    ActionManagerPtr getActionManager();
 
 	std::list<RequestIdentifierPtr> getRequestedIds();
 

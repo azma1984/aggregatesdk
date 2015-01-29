@@ -28,8 +28,8 @@ protected:
     void ctor(ReferenceResolver* resolver);
 
 public:
-    void* evaluate(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
-    void* evaluate(boost::shared_ptr<Expression> expression, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */;
+    void* evaluate(ExpressionPtr expression) /* throws(SyntaxErrorException, EvaluationException) */;
+    void* evaluate(ExpressionPtr expression, EvaluationEnvironment* environment) /* throws(SyntaxErrorException, EvaluationException) */;
     std::string evaluateToString(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
     std::string evaluateToStringOrNull(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;
     bool evaluateToBoolean(boost::shared_ptr<Expression> expression) /* throws(SyntaxErrorException, EvaluationException) */;

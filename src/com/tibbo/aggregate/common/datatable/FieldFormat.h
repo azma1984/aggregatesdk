@@ -26,16 +26,16 @@ private:
     static std::string ELEMENT_ICON;
     static std::string ELEMENT_GROUP;
 
-    static const char ADVANCED_FLAG = 'A';
-    static const char NOT_REPLICATED_FLAG = 'C';
-    static const char EXTENDABLE_SELECTION_VALUES_FLAG = 'E';
-    static const char HIDDEN_FLAG = 'H';
-    static const char INLINE_DATA_FLAG = 'I';
-    static const char KEY_FIELD_FLAG = 'K';
-    static const char NULLABLE_FLAG = 'N';
-    static const char OPTIONAL_FLAG = 'O';
-    static const char READ_ONLY_FLAG = 'R';
-    static const char DEFAULT_OVERRIDE = 'D';
+    static const char ADVANCED_FLAG;
+    static const char NOT_REPLICATED_FLAG;
+    static const char EXTENDABLE_SELECTION_VALUES_FLAG;
+    static const char HIDDEN_FLAG;
+    static const char INLINE_DATA_FLAG;
+    static const char KEY_FIELD_FLAG;
+    static const char NULLABLE_FLAG;
+    static const char OPTIONAL_FLAG;
+    static const char READ_ONLY_FLAG;
+    static const char DEFAULT_OVERRIDE;
 
 
     std::string name;
@@ -66,21 +66,21 @@ protected:
     FieldFormat(const std::string &name);
 
 public:
-    static const char INTEGER_FIELD = 'I';
-    static const char STRING_FIELD = 'S';
-    static const char BOOLEAN_FIELD = 'B';
-    static const char LONG_FIELD = 'L';
-    static const char FLOAT_FIELD = 'F';
-    static const char DOUBLE_FIELD = 'E';
-    static const char DATE_FIELD = 'D';
-    static const char DATATABLE_FIELD = 'T';
-    static const char COLOR_FIELD = 'C';
-    static const char DATA_FIELD = 'A';
+    static const char INTEGER_FIELD;
+    static const char STRING_FIELD;
+    static const char BOOLEAN_FIELD;
+    static const char LONG_FIELD;
+    static const char FLOAT_FIELD;
+    static const char DOUBLE_FIELD;
+    static const char DATE_FIELD;
+    static const char DATATABLE_FIELD;
+    static const char COLOR_FIELD;
+    static const char DATA_FIELD;
 
-    static const char VALIDATOR_LIMITS = 'L';
-    static const char VALIDATOR_REGEX = 'R';
-    static const char VALIDATOR_NON_NULL = 'N';
-    static const char VALIDATOR_ID = 'I';
+    static const char VALIDATOR_LIMITS;
+    static const char VALIDATOR_REGEX;
+    static const char VALIDATOR_NON_NULL;
+    static const char VALIDATOR_ID;
 
     static std::string EDITOR_LIST;
     static std::string EDITOR_BAR;

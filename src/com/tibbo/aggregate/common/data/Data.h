@@ -41,7 +41,7 @@ public:
     void setAttachments(std::map<std::string, AgObjectPtr > &attachments);
 
     virtual DataPtr clone() const;
-    bool equals(DataPtrdata);
+    bool equals(Data* eq) const;
 		
 private:
 	long id;

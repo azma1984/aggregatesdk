@@ -4,6 +4,7 @@
 #define EntityDefinitionH
 
 #include <string>
+#include <util/Pointers.h>
 
 class EntityDefinition
 {

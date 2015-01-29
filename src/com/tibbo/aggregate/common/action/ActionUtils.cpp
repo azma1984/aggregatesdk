@@ -114,12 +114,12 @@ void ActionUtils::setActionInitializer(ActionInitializerPtr initializer)
 }
 
 
-void ActionUtils::checkResponseCode(std::string result)
+void ActionUtils::checkResponseCode(const std::string& result)
 {
- if(!RESPONSE_SAVED.compare(result.c_str()) && !RESPONSE_CLOSED.compare(result.c_str())) && !RESPONSE_ERROR.compare(result.c_str()))
-  {
-	std::cout <<"Illegal response result: ";
-  }
+    if( ((RESPONSE_SAVED != result.c_str()) && (RESPONSE_CLOSED != result.c_str())) && (RESPONSE_ERROR != result.c_str()))
+    {
+    std::cout <<"Illegal response result: ";
+    }
 }
 
 DataTablePtr ActionUtils::createDndActionParameters(ContextPtr acceptedContext)
@@ -128,25 +128,33 @@ DataTablePtr ActionUtils::createDndActionParameters(ContextPtr acceptedContext)
 	return createDndActionParameters(acceptedContext->getPath());
 }
 
-DataTablePtr ActionUtils::createDndActionParameters(std::string accepterContextPath)
+DataTablePtr ActionUtils::createDndActionParameters(const std::string& accepterContextPath)
 {
-	DataTablePtrparamsEntry = new DataTable(FORMAT_DND_ACTION);
-	paramsEntry->addRecord()->addString(accepterContextPath);
+    DataTablePtr paramsEntry( new DataTable(FORMAT_DND_ACTION) );
+    paramsEntry->addRecord()->addString(accepterContextPath);
 	return paramsEntry;
 }
 
-ServerActionInputPtr ActionUtils::createActionInput(DataTablePtr executionParameters)
-{
- return new ServerActionInput(new DataTable(FORMAT_NORMAL_ACTION,executionParameters));
-}
+//ServerActionInputPtr ActionUtils::createActionInput(DataTablePtr executionParameters)
+//{
+//    return new ServerActionInput(new DataTable(FORMAT_NORMAL_ACTION,executionParameters));
+//}
 
-ActionIdentifierPtr ActionUtils::initAction(ContextPtr context, std::string actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController)
+ActionIdentifierPtr ActionUtils::initAction(ContextPtr context, const std::string& actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController)
 {
     
 	return initAction(context, actionName, initialParameters, inputData, 0, mode, callerController, 0);
 }
 
-ActionIdentifierPtr ActionUtils::initAction(ContextPtr context, std::string actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, std::map<string,AgObjectPtr> environment, ActionExecutionModePtr mode, CallerControllerPtr callerController,ErrorCollectorPtr collector)
+ActionIdentifierPtr ActionUtils::initAction(
+    ContextPtr context,
+    const std::string& actionName,
+    ServerActionInputPtr initialParameters,
+    DataTablePtr inputData,
+    std::map<std::string,AgObjectPtr> environment,
+    ActionExecutionModePtr mode,
+    CallerControllerPtr callerController,
+    ErrorCollectorPtr collector)
 {
  return ACTION_INITIALIZER->initAction(context, actionName, initialParameters, inputData, environment, mode, callerController, collector);
 }
@@ -160,18 +168,18 @@ GenericActionCommandPtr ActionUtils::stepAction(ContextPtr context, ActionIdenti
 
 ActionUtils::ActionUtils()
 {
-	FORMAT_NORMAL_ACTION = new TableFormat(1,1);
+    FORMAT_NORMAL_ACTION.reset( new TableFormat(1,1) );
 		{
 		 FORMAT_NORMAL_ACTION->addField("<"+FIELD_ACTION_EXECUTION_PARAMETERS+"><T><F=N>");
         }
 
-	FORMAT_DND_ACTION = new TableFormat(1, 1);
+    FORMAT_DND_ACTION.reset( new TableFormat(1, 1) );
         {
 		 FORMAT_DND_ACTION->addField("<"+FIELD_ACTION_FROM_CONTEXT+"><S>");
         }
 
 
-	FORMAT_PROPAGATED_ACTION = new TableFormat(1, 1);
+    FORMAT_PROPAGATED_ACTION.reset( new TableFormat(1, 1) );
 		{
 		 FORMAT_PROPAGATED_ACTION->addField("<"+FIELD_ACTION_TARGET_CONTEXT+"><S>");
 		}

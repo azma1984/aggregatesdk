@@ -1,5 +1,5 @@
-#ifndef H
-#define H
+#pragma once
+
 #include <string>
 
 class AggreGateException

@@ -35,7 +35,7 @@ DefaultReferenceResolver::DefaultReferenceResolver()
 
 }
 
-DefaultReferenceResolver::DefaultReferenceResolver(boost::shared_ptr<DataTable> defaultTable)
+DefaultReferenceResolver::DefaultReferenceResolver(DataTablePtr defaultTable)
     : AbstractReferenceResolver()
 {
     setDefaultTable(defaultTable);

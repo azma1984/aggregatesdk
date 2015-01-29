@@ -1,5 +1,4 @@
-#ifndef H
-#define H
+#pragma once
 
 
 class Color

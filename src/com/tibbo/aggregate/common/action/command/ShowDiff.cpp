@@ -33,8 +33,8 @@ ShowDiff::ShowDiff(const std::string& title, const std::string& _firstFileTitle,
 
 DataTablePtr ShowDiff::constructParameters()
 {
-    DataTablePtr dt = new DataTable(CFT_SHOW_DIFF());
-    DataRecordPtr rec = dt->addRecord();
+    DataTablePtr dt( new DataTable(CFT_SHOW_DIFF()) );
+    DataRecordPtr rec( dt->addRecord() );
 
     rec->setValue(CF_FIRST_FILE_TITLE, firstFileTitle);
     rec->setValue(CF_FIRST_FILE, firstFile);

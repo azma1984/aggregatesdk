@@ -74,7 +74,7 @@ class ActionDefinition: public EntityDefinition
    * Creates and return an instance of the Action
    */
 
-  virtual Action< InitialRequest,ActionCommand,ActionResponse > *instantiate();
+  virtual Action< InitialRequest,ActionCommand,ActionResponse > instantiate();
 
   /**
    * If false, parallel execution of several action instances is not allowed

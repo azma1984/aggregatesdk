@@ -130,8 +130,8 @@ public:
 	DataTablePtr createDndActionParameters(ContextPtr acceptedContext); //  it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 	DataTablePtr createDndActionParameters(const std::string & accepterContextPath);//  it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
-
-	ServerActionInputPtr createActionInput(DataTablePtr executionParameters);
+    //Not used
+    //ServerActionInputPtr createActionInput(DataTablePtr executionParameters);
 
   	ActionIdentifierPtr initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController);
   	ActionIdentifierPtr initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, std::map<std::string,AgObjectPtr> environment, ActionExecutionModePtr mode, CallerControllerPtr callerController, ErrorCollectorPtr collector);

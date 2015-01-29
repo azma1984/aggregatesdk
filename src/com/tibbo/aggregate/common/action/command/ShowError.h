@@ -1,8 +1,7 @@
-#ifndef ShowErrorH
-#define ShowErrorH
+#pragma once
+
 #include "action/GenericActionCommand.h"
-
-
+#include "util/Pointers.h"
 
 class ShowError : public GenericActionCommand
 {
@@ -31,6 +30,5 @@ public:
     static const std::string& CF_LEVEL();
     static const std::string& CF_MESSAGE();
     static const std::string& CF_EXCEPTION();
-	static TableFormatPtr& CFT_SHOW_ERROR();
+    static TableFormatPtr CFT_SHOW_ERROR();
 };
-#endif

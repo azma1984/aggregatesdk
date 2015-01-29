@@ -39,9 +39,9 @@ GenericActionCommand::GenericActionCommand(
 
 void GenericActionCommand::init()
 {
-    interactive = true;
-    last = false;
-    batchEntry = false;
+    this->interactive = true;
+    this->last = false;
+    this->batchEntry = false;
 }
 
 void GenericActionCommand::ctor(
@@ -249,7 +249,7 @@ bool GenericActionCommand::equals(AgObjectPtr obj)
     return true;
 }
 //TODO:
-ActionCommandPtr GenericActionCommand::clone()
+ActionCommandPtr GenericActionCommand::clone() const
 {
     /*
     try {

@@ -1,5 +1,6 @@
 #include "Confirm.h"
 #include "AggreGateException.h"
+#include "Cres.h"
 
 std::string Confirm::CF_MESSAGE = "message";
 std::string Confirm::CF_OPTION_TYPE =  "optionType";
@@ -17,7 +18,7 @@ Confirm::Confirm(const std::string &message)
 {
     init();
     //TODO:
-    Confirm(/*Cres::get()->getString("confirmation")*/"", message, ActionUtils::YES_NO_OPTION, ActionUtils::QUESTION_MESSAGE);
+    Confirm(Cres::get()->getString("confirmation"), message, ActionUtils::YES_NO_OPTION, ActionUtils::QUESTION_MESSAGE);
 //    this->message = message;
 //    this->optionType = ActionUtils::YES_NO_OPTION;
 //    this->messageType = ActionUtils::QUESTION_MESSAGE;
@@ -41,7 +42,7 @@ Confirm::Confirm(const std::string& title, DataTablePtr parameters)
 
 DataTablePtr Confirm::constructParameters()
 {
-    DataRecordPtr dr = new DataRecord(CFT_CONFIRM.get());
+    DataRecordPtr dr( new DataRecord(CFT_CONFIRM.get()) );
     dr->addString(message);
     dr->addInt(optionType);
     dr->addInt(messageType);
@@ -87,7 +88,7 @@ int Confirm::parseConfirm(GenericActionResponsePtr resp)
         throw  AggreGateException("Malformed response", "Confirm::parseConfirm");
     }
 
-    int option = dt->rec()->getInt(RF_OPTION);
+    int option = dt->rec().getInt(RF_OPTION);
     switch (option) {
         case ActionUtils::YES_OPTION:
         case ActionUtils::NO_OPTION:
@@ -136,7 +137,7 @@ void Confirm::setMessageType(int messageType)
 void Confirm::init()
 {
     if (!CFT_CONFIRM) {
-        CFT_CONFIRM = new TableFormat(1,1);
+        CFT_CONFIRM.reset( new TableFormat(1,1) );
 
         CFT_CONFIRM->addField(std::string("<").append(Confirm::CF_MESSAGE).append("><S>"));
         CFT_CONFIRM->addField(std::string("<").append(Confirm::CF_OPTION_TYPE).append("><I>"));
@@ -144,7 +145,7 @@ void Confirm::init()
     }
 
     if (RFT_CONFIRM) {
-        RFT_CONFIRM = new TableFormat(1, 1, std::string("<").append(RF_OPTION).append("><I><D=").append(Cres.get().getString("option")).append(">") );
+        RFT_CONFIRM(new TableFormat(1, 1, std::string("<").append(RF_OPTION).append("><I><D=").append(Cres.get().getString("option")).append(">") ) );
     }
 }
 

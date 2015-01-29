@@ -164,7 +164,7 @@ DataPtr Data::clone() const
     return cl;
 }
 	
-bool Data::equals(DataPtrdata)
+bool Data::equals(Data *eq) const
 {
     return (this->id == data->id) && (this->name == data->name) && (this->preview == data->preview) && (this->data == data->data);
 }

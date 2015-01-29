@@ -1,4 +1,5 @@
 #include "ActionCommandRegistry.h"
+#include "util/Pointers.h"
 /*
 #include "command/ActivateDashboard.h"
 #include "command/Browse.h"
@@ -41,7 +42,7 @@ ActionCommandRegistry::ActionCommandRegistry()
 
 
 
-GenericActionCommandPtrActionCommandRegistry::getCommand(const std::string &type)
+GenericActionCommandPtr ActionCommandRegistry::getCommand(const std::string &type)
 {
   return COMMANDS[type];
 }
