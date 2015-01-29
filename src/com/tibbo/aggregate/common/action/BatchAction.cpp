@@ -3,19 +3,21 @@
 
 BatchAction::BatchAction(ActionManagerPtr actionManager)
 {
-   if(actionManager == 0)
-   {
-	std::cout<<"Pointer = NULL!";
-   }
+    if(actionManager == 0)
+    {
+        //TODO: exception
+        //throw new NullPointerException();
+    }
 
-   this->actionManager = actionManager;
+    this->actionManager = actionManager;
 }
 
 void BatchAction::init(ActionContextPtr actionContext, InitialRequestPtr initialParameters)
 {
 	if(actionContext == 0)
 	{
-	 std::cout<<"Pointer = NULL!";
+        //TODO: exception
+        //throw new NullPointerException();
 	}
 	this->actionContext = actionContext;
 }
@@ -56,7 +58,7 @@ void BatchAction::init(ActionContextPtr actionContext, InitialRequestPtr initial
 //		// batchContext->markAsPerfomed(batchContext)->getCurrentEntry();
 //		}
 //	} while (true);
-//}
+//}
 //todo
 //BatchEntryPtr BatchAction::getNextEntry(BatchContextPtr batchContext)
 //{
@@ -74,9 +76,10 @@ void BatchAction::init(ActionContextPtr actionContext, InitialRequestPtr initial
 //
 //	}
 //	return BatchEntryPtr();
-//}
+//}
 
 //todo
+// public synchronized ActionResult destroy()
 //void BatchAction::destroy()
 //{
 //	if(currentActionId != 0)
@@ -87,7 +90,7 @@ void BatchAction::init(ActionContextPtr actionContext, InitialRequestPtr initial
 //	actionContext=0;
 //	currentActionId=0;
 //	return 0;
-//}
+//}
 
 
 

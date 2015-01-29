@@ -18,6 +18,7 @@
 
 class ActionDefinition: public EntityDefinition
 {
+public:
   /**
    * Returns true if action execution is allowed.
    */
@@ -76,7 +77,7 @@ class ActionDefinition: public EntityDefinition
    * Creates and return an instance of the Action
    */
 
-  virtual Action< InitialRequest,ActionCommand,ActionResponse > instantiate();
+  virtual ActionPtr instantiate() =0;
 
   /**
    * If false, parallel execution of several action instances is not allowed

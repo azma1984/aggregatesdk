@@ -21,8 +21,8 @@ private:
     bool waitingEndChar2;
   //  ::java::nio::channels::ReadableByteChannel* inputChannel; todo
     bool full;
-  //	::java::nio::ByteBuffer* buffer;  todo
-	 void init();
+    std::vector<char> buffer;//	::java::nio::ByteBuffer* buffer;
+    void init();
   	CommandPtr buildCommand();
 	bool processBufferContents();
 	bool processByte(unsigned char cur);

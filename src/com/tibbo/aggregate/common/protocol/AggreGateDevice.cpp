@@ -2,19 +2,23 @@
 #include "AggreGateDevice.h"
 #include <string>
 
+const long AggreGateDevice::DEFAULT_COMMAND_TIMEOUT = TimeHelper::HOUR_IN_MS;
 
 AggreGateDevice::AggreGateDevice()
 {
-  id = "generic";
-  type = "Generic AggreGate Device";
-  commandTimeout = DEFAULT_COMMAND_TIMEOUT;
-  name = id;
-  description = type;
+    id = "generic";
+    type = "Generic AggreGate Device";
+
+    commandTimeout = DEFAULT_COMMAND_TIMEOUT;
+    disabled = false;
+    name = id;
+    description = type;
 }
 
 AggreGateDevice::AggreGateDevice(std::string name)
 {
-  this->name = name;
+    disabled = false;
+    this->name = name;
 }
 
 

@@ -20,7 +20,7 @@
 //#include "event/ContextEventListenerInfo.h"
 //#include "event/ContextEventListenerSet.h"
 //#include "event/EventUtils.h"
- #include <boost/thread/pthread/shared_mutex.hpp>
+ #include <boost/thread/shared_mutex.hpp>
 
 //todo - class stub
 template <class T> class DefaultContextManager: public ContextManager
@@ -91,7 +91,7 @@ template <class T> class DefaultContextManager: public ContextManager
 
 	DefaultContextManager(bool async);
     DefaultContextManager(bool async, int eventQueueLength);
-    DefaultContextManager(ContextPtrrootContext, bool async);
+    DefaultContextManager(ContextPtr rootContext, bool async);
 
 
 

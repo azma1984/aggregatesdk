@@ -2,50 +2,52 @@
 
 
 
-ActionManager::ActionManager(ActionDirectory<ActionLocatorPtr>* actionDirectory)
+ActionManager::ActionManager(ActionDirectoryPtr actionDirectory)
 {
 	actionIdGenerator = ActionIdGeneratorPtr(new ActionIdGenerator());
 
 	if(actionDirectory == 0)
 	{
-	 std::cout<<"Pointer = NULL!";
+        //TODO:
+        //throw new NullPointerException();
     }
     this->actionDirectory = actionDirectory;
 }
 
-std::list< ActionDefinitionPtr > ActionManager::resolveDefinitions(std::list< ActionLocatorPtr >  actionLocators)
-{     //todo
-   //	if(actionLocators == 0)
-	//{
-	// std::cout<<"Pointer = NULL!";
-	//}
-	std::list<ActionDefinitionPtr>  actionDefinitions;
+//TODO: not used
+//std::list< ActionDefinitionPtr > ActionManager::resolveDefinitions(std::list< ActionLocatorPtr>  actionLocators)
+//{     //todo
+//   //	if(actionLocators == 0)
+//	//{
+//	// std::cout<<"Pointer = NULL!";
+//	//}
+//	std::list<ActionDefinitionPtr>  actionDefinitions;
 
-   std::list<ActionLocatorPtr>::const_iterator  actionLocator;
+//   std::list<ActionLocatorPtr>::const_iterator  actionLocator;
 
-	for (actionLocator = actionLocators.begin(); actionLocator != actionLocators.end(); ++actionLocator)
-	{
-	  ActionDefinitionPtr actionDefinition = actionDirectory->getActionDefinition(*actionLocator);
-	   if(actionDefinition == 0)
-		{
-		 std::cout <<"Can't resolve: ";
+//	for (actionLocator = actionLocators.begin(); actionLocator != actionLocators.end(); ++actionLocator)
+//	{
+//        ActionDefinitionPtr actionDefinition = actionDirectory->getActionDefinition(actionLocator);
+//        if(actionDefinition == 0) {
+//            std::cout <<"Can't resolve: ";
+//		}
+//	  actionDefinitions.push_front(actionDefinition);
+//	}
+//	return actionDefinitions;
+//}
 
-		}
-	  actionDefinitions.push_front(actionDefinition);
-	}
-	return actionDefinitions;
-}
+
 
 ActionIdentifierPtr ActionManager::initActions(std::list<BatchEntryPtr>  entries, ActionContextPtr batchActionContext)
 {      // todo
    //	if(entries == 0)
   //	{
-  //	 std::exception("Pointer = NULL!");
+  //	 throw new NullPointerException();
   //	}
 
 	if(batchActionContext == 0)
 	{
-	// std::exception("Pointer = NULL!");
+    // throw new NullPointerException();
 	}
 
 	RequestCachePtr requestCache = RequestCachePtr(new RequestCache());
@@ -54,57 +56,62 @@ ActionIdentifierPtr ActionManager::initActions(std::list<BatchEntryPtr>  entries
 
 	std::list<BatchEntryPtr>::const_iterator  BatchEntryIt;
 
-	for (BatchEntryIt = entries.begin(); BatchEntryIt!= entries.end(); ++BatchEntryIt)
-	{
-	  BatchEntryPtr entry = BatchEntryPtr(*BatchEntryIt);
-	  if(entry == 0)
-	  {
-	   std::cout<<"Entries list contains nulls";
-	  }
+    for (BatchEntryIt = entries.begin(); BatchEntryIt!= entries.end(); ++BatchEntryIt)
+    {
+        BatchEntryPtr entry = BatchEntryPtr(*BatchEntryIt);
+        if(entry == 0)
+        {
+           // throw new IllegalArgumentException("Entries list contains nulls");
+        }
 
-	  ActionContextPtr actionContext = entry->getActionContext();
-	  actionContext->setBatchContext(batchContext);
-	  actionContext->setRequestCache(requestCache);
-	  batchContext->addBatchEntry(entry);
+        ActionContextPtr actionContext = entry->getActionContext();
+        actionContext->setBatchContext(batchContext);
+        actionContext->setRequestCache(requestCache);
+        batchContext->addBatchEntry(entry);
 
-	}
-	batchActionContext->setBatchContext(batchContext);
-	batchActionContext->setRequestCache(requestCache);
+    }
+    batchActionContext->setBatchContext(batchContext);
+    batchActionContext->setRequestCache(requestCache);
 
-	BatchActionPtr batchAction = BatchActionPtr(new BatchAction(ActionManagerPtr(this)));
-	batchAction->init(batchActionContext, InitialRequestPtr());
-	batchActionContext->setActionState(ActionContext::ActionState1::INITIALIZED);
+    BatchActionPtr batchAction = BatchActionPtr(new BatchAction(ActionManagerPtr(this)));
+    batchAction->init(batchActionContext, InitialRequestPtr());
+    batchActionContext->setActionState(ActionContext::ActionState1::INITIALIZED);
   //	return registerAction(batchActionContext, batchAction, ActionExecutionModePtr(new ActionExecutionMode(ActionExecutionMode::BATCH)));
   //todo
  return ActionIdentifierPtr();
 }
 
-//ActionIdentifierPtr ActionManager::initAction(ActionContextPtr actionContext, InitialRequestPtr initialParameters, ActionExecutionModePtr mode)
-//{
-//	ActionDefinitionPtr actionDefinition = actionContext->getActionDefinition();
-//	//  todo - thread
-//   //	ReentrantLock *lock = actionDefinition->getExecutionLock();
-//
-//  //	if(lock->isLocked() && !lock->isHeldByCurrentThread())
-//	{
-//   //	 std::cout<< Cres::get())->getString(u"acActionBeingExecuted");
-//   // }
-//	Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr>  *action = instantiateAction(actionDefinition);
-//	actionContext->setActionState(ActionContext::ActionState1::CREATED);
-//	action->init(actionContext, initialParameters);
-//	actionContext->setActionState(ActionContext::ActionState1::INITIALIZED);
-//	return registerAction(actionContext, action, mode);
-//}
+ActionIdentifierPtr ActionManager::initAction(
+    ActionContextPtr actionContext,
+    InitialRequestPtr initialParameters,
+    ActionExecutionModePtr mode)
+{
+    ActionDefinitionPtr actionDefinition = actionContext->getActionDefinition();
+    //  todo - thread
+   //	ReentrantLock *lock = actionDefinition->getExecutionLock();
+
+  //	if(lock->isLocked() && !lock->isHeldByCurrentThread())
+    //{
+   //	 std::cout<< Cres::get())->getString(u"acActionBeingExecuted");
+   // }
+    ActionPtr action = instantiateAction(actionDefinition);
+    actionContext->setActionState(ActionContext::CREATED);
+    action->init(actionContext, initialParameters);
+    actionContext->setActionState(ActionContext::INITIALIZED);
+
+    return registerAction(actionContext, action, mode);
+}
 
 
-//Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr > * ActionManager::instantiateAction(ActionDefinitionPtr actionDefinition)
-//{    //todo
-   //	if(actionDefinition == 0)
-  //	{
-   //     std::exception("Pointer = NULL!");
- //   }
-  //	return actionDefinition->instantiate();
-//}
+ActionPtr ActionManager::instantiateAction(ActionDefinitionPtr actionDefinition)
+{    //todo
+    if(actionDefinition == 0)
+    {
+        //TODO:
+        //throw new NullPointerException();
+    }
+    return actionDefinition->instantiate();
+}
 
   //todo
 //ActionCommandPtr ActionManager::service(ActionIdentifierPtr actionId, ActionResponsePtr actionRequest)
@@ -159,7 +166,7 @@ ActionIdentifierPtr ActionManager::initActions(std::list<BatchEntryPtr>  entries
 //	while (activeRequest != 0);
 //
 //	return actionCommand;
-//}
+//}
  //todo
 //ActionResultPtr ActionManager::destroyAction(ActionIdentifierPtr actionId)
 //{
@@ -187,7 +194,7 @@ ActionIdentifierPtr ActionManager::initActions(std::list<BatchEntryPtr>  entries
 //	  actionContexts->remove(action);
 //	 }
 //
-//}
+//}
 
 //void ActionManager::destroyAll()
 //{
@@ -205,12 +212,17 @@ ActionIdentifierPtr ActionManager::initActions(std::list<BatchEntryPtr>  entries
 //{
 //	Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * action =  actions->get(actionId));
 //	return actionContexts->get(action);
-//}
+//}
 
 //ActionDirectoryPtr ActionManager::getActionDirectory()
 //{
 //	return actionDirectory;
-//}
+//}
+
+ActionDirectoryPtr ActionManager::getActionDirectory()
+{
+    return actionDirectory;
+}
 
 //ActionIdentifierPtr ActionManager::registerAction(ActionContextPtr actionContext, Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * action, ActionExecutionModePtr mode)
 //{

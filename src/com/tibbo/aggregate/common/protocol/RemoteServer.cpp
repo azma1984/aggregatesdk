@@ -1,9 +1,7 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/RemoteServer.java
-#include <src/com/tibbo/aggregate/common/protocol/RemoteServer.h>
+#include "protocol/RemoteServer.h>
+#include "Cres.h"
 
-#include <src/com/tibbo/aggregate/common/Cres.h"
-
-
+const int RemoteServer::DEFAULT_PORT = 6460;
 
 RemoteServer::RemoteServer()
 {

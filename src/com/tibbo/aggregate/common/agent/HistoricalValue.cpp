@@ -1,9 +1,8 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/agent/HistoricalValue.java
-#include "HistoricalValue.h"
+#include "agent/HistoricalValue.h"
 
 
 
-HistoricalValue::HistoricalValue(const std::string &variable, std::time_t  timestamp, DataTablePtr value) 
+HistoricalValue::HistoricalValue(const std::string &variable, DatePtr timestamp, DataTablePtr value)
 {
     this->variable = variable;
     this->timestamp = timestamp;
@@ -20,12 +19,12 @@ void HistoricalValue::setVariable(const std::string &variable)
     this->variable = variable;
 }
 
-std::time_t  HistoricalValue::getTimestamp()
+DatePtr HistoricalValue::getTimestamp()
 {
     return timestamp;
 }
 
-void HistoricalValue::setTimestamp(std::time_t  timestamp)
+void HistoricalValue::setTimestamp(DatePtr  timestamp)
 {
     this->timestamp = timestamp;
 }

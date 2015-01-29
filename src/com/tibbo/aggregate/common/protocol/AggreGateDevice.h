@@ -1,7 +1,8 @@
 #ifndef AggreGateDeviceH
 #define AggreGateDeviceH
 
-#include "TimeHelper.h"
+#include "util/TimeHelper.h"
+#include <string>
 
 class AggreGateDevice
 {
@@ -17,7 +18,7 @@ class AggreGateDevice
 
 public:
 
-    static long DEFAULT_COMMAND_TIMEOUT; 
+    static const long DEFAULT_COMMAND_TIMEOUT;
 
     std::string getName();
     void setName(std::string name);

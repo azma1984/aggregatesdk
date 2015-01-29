@@ -4,8 +4,8 @@
 
 #include "AbstractClientController.h"
 
-#include "Context.h"
-#include "BlockingChannel.h"
+#include "context/Context.h"
+//#include "BlockingChannel.h"
 
 /*
 #include "AggreGateException.h"
@@ -39,8 +39,8 @@
 #include "server/RootContextConstants.h"
 
 #include "util/SyntaxErrorException.h"*/
-#include "BlockingChannel.h"
-#include "ContextManager.h"
+//#include "BlockingChannel.h"
+#include "context/ContextManager.h"
 #include "event/ContextEventListener.h"
 #include "protocol/IncomingAggreGateCommand.h"
 #include "protocol/OutgoingAggreGateCommand.h"
@@ -67,15 +67,14 @@ private:
 	ContextPtr getContext(const std::string &path);
 
 	bool controllerShouldHandle(EventPtr ev, ContextEventListenerPtr listener);
-	ContextEventListenerPtr getDefaultEventListener();
 protected:
-	static void processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) ;
+    void processMessageOperation(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans) ;
 
 	void addCustomListeners(ContextPtr con);
 	void processMessage(IncomingAggreGateCommandPtr cmd, OutgoingAggreGateCommandPtr ans);
 
 public:
-   ContextEventListenerPtrgetDefaultEventListener();
+   ContextEventListenerPtr getDefaultEventListener();
 
 	void processOperationGetVar(const std::string & id, ContextPtr con, const std::string & name, OutgoingAggreGateCommandPtr ans) ;
 

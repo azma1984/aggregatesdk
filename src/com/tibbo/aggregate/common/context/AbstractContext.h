@@ -62,7 +62,7 @@
 //#include "util/StringUtils.h"
 //#include "util/Util.h"
 #include <boost/thread/thread.hpp>
-#include <boost/thread/pthread/shared_mutex.hpp>
+#include <boost/thread/shared_mutex.hpp>
 
 class TableFormat;
 
@@ -77,7 +77,7 @@ private:
     static const int LOW_PERFORMANCE_THRESHOLD = 20000;
 	ContextManagerPtr contextManager;
 	std::map<std::string, VariableDataPtr> variableData;
-	boost::shared_mutex variableDataLock; //много читателей, один писатель
+	boost::shared_mutex variableDataLock; //РјРЅРѕРіРѕ С‡РёС‚Р°С‚РµР»РµР№, РѕРґРёРЅ РїРёСЃР°С‚РµР»СЊ
     std::map<std::string, FunctionDataPtr> functionData;
     boost::shared_mutex functionDataLock;
 	std::map<std::string, EventDataPtr> EventData;

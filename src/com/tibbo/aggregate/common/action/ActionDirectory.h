@@ -3,12 +3,14 @@
 
 //#include "action/ActionDefinition.h"
 #include "action/ActionLocator.h"
-#include "util/pointers.h"
+#include "util/Pointers.h"
+#include "util/Interface.h"
 
-template <class L> class ActionDirectory
+//template <class L> class ActionDirectory
+class ActionDirectory : public Interface
 {
 public:
-	ActionDefinitionPtr getActionDefinition(L locator);
+    virtual ActionDefinitionPtr getActionDefinition(ActionLocatorPtr locator) = 0;
 };
 
 #endif

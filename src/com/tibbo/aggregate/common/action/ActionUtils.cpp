@@ -1,4 +1,6 @@
 #include "ActionUtils.h"
+#include "datatable/DataRecord.h"
+#include "action/DefaultActionInitializer.h"
 
 std::string ActionUtils::CMD_SHOW_MESSAGE = "showMessage";;
 
@@ -133,11 +135,12 @@ DataTablePtr ActionUtils::createDndActionParameters(const std::string& accepterC
 	return paramsEntry;
 }
 
-ServerActionInputPtr ActionUtils::createActionInput(DataTablePtr executionParameters)
-{ //todo
- //return new ServerActionInput(new DataTable(FORMAT_NORMAL_ACTION,executionParameters));
- return ServerActionInputPtr();
-}
+//Not used
+//ServerActionInputPtr ActionUtils::createActionInput(DataTablePtr executionParameters)
+//{ //todo
+// //return new ServerActionInput(new DataTable(FORMAT_NORMAL_ACTION,executionParameters));
+// return ServerActionInputPtr();
+//}
 
 ActionIdentifierPtr ActionUtils::initAction(ContextPtr context,const std::string &actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController)
 { //todo

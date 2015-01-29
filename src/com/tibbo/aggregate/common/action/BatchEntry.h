@@ -1,9 +1,8 @@
-#ifndef BatchEntryH
-#define BatchEntryH
+#pragma once
 
 #include "ActionContext.h"
 #include "InitialRequest.h"
- #include <exception>
+#include <exception>
 
 class BatchEntry
 {
@@ -12,10 +11,8 @@ class BatchEntry
 	InitialRequestPtr initialRequest;
 	bool fulfilled;
 
-
- protected:
+ public:
 	void setFulfilled(bool fulfilled);
-
 
  public:
 	BatchEntry(ActionContextPtr actionContext, InitialRequestPtr initialRequest);
@@ -25,5 +22,3 @@ class BatchEntry
 	std::string toString();
 
 };
-
-#endif

@@ -1,0 +1,4 @@
+#ifndef REQUESTDATA_H
+#define REQUESTDATA_H
+
+#endif // REQUESTDATA_H

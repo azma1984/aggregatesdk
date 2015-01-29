@@ -1,105 +1,18 @@
 #ifndef AgentContextH
 #define AgentContextH
 
-#include "AbstractContext.h"
-#include "FunctionImplementation.h"
-
+#include "context/AbstractContext.h"
 //#include "Cres.h"
-
 #include "context/EventDefinition.h"
-
-
 #include "context/FunctionDefinition.h"
 #include "context/Contexts.h"
-#include "RemoteServer.h"
+#include "protocol/RemoteServer.h"
 #include "DataTable/DataTable.h"
 #include "DataTable/TableFormat.h"
 #include "agent/historicalvalue.h"
 #include <list>
 
-
-
-
-
-class FunctionImplementation1 :public FunctionImplementation
-{
- 
-  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
-  {
-  /*
-    std::string challenge = parameters.rec().getString(FIF_LOGIN_CHALLENGE);
-      
-    std::string response = Md5Utils.hexHash(challenge + server.getPassword());
-      
-    return new DataRecord(FOFT_LOGIN).addString(server.getUsername()).addString(name).addString(response).wrap();*/
-   return DataTablePtr();
-  }
-
-};
-
-
-class FunctionImplementation2 :public FunctionImplementation
-{
-  
-  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
-  {
-   //return new DataRecord(FOFT_REGISTER).addString(server.getPassword()).wrap();
-   return DataTablePtr();
-  }
-
-
-};
-
-class FunctionImplementation3 :public FunctionImplementation
-{
- 
-  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
-  {
-   //setSynchronized(true);
-   return DataTablePtr();
-  } 
- 
-
-};
-
-class FunctionImplementation4 :public FunctionImplementation
-{
-  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
-  {
-  // confirmEvent(parameters.rec().getLong(FIF_CONFIRM_EVENT_ID));
-   return DataTablePtr();
-  } 
-
-};
-
-class FunctionImplementation5 :public FunctionImplementation
-{
-  DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
-  {
-     /*
-    DataTable res = new DataTable(def.getOutputFormat());
-      
-      HistoricalValue hv = getHistory();
-      List<HistoricalValue>::const_iterator hist_value; 
-      
-      
-      for (hist_value = hv.begin(); hist_value!= hv.end(); ++hist_value)
-      {
-        DataRecord rec = res.addRecord();
-        rec.addString(hv.getVariable());
-        rec.addDate(hv.getTimestamp());
-        rec.addDataTable(hv.getValue());
-      }
-      
-	  return res; */
-		 return DataTablePtr();
-  } 
-
-};
-
-
-
-class AgentContext: public AbstractContext//<Context>
+class AgentContext : public AbstractContext//<Context>
 {
 
 private:

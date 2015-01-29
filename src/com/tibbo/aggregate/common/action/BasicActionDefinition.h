@@ -68,7 +68,7 @@ public:
     bool isConcurrent();
     void setConcurrent(bool allowConcurrentExecution);
     void addDropSource(ResourceMaskPtr resourceMask);
-	Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * instantiate();
+    ActionPtr instantiate();
     std::list<ActionCommandPtr>  getCommands();
 
 

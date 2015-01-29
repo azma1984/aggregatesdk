@@ -6,14 +6,14 @@
 #include "Log.h"
 */
 
-#include "AgentImplementationController.h"
-#include "Context.h"
+#include "agent/AgentImplementationController.h"
+#include "context/Context.h"
 
 //#include "RemoteDeviceErrorException.h"
-#include "RemoteServer.h"
-#include "DefaultContextManager.h"
-#include "AgentContext.h"
-#include "EventDefinition.h"
+#include "protocol/RemoteServer.h"
+#include "context/DefaultContextManager.h"
+#include "agent/AgentContext.h"
+#include "context/EventDefinition.h"
 //#include "context/ContextManager.h"
 
 

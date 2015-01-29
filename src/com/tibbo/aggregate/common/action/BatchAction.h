@@ -12,7 +12,7 @@
 
 
 
-class BatchAction:public Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr >
+class BatchAction : public Action
 {
 
 private:

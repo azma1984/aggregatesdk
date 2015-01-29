@@ -110,7 +110,7 @@ public:
     //todo
     //::java::util::Iterator* iterator();
 
-    DataTable* clone();
+    virtual DataTable* clone() const;
     int compareTo(DataTablePtr other);
     void append(DataTablePtr src);
 };

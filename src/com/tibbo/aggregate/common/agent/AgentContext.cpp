@@ -1,32 +1,31 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/agent/AgentContext.java
-#include "AgentContext.h"
+#include "agent/AgentContext.h"
 
-   const std::string AgentContext::V_DATE= "date";
- 
-   const std::string AgentContext::F_LOGIN= "login";
-   const std::string AgentContext::F_REGISTER= "register";
-   const std::string AgentContext::F_SYNCHRONIZED= "synchronized";
-   const std::string AgentContext::F_CONFIRM_EVENT= "confirmEvent";
-   const std::string AgentContext::F_GET_HISTORY= "getHistory";
-   const std::string AgentContext::E_EVENT_CONFIRMED= "eventConfirmed";
-   const std::string AgentContext::FIF_LOGIN_CHALLENGE= "challenge";
-   const std::string AgentContext::FIF_CONFIRM_EVENT_ID= "id";
-   const std::string AgentContext::FOF_LOGIN_OWNER= "owner";
-   const std::string AgentContext::FOF_LOGIN_NAME= "name";
-   const std::string AgentContext::FOF_LOGIN_RESPONSE= "response";
-   const std::string AgentContext::FOF_REGISTER_PASSWORD= "password";
-   const std::string AgentContext::FOF_GET_HISTORY_VARIABLE= "variable";
-   const std::string AgentContext::FOF_GET_HISTORY_TIMESTAMP= "timestamp";
-   const std::string AgentContext::FOF_GET_HISTORY_VALUE= "value";
-   const std::string AgentContext::EF_EVENT_CONFIRMED_ID= "id";
+const std::string AgentContext::V_DATE= "date";
 
+const std::string AgentContext::F_LOGIN= "login";
+const std::string AgentContext::F_REGISTER= "register";
+const std::string AgentContext::F_SYNCHRONIZED= "synchronized";
+const std::string AgentContext::F_CONFIRM_EVENT= "confirmEvent";
+const std::string AgentContext::F_GET_HISTORY= "getHistory";
+const std::string AgentContext::E_EVENT_CONFIRMED= "eventConfirmed";
+const std::string AgentContext::FIF_LOGIN_CHALLENGE= "challenge";
+const std::string AgentContext::FIF_CONFIRM_EVENT_ID= "id";
+const std::string AgentContext::FOF_LOGIN_OWNER= "owner";
+const std::string AgentContext::FOF_LOGIN_NAME= "name";
+const std::string AgentContext::FOF_LOGIN_RESPONSE= "response";
+const std::string AgentContext::FOF_REGISTER_PASSWORD= "password";
+const std::string AgentContext::FOF_GET_HISTORY_VARIABLE= "variable";
+const std::string AgentContext::FOF_GET_HISTORY_TIMESTAMP= "timestamp";
+const std::string AgentContext::FOF_GET_HISTORY_VALUE= "value";
+const std::string AgentContext::EF_EVENT_CONFIRMED_ID= "id";
 
-   TableFormatPtr AgentContext::FIFT_LOGIN;
-   TableFormatPtr AgentContext::FOFT_LOGIN;
-   TableFormatPtr AgentContext::FOFT_REGISTER;
-   TableFormatPtr AgentContext::FOFT_GET_HISTORY;
-   TableFormatPtr AgentContext::FIFT_CONFIRM_EVENT;
-   TableFormatPtr AgentContext::EFT_EVENT_CONFIRMED; 
+//TODO: init her
+//TableFormatPtr AgentContext::FIFT_LOGIN;
+//TableFormatPtr AgentContext::FOFT_LOGIN;
+//TableFormatPtr AgentContext::FOFT_REGISTER;
+//TableFormatPtr AgentContext::FOFT_GET_HISTORY;
+//TableFormatPtr AgentContext::FIFT_CONFIRM_EVENT;
+//TableFormatPtr AgentContext::EFT_EVENT_CONFIRMED;
 
 
 AgentContext::AgentContext(RemoteServerPtr server, const std::string &name, bool eventConfirmation) 

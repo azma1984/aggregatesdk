@@ -35,26 +35,27 @@
 class ActionManager
 {
 private:
-	ActionDirectory<ActionLocatorPtr>* actionDirectory;
+    ActionDirectoryPtr actionDirectory;
 
 	ActionIdGeneratorPtr actionIdGenerator;
-    std::map< ActionIdentifierPtr, Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr > > actions;
-    std::map< Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr>, ActionContextPtr > actionContexts;
+    std::map< ActionIdentifierPtr, ActionPtr> actions;
+    std::map< ActionPtr, ActionContextPtr > actionContexts;
 
 protected:
-	Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr >* instantiateAction(ActionDefinitionPtr actionDefinition);
+    ActionPtr instantiateAction(ActionDefinitionPtr actionDefinition);
 
 public:
-	ActionManager(ActionDirectory<ActionLocatorPtr>* actionDirectory);
-	std::list< ActionDefinitionPtr > resolveDefinitions(std::list< ActionLocatorPtr >  actionLocators);
+    ActionManager(ActionDirectoryPtr actionDirectory);
+    //TODO: not used
+    //std::list< ActionDefinitionPtr > resolveDefinitions(std::list< ActionLocatorPtr >  actionLocators);
 	ActionIdentifierPtr initActions(std::list<BatchEntryPtr>  entries, ActionContextPtr batchActionContext);
 	ActionIdentifierPtr initAction(ActionContextPtr actionContext, InitialRequestPtr initialParameters, ActionExecutionModePtr mode);
 	ActionCommandPtr service(ActionIdentifierPtr actionId, ActionResponsePtr actionRequest);
 	ActionResultPtr destroyAction(ActionIdentifierPtr actionId);
 	void destroyAll();
 	ActionContextPtr getActionContext(ActionIdentifierPtr actionId);
-	ActionDirectory<ActionManager>* getActionDirectory();
-	ActionIdentifierPtr registerAction(ActionContextPtr actionContext, Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr >* action, ActionExecutionModePtr mode);
+    ActionDirectoryPtr getActionDirectory();
+    ActionIdentifierPtr registerAction(ActionContextPtr actionContext, ActionPtr action, ActionExecutionModePtr mode);
 
 };
 

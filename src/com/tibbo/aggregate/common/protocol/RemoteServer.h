@@ -1,7 +1,8 @@
 #ifndef RemoteServerH
 #define RemoteServerH
 
-#include <AggreGateNetworkDevice.h>
+#include "protocol/AggreGateNetworkDevice.h"
+#include <string>
 
 class RemoteServer: public AggreGateNetworkDevice
 {
@@ -10,7 +11,7 @@ private:
 	std::string password;
 
 public:
-	static const int DEFAULT_PORT = 6460;
+    static const int DEFAULT_PORT;
 	std::string DEFAULT_USERNAME;
 	std::string DEFAULT_PASSWORD;
 	std::string getPassword();
