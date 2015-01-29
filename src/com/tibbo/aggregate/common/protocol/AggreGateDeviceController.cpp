@@ -1,5 +1,5 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateDeviceController.java
-#include <com/tibbo/aggregate/common/protocol/AggreGateDeviceController.h"
+#include "protocol/AggreGateDeviceController.h"
 
 
 

@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/other/XPathFunction.java
-#include <com/tibbo/aggregate/common/expression/function/other/XPathFunction_execute_1.h"
+#include "expression/function/other/XPathFunction_execute_1.h"
 
-#include <com/tibbo/aggregate/common/expression/function/other/XPathFunction.h"
+#include "expression/function/other/XPathFunction.h"
 //#include <java/io/Reader.h"
 //#include <java/io/StringReader.h"
 //#include <java/lang/String.h"

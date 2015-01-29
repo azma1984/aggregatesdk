@@ -30,7 +30,7 @@ public:
     std::string toString();
     int hashCode();
     bool equals(SynchronizationParametersPtr obj);
-    SynchronizationParametersPtr clone() const;
+   //SynchronizationParametersPtr clone() const;  todo
 
     SynchronizationParameters();
     SynchronizationParameters(const std::string& setting);

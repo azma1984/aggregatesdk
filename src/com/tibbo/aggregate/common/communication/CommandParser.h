@@ -1,13 +1,15 @@
 #ifndef CommandParserH
 #define CommandParserH
 
+#include "util/pointers.h"
 
 class CommandParser
 {
-    void addData(int dataByte);
-	CommandPtr readCommand();
-	void reset();
-    void setListener(CommandParserListenerPtr listener);
+public:
+	virtual void addData(int dataByte)=0;
+	virtual CommandPtr readCommand()=0;
+	virtual void reset()=0;
+	virtual void setListener(CommandParserListenerPtr listener)=0;
 };
 
 #endif

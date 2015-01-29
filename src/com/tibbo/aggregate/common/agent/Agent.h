@@ -1,9 +1,9 @@
 #ifndef AgentH
 #define AgentH
-
+ #define BOOST_THREAD_USE_LIB
 /*
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/Log.h"
+#include "Cres.h"
+#include "Log.h"
 */
 
 #include "AgentImplementationController.h"
@@ -11,14 +11,10 @@
 
 //#include "RemoteDeviceErrorException.h"
 #include "RemoteServer.h"
-
 #include "DefaultContextManager.h"
-
 #include "AgentContext.h"
-
 #include "EventDefinition.h"
 //#include "context/ContextManager.h"
-
 
 
  class AgentContextManager: public DefaultContextManager<Context>
@@ -30,8 +26,8 @@
    
   //  }
     
-    void eventAdded(ContextPtrcon, EventDefinitionPtred)
-    {
+	void eventAdded(ContextPtr con, EventDefinitionPtr ed)
+	{
      
      DefaultContextManager<Context>::eventAdded(con, ed);
       
@@ -55,8 +51,8 @@ private:
     
     RemoteServerPtr server; //it is defined in com\tibbo\aggregate\common\protocol\RemoteServer.h
     int maxEventQueueLength;
-    AgentContextPtr context;
-    /*ContextManager<Agent>*/AgentContextManagerPtr contextManager;//it is defined in com\tibbo\aggregate\common\context\ContextManager.h
+	AgentContextPtr context;
+	/*ContextManager<Agent>*/AgentContextManagerPtr contextManager;//it is defined in com\tibbo\aggregate\common\context\ContextManager.h
     AgentImplementationController* controller;
 
  

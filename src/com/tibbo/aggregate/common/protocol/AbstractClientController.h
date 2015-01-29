@@ -15,7 +15,7 @@ class AbstractClientController
 private:
     ContextManagerPtr contextManager;
     CallerControllerPtr callerController;
-    std::map listeners;
+    std::map< std::string, std::map<std::string, ContextEventListenerSet> > listeners;
 
 public:
     CallerControllerPtr getCallerController();

@@ -13,7 +13,6 @@ private:
 public:
 	const std::string & getName();
 
-
    //	::java::lang::Thread* newThread(::java::lang::Runnable* r); todo
 
 	NamedThreadFactory();
@@ -21,3 +20,6 @@ public:
 	NamedThreadFactory(const std::string & name, int priority);
 
 };
+
+#endif
+

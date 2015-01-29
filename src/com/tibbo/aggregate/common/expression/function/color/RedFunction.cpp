@@ -1,5 +1,5 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/color/RedFunction.java
-#include <com/tibbo/aggregate/common/expression/function/color/RedFunction.h"
+#include "expression/function/color/RedFunction.h"
 
 //#include <java/awt/Color.h"
 //#include <java/lang/Integer.h"

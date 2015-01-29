@@ -3,29 +3,30 @@
 #include "Cres.h"
 
 //todo - Class stub!
-ResourceBundle* Cres::BUNDLE; 
+
+ResourceBundlePtr Cres::BUNDLE;
 
 Cres::Cres()
 {
     
 }
 
-ResourceBundle *Cres::get()
+ResourceBundlePtr Cres::get()
 {
     
     return BUNDLE;
 }
 
-AgClass *Cres::getClass()
+AgClassPtr Cres::getClass()
 {
 
- return 0;
+ return AgClassPtr();
 }
 
 
-void Cres::reinit(Locale* locale)
+void Cres::reinit(LocalePtr locale)
 {
-    BUNDLE = ResourceAccessor::fetch(getClass(), locale);
+   BUNDLE = ResourceAccessor::fetch(getClass(), locale);
 }
 
 

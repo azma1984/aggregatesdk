@@ -9,7 +9,7 @@ class VariableData:Comparable
 private:
     VariableDefinitionPtr definition;
     AgObjectPtr value;
-    boost::shared_mutex readWriteLock;
+   // boost::shared_mutex readWriteLock;  todo
     long getCount;
     long setCount;
     bool getterCached;
@@ -28,7 +28,7 @@ public:
     void setValue(AgObjectPtr value);
 
 public:
-    boost::shared_mutex getReadWriteLock();
+   // boost::shared_mutex getReadWriteLock();  todo
     long getGetCount();
     long getSetCount();
     bool isGetterCached();

@@ -156,15 +156,15 @@ namespace Functions
     static const std::string HAS_RESOLVER = "hasResolver";
 
     // Function groups
-    static const std::string GROUP_CONTEXT_RELATED = Cres.get().getString("fContextOperations");
-    static const std::string GROUP_DATA_TABLE_PROCESSING = Cres.get().getString("fDataTableProcessing");
-    static const std::string GROUP_NUMBER_PROCESSING = Cres.get().getString("fNumberProcessing");
-    static const std::string GROUP_TYPE_CONVERSION = Cres.get().getString("fTypeConversion");
-    static const std::string GROUP_DATE_TIME_PROCESSING = Cres.get().getString("fDateTimeProcessing");
-    static const std::string GROUP_COLOR_PROCESSING = Cres.get().getString("fColorProcessing");
-    static const std::string GROUP_SYSTEM = Cres.get().getString("fSystem");
-    static const std::string GROUP_STRING_PROCESSING = Cres.get().getString("fStringProcessing");
-    static const std::string GROUP_OTHER = Cres.get().getString("fOther");
+    static const std::string GROUP_CONTEXT_RELATED = Cres::get()->getString("fContextOperations");
+    static const std::string GROUP_DATA_TABLE_PROCESSING = Cres::get()->getString("fDataTableProcessing");
+    static const std::string GROUP_NUMBER_PROCESSING = Cres::get()->getString("fNumberProcessing");
+    static const std::string GROUP_TYPE_CONVERSION = Cres::get()->getString("fTypeConversion");
+    static const std::string GROUP_DATE_TIME_PROCESSING = Cres::get()->getString("fDateTimeProcessing");
+    static const std::string GROUP_COLOR_PROCESSING = Cres::get()->getString("fColorProcessing");
+    static const std::string GROUP_SYSTEM = Cres::get()->getString("fSystem");
+    static const std::string GROUP_STRING_PROCESSING = Cres::get()->getString("fStringProcessing");
+    static const std::string GROUP_OTHER = Cres::get()->getString("fOther");
 
     // Deprecated Functions
     static const std::string HAS_VARIABLE = "hasVariable";

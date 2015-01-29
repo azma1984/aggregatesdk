@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.java
-#include <com/tibbo/aggregate/common/datatable/field/IntFieldFormat.h"
+#include "datatable/field/IntFieldFormat.h"
 
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "datatable/FieldFormat.h"
+#include "util/Util.h"
 //#include <java/io/Serializable.h"
 //#include <java/lang/ArrayStoreException.h"
 //#include <java/lang/CharSequence.h"

@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/context/VariableWritableFunction.java
-//#include <com/tibbo/aggregate/common/expression/function/context/VariableWritableFunction.h"
+//#include "expression/function/context/VariableWritableFunction.h"
 
-#include <com/tibbo/aggregate/common/context/Context.h"
-#include <com/tibbo/aggregate/common/context/VariableDefinition.h"
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
+#include "context/Context.h"
+#include "context/VariableDefinition.h"
+#include "expression/Evaluator.h"
+#include "expression/ReferenceResolver.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"

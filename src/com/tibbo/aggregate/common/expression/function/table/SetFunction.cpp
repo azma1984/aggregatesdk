@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/table/SetFunction.java
-#include <com/tibbo/aggregate/common/expression/function/table/SetFunction.h"
+#include "expression/function/table/SetFunction.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "datatable/DataRecord.h"
+#include "datatable/DataTable.h"
+#include "expression/function/Functions.h"
+#include "util/Util.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"

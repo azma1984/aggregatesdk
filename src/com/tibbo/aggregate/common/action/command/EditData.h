@@ -4,16 +4,19 @@
 #include "action/GenericActionCommand.h"
 #include "action/EditDataMerger.h"
 #include "util/DashboardProperties.h"
-#include "util/WindowLocation.h"
+//#include "util/WindowLocation.h"
 #include <string>
 #include <boost/shared_ptr.hpp>
+#include "action/ActionUtils.h"
+#include "datatable/field/LongFieldFormat.h"
+#include "datatable/field/StringFieldFormat.h"
 
 class EditData : public GenericActionCommand
 {
 private:
 
     static TableFormatPtr CFT_EDIT_DATA_;
-    EditDataMergerPtr merger;
+	//EditDataMergerPtr merger;  //todo
     DataTablePtr data;
     bool useDockableFrame;
     bool readOnly;
@@ -21,8 +24,8 @@ private:
     std::string helpId;
     std::string help;
     std::string defaultContext;
-    WindowLocationPtr location;
-    DashboardPropertiesPtr dashboard;
+   // WindowLocationPtr location; todo
+   // DashboardPropertiesPtr dashboard; todo
     const std::string expression;
     long  period;
 
@@ -57,16 +60,16 @@ public:
     void setHelp(const std::string & help);
     std::string getDefaultContext();
     void setDefaultContext(const std::string & defaultContext);
-    WindowLocationPtr getLocation();
-    void setLocation(WindowLocationPtr location);
-    DashboardPropertiesPtr getDashboard();
-    void setDashboard(DashboardPropertiesPtr dashboard);
+	//WindowLocationPtr getLocation(); //todo
+   // void setLocation(WindowLocationPtr location);//todo
+	//DashboardPropertiesPtr getDashboard();//todo
+	//void setDashboard(DashboardPropertiesPtr dashboard); //todo
     std::string getExpression();
     void setExpression(const std::string & expression);
     long  getPeriod();
     void setPeriod(long  period);
-    EditDataMergerPtr getMerger();
-    void setMerger(EditDataMergerPtr merger);
+   //	EditDataMergerPtr getMerger(); //todo
+   //	void setMerger(EditDataMergerPtr merger); //todo
 
 	EditData();
     EditData(const std::string & title, DataTablePtr parameters);

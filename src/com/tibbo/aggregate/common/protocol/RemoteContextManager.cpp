@@ -2,12 +2,12 @@
 
 #include <RemoteContextManager.h>
 /*
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/event/ContextEventListener.h"
-#include <com/tibbo/aggregate/common/expression/Expression.h"
-#include <com/tibbo/aggregate/common/protocol/AbstractAggreGateDeviceController.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommandUtils.h"
-#include <com/tibbo/aggregate/common/protocol/ProxyContext.h"
+#include "Cres.h"
+#include "event/ContextEventListener.h"
+#include "expression/Expression.h"
+#include "protocol/AbstractAggreGateDeviceController.h"
+#include "protocol/AggreGateCommandUtils.h"
+#include "protocol/ProxyContext.h"
  */
 
 

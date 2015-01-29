@@ -20,7 +20,7 @@ protected:
     DataTablePtr constructParameters();// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
-    GenericActionResponse createDefaultResponse();
+    GenericActionResponsePtr createDefaultResponse();
 	int parseConfirm(GenericActionResponsePtr resp);
 	std::string getMessage();
 	int getOptionType();

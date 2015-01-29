@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/Cres.java
-
 #ifndef CresH
 #define CresH
 
@@ -8,25 +6,17 @@
 #include "util/ResourceAccessor.h"
 
 
-
-
-
-
-
-
-
-
 class Cres
 {
  private:
-	static ResourceBundle* BUNDLE; 
+	static ResourceBundlePtr BUNDLE;
 
  public:
-	static ResourceBundle* get();
-	
-	void reinit(Locale* locale);
+	static ResourceBundlePtr get();
 
-    AgClass *getClass();
+	void reinit(LocalePtr locale);
+
+	AgClassPtr getClass();
 
 	Cres();
 };

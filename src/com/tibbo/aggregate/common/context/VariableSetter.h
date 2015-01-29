@@ -1,9 +1,11 @@
 #ifndef _VariableSetter_H_
 #define _VariableSetter_H_
 
-#include "context/Context.h"
-#include "context/RequestController.h"
-#include "datatable/DataTable.h"
+//#include "context/Context.h"
+//#include "context/RequestController.h"
+//#include "datatable/DataTable.h"
+
+#include "util/Pointers.h"
 
 class VariableSetter
 {

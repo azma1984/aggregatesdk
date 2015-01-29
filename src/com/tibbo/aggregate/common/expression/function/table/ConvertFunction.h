@@ -2,10 +2,10 @@
 
 #pragma once
 
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/expression/function/table/fwd-aggregate_sdk_5.11.00.h"
+//#include "expression/fwd-aggregate_sdk_5.11.00.h"
+#include "expression/function/table/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/expression/function/AbstractFunction.h"
+#include "expression/function/AbstractFunction.h"
 
 
 

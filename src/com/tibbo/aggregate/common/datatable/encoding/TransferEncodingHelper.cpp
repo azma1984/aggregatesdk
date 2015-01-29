@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.java
-#include <com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.h"
+#include "datatable/encoding/TransferEncodingHelper.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommandUtils.h"
+#include "datatable/DataTableUtils.h"
+#include "protocol/AggreGateCommand.h"
+#include "protocol/AggreGateCommandUtils.h"
 /*
 //#include <java/lang/Character.h"
 //#include <java/lang/ClassCastException.h"

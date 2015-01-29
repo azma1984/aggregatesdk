@@ -41,7 +41,7 @@ ActionCommandRegistry::ActionCommandRegistry()
 
 
 
-GenericActionCommandPtrActionCommandRegistry::getCommand(const std::string &type)
+GenericActionCommandPtr ActionCommandRegistry::getCommand(const std::string &type)
 {
   return COMMANDS[type];
 }
@@ -50,4 +50,5 @@ void ActionCommandRegistry::register1(GenericActionCommandPtr command)
 {
     COMMANDS[command->getType()] = command;
 }
+
 

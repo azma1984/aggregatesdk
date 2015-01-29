@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/SimplePropertyFormatConverter.java
-//#include <com/tibbo/aggregate/common/datatable/converter/SimplePropertyFormatConverter.h"
+//#include "datatable/converter/SimplePropertyFormatConverter.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTableConversion.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include "datatable/DataTableConversion.h"
+#include "datatable/FieldFormat.h"
 /*
 //#include <java/beans/BeanInfo.h"
 //#include <java/beans/FeatureDescriptor.h"

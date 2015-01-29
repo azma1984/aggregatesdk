@@ -1,74 +1,66 @@
 #include "action/command/ShowReport.h"
-/*
-#include <com/tibbo/aggregate/common/action/ActionUtils.h"
-#include <com/tibbo/aggregate/common/data/Data.h"
-#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/util/DashboardProperties.h"
-#include <com/tibbo/aggregate/common/util/WindowLocation.h"
-*/
+
 
 
 /*
-com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const ::default_init_tag&)
+ShowReport::ShowReport(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::action::command::ShowReport::ShowReport() 
+ShowReport::ShowReport() 
     : ShowReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const std::string & title, ::unsigned charArray* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard) 
+ShowReport::ShowReport(const std::string & title, ::unsigned charArray* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard) 
     : ShowReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,reportData,location,dashboard);
 }
 
-com::tibbo::aggregate::common::action::command::ShowReport::ShowReport(const std::string & title, DataTablePtr parameters) 
+ShowReport::ShowReport(const std::string & title, DataTablePtr parameters) 
     : ShowReport(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,parameters);
 }
 
-std::string& com::tibbo::aggregate::common::action::command::ShowReport::CF_REPORT_DATA()
+std::string& ShowReport::CF_REPORT_DATA()
 {
     
     return CF_REPORT_DATA_;
 }
-std::string com::tibbo::aggregate::common::action::command::ShowReport::CF_REPORT_DATA_;
+std::string ShowReport::CF_REPORT_DATA_;
 
-std::string& com::tibbo::aggregate::common::action::command::ShowReport::CF_LOCATION()
+std::string& ShowReport::CF_LOCATION()
 {
     
     return CF_LOCATION_;
 }
-std::string com::tibbo::aggregate::common::action::command::ShowReport::CF_LOCATION_;
+std::string ShowReport::CF_LOCATION_;
 
-std::string& com::tibbo::aggregate::common::action::command::ShowReport::CF_DASHBOARD()
+std::string& ShowReport::CF_DASHBOARD()
 {
     
     return CF_DASHBOARD_;
 }
-std::string com::tibbo::aggregate::common::action::command::ShowReport::CF_DASHBOARD_;
+std::string ShowReport::CF_DASHBOARD_;
 
-DateTableFormatPtr& com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT()
+DateTableFormatPtr& ShowReport::CFT_SHOW_REPORT()
 {
     
     return CFT_SHOW_REPORT_;
 }
-DateTableFormatPtr com::tibbo::aggregate::common::action::command::ShowReport::CFT_SHOW_REPORT_;
+DateTableFormatPtr ShowReport::CFT_SHOW_REPORT_;
 
-void com::tibbo::aggregate::common::action::command::ShowReport::ctor()
+void ShowReport::ctor()
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), CFT_SHOW_REPORT_, static_cast< TableFormatPtr >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std::string & title, ::unsigned charArray* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard)
+void ShowReport::ctor(const std::string & title, ::unsigned charArray* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), title);
     this->reportData = reportData;
@@ -76,12 +68,12 @@ void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std:
     this->dashboard = dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::ctor(const std::string & title, DataTablePtr parameters)
+void ShowReport::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_REPORT(), title, parameters, CFT_SHOW_REPORT_);
 }
 
-DateDataTablePtr com::tibbo::aggregate::common::action::command::ShowReport::constructParameters()
+DateDataTablePtr ShowReport::constructParameters()
 {
     auto t = new DataTable(CFT_SHOW_REPORT_);
     auto r = t)->addRecord();
@@ -91,45 +83,45 @@ DateDataTablePtr com::tibbo::aggregate::common::action::command::ShowReport::con
     return t;
 }
 
-unsigned charArray* com::tibbo::aggregate::common::action::command::ShowReport::getReportData()
+unsigned charArray* ShowReport::getReportData()
 {
     return reportData;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::setReportData(::unsigned charArray* reportData)
+void ShowReport::setReportData(::unsigned charArray* reportData)
 {
     this->reportData = reportData;
 }
 
-com::tibbo::aggregate::common::util::WindowLocationPtr com::tibbo::aggregate::common::action::command::ShowReport::getLocation()
+com::tibbo::aggregate::common::util::WindowLocationPtr ShowReport::getLocation()
 {
     return location;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::setLocation(WindowLocationPtr location)
+void ShowReport::setLocation(WindowLocationPtr location)
 {
     this->location = location;
 }
 
-com::tibbo::aggregate::common::util::DashboardPropertiesPtr com::tibbo::aggregate::common::action::command::ShowReport::getDashboard()
+com::tibbo::aggregate::common::util::DashboardPropertiesPtr ShowReport::getDashboard()
 {
     return dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::setDashboard(DashboardPropertiesPtr dashboard)
+void ShowReport::setDashboard(DashboardPropertiesPtr dashboard)
 {
     this->dashboard = dashboard;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::action::command::ShowReport::class_()
+java::lang::Class* ShowReport::class_()
 {
     static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowReport", 52);
     return c;
 }
 
-void com::tibbo::aggregate::common::action::command::ShowReport::clinit()
+void ShowReport::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -163,7 +155,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::action::command::ShowReport::getClass0()
+java::lang::Class* ShowReport::getClass0()
 {
     return class_();
 }

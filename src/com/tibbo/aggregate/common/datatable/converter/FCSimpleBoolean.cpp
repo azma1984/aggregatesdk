@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/FCSimpleBoolean.java
-#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleBoolean.h"
+#include "datatable/converter/FCSimpleBoolean.h"
 
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include "datatable/FieldFormat.h"
 //#include <java/lang/Boolean.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"

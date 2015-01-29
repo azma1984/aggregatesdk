@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/other/SleepFunction.java
-#include <com/tibbo/aggregate/common/expression/function/other/SleepFunction.h"
+#include "expression/function/other/SleepFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/EvaluationException.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "expression/EvaluationException.h"
+#include "expression/function/Functions.h"
+#include "util/Util.h"
 //#include <java/lang/InterruptedException.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Number.h"

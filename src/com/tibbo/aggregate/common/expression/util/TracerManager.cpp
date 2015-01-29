@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/util/TracerManager.java
-#include <com/tibbo/aggregate/common/expression/util/TracerManager.h"
+#include "expression/util/TracerManager.h"
 
-#include <com/tibbo/aggregate/common/expression/util/DefaultTracer.h"
-#include <com/tibbo/aggregate/common/expression/util/Tracer.h"
+#include "expression/util/DefaultTracer.h"
+#include "expression/util/Tracer.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/String.h"
 

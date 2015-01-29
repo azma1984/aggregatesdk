@@ -4,11 +4,11 @@
 #define H
 
 //#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/protocol/fwd-aggregate_sdk_5.11.00.h"
+#include "protocol/fwd-aggregate_sdk_5.11.00.h"
 #include <examples/agent/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/agent/AgentContext.h"
+#include "agent/AgentContext.h"
 
 
 

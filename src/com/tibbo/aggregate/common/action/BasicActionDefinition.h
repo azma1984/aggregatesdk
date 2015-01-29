@@ -1,6 +1,6 @@
 #ifndef BasicActionDefinitionH
 #define BasicActionDefinitionH
-
+#define BOOST_THREAD_USE_LIB
 #include "context/AbstractEntityDefinition.h"
 #include "action/ActionDefinition.h"
 #include "action/ActionCommandList.h"
@@ -8,15 +8,15 @@
 #include "security/Permission.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/mutex.hpp>
-  #include "action/Action.h"
+#include "action/Action.h"
 #include "action/ActionCommand.h"
 #include "action/GroupIdentifier.h"
 #include "action/KeyStroke.h"
 #include "action/RequestIdentifier.h"
 #include "action/ResourceMask.h"
 class BasicActionDefinition
-    : public AbstractEntityDefinition
-    , public ActionDefinition
+	: public AbstractEntityDefinition
+	, public ActionDefinition
     , public ActionCommandList
 {
 private:
@@ -32,7 +32,7 @@ private:
     static const std::string PROPERTY_ICON_ID_;
     static const std::string PROPERTY_DEFAULT_;
 
-	PropertyChangeSupportPtr propertyChangeListeners;
+	//PropertyChangeSupport* propertyChangeListeners;   todo - Java Beans
 	AgClassPtr actionClass;
     bool enabled;
     bool isDefault_;
@@ -51,8 +51,8 @@ public:
     GroupIdentifierPtr getExecutionGroup();
     bool isEnabled();
     bool isHidden();
-    boost::shared_ptr<KeyStroke> getAccelerator();
-	std::list  getDropSources();
+	boost::shared_ptr<KeyStroke> getAccelerator();
+	std::list< ResourceMaskPtr >  getDropSources();
     void setIconId(const std::string & iconId);
     void setHelp(const std::string & help);
     void setDescription(const std::string & description);
@@ -61,14 +61,14 @@ public:
     void setEnabled(bool enabled);
     void setHidden(bool hidden);
     void setAccelerator(boost::shared_ptr<KeyStroke> accelerator);
-	void setDropSources(std::list  dropSources);
+	void setDropSources(std::list< ResourceMaskPtr >  dropSources);
     void setName(const std::string & name);
     bool isDefault();
     void setDefault(bool isDefault);
     bool isConcurrent();
     void setConcurrent(bool allowConcurrentExecution);
     void addDropSource(ResourceMaskPtr resourceMask);
-    Action<InitialRequest,ActionCommand,ActionResponse> * instantiate();
+	Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * instantiate();
     std::list<ActionCommandPtr>  getCommands();
 
 
@@ -77,12 +77,13 @@ public:
     void unregisterCommand(const std::string & id);
 
 
-    boost::mutex getExecutionLock();
-	void removePropertyChangeListener(PropertyChangeListenerPtr l);
-	void addPropertyChangeListener(PropertyChangeListenerPtr l);
+	boost::mutex getExecutionLock();
+	//todo - JavaBeans
+   //	void removePropertyChangeListener(PropertyChangeListener l);
+	//void addPropertyChangeListener(PropertyChangeListener l);
     bool isHeadless();
-    PermissionsPtr getPermissions();
-    int compareTo(BasicActionDefinitionPtr o);
+	PermissionsPtr getPermissions();
+	int compareTo(BasicActionDefinitionPtr o);
 
 
     BasicActionDefinition(const std::string & name);
@@ -96,7 +97,7 @@ public:
     int  getIndex();
     std::string getName();
     AgObjectPtr getOwner();
-    const std::string toDetailedString();
+    std::string toDetailedString();
 };
 
 #endif

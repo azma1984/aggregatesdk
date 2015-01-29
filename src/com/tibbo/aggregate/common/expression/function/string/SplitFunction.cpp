@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/string/SplitFunction.java
-#include <com/tibbo/aggregate/common/expression/function/string/SplitFunction.h"
+#include "expression/function/string/SplitFunction.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "datatable/DataTable.h"
+#include "datatable/FieldFormat.h"
+#include "expression/function/Functions.h"
+#include "util/Util.h"
 //#include <java/io/Serializable.h"
 //#include <java/lang/ArrayStoreException.h"
 //#include <java/lang/CharSequence.h"

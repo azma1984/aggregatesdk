@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTable.java
-#include <com/tibbo/aggregate/common/datatable/DataTable_DataTableReferenceResolver.h"
+#include "datatable/DataTable_DataTableReferenceResolver.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
-#include <com/tibbo/aggregate/common/expression/Reference.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataTableUtils.h"
+#include "expression/Reference.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"

@@ -13,14 +13,14 @@ class ReferenceListener : public Interface
 {
 public:
     //TODO: AgObjectPtr
-    virtual void referenceChanged(boost::ReferencePtr cause, const std::map<std::string, AgObjectPtr>& environment,
-								  boost::ChangeCachePtr cache) = 0 ;
-    //TODO: AgObjectPtr
-    virtual void referenceChanged(boost::ReferencePtr cause, const std::map<std::string, AgObjectPtr>& environment,
-								  boost::ChangeCachePtr cache, bool asynchronousProcessing) = 0;
-    virtual boost::shared_ptr<BindingProcessor> getBindingProcessor() = 0;
-    virtual boost::BindingPtr getBinding() = 0;
-    virtual boost::EvaluationOptionsPtr getEvaluationOptions() = 0;
+	virtual void referenceChanged(ReferencePtr cause, const std::map<std::string, AgObjectPtr>& environment,
+								  ChangeCachePtr cache) = 0 ;
+	//TODO: AgObjectPtr
+	virtual void referenceChanged(ReferencePtr cause, const std::map<std::string, AgObjectPtr>& environment,
+								  ChangeCachePtr cache, bool asynchronousProcessing) = 0;
+	virtual BindingProcessorPtr getBindingProcessor() = 0;
+	virtual BindingPtr getBinding() = 0;
+	virtual EvaluationOptionsPtr getEvaluationOptions() = 0;
     virtual void setContent(AgObjectPtr/*T*/ content) = 0; //TODO: T content
     virtual AgObjectPtr/*T*/ getContent() = 0; // T
 };

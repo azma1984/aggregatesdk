@@ -20,23 +20,30 @@
 //#include "event/ContextEventListenerInfo.h"
 //#include "event/ContextEventListenerSet.h"
 //#include "event/EventUtils.h"
-
+ #include <boost/thread/pthread/shared_mutex.hpp>
 
 //todo - class stub
-template <class T> class DefaultContextManager: public ContextManager<T>
+template <class T> class DefaultContextManager: public ContextManager
 {
   private:
 	void init();
+	void ensureDispatcher(int eventQueueLength);
+     	void addEventListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak);
+
+	void removeEventListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener, bool mask);
+	std::map< std::string, std::map<std::string, ContextEventListenerSetPtr> > getContextListeners(const std::string & context);
+	ContextEventListenerSetPtr getMaskListeners(const std::string & mask, const std::string & event);
+	std::map< std::string, std::map<std::string, ContextEventListenerSetPtr> > getContextMaskListeners(const std::string & mask);
 
   public:
 
     bool async;
 	ContextPtr rootContext;
     CallerControllerPtr callerController;
-	EventDispatcherPtr eventDispatcher;
-	std::map eventListeners;
-    std::map maskListeners;
-    boost::shared_mutex maskListenersLock;
+   //	EventDispatcherPtr eventDispatcher;  todo
+	std::map< std::string, std::map<std::string, ContextEventListenerSetPtr> > eventListeners;
+	std::map< std::string, std::map<std::string, ContextEventListenerSetPtr> > maskListeners;
+	boost::shared_mutex maskListenersLock;
   //  ::java::util::concurrent::ThreadPoolExecutor* executorService;  todo
     bool started;
 
@@ -44,41 +51,23 @@ template <class T> class DefaultContextManager: public ContextManager<T>
     void stop();
     void restart();
 
-private:
-    void ensureDispatcher(int eventQueueLength);
 
-public:
-    ContextPtr getRoot();
-    void setRoot(ContextPtr newRoot);
-    ContextPtr get(const std::string & contextName, CallerControllerPtr caller);
-    ContextPtr get(const std::string & contextName);
+	ContextPtr getRoot();
+	void setRoot(ContextPtr newRoot);
+	ContextPtr get(const std::string & contextName, CallerControllerPtr caller);
+	ContextPtr get(const std::string & contextName);
+		void addListenerToContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak);
 
-private:
-    void addEventListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak);
 
-public:
-    void addListenerToContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak);
-
-private:
-    void removeEventListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener, bool mask);
-
-public:
     void removeListenerFromContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask);
 
-public:
-    void addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener);
+	void addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener);
     void addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener, bool weak);
     void removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener);
 
-public:
     ContextEventListenerSetPtr getListeners(const std::string & context, const std::string & event);
 
-private:
-    std::map getContextListeners(const std::string & context);
-    ContextEventListenerSetPtr getMaskListeners(const std::string & mask, const std::string & event);
-    std::map getContextMaskListeners(const std::string & mask);
 
-public:
     void contextAdded(ContextPtr con);
     void contextRemoved(ContextPtr con);
     void contextInfoChanged(ContextPtr con);

@@ -6,12 +6,12 @@
 #include "context/FunctionDefinition.h"
 
 //todo - class stub
-class FunctionData: public Comparable
+class FunctionData//: public Comparable
 {
 
 private:
 	FunctionDefinitionPtr definition;
-	std::mutex executionLock;
+   //	std::mutex executionLock;
 	long executionCount;
 	bool implementationCached;
   //	::java::lang::reflect::Method* implementationMethod;  todo
@@ -19,7 +19,7 @@ private:
 public:
 	void registerExecution();
 	FunctionDefinitionPtr getDefinition();
-	std::mutex  getExecutionLock();
+	//std::mutex  getExecutionLock();
 	long getExecutionCount();
 	bool isImplementationCached();
 	void setImplementationCached(bool implementationCached);

@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <com/tibbo/aggregate/common/datatable/field/fwd-aggregate_sdk_5.11.00.h"
+#include "datatable/field/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.h"
+#include "datatable/validator/AbstractFieldValidator.h"
 
 
 

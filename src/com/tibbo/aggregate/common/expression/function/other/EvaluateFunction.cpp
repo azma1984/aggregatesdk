@@ -1,11 +1,11 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/other/EvaluateFunction.java
-#include <com/tibbo/aggregate/common/expression/function/other/EvaluateFunction.h"
+#include "expression/function/other/EvaluateFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/EvaluationException.h"
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/Expression.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/util/SyntaxErrorException.h"
+#include "expression/EvaluationException.h"
+#include "expression/Evaluator.h"
+#include "expression/Expression.h"
+#include "expression/function/Functions.h"
+#include "util/SyntaxErrorException.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"

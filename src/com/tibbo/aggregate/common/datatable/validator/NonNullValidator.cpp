@@ -31,7 +31,7 @@ char NonNullValidator::getType()
 void* NonNullValidator::validate(void* value) /* throws(ValidationException) */
 {
     if (value == NULL) {
-        //throw new ValidationException(message != null ? message : Cres.get().getString("dtValueIsRequired"));
+        //throw new ValidationException(message != null ? message : Cres::get()->getString("dtValueIsRequired"));
     }
 
     return value;

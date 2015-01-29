@@ -1,5 +1,5 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/encoding/KnownFormatCollector.java
-#include <com/tibbo/aggregate/common/datatable/encoding/KnownFormatCollector.h"
+#include "datatable/encoding/KnownFormatCollector.h"
 
 //#include <java/lang/Boolean.h"
 //#include <java/lang/ClassCastException.h"

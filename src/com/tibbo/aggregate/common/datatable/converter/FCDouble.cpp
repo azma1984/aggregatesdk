@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/FCDouble.java
-#include <com/tibbo/aggregate/common/datatable/converter/FCDouble.h"
+#include "datatable/converter/FCDouble.h"
 
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include "datatable/FieldFormat.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/Double.h"

@@ -2,6 +2,8 @@
 #define _LOCATION_H_
 
 #include <string>
+#include <sstream>
+#include <iostream>
 
 class Location
 {
@@ -27,7 +29,7 @@ public:
     }
 
     std::string toString() {
-        std::stringstream ss;
+		std::stringstream ss;
         ss <<"[Lat=" <<latitude <<", Lon=" <<longitude <<"]";
 
         return ss.str();
@@ -40,7 +42,7 @@ public:
 
     Location(double latitude, double longitude) {
         this->latitude = static_cast<float>(latitude);
-        this->longitude = sttaic_cast<float>(longitude);
+        this->longitude = static_cast<float>(longitude);
     }
 };
 #endif  //_LOCATION_H_

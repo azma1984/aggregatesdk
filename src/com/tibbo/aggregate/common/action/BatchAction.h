@@ -26,7 +26,6 @@ public:
 	BatchAction(ActionManagerPtr actionManager);
 	void init(ActionContextPtr actionContext, InitialRequestPtr initialParameters);
 	ActionCommandPtr service(ActionResponsePtr actionRequest);
-
 	ActionResultPtr  destroy();
 };
 

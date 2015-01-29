@@ -12,7 +12,7 @@ private:
 	static const std::string EMPTY_ID_;
 
 public:
-    std::list  parameters;
+	std::list<std::string>  parameters;
 
 public:
 	void parse() ;
@@ -21,24 +21,24 @@ public:
     int getNumberOfParameters();
     bool hasParameter(int number);
 
-    std::list  getParameters(int number);
+	std::list<std::string>  getParameters(int number);
     bool isReply();
     bool isMessage();
-    const std::string & getReplyCode();
-    const std::string & getMessageCode();
-    const std::string & getEncodedDataTable(int index) ;
-    const std::string & getEncodedDataTableFromReply() ;
-    const std::string & getEncodedDataTableFromOperationMessage() ;
-	const std::string & getEncodedDataTableFromEventMessage() ;
-    const std::string & getId();
+	std::string getReplyCode();
+	std::string getMessageCode();
+	std::string getEncodedDataTable(int index) ;
+	std::string getEncodedDataTableFromReply() ;
+	std::string getEncodedDataTableFromOperationMessage() ;
+	std::string getEncodedDataTableFromEventMessage() ;
+	std::string getId();
     bool isAsync();
 
+	std::string getParameter(int number);
 
-    IncomingAggreGateCommand(::unsigned charArray* data);
-    IncomingAggreGateCommand(const std::string & str);
-    IncomingAggreGateCommand(::java::io::ByteArrayOutputStream* s);
+	IncomingAggreGateCommand(char* data);
+	IncomingAggreGateCommand(const std::string & str);
+   //	IncomingAggreGateCommand(::java::io::ByteArrayOutputStream* s);  todo
 
-public:
-    std::string getParameter(int number);
+
 };
 #endif

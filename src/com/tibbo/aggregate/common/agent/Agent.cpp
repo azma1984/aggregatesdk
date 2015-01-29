@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/agent/Agent.java
 
 #include "Agent.h"
 
@@ -6,9 +5,9 @@
 Agent::Agent(RemoteServerPtr server, const std::string &name, bool eventConfirmation) 
 {
  this->server = server;
- this->context = new AgentContext(server, name, eventConfirmation);
- //todo
-// this->contextManager = new AgentContextManager((ContextPtr)context, false); 
+// this->context = AgentContextPtr(new AgentContext(server, name, eventConfirmation));    //todo
+
+// this->contextManager = new AgentContextManager((ContextPtr)context, false);  //todo
 }
 
 

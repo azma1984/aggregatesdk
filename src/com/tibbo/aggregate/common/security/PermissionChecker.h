@@ -2,14 +2,14 @@
 #define _PermissionChecker_H_
 
 #include "util/Interface.h"
-#include "context/Context.h"
+//#include "context/Context.h"
 #include "context/ContextManager.h"
 #include "context/CallerController.h"
 #include "security/Permissions.h"
 #include <string>
 #include <map>
 #include <boost/shared_ptr.hpp>
-
+#include "util/Pointers.h"
 /**
  * The <code>PermissionChecker</code> is responsible for granting/denying access of various callers to different contexts.
  */

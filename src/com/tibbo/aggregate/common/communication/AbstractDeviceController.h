@@ -8,7 +8,7 @@
 #include "communication/CommandProcessorStatistics.h"
 #include "device/DisconnectionException.h"
 
-template <class I,class O> class AbstractDeviceController:public CommandParserListener
+template <class I,class O> class AbstractDeviceController : public CommandParserListener
 {
  private:
 	long commandTimeout;
@@ -65,7 +65,7 @@ template <class I,class O> class AbstractDeviceController:public CommandParserLi
     CommandParserPtr getCommandParser();
 
     void setResetTimeoutsOnData(bool resetTimeoutWhenDataReceived);
-    std::list  getActiveCommands();
+   // std::list  getActiveCommands(); todo
     long getCommandTimeout();
   //  ::org::apache::log4j::Logger* getLogger();  //todo
     CommandProcessorStatisticsPtr getStatistics();

@@ -1,11 +1,11 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/date/DateAddFunction.java
-#include <com/tibbo/aggregate/common/expression/function/date/DateAddFunction.h"
+#include "expression/function/date/DateAddFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/util/DateUtils.h"
-#include <com/tibbo/aggregate/common/util/TimeHelper.h"
-#include <com/tibbo/aggregate/common/util/TimeUnit.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "expression/function/Functions.h"
+#include "util/DateUtils.h"
+#include "util/TimeHelper.h"
+#include "util/TimeUnit.h"
+#include "util/Util.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/Integer.h"

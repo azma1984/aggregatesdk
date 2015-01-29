@@ -2,6 +2,7 @@
 #define BatchContextH
 #include <list>
 #include "BatchEntry.h"
+#include "util/pointers.h"
 
 class BatchContext
 {
@@ -12,7 +13,7 @@ class BatchContext
 public:
 	void addBatchEntry(BatchEntryPtr batchEntry);
 
-	std::list<BatchEntryPtr> getEntries();
+	std::list< BatchEntryPtr > getEntries();
     BatchEntryPtr getCurrentEntry();
 	void markAsPerfomed(BatchEntryPtr entry);
 

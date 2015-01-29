@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateCommandParser.java
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommandParser.h"
+#include "protocol/AggreGateCommandParser.h"
 
-#include <com/tibbo/aggregate/common/protocol/IncomingAggreGateCommand.h"
+#include "protocol/IncomingAggreGateCommand.h"
 //#include <java/lang/Byte.h"
 
 com::tibbo::aggregate::common::protocol::AggreGateCommandParser::AggreGateCommandParser(const ::default_init_tag&)

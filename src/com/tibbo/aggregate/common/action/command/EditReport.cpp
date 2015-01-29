@@ -1,8 +1,6 @@
 #include "action/command/EditReport.h"
 
-#include "action/ActionUtils.h"
-#include "datatable/DataTable.h"
-#include "datatable/TableFormat.h"
+
 
 const std::string EditReport::CF_TEMPLATE = "template";
 const std::string EditReport::CF_DATA = "data";

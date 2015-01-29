@@ -1,5 +1,5 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/color/BlueFunction.java
-#include <com/tibbo/aggregate/common/expression/function/color/BlueFunction.h"
+#include "expression/function/color/BlueFunction.h"
 
 //#include <java/awt/Color.h"
 //#include <java/lang/Integer.h"

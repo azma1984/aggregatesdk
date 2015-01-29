@@ -8,34 +8,34 @@
 #include "event/ContextEventListener.h"
 #include "event/ContextEventListenerSet.h"
 #include "util/Util.h"
-
+#include "util/pointers.h"
 //todo - class stub
-class EventDataPtr: public Comparable
+class EventData: public Comparable
 {
 
 private:
-    EventDefinitionPtr definition;
+	EventDefinitionPtr definition;
     ContextEventListenerSetPtr listeners;
-    std::list  history;
+   // std::list  history;   todo
     long fireCount;
 	void init();
 
 public:
 	void registerFiredEvent();
 	EventDefinitionPtr getDefinition();
-	::std::set  getListeners();
-	::std::set  getListenersInfo();
+   //	std::set  getListeners();     todo
+   //	std::set  getListenersInfo();  todo
 	long getFireCount();
 	bool addListener(ContextEventListenerPtr listener, bool weak);
 	bool removeListener(ContextEventListenerPtr listener);
 	void clearListeners();
 	void dispatch(EventPtr event);
 	EventPtr store(EventPtr event, int  customMemoryStorageSize);
-	std::list  getHistory();
+   //	std::list  getHistory();   todo
 	const std::string & toString();
     int compareTo(EventDataPtr d);
 
-	EventDataPtr(EventDefinitionPtr definition);
+	EventData(EventDefinitionPtr definition);
 
 
 };

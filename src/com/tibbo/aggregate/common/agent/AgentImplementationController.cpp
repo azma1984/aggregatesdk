@@ -9,11 +9,11 @@ void AgentImplementationController::processMessageOperation(IncomingAggreGateCom
 {
     DefaultClientController::processMessageOperation(cmd, ans);
     std::string context = cmd->getParameter(AggreGateCommand::INDEX_OPERATION_CONTEXT);
-    ContextPtr con = getContext(context);
-    if(con != 0) 
-    {
-     addNormalListener(con->getPath(),AbstractContext::E_UPDATED, getDefaultEventListener());
-    }
+   // ContextPtr con = getContext(context); //todo
+  //  if(con != 0)
+   // {
+   //  addNormalListener(con->getPath(),AbstractContext::E_UPDATED, getDefaultEventListener());
+   // }
 }
 
 bool AgentImplementationController::controllerShouldHandle(EventPtr ev, ContextEventListenerPtr listener) 

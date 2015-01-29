@@ -31,25 +31,25 @@
 
 AgentContext::AgentContext(RemoteServerPtr server, const std::string &name, bool eventConfirmation) 
 {   
-   FIFT_LOGIN= new TableFormat(1, 1, "<" + FIF_LOGIN_CHALLENGE + "><S>");
-   FOFT_LOGIN= new TableFormat(1, 1);
+   FIFT_LOGIN= TableFormatPtr(new TableFormat(1, 1, "<" + FIF_LOGIN_CHALLENGE + "><S>"));
+   FOFT_LOGIN= TableFormatPtr(new TableFormat(1, 1));
   
    FOFT_LOGIN->addField("<" + FOF_LOGIN_OWNER + "><S>");
    FOFT_LOGIN->addField("<" + FOF_LOGIN_NAME + "><S>");
    FOFT_LOGIN->addField("<" + FOF_LOGIN_RESPONSE + "><S>");
  
-  
-   FOFT_REGISTER= new TableFormat(1, 1,  "<" + FOF_REGISTER_PASSWORD + "><S>");
 
-   FOFT_GET_HISTORY= new TableFormat();
+   FOFT_REGISTER= TableFormatPtr(new TableFormat(1, 1,  "<" + FOF_REGISTER_PASSWORD + "><S>"));
+
+   FOFT_GET_HISTORY= TableFormatPtr(new TableFormat());
    FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_VARIABLE + "><S>");
    FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_TIMESTAMP + "><D>");
    FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_VALUE + "><T>");
    
    
-   FIFT_CONFIRM_EVENT= new TableFormat(1, 1,  "<" + FIF_CONFIRM_EVENT_ID + "><L>");
+   FIFT_CONFIRM_EVENT= TableFormatPtr(new TableFormat(1, 1,  "<" + FIF_CONFIRM_EVENT_ID + "><L>"));
 
-   EFT_EVENT_CONFIRMED= new TableFormat(1, 1, "<" + EF_EVENT_CONFIRMED_ID + "><L>");  
+   EFT_EVENT_CONFIRMED= TableFormatPtr(new TableFormat(1, 1, "<" + EF_EVENT_CONFIRMED_ID + "><L>"));
   
   loginImpl = new FunctionImplementation1();
   registerImpl = new FunctionImplementation2();
@@ -58,7 +58,7 @@ AgentContext::AgentContext(RemoteServerPtr server, const std::string &name, bool
   getHistoryImpl = new FunctionImplementation5();
 
 
-  AbstractContext::AbstractContext(Contexts::CTX_ROOT);
+ // AbstractContext::AbstractContext(Contexts::CTX_ROOT);//todo
   this->server = server;
   this->name = name;
   this->eventConfirmation = eventConfirmation;
@@ -69,25 +69,25 @@ AgentContext::AgentContext(RemoteServerPtr server, const std::string &name, bool
 void AgentContext::setupMyself() 
 {
     AbstractContext::setupMyself();
-   
-    FunctionDefinitionPtrfd = new FunctionDefinition(F_LOGIN, FIFT_LOGIN, FOFT_LOGIN, ""/*Cres::get()->getString("login")*/);
-    fd->setImplementation(loginImpl);
+
+	FunctionDefinitionPtr fd = FunctionDefinitionPtr(new FunctionDefinition(F_LOGIN, FIFT_LOGIN, FOFT_LOGIN, Cres::get()->getString("login")));
+   //	fd->setImplementation(FunctionDefinitionPtr(loginImpl));
+	addFunctionDefinition(fd);
+   //	fd = FunctionDefinitionPtr(new FunctionDefinition(F_REGISTER, TableFormat::EMPTY_FORMAT, FOFT_REGISTER, Cres::get()->getString("register")));  todo
+   //	fd->setImplementation(FunctionDefinitionPtr(registerImpl));
+	addFunctionDefinition(fd);
+  //	fd = FunctionDefinitionPtr(new FunctionDefinition(F_SYNCHRONIZED, TableFormat::EMPTY_FORMAT, TableFormat::EMPTY_FORMAT, Cres::get())->getString("register")));
+   //	fd->setImplementation(FunctionDefinitionPtr(synchronizedImpl));
     addFunctionDefinition(fd);
-    fd = new FunctionDefinition(F_REGISTER, TableFormat::EMPTY_FORMAT, FOFT_REGISTER,""/* Cres::get()->getString("register")*/);
-    fd->setImplementation(registerImpl);
+ //	fd = FunctionDefinitionPtr(new FunctionDefinition(F_CONFIRM_EVENT, FIFT_CONFIRM_EVENT, TableFormat::EMPTY_FORMAT)));
+   //	fd->setImplementation(FunctionDefinitionPtr(confirmEventImpl));
     addFunctionDefinition(fd);
-    fd = new FunctionDefinition(F_SYNCHRONIZED, TableFormat::EMPTY_FORMAT, TableFormat::EMPTY_FORMAT,""/* Cres::get())->getString("register")*/);
-    fd->setImplementation(synchronizedImpl);
-    addFunctionDefinition(fd);
-    fd = new FunctionDefinition(F_CONFIRM_EVENT, FIFT_CONFIRM_EVENT, TableFormat::EMPTY_FORMAT);
-    fd->setImplementation(confirmEventImpl);
-    addFunctionDefinition(fd);
-    fd = new FunctionDefinition(F_GET_HISTORY, TableFormat::EMPTY_FORMAT, FOFT_GET_HISTORY);
-    fd->setImplementation(getHistoryImpl);
+  //	fd = FunctionDefinitionPtr(new FunctionDefinition(F_GET_HISTORY, TableFormat::EMPTY_FORMAT, FOFT_GET_HISTORY)));
+  //	fd->setImplementation(FunctionDefinitionPtr(getHistoryImpl));
     addFunctionDefinition(fd);
     if(eventConfirmation) 
 	{
-     EventDefinitionPtred = new EventDefinition(E_EVENT_CONFIRMED, EFT_EVENT_CONFIRMED);
+	 EventDefinitionPtr ed = EventDefinitionPtr( new EventDefinition(E_EVENT_CONFIRMED, EFT_EVENT_CONFIRMED));
      addEventDefinition(ed);
     }
   
@@ -97,8 +97,8 @@ void AgentContext::confirmEvent(int id)
 {
     if(getEventDefinition(E_EVENT_CONFIRMED) != 0) 
     {
-      fireEvent(E_EVENT_CONFIRMED,(AgObjectPtr)id);
-    }
+	  //fireEvent(E_EVENT_CONFIRMED,(AgObjectPtr)id); todo
+	}
 }
 
 bool AgentContext::isSynchronized1()

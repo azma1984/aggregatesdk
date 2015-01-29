@@ -4,7 +4,7 @@
 #define H
 
 //#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/agent/fwd-aggregate_sdk_5.11.00.h"
+#include "agent/fwd-aggregate_sdk_5.11.00.h"
 #include <examples/agent/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/security/fwd-aggregate_sdk_5.11.00.h"

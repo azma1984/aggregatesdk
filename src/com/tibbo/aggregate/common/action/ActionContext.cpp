@@ -22,9 +22,9 @@ RequestCachePtr ActionContext::getRequestCache()
     return requestCache;
 }
 
-ActionStatePtr ActionContext::getActionState()
+unsigned char ActionContext::getActionState()
 {
-    return actionState;
+	return actionState;
 }
 
 ActionManagerPtr ActionContext::getActionManager()
@@ -32,9 +32,9 @@ ActionManagerPtr ActionContext::getActionManager()
     return actionManager;
 }
 
-std::list<RequestIdentifier>* ActionContext::getRequestedIds()
+std::list<RequestIdentifierPtr> ActionContext::getRequestedIds()
 {
-    return &requestedIds;
+	return requestedIds;
 }
 
 void ActionContext::setActionDefinition(ActionDefinitionPtr actionDefinition)
@@ -56,12 +56,12 @@ void ActionContext::setRequestCache(RequestCachePtr requestCache)
     this->requestCache = requestCache;
 }
 
-void ActionContext::setActionState(ActionStatePtr actionState)
+void ActionContext::setActionState(unsigned char actionState)
 {
-	if(actionState == 0)
-	{
-	 std::cout<<"Pointer = NULL!";
-	}
+   //	if(actionState == 0)
+  //	{
+  //	 std::cout<<"Pointer = NULL!";
+  //	}
 	this->actionState = actionState;
 }
 

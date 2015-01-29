@@ -11,6 +11,16 @@
 #include "datatable/TableFormat.h"
 #include "datatable/field/LongFieldFormat.h"
 #include "util/TimeHelper.h"
+#include "Cres.h"
+#include "communication/Command.h"
+#include "communication/ReplyMonitor.h"
+//#include "datatable/DataTable.h"
+//#include "datatable/DataTableConversion.h"
+//#include "datatable/DataTableException.h"
+//#include "datatable/TableFormat.h"
+//#include "datatable/field/LongFieldFormat.h"
+#include "util/TimeHelper.h"
+
 
 class CommandProcessorStatistics
 {

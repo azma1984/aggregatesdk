@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/context/DrFunction.java
-#include <com/tibbo/aggregate/common/expression/function/context/DrFunction.h"
+#include "expression/function/context/DrFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "expression/Evaluator.h"
+#include "expression/ReferenceResolver.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/Integer.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/String.h"

@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <com/tibbo/aggregate/common/datatable/converter/fwd-aggregate_sdk_5.11.00.h"
+#include "datatable/converter/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/converter/AbstractFormatConverter.h"
+#include "datatable/converter/AbstractFormatConverter.h"
 
 
 

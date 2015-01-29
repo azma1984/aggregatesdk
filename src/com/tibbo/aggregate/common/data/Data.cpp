@@ -1,4 +1,4 @@
-#include "data/data.h"
+﻿#include "data/data.h"
 #include <sstream>
 
 Data::Data() : id(0)
@@ -111,10 +111,10 @@ std::string Data::toDetailedString()
     std::stringstream ss;
 	std::locale cloc("C");
 	ss.imbue(cloc);
+	 //todo
+//	ss << "Data [id: " << id <<", name: " <<(!name.empty() ? name : "null" )
+//	   <<", preview: len=" << preview.size() <<" checksum=" << checksum(preview) <<", data: len=" << data.size() << " checksum=" << checksum(data) <<"]";
 
-	ss << "Data [id: " << id <<", name: " <<(!name.empty() ? name : "null")
-       <<", preview: len=" << preview.size() <<" checksum=" << checksum(preview) <<", data: len=" << data.size() << " checksum=" << checksum(data) <<"]";
-	   
 	return ss.str();
 }
 
@@ -123,9 +123,9 @@ std::string Data::toString()
     std::stringstream ss;
     std::locale cloc("C");
     ss.imbue(cloc);
-
-    ss << "Data [id: " << id <<", name: " <<(!name.empty() ? name : "null")
-       <<", preview: len=" << preview.size() <<", data: len=" <<data.size() <<"]";
+   //todo
+//	ss << "Data [id: " << id <<", name: " << (!name.empty() ? name : "null")
+//	   <<", preview: len=" << preview.size() <<", data: len=" <<data.size() <<"]";
 
     return ss.str();
 }
@@ -143,28 +143,28 @@ void Data::setAttachments(std::map<std::string, AgObjectPtr > &attachments)
 	this->attachments = attachments;
 }
 
-DataPtr Data::clone() const
-{
-	DataPtr cl = new Data();
- 
-  //  try
-  //  {
-  //    cl = (Data) super.clone();
-  //  }
-  //  catch (CloneNotSupportedException ex)
-  //  {
-  //    throw new IllegalStateException(ex.getMessage(), ex);
-  //  }
-	
-    cl->id = id;
-    cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
-    cl->data = data;//(byte[]) CloneUtils.deepClone(data);
-    //TODO: копирование std::map<std::string, AgObjectPtr> attachments;
+//DataPtr Data::clone() const
+//{
+////	DataPtr cl = new Data();
+////
+////  //  try
+////  //  {
+////  //    cl = (Data) super.clone();
+////  //  }
+////  //  catch (CloneNotSupportedException ex)
+////  //  {
+////  //    throw new IllegalStateException(ex.getMessage(), ex);
+////  //  }
+////
+////	cl->id = id;
+////	cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
+////	cl->data = data;//(byte[]) CloneUtils.deepClone(data);
+////	//TODO: копирование std::map<std::string, AgObjectPtr> attachments;
+//
+//	return cl;
+//}
 
-    return cl;
-}
-	
-bool Data::equals(DataPtrdata)
+bool Data::equals(DataPtr data)
 {
-    return (this->id == data->id) && (this->name == data->name) && (this->preview == data->preview) && (this->data == data->data);
+	return (this->id == data->id) && (this->name == data->name) && (this->preview == data->preview) && (this->data == data->data);
 }

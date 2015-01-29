@@ -50,7 +50,7 @@ bool RemoteServerController::connectImpl()
 
 		if(dataChannel != 0)
 		{
-            setCommandParser(static_cast< ::com::tibbo::aggregate::common::communication::CommandParserPtr >(new AggreGateCommandParser(dataChannel, AggreGateCommand::START_CHAR, AggreGateCommand::END_CHAR)));
+            setCommandParser(static_cast< CommandParserPtr >(new AggreGateCommandParser(dataChannel, AggreGateCommand::START_CHAR, AggreGateCommand::END_CHAR)));
         }
         Log::PROTOCOL())->debug(u"Connection with remote server established"_j);
 	}
@@ -110,7 +110,7 @@ void RemoteServerController::send(OutgoingAggreGateCommandPtr cmd)
     cmd)->send(static_cast< ::java::nio::channels::ByteChannel* >(dataChannel));
 }
 
-void RemoteServerController::send(::com::tibbo::aggregate::common::communication::CommandPtr cmd)
+void RemoteServerController::send(CommandPtr cmd)
 { 
     send(dynamic_cast< OutgoingAggreGateCommandPtr >(cmd));
 }

@@ -1,160 +1,143 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/SelectEntities.java
 #include "action/command/SelectEntities.h"
-/*
-#include <com/tibbo/aggregate/common/action/ActionUtils.h"
-#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-*/
-/*
-//#include <java/lang/Boolean.h"
-//#include <java/lang/ClassCastException.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/util/Collection.h"
-//#include <java/util/Iterator.h"
-#include <ObjectArray.h"*/
+
 
 /*
-com::tibbo::aggregate::common::action::command::SelectEntities::SelectEntities(const ::default_init_tag&)
+SelectEntities::SelectEntities(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))
 {
     
 }
 
-com::tibbo::aggregate::common::action::command::SelectEntities::SelectEntities() 
+SelectEntities::SelectEntities()
     : SelectEntities(*static_cast< ::default_init_tag* >(0))
 {
     ctor();
 }
 
-com::tibbo::aggregate::common::action::command::SelectEntities::SelectEntities(const std::string & title, std::list contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection) 
+SelectEntities::SelectEntities(const std::string & title, std::list contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection)
     : SelectEntities(*static_cast< ::default_init_tag* >(0))
 {
     ctor(title,contextTypes,rootContext,defaultContext,expandedContext,showChildren,allowMasks,showVars,showFuncs,showEvents,showFields,singleSelection);
 }
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_TYPES()
+std::string& SelectEntities::CF_TYPES()
 {
     
     return CF_TYPES_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_TYPES_;
+std::string SelectEntities::CF_TYPES_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_ROOT()
+std::string& SelectEntities::CF_ROOT()
 {
     
     return CF_ROOT_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_ROOT_;
+std::string SelectEntities::CF_ROOT_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_DEFAULT()
+std::string& SelectEntities::CF_DEFAULT()
 {
     
     return CF_DEFAULT_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_DEFAULT_;
+std::string SelectEntities::CF_DEFAULT_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_EXPANDED()
+std::string& SelectEntities::CF_EXPANDED()
 {
     
     return CF_EXPANDED_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_EXPANDED_;
+std::string SelectEntities::CF_EXPANDED_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_CHILDREN()
+std::string& SelectEntities::CF_SHOW_CHILDREN()
 {
     
     return CF_SHOW_CHILDREN_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_CHILDREN_;
+std::string SelectEntities::CF_SHOW_CHILDREN_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_ALLOW_MASKS()
+std::string& SelectEntities::CF_ALLOW_MASKS()
 {
     
     return CF_ALLOW_MASKS_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_ALLOW_MASKS_;
+std::string SelectEntities::CF_ALLOW_MASKS_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_VARS()
+std::string& SelectEntities::CF_SHOW_VARS()
 {
     
     return CF_SHOW_VARS_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_VARS_;
+std::string SelectEntities::CF_SHOW_VARS_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_FUNCS()
+std::string& SelectEntities::CF_SHOW_FUNCS()
 {
     
     return CF_SHOW_FUNCS_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_FUNCS_;
+std::string SelectEntities::CF_SHOW_FUNCS_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_EVENTS()
+std::string& SelectEntities::CF_SHOW_EVENTS()
 {
     
     return CF_SHOW_EVENTS_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_EVENTS_;
+std::string SelectEntities::CF_SHOW_EVENTS_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_FIELDS()
+std::string& SelectEntities::CF_SHOW_FIELDS()
 {
     
     return CF_SHOW_FIELDS_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_SHOW_FIELDS_;
+std::string SelectEntities::CF_SHOW_FIELDS_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_SINGLE_SELECTION()
+std::string& SelectEntities::CF_SINGLE_SELECTION()
 {
     
     return CF_SINGLE_SELECTION_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_SINGLE_SELECTION_;
+std::string SelectEntities::CF_SINGLE_SELECTION_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::CF_TYPES_TYPE()
+std::string& SelectEntities::CF_TYPES_TYPE()
 {
     
     return CF_TYPES_TYPE_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::CF_TYPES_TYPE_;
+std::string SelectEntities::CF_TYPES_TYPE_;
 
-std::string& com::tibbo::aggregate::common::action::command::SelectEntities::RF_REFERENCE()
+std::string& SelectEntities::RF_REFERENCE()
 {
     
     return RF_REFERENCE_;
 }
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::RF_REFERENCE_;
+std::string SelectEntities::RF_REFERENCE_;
 
-DateTableFormatPtr& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES()
+DateTableFormatPtr& SelectEntities::CFT_SELECT_ENTITIES()
 {
     
     return CFT_SELECT_ENTITIES_;
 }
-DateTableFormatPtr com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_;
+DateTableFormatPtr SelectEntities::CFT_SELECT_ENTITIES_;
 
-DateTableFormatPtr& com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES()
+DateTableFormatPtr& SelectEntities::CFT_SELECT_ENTITIES_TYPES()
 {
     
     return CFT_SELECT_ENTITIES_TYPES_;
 }
-DateTableFormatPtr com::tibbo::aggregate::common::action::command::SelectEntities::CFT_SELECT_ENTITIES_TYPES_;
+DateTableFormatPtr SelectEntities::CFT_SELECT_ENTITIES_TYPES_;
 
-DateTableFormatPtr& com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES()
+DateTableFormatPtr& SelectEntities::RFT_SELECT_ENTITIES()
 {
     
     return RFT_SELECT_ENTITIES_;
 }
-DateTableFormatPtr com::tibbo::aggregate::common::action::command::SelectEntities::RFT_SELECT_ENTITIES_;
+DateTableFormatPtr SelectEntities::RFT_SELECT_ENTITIES_;
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::ctor()
+void SelectEntities::ctor()
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SELECT_ENTITIES(), CFT_SELECT_ENTITIES_, RFT_SELECT_ENTITIES_);
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::ctor(const std::string & title, std::list contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection)
+void SelectEntities::ctor(const std::string & title, std::list contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SELECT_ENTITIES(), title);
     this->contextTypes = contextTypes;
@@ -170,7 +153,7 @@ void com::tibbo::aggregate::common::action::command::SelectEntities::ctor(const 
     this->singleSelection = singleSelection;
 }
 
-DateDataTablePtr com::tibbo::aggregate::common::action::command::SelectEntities::constructParameters()
+DateDataTablePtr SelectEntities::constructParameters()
 {
     DataTablePtr types;
     if(contextTypes != 0) {
@@ -185,125 +168,125 @@ DateDataTablePtr com::tibbo::aggregate::common::action::command::SelectEntities:
     return new DataTable(CFT_SELECT_ENTITIES_, new voidArray({types), rootContext), defaultContext), expandedContext), ::java::lang::Boolean::valueOf(showChildren)), ::java::lang::Boolean::valueOf(allowMasks)), ::java::lang::Boolean::valueOf(showVars)), ::java::lang::Boolean::valueOf(showFuncs)), ::java::lang::Boolean::valueOf(showEvents)), ::java::lang::Boolean::valueOf(showFields)), ::java::lang::Boolean::valueOf(singleSelection))}));
 }
 
-java::util::Collection* com::tibbo::aggregate::common::action::command::SelectEntities::getContextTypes()
+java::util::Collection* SelectEntities::getContextTypes()
 {
     return contextTypes;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setContextTypes(std::list contextTypes)
+void SelectEntities::setContextTypes(std::list contextTypes)
 {
     this->contextTypes = contextTypes;
 }
 
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::getRootContext()
+std::string SelectEntities::getRootContext()
 {
     return rootContext;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setRootContext(const std::string & rootContext)
+void SelectEntities::setRootContext(const std::string & rootContext)
 {
     this->rootContext = rootContext;
 }
 
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::getDefaultContext()
+std::string SelectEntities::getDefaultContext()
 {
     return defaultContext;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setDefaultContext(const std::string & defaultContext)
+void SelectEntities::setDefaultContext(const std::string & defaultContext)
 {
     this->defaultContext = defaultContext;
 }
 
-std::string com::tibbo::aggregate::common::action::command::SelectEntities::getExpandedContext()
+std::string SelectEntities::getExpandedContext()
 {
     return expandedContext;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setExpandedContext(const std::string & expandedContext)
+void SelectEntities::setExpandedContext(const std::string & expandedContext)
 {
     this->expandedContext = expandedContext;
 }
 
-bool com::tibbo::aggregate::common::action::command::SelectEntities::isShowChildren()
+bool SelectEntities::isShowChildren()
 {
     return showChildren;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setShowChildren(bool showChildren)
+void SelectEntities::setShowChildren(bool showChildren)
 {
     this->showChildren = showChildren;
 }
 
-bool com::tibbo::aggregate::common::action::command::SelectEntities::isAllowMasks()
+bool SelectEntities::isAllowMasks()
 {
     return allowMasks;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setAllowMasks(bool allowMasks)
+void SelectEntities::setAllowMasks(bool allowMasks)
 {
     this->allowMasks = allowMasks;
 }
 
-bool com::tibbo::aggregate::common::action::command::SelectEntities::isShowVars()
+bool SelectEntities::isShowVars()
 {
     return showVars;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setShowVars(bool showVars)
+void SelectEntities::setShowVars(bool showVars)
 {
     this->showVars = showVars;
 }
 
-bool com::tibbo::aggregate::common::action::command::SelectEntities::isShowFuncs()
+bool SelectEntities::isShowFuncs()
 {
     return showFuncs;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setShowFuncs(bool showFuncs)
+void SelectEntities::setShowFuncs(bool showFuncs)
 {
     this->showFuncs = showFuncs;
 }
 
-bool com::tibbo::aggregate::common::action::command::SelectEntities::isShowEvents()
+bool SelectEntities::isShowEvents()
 {
     return showEvents;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setShowEvents(bool showEvents)
+void SelectEntities::setShowEvents(bool showEvents)
 {
     this->showEvents = showEvents;
 }
 
-bool com::tibbo::aggregate::common::action::command::SelectEntities::isShowFields()
+bool SelectEntities::isShowFields()
 {
     return showFields;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setShowFields(bool showFields)
+void SelectEntities::setShowFields(bool showFields)
 {
     this->showFields = showFields;
 }
 
-bool com::tibbo::aggregate::common::action::command::SelectEntities::isSingleSelection()
+bool SelectEntities::isSingleSelection()
 {
     return singleSelection;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::setSingleSelection(bool singleSelection)
+void SelectEntities::setSingleSelection(bool singleSelection)
 {
     this->singleSelection = singleSelection;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::action::command::SelectEntities::class_()
+java::lang::Class* SelectEntities::class_()
 {
     static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.SelectEntities", 56);
     return c;
 }
 
-void com::tibbo::aggregate::common::action::command::SelectEntities::clinit()
+void SelectEntities::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -367,8 +350,4 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::action::command::SelectEntities::getClass0()
-{
-    return class_();
-}
 */

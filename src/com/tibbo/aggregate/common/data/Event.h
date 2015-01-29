@@ -3,6 +3,8 @@
 
 #include "util/Cloneable.h"
 #include <boost/shared_ptr.hpp>
+#include <list>
+#include "util/pointers.h"
 
 class Event: public Cloneable
 {

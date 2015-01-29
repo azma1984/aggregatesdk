@@ -34,10 +34,10 @@ ChangeProcessor::ChangeProcessor(int type, int outOfRangeValuesHandling, double 
 static std::map<int, std::string> ChangeProcessor::getSelectionValues() 
 {
 	SELECTION_VALUES.clear();
-	SELECTION_VALUES.insert( std::pair<int, std::string>( GAUGE, Cres.get().getString("changeTypeGauge") ) );
-	SELECTION_VALUES.insert( std::pair<int, std::string>( COUNTER, Cres.get().getString("changeTypeCounter") ) );
-	SELECTION_VALUES.insert( std::pair<int, std::string>( DERIVE, Cres.get().getString("changeTypeDerive") ) );
-	SELECTION_VALUES.insert( std::pair<int, std::string>( ABSOLUTE, Cres.get().getString("changeTypeAbsolute") ) );
+	SELECTION_VALUES.insert( std::pair<int, std::string>( GAUGE, Cres::get()->getString("changeTypeGauge") ) );
+	SELECTION_VALUES.insert( std::pair<int, std::string>( COUNTER, Cres::get()->getString("changeTypeCounter") ) );
+	SELECTION_VALUES.insert( std::pair<int, std::string>( DERIVE, Cres::get()->getString("changeTypeDerive") ) );
+	SELECTION_VALUES.insert( std::pair<int, std::string>( ABSOLUTE, Cres::get()->getString("changeTypeAbsolute") ) );
 
 	return SELECTION_VALUES;
 }

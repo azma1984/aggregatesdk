@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.java
-#include <com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.h"
+#include "datatable/field/BooleanFieldFormat.h"
 
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "datatable/FieldFormat.h"
+#include "util/Util.h"
 //#include <java/lang/Boolean.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"

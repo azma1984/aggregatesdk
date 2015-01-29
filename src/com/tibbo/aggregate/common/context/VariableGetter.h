@@ -1,9 +1,11 @@
 #ifndef _VariableGetter_H_
 #define _VariableGetter_H_
 
-#include "context/Context.h"
+//#include "context/Context.h"
 #include "context/RequestController.h"
-#include "datatable/DataTable.h"
+//#include "datatable/DataTable.h"
+#include "util/Pointers.h"
+
 class VariableGetter
 {
  public:

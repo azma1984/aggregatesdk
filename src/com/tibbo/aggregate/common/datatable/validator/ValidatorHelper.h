@@ -19,16 +19,16 @@ class ValidatorHelper
    ValidatorHelper(ValidatorHelper const&);
    void operator=(ValidatorHelper const&);
    
-   boost::shared_ptr<FieldValidator<RegexValidator>> NAME_SYNTAX_VALIDATOR;
-   boost::shared_ptr<FieldValidator<LimitsValidator>> NAME_LENGTH_VALIDATOR;
-   boost::shared_ptr<FieldValidator<RegexValidator>> DESCRIPTION_SYNTAX_VALIDATOR;
-   boost::shared_ptr<FieldValidator<LimitsValidator>> DESCRIPTION_LENGTH_VALIDATOR;
-   boost::shared_ptr<FieldValidator<RegexValidator>> TYPE_SYNTAX_VALIDATOR;
-   boost::shared_ptr<FieldValidator<LimitsValidator>> TYPE_LENGTH_VALIDATOR;
-   boost::shared_ptr<FieldValidator<RegexValidator>> IP_ADDRESS_VALIDATOR;
-   boost::shared_ptr<FieldValidator<LimitsValidator>> PORT_VALIDATOR;
-   boost::shared_ptr<FieldValidator<RegexValidator>> EMAIL_VALIDATOR;
-   boost::shared_ptr<FieldValidator<LimitsValidator>> NON_ZERO_LENGTH_VALIDATOR;
+   boost::shared_ptr< FieldValidator<RegexValidator> > NAME_SYNTAX_VALIDATOR;
+   boost::shared_ptr< FieldValidator<LimitsValidator> > NAME_LENGTH_VALIDATOR;
+   boost::shared_ptr< FieldValidator<RegexValidator> > DESCRIPTION_SYNTAX_VALIDATOR;
+   boost::shared_ptr< FieldValidator<LimitsValidator> > DESCRIPTION_LENGTH_VALIDATOR;
+   boost::shared_ptr< FieldValidator<RegexValidator> > TYPE_SYNTAX_VALIDATOR;
+   boost::shared_ptr< FieldValidator<LimitsValidator> > TYPE_LENGTH_VALIDATOR;
+   boost::shared_ptr< FieldValidator<RegexValidator> > IP_ADDRESS_VALIDATOR;
+   boost::shared_ptr< FieldValidator<LimitsValidator> > PORT_VALIDATOR;
+   boost::shared_ptr< FieldValidator<RegexValidator> > EMAIL_VALIDATOR;
+   boost::shared_ptr< FieldValidator<LimitsValidator> > NON_ZERO_LENGTH_VALIDATOR;
 
    static const std::string IP_PART;
 

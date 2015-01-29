@@ -1,6 +1,8 @@
 #ifndef EditCodeH
 #define EditCodeH
-
+ #include "action/ActionUtils.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
 #include "action/GenericActionCommand.h"
 #include <string>
 #include <boost/shared_ptr.hpp>

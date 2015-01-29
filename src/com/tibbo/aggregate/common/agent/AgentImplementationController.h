@@ -1,9 +1,7 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/agent/AgentImplementationController.java
-
 #ifndef AgentImplementationControllerH
 #define AgentImplementationControllerH
-
-#include "AbstractContext.h"
+  #define BOOST_THREAD_USE_LIB
+//#include "AbstractContext.h"
 #include "context/Context.h"
 #include "AggreGateCommand.h"
 #include "IncomingAggreGateCommand.h"
@@ -23,7 +21,7 @@ class AgentImplementationController : public DefaultClientController
   
   public:  
  //todo ExecutorService
-  AgentImplementationController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService**/AgObjectPtr commandExecutionService, int maxEventQueueLength)
+  AgentImplementationController(BlockingChannelPtr dataChannel, ContextManagerPtr contextManager,/*ExecutorService**/AgObjectPtr commandExecutionService, int maxEventQueueLength)
 :DefaultClientController(dataChannel,contextManager,commandExecutionService,maxEventQueueLength)
 {
 }

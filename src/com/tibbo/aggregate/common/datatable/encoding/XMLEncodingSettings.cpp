@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/encoding/XMLEncodingSettings.java
-#include <com/tibbo/aggregate/common/datatable/encoding/XMLEncodingSettings.h"
+#include "datatable/encoding/XMLEncodingSettings.h"
 
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include "datatable/FieldFormat.h"
 //#include <java/util/ResourceBundle.h"
 
 Dateencoding::XMLEncodingSettings::XMLEncodingSettings(const ::default_init_tag&)

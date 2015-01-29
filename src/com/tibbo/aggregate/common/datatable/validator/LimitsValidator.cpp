@@ -113,12 +113,12 @@ void LimitsValidator::compare(boost::shared_ptr<Comparable> cv, const std::strin
 {
     if (min != 0) {
         if (cv->compareTo(min) < 0) {
-//            throw new ValidationException(MessageFormat.format(smallMessage != 0 ? smallMessage : Cres.get().getString("dtValueTooSmall"), cv, min));
+//            throw new ValidationException(MessageFormat.format(smallMessage != 0 ? smallMessage : Cres::get()->getString("dtValueTooSmall"), cv, min));
         }
     }
 
     if (cv->compareTo(max) > 0) {
-//        throw new ValidationException(MessageFormat.format(bigMessage != 0 ? bigMessage : Cres.get().getString("dtValueTooBig"), cv, max));
+//        throw new ValidationException(MessageFormat.format(bigMessage != 0 ? bigMessage : Cres::get()->getString("dtValueTooBig"), cv, max));
     }
 }
 /*

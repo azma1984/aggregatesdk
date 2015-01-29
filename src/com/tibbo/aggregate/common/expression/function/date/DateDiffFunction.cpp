@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/date/DateDiffFunction.java
-#include <com/tibbo/aggregate/common/expression/function/date/DateDiffFunction.h"
+#include "expression/function/date/DateDiffFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/util/TimeHelper.h"
-#include <com/tibbo/aggregate/common/util/TimeUnit.h"
+#include "expression/function/Functions.h"
+#include "util/TimeHelper.h"
+#include "util/TimeUnit.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/Long.h"

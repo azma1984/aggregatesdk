@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTableSorter.java
-//#include <com/tibbo/aggregate/common/datatable/DataTableSorter.h"
+//#include "datatable/DataTableSorter.h"
 
-#include <com/tibbo/aggregate/common/datatable/SortOrder.h"
+#include "datatable/SortOrder.h"
 //#include <java/lang/ArrayStoreException.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"

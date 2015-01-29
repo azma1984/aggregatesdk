@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/date/FormatDateFunction.java
-#include <com/tibbo/aggregate/common/expression/function/date/FormatDateFunction.h"
+#include "expression/function/date/FormatDateFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"

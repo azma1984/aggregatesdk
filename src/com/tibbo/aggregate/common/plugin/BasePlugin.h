@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/plugin/BasePlugin.java
-
 #ifndef _BasePlugin_H_
 #define _BasePlugin_H_
 
@@ -8,15 +6,16 @@
 //#include "context/Context.h"
 //#include "context/ContextManager.h"
 //#include "context/ContextUtils.h"
-//#include "plugin/AggreGatePlugin.h"
+#include "plugin/AggreGatePlugin.h"
 //#include "plugin/PluginDirector.h"
 #include <string>
+#include "util/pointers.h"
 
 //todo - class stub
 class BasePlugin : public AggreGatePlugin
 {
 private:
-	PluginDirector* pluginDirector;
+	PluginDirectorPtr pluginDirector;
 	std::string id;
 	std::string description;
 	int index;
@@ -24,13 +23,13 @@ private:
 
 
 public:
-    const std::string & getId();
+   // const std::string & getId();   todo
     void setId(const std::string & id);
-    const std::string & getShortId();
-    const std::string & getDescription();
+   // const std::string & getShortId();todo
+   // const std::string & getDescription();    todo
     void setDescription(const std::string & description);
-    PluginDirector* getPluginDirector();
-    void setPluginDirector(PluginDirector* pluginDirector);
+	PluginDirectorPtr getPluginDirector();
+	void setPluginDirector(PluginDirectorPtr pluginDirector);
     ContextPtr createGlobalConfigContext(ContextPtr rootContext, bool requestReboot, VariableDefinitionPtr/*...*/ properties);
     ContextPtr createUserConfigContext(ContextPtr userContext, bool requestReboot, VariableDefinitionPtr/*...*/ properties);
     ContextPtr getGlobalConfigContext();

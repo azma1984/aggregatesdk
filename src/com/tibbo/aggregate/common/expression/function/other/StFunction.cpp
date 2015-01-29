@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/other/StFunction.java
-#include <com/tibbo/aggregate/common/expression/function/other/StFunction.h"
+#include "expression/function/other/StFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/EvaluationEnvironment.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "expression/EvaluationEnvironment.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"

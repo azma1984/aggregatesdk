@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/server/ServerContext.java
-
 #ifndef ServerContextH
 #define ServerContextH
 
@@ -9,7 +7,7 @@
 //#include "server/groupcontext.h"
 #include "data/event.h"
 #include "security/Permissions.h"
-
+ #include "util/pointers.h"
 
 
 class GroupContext;
@@ -54,7 +52,7 @@ class ServerContext : public Context
 
   //  std::list getMembers(bool includeSubgroups);
     virtual void addedToGroup(GroupContextPtr groupContext)=0;
-    virtual void removedFromGroup(GroupContextPtr groupContext)=0;
+	virtual void removedFromGroup(GroupContextPtr groupContext)=0;
   //  ::std::set  getGroups();
     virtual void alertActivated(EventPtr alert, int type)=0;
     virtual void alertDeactivated(EventPtr alert)=0;

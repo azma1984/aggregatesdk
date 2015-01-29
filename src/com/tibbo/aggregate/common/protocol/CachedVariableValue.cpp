@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/CachedVariableValue.java
-#include <com/tibbo/aggregate/common/protocol/CachedVariableValue.h"
+#include "protocol/CachedVariableValue.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
+#include "datatable/DataTable.h"
 //#include <java/util/Date.h"
 
 com::tibbo::aggregate::common::protocol::CachedVariableValue::CachedVariableValue(const ::default_init_tag&)

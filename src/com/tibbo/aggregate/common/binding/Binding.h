@@ -6,7 +6,7 @@
 //#include "expression/Reference.h"
 //#include "expression/ExpressionUtils.h"
 #include <boost/shared_ptr.hpp>
-
+#include "util/pointers.h"
 //Required Expression.h and Reference.h
 class Binding : public Cloneable
 {

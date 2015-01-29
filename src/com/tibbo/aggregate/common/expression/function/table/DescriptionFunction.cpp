@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/table/DescriptionFunction.java
-#include <com/tibbo/aggregate/common/expression/function/table/DescriptionFunction.h"
+#include "expression/function/table/DescriptionFunction.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "datatable/DataTable.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"

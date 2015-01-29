@@ -15,7 +15,7 @@
 class ActionInitializer : public Interface
 {
 public:
-    virtual ActionIdentifierPtr initAction(Context<ActionInitializer>* context, const std::string& actionName, ServerActionInputPtr initialParameters,
+	virtual ActionIdentifierPtr initAction(ContextPtr context, const std::string& actionName, ServerActionInputPtr initialParameters,
                                        DataTablePtr inputData, std::map<std::string, AgObjectPtr> environment, ActionExecutionModePtr mode,
                                        CallerControllerPtr callerController, ErrorCollectorPtr collector) = 0;
 };

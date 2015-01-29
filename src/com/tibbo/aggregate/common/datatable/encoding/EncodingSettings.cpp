@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/encoding/EncodingSettings.java
-//#include <com/tibbo/aggregate/common/datatable/encoding/EncodingSettings.h"
+//#include "datatable/encoding/EncodingSettings.h"
 
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
+#include "datatable/TableFormat.h"
 
 Dateencoding::EncodingSettings::EncodingSettings(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))

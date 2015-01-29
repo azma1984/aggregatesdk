@@ -1,21 +1,28 @@
 #ifndef ShowErrorH
 #define ShowErrorH
 #include "action/GenericActionCommand.h"
+ #include "action/ActionUtils.h"
+#include "datatable/DataRecord.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
+
 
 
 
 class ShowError : public GenericActionCommand
 {
 private:
-    static const std::string CF_LEVEL_;
-    static const std::string CF_MESSAGE_;
-    static const std::string CF_EXCEPTION_;
-    static TableFormatPtr CFT_SHOW_ERROR_;
-   // ::java::lang::Throwable* exception; //todo
-    int level;
-    const std::string & message;
+
+	int level;
+	const std::string & message;
 
 public:
+	static const std::string CF_LEVEL;
+	static const std::string CF_MESSAGE;
+	static const std::string CF_EXCEPTION;
+	static TableFormatPtr CFT_SHOW_ERROR;
+   // ::java::lang::Throwable* exception; //todo
+
     DataTablePtr constructParameters();
 
     int getLevel();
@@ -28,9 +35,6 @@ public:
     ShowError();
     //ShowError(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception); todo
 
-    static const std::string& CF_LEVEL();
-    static const std::string& CF_MESSAGE();
-    static const std::string& CF_EXCEPTION();
-	static TableFormatPtr& CFT_SHOW_ERROR();
+
 };
 #endif

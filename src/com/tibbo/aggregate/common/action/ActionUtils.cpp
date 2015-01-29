@@ -1,5 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/ActionUtils.java
-
 #include "ActionUtils.h"
 
 std::string ActionUtils::CMD_SHOW_MESSAGE = "showMessage";;
@@ -114,12 +112,13 @@ void ActionUtils::setActionInitializer(ActionInitializerPtr initializer)
 }
 
 
-void ActionUtils::checkResponseCode(std::string result)
+void ActionUtils::checkResponseCode(const std::string &result)
 {
- if(!RESPONSE_SAVED.compare(result.c_str()) && !RESPONSE_CLOSED.compare(result.c_str())) && !RESPONSE_ERROR.compare(result.c_str()))
-  {
-	std::cout <<"Illegal response result: ";
-  }
+//todo
+// if(!RESPONSE_SAVED.compare(result.c_str()) && !RESPONSE_CLOSED.compare(result.c_str())) && !RESPONSE_ERROR.compare(result.c_str()))
+//  {
+//	std::cout <<"Illegal response result: ";
+//  }
 }
 
 DataTablePtr ActionUtils::createDndActionParameters(ContextPtr acceptedContext)
@@ -128,38 +127,45 @@ DataTablePtr ActionUtils::createDndActionParameters(ContextPtr acceptedContext)
 	return createDndActionParameters(acceptedContext->getPath());
 }
 
-DataTablePtr ActionUtils::createDndActionParameters(std::string accepterContextPath)
-{
-	DataTablePtrparamsEntry = new DataTable(FORMAT_DND_ACTION);
-	paramsEntry->addRecord()->addString(accepterContextPath);
-	return paramsEntry;
+DataTablePtr ActionUtils::createDndActionParameters(const std::string &accepterContextPath)
+{  //todo
+   //	DataTablePtr paramsEntry = new DataTable(FORMAT_DND_ACTION);
+   //	paramsEntry->addRecord()->addString(accepterContextPath);
+   //	return paramsEntry;
+   return  DataTablePtr();
 }
 
 ServerActionInputPtr ActionUtils::createActionInput(DataTablePtr executionParameters)
-{
- return new ServerActionInput(new DataTable(FORMAT_NORMAL_ACTION,executionParameters));
+{ //todo
+ //return new ServerActionInput(new DataTable(FORMAT_NORMAL_ACTION,executionParameters));
+ return ServerActionInputPtr();
 }
 
-ActionIdentifierPtr ActionUtils::initAction(ContextPtr context, std::string actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController)
-{
-    
-	return initAction(context, actionName, initialParameters, inputData, 0, mode, callerController, 0);
+ActionIdentifierPtr ActionUtils::initAction(ContextPtr context,const std::string &actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController)
+{ //todo
+// return initAction(context, actionName, initialParameters, inputData, 0, mode, callerController, 0);
+ return ActionIdentifierPtr();
 }
 
-ActionIdentifierPtr ActionUtils::initAction(ContextPtr context, std::string actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, std::map<string,AgObjectPtr> environment, ActionExecutionModePtr mode, CallerControllerPtr callerController,ErrorCollectorPtr collector)
-{
- return ACTION_INITIALIZER->initAction(context, actionName, initialParameters, inputData, environment, mode, callerController, collector);
-}
+//ActionIdentifierPtr ActionUtils::initAction(ContextPtr context,const std::string &actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, std::map<string,AgObjectPtr> environment, ActionExecutionModePtr mode, CallerControllerPtr callerController,ErrorCollectorPtr collector)
+//{
+//todo
+ //return ACTION_INITIALIZER->initAction(context, actionName, initialParameters, inputData, environment, mode, callerController, collector);
+ //return ActionIdentifierPtr();
+//}
 
 GenericActionCommandPtr ActionUtils::stepAction(ContextPtr context, ActionIdentifierPtr actionId, GenericActionResponsePtr actionResponse, CallerControllerPtr callerController)
-{
- DataTable res = context->callFunction(ServerContextConstants::F_STEP_ACTION, callerController, actionId->toString(), ProtocolHandler::actionResponseToDataTable(actionResponse));
- return ProtocolHandler::actionCommandFromDataTable(res.rec().getDataTable(ServerContextConstants::FOF_STEP_ACTION_ACTION_COMMAND()));
+{//todo
+ //DataTable res = context->callFunction(ServerContextConstants::F_STEP_ACTION, callerController, actionId->toString(), ProtocolHandler::actionResponseToDataTable(actionResponse));
+// return ProtocolHandler::actionCommandFromDataTable(res.rec().getDataTable(ServerContextConstants::FOF_STEP_ACTION_ACTION_COMMAND()));
+ return GenericActionCommandPtr();
 }
 
 
 ActionUtils::ActionUtils()
 {
+//todo
+/*
 	FORMAT_NORMAL_ACTION = new TableFormat(1,1);
 		{
 		 FORMAT_NORMAL_ACTION->addField("<"+FIELD_ACTION_EXECUTION_PARAMETERS+"><T><F=N>");
@@ -177,7 +183,7 @@ ActionUtils::ActionUtils()
 		}
 
 	ACTION_INITIALIZER = new DefaultActionInitializer();
-
+	*/
 }
 
 

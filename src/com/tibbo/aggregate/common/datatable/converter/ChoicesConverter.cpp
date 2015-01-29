@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/ChoicesConverter.java
-#include <com/tibbo/aggregate/common/datatable/converter/ChoicesConverter.h"
+#include "datatable/converter/ChoicesConverter.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/converter/Choice.h"
+#include "datatable/DataTable.h"
+#include "datatable/FieldFormat.h"
+#include "datatable/converter/Choice.h"
 /*
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/IllegalArgumentException.h"

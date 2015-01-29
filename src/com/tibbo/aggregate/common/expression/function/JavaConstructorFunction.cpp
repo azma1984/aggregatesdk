@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/JavaConstructorFunction.java
-#include <com/tibbo/aggregate/common/expression/function/JavaConstructorFunction.h"
+#include "expression/function/JavaConstructorFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/EvaluationException.h"
+#include "expression/EvaluationException.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/Exception.h"
 //#include <java/lang/Object.h"

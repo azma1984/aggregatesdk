@@ -27,12 +27,12 @@ template <class T> DefaultContextManager<T>::DefaultContextManager(bool async, i
   //  }
 }
 
- template <class T> DefaultContextManager<T>::DefaultContextManager(ContextPtr rootContext, bool async)
-{
-   // DefaultContextManager(async);
-  //  setRoot(rootContext);
-  //  start();
-}
+// template <class T> DefaultContextManager<T>::DefaultContextManager(ContextPtr rootContext, bool async)
+//{
+//   // DefaultContextManager(async);
+//  //  setRoot(rootContext);
+//  //  start();
+//}
 /*
 void DefaultContextManager::start()
 {

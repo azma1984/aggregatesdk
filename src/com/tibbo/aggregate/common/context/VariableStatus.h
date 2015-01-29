@@ -3,6 +3,8 @@
 
 //todo - class stub
 
+#include <string>
+
 class VariableStatus
 {
  private:

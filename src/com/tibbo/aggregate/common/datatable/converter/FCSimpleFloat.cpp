@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/FCSimpleFloat.java
-#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleFloat.h"
+#include "datatable/converter/FCSimpleFloat.h"
 
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include "datatable/FieldFormat.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/Float.h"
 //#include <java/lang/Object.h"

@@ -1,5 +1,5 @@
-#ifndef H
-#define H
+#ifndef AggreGateExceptionH
+#define AggreGateExceptionH
 #include <string>
 
 class AggreGateException
@@ -24,3 +24,6 @@ public:
     std::string getDetails() { return details; }
     std::string getMessage() { return message; }
 };
+
+#endif
+

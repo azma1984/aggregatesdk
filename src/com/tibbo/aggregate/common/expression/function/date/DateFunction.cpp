@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/date/DateFunction.java
-#include <com/tibbo/aggregate/common/expression/function/date/DateFunction.h"
+#include "expression/function/date/DateFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/util/DateUtils.h"
+#include "expression/function/Functions.h"
+#include "util/DateUtils.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"

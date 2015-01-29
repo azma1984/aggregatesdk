@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/type/FloatFunction.java
-#include <com/tibbo/aggregate/common/expression/function/type/FloatFunction.h"
+#include "expression/function/type/FloatFunction.h"
 
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "util/Util.h"
 //#include <java/lang/Float.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Number.h"

@@ -1,5 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/DefaultClientController.java
-#include "DefaultClientController.h"
+#include "protocol/DefaultClientController.h"
 
 DefaultClientController::DefaultClientController(BlockingChannel* dataChannel, ContextManager<Context>* contextManager,/*ExecutorService* */AgObjectPtr commandExecutionService, int maxEventQueueLength)
 {

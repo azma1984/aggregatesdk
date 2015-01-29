@@ -1,7 +1,13 @@
 #ifndef _PROTOCOL_HANDLER_H_
 #define _PROTOCOL_HANDLER_H_
 
-
+#include "action/ActionIdentifier.h"
+#include "action/GenericActionCommand.h"
+#include "action/GenericActionResponse.h"
+#include "action/RequestIdentifier.h"
+#include "datatable/DataRecord.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
 
 class ProtocolHandler
 {

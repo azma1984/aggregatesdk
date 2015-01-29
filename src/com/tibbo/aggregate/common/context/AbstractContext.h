@@ -30,7 +30,7 @@
 //#include "context/FunctionImplementation.h"
 //#include "context/RequestController.h"
 //#include "context/VariableData.h"
-#include "context/VariableDefinition.h"
+//#include "context/VariableDefinition.h"
 //#include "context/VariableGetter.h"
 //#include "context/VariableSetter.h"
 #include "context/VariableStatus.h"
@@ -80,8 +80,8 @@ private:
 	boost::shared_mutex variableDataLock; //много читателей, один писатель
     std::map<std::string, FunctionDataPtr> functionData;
     boost::shared_mutex functionDataLock;
-	std::map<std::string, EventDataPtrPtr> EventDataPtr;
-    boost::shared_mutex EventDataPtrLock;
+	std::map<std::string, EventDataPtr> EventData;
+	boost::shared_mutex EventDataLock;
     std::list<ActionDefinitionPtr>  actionDefinitions;
     boost::shared_mutex actionDefinitionsLock;
 
@@ -511,8 +511,8 @@ public:
     VariableDefinitionPtr getVariableDefinition(const std::string & name, CallerControllerPtr caller);
 	FunctionDataPtr getFunctionData(const std::string & name);
     FunctionDefinitionPtr getFunctionDefinition(const std::string & name);
-    FunctionDefinitionPtr getFunctionDefinition(const std::string & name, CallerControllerPtr caller);
-	EventDataPtr getEventDataPtr(const std::string & name);
+	FunctionDefinitionPtr getFunctionDefinition(const std::string & name, CallerControllerPtr caller);
+	EventDataPtr getEventData(const std::string & name);
 	EventDefinitionPtr getEventDefinition(const std::string & name);
 	EventDefinitionPtr getEventDefinition(const std::string & name, CallerControllerPtr caller);
 

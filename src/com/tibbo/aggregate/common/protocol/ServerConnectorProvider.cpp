@@ -1,5 +1,5 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/ServerConnectorProvider.java
-#include <com/tibbo/aggregate/common/protocol/ServerConnectorProvider.h"
+#include "protocol/ServerConnectorProvider.h"
 
 
 

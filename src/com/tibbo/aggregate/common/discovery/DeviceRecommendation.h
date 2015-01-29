@@ -3,7 +3,7 @@
 
 #include <string>
 #include <boost/shared_ptr.hpp>
-
+ #include "util/pointers.h"
 class DeviceRecommendation
 {
 private:
@@ -11,7 +11,7 @@ private:
     std::string description;
 
 public:
-    static DeviceRecommendationPtr getBlank();
+    //static DeviceRecommendationPtr getBlank();  todo
     std::string getName();
     std::string getDescription();
     std::string toString(); 

@@ -171,7 +171,7 @@ boost::shared_ptr<ASTStart> ExpressionUtils::parse(boost::shared_ptr<Expression>
     //TODO: catch
     catch(...)// (Throwable ex)
     {
-        //throw new SyntaxErrorException(Cres.get().getString("exprParseErr") + (showExpressionInErrorText ? " '" + expression + "': " : ": ") + ex.getMessage(), ex);
+        //throw new SyntaxErrorException(Cres::get()->getString("exprParseErr") + (showExpressionInErrorText ? " '" + expression + "': " : ": ") + ex.getMessage(), ex);
     }
 }
 
