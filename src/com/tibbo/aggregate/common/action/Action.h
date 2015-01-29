@@ -3,7 +3,7 @@
 
 //#include "ActionContext.h"
 //#include "ActionResult.h"
-#include "util/AgObject.h";
+#include "util/AgObject.h"
 #include "util/pointers.h"
 
 template <class I,class C,class R> class Action: public AgObject

@@ -15,9 +15,9 @@ void BatchContext::addBatchEntry(BatchEntryPtr batchEntry)
 
 std::list<BatchEntryPtr> BatchContext::getEntries()
 {
- // std::list::iterator iterator =
   //todo
 	//return Collections::unmodifiableList(entries);
+    return entries;
 }
 
 BatchEntryPtr BatchContext::getCurrentEntry()
@@ -26,14 +26,15 @@ BatchEntryPtr BatchContext::getCurrentEntry()
 }
 
 void BatchContext::markAsPerfomed(BatchEntryPtr entry)
-{
-//todo
-   /*
-	if(entries->contains(entry))
+{  
+    std::list<BatchEntryPtr>::iterator itr1;
+    itr1 = std::find(entries.begin(), entries.end(), entry);
+    if (itr1 != entries.end())
 	{
-	  std::cout << "Entry '" + entry + "' is not on the list");
+        //TODO: exception
+       //throw new std::cout << "Entry '" + entry + "' is not on the list");
     }
-	entry)->setFulfilled(true); */
+    entry->setFulfilled(true);
 }
 
 void BatchContext::setCurrentEntry(BatchEntryPtr currentEntry)

@@ -23,7 +23,7 @@
 #include "action/InitialRequest.h"
 //#include "action/RequestCache.h"
 #include "action/RequestIdentifier.h"
-#include "util/pointers.h"
+#include "util/Pointers.h"
 
 #include <map>
 #include <list>
@@ -38,8 +38,8 @@ private:
 	ActionDirectory<ActionLocatorPtr>* actionDirectory;
 
 	ActionIdGeneratorPtr actionIdGenerator;
-	std::map< ActionIdentifierPtr, Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr >* > actions;
-	std::map< Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr >* , ActionContextPtr > actionContexts;
+    std::map< ActionIdentifierPtr, Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr > > actions;
+    std::map< Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr>, ActionContextPtr > actionContexts;
 
 protected:
 	Action< InitialRequestPtr,ActionCommandPtr,ActionResponsePtr >* instantiateAction(ActionDefinitionPtr actionDefinition);

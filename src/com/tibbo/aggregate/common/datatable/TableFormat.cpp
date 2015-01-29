@@ -22,17 +22,20 @@ TableFormat::TableFormat()
 
 TableFormat::TableFormat(bool reorderable) 
 {
-    TableFormat::TableFormat();
+    minRecords = DEFAULT_MIN_RECORDS;
+    maxRecords = DEFAULT_MAX_RECORDS;
 }
 
 TableFormat::TableFormat(int minRecords, int maxRecords)
 {
-    TableFormat::TableFormat();
+    minRecords = DEFAULT_MIN_RECORDS;
+    maxRecords = DEFAULT_MAX_RECORDS;
 }
 
 TableFormat::TableFormat(int minRecords, int maxRecords, const std::string& fieldFormat)
 {
-    TableFormat::TableFormat();
+    minRecords = DEFAULT_MIN_RECORDS;
+    maxRecords = DEFAULT_MAX_RECORDS;
 }
 
 TableFormatPtr TableFormat::getEMPTY_FORMAT()

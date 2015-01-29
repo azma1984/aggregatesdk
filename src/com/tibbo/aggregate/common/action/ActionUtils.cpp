@@ -170,7 +170,7 @@ ActionUtils::ActionUtils()
 {
     FORMAT_NORMAL_ACTION.reset( new TableFormat(1,1) );
 		{
-		 FORMAT_NORMAL_ACTION->addField("<"+FIELD_ACTION_EXECUTION_PARAMETERS+"><T><F=N>");
+         FORMAT_NORMAL_ACTION->addField( std::string("<").append(FIELD_ACTION_EXECUTION_PARAMETERS).append(+"><T><F=N>") );
         }
 
     FORMAT_DND_ACTION.reset( new TableFormat(1, 1) );
@@ -184,8 +184,7 @@ ActionUtils::ActionUtils()
 		 FORMAT_PROPAGATED_ACTION->addField("<"+FIELD_ACTION_TARGET_CONTEXT+"><S>");
 		}
 
-	ACTION_INITIALIZER = new DefaultActionInitializer();
-	*/
+    ACTION_INITIALIZER.reset( new DefaultActionInitializer() );
 }
 
 

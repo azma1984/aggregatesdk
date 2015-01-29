@@ -3,7 +3,7 @@
 
 #include "RequestIdentifier.h"
 #include "util/Interface.h"
-#include "util/pointers.h"
+#include "util/Pointers.h"
 
 class ActionResponse : public Interface
 {

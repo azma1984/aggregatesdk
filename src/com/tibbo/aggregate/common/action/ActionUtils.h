@@ -1,38 +1,38 @@
-#ifndef ActionUtilsH
-#define ActionUtilsH
+#pragma once
+
 #define BOOST_THREAD_USE_LIB
 #include "ActionInitializer.h"
 #include "ActionIdentifier.h"
 
-/*
-#include "action/DefaultActionInitializer.h"
-#include "action/GenericActionCommand.h"
-#include "action/ProtocolHandler.h"
-#include "action/ServerActionInput.h"
-#include "action/command/ActivateDashboard.h"
-#include "action/command/Browse.h"
-#include "action/command/Confirm.h"
-#include "action/command/EditCode.h"
-#include "action/command/EditData.h"
-#include "action/command/EditProperties.h"
-#include "action/command/EditReport.h"
-#include "action/command/EditText.h"
-#include "action/command/EditWidget.h"
-#include "action/command/LaunchWidget.h"
-#include "action/command/SelectEntities.h"
-#include "action/command/ShowDiff.h"
-#include "action/command/ShowError.h"
-#include "action/command/ShowEventLog.h"
-#include "action/command/ShowGuide.h"
-#include "action/command/ShowMessage.h"
-#include "action/command/ShowReport.h"
-#include "action/command/ShowSystemTree.h"
-#include "context/Context.h"
-#include "datatable/DataRecord.h"
+
+//#include "action/DefaultActionInitializer.h"
+//#include "action/GenericActionCommand.h"
+//#include "action/ProtocolHandler.h"
+//#include "action/ServerActionInput.h"
+//#include "action/command/ActivateDashboard.h"
+//#include "action/command/Browse.h"
+//#include "action/command/Confirm.h"
+//#include "action/command/EditCode.h"
+//#include "action/command/EditData.h"
+//#include "action/command/EditProperties.h"
+//#include "action/command/EditReport.h"
+//#include "action/command/EditText.h"
+//#include "action/command/EditWidget.h"
+//#include "action/command/LaunchWidget.h"
+//#include "action/command/SelectEntities.h"
+//#include "action/command/ShowDiff.h"
+//#include "action/command/ShowError.h"
+//#include "action/command/ShowEventLog.h"
+//#include "action/command/ShowGuide.h"
+//#include "action/command/ShowMessage.h"
+//#include "action/command/ShowReport.h"
+//#include "action/command/ShowSystemTree.h"
+//#include "context/Context.h"
+//#include "datatable/DataRecord.h"
 #include "datatable/DataTable.h"
 #include "datatable/TableFormat.h"
-#include "server/ServerContextConstants.h"
-  */
+//#include "server/ServerContextConstants.h"
+
 
 #include <string>
 #include <iostream>
@@ -139,4 +139,3 @@ public:
 	ActionUtils();
 
 };
-#endif

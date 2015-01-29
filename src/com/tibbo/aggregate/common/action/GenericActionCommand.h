@@ -59,7 +59,7 @@ public:
     virtual bool isResponseValid(ActionResponsePtr actionRequest);
     virtual void setBatchEntry(bool batchEntry);
     virtual RequestIdentifierPtr getRequestId();
-    virtual ActionCommandPtr clone() const;
+    virtual GenericActionCommand* clone() const;
 
     int hashCode();
     bool equals(AgObjectPtr obj);
