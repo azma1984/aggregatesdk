@@ -1,7 +1,7 @@
 #ifndef _ContextEventListenerSet_H_
 #define _ContextEventListenerSet_H_
 
-//#include <com/tibbo/aggregate/common/context/ContextRuntimeException.h"
+//#include "context/ContextRuntimeException.h"
 #include "event/ContextEventListener.h"
 #include "event/ContextEventListenerInfo.h"
 #include "util/AgObject.h"

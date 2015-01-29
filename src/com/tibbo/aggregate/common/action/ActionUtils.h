@@ -1,37 +1,37 @@
 #ifndef ActionUtilsH
 #define ActionUtilsH
-
+#define BOOST_THREAD_USE_LIB
 #include "ActionInitializer.h"
 #include "ActionIdentifier.h"
 
 /*
-#include <com/tibbo/aggregate/common/action/DefaultActionInitializer.h"
-#include <com/tibbo/aggregate/common/action/GenericActionCommand.h"
-#include <com/tibbo/aggregate/common/action/ProtocolHandler.h"
-#include <com/tibbo/aggregate/common/action/ServerActionInput.h"
-#include <com/tibbo/aggregate/common/action/command/ActivateDashboard.h"
-#include <com/tibbo/aggregate/common/action/command/Browse.h"
-#include <com/tibbo/aggregate/common/action/command/Confirm.h"
-#include <com/tibbo/aggregate/common/action/command/EditCode.h"
-#include <com/tibbo/aggregate/common/action/command/EditData.h"
-#include <com/tibbo/aggregate/common/action/command/EditProperties.h"
-#include <com/tibbo/aggregate/common/action/command/EditReport.h"
-#include <com/tibbo/aggregate/common/action/command/EditText.h"
-#include <com/tibbo/aggregate/common/action/command/EditWidget.h"
-#include <com/tibbo/aggregate/common/action/command/LaunchWidget.h"
-#include <com/tibbo/aggregate/common/action/command/SelectEntities.h"
-#include <com/tibbo/aggregate/common/action/command/ShowDiff.h"
-#include <com/tibbo/aggregate/common/action/command/ShowError.h"
-#include <com/tibbo/aggregate/common/action/command/ShowEventLog.h"
-#include <com/tibbo/aggregate/common/action/command/ShowGuide.h"
-#include <com/tibbo/aggregate/common/action/command/ShowMessage.h"
-#include <com/tibbo/aggregate/common/action/command/ShowReport.h"
-#include <com/tibbo/aggregate/common/action/command/ShowSystemTree.h"
-#include <com/tibbo/aggregate/common/context/Context.h"
-#include <com/tibbo/aggregate/common/datatable/DataRecord.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/server/ServerContextConstants.h"
+#include "action/DefaultActionInitializer.h"
+#include "action/GenericActionCommand.h"
+#include "action/ProtocolHandler.h"
+#include "action/ServerActionInput.h"
+#include "action/command/ActivateDashboard.h"
+#include "action/command/Browse.h"
+#include "action/command/Confirm.h"
+#include "action/command/EditCode.h"
+#include "action/command/EditData.h"
+#include "action/command/EditProperties.h"
+#include "action/command/EditReport.h"
+#include "action/command/EditText.h"
+#include "action/command/EditWidget.h"
+#include "action/command/LaunchWidget.h"
+#include "action/command/SelectEntities.h"
+#include "action/command/ShowDiff.h"
+#include "action/command/ShowError.h"
+#include "action/command/ShowEventLog.h"
+#include "action/command/ShowGuide.h"
+#include "action/command/ShowMessage.h"
+#include "action/command/ShowReport.h"
+#include "action/command/ShowSystemTree.h"
+#include "context/Context.h"
+#include "datatable/DataRecord.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
+#include "server/ServerContextConstants.h"
   */
 
 #include <string>
@@ -136,7 +136,7 @@ public:
   	ActionIdentifierPtr initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController);
   	ActionIdentifierPtr initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, std::map<std::string,AgObjectPtr> environment, ActionExecutionModePtr mode, CallerControllerPtr callerController, ErrorCollectorPtr collector);
   	GenericActionCommandPtr stepAction(ContextPtr context, ActionIdentifierPtr actionId, GenericActionResponsePtr actionResponse, CallerControllerPtr callerController);
-
+	ActionUtils();
 
 };
 #endif

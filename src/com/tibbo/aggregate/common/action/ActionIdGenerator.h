@@ -7,7 +7,7 @@
 class ActionIdGenerator
 {
 public:
-    ActionIdentifierPtr generate(Action<InitialRequest,ActionCommand,ActionResponse> action);
+	ActionIdentifierPtr generate(Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr>* action);
 
 };
 

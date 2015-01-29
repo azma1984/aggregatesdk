@@ -2,9 +2,9 @@
 #include "IncomingAggreGateCommand.h"
 
 /*
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommand.h"
-#include <com/tibbo/aggregate/common/util/StringUtils.h"
-#include <com/tibbo/aggregate/common/util/SyntaxErrorException.h"
+#include "protocol/AggreGateCommand.h"
+#include "util/StringUtils.h"
+#include "util/SyntaxErrorException.h"
 
 
 

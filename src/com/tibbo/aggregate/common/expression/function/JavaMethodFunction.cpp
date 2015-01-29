@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/JavaMethodFunction.java
-#include <com/tibbo/aggregate/common/expression/function/JavaMethodFunction.h"
+#include "expression/function/JavaMethodFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/EvaluationException.h"
+#include "expression/EvaluationException.h"
 //#include <java/io/Serializable.h"
 //#include <java/lang/ArrayStoreException.h"
 //#include <java/lang/CharSequence.h"

@@ -52,3 +52,4 @@ void ActionCommandRegistry::register1(GenericActionCommandPtr command)
     COMMANDS[command->getType()] = command;
 }
 
+

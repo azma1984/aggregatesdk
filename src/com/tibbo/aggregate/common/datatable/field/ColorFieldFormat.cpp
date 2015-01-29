@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.java
-//#include <com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.h"
+//#include "datatable/field/ColorFieldFormat.h"
 
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/util/StringUtils.h"
+#include "datatable/FieldFormat.h"
+#include "util/StringUtils.h"
 //#include <java/awt/Color.h"
 //#include <java/io/Serializable.h"
 //#include <java/lang/ArrayStoreException.h"

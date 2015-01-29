@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
+#include "datatable/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/math/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/converter/SimpleFormatConverter.h"
+#include "datatable/converter/SimpleFormatConverter.h"
 //#include <java/math/BigInteger.h"
 
 

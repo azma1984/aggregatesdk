@@ -103,242 +103,242 @@ const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS= 
 
 AbstractContext::AbstractContext(const std::string &name)
 {
-    setName(name);
-
-	permissionCheckingEnabled = true;
-	permissionChecker = new NullPermissionChecker();
-	valueCheckingEnabled = true;
-	childrenConcurrencyEnabled = false;
-	childrenSortingEnabled = true;
-	fireUpdateEvents = true;
-
-
-	VARIABLE_DEFINITION_FORMAT = TableFormatPtr(new TableFormat);
-
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_NAME + "><S>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_FORMAT + "><S><F=N>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_DESCRIPTION + "><S><F=N>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_READABLE + "><B>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_WRITABLE + "><B>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_HELP + "><S><F=N>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_GROUP + "><S><F=N>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_ICON_ID + "><S><F=N>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_HELP_ID + "><S><F=N>");
-	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_CACHE_TIME + "><L><F=N>");
-
-	EF_VARIABLE_ADDED = TableFormatPtr(VARIABLE_DEFINITION_FORMAT->clone());
-   //	EF_VARIABLE_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
-   //	EF_VARIABLE_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
-
-	FUNCTION_DEFINITION_FORMAT= TableFormatPtr(new TableFormat);
-	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_NAME+"><S>");
-	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_INPUTFORMAT+"><S><F=N>");
-	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_OUTPUTFORMAT+"><S><F=N>");
-	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_DESCRIPTION+"><S><F=N>");
-	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_HELP+"><S><F=N>");
-	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_GROUP+"><S><F=N>");
-	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_ICON_ID+"><S><F=N>");
-
-	EF_FUNCTION_ADDED = TableFormatPtr(FUNCTION_DEFINITION_FORMAT->clone());
-   //	EF_FUNCTION_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
-   //	EF_FUNCTION_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
-
-	EVENT_DEFINITION_FORMAT= TableFormatPtr(new TableFormat);
-	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_NAME+"><S>");
-	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_FORMAT+"><S><F=N>");
-	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_DESCRIPTION+"><S><F=N>");
-	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_HELP+"><S><F=N>");
-	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_LEVEL+"><I>");
-	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_GROUP+"><S><F=N>");
-	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_ICON_ID+"><S><F=N>");
-
-	EF_EVENT_ADDED = TableFormatPtr(EVENT_DEFINITION_FORMAT->clone());
-   //	EF_EVENT_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
-   //	EF_EVENT_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
-
-   //	VFT_CHILDREN = FieldFormat::create("<"+VF_CHILDREN_NAME+"><S>")->wrap();  //todo - not make in datatable/FieldFormat.h
-
-	INFO_DEFINITION_FORMAT = TableFormatPtr(new TableFormat(1,1));
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_DESCRIPTION+"><S><F=N><D="+Cres::get()->getString("description")+">");
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_TYPE+"><S><D="+Cres::get()->getString("type")+">");
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_GROUP+"><S><F=N><D="+Cres::get()->getString("group")+">");
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_ICON+"><S><F=N><D="+Cres::get()->getString("conIconId")+">");
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_LOCAL_ROOT+"><S><D="+Cres::get()->getString("conLocalRoot")+">");
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_REMOTE_ROOT+"><S><F=N><D="+Cres::get()->getString("conRemoteRoot")+">");
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_REMOTE_PATH+"><S><D="+Cres::get()->getString("conRemotePath")+">");
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_REMOTE_PRIMARY_ROOT+"><S><F=N><D="+Cres::get()->getString("conRemotePrimaryRoot")+">");
-	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_MAPPED+"><B><D="+Cres::get()->getString("conMapped")+">");
-
-	ACTION_DEF_FORMAT= TableFormatPtr(new TableFormat);
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_NAME+"><S>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_DESCRIPTION+"><S><F=N>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_HELP+"><S><F=N>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_ACCELERATOR+"><S><F=N>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_DROP_SOURCES+"><T><F=N>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_HIDDEN+"><B>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_ENABLED+"><B>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_ICON_ID+"><S><F=N>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_GROUP+"><S><F=N>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_EXECUTION_GROUP+"><S><F=N>");
-	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_DEFAULT+"><B>");
-
-   //	RESOURCE_MASKS_FORMAT= FieldFormat::create("<"+ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK+"><S><F=N>")->wrap();//todo - not make in datatable/FieldFormat.h
-
-	FIFT_GET_COPY_DATA = TableFormatPtr(new TableFormat(1, 1));
-	FIFT_GET_COPY_DATA->addField("<"+FIF_COPY_DATA_GROUP+"><S><F=N>");
-	FIFT_GET_COPY_DATA->addField("<"+FIF_COPY_DATA_RECIPIENTS+"><T><F=N>");
-   //	FIFT_GET_COPY_DATA_RECIPIENTS = FieldFormat::create("<"+FIF_COPY_DATA_RECIPIENTS_RECIPIENT+"><S>")->wrap(); //todo - not make in datatable/FieldFormat.h
-	REPLICATE_INPUT_FORMAT= TableFormatPtr(new TableFormat);
-
-	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_NAME+"><S><F=RHK>");
-	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_DESCRIPTION+"><S><F=R><D="+Cres::get()->getString("variable")+">");
-	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_REPLICATE+"><B><A=0><D="+Cres::get()->getString("replicate")+">");
-	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_FIELDS+"><T><D="+Cres::get()->getString("fields")+">");
-	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_VALUE+"><T><D="+Cres::get()->getString("value")+">");
-	FIFT_REPLICATE_FIELDS= TableFormatPtr(new TableFormat);
-
-	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_NAME+"><S><F=RHK>");
-	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_DESCRIPTION+"><S><F=R><D="+Cres::get()->getString("field")+">");
-	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_REPLICATE+"><B><A=1><D="+Cres::get()->getString("replicate")+">");
-	FIFT_REPLICATE_FIELDS->setNamingExpression("print({}, '{"+FIF_REPLICATE_FIELDS_REPLICATE+"} ? {"+FIF_REPLICATE_FIELDS_DESCRIPTION+"} : 0', ', ')");
-
-	REPLICATE_OUTPUT_FORMAT= TableFormatPtr(new TableFormat);
-	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_VARIABLE+"><S><D="+Cres::get()->getString("variable") +">");
-	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_SUCCESSFUL+"><B><D="+Cres::get()->getString("successful")+">");
-	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_ERRORS+"><S><D="+Cres::get()->getString("errors")+">");
-
-	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT= TableFormatPtr(new TableFormat);
-	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_CONTEXT+"><S><D="+Cres::get()->getString("context")+">");
-	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_VARIABLE+"><S><D="+Cres::get()->getString("variable")+">");
-	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_SUCCESSFUL+"><B><D="+Cres::get()->getString("successful")+">");
-	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_ERRORS+"><S><D="+Cres::get()->getString("errors")+">");
-
-	EF_UPDATED= TableFormatPtr(new TableFormat(1,1));
-
-	EF_UPDATED->addField("<"+EF_UPDATED_VARIABLE+"><S>");
-	EF_UPDATED->addField("<"+EF_UPDATED_VALUE+"><T>");
-	EF_UPDATED->addField("<"+EF_UPDATED_USER+"><S><F=N>");
-
-	EF_CHANGE= TableFormatPtr(new TableFormat(1, 1));
-
-	EF_CHANGE->addField("<"+EF_CHANGE_VARIABLE+"><S>");
-	EF_CHANGE->addField("<"+EF_CHANGE_VALUE+"><T><F=N>");
-	EF_CHANGE->addField("<"+EF_CHANGE_DATA+"><S><F=N>");
-
-	EFT_INFO= TableFormatPtr(new TableFormat(1, 1, "<"+EF_INFO_INFO+"><S><D="+Cres::get()->getString("info")+">"));
-	EFT_VARIABLE_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_VARIABLE_REMOVED_NAME+"><S>"));
-	EFT_EVENT_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_EVENT_REMOVED_NAME+"><S>"));
-	EFT_FUNCTION_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_FUNCTION_REMOVED_NAME+"><S>"));
-	EFT_CHILD_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_CHILD_REMOVED_CHILD+"><S>"));
-	EFT_CHILD_ADDED= TableFormatPtr(new TableFormat(1,1, "<"+EF_CHILD_ADDED_CHILD+"><S>"));
-	EFT_ACTION_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+AbstractContext::EF_ACTION_REMOVED_NAME+"><S>"));
-
-	VD_INFO= new VariableDefinition(V_INFO, INFO_DEFINITION_FORMAT, true, false, Cres::get()->getString("conContextProps"), ContextUtils::GROUP_SYSTEM);
-	VD_INFO->setHidden(true);
-	VD_INFO->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	VD_VARIABLES= new VariableDefinition(V_VARIABLES, VARIABLE_DEFINITION_FORMAT, true, false, Cres::get()->getString("conVarList"));
-	VD_VARIABLES->setHidden(true);
-	VD_VARIABLES->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	VD_FUNCTIONS= new VariableDefinition(V_FUNCTIONS, FUNCTION_DEFINITION_FORMAT, true, false, Cres::get()->getString("conFuncList"));
-	VD_FUNCTIONS->setHidden(true);
-	VD_FUNCTIONS->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	VD_EVENTS= new VariableDefinition(V_EVENTS, EVENT_DEFINITION_FORMAT, true, false, Cres::get()->getString("conEvtList"));
-	VD_EVENTS->setHidden(true);
-	VD_EVENTS->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	VD_ACTIONS= new VariableDefinition(AbstractContext::V_ACTIONS, ACTION_DEF_FORMAT, true, false, Cres::get()->getString("conActionList"));
-	VD_ACTIONS->setHidden(true);
-	VD_ACTIONS->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	VD_CHILDREN= new VariableDefinition(V_CHILDREN, VFT_CHILDREN, true, false, Cres::get()->getString("conChildList"));
-	VD_CHILDREN->setHidden(true);
-	VD_CHILDREN->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	FD_GET_COPY_DATA= FunctionDefinitionPtr(new FunctionDefinition(F_GET_COPY_DATA, FIFT_GET_COPY_DATA, REPLICATE_INPUT_FORMAT));
-	FD_GET_COPY_DATA->setHidden(true);
-
-	FD_COPY= FunctionDefinitionPtr(new FunctionDefinition(F_COPY, REPLICATE_INPUT_FORMAT, REPLICATE_OUTPUT_FORMAT, Cres::get()->getString("conCopyProperties")));
-	FD_COPY->setHidden(true);
-
-	FD_COPY_TO_CHILDREN= FunctionDefinitionPtr(new FunctionDefinition(F_COPY_TO_CHILDREN, REPLICATE_INPUT_FORMAT, REPLICATE_TO_CHILDREN_OUTPUT_FORMAT, Cres::get()->getString("conCopyToChildren")));
-	FD_COPY_TO_CHILDREN->setHidden(true);
-
-	ED_INFO= EventDefinitionPtr(new EventDefinition(E_INFO, EFT_INFO, Cres::get()->getString("info"), ContextUtils::GROUP_DEFAULT));
-	ED_INFO->setLevel(EventLevel::INFO);
-	ED_INFO->setIconId(Icons::EVT_INFO);
-	ED_INFO->getPersistenceOptions()->setDedicatedTablePreferred(true);
-
-	ED_CHILD_ADDED= EventDefinitionPtr(new EventDefinition(E_CHILD_ADDED, EFT_CHILD_ADDED, Cres::get()->getString("conChildAdded"), ContextUtils::GROUP_SYSTEM));
-	ED_CHILD_ADDED->setSynchronous(true);
-	ED_CHILD_ADDED->setHidden(true);
-	ED_CHILD_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_CHILD_REMOVED= EventDefinitionPtr(new EventDefinition(E_CHILD_REMOVED, EFT_CHILD_REMOVED, Cres::get()->getString("conChildRemoved"), ContextUtils::GROUP_SYSTEM));
-	ED_CHILD_REMOVED->setSynchronous(true);
-	ED_CHILD_REMOVED->setHidden(true);
-	ED_CHILD_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_VARIABLE_ADDED= EventDefinitionPtr(new EventDefinition(E_VARIABLE_ADDED, EF_VARIABLE_ADDED, Cres::get()->getString("conVarAdded"), ContextUtils::GROUP_SYSTEM));
-	ED_VARIABLE_ADDED->setHidden(true);
-	ED_VARIABLE_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_VARIABLE_REMOVED= EventDefinitionPtr(new EventDefinition(E_VARIABLE_REMOVED, EFT_VARIABLE_REMOVED, Cres::get()->getString("conVarRemoved"), ContextUtils::GROUP_SYSTEM));
-	ED_VARIABLE_REMOVED->setHidden(true);
-	ED_VARIABLE_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_FUNCTION_ADDED= EventDefinitionPtr(new EventDefinition(E_FUNCTION_ADDED, EF_FUNCTION_ADDED, Cres::get()->getString("conFuncAdded"), ContextUtils::GROUP_SYSTEM));
-	ED_FUNCTION_ADDED->setHidden(true);
-	ED_FUNCTION_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_FUNCTION_REMOVED= EventDefinitionPtr(new EventDefinition(E_FUNCTION_REMOVED, EFT_FUNCTION_REMOVED, Cres::get()->getString("conFuncRemoved"), ContextUtils::GROUP_SYSTEM));
-	ED_FUNCTION_REMOVED->setHidden(true);
-	ED_FUNCTION_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_EVENT_ADDED= EventDefinitionPtr(new EventDefinition(E_EVENT_ADDED, EF_EVENT_ADDED, Cres::get()->getString("conEvtAdded"), ContextUtils::GROUP_SYSTEM));
-	ED_EVENT_ADDED->setHidden(true);
-	ED_EVENT_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_EVENT_REMOVED= EventDefinitionPtr(new EventDefinition(E_EVENT_REMOVED, EFT_EVENT_REMOVED, Cres::get()->getString("conEvtRemoved"), ContextUtils::GROUP_SYSTEM));
-	ED_EVENT_REMOVED->setHidden(true);
-	ED_EVENT_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-	//todo - 'setMinRecords' is not a member of 'TableFormat'
-   //	ED_ACTION_ADDED= EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_ADDED, ACTION_DEF_FORMAT->clone()->setMinRecords(1))->setMaxRecords(1), Cres::get()->getString("conActionAdded"));
-	ED_ACTION_ADDED->setHidden(true);
-	ED_ACTION_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_ACTION_REMOVED = EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_REMOVED, EFT_ACTION_REMOVED, Cres::get()->getString("conActionRemoved")));
-	ED_ACTION_REMOVED->setHidden(true);
-	ED_ACTION_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_ACTION_STATE_CHANGED= EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_STATE_CHANGED, ACTION_DEF_FORMAT, Cres::get()->getString("conActionStateChanged")));
-	ED_ACTION_STATE_CHANGED->setHidden(true);
-	ED_ACTION_STATE_CHANGED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_INFO_CHANGED= EventDefinitionPtr(new EventDefinition(E_INFO_CHANGED, INFO_DEFINITION_FORMAT, Cres::get()->getString("conInfoChanged"), ContextUtils::GROUP_SYSTEM));
-	ED_INFO_CHANGED->setHidden(true);
-	ED_INFO_CHANGED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	ED_UPDATED= EventDefinitionPtr(new EventDefinition(E_UPDATED, EF_UPDATED, Cres::get()->getString("conUpdated"), ContextUtils::GROUP_SYSTEM));
-	ED_UPDATED->setHidden(true);
-
-	ED_CHANGE= EventDefinitionPtr(new EventDefinition(E_CHANGE, EF_CHANGE, Cres::get()->getString("change"), ContextUtils::GROUP_SYSTEM));
-	ED_CHANGE->setHidden(true);
-	ED_CHANGE->getPersistenceOptions()->setDedicatedTablePreferred(true);
-
-	// E2451 Undefined symbol 'EMPTY_FORMAT'
-	 //	ED_DESTROYED= EventDefinitionPtr(new EventDefinition(E_DESTROYED, TableFormat::EMPTY_FORMAT, Cres::get()->getString("conDestroyedPermanently"), ContextUtils::GROUP_SYSTEM));
-	ED_DESTROYED->setSynchronous(true);
-	ED_DESTROYED->setHidden(true);
-	ED_DESTROYED->setPermissions(DefaultPermissionChecker::getNullPermissions());
-
-	VFT_VARIABLE_STATUSES= TableFormatPtr(new TableFormat);
-	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_NAME+"><S>");
-	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_STATUS+"><S><F=N>");
-	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_COMMENT+"><S><F=N>");
-	DEFAULT_PERMISSIONS = DefaultPermissionChecker::getNullPermissions();
+//    setName(name);
+//
+//	permissionCheckingEnabled = true;
+//	permissionChecker = new NullPermissionChecker();
+//	valueCheckingEnabled = true;
+//	childrenConcurrencyEnabled = false;
+//	childrenSortingEnabled = true;
+//	fireUpdateEvents = true;
+//
+//
+//	VARIABLE_DEFINITION_FORMAT = TableFormatPtr(new TableFormat);
+//
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_NAME + "><S>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_FORMAT + "><S><F=N>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_DESCRIPTION + "><S><F=N>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_READABLE + "><B>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_WRITABLE + "><B>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_HELP + "><S><F=N>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_GROUP + "><S><F=N>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_ICON_ID + "><S><F=N>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_HELP_ID + "><S><F=N>");
+//	VARIABLE_DEFINITION_FORMAT->addField("<" + FIELD_VD_CACHE_TIME + "><L><F=N>");
+//
+//	EF_VARIABLE_ADDED = TableFormatPtr(VARIABLE_DEFINITION_FORMAT->clone());
+//   //	EF_VARIABLE_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
+//   //	EF_VARIABLE_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
+//
+//	FUNCTION_DEFINITION_FORMAT= TableFormatPtr(new TableFormat);
+//	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_NAME+"><S>");
+//	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_INPUTFORMAT+"><S><F=N>");
+//	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_OUTPUTFORMAT+"><S><F=N>");
+//	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_DESCRIPTION+"><S><F=N>");
+//	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_HELP+"><S><F=N>");
+//	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_GROUP+"><S><F=N>");
+//	FUNCTION_DEFINITION_FORMAT->addField("<"+FIELD_FD_ICON_ID+"><S><F=N>");
+//
+//	EF_FUNCTION_ADDED = TableFormatPtr(FUNCTION_DEFINITION_FORMAT->clone());
+//   //	EF_FUNCTION_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
+//   //	EF_FUNCTION_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
+//
+//	EVENT_DEFINITION_FORMAT= TableFormatPtr(new TableFormat);
+//	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_NAME+"><S>");
+//	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_FORMAT+"><S><F=N>");
+//	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_DESCRIPTION+"><S><F=N>");
+//	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_HELP+"><S><F=N>");
+//	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_LEVEL+"><I>");
+//	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_GROUP+"><S><F=N>");
+//	EVENT_DEFINITION_FORMAT->addField("<"+FIELD_ED_ICON_ID+"><S><F=N>");
+//
+//	EF_EVENT_ADDED = TableFormatPtr(EVENT_DEFINITION_FORMAT->clone());
+//   //	EF_EVENT_ADDED->setMinRecords(1);  todo - not make in datatable/TableFormat.h
+//   //	EF_EVENT_ADDED->setMaxRecords(1);  todo - not make in datatable/TableFormat.h
+//
+//   //	VFT_CHILDREN = FieldFormat::create("<"+VF_CHILDREN_NAME+"><S>")->wrap();  //todo - not make in datatable/FieldFormat.h
+//
+//	INFO_DEFINITION_FORMAT = TableFormatPtr(new TableFormat(1,1));
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_DESCRIPTION+"><S><F=N><D="+Cres::get()->getString("description")+">");
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_TYPE+"><S><D="+Cres::get()->getString("type")+">");
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_GROUP+"><S><F=N><D="+Cres::get()->getString("group")+">");
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_ICON+"><S><F=N><D="+Cres::get()->getString("conIconId")+">");
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_LOCAL_ROOT+"><S><D="+Cres::get()->getString("conLocalRoot")+">");
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_REMOTE_ROOT+"><S><F=N><D="+Cres::get()->getString("conRemoteRoot")+">");
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_REMOTE_PATH+"><S><D="+Cres::get()->getString("conRemotePath")+">");
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_REMOTE_PRIMARY_ROOT+"><S><F=N><D="+Cres::get()->getString("conRemotePrimaryRoot")+">");
+//	INFO_DEFINITION_FORMAT->addField("<"+VF_INFO_MAPPED+"><B><D="+Cres::get()->getString("conMapped")+">");
+//
+//	ACTION_DEF_FORMAT= TableFormatPtr(new TableFormat);
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_NAME+"><S>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_DESCRIPTION+"><S><F=N>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_HELP+"><S><F=N>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_ACCELERATOR+"><S><F=N>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_DROP_SOURCES+"><T><F=N>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_HIDDEN+"><B>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_ENABLED+"><B>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_ICON_ID+"><S><F=N>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_GROUP+"><S><F=N>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_EXECUTION_GROUP+"><S><F=N>");
+//	ACTION_DEF_FORMAT->addField("<"+ActionConstants::FIELD_AD_DEFAULT+"><B>");
+//
+//   //	RESOURCE_MASKS_FORMAT= FieldFormat::create("<"+ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK+"><S><F=N>")->wrap();//todo - not make in datatable/FieldFormat.h
+//
+//	FIFT_GET_COPY_DATA = TableFormatPtr(new TableFormat(1, 1));
+//	FIFT_GET_COPY_DATA->addField("<"+FIF_COPY_DATA_GROUP+"><S><F=N>");
+//	FIFT_GET_COPY_DATA->addField("<"+FIF_COPY_DATA_RECIPIENTS+"><T><F=N>");
+//   //	FIFT_GET_COPY_DATA_RECIPIENTS = FieldFormat::create("<"+FIF_COPY_DATA_RECIPIENTS_RECIPIENT+"><S>")->wrap(); //todo - not make in datatable/FieldFormat.h
+//	REPLICATE_INPUT_FORMAT= TableFormatPtr(new TableFormat);
+//
+//	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_NAME+"><S><F=RHK>");
+//	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_DESCRIPTION+"><S><F=R><D="+Cres::get()->getString("variable")+">");
+//	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_REPLICATE+"><B><A=0><D="+Cres::get()->getString("replicate")+">");
+//	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_FIELDS+"><T><D="+Cres::get()->getString("fields")+">");
+//	REPLICATE_INPUT_FORMAT->addField("<"+FOF_COPY_DATA_VALUE+"><T><D="+Cres::get()->getString("value")+">");
+//	FIFT_REPLICATE_FIELDS= TableFormatPtr(new TableFormat);
+//
+//	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_NAME+"><S><F=RHK>");
+//	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_DESCRIPTION+"><S><F=R><D="+Cres::get()->getString("field")+">");
+//	FIFT_REPLICATE_FIELDS->addField("<"+FIF_REPLICATE_FIELDS_REPLICATE+"><B><A=1><D="+Cres::get()->getString("replicate")+">");
+//	FIFT_REPLICATE_FIELDS->setNamingExpression("print({}, '{"+FIF_REPLICATE_FIELDS_REPLICATE+"} ? {"+FIF_REPLICATE_FIELDS_DESCRIPTION+"} : 0', ', ')");
+//
+//	REPLICATE_OUTPUT_FORMAT= TableFormatPtr(new TableFormat);
+//	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_VARIABLE+"><S><D="+Cres::get()->getString("variable") +">");
+//	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_SUCCESSFUL+"><B><D="+Cres::get()->getString("successful")+">");
+//	REPLICATE_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_ERRORS+"><S><D="+Cres::get()->getString("errors")+">");
+//
+//	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT= TableFormatPtr(new TableFormat);
+//	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_CONTEXT+"><S><D="+Cres::get()->getString("context")+">");
+//	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_VARIABLE+"><S><D="+Cres::get()->getString("variable")+">");
+//	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_SUCCESSFUL+"><B><D="+Cres::get()->getString("successful")+">");
+//	REPLICATE_TO_CHILDREN_OUTPUT_FORMAT->addField("<"+FIELD_REPLICATE_ERRORS+"><S><D="+Cres::get()->getString("errors")+">");
+//
+//	EF_UPDATED= TableFormatPtr(new TableFormat(1,1));
+//
+//	EF_UPDATED->addField("<"+EF_UPDATED_VARIABLE+"><S>");
+//	EF_UPDATED->addField("<"+EF_UPDATED_VALUE+"><T>");
+//	EF_UPDATED->addField("<"+EF_UPDATED_USER+"><S><F=N>");
+//
+//	EF_CHANGE= TableFormatPtr(new TableFormat(1, 1));
+//
+//	EF_CHANGE->addField("<"+EF_CHANGE_VARIABLE+"><S>");
+//	EF_CHANGE->addField("<"+EF_CHANGE_VALUE+"><T><F=N>");
+//	EF_CHANGE->addField("<"+EF_CHANGE_DATA+"><S><F=N>");
+//
+//	EFT_INFO= TableFormatPtr(new TableFormat(1, 1, "<"+EF_INFO_INFO+"><S><D="+Cres::get()->getString("info")+">"));
+//	EFT_VARIABLE_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_VARIABLE_REMOVED_NAME+"><S>"));
+//	EFT_EVENT_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_EVENT_REMOVED_NAME+"><S>"));
+//	EFT_FUNCTION_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_FUNCTION_REMOVED_NAME+"><S>"));
+//	EFT_CHILD_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+EF_CHILD_REMOVED_CHILD+"><S>"));
+//	EFT_CHILD_ADDED= TableFormatPtr(new TableFormat(1,1, "<"+EF_CHILD_ADDED_CHILD+"><S>"));
+//	EFT_ACTION_REMOVED= TableFormatPtr(new TableFormat(1,1, "<"+AbstractContext::EF_ACTION_REMOVED_NAME+"><S>"));
+//
+//	VD_INFO= new VariableDefinition(V_INFO, INFO_DEFINITION_FORMAT, true, false, Cres::get()->getString("conContextProps"), ContextUtils::GROUP_SYSTEM);
+//	VD_INFO->setHidden(true);
+//	VD_INFO->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	VD_VARIABLES= new VariableDefinition(V_VARIABLES, VARIABLE_DEFINITION_FORMAT, true, false, Cres::get()->getString("conVarList"));
+//	VD_VARIABLES->setHidden(true);
+//	VD_VARIABLES->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	VD_FUNCTIONS= new VariableDefinition(V_FUNCTIONS, FUNCTION_DEFINITION_FORMAT, true, false, Cres::get()->getString("conFuncList"));
+//	VD_FUNCTIONS->setHidden(true);
+//	VD_FUNCTIONS->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	VD_EVENTS= new VariableDefinition(V_EVENTS, EVENT_DEFINITION_FORMAT, true, false, Cres::get()->getString("conEvtList"));
+//	VD_EVENTS->setHidden(true);
+//	VD_EVENTS->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	VD_ACTIONS= new VariableDefinition(AbstractContext::V_ACTIONS, ACTION_DEF_FORMAT, true, false, Cres::get()->getString("conActionList"));
+//	VD_ACTIONS->setHidden(true);
+//	VD_ACTIONS->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	VD_CHILDREN= new VariableDefinition(V_CHILDREN, VFT_CHILDREN, true, false, Cres::get()->getString("conChildList"));
+//	VD_CHILDREN->setHidden(true);
+//	VD_CHILDREN->setReadPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	FD_GET_COPY_DATA= FunctionDefinitionPtr(new FunctionDefinition(F_GET_COPY_DATA, FIFT_GET_COPY_DATA, REPLICATE_INPUT_FORMAT));
+//	FD_GET_COPY_DATA->setHidden(true);
+//
+//	FD_COPY= FunctionDefinitionPtr(new FunctionDefinition(F_COPY, REPLICATE_INPUT_FORMAT, REPLICATE_OUTPUT_FORMAT, Cres::get()->getString("conCopyProperties")));
+//	FD_COPY->setHidden(true);
+//
+//	FD_COPY_TO_CHILDREN= FunctionDefinitionPtr(new FunctionDefinition(F_COPY_TO_CHILDREN, REPLICATE_INPUT_FORMAT, REPLICATE_TO_CHILDREN_OUTPUT_FORMAT, Cres::get()->getString("conCopyToChildren")));
+//	FD_COPY_TO_CHILDREN->setHidden(true);
+//
+//	ED_INFO= EventDefinitionPtr(new EventDefinition(E_INFO, EFT_INFO, Cres::get()->getString("info"), ContextUtils::GROUP_DEFAULT));
+//	ED_INFO->setLevel(EventLevel::INFO);
+//	ED_INFO->setIconId(Icons::EVT_INFO);
+//	ED_INFO->getPersistenceOptions()->setDedicatedTablePreferred(true);
+//
+//	ED_CHILD_ADDED= EventDefinitionPtr(new EventDefinition(E_CHILD_ADDED, EFT_CHILD_ADDED, Cres::get()->getString("conChildAdded"), ContextUtils::GROUP_SYSTEM));
+//	ED_CHILD_ADDED->setSynchronous(true);
+//	ED_CHILD_ADDED->setHidden(true);
+//	ED_CHILD_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_CHILD_REMOVED= EventDefinitionPtr(new EventDefinition(E_CHILD_REMOVED, EFT_CHILD_REMOVED, Cres::get()->getString("conChildRemoved"), ContextUtils::GROUP_SYSTEM));
+//	ED_CHILD_REMOVED->setSynchronous(true);
+//	ED_CHILD_REMOVED->setHidden(true);
+//	ED_CHILD_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_VARIABLE_ADDED= EventDefinitionPtr(new EventDefinition(E_VARIABLE_ADDED, EF_VARIABLE_ADDED, Cres::get()->getString("conVarAdded"), ContextUtils::GROUP_SYSTEM));
+//	ED_VARIABLE_ADDED->setHidden(true);
+//	ED_VARIABLE_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_VARIABLE_REMOVED= EventDefinitionPtr(new EventDefinition(E_VARIABLE_REMOVED, EFT_VARIABLE_REMOVED, Cres::get()->getString("conVarRemoved"), ContextUtils::GROUP_SYSTEM));
+//	ED_VARIABLE_REMOVED->setHidden(true);
+//	ED_VARIABLE_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_FUNCTION_ADDED= EventDefinitionPtr(new EventDefinition(E_FUNCTION_ADDED, EF_FUNCTION_ADDED, Cres::get()->getString("conFuncAdded"), ContextUtils::GROUP_SYSTEM));
+//	ED_FUNCTION_ADDED->setHidden(true);
+//	ED_FUNCTION_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_FUNCTION_REMOVED= EventDefinitionPtr(new EventDefinition(E_FUNCTION_REMOVED, EFT_FUNCTION_REMOVED, Cres::get()->getString("conFuncRemoved"), ContextUtils::GROUP_SYSTEM));
+//	ED_FUNCTION_REMOVED->setHidden(true);
+//	ED_FUNCTION_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_EVENT_ADDED= EventDefinitionPtr(new EventDefinition(E_EVENT_ADDED, EF_EVENT_ADDED, Cres::get()->getString("conEvtAdded"), ContextUtils::GROUP_SYSTEM));
+//	ED_EVENT_ADDED->setHidden(true);
+//	ED_EVENT_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_EVENT_REMOVED= EventDefinitionPtr(new EventDefinition(E_EVENT_REMOVED, EFT_EVENT_REMOVED, Cres::get()->getString("conEvtRemoved"), ContextUtils::GROUP_SYSTEM));
+//	ED_EVENT_REMOVED->setHidden(true);
+//	ED_EVENT_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//	//todo - 'setMinRecords' is not a member of 'TableFormat'
+//   //	ED_ACTION_ADDED= EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_ADDED, ACTION_DEF_FORMAT->clone()->setMinRecords(1))->setMaxRecords(1), Cres::get()->getString("conActionAdded"));
+//	ED_ACTION_ADDED->setHidden(true);
+//	ED_ACTION_ADDED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_ACTION_REMOVED = EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_REMOVED, EFT_ACTION_REMOVED, Cres::get()->getString("conActionRemoved")));
+//	ED_ACTION_REMOVED->setHidden(true);
+//	ED_ACTION_REMOVED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_ACTION_STATE_CHANGED= EventDefinitionPtr(new EventDefinition(AbstractContext::E_ACTION_STATE_CHANGED, ACTION_DEF_FORMAT, Cres::get()->getString("conActionStateChanged")));
+//	ED_ACTION_STATE_CHANGED->setHidden(true);
+//	ED_ACTION_STATE_CHANGED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_INFO_CHANGED= EventDefinitionPtr(new EventDefinition(E_INFO_CHANGED, INFO_DEFINITION_FORMAT, Cres::get()->getString("conInfoChanged"), ContextUtils::GROUP_SYSTEM));
+//	ED_INFO_CHANGED->setHidden(true);
+//	ED_INFO_CHANGED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	ED_UPDATED= EventDefinitionPtr(new EventDefinition(E_UPDATED, EF_UPDATED, Cres::get()->getString("conUpdated"), ContextUtils::GROUP_SYSTEM));
+//	ED_UPDATED->setHidden(true);
+//
+//	ED_CHANGE= EventDefinitionPtr(new EventDefinition(E_CHANGE, EF_CHANGE, Cres::get()->getString("change"), ContextUtils::GROUP_SYSTEM));
+//	ED_CHANGE->setHidden(true);
+//	ED_CHANGE->getPersistenceOptions()->setDedicatedTablePreferred(true);
+//
+//	// E2451 Undefined symbol 'EMPTY_FORMAT'
+//	 //	ED_DESTROYED= EventDefinitionPtr(new EventDefinition(E_DESTROYED, TableFormat::EMPTY_FORMAT, Cres::get()->getString("conDestroyedPermanently"), ContextUtils::GROUP_SYSTEM));
+//	ED_DESTROYED->setSynchronous(true);
+//	ED_DESTROYED->setHidden(true);
+//	ED_DESTROYED->setPermissions(DefaultPermissionChecker::getNullPermissions());
+//
+//	VFT_VARIABLE_STATUSES= TableFormatPtr(new TableFormat);
+//	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_NAME+"><S>");
+//	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_STATUS+"><S><F=N>");
+//	VFT_VARIABLE_STATUSES->addField("<"+VF_VARIABLE_STATUSES_COMMENT+"><S><F=N>");
+//	DEFAULT_PERMISSIONS = DefaultPermissionChecker::getNullPermissions();
 
 }
 
@@ -685,7 +685,7 @@ PermissionsPtr AbstractContext::getPermissions()
 ////    }
 ////    return DEFAULT_PERMISSIONS();
 //
-	return 0;
+	return PermissionsPtr();
 }
 //
 //void AbstractContext::setName(const std::string &name)
@@ -1678,7 +1678,7 @@ PermissionsPtr AbstractContext::getPermissions()
 ////        for (auto _i = dropSourcesTable)->iterator(); _i->hasNext(); ) {
 ////            ::DataRecordPtr* ds = java_cast< ::DataRecordPtr* >(_i->next());
 ////            {
-////                dropSources)->add(new ::com::tibbo::aggregate::common::action::TreeMask(ds)->getString(ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK()))));
+////                dropSources->add(new TreeMask(ds)->getString(ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK()))));
 ////            }
 ////        }
 ////        def)->setDropSources(dropSources);

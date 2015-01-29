@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/SslHelper.java
-#include <com/tibbo/aggregate/common/protocol/SslHelper.h"
+#include "protocol/SslHelper.h"
 
-#include <com/tibbo/aggregate/common/Log.h"
-#include <com/tibbo/aggregate/common/protocol/SslHelper_1.h"
+#include "Log.h"
+#include "protocol/SslHelper_1.h"
 //#include <java/lang/ArrayStoreException.h"
 //#include <java/lang/Exception.h"
 //#include <java/lang/NullPointerException.h"

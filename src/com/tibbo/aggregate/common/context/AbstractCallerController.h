@@ -35,7 +35,7 @@ public:
     void sendFeedback(int level, const std::string & message);
 	static std::list< CallerControllerPtr >  getControllers();
     std::string toString();
-	PermissionPtr getPermissions();
+   //	PermissionPtr getPermissions();  todo
     std::string getUsername();
 
     void setUsername(const std::string & username);

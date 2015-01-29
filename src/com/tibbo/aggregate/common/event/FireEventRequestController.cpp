@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/FireEventRequestController.java
 #include "event/FireEventRequestController.h"
 
 

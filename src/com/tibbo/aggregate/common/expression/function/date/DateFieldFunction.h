@@ -3,11 +3,11 @@
 #pragma once
 
 //#include <fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/expression/function/date/fwd-aggregate_sdk_5.11.00.h"
+//#include "expression/fwd-aggregate_sdk_5.11.00.h"
+#include "expression/function/date/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/expression/function/date/DateFunction.h"
+#include "expression/function/date/DateFunction.h"
 
 
 

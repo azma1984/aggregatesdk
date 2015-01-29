@@ -2,6 +2,7 @@
 #define EntityReferenceH
 #include "util/Comparable.h"
 #include "util/Cloneable.h"
+#include "util/pointers.h"
 //todo - class stub
 class EntityReference : public Cloneable, Comparable /* public ::java::io::Serializable*/
 {
@@ -18,9 +19,9 @@ public:
     void setProperty(const std::string & property);
     int hashCode();
     bool equals(AgObjectPtr obj);
-    int compareTo(EntityReferencePtr ref);
+   // int compareTo(EntityReferencePtr ref); todo
     std::string toString();
-    EntityReferencePtr clone();
+    //EntityReferencePtr clone(); todo
 
     EntityReference();
 	EntityReference(const std::string & context, const std::string & entity);

@@ -1,12 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/RequestCache.java
-#include "RequestCache.h"
 
-#include "ActionResponse.h"
-#include "RequestIdentifier.h"
+#include "action/RequestCache.h"
 
-std::map<RequestIdentifierPtr, ActionResponsePtr>*  RequestCache::getRequests()
+
+
+std::map<RequestIdentifierPtr, ActionResponsePtr>  RequestCache::getRequests()
 {
-	return &requests;
+	return requests;
 }
 
 ActionResponsePtr RequestCache::getRequest(RequestIdentifierPtr requestId)

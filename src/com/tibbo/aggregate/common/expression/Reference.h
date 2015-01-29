@@ -2,9 +2,9 @@
 #define _REFERENCE_H_
 
 #include "util/Cloneable.h"
-//#include <com/tibbo/aggregate/common/context/ContextUtils.h"
+//#include "context/ContextUtils.h"
 //#include "expression/Expression.h"
-//#include <com/tibbo/aggregate/common/expression/ExpressionUtils.h"
+//#include "expression/ExpressionUtils.h"
 
 
 #include <string>

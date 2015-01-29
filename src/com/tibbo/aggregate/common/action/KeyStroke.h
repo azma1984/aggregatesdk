@@ -28,3 +28,5 @@ public:
 	KeyStroke(::javax::swing::KeyStroke* keyStroke);
   */
 };
+
+#endif

@@ -4,7 +4,7 @@
 #include "plugin/AggreGatePlugin.h"
 //#include "device/DeviceContext.h"
 #include "datatable/tableformat.h"
-#include "discovery/DiscoveryProvider.h"
+//#include "discovery/DiscoveryProvider.h"
 #include <string>
 #include <list>
 #include <set>
@@ -35,8 +35,8 @@ public:
     *
     * <p>
     * Variable definitions representing device communication settings should belong to ContextUtils.GROUP_ACCESS variable group.
-    */
-    virtual void setupDeviceContext(DeviceContextPtr deviceContext) = 0;
+	*/
+	virtual void setupDeviceContext(DeviceContextPtr deviceContext) = 0;
 
     /**
     * In contrast to {@link #setupDeviceContext(DeviceContext)}, this method it called only once in the end of initial device account creation. Its implementation can correct necessary default values
@@ -70,7 +70,7 @@ public:
     *           Should be thrown by the driver to force generating Info event in addition to skipping the synchronization. This Info event contains exception message that is supposed to describe the
     *           reason of synchronization skip, e.g. "device address not specified". In order to avoid event flooding, driver should throw an exception only if full synchronization is performed.
     */
-    virtual bool shouldSynchronize(SynchronizationParametersPtr parameters) = 0;//throws ContextException;
+	virtual bool shouldSynchronize(SynchronizationParametersPtr parameters) = 0;//throws ContextException;
 
    /**
     * Called in the beginning of every synchronization cycle. Driver implementations may read communication settings from device context at this point.
@@ -353,20 +353,20 @@ public:
     *
     * @return Variable definition or null if nothing was found
     */
-    virtual VariableDefinitionPtr discoverVariable(const std::string& name, AgObjectPtrhelper)=0;
+	virtual VariableDefinitionPtr discoverVariable(const std::string& name, AgObjectPtr helper)=0;
 
-    /**
+	/**
     * Tries to discover device variable that was not found during automatic metadata reading.
     *
     * @return Variable definition or null if nothing was found
     */
-    virtual FunctionDefinitionPtr discoverFunction(const std::string& name, AgObjectPtrhelper)=0;
+	virtual FunctionDefinitionPtr discoverFunction(const std::string& name, AgObjectPtr helper)=0;
 
     /**
     * Tries to discover device event that was not found during automatic metadata reading.
     *
     * @return Event definition or null if nothing was found
     */
-    virtual EventDefinitionPtr discoverEvent(const std::string& name, AgObjectPtrhelper)=0;
+    virtual EventDefinitionPtr discoverEvent(const std::string& name, AgObjectPtr helper)=0;
 };
 #endif  //_DeviceDriver_H_

@@ -7,7 +7,7 @@
 class ActionCommandList
 {
 public:
-    virtual std::list<ActionCommand> getCommands() = 0;
+    virtual std::list<ActionCommandPtr> getCommands() = 0;
 };
 
 #endif

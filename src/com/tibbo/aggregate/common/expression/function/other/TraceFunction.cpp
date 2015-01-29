@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/other/TraceFunction.java
-#include <com/tibbo/aggregate/common/expression/function/other/TraceFunction.h"
+#include "expression/function/other/TraceFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/expression/util/Tracer.h"
-#include <com/tibbo/aggregate/common/expression/util/TracerManager.h"
+#include "expression/Evaluator.h"
+#include "expression/function/Functions.h"
+#include "expression/util/Tracer.h"
+#include "expression/util/TracerManager.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"

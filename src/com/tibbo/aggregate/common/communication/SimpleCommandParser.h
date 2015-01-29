@@ -13,20 +13,20 @@ class SimpleCommandParser : public AbstractCommandParser
 {
 private:
 	static const int BUFFER_SIZE = 1024;
-    ::java::lang::Byte* startChar;
+   // ::java::lang::Byte* startChar;    todo
     unsigned char endChar;
-    ::java::lang::Byte* endChar2;
+   // ::java::lang::Byte* endChar2;  todo
     bool needBoth;
     bool started;
     bool waitingEndChar2;
-    ::java::nio::channels::ReadableByteChannel* inputChannel;
+  //  ::java::nio::channels::ReadableByteChannel* inputChannel; todo
     bool full;
-	::java::nio::ByteBuffer* buffer;
+  //	::java::nio::ByteBuffer* buffer;  todo
 	 void init();
   	CommandPtr buildCommand();
 	bool processBufferContents();
 	bool processByte(unsigned char cur);
-	void init(::java::nio::channels::ReadableByteChannel* channel, ::java::lang::Byte* startChar, unsigned char endChar);
+   //	void init(::java::nio::channels::ReadableByteChannel* channel, ::java::lang::Byte* startChar, unsigned char endChar); todo
 
 public:
 	CommandPtr createCommandFromBufferContent();

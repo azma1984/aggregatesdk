@@ -11,7 +11,7 @@ ServerPermissionChecker::ServerPermissionChecker()
 {
     std::vector<PermissionTypePtr> permisType;
 
-    PermissionTypePtr nullType = new PermissionType(0, NULL_PERMISSIONS, Cres.get().getString("secNoPerms"));
+    PermissionTypePtr nullType = new PermissionType(0, NULL_PERMISSIONS, Cres::get()->getString("secNoPerms"));
     permisType.push_back( nullType );
 
     PermissionTypePtr observerType = new PermissionType(0b00000001, OBSERVER_PERMISSIONS_, Cres::get()->getString("secObserverPerms"));

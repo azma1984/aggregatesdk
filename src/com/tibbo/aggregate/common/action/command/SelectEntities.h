@@ -3,29 +3,19 @@
 
 #include "action/GenericActionCommand.h"
 
+#include "action/ActionUtils.h"
+#include "datatable/DataRecord.h"
+#include "datatable/DataTable.h"
+#include "datatable/FieldFormat.h"
+//#include "datatable/TableFormat.h"
+
 class SelectEntities : public GenericActionCommand
 {
  private:
-    static const std::string CF_TYPES_;
-    static const std::string CF_ROOT_;
-    static const std::string CF_DEFAULT_;
-    static const std::string CF_EXPANDED_;
-    static const std::string CF_SHOW_CHILDREN_;
-    static const std::string CF_ALLOW_MASKS_;
-    static const std::string CF_SHOW_VARS_;
-    static const std::string CF_SHOW_FUNCS_;
-    static const std::string CF_SHOW_EVENTS_;
-    static const std::string CF_SHOW_FIELDS_;
-    static const std::string CF_SINGLE_SELECTION_;
-    static const std::string CF_TYPES_TYPE_;
-    static const std::string RF_REFERENCE_;
-    static TableFormatPtr CFT_SELECT_ENTITIES_;
-    static TableFormatPtr CFT_SELECT_ENTITIES_TYPES_;
-    static TableFormatPtr RFT_SELECT_ENTITIES_;
-    std::list contextTypes;
-    const std::string & rootContext;
-    const std::string & defaultContext;
-    const std::string & expandedContext;
+	std::list<std::string> contextTypes;
+	const std::string rootContext;
+	const std::string defaultContext;
+	const std::string expandedContext;
     bool showChildren;
     bool allowMasks;
     bool showVars;
@@ -34,12 +24,28 @@ class SelectEntities : public GenericActionCommand
     bool showFields;
     bool singleSelection;
 
-public:
-    DataTablePtr constructParameters();
-//
-public:
-    std::list getContextTypes();
-    void setContextTypes(std::list contextTypes);
+ public:
+    static const std::string CF_TYPES;
+	static const std::string CF_ROOT;
+	static const std::string CF_DEFAULT;
+	static const std::string CF_EXPANDED;
+	static const std::string CF_SHOW_CHILDREN;
+	static const std::string CF_ALLOW_MASKS;
+	static const std::string CF_SHOW_VARS;
+	static const std::string CF_SHOW_FUNCS;
+	static const std::string CF_SHOW_EVENTS;
+	static const std::string CF_SHOW_FIELDS;
+	static const std::string CF_SINGLE_SELECTION;
+	static const std::string CF_TYPES_TYPE;
+	static const std::string RF_REFERENCE;
+	static TableFormatPtr CFT_SELECT_ENTITIES;
+	static TableFormatPtr CFT_SELECT_ENTITIES_TYPES;
+	static TableFormatPtr RFT_SELECT_ENTITIES;
+
+	DataTablePtr constructParameters();
+
+	std::list<std::string> getContextTypes();
+	void setContextTypes(std::list<std::string> contextTypes);
     const std::string & getRootContext();
     void setRootContext(const std::string & rootContext);
     const std::string & getDefaultContext();
@@ -62,28 +68,7 @@ public:
     void setSingleSelection(bool singleSelection);
 
     SelectEntities();
-    SelectEntities(const std::string & title, std::list contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection);
-
-    static const std::string& CF_TYPES();
-    static const std::string& CF_ROOT();
-    static const std::string& CF_DEFAULT();
-	static const std::string& CF_EXPANDED();
-    static const std::string& CF_SHOW_CHILDREN();
-    static const std::string& CF_ALLOW_MASKS();
-    static const std::string& CF_SHOW_VARS();
-    static const std::string& CF_SHOW_FUNCS();
-    static const std::string& CF_SHOW_EVENTS();
-    static const std::string& CF_SHOW_FIELDS();
-    static const std::string& CF_SINGLE_SELECTION();
-    static const std::string& CF_TYPES_TYPE();
-    static const std::string& RF_REFERENCE();
-
-private:
-    static TableFormatPtr& CFT_SELECT_ENTITIES();
-    static TableFormatPtr& CFT_SELECT_ENTITIES_TYPES();
-//
-public:
-    static TableFormatPtr& RFT_SELECT_ENTITIES();
+    SelectEntities(const std::string & title, std::list<std::string> contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection);
 
 };
 #endif  //_SelectEntities_H_

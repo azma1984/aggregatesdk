@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateCommandUtils.java
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommandUtils.h"
+#include "protocol/AggreGateCommandUtils.h"
 
-#include <com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/OutgoingAggreGateCommand.h"
+#include "datatable/encoding/TransferEncodingHelper.h"
+#include "protocol/AggreGateCommand.h"
+#include "protocol/OutgoingAggreGateCommand.h"
 //#include <java/lang/Integer.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/String.h"

@@ -1,10 +1,11 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/RequestCache.java
 #ifndef RequestCacheH
 #define RequestCacheH
 
 #include <map>
-#include "RequestIdentifier.h"
-#include "ActionResponse.h"
+#include "action/RequestIdentifier.h"
+#include "action/ActionResponse.h"
+#include "action/ActionResponse.h"
+#include "action/RequestIdentifier.h"
 
 class RequestCache
 {

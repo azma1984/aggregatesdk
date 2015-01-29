@@ -10,7 +10,7 @@ class ContextEventListener;
 class VariableDefinition;
 class FunctionDefinition;
 class EventDefinition;
-class EventDataPtr;
+class EventData;
 class Event;
 class ExecutorService;
 

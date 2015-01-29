@@ -1,11 +1,11 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/context/VariableFormatFunction.java
-#include <com/tibbo/aggregate/common/expression/function/context/VariableFormatFunction.h"
+#include "expression/function/context/VariableFormatFunction.h"
 
-#include <com/tibbo/aggregate/common/context/Context.h"
-#include <com/tibbo/aggregate/common/context/VariableDefinition.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
+#include "context/Context.h"
+#include "context/VariableDefinition.h"
+#include "datatable/TableFormat.h"
+#include "expression/Evaluator.h"
+#include "expression/ReferenceResolver.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"

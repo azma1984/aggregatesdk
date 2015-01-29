@@ -1,12 +1,12 @@
 #include "ActionIdGenerator.h"
 
 
-ActionIdentifierPtr ActionIdGenerator::generate(Action<InitialRequest, ActionCommand, ActionResponse> action)
+ActionIdentifierPtr ActionIdGenerator::generate(Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * action)
 {
-    std::string id = "ActionIdGenerator::generate";
-    //action->getClass()->getSimpleName()+"@"+
-//	std::printf("%d",action); // System::identityHashCode(action)->toString();
-    return ActionIdentifierPtr(new ActionIdentifier(id));
+	char buf[10];
+	sprintf(buf,"%d",int(action));
+	std::string id = action->getClass()->getSimpleName()+"@"+std::string(buf);
+	return ActionIdentifierPtr(new ActionIdentifier(id));
 }
 
 

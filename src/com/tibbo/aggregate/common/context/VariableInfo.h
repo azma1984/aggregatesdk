@@ -9,6 +9,7 @@
 //#include "datatable/TableFormat.h"
 //#include "datatable/field/StringFieldFormat.h"
 
+#include "util/Pointers.h"
 //todo - class stub
 //Singleton
 class VariableInfo

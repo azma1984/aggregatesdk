@@ -3,7 +3,7 @@
 #ifndef H
 #define H
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
+//#include "context/fwd-aggregate_sdk_5.11.00.h"
 //#include <examples/api/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/io/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"

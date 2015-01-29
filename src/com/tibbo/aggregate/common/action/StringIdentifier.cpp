@@ -14,9 +14,10 @@ std::string StringIdentifier::getId()
 
 bool StringIdentifier::equals(AgObjectPtr obj)
 {
-  StringIdentifier *sid =  (StringIdentifier*)obj;
+  //StringIdentifier *sid =  (StringIdentifier*)obj; todo
 
-  return id.compare(sid->id.c_str());
+ // return id.compare(sid->id.c_str());
+ return true;
 }
 
 //todo - Whether this function is necessary?

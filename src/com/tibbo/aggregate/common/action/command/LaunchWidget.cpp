@@ -1,13 +1,13 @@
 #include "action/command/LaunchWidget.h"
 
 /*
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/action/ActionUtils.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
-#include <com/tibbo/aggregate/common/util/DashboardProperties.h"
-#include <com/tibbo/aggregate/common/util/WindowLocation.h"
+#include "Cres.h"
+#include "action/ActionUtils.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
+#include "datatable/field/StringFieldFormat.h"
+#include "util/DashboardProperties.h"
+#include "util/WindowLocation.h"
 */
 
 /*
@@ -77,110 +77,110 @@ std::string LaunchWidget::CF_INPUT()
 }
 std::string LaunchWidget::CF_INPUT_;
 
-TableFormatPtr com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET()
+TableFormatPtr LaunchWidget::CFT_LAUNCH_WIDGET()
 {
     
     return CFT_LAUNCH_WIDGET_;
 }
-DateTableFormatPtr com::tibbo::aggregate::common::action::command::LaunchWidget::CFT_LAUNCH_WIDGET_;
+DateTableFormatPtr LaunchWidget::CFT_LAUNCH_WIDGET_;
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor()
+void LaunchWidget::ctor()
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), CFT_LAUNCH_WIDGET_, static_cast< TableFormatPtr >(0));
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, const std::string & widgetContext, const std::string & defaultContext)
+void LaunchWidget::ctor(const std::string & title, const std::string & widgetContext, const std::string & defaultContext)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), title);
     this->widgetContext = widgetContext;
     this->defaultContext = defaultContext;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, const std::string & widgetContext, const std::string & defaultContext, const std::string & template_)
+void LaunchWidget::ctor(const std::string & title, const std::string & widgetContext, const std::string & defaultContext, const std::string & template_)
 {
     ctor(title, widgetContext, defaultContext);
     this->template_ = template_;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::ctor(const std::string & title, DataTablePtr parameters)
+void LaunchWidget::ctor(const std::string & title, DataTablePtr parameters)
 {
     super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_LAUNCH_WIDGET(), title, parameters, CFT_LAUNCH_WIDGET_);
 }
 
-DateDataTablePtr com::tibbo::aggregate::common::action::command::LaunchWidget::constructParameters()
+DateDataTablePtr LaunchWidget::constructParameters()
 {
     return new DataTable(CFT_LAUNCH_WIDGET_, new voidArray({widgetContext), defaultContext), template_), location != 0 ? location)->toDataTable()) : 0), dashboard != 0 ? dashboard)->toDataTable()) : 0), input)}));
 }
 
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::getDefaultContext()
+std::string LaunchWidget::getDefaultContext()
 {
     return defaultContext;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setDefaultContext(const std::string & defaultContext)
+void LaunchWidget::setDefaultContext(const std::string & defaultContext)
 {
     this->defaultContext = defaultContext;
 }
 
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::getWidgetContext()
+std::string LaunchWidget::getWidgetContext()
 {
     return widgetContext;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setWidgetContext(const std::string & widgetContext)
+void LaunchWidget::setWidgetContext(const std::string & widgetContext)
 {
     this->widgetContext = widgetContext;
 }
 
-std::string com::tibbo::aggregate::common::action::command::LaunchWidget::getTemplate()
+std::string LaunchWidget::getTemplate()
 {
     return template_;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setTemplate(const std::string & encodedWidgetTemplate)
+void LaunchWidget::setTemplate(const std::string & encodedWidgetTemplate)
 {
     this->template_ = encodedWidgetTemplate;
 }
 
-com::tibbo::aggregate::common::util::WindowLocationPtr com::tibbo::aggregate::common::action::command::LaunchWidget::getLocation()
+com::tibbo::aggregate::common::util::WindowLocationPtr LaunchWidget::getLocation()
 {
     return location;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setLocation(WindowLocationPtr location)
+void LaunchWidget::setLocation(WindowLocationPtr location)
 {
     this->location = location;
 }
 
-com::tibbo::aggregate::common::util::DashboardPropertiesPtr com::tibbo::aggregate::common::action::command::LaunchWidget::getDashboard()
+com::tibbo::aggregate::common::util::DashboardPropertiesPtr LaunchWidget::getDashboard()
 {
     return dashboard;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setDashboard(DashboardPropertiesPtr dashboard)
+void LaunchWidget::setDashboard(DashboardPropertiesPtr dashboard)
 {
     this->dashboard = dashboard;
 }
 
-DateDataTablePtr com::tibbo::aggregate::common::action::command::LaunchWidget::getInput()
+DateDataTablePtr LaunchWidget::getInput()
 {
     return input;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::setInput(DataTablePtr input)
+void LaunchWidget::setInput(DataTablePtr input)
 {
     this->input = input;
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::action::command::LaunchWidget::class_()
+java::lang::Class* LaunchWidget::class_()
 {
     static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.LaunchWidget", 54);
     return c;
 }
 
-void com::tibbo::aggregate::common::action::command::LaunchWidget::clinit()
+void LaunchWidget::clinit()
 {
 struct string_init_ {
     string_init_() {
@@ -231,7 +231,7 @@ struct clinit_ {
     }
 }
 
-java::lang::Class* com::tibbo::aggregate::common::action::command::LaunchWidget::getClass0()
+java::lang::Class* LaunchWidget::getClass0()
 {
     return class_();
 }

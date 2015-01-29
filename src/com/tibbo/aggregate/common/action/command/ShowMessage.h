@@ -1,6 +1,9 @@
 #ifndef ShowMessageH
 #define ShowMessageH
 #include "action/GenericActionCommand.h"
+#include "action/ActionUtils.h"
+#include "datatable/DataTable.h"
+#include "datatable/TableFormat.h"
 
 
 

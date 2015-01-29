@@ -3,12 +3,12 @@
 #ifndef H
 #define H
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/data/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
+//#include "context/fwd-aggregate_sdk_5.11.00.h"
+//#include "data/fwd-aggregate_sdk_5.11.00.h"
+//#include "expression/fwd-aggregate_sdk_5.11.00.h"
 #include <examples/api/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/context/DefaultContextEventListener.h"
+#include "context/DefaultContextEventListener.h"
 
 
 

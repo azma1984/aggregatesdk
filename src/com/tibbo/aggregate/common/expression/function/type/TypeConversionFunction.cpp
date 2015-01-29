@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/type/TypeConversionFunction.java
-#include <com/tibbo/aggregate/common/expression/function/type/TypeConversionFunction.h"
+#include "expression/function/type/TypeConversionFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"
 #include <ObjectArray.h"

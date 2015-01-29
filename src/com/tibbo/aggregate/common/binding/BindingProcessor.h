@@ -1,6 +1,6 @@
-#ifndef H
-#define H
-
+#ifndef BindingProcessorH
+#define BindingProcessorH
+  #define BOOST_THREAD_USE_LIB
 #include "util/Interface.h"
 //#include "util/Callable.h"
 class BindingProcessor : public Interface
@@ -12,3 +12,5 @@ public:
 	//todo Callable?
    //	virtual void submit(Callable* task);
 };
+
+#endif

@@ -16,28 +16,30 @@ ServerActionInput::ServerActionInput(GenericActionResponsePtr request)
         throw AggreGateException("ServerActionInput - Null pointer");
     }
 
-    if (request->getParameters() != 0) {
-        data = request->getParameters()->clone();
+	if (request->getParameters() != 0)
+	{
+	  //  data = request->getParameters()->clone(); todo
     }
 }
 
 ServerActionInput::ServerActionInput(DataTablePtr dataTable)
 {
 	init();
-    if (dataTable != 0) {
-        data = dataTable->clone();
+	if (dataTable != 0)
+	{
+	  //data = dataTable->clone();todo
 	}
 }
 
 void ServerActionInput::init()
 {
     remember = false;
-    data = new DataTable();
+	//data = new DataTable(); todo
 }
 
 DataTablePtr ServerActionInput::getData()
 {
-    return data.get();
+	return data;
 }
 
 bool ServerActionInput::shouldRemember()
@@ -57,7 +59,7 @@ void ServerActionInput::setRequestId(RequestIdentifierPtr requestId)
 
 RequestIdentifierPtr ServerActionInput::getRequestId()
 {
-    return requestId.get();
+    return requestId;
 }
 
 

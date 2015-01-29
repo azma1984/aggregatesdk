@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/table/RemoveColumnsFunction.java
-#include <com/tibbo/aggregate/common/expression/function/table/RemoveColumnsFunction.h"
+#include "expression/function/table/RemoveColumnsFunction.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableReplication.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataTableReplication.h"
+#include "datatable/TableFormat.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"

@@ -27,7 +27,7 @@ void* EnvironmentReferenceResolver::resolveReference(
     //TODO:
 //    if (environment == NULL)
 //    {
-//      throw new ContextException(Cres.get().getString("exprEnvNotDefined"));
+//      throw new ContextException(Cres::get()->getString("exprEnvNotDefined"));
 //    }
 
     if (environment.find(variable) == environment.end()) {

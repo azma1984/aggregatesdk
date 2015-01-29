@@ -4,7 +4,9 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include "action/GenericActionCommand.h"
-
+#include "action/ActionUtils.h"
+#include "datatable/DataTable.h"
+//#include "datatable/TableFormat.h"
 
 class EditReport : public GenericActionCommand
 {

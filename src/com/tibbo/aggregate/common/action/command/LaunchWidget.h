@@ -18,8 +18,8 @@ private:
     const std::string & widgetContext;
     const std::string & defaultContext;
 	const std::string & template_;
-	WindowLocationPtr location;
-	DashboardPropertiesPtr dashboard;
+   //	WindowLocationPtr location;  //todo
+	//DashboardPropertiesPtr dashboard;  //todo
     DataTablePtr input;
 
 public:
@@ -29,12 +29,12 @@ public:
     void setDefaultContext(const std::string& defaultContext);
     std::string getWidgetContext();
     void setWidgetContext(const std::string& widgetContext);
-    std::string getTemplate();
+	std::string getTemplate();
     void setTemplate(const std::string& encodedWidgetTemplate);
-    WindowLocationPtr getLocation();
-    void setLocation(WindowLocationPtr location);
-	DashboardPropertiesPtr getDashboard();
-    void setDashboard(DashboardPropertiesPtr dashboard);
+  //  WindowLocationPtr getLocation(); todo
+   // void setLocation(WindowLocationPtr location);todo
+	//DashboardPropertiesPtr getDashboard();  todo
+   // void setDashboard(DashboardPropertiesPtr dashboard); todo
     DataTablePtr getInput();
     void setInput(DataTablePtr input);
 

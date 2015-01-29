@@ -1,5 +1,5 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/type/StringFunction.java
-#include <com/tibbo/aggregate/common/expression/function/type/StringFunction.h"
+#include "expression/function/type/StringFunction.h"
 
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"

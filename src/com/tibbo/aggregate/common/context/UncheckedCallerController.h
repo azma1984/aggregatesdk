@@ -4,7 +4,7 @@
 //#include "security/DefaultPermissionChecker.h"
 //#include "security/Permissions.h"
 //#include "context/AbstractCallerController.h"
-
+#include "util/pointers.h"
 
 //todo - class stub
 class UncheckedCallerController// : public AbstractCallerController

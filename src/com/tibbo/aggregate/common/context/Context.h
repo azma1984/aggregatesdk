@@ -2,6 +2,7 @@
 #define ContextH
 
 #include <string>
+#include <list>
 #include <boost/shared_ptr.hpp>
 #include "context/ContextManager.h"
 #include "context/ContextStatus.h"
@@ -10,12 +11,12 @@
 //#include "context/ContextVisitor.h"
 //#include "context/CallerController.h"
 //#include "context/VariableDefinition.h"
-#include "datatable/DataTable.h"
+//#include "datatable/DataTable.h"
 #include "util/Date.h"
 #include "event/FireEventRequestController.h"
-#include "action/ActionDefinition.h"
+//#include "action/ActionDefinition.h"
 //#include "security/Permissions.h"
-
+ #include "util/Pointers.h"
 class ContextVisitor;
 class VariableData;
 class VariableDefinition;

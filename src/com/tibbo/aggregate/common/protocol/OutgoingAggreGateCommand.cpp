@@ -2,9 +2,9 @@
 #include "OutgoingAggreGateCommand.h"
 
 /*
-#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommand.h"
-#include <com/tibbo/aggregate/common/util/StringUtils.h"
+#include "datatable/DataTableUtils.h"
+#include "protocol/AggreGateCommand.h"
+#include "util/StringUtils.h"
 
 
 com::tibbo::aggregate::common::protocol::OutgoingAggreGateCommand::OutgoingAggreGateCommand(const ::default_init_tag&)

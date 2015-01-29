@@ -2,6 +2,7 @@
 #ifndef RequestControllerH
 #define RequestControllerH
 
+#include "util/pointers.h"
 
 class RequestController
 {

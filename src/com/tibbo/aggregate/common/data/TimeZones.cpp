@@ -28,8 +28,8 @@ public final static String DEFAULT_TIME_ZONE_ID = "GMT";
 */
 
 //TODO:
-std::string TimeZones::getZoneDesc(String zoneId)
-{
+//std::string TimeZones::getZoneDesc(const std::string & zoneId)
+//{
     /*
     TimeZone tz = TimeZone.getTimeZone(zoneId);
 
@@ -43,8 +43,8 @@ std::string TimeZones::getZoneDesc(String zoneId)
 
     return "GMT" + ((hour >= 0) ? "+" : "-") + form.format(Math.abs(hour)) + ":" + form.format(min) + ", " + zoneId + (hasDST ? ", with DST" : "");
     */
-    return "";
-}
+//	return "";
+//}
 
 std::map<std::string, std::string> TimeZones::getTimeZones()
 {
@@ -63,18 +63,18 @@ const std::string TimeZones::getZoneDescSimple(int offset)
 }
 
 //TODO:
-std::map<AgObjectPtr, std::string> TimeZones::getSelectionValues(bool allowNotSelected)
-{
-    std::map<AgObjectPtr, std::string> sv;
-
-    if (allowNotSelected) {
-        sv.put(0, /*Cres::get().getString("notSelected")*/"notSelected");
-    }
-
-    std::copy(SELECTION_VALUES.begin(), SELECTION_VALUES.end(), std::inserter(sv, sv.begin()) );
-
-    return sv;
-}
+//std::map<AgObjectPtr, std::string> TimeZones::getSelectionValues(bool allowNotSelected)
+//{
+//	std::map<AgObjectPtr, std::string> sv;
+//
+//	if (allowNotSelected) {
+//		sv.put(0, /*Cres::get().getString("notSelected")*/"notSelected");
+//	}
+//
+//	std::copy(SELECTION_VALUES.begin(), SELECTION_VALUES.end(), std::inserter(sv, sv.begin()) );
+//
+//	return sv;
+//}
 
 //TODO:
 const std::string TimeZones::getDefaultTimezoneId()

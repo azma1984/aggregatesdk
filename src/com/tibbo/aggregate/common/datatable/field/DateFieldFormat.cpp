@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.java
-#include <com/tibbo/aggregate/common/datatable/field/DateFieldFormat.h"
+#include "datatable/field/DateFieldFormat.h"
 
-#include <com/tibbo/aggregate/common/Log.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/util/DateUtils.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "Log.h"
+#include "datatable/FieldFormat.h"
+#include "util/DateUtils.h"
+#include "util/Util.h"
 /*
 //#include <java/io/Serializable.h"
 //#include <java/lang/ArrayStoreException.h"

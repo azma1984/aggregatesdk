@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/validator/AbstractTableValidator.java
-#include <com/tibbo/aggregate/common/datatable/validator/AbstractTableValidator.h"
+#include "datatable/validator/AbstractTableValidator.h"
 
-#include <com/tibbo/aggregate/common/datatable/validator/TableValidator.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "datatable/validator/TableValidator.h"
+#include "util/Util.h"
 //#include <java/lang/Character.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/CloneNotSupportedException.h"

@@ -2,29 +2,29 @@
 #include <AbstractAggreGateDeviceController.h>
 
    /*
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/Log.h"
-#include <com/tibbo/aggregate/common/communication/Command.h"
-#include <com/tibbo/aggregate/common/context/CallerController.h"
-#include <com/tibbo/aggregate/common/context/Context.h"
-#include <com/tibbo/aggregate/common/context/ContextException.h"
-#include <com/tibbo/aggregate/common/context/ContextSecurityException.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableException.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableUtils.h"
-#include <com/tibbo/aggregate/common/datatable/encoding/ClassicEncodingSettings.h"
-#include <com/tibbo/aggregate/common/datatable/encoding/FormatCache.h"
-#include <com/tibbo/aggregate/common/device/RemoteDeviceErrorException.h"
-#include <com/tibbo/aggregate/common/protocol/AbstractAggreGateDeviceController_processEvent_1.h"
-#include <com/tibbo/aggregate/common/protocol/AbstractAggreGateDeviceController_setCommandParser_2.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommandUtils.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateDevice.h"
-#include <com/tibbo/aggregate/common/protocol/IncomingAggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/OutgoingAggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/ProxyContext.h"
-#include <com/tibbo/aggregate/common/protocol/RemoteContextManager.h"
-#include <com/tibbo/aggregate/common/util/UserSettings.h"
+#include "Cres.h"
+#include "Log.h"
+#include "communication/Command.h"
+#include "context/CallerController.h"
+#include "context/Context.h"
+#include "context/ContextException.h"
+#include "context/ContextSecurityException.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataTableException.h"
+#include "datatable/DataTableUtils.h"
+#include "datatable/encoding/ClassicEncodingSettings.h"
+#include "datatable/encoding/FormatCache.h"
+#include "device/RemoteDeviceErrorException.h"
+#include "protocol/AbstractAggreGateDeviceController_processEvent_1.h"
+#include "protocol/AbstractAggreGateDeviceController_setCommandParser_2.h"
+#include "protocol/AggreGateCommand.h"
+#include "protocol/AggreGateCommandUtils.h"
+#include "protocol/AggreGateDevice.h"
+#include "protocol/IncomingAggreGateCommand.h"
+#include "protocol/OutgoingAggreGateCommand.h"
+#include "protocol/ProxyContext.h"
+#include "protocol/RemoteContextManager.h"
+#include "util/UserSettings.h"
    */
 
 
@@ -181,7 +181,7 @@ void AbstractAggreGateDeviceController::processAsyncCommand(IncomingAggreGateCom
     }
 }
 
-void AbstractAggreGateDeviceController::processAsyncCommand(::com::tibbo::aggregate::common::communication::CommandPtr cmd)
+void AbstractAggreGateDeviceController::processAsyncCommand(CommandPtr cmd)
 { 
     processAsyncCommand(dynamic_cast< IncomingAggreGateCommandPtr >(cmd));
 }
@@ -198,7 +198,7 @@ void AbstractAggreGateDeviceController::confirmEvent(ContextPtr con, EventDefini
 {
 }
 
-void AbstractAggreGateDeviceController::setCommandParser(::com::tibbo::aggregate::common::communication::CommandParserPtr commandBuffer)
+void AbstractAggreGateDeviceController::setCommandParser(CommandParserPtr commandBuffer)
 {
     super::setCommandParser(commandBuffer);
     eventPreprocessor = ::java::util::concurrent::Executors::newSingleThreadExecutor(new AbstractAggreGateDeviceController_setCommandParser_2(this));
@@ -275,7 +275,7 @@ void AbstractAggreGateDeviceController::login()
     AbstractDeviceController::login();
 }
 
-IncomingAggreGateCommandPtr AbstractAggreGateDeviceController::sendCommand(::com::tibbo::aggregate::common::communication::CommandPtr cmd)
+IncomingAggreGateCommandPtr AbstractAggreGateDeviceController::sendCommand(CommandPtr cmd)
 {
     return java_cast< IncomingAggreGateCommandPtr >(AbstractDeviceController::sendCommand(java_cast< OutgoingAggreGateCommandPtr >(cmd)));
 }

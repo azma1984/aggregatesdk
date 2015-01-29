@@ -3,11 +3,11 @@
 #ifndef H
 #define H
 
-//#include <com/tibbo/aggregate/common/context/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
+//#include "context/fwd-aggregate_sdk_5.11.00.h"
+#include "datatable/fwd-aggregate_sdk_5.11.00.h"
 #include <examples/agent/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/Object.h"
-#include <com/tibbo/aggregate/common/context/FunctionImplementation.h"
+#include "context/FunctionImplementation.h"
 
 
 

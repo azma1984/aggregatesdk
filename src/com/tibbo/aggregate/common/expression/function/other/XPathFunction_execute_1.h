@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <com/tibbo/aggregate/common/expression/function/other/fwd-aggregate_sdk_5.11.00.h"
+#include "expression/function/other/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 #include <org/xml/sax/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/Object.h"

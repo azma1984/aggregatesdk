@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/number/NeFunction.java
-#include <com/tibbo/aggregate/common/expression/function/number/NeFunction.h"
+#include "expression/function/number/NeFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/AbstractEvaluatingVisitor.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "expression/AbstractEvaluatingVisitor.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/Boolean.h"
 //#include <java/lang/String.h"
 #include <ObjectArray.h"

@@ -1,12 +1,15 @@
 #ifndef BrowseH
 #define BrowseH
 
-
 #include "action/GenericActionCommand.h"
+#include "util/net.h"
+#include "util/pointers.h"
 
 
 class Browse : public GenericActionCommand
 {
+ private:
+	URI *url;
 
 private:
 //	URI url;

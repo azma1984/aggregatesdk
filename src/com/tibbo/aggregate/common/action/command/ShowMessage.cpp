@@ -1,152 +1,132 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/ShowMessage.java
-#include <com/tibbo/aggregate/common/action/command/ShowMessage.h"
 
-#include <com/tibbo/aggregate/common/action/ActionUtils.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-/*
-//#include <java/lang/Integer.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-#include <ObjectArray.h"*/
-
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
-
-com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
-{
-    
-}
-
-com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage() 
-    : ShowMessage(*static_cast< ::default_init_tag* >(0))
-{
-    ctor();
-}
-
-com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(const std::string & title, const std::string & message, int level) 
-    : ShowMessage(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(title,message,level);
-}
-
-com::tibbo::aggregate::common::action::command::ShowMessage::ShowMessage(const std::string & title, DataTablePtr parameters) 
-    : ShowMessage(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(title,parameters);
-}
-
-std::string& com::tibbo::aggregate::common::action::command::ShowMessage::CF_MESSAGE()
-{
-    
-    return CF_MESSAGE_;
-}
-std::string com::tibbo::aggregate::common::action::command::ShowMessage::CF_MESSAGE_;
-
-std::string& com::tibbo::aggregate::common::action::command::ShowMessage::CF_LEVEL()
-{
-    
-    return CF_LEVEL_;
-}
-std::string com::tibbo::aggregate::common::action::command::ShowMessage::CF_LEVEL_;
-
-DateTableFormatPtr& com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE()
-{
-    
-    return CFT_SHOW_MESSAGE_;
-}
-DateTableFormatPtr com::tibbo::aggregate::common::action::command::ShowMessage::CFT_SHOW_MESSAGE_;
-
-void com::tibbo::aggregate::common::action::command::ShowMessage::ctor()
-{
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), CFT_SHOW_MESSAGE_, static_cast< TableFormatPtr >(0));
-}
-
-void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std::string & title, const std::string & message, int level)
-{
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), title);
-    this->message = message;
-    this->level = level;
-}
-
-void com::tibbo::aggregate::common::action::command::ShowMessage::ctor(const std::string & title, DataTablePtr parameters)
-{
-    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), title, parameters, CFT_SHOW_MESSAGE_);
-}
-
-DateDataTablePtr com::tibbo::aggregate::common::action::command::ShowMessage::constructParameters()
-{
-    return new DataTable(CFT_SHOW_MESSAGE_, new voidArray({message), level))}));
-}
-
-std::string com::tibbo::aggregate::common::action::command::ShowMessage::getMessage()
-{
-    return message;
-}
-
-int com::tibbo::aggregate::common::action::command::ShowMessage::getLevel()
-{
-    return level;
-}
-
-void com::tibbo::aggregate::common::action::command::ShowMessage::setMessage(const std::string & message)
-{
-    this->message = message;
-}
-
-void com::tibbo::aggregate::common::action::command::ShowMessage::setLevel(int level)
-{
-    this->level = level;
-}
+#include "action/command/ShowMessage.h"
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::action::command::ShowMessage::class_()
-{
-    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowMessage", 53);
-    return c;
-}
-
-void com::tibbo::aggregate::common::action::command::ShowMessage::clinit()
-{
-struct string_init_ {
-    string_init_() {
-    CF_MESSAGE_ = u"message"_j;
-    CF_LEVEL_ = u"level"_j;
-    }
-};
-
-    static string_init_ string_init_instance;
-
-    super::
-    static bool in_cl_init = false;
-struct clinit_ {
-    clinit_() {
-        in_cl_init = true;
-        CFT_SHOW_MESSAGE_ = new TableFormat(int(1), int(1));
-        {
-            CFT_SHOW_MESSAGE_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_MESSAGE_)
-                ->append(u"><S>"_j)->toString());
-            CFT_SHOW_MESSAGE_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_LEVEL_)
-                ->append(u"><I>"_j)->toString());
-        }
-    }
-};
-
-    if(!in_cl_init) {
-        static clinit_ clinit_instance;
-    }
-}
-
-java::lang::Class* com::tibbo::aggregate::common::action::command::ShowMessage::getClass0()
-{
-    return class_();
-}
+//ShowMessage::ShowMessage(const ::default_init_tag&)
+//    : super(*static_cast< ::default_init_tag* >(0))
+//{
+//
+//}
+//
+//ShowMessage::ShowMessage()
+//    : ShowMessage(*static_cast< ::default_init_tag* >(0))
+//{
+//    ctor();
+//}
+//
+//ShowMessage::ShowMessage(const std::string & title, const std::string & message, int level)
+//    : ShowMessage(*static_cast< ::default_init_tag* >(0))
+//{
+//    ctor(title,message,level);
+//}
+//
+//ShowMessage::ShowMessage(const std::string & title, DataTablePtr parameters)
+//    : ShowMessage(*static_cast< ::default_init_tag* >(0))
+//{
+//    ctor(title,parameters);
+//}
+//
+//std::string& ShowMessage::CF_MESSAGE()
+//{
+//
+//    return CF_MESSAGE_;
+//}
+//std::string ShowMessage::CF_MESSAGE_;
+//
+//std::string& ShowMessage::CF_LEVEL()
+//{
+//
+//    return CF_LEVEL_;
+//}
+//std::string ShowMessage::CF_LEVEL_;
+//
+//DateTableFormatPtr& ShowMessage::CFT_SHOW_MESSAGE()
+//{
+//
+//    return CFT_SHOW_MESSAGE_;
+//}
+//DateTableFormatPtr ShowMessage::CFT_SHOW_MESSAGE_;
+//
+//void ShowMessage::ctor()
+//{
+//    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), CFT_SHOW_MESSAGE_, static_cast< TableFormatPtr >(0));
+//}
+//
+//void ShowMessage::ctor(const std::string & title, const std::string & message, int level)
+//{
+//    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), title);
+//    this->message = message;
+//    this->level = level;
+//}
+//
+//void ShowMessage::ctor(const std::string & title, DataTablePtr parameters)
+//{
+//    super::ctor(::com::tibbo::aggregate::common::action::ActionUtils::CMD_SHOW_MESSAGE(), title, parameters, CFT_SHOW_MESSAGE_);
+//}
+//
+//DateDataTablePtr ShowMessage::constructParameters()
+//{
+//    return new DataTable(CFT_SHOW_MESSAGE_, new voidArray({message), level))}));
+//}
+//
+//std::string ShowMessage::getMessage()
+//{
+//    return message;
+//}
+//
+//int ShowMessage::getLevel()
+//{
+//    return level;
+//}
+//
+//void ShowMessage::setMessage(const std::string & message)
+//{
+//    this->message = message;
+//}
+//
+//void ShowMessage::setLevel(int level)
+//{
+//    this->level = level;
+//}
+//
+//
+//
+//java::lang::Class* ShowMessage::class_()
+//{
+//    static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.action.command.ShowMessage", 53);
+//    return c;
+//}
+//
+//void ShowMessage::clinit()
+//{
+//struct string_init_ {
+//    string_init_() {
+//    CF_MESSAGE_ = u"message"_j;
+//    CF_LEVEL_ = u"level"_j;
+//    }
+//};
+//
+//    static string_init_ string_init_instance;
+//
+//    super::
+//    static bool in_cl_init = false;
+//struct clinit_ {
+//    clinit_() {
+//        in_cl_init = true;
+//        CFT_SHOW_MESSAGE_ = new TableFormat(int(1), int(1));
+//        {
+//            CFT_SHOW_MESSAGE_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_MESSAGE_)
+//                ->append(u"><S>"_j)->toString());
+//            CFT_SHOW_MESSAGE_)->addField(std::stringBuilder().append(u"<"_j)->append(CF_LEVEL_)
+//                ->append(u"><I>"_j)->toString());
+//        }
+//    }
+//};
+//
+//    if(!in_cl_init) {
+//        static clinit_ clinit_instance;
+//    }
+//}
+//
 

@@ -11,6 +11,7 @@
 //#include "expression/Evaluator.h"
 //#include "expression/Expression.h"
 //#include "expression/ReferenceResolver.h"
+#include "util/pointers.h"
 
 //todo - class stub
 class DefaultContextEventListener //: public ContextEventListener

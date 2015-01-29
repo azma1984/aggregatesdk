@@ -3,10 +3,10 @@
 #define _EnrichmentRule_H_
 
 #include "Cres.h"
-//#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+//#include "datatable/FieldFormat.h"
 #include "datatable/TableFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h"
-//#include <com/tibbo/aggregate/common/datatable/validator/TableKeyFieldsValidator.h"
+//#include "datatable/field/StringFieldFormat.h"
+//#include "datatable/validator/TableKeyFieldsValidator.h"
 //#include "validator/ValidatorHelper.h"
 #include "expression/Expression.h"
 #include "datatable/AggreGateBean.h"

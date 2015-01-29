@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/date/PrintPeriodFunction.java
-#include <com/tibbo/aggregate/common/expression/function/date/PrintPeriodFunction.h"
+#include "expression/function/date/PrintPeriodFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
-#include <com/tibbo/aggregate/common/util/TimeUnitsManager.h"
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "expression/function/Functions.h"
+#include "util/TimeUnitsManager.h"
+#include "util/Util.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Number.h"
 //#include <java/lang/String.h"

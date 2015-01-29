@@ -8,6 +8,7 @@
 
 class ActionCommand : public Cloneable, public Interface
 {
+  public:
 	virtual bool isResponseValid(ActionResponsePtr actionRequest) = 0;
 	virtual RequestIdentifierPtr getRequestId() = 0;
     virtual void setBatchEntry(bool batchEntry) = 0;

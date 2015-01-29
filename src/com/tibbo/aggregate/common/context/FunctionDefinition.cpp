@@ -25,7 +25,7 @@ FunctionDefinition::FunctionDefinition(const std::string &name, TableFormatPtr i
 void FunctionDefinition::init(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat, const std::string &description, const std::string &group)
 {
     hidden = false;
-    permissions=0;
+   // permissions=0;   todo
     concurrent = false;
 
     setName(name);
@@ -115,7 +115,7 @@ FunctionDefinitionPtr FunctionDefinition::clone()
     }
 	*/
 
-	return 0;
+	return FunctionDefinitionPtr();
 }
 
 int FunctionDefinition::compareTo(FunctionDefinitionPtr d)

@@ -46,7 +46,7 @@ void* RegexValidator::validate(void* value) /* throws(ValidationException) */
 //    {
 //      if (value != null && !value.toString().matches(regex))
 //      {
-//        throw new ValidationException(message != null ? message : MessageFormat.format(Cres.get().getString("dtValueDoesNotMatchPattern"), value, regex));
+//        throw new ValidationException(message != null ? message : MessageFormat.format(Cres::get()->getString("dtValueDoesNotMatchPattern"), value, regex));
 //      }
 //    }
 //    catch (PatternSyntaxException ex)

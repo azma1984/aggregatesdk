@@ -13,7 +13,7 @@ void BatchContext::addBatchEntry(BatchEntryPtr batchEntry)
    //	entries.insert(batchEntry);
 }
 
-std::list<BatchEntryPtr>* BatchContext::getEntries()
+std::list<BatchEntryPtr> BatchContext::getEntries()
 {
  // std::list::iterator iterator =
   //todo

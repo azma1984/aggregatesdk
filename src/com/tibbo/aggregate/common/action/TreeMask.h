@@ -1,10 +1,11 @@
 #ifndef TreeMaskH
 #define TreeMaskH
 
-#include "ResourceMask.h"
-
+#include "action/ResourceMask.h"
+#include "util/pointers.h"
 #include <string>
 #include <iostream>
+
 
 class TreeMask : public ResourceMask<TreeMask>
 {

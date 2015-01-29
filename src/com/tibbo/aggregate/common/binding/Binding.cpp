@@ -39,7 +39,7 @@ int Binding::hashCode()
 }
 */
 
-bool Binding::equals(BindingPtrobj)
+bool Binding::equals(BindingPtr obj)
 {
 
     //if(this == obj) {
@@ -89,7 +89,7 @@ BindingPtr Binding::clone()
 //    } catch (::java::lang::CloneNotSupportedException* ex) {
 //        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
 //    }
- return 0;
+ return BindingPtr();
 }
 
 std::string Binding::toString()

@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/SimpleFormatConverter.java
-#include <com/tibbo/aggregate/common/datatable/converter/SimpleFormatConverter.h"
+#include "datatable/converter/SimpleFormatConverter.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
+#include "datatable/DataTable.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"

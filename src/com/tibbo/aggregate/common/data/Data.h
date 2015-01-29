@@ -40,7 +40,7 @@ public:
 
     void setAttachments(std::map<std::string, AgObjectPtr > &attachments);
 
-    virtual DataPtr clone() const;
+  //  virtual DataPtr clone() const;  todo
     bool equals(Data* eq) const;
 		
 private:

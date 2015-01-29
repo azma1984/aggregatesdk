@@ -41,7 +41,7 @@ if (value == null)
       }
       if (validate)
       {
-        throw new IllegalArgumentException(Cres.get().getString("utCannotConvertToNumber") + getObjectDescription(value));
+        throw new IllegalArgumentException(Cres::get()->getString("utCannotConvertToNumber") + getObjectDescription(value));
       }
       return 0;
     }
@@ -84,7 +84,7 @@ if (value == null)
 
     if (validate)
     {
-      throw new IllegalArgumentException(Cres.get().getString("utCannotConvertToNumber") + getObjectDescription(value));
+      throw new IllegalArgumentException(Cres::get()->getString("utCannotConvertToNumber") + getObjectDescription(value));
     }
     else
     {
@@ -107,7 +107,7 @@ static bool Util::convertToBoolean(AgObjectPtr value, bool validate, bool allowN
           }
           if (validate)
           {
-            throw new IllegalArgumentException(Cres.get().getString("utCannotConvertToBoolean") + getObjectDescription(value));
+            throw new IllegalArgumentException(Cres::get()->getString("utCannotConvertToBoolean") + getObjectDescription(value));
           }
           return false;
         }
@@ -142,7 +142,7 @@ static bool Util::convertToBoolean(AgObjectPtr value, bool validate, bool allowN
 
         if (validate)
         {
-          throw new IllegalArgumentException(Cres.get().getString("utCannotConvertToBoolean") + getObjectDescription(value));
+          throw new IllegalArgumentException(Cres::get()->getString("utCannotConvertToBoolean") + getObjectDescription(value));
         }
         else
         {

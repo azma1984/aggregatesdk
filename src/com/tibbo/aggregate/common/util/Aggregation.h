@@ -22,12 +22,12 @@ public:
 	// TODO: можно оптимизировать при каждом обращении не заполнять map
 	static std::map<int, std::string> getSelectionValues() {
 		SELECTION_VALUES.clear();
-		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("average") ) );
-		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("minimum") ) );
-		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("maximum") ) );
-		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("summation") ) );
-		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("first") ) );
-		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres.get().getString("last") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres::get()->getString("average") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres::get()->getString("minimum") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres::get()->getString("maximum") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres::get()->getString("summation") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres::get()->getString("first") ) );
+		SELECTION_VALUES.insert( std::pair<int, std::string>( AVERAGE, Cres::get()->getString("last") ) );
 
 		return SELECTION_VALUES;
 	}

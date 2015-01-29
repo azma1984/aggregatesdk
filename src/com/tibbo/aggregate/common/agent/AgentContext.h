@@ -1,12 +1,10 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/agent/AgentContext.java
-
 #ifndef AgentContextH
 #define AgentContextH
 
 #include "AbstractContext.h"
 #include "FunctionImplementation.h"
 
-//#include <com/tibbo/aggregate/common/Cres.h"
+//#include "Cres.h"
 
 #include "context/EventDefinition.h"
 
@@ -14,10 +12,12 @@
 #include "context/FunctionDefinition.h"
 #include "context/Contexts.h"
 #include "RemoteServer.h"
-#include "DataTable.h"
-#include "TableFormat.h"
+#include "DataTable/DataTable.h"
+#include "DataTable/TableFormat.h"
 #include "agent/historicalvalue.h"
 #include <list>
+
+
 
 
 
@@ -32,6 +32,7 @@ class FunctionImplementation1 :public FunctionImplementation
     std::string response = Md5Utils.hexHash(challenge + server.getPassword());
       
     return new DataRecord(FOFT_LOGIN).addString(server.getUsername()).addString(name).addString(response).wrap();*/
+   return DataTablePtr();
   }
 
 };
@@ -42,8 +43,9 @@ class FunctionImplementation2 :public FunctionImplementation
   
   DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
   {
-   //return new DataRecord(FOFT_REGISTER).addString(server.getPassword()).wrap(); 
-  } 
+   //return new DataRecord(FOFT_REGISTER).addString(server.getPassword()).wrap();
+   return DataTablePtr();
+  }
 
 
 };
@@ -54,7 +56,7 @@ class FunctionImplementation3 :public FunctionImplementation
   DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
   {
    //setSynchronized(true);
-   return 0;
+   return DataTablePtr();
   } 
  
 
@@ -65,7 +67,7 @@ class FunctionImplementation4 :public FunctionImplementation
   DataTablePtr execute(ContextPtr con, FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters)
   {
   // confirmEvent(parameters.rec().getLong(FIF_CONFIRM_EVENT_ID));
-   return 0;
+   return DataTablePtr();
   } 
 
 };
@@ -89,7 +91,8 @@ class FunctionImplementation5 :public FunctionImplementation
         rec.addDataTable(hv.getValue());
       }
       
-      return res; */
+	  return res; */
+		 return DataTablePtr();
   } 
 
 };
@@ -100,10 +103,10 @@ class AgentContext: public AbstractContext//<Context>
 {
 
 private:
-    RemoteServerPtr server;
-    std::string name;
+	RemoteServerPtr server;
+	std::string name;
     bool eventConfirmation;
-    bool isSynchronized;
+	bool isSynchronized;
 
    
     

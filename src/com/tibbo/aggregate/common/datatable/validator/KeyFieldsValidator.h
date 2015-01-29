@@ -34,7 +34,7 @@ public:
 
         DataRecord* rec = table->select(query);
         if (rec != null && rec != record) {
-          throw new ValidationException(MessageFormat.format(Cres.get().getString("dtKeyFieldViolation"), key, StringUtils.print(keyFields)));
+          throw new ValidationException(MessageFormat.format(Cres::get()->getString("dtKeyFieldViolation"), key, StringUtils.print(keyFields)));
         }
         */
     }

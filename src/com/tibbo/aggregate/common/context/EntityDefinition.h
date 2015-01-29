@@ -1,10 +1,8 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/context/EntityDefinition.java
-
 #ifndef EntityDefinitionH
 #define EntityDefinitionH
 
 #include <string>
-#include <util/Pointers.h>
+#include "util/pointers.h"
 
 class EntityDefinition
 {

@@ -4,6 +4,8 @@
 
 #include "util/Pointers.h"
 #include <string>
+#include "util/pointers.h"
+
 
 class StringIdentifier
 {

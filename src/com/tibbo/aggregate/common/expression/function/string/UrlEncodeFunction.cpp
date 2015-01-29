@@ -1,8 +1,8 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/string/UrlEncodeFunction.java
-#include <com/tibbo/aggregate/common/expression/function/string/UrlEncodeFunction.h"
+#include "expression/function/string/UrlEncodeFunction.h"
 
-#include <com/tibbo/aggregate/common/expression/EvaluationException.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "expression/EvaluationException.h"
+#include "expression/function/Functions.h"
 //#include <java/io/UnsupportedEncodingException.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"

@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/other/LdFunction.java
-#include <com/tibbo/aggregate/common/expression/function/other/LdFunction.h"
+#include "expression/function/other/LdFunction.h"
 
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/expression/EvaluationEnvironment.h"
-#include <com/tibbo/aggregate/common/expression/EvaluationException.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "Cres.h"
+#include "expression/EvaluationEnvironment.h"
+#include "expression/EvaluationException.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"

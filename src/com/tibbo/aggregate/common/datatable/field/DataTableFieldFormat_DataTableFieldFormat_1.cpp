@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.java
-#include <com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat_DataTableFieldFormat_1.h"
+#include "datatable/field/DataTableFieldFormat_DataTableFieldFormat_1.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableReplication.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataTableReplication.h"
+#include "datatable/TableFormat.h"
+#include "datatable/field/DataTableFieldFormat.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"

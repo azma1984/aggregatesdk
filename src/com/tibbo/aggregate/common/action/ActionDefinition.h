@@ -9,9 +9,11 @@
 #include "action/InitialRequest.h"
 #include <boost/thread/mutex.hpp>
 #include <list>
+#include "action/Action.h"
+
 
 //forward declarations
-template <class I,class C,class R> class Action;
+//template <class I,class C,class R> class Action;
 
 
 class ActionDefinition: public EntityDefinition
@@ -56,13 +58,13 @@ class ActionDefinition: public EntityDefinition
    * Returns the drop source context masks.
    */
 
-  virtual std::list< ResourceMask<ActionDefinition> > getDropSources()=0;
+  virtual std::list< ResourceMaskPtr > getDropSources()=0;
 
   /**
    * Returns permissions required to execute action.
    */
   //todo It is defined in the file com\tibbo\aggregate\common\security\Permission.cpp
-  virtual Permissions getPermissions()=0;
+  virtual PermissionsPtr getPermissions()=0;
 
   /**
    * Some category of actions may be applied to groups of objects. To make system know what actions to group the definition has an execution group. If action can't be grouped, execution group should

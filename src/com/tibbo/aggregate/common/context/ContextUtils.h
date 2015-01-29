@@ -18,7 +18,7 @@
 #include <string>
 
 #include <list>
-
+#include <map>
 
 //todo - So far the class is not described (class stub)
 class ContextUtils
@@ -151,8 +151,8 @@ public:
     static const std::string getBaseType(const std::string & type);
     static const std::string getSubtype(const std::string & type);
 	static const std::string getTypeForClass(AgClassPtr clazz);
-	static std::map<std::string,std::string> getEventFields(const std::string & mask, const std::string & event, CallerControllerPtr caller, ContextManagerPtr contextManager);
-	static std::map<std::string,std::string> getVariableFields(const std::string & mask, const std::string & variable, CallerControllerPtr caller, ContextManagerPtr contextManager);
+	static std::map< std::string,std::string > getEventFields(const std::string & mask, const std::string & event, CallerControllerPtr caller, ContextManagerPtr contextManager);
+	static std::map< std::string,std::string > getVariableFields(const std::string & mask, const std::string & variable, CallerControllerPtr caller, ContextManagerPtr contextManager);
 	static ActionDefinitionPtr getDefaultActionDefinition(ContextPtr context, CallerControllerPtr caller);
     static const std::string createType(AgClassPtr clazz, const std::string & deviceType);
     static bool isValidContextNameChar(int c);

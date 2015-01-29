@@ -1,9 +1,9 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/table/CopyFunction.java
-#include <com/tibbo/aggregate/common/expression/function/table/CopyFunction.h"
+#include "expression/function/table/CopyFunction.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableReplication.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataTableReplication.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/Object.h"

@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/FCSimpleInteger.java
-#include <com/tibbo/aggregate/common/datatable/converter/FCSimpleInteger.h"
+#include "datatable/converter/FCSimpleInteger.h"
 
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
+#include "datatable/FieldFormat.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/Integer.h"
 //#include <java/lang/Object.h"

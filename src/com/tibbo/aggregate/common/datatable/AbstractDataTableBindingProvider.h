@@ -3,14 +3,14 @@
 #pragma once
 
 //#include <fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <com/tibbo/aggregate/common/expression/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/util/fwd-aggregate_sdk_5.11.00.h"
+#include "binding/fwd-aggregate_sdk_5.11.00.h"
+#include "datatable/fwd-aggregate_sdk_5.11.00.h"
+//#include "expression/fwd-aggregate_sdk_5.11.00.h"
+#include "util/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/util/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/util/concurrent/locks/fwd-aggregate_sdk_5.11.00.h"
-#include <com/tibbo/aggregate/common/binding/AbstractBindingProvider.h"
+#include "binding/AbstractBindingProvider.h"
 
 
 

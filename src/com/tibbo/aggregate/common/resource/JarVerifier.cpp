@@ -1,5 +1,5 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/resource/JarVerifier.java
-//#include <com/tibbo/aggregate/common/resource/JarVerifier.h"
+//#include "resource/JarVerifier.h"
 /*
 //#include <java/io/Serializable.h"
 //#include <java/lang/ArrayStoreException.h"

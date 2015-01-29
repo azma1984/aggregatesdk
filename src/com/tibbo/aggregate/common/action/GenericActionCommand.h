@@ -9,7 +9,7 @@
 #include "datatable/DataTableConversion.h"
 #include "datatable/DataTableException.h"
 #include "datatable/TableFormat.h"
-
+#include "AggreGateException.h"
 
 class GenericActionCommand : public ActionCommand
 {

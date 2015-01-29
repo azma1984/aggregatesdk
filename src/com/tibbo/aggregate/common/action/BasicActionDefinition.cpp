@@ -35,6 +35,7 @@
 //
 //void BasicActionDefinition::init()
 //{
+//todo
 //    propertyChangeListeners = new ::java::beans::PropertyChangeSupport(this);
 //    enabled = true;
 //    concurrent = true;
@@ -273,12 +274,12 @@
 //    dropSources)->add(resourceMask));
 //}
 //
-//Action<InitialRequest,ActionCommand,ActionResponse> * BasicActionDefinition::instantiate()
+//Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * BasicActionDefinition::instantiate()
 //{
 //    if(actionClass == 0) {
 //        throw new ::java::lang::IllegalArgumentException(u"Redirection to actions of proxy contexts is not supported"_j);
 //    }
-//	Action<InitialRequest,ActionCommand,ActionResponse> * action;
+//	Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * action;
 //    try {
 //        action = java_cast< ActionPtr >(java_cast< AgObjectPtr >(actionClass)->newInstance()));
 //    } catch (::java::lang::Exception* ex) {
@@ -344,12 +345,12 @@
 //    return executionLock;
 //}
 //
-//void BasicActionDefinition::removePropertyChangeListener(::java::beans::PropertyChangeListenerPtr l)
+//void BasicActionDefinition::removePropertyChangeListener(::java::beans::PropertyChangeListener l)
 //{
 //    propertyChangeListeners)->removePropertyChangeListener(l);
 //}
 //
-//void BasicActionDefinition::addPropertyChangeListener(::java::beans::PropertyChangeListenerPtr l)
+//void BasicActionDefinition::addPropertyChangeListener(::java::beans::PropertyChangeListener l)
 //{
 //    propertyChangeListeners)->addPropertyChangeListener(l);
 //}

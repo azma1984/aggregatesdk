@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/context/DtFunction.java
-#include <com/tibbo/aggregate/common/expression/function/context/DtFunction.h"
+#include "expression/function/context/DtFunction.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "datatable/DataTable.h"
+#include "expression/Evaluator.h"
+#include "expression/ReferenceResolver.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/String.h"
 

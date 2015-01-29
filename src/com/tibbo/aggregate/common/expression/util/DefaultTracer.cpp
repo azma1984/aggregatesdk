@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/util/DefaultTracer.java
-#include <com/tibbo/aggregate/common/expression/util/DefaultTracer.h"
+#include "expression/util/DefaultTracer.h"
 
-#include <com/tibbo/aggregate/common/Log.h"
+#include "Log.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"

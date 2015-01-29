@@ -3,6 +3,8 @@
 #include <boost/shared_ptr.hpp>
 #include "action/GenericActionCommand.h"
 
+#include "action/ActionUtils.h"
+#include "datatable/DataTable.h"
 
 class ShowDiff : public GenericActionCommand
 {
@@ -18,7 +20,7 @@ private:
     std::string firstFile;
     std::string secondFile;
 
-public: /* protected */
+public:
     DataTablePtr constructParameters();
 
 public:

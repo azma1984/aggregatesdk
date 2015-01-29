@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/type/BooleanFunction.java
-#include <com/tibbo/aggregate/common/expression/function/type/BooleanFunction.h"
+#include "expression/function/type/BooleanFunction.h"
 
-#include <com/tibbo/aggregate/common/util/Util.h"
+#include "util/Util.h"
 //#include <java/lang/Boolean.h"
 //#include <java/lang/String.h"
 

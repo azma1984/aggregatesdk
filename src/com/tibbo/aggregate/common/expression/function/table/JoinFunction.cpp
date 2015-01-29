@@ -1,11 +1,11 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/table/JoinFunction.java
-#include <com/tibbo/aggregate/common/expression/function/table/JoinFunction.h"
+#include "expression/function/table/JoinFunction.h"
 
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/datatable/DataTableReplication.h"
-#include <com/tibbo/aggregate/common/datatable/FieldFormat.h"
-#include <com/tibbo/aggregate/common/datatable/TableFormat.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataTableReplication.h"
+#include "datatable/FieldFormat.h"
+#include "datatable/TableFormat.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/Class.h"
 //#include <java/lang/ClassCastException.h"
 //#include <java/lang/Math.h"

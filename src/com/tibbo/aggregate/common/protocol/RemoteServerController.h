@@ -6,26 +6,26 @@
 #include <AbstractAggreGateDeviceController.h>
 #include <string>
 /*
-#include <com/tibbo/aggregate/common/Cres.h"
-#include <com/tibbo/aggregate/common/Log.h"
-#include <com/tibbo/aggregate/common/communication/CommandParser.h"
-#include <com/tibbo/aggregate/common/context/Context.h"
-#include <com/tibbo/aggregate/common/context/Contexts.h"
-#include <com/tibbo/aggregate/common/datatable/DataTable.h"
-#include <com/tibbo/aggregate/common/device/RemoteDeviceErrorException.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateCommandParser.h"
-#include <com/tibbo/aggregate/common/protocol/AggreGateDevice.h"
-#include <com/tibbo/aggregate/common/protocol/OutgoingAggreGateCommand.h"
-#include <com/tibbo/aggregate/common/protocol/ProxyContext.h"
+#include "Cres.h"
+#include "Log.h"
+#include "communication/CommandParser.h"
+#include "context/Context.h"
+#include "context/Contexts.h"
+#include "datatable/DataTable.h"
+#include "device/RemoteDeviceErrorException.h"
+#include "protocol/AggreGateCommand.h"
+#include "protocol/AggreGateCommandParser.h"
+#include "protocol/AggreGateDevice.h"
+#include "protocol/OutgoingAggreGateCommand.h"
+#include "protocol/ProxyContext.h"
  */
 #include <RemoteContextManager.h>
 #include <RemoteServer.h>
 /*
-#include <com/tibbo/aggregate/common/protocol/SslHelper.h"
-#include <com/tibbo/aggregate/common/server/CommonServerFormats.h"
-#include <com/tibbo/aggregate/common/server/RootContextConstants.h"
-#include <com/tibbo/aggregate/common/util/BlockingChannel.h"
+#include "protocol/SslHelper.h"
+#include "server/CommonServerFormats.h"
+#include "server/RootContextConstants.h"
+#include "util/BlockingChannel.h"
  */
 
 
@@ -114,7 +114,7 @@ private:
 
 public:
 	void confirmEvent(ContextPtr con, EventDefinitionPtr def, EventPtr event);
-    void setCommandParser(::com::tibbo::aggregate::common::communication::CommandParserPtr commandBuffer);
+    void setCommandParser(CommandParserPtr commandBuffer);
 
 public:
     const std::string & toString();
@@ -137,13 +137,13 @@ public:
   /*	void disconnect();
 
 	std::list  getActiveCommands();
-	::com::tibbo::aggregate::common::communication::CommandProcessorStatisticsPtr getStatistics();
+	CommandProcessorStatisticsPtr getStatistics();
 	bool isActive();
 	void login();
-	IncomingAggreGateCommandPtr sendCommand(::com::tibbo::aggregate::common::communication::CommandPtr cmd);
+	IncomingAggreGateCommandPtr sendCommand(CommandPtr cmd);
 
 public:
-	void processAsyncCommand(::com::tibbo::aggregate::common::communication::CommandPtr cmd);
+	void processAsyncCommand(CommandPtr cmd);
 
 private:
 	AgClassPtr getClass0();

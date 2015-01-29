@@ -1,6 +1,6 @@
-#ifndef H
-#define H
-
+#ifndef AbstractBindingProviderH
+#define AbstractBindingProviderH
+ #define BOOST_THREAD_USE_LIB
 #include "binding/BindingProvider.h"
 #include "util/ErrorCollector.h"
 
@@ -19,3 +19,5 @@ public:
 	AbstractBindingProvider();
     AbstractBindingProvider(ErrorCollectorPtr errorCollector);
 };
+
+#endif

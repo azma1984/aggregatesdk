@@ -3,10 +3,10 @@
 
 #include <boost/shared_ptr.hpp>
 #include "util/Interface.h"
-#include "context/VariableDefinition.h"
-#include "context/CallerController.h"
-#include "datatable/DataTable.h"
-
+//#include "context/VariableDefinition.h"
+//#include "context/CallerController.h"
+//#include "datatable/DataTable.h"
+ #include "util/pointers.h"
 class AccessSettingReinizializer : public Interface
 {
   /**

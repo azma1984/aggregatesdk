@@ -24,3 +24,6 @@ public:
     std::string getDetails() { return details; }
     std::string getMessage() { return message; }
 };
+
+#endif
+

@@ -5,13 +5,13 @@
 AbstractCallerController::AbstractCallerController(CallerDataPtr callerData):CallerController()
 {  
  loggedIn = false;
- creationTime = new Date();
+ //creationTime = new Date();  //todo
 
   this->callerData = callerData;
 
  //  synchronized (CONTROLLERS);//todo
     {
-      CONTROLLERS.insert(this);
+	  //CONTROLLERS.insert(this);
     }
 }
 
@@ -28,12 +28,12 @@ bool AbstractCallerController::isPermissionCheckingEnabled()
 
 PermissionCachePtr AbstractCallerController::getPermissionCache()
 {
-	return 0;
+	return PermissionCachePtr();
 }
 
 CallerDataPtr AbstractCallerController::getCallerData()
 {
-    return callerData;
+	return callerData;
 }
 
 std::map<std::string, std::string> AbstractCallerController::getProperties()
@@ -73,10 +73,10 @@ std::string AbstractCallerController::toString()
  return (type.empty() ==false)? type : "name_class"/*getClass().getName()*/ + str2 ;
 }
 
-PermissionsPtr AbstractCallerController::getPermissions()
-{
-	return 0;
-}
+//PermissionsPtr AbstractCallerController::getPermissions()
+//{
+//	return PermissionsPtr();
+//}
 
 std::string AbstractCallerController::getUsername()
 {

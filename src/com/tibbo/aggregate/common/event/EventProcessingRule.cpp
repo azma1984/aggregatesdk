@@ -33,7 +33,7 @@ TableFormatPtr& EventProcessingRule::FORMAT()
         FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_EVENT_).append("><S><F=EK><V=<L=1 ").append( INT_MAX )
                                                .append(">><D=").append(Cres::get().getString("efEventName")).append(">") );
         FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_PREFILTER_).append("><S><D=").append(Cres::get().getString("efPrefilter"))
-                                               .append("><H=").append(Cres.get().getString("efPrefilterHelp")).append("><E=")
+                                               .append("><H=").append(Cres::get()->getString("efPrefilterHelp")).append("><E=")
                                                .append(StringFieldFormat::EDITOR_EXPRESSION).append(">"));
         FORMAT_->addField(FieldFormat::create( std::string("<").append(FIELD_DEDUPLICATOR_).append("><S><D=").append(Cres::get().getString("efDeduplicator"))
                                                .append("><E=").append(StringFieldFormat::EDITOR_EXPRESSION).append(">"));

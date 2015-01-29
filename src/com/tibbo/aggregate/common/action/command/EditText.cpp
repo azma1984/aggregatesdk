@@ -9,19 +9,21 @@ const std::string EditText::RF_TEXT_ = "text";
 
 EditText::EditText()
 {
-    GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, CFT_EDIT_TEXT(), RFT_EDIT_TEXT());
+//todo
+  //  GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, CFT_EDIT_TEXT(), RFT_EDIT_TEXT());
 }
 
 EditText::EditText(const std::string & title, const std::string & text, const std::string & mode)
 {
-    GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, title);
+//todo
+   // GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, title);
     this->text = text;
     this->mode = mode;
 }
 
 EditText::EditText(const std::string & title, DataTablePtr parameters)
-{
-    GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, title, parameters, CFT_EDIT_TEXT());
+{   //todo
+   //	GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, title, parameters, CFT_EDIT_TEXT());
 }
 
 
@@ -51,8 +53,8 @@ TableFormatPtr EditText::RFT_EDIT_TEXT()
 
 
 DataTablePtr EditText::constructParameters()
-{
-    return new DataTable(CFT_EDIT_TEXT(), text, mode);
+{    //todo
+   //	return new DataTable(CFT_EDIT_TEXT(), text, mode);
 }
 
 std::string EditText::getText()

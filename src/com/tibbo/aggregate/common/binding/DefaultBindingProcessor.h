@@ -1,21 +1,34 @@
 #ifndef DefaultBindingProcessorH
 #define DefaultBindingProcessorH
 
+ #include "Cres.h"
+//#include "Log.h"
+#include "binding/Binding.h"
+#include "binding/BindingException.h"
+#include "binding/BindingProvider.h"
+#include "binding/EvaluationOptions.h"
+#include "binding/ReferenceListener.h"
+//#include "expression/Evaluator.h"
+//#include "expression/Expression.h"
+//#include "expression/ExpressionUtils.h"
+//#include "expression/Reference.h"
+#include "util/Util.h"
 #include "binding/BindingProcessor.h"
 #include "binding/BindingProvider.h"
+#include <list>
 
 class DefaultBindingProcessor : public BindingProcessor
 {
 private:
     BindingProviderPtr provider;
     EvaluatorPtr evaluator;
-    Timer* timer;
-    ExecutorService* executionService;
+	//Timer* timer;  todo
+   // ExecutorServicePtr executionService;  todo
     bool disableStartupConcurrency;
     bool shareConcurrency;
-    std::list<ReferenceListener>  listeners;
-    std::list<TimerTask>  timerTasks;
-    std::set  tasks;
+	std::list<ReferenceListenerPtr>  listeners;
+  //  std::list<TimerTask>  timerTasks;  todo
+	//std::set  tasks;   todo
 	bool stopped;
 	bool enabled;
 	void startImpl(bool concurrentProcessing);

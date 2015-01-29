@@ -1,15 +1,16 @@
 #ifndef VariableDefinitionH_
 #define VariableDefinitionH
  #define BOOST_THREAD_USE_LIB
-#include "context/CompatibilityConverter.h"
-#include "context/VariableGetter.h"
-#include "context/VariableSetter.h"
+//#include "context/CompatibilityConverter.h"
+//#include "context/VariableGetter.h"
+//#include "context/VariableSetter.h"
 //#include "datatable/DataTable.h"
-#include "datatable/TableFormat.h"
-#include "security/Permissions.h"
+//#include "datatable/TableFormat.h"
+//#include "security/Permissions.h"
 #include "context/AbstractEntityDefinition.h"
 #include "util/Cloneable.h"
 #include "util/Comparable.h"
+ #include "util/Pointers.h"
 
 //todo - class stub
 class VariableDefinition : public AbstractEntityDefinition, public Cloneable , public Comparable
@@ -19,7 +20,7 @@ private:
     TableFormatPtr format;
     bool readable;
 	bool writable;
-      bool hidden;
+    bool hidden;
 	PermissionsPtr readPermissions;
 	PermissionsPtr writePermissions;
 	std::string helpId;
@@ -30,7 +31,7 @@ private:
     bool localCachingEnabled;
     long  remoteCacheTime;
     AgClassPtr valueClass;
-    std::list  compatibilityConverters;
+   // std::list<CompatibilityConverterPtr>  compatibilityConverters; todo
 	bool persistent;
 	DataTablePtr defaultValue;
 
@@ -71,9 +72,9 @@ public:
     void setPersistent(bool persistent);
     bool isAllowUpdateEvents();
     void setAllowUpdateEvents(bool allowUpdateEvents);
-    void addCompatibilityConverter(CompatibilityConverterPtr converter);
-    std::list  getCompatibilityConverters();
-    VariableDefinitionPtr clone();
+   // void addCompatibilityConverter(CompatibilityConverterPtr converter); todo
+   //	std::list  getCompatibilityConverters(); todo
+	VariableDefinitionPtr clone();
     int hashCode();
     bool equals(AgObjectPtr obj);
 	int compareTo(VariableDefinitionPtr d);

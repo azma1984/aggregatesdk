@@ -6,7 +6,7 @@
 #include "util/Cloneable.h"
 #include <string>
 #include <boost/shared_ptr.hpp>
-
+#include "util/Pointers.h"
 
 class EvaluationOptions : public Cloneable
 {
@@ -19,7 +19,7 @@ public:
 private:
     int pattern;
     long period;
-    boost::ReferencePtr activator;
+	ReferencePtr activator;
     ExpressionPtr condition;
 
 protected:
@@ -30,11 +30,11 @@ protected:
 public:
     int getPattern();
     long getPeriod();
-    boost::ReferencePtr getActivator();
+	ReferencePtr getActivator();
     ExpressionPtr getCondition();
     void setPattern(int pattern);
     void setPeriod(long period);
-    void setActivator(boost::ReferencePtr activator);
+	void setActivator(ReferencePtr activator);
     void setCondition(ExpressionPtr condition);
     bool isProcessOnStartup();
     bool isProcessOnEvent();
@@ -42,7 +42,7 @@ public:
     void setProcessOnStartup(bool processOnStartup);
     void setProcessOnEvent(bool processOnEvent);
     void setProcessPeriodically(bool processPeriodically);
-    EvaluationOptionsPtr clone();
+	//EvaluationOptionsPtr clone(); todo
     const std::string toString();
 
     EvaluationOptions();

@@ -2,9 +2,8 @@
 #ifndef AsyncCommandProcessorH
 #define AsyncCommandProcessorH
 #include "Cres.h"
-#include "Log.h"
+//#include "Log.h"
 #include "communication/AbstractDeviceController.h"
-#include "communication/AsyncCommandProcessor_sendCommand_1.h"
 #include "communication/Command.h"
 #include "communication/CommandParser.h"
 #include "communication/CommandProcessorStatistics.h"
@@ -17,12 +16,12 @@
 class AsyncCommandProcessor  //: public ::java::lang::Thread
 {
 private:
-    static const long PENDING_COMMAND_TIMEOUT { long(86400000LL) };
+	//static const long PENDING_COMMAND_TIMEOUT = TimeHelper::DAY_IN_MS;   todo
    // static ::java::util::concurrent::ThreadPoolExecutor* SENDERS_POOL_; todo
-    AbstractDeviceController* controller;
-    std::list  sentCommandsQueue;
+	AbstractDeviceControllerPtr controller;
+	//std::list  sentCommandsQueue;  todo
 	CommandProcessorStatisticsPtr statistics;
-	  void init();
+	 void init();
   //	static ::java::util::concurrent::ThreadPoolExecutor*& SENDERS_POOL();todo
 	void sendCommandImplementation(CommandPtr cmd);
 	ReplyMonitor* sendCommand(CommandPtr cmd);
@@ -39,13 +38,13 @@ public:
 	void run();
 
 	bool isActive();
-    std::list  getActiveCommands();
+  //  std::list  getActiveCommands(); todo
     void interrupt();
-    AbstractDeviceController* getController();
+	AbstractDeviceControllerPtr getController();
     CommandProcessorStatisticsPtr getStatistics();
    // static ::java::util::concurrent::ThreadPoolExecutor* getSendersPool(); todo
 
-	AsyncCommandProcessor(AbstractDeviceController* controller);
+	AsyncCommandProcessor(AbstractDeviceControllerPtr controller);
 };
 
 #endif

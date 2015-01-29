@@ -60,10 +60,10 @@ void EventDefinition::setSynchronous(bool synchronous)
     this->synchronous = synchronous;
 }
 
-DateTableFormatPtr EventDefinition::getFormat()
-{
-	return format;
-}
+//DateTableFormatPtr EventDefinition::getFormat()
+//{
+//	return format;
+//}
 
 bool EventDefinition::isHidden()
 {

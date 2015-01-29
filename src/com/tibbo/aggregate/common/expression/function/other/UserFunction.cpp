@@ -1,10 +1,10 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/function/other/UserFunction.java
-#include <com/tibbo/aggregate/common/expression/function/other/UserFunction.h"
+#include "expression/function/other/UserFunction.h"
 
-#include <com/tibbo/aggregate/common/context/CallerController.h"
-#include <com/tibbo/aggregate/common/expression/Evaluator.h"
-#include <com/tibbo/aggregate/common/expression/ReferenceResolver.h"
-#include <com/tibbo/aggregate/common/expression/function/Functions.h"
+#include "context/CallerController.h"
+#include "expression/Evaluator.h"
+#include "expression/ReferenceResolver.h"
+#include "expression/function/Functions.h"
 //#include <java/lang/NullPointerException.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/String.h"
