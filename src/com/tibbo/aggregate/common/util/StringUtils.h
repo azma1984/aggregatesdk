@@ -3,6 +3,7 @@
 #define StringUtilsH
 
 #include "util/ElementList.h"
+#include "util/Pointers.h"
 
 class StringUtils
 {
@@ -16,7 +17,7 @@ class StringUtils
     static const std::string truncate(const std::string & str, int maxLength);
     static const std::string truncate(const std::string & str, int maxLength, const std::string & suffix);
     static const std::string byteToHexString(int i);
-   // static const std::string colorToString(::java::awt::Color* color);  todo
+    static const std::string colorToString(ColorPtr color);
 	static ElementList* elements(const std::string & source, bool useVisibleSeparators);
     static const std::string escapeHtml(const std::string & text);
 	static const std::string print(std::list<AgObjectPtr> col);

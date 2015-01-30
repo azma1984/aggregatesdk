@@ -1,57 +1,49 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/encoding/fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/field/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/awt/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
 #include "datatable/FieldFormat.h"
-//#include <java/awt/Color.h"
+#include "util/Color.h"
+#include "util/Pointers.h"
+#include "util/StringUtils.h"
+#include <string>
 
-
-
-class Datefield::ColorFieldFormat
+class ColorFieldFormat
     : public FieldFormat
 {
+public:    
+    static const std::string EDITOR_BOX;
+//    Class* getFieldClass();
+//    Class* getFieldWrappedClass();
+//    Color* getNotNullDefault();
+//    ::java::awt::Color* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
+//    const std::string & valueToString(::java::awt::Color* value, encoding::ClassicEncodingSettings* settings);
 
-public:
-    typedef FieldFormat super;
-
-private:
-    static const std::string EDITOR_BOX_;
 protected:
-    void ctor(const std::string & name);
+    std::list<std::string>  getSuitableEditors()
+    {
+        std::list<std::string> se;
+        se.insert(EDITOR_LIST);
+        se.insert(EDITOR_BOX);
+
+        return se;
+    }
 
 public:
-    char16_t getType();
-    ::java::lang::Class* getFieldClass();
-    ::java::lang::Class* getFieldWrappedClass();
-    ::java::awt::Color* getNotNullDefault();
-    ::java::awt::Color* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
-    const std::string & valueToString(::java::awt::Color* value, encoding::ClassicEncodingSettings* settings);
+    ColorFieldFormat(const std::string& name) : FieldFormat(name)
+    {
+    }
 
-public: /* protected */
-    std::list  getSuitableEditors();
+    char getType()
+    {
+        return FieldFormat::COLOR_FIELD;
+    }
 
-    // Generated
+    const std::string & valueToString(ColorPtr value, ClassicEncodingSettingsPtr settings)
+    {
+        return value == null ? null : StringUtils.colorToString(value);
+    }
 
-public:
-    ColorFieldFormat(const std::string & name);
-protected:
-    ColorFieldFormat(const ::default_init_tag&);
-
-
-public:
-    
-    static void 
-    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
     void* valueFromString(const std::string & value);
-    const std::string & valueToString(void* value);
-    static const std::string& EDITOR_BOX();
-
-private:
-    ::java::lang::Class* getClass0();
 };
+
+
+const std::string ColorFieldFormat::EDITOR_BOX = "box";

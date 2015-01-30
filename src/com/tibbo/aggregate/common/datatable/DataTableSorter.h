@@ -1,36 +1,12 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTableSorter.java
-
 #pragma once
 
-#include "datatable/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/util/fwd-aggregate_sdk_5.11.00.h"
 //#include <java/lang/Object.h"
 //#include <java/lang/Iterable.h"
 
-template<typename ComponentType, typename... Bases> struct SubArray;
-namespace com
-{
-    namespace tibbo
-    {
-        namespace aggregate
-        {
-            namespace common
-            {
-                namespace datatable
-                {
-typedef ::SubArray< SortOrder, voidArray > SortOrderArray;
-                } // datatable
-            } // common
-        } // aggregate
-    } // tibbo
-} // com
-
-
-
-class DateDataTableSorter
-    
-    , public ::java::lang::Iterable
+//TODO:
+class DateDataTableSorter// : public ::java::lang::Iterable
 {
 
 public:

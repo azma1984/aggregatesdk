@@ -1,14 +1,6 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/encoding/fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/field/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
 #include "datatable/FieldFormat.h"
-//#include <java/lang/Integer.h"
 
 
 

@@ -54,8 +54,6 @@ public:
     {
         return value ? "1" : "0";
     }
-
-
 };
 
 #endif

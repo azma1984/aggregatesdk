@@ -18,8 +18,7 @@
 //#include <java/lang/StringBuilder.h"
 //#include <java/util/Arrays.h"
 //#include <java/util/List.h"
-#include <SubArray.h"
-#include <ObjectArray.h"
+
 
 template<typename ComponentType, typename... Bases> struct SubArray;
 namespace java

@@ -1,48 +1,19 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/encoding/fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/field/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 #include "datatable/FieldFormat.h"
 #include "datatable/DataTable.h"
 
-
-
-class Datefield::DataTableFieldFormat
+class DataTableFieldFormat
     : public FieldFormat
 {
-
 public:
-    typedef FieldFormat super;
-protected:
-    void ctor(const std::string & name);
-
-public:
-    char16_t getType();
-    ::java::lang::Class* getFieldClass();
-    ::java::lang::Class* getFieldWrappedClass();
+    char getType();
+//    ::java::lang::Class* getFieldClass();
+//    ::java::lang::Class* getFieldWrappedClass();
     DataTable* getNotNullDefault();
-    DataTable* valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
-    const std::string & valueToString(DataTable* value, encoding::ClassicEncodingSettings* settings);
+    DataTable* valueFromString(const std::string& value, ClassicEncodingSettingsPtr settings, bool validate);
+    const std::string & valueToString(DataTablePtr value, ClassicEncodingSettingsPtr settings);
     static const std::string encodeEditorOptions(bool showTableData);
 
-    // Generated
     DataTableFieldFormat(const std::string & name);
-protected:
-    DataTableFieldFormat(const ::default_init_tag&);
-
-
-public:
-    
-    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
-    void* valueFromString(const std::string & value);
-    const std::string & valueToString(void* value);
-
-private:
-    ::java::lang::Class* getClass0();
-    friend class DataTableFieldFormat_DataTableFieldFormat_1;
 };

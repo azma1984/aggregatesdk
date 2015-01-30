@@ -27,21 +27,6 @@
 #include <Array.h"
 #include <ObjectArray.h"
 */
-template<typename T, typename U>
-static T java_cast(U* u)
-{
-    if(!u) return static_cast<T>(0);
-    auto t = dynamic_cast<T>(u);
-    if(!t) throw new ::java::lang::ClassCastException();
-    return t;
-}
-
-template<typename T>
-static T* T* t)
-{
-    if(!t) std::exception("Pointer = NULL!");
-    return t;
-}
 
 Datefield::DataFieldFormat::DataFieldFormat(const ::default_init_tag&)
     : super(*static_cast< ::default_init_tag* >(0))

@@ -1,35 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/AbstractDataTableBindingProvider.java
-
 #pragma once
 
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include "binding/fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include "expression/fwd-aggregate_sdk_5.11.00.h"
-#include "util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/concurrent/locks/fwd-aggregate_sdk_5.11.00.h"
 #include "binding/AbstractBindingProvider.h"
+#include "binding/ReferenceWriter.h"
 
-
-
-class DateAbstractDataTableBindingProvider
-    : public ::com::tibbo::aggregate::common::binding::AbstractBindingProvider
+//TODO:
+class AbstractDataTableBindingProvider
+    : public AbstractBindingProvider
 {
-
-public:
-    typedef ::com::tibbo::aggregate::common::binding::AbstractBindingProvider super;
-
 private:
-    std::map listeners;
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* listenersLock;
-protected:
-    void ctor();
-    void ctor(::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector);
-
-public:
-    void writeReference(Reference* ref, void* value) /* throws(BindingException) */;
+    std::map<ReferenceListenerPtr, ReferencePtr> listeners;
+//    ::java::util::concurrent::locks::ReentrantReadWriteLock* listenersLock;
 
 private:
     void writeToEditor(const std::string & property, void* value);
@@ -37,41 +17,23 @@ private:
 
 public:
     int getListenerCount();
-    std::map getListeners();
-    ::java::util::concurrent::locks::ReentrantReadWriteLock* getListenersLock();
-    void addReferenceListener(Reference* ref, ::com::tibbo::aggregate::common::binding::ReferenceListener* listener) /* throws(BindingException) */;
-    void removeReferenceListener(::com::tibbo::aggregate::common::binding::ReferenceListener* listener);
-    bool isLocalReference(Reference* ref);
+    std::map<ReferenceListenerPtr, ReferencePtr> getListeners();
+//    ::java::util::concurrent::locks::ReentrantReadWriteLock* getListenersLock();
+    void addReferenceListener(ReferencePtr ref, ReferenceListenerPtr listener) /* throws(BindingException) */;
+    void removeReferenceListener(ReferenceListenerPtr listener);
+    bool isLocalReference(ReferencePtr ref);
 
 public: /* protected */
     void processBindings(const std::string & field, int record, bool startup);
-    ::com::tibbo::aggregate::common::binding::ReferenceWriter* getExternalReferenceWriter();
-    void callReferenceChanged(Reference* cause, int method, ::com::tibbo::aggregate::common::binding::ReferenceListener* listener);
-    void setEnabled(void* value, int row, const std::string & field) /* throws(BindingException) */;
-    void setCellValue(void* value, int row, const std::string & field) /* throws(BindingException) */;
-    void setOptions(void* value, int row, const std::string & field) /* throws(BindingException) */;
-    void setSelectionValues(void* value, int row, const std::string & field) /* throws(BindingException) */;
-    void setHidden(void* value, int row, const std::string & field) /* throws(BindingException) */;
-    void setEditorEnabled(bool enabled);
+    virtual ReferenceWriterPtr getExternalReferenceWriter() = 0;
+    virtual void callReferenceChanged(ReferencePtr cause, int method, ReferenceListenerPtr listener) = 0;
+    virtual void setEnabled(void* value, int row, const std::string & field) = 0/* throws(BindingException) */;
+    virtual void setCellValue(void* value, int row, const std::string & field) = 0 /* throws(BindingException) */;
+    virtual void setOptions(void* value, int row, const std::string & field) = 0/* throws(BindingException) */;
+    virtual void setSelectionValues(void* value, int row, const std::string & field) = 0/* throws(BindingException) */;
+    virtual void setHidden(void* value, int row, const std::string & field) = 0/* throws(BindingException) */;
+    virtual void setEditorEnabled(bool enabled) = 0;
 
-    // Generated
-
-public:
     AbstractDataTableBindingProvider();
-    AbstractDataTableBindingProvider(::com::tibbo::aggregate::common::util::ErrorCollector* errorCollector);
-protected:
-    AbstractDataTableBindingProvider(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-
-public:
-    void writeReference(int method, Reference* destination, Reference* cause, void* value, ::com::tibbo::aggregate::common::binding::ChangeCache* cache);
-
-private:
-    ::java::lang::Class* getClass0();
+    AbstractDataTableBindingProvider(ErrorCollectorPtr errorCollector);
 };

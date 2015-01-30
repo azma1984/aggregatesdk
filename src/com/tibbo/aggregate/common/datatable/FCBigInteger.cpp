@@ -52,7 +52,7 @@ java::math::BigInteger* DateFCBigInteger::simpleToBean(void* value)
     return new ::java::math::BigInteger((java_cast< const std::string & >(value)));
 }
 
-void* DateFCBigInteger::convertToTable(::java::math::BigInteger* value, TableFormat* format)
+void* DateFCBigInteger::convertToTable(long value, TableFormat* format)
 {
     return value)->toString();
 }

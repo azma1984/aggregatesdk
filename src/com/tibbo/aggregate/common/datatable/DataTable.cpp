@@ -24,7 +24,8 @@ DataTable::DataTable() : id(0)
 
 }
 
-virtual DataTable* clone()
+DataTable* DataTable::clone() const
 {
     //TODO: clone
+    return NULL;
 }

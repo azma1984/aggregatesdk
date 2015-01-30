@@ -1,12 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTableReplication.java
-
 #pragma once
-
-//#include <fwd-aggregate_sdk_5.11.00.h"
-#include "datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-
 
 
 class DateDataTableReplication

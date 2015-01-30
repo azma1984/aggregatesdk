@@ -1,10 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/DataTable.java
-
 #pragma once
 
-#include "datatable/fwd-aggregate_sdk_5.11.00.h"
-//#include "expression/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 #include "expression/AbstractReferenceResolver.h"
 
 

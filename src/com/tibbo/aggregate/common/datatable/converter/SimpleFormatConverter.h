@@ -1,9 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/converter/SimpleFormatConverter.java
-
 #pragma once
 
-#include "datatable/converter/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
 #include "datatable/converter/AbstractFormatConverter.h"
 
 
