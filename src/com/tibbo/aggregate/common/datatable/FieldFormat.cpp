@@ -38,83 +38,56 @@ const char FieldFormat::OPTIONAL_FLAG = 'O';
 const char FieldFormat::READ_ONLY_FLAG = 'R';
 const char FieldFormat::DEFAULT_OVERRIDE = 'D';
 
-FieldFormat::FieldFormat(const std::string &name)
-{
-    /*this->name = name;
-    nullable = false;
-    optional = false;
-    extendableSelectionValues = false;
-    readonly = false;
-    notReplicated = false;
-    hidden = false;
-    keyField = false;
-    inlineData = false;
-    advanced = false;
-    defaultOverride = false;*/
-}
 
+
+
+
+FieldFormatPtr FieldFormat::create(const std::string &name, AgClassPtr valueClass)
+{
+    return 0;
+}
 
 FieldFormatPtr FieldFormat::create(const std::string &name, char type)
 {
-    return NULL;
+    return 0;
 }
 
-
- 
-FieldFormatPtr FieldFormat::create(const std::string &name, AgClass* valueClass)
-{
-	return 0;
-}
-
-FieldFormatPtr FieldFormat::setDescription(const std::string &description)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string &description)
 {
     return 0;
 }
 
-FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string &description, AgObjectPtr defaultValue)
 {
     return 0;
 }
 
-FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string &description, AgObjectPtr defaultValue, const std::string &group)
 {
     return 0;
 }
 
-FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, const std::string & group)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string &description, AgObjectPtr defaultValue, bool nullable)
 {
     return 0;
 }
 
-FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable)
+FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string &description, AgObjectPtr defaultValue, bool nullable, const std::string &group)
 {
     return 0;
 }
 
-
-FieldFormatPtr FieldFormat::create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable, const std::string & group)
+FieldFormatPtr FieldFormat::create(const std::string &format, ClassicEncodingSettingsPtr settings)
 {
     return 0;
 }
 
-
-
-FieldFormatPtr FieldFormat::create(const std::string &format, ClassicEncodingSettings &settings)
+FieldFormatPtr FieldFormat::create(const std::string &format, ClassicEncodingSettingsPtr settings, bool validate)
 {
     return 0;
 }
-
-
-FieldFormatPtr FieldFormat::create(const std::string &format, ClassicEncodingSettings &settings, bool validate)
-{
-
-	return 0;
-}
-
 
 FieldFormatPtr FieldFormat::create(const std::string &format)
 {
     return 0;
 }
-
-
