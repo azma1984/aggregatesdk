@@ -158,6 +158,7 @@ public:
     //std::list<FieldValidator<void*>*> getValidators();
     bool isReadonly();
     bool isNotReplicated();
+    TableFormatPtr wrap();
 
    // static boost::shared_ptr<FieldFormat> create(const std::string &name, bool value);
   //  static boost::shared_ptr<FieldFormat> create(const std::string &name, int value);

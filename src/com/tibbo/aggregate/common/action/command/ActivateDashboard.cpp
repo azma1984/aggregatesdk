@@ -1,5 +1,6 @@
 #include "ActivateDashboard.h"
 #include "action/ActionUtils.h"
+#include "datatable/TableFormat.h"
 #include "datatable/field/StringFieldFormat.h"
 #include "context/Contexts.h"
 #include "Cres.h"

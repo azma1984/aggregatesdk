@@ -63,6 +63,7 @@ void AgentContext::setupMyself()
 {
     AbstractContext::setupMyself();
 
+    //TODO:
 	FunctionDefinitionPtr fd = FunctionDefinitionPtr(new FunctionDefinition(F_LOGIN, FIFT_LOGIN, FOFT_LOGIN, Cres::get()->getString("login")));
    //	fd->setImplementation(FunctionDefinitionPtr(loginImpl));
 	addFunctionDefinition(fd);

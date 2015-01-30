@@ -155,6 +155,7 @@ class SettingSynchronizationOptions;
 class DeviceSettingStatus;
 class SynchronizationHandler;
 class Color;
+class ReferenceWriter;
 class SynchronizationResult;
 class DiscoveryProvider;
 class DeviceRecommendation;
@@ -304,9 +305,7 @@ typedef boost::shared_ptr<SettingSynchronizationOptions> SettingSynchronizationO
 typedef boost::shared_ptr<DeviceSettingStatus> DeviceSettingStatusPtr;
 typedef boost::shared_ptr<SynchronizationHandler> SynchronizationHandlerPtr;
 typedef boost::shared_ptr<SynchronizationResult> SynchronizationResultPtr;
-typedef boost::shared_ptr<Color> ColorPtr;
 typedef boost::shared_ptr<DiscoveryProvider> DiscoveryProviderPtr;
-typedef boost::shared_ptr<ReferenceWriter> ReferenceWriterPtr;
 typedef boost::shared_ptr<DeviceRecommendation> DeviceRecommendationPtr;
 typedef boost::shared_ptr<DiscoverableServiceDefinition> DiscoverableServiceDefinitionPtr;
 typedef boost::shared_ptr<DiscoveryResultItem> DiscoveryResultItemPtr;
@@ -328,6 +327,8 @@ typedef boost::shared_ptr<EntityList> EntityListPtr;
 typedef boost::shared_ptr<ExecutorService> ExecutorServicePtr;
 typedef boost::shared_ptr<EventDispatcher> EventDispatcherPtr;
 typedef boost::shared_ptr<CompatibilityConverter> CompatibilityConverterPtr;
+typedef boost::shared_ptr<Color> ColorPtr;
+typedef boost::shared_ptr<ReferenceWriter> ReferenceWriterPtr;
 //typedef boost::shared_ptr<>;
 //typedef boost::shared_ptr<>;
 //typedef boost::shared_ptr<>;
@@ -344,3 +345,4 @@ typedef boost::shared_ptr<CompatibilityConverter> CompatibilityConverterPtr;
 //typedef boost::shared_ptr<>;
 //typedef boost::shared_ptr<>;
 #endif
+

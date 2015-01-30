@@ -39,7 +39,7 @@ public:
 
     void setAttachments(std::map<std::string, AgObjectPtr > &attachments);
 
-    //virtual Data* clone() const;   todo
+    virtual Data* clone() const;
     bool equals(Data* eq) const;
 		
 private:

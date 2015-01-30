@@ -143,7 +143,7 @@ const int EvaluationOptions::PERIODIC = 4;
 //    this->pattern |= PERIODIC;
 //}
 //
-//EvaluationOptionsPtr EvaluationOptions::clone()
+//EvaluationOptionsPtr* EvaluationOptions::clone() const
 //{
 ////    try {
 //        return new EvaluationOptions(this);
@@ -163,4 +163,4 @@ const int EvaluationOptions::PERIODIC = 4;
 //    ss<<", activator=" <<activator->toString() <<", condition=" <<condition->toString();
 //
 //    ss.str();
-//}
+//}

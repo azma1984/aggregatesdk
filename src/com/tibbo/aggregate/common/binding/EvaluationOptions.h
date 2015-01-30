@@ -35,7 +35,7 @@ public:
     void setProcessOnStartup(bool processOnStartup);
     void setProcessOnEvent(bool processOnEvent);
     void setProcessPeriodically(bool processPeriodically);
-	//EvaluationOptionsPtr clone(); todo
+    virtual EvaluationOptions* clone() const;
     const std::string toString();
 
     EvaluationOptions();

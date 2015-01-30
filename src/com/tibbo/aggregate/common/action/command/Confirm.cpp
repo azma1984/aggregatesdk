@@ -1,5 +1,5 @@
 #include "Confirm.h"
-
+#include "action/ActionUtils.h"
 
 std::string Confirm::CF_MESSAGE = "message";
 std::string Confirm::CF_OPTION_TYPE =  "optionType";
@@ -7,36 +7,37 @@ std::string Confirm::CF_MESSAGE_TYPE = "messageType";
 std::string Confirm::RF_OPTION = "option";
 
 
-//Confirm::Confirm():GenericActionCommand(ActionUtils::CMD_CONFIRM, CFT_CONFIRM, RFT_CONFIRM)
-//{
-//  init();
-//}
-
-Confirm::Confirm(const std::string &message)
+Confirm::Confirm()
+    : GenericActionCommand(ActionUtils::CMD_CONFIRM, CFT_CONFIRM(), RFT_CONFIRM())
 {
- init();
-	//TODO:
- // Confirm(Cres::get()->getString("confirmation"), message, ActionUtils::YES_NO_OPTION, ActionUtils::QUESTION_MESSAGE);
-
 }
 
-//Confirm::Confirm(const std::string &title, const std::string &message, int optionType, int messageType):GenericActionCommand(ActionUtils::CMD_CONFIRM, title)
-//{
-// init();
-//
-// this->message = message;
-// this->optionType = optionType;
-// this->messageType = messageType;
-//}
+Confirm::Confirm(const std::string &message)
+    : GenericActionCommand(ActionUtils::CMD_CONFIRM, Cres::get()->getString("confirmation"))
+{
+    this->message = message;
+    this->optionType = ActionUtils::YES_NO_OPTION;
+    this->messageType = ActionUtils::QUESTION_MESSAGE;
+}
+
+Confirm::Confirm(const std::string &title, const std::string &message, int optionType, int messageType)
+    : GenericActionCommand(ActionUtils::CMD_CONFIRM, title)
+{
+    this->message = message;
+    this->optionType = optionType;
+    this->messageType = messageType;
+}
 
 
-//Confirm::Confirm(const std::string& title, DataTablePtr parameters):GenericActionCommand(ActionUtils::CMD_CONFIRM, title, parameters, CFT_CONFIRM)
-//{
-//
-//}
+Confirm::Confirm(const std::string& title, DataTablePtr parameters)
+    : GenericActionCommand(ActionUtils::CMD_CONFIRM, title, parameters, CFT_CONFIRM())
+{
+    this->optionType = 0;
+    this->messageType = 0;
+}
 
 
-DataTablePtr Confirm::constructParameters()
+DataTable *Confirm::constructParameters()
 {
 //todo
  //	DataRecordPtr dr( new DataRecord(CFT_CONFIRM) );
@@ -46,7 +47,7 @@ DataTablePtr Confirm::constructParameters()
 
   //	return dr;
 
-   return DataTablePtr();
+   return NULL;
 }
 
 GenericActionResponsePtr Confirm::createDefaultResponse()
@@ -135,24 +136,26 @@ void Confirm::setMessageType(int messageType)
     this->messageType = messageType;
 }
 
-
-
-void Confirm::init()
+TableFormatPtr Confirm::CFT_CONFIRM()
 {
-//todo
-//	if (!CFT_CONFIRM)
-//	{
-//	 CFT_CONFIRM.reset( new TableFormat(1,1) );
-//
-//	 CFT_CONFIRM->addField("<"+CF_MESSAGE+"><S>");
-//	 CFT_CONFIRM->addField("<"+CF_OPTION_TYPE+"><I>");
-//	 CFT_CONFIRM->addField("<"+CF_MESSAGE_TYPE+"><I>");
-//	}
-//
-//	if (RFT_CONFIRM)
-//	{
-//	 RFT_CONFIRM = TableFormatPtr(new TableFormat(1, 1, "<"+RF_OPTION+"><I><D="+Cres::get()->getString("option")+">"));
-//	}
+    if (!CFT_CONFIRM_) {
+        CFT_CONFIRM_ = TableFormatPtr(new TableFormat(1, 1));
+
+        CFT_CONFIRM_->addField( std::string("<").append(Confirm::CF_MESSAGE).append("><S>") );
+        CFT_CONFIRM_->addField( std::string("<").append(Confirm::CF_OPTION_TYPE).append("><I>") );
+        CFT_CONFIRM_->addField( std::string("<").append(Confirm::CF_MESSAGE_TYPE).append("><I>") );
+    }
+
+    return CFT_CONFIRM_;
+}
+
+TableFormatPtr Confirm::RFT_CONFIRM()
+{
+    if (!RFT_CONFIRM_)
+        RFT_CONFIRM_ = TableFormatPtr(new TableFormat(1, 1, std::string("<").append(RF_OPTION)
+                                                                .append("><I><D=").append(Cres::get()->getString("option")).append(">")) );
+
+    return RFT_CONFIRM_;
 }
 
 

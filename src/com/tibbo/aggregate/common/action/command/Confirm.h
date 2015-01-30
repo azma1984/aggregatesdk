@@ -14,13 +14,14 @@
 class Confirm : public GenericActionCommand
 {
  private:
+    static TableFormatPtr CFT_CONFIRM_; //it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+    static TableFormatPtr RFT_CONFIRM_;
 	std::string message;
 	int optionType;
 	int messageType;
 
 protected:
-    void init();
-	DataTablePtr constructParameters();//it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+    DataTable* constructParameters();//it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
     GenericActionResponsePtr createDefaultResponse();
@@ -35,9 +36,9 @@ public:
 	static std::string CF_MESSAGE;
 	static std::string CF_OPTION_TYPE;
 	static std::string CF_MESSAGE_TYPE;
-	static std::string RF_OPTION;
-	static TableFormatPtr CFT_CONFIRM; //it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
-	static TableFormatPtr RFT_CONFIRM;
+    static std::string RF_OPTION;
+    static TableFormatPtr CFT_CONFIRM();
+    static TableFormatPtr RFT_CONFIRM();
         
     Confirm();
     Confirm(const std::string &message);

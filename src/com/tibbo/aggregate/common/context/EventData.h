@@ -10,6 +10,8 @@
 #include "util/Util.h"
 #include "util/pointers.h"
 //todo - class stub
+
+
 class EventData: public Comparable
 {
 
@@ -23,8 +25,9 @@ private:
 public:
 	void registerFiredEvent();
 	EventDefinitionPtr getDefinition();
-	std::set<ContextEventListenerPtr>  getListeners();
-	std::set<ContextEventListenerInfoPtr>  getListenersInfo();
+    //TODO: ыуе
+//	std::set<ContextEventListenerPtr>  getListeners();
+//	std::set<ContextEventListenerInfoPtr>  getListenersInfo();
 	long getFireCount();
 	bool addListener(ContextEventListenerPtr listener, bool weak);
 	bool removeListener(ContextEventListenerPtr listener);

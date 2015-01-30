@@ -15,11 +15,11 @@
 #include "util/Util.h"
 #include "binding/BindingProcessor.h"
 #include "binding/BindingProvider.h"
-#include "util/TimerTask.h"
-#include "util/Future.h"
-#include "util/ExecutorService.h"
-#include "util/Timer.h"
-#include "util/Callable.h"
+//#include "util/TimerTask.h"
+//#include "util/Future.h"
+//#include "util/ExecutorService.h"
+//#include "util/Timer.h"
+//#include "util/Callable.h"
 #include <list>
 #include <set>
 
@@ -30,13 +30,15 @@ class DefaultBindingProcessor : public BindingProcessor
 private:
     BindingProviderPtr provider;
     EvaluatorPtr evaluator;
-	Timer* timer;
+    //TODO:
+//	Timer* timer;
 	ExecutorServicePtr executionService;
 	bool disableStartupConcurrency;
     bool shareConcurrency;
 	std::list<ReferenceListenerPtr>  listeners;
-	std::list<TimerTask*>  timerTasks;
-	std::set<Future*>  tasks;
+    //TODO:
+//	std::list<TimerTask*>  timerTasks;
+//	std::set<Future*>  tasks;
 	bool stopped;
 	bool enabled;
 	void startImpl(bool concurrentProcessing);
@@ -54,7 +56,8 @@ public:
 
 	void stop();
 	bool isStopped();
-	void submit(Callable* task);
+    // TODO:
+//	void submit(Callable* task);
 	void setExecutionService(ExecutorServicePtr service);
 	void setEnabled(bool enabled);
 
@@ -67,7 +70,8 @@ public:
 
 	DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator);
 	DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator, ExecutorServicePtr executionService);
-	DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator, Timer* timer, ExecutorServicePtr executionService);
+    //TODO: timer
+    //DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator, Timer* timer, ExecutorServicePtr executionService);
 
 };
 

@@ -1,14 +1,14 @@
 #pragma once
 
 
-class DateDataTableReplication
+class DataTableReplication
     
 {
 
 public:
     typedef void super;
-    static ::std::set  copy(DataTable* source, DataTable* target);
-    static ::std::set  copy(DataTable* source, DataTable* target, bool copyReadOnlyFields);
+    static std::set  copy(DataTable* source, DataTable* target);
+    static std::set  copy(DataTable* source, DataTable* target, bool copyReadOnlyFields);
     static ::std::set  copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields);
     static ::std::set  copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget);
     static ::std::set  copy(DataTable* source, DataTable* target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget);

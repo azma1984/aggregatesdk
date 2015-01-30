@@ -1,50 +1,43 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/command/Browse.java
-
 #include "Browse.h"
-
 #include "action/ActionUtils.h"
+#include "datatable/FieldFormat.h"
 
-
-/*
-std::string Browse::CF_BROWSE_URI="uri";
+std::string Browse::CF_BROWSE_URI = "uri";
 
 Browse::Browse()
+    : GenericActionCommand(ActionUtils::CMD_BROWSE, CFT_BROWSE(), 0)
 {
- init();
-  GenericActionCommand(ActionUtils::CMD_BROWSE, CFT_BROWSE, 0);
-}
-*/
-/*
-Browse::Browse(URI url)
-{
-  init()
-  GenericActionCommand(ActionUtils::CMD_BROWSE(),0);
-  this->url = url;
-}
- */
 
-/*
-DataTablePtr Browse::constructParameters()
-{
-	return new DataTable(CFT_BROWSE, new voidArray({url)->toString())}));
 }
 
+//Browse::Browse(URI url)
+//    : GenericActionCommand(ActionUtils::CMD_BROWSE(), 0)
+//{
+//    this->url_ = url;
+//}
 
-
-URI Browse::getUrl()
+DataTable* Browse::constructParameters()
 {
-    return url;
+    std::list<AgObjectPtr> url;
+    return new DataTable(CFT_BROWSE(), url);
 }
 
-void Browse::setUrl(URI url)
-{
-    this->url = url;
-}
+//URI Browse::getUrl()
+//{
+//    return url_;
+//}
 
-void Browse::init()
-{
- CFT_BROWSE = FieldFormat::create("<" + CF_BROWSE_URI + "><S>")->wrap();
+//void Browse::setUrl(URI url)
+//{
+//    this->ur_l = url;
+//}
 
+TableFormatPtr Browse::CFT_BROWSE()
+{
+    if (!CFT_BROWSE_) {
+        CFT_BROWSE_ = FieldFormat::create( std::string("<").append(CF_BROWSE_URI).append("><S>"))->wrap();
+    }
+
+    return CFT_BROWSE_;
 }
-  */
 

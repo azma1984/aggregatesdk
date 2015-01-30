@@ -47,10 +47,6 @@ public:
     virtual bool isResponseValid(ActionResponsePtr actionRequest);
     virtual void setBatchEntry(bool batchEntry);
     virtual RequestIdentifierPtr getRequestId();
-<<<<<<< HEAD
-    //virtual GenericActionCommandPtr clone() const;  todo - conflicts with base class Cloneable
-=======
->>>>>>> 3bd0c99b943ff6107dd58013b7bdee930e82cad9
 
     int hashCode();
     bool equals(AgObjectPtr obj);
