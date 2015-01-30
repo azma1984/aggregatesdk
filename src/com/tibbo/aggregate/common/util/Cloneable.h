@@ -9,7 +9,7 @@ public:
 
 	virtual ~Cloneable() {};
 
-	virtual boost::shared_ptr<Cloneable> clone() const = 0;
+    virtual Cloneable *clone() const = 0;
 
 };
 

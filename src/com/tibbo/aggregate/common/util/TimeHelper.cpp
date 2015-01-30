@@ -164,31 +164,30 @@ TimeUnit* TimeHelper::getTimeUnit(int unit)
 
 uint64_t TimeHelper::convertToMillis(uint64_t period, int unit)
 {
-//todo
-//    switch (unit)
-//    {
-//        case MILLISECOND:
-//            return period;
-//        case SECOND:
-//            return period * SECOND_IN_MS;
-//        case MINUTE:
-//            return period * MINUTE_IN_MS;
-//        case HOUR:
-//            return period * HOUR_IN_MS;
-//        case DAY:
-//            return period * DAY_IN_MS;
-//        case WEEK:
-//            return period * WEEK_IN_MS;
-//        case MONTH:
-//            return period * MONTH_IN_MS;
-//        case QUARTER:
-//            return period * QUARTER_IN_MS;
-//        case YEAR:
-//            return period * YEAR_IN_MS;
-//        default:
-//            throw AggreGateException("Unknown time unit (TimeHelper::convertToMillis)");
-//    }
-//    return 0;
+    switch (unit)
+    {
+        case MILLISECOND:
+            return period;
+        case SECOND:
+            return period * SECOND_IN_MS;
+        case MINUTE:
+            return period * MINUTE_IN_MS;
+        case HOUR:
+            return period * HOUR_IN_MS;
+        case DAY:
+            return period * DAY_IN_MS;
+        case WEEK:
+            return period * WEEK_IN_MS;
+        case MONTH:
+            return period * MONTH_IN_MS;
+        case QUARTER:
+            return period * QUARTER_IN_MS;
+        case YEAR:
+            return period * YEAR_IN_MS;
+        default:
+            throw AggreGateException("Unknown time unit (TimeHelper::convertToMillis)");
+    }
+    return 0;
 }
 
 

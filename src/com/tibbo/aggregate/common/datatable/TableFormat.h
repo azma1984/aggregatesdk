@@ -144,7 +144,7 @@ public:
     bool equals(TableFormatPtr obj);
     void makeImmutable(DataTablePtr immutabilizer);
 
-   // virtual TableFormat *clone() const;   todo
+    virtual TableFormat *clone() const;
 
 
 
