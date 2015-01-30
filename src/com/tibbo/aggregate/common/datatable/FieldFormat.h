@@ -55,7 +55,7 @@ private:
     std::string group;
     std::string editor;
     std::string editorOptions;
-//    std::map<T,std::string> selectionValues; //todo class template? 
+    std::map<AgObjectPtr,std::string> selectionValues;
     //std::list<FieldValidator<void*>*> validators;
     std::string icon;
     bool transferEncode;
