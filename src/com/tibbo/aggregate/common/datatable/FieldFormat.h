@@ -88,12 +88,11 @@ public:
 
 
     virtual char getType() = 0;
-    virtual AgClass* getFieldClass() = 0;
-    virtual AgClass* getFieldWrappedClass() = 0;
-	//todo class template? 
-   // virtual T getNotNullDefault() = 0;
-   // virtual T valueFromString(std::string value, ClassicEncodingSettings &settings, bool validate) = 0;
- //   virtual std::string* valueToString(T value, ClassicEncodingSettings &settings) = 0;
+    virtual AgClassPtr getFieldClass() = 0;
+    virtual AgClassPtr getFieldWrappedClass() = 0;
+    virtual AgObjectPtr getNotNullDefault() = 0;
+    virtual AgObjectPtr valueFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate) = 0;
+    virtual std::string valueToString(AgObjectPtr value, ClassicEncodingSettingsPtr settings) = 0;
 
 
 	bool isHidden();

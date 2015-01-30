@@ -178,6 +178,7 @@ class EntityList;
 class ExecutorService;
 class EventDispatcher;
 class CompatibilityConverter;
+class ReferenceWriter;
 //class ;
 //class ;
 //class ;
