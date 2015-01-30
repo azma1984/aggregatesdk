@@ -59,12 +59,11 @@ public:
     virtual bool isResponseValid(ActionResponsePtr actionRequest);
     virtual void setBatchEntry(bool batchEntry);
     virtual RequestIdentifierPtr getRequestId();
-    virtual GenericActionCommand* clone() const;
 
     int hashCode();
     bool equals(AgObjectPtr obj);
-    std::string toString();
-//    virtual Cloneable * clone() const;
+    std::string toString();    
+    //virtual GenericActionCommand * clone() const; // Для абстрактного класса этот метод не нужно реализовывать
 
 protected:
     DataTablePtr constructParameters();        

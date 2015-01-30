@@ -11,6 +11,7 @@ class ActivateDashboard : public GenericActionCommand
 private:
 	std::string name;
 	std::string path;
+    static TableFormatPtr CFT_ACTIVATE_DASHBOARD_;
       //WindowLocationPtr location;  //todo it is defined in com/tibbo/aggregate/common/util/WindowLocation.h
       //DashboardPropertiesPtr dashboard; //todo it is defined in  com/tibbo/aggregate/common/util/DashboardProperties.h
 
@@ -22,12 +23,11 @@ public:
 	static std::string  CF_PATH;
 	static std::string  CF_LOCATION;
 	static std::string  CF_DASHBOARD;
-       //TableFormatPtr CFT_ACTIVATE_DASHBOARD; todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+    static TableFormatPtr CFT_ACTIVATE_DASHBOARD();
 
-	void Init();
 	ActivateDashboard();
-   //	ActivateDashboard(std::string title, DataTablePtr parameters);
-	ActivateDashboard(const std::string &name);
+    ActivateDashboard(const std::string& title, DataTablePtr parameters);
+    ActivateDashboard(const std::string& name);
 
 	std::string getName();
 	void setName(std::string name);

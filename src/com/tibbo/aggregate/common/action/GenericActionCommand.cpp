@@ -246,22 +246,10 @@
 //
 //    return true;
 //}
-////TODO:
-//ActionCommandPtr GenericActionCommand::clone()
-//{
-//    /*
-//    try {
-//        return java_cast< ActionCommandPtr >(super::clone());
-//    } catch (CloneNotSupportedException* ex) {
-//        throw new ::java::lang::AssertionError();
-//    }
-//    */
-//
-//    return static_cast<ActionCommandPtr>(0);
-//}
+
 //
 //std::string GenericActionCommand::toString()
 //{
 //    return std::string("[type=").append(type).append(", title=").append(title)
 //            .append(", id=").append((requestId!=0) ? requestId->toString() : "null").append("]");
-//}
+//}
