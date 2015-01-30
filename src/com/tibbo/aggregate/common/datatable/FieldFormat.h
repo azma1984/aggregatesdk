@@ -7,9 +7,10 @@
 #include "util/Cloneable.h"
 #include "util/AgClass.h"
 #include "util/Pointers.h"
+#include "util/AgObject.h"
 
 
-class FieldFormat : public Cloneable
+class FieldFormat : public Cloneable, public AgObject
 {
 private: 
    // static std::map<Class*,char> CLASS_TO_TYPE;// = new Hashtable();
@@ -37,7 +38,6 @@ private:
     static const char READ_ONLY_FLAG;
     static const char DEFAULT_OVERRIDE;
 
-
     std::string name;
     bool nullable;
     bool optional;
@@ -55,15 +55,24 @@ private:
     std::string group;
     std::string editor;
     std::string editorOptions;
-//    std::map<T,std::string> selectionValues; //todo class template? 
+    std::map<AgObjectPtr,std::string> selectionValues;
     //std::list<FieldValidator<void*>*> validators;
     std::string icon;
     bool transferEncode;
     bool immutable;
     std::string cachedDefaultDescription;
 
+    void createSelectionValues(const std::string &source, ClassicEncodingSettingsPtr settings);
+    std::string getEncodedSelectionValues(ClassicEncodingSettingsPtr settings);
+    std::string getEncodedFlags();
+    //static void encAppend(StringBuffer buffer, String name, String value, ClassicEncodingSettings settings);
+    std::list<std::string> getSuitableEditors();
+
+
 protected:
     FieldFormat(const std::string &name);
+    AgObjectPtr convertValue(AgObjectPtr value);
+    FieldFormatPtr setTransferEncode(bool transferEncode);
 
 public:
     static const char INTEGER_FIELD;
@@ -88,92 +97,103 @@ public:
 
 
     virtual char getType() = 0;
-    virtual AgClass* getFieldClass() = 0;
-    virtual AgClass* getFieldWrappedClass() = 0;
-	//todo class template? 
-   // virtual T getNotNullDefault() = 0;
-   // virtual T valueFromString(std::string value, ClassicEncodingSettings &settings, bool validate) = 0;
- //   virtual std::string* valueToString(T value, ClassicEncodingSettings &settings) = 0;
+    virtual AgClassPtr getFieldClass() = 0;
+    virtual AgClassPtr getFieldWrappedClass() = 0;
+    virtual AgObjectPtr getNotNullDefault() = 0;
+    virtual AgObjectPtr valueFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate) = 0;
+    virtual std::string valueToString(AgObjectPtr value, ClassicEncodingSettingsPtr settings) = 0;
 
-
-	bool isHidden();
-    std::string getEditor();
-    static std::map<void*,std::string> getTypeSelectionValues();
-    static std::map<AgClass,char> getClassToTypeMap();
-    bool isKeyField();
-    std::string getEditorOptions();
-    bool isInlineData();
-    bool isAdvanced();
-    void setAdvanced(bool advanced);
-    boost::shared_ptr<FieldFormat> setDescription(const std::string &description);
-    boost::shared_ptr<FieldFormat> setHelp(std::string help);
-//    boost::shared_ptr<FieldFormat> setSelectionValues(std::map<T,std::string> selectionValues); //todo class template? 
-    boost::shared_ptr<FieldFormat> setExtendableSelectionValues(bool extendableSelectionValues);
-    //boost::shared_ptr<FieldFormat> setNullable(bool nullable);
-    boost::shared_ptr<FieldFormat> setOptional(bool optional);
-    boost::shared_ptr<FieldFormat> setReadonly(bool readonly);
-    boost::shared_ptr<FieldFormat> setNotReplicated(bool notReplicated);
-
-
-//    T valueFromEncodedString(const std::string &source);
- //   T valueFromEncodedString(const std::string &source, ClassicEncodingSettings &settings, bool validate);
-//    T valueFromString(const std::string &value);
-//    std::string valueToString(T value);
-  //  std::string valueToEncodedString(T value,ClassicEncodingSettings &settings);
+    AgObjectPtr valueFromEncodedString(const std::string &source);
+    AgObjectPtr valueFromEncodedString(const std::string &source, ClassicEncodingSettingsPtr settings, bool validate);
+    AgObjectPtr valueFromString(const std::string &value);
+    std::string valueToString(AgObjectPtr value);
+    std::string valueToEncodedString(AgObjectPtr value,ClassicEncodingSettingsPtr settings);
     void setDefaultFromString(const std::string &value);
-    void setDefaultFromString(const std::string &value, ClassicEncodingSettings &settings, bool validate);
-  //  boost::shared_ptr<FieldFormat> setDefault(/*T*/void* value);
+    void setDefaultFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate);
+    FieldFormatPtr setDefault(AgObjectPtr value);
 
-	boost::shared_ptr<FieldFormat> setHidden(bool hidden);
-    boost::shared_ptr<FieldFormat> setEditor(const std::string & editor);
-    boost::shared_ptr<FieldFormat> setKeyField(bool keyField);
-    boost::shared_ptr<FieldFormat> setName(const std::string & name);
-    boost::shared_ptr<FieldFormat> setEditorOptions(const std::string & editorOptions);
-    boost::shared_ptr<FieldFormat> setInlineData(bool inlineData);
-    void setSelectionValues(const std::string & source);
-    boost::shared_ptr<FieldFormat> setIcon(const std::string & icon);
-    std::string getIcon();
-    std::string getGroup();
-   // boost::shared_ptr<FieldFormat> setGroup(const std::string & group);
-    bool isDefaultOverride();
-    void setDefaultOverride(bool defaultOverride);
-    std::string toString();
-    std::string toDetailedString();
+    std::string getEncodedValidators(ClassicEncodingSettingsPtr settings);
+    std::string encode();
+    std::string encode(bool useVisibleSeparators);
+    std::string encode(ClassicEncodingSettingsPtr settings);
 
+    bool extend(FieldFormatPtr other);
+    std::string extendMessage(FieldFormatPtr other);
+    FieldFormatPtr addValidator(FieldValidatorPtr validator);
+    void setValidators(std::list<FieldValidatorPtr> validators);
+    void createValidators(const std::string& source, ClassicEncodingSettingsPtr settings);
+    AgObjectPtr checkAndConvertValue(AgObjectPtr value, bool validate);
 
     std::string getTypeName();
     std::string getName();
     bool isNullable();
-    void* getDefaultValue();
-    void* getDefaultValueCopy();
+    AgObjectPtr getDefaultValue();
+    AgObjectPtr getDefaultValueCopy();
     std::string getDescription();
     bool hasDescription();
     std::string getHelp();
     bool isOptional();
     bool hasSelectionValues();
-    std::map<void*, std::string> getSelectionValues();
-    FieldFormat* addSelectionValue(void* value,const std::string &description);
-    FieldFormat* addSelectionValue(void* value);
+    std::map<AgObjectPtr, std::string> getSelectionValues();
+    FieldFormatPtr addSelectionValue(AgObjectPtr value,const std::string &description);
+    FieldFormatPtr addSelectionValue(AgObjectPtr value);
     bool isExtendableSelectionValues();
-    //std::list<FieldValidator<void*>*> getValidators();
+    std::list<FieldValidatorPtr> getValidators();
     bool isReadonly();
     bool isNotReplicated();
+    bool isTransferEncode();
+
+    bool isHidden();
+    std::string getEditor();
+    static std::map<AgObjectPtr,std::string> getTypeSelectionValues();
+    static std::map<AgClassPtr,char> getClassToTypeMap();
+    bool isKeyField();
+    std::string getEditorOptions();
+    bool isInlineData();
+    bool isAdvanced();
+    void setAdvanced(bool advanced);
+    FieldFormatPtr setDescription(const std::string &description);
+    FieldFormatPtr setHelp(std::string help);
+    FieldFormatPtr setSelectionValues(std::map<AgObjectPtr,std::string> selectionValues);
+    FieldFormatPtr setExtendableSelectionValues(bool extendableSelectionValues);
+    FieldFormatPtr setNullable(bool nullable);
+    FieldFormatPtr setOptional(bool optional);
+    FieldFormatPtr setReadonly(bool readonly);
+    FieldFormatPtr setNotReplicated(bool notReplicated);
+
+    FieldFormatPtr setHidden(bool hidden);
+    FieldFormatPtr setEditor(const std::string & editor);
+    FieldFormatPtr setKeyField(bool keyField);
+    FieldFormatPtr setName(const std::string & name);
+    FieldFormatPtr setEditorOptions(const std::string & editorOptions);
+    FieldFormatPtr setInlineData(bool inlineData);
+
+    void setSelectionValues(const std::string & source);
+    FieldFormatPtr setIcon(const std::string & icon);
+    std::string getIcon();
+    std::string getGroup();
+    FieldFormatPtr setGroup(const std::string & group);
+    bool isDefaultOverride();
+    void setDefaultOverride(bool defaultOverride);
+    std::string toString();
+    std::string toDetailedString();
+
+    TableFormatPtr wrap();
+    TableFormatPtr wrapSimple();
+
+    virtual int hashCode();
     TableFormatPtr wrap();
 
-   // static boost::shared_ptr<FieldFormat> create(const std::string &name, bool value);
-  //  static boost::shared_ptr<FieldFormat> create(const std::string &name, int value);
-  //  static boost::shared_ptr<FieldFormat> create(const std::string &name, long value);
-//    static boost::shared_ptr<FieldFormat> create(const std::string &name, char type);
 
-    static FieldFormatPtr create(const std::string &name, AgClass* valueClass);
+    static FieldFormatPtr create(const std::string &name, AgClassPtr valueClass);
     static FieldFormatPtr create(const std::string &name, char type);
     static FieldFormatPtr create(const std::string &name, char type, const std::string & description);
-    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, void* defaultValue);
-    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, void* defaultValue, const std::string & group);
-    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable);
-    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, void* defaultValue, bool nullable, const std::string & group);
-    static FieldFormatPtr create(const std::string & format, ClassicEncodingSettings &settings);
-    static FieldFormatPtr create(const std::string & format, ClassicEncodingSettings &settings, bool validate);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, AgObjectPtr defaultValue);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, AgObjectPtr defaultValue, const std::string & group);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, AgObjectPtr defaultValue, bool nullable);
+    static FieldFormatPtr create(const std::string &name, char type, const std::string & description, AgObjectPtr defaultValue, bool nullable, const std::string & group);
+    static FieldFormatPtr create(const std::string & format, ClassicEncodingSettingsPtr settings);
+    static FieldFormatPtr create(const std::string & format, ClassicEncodingSettingsPtr settings, bool validate);
     static FieldFormatPtr create(const std::string & format);
 
    // virtual Cloneable * clone() const

@@ -5,22 +5,31 @@
 
 class AgObject
 {
- private:
-	AgClass *Class;
  public:
 	AgObject()
 	{
-	 Class = new AgClass;
-	};
+
+    }
+
 	virtual ~AgObject()
 	{
-	 delete Class;
+
+    }
+
+    virtual AgClass *getClass()
+	{
+        return 0;
 	}
 
-	AgClass *getClass()
-	{
-	 return Class;
-	}
+    virtual int hashCode()
+    {
+        return 0;
+    }
+
+    virtual std::string toString()
+    {
+        return std::string();
+    }
 
 
 
