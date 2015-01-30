@@ -29,31 +29,32 @@ const std::string AgentContext::EF_EVENT_CONFIRMED_ID= "id";
 
 
 AgentContext::AgentContext(RemoteServerPtr server, const std::string &name, bool eventConfirmation) 
-{   
-   FIFT_LOGIN= TableFormatPtr(new TableFormat(1, 1, "<" + FIF_LOGIN_CHALLENGE + "><S>"));
-   FOFT_LOGIN= TableFormatPtr(new TableFormat(1, 1));
-  
-   FOFT_LOGIN->addField("<" + FOF_LOGIN_OWNER + "><S>");
-   FOFT_LOGIN->addField("<" + FOF_LOGIN_NAME + "><S>");
-   FOFT_LOGIN->addField("<" + FOF_LOGIN_RESPONSE + "><S>");
- 
-
-   FOFT_REGISTER= TableFormatPtr(new TableFormat(1, 1,  "<" + FOF_REGISTER_PASSWORD + "><S>"));
-
-   FOFT_GET_HISTORY= TableFormatPtr(new TableFormat());
-   FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_VARIABLE + "><S>");
-   FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_TIMESTAMP + "><D>");
-   FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_VALUE + "><T>");
-   
-   
-   FIFT_CONFIRM_EVENT= TableFormatPtr(new TableFormat(1, 1,  "<" + FIF_CONFIRM_EVENT_ID + "><L>"));
-
-   EFT_EVENT_CONFIRMED= TableFormatPtr(new TableFormat(1, 1, "<" + EF_EVENT_CONFIRMED_ID + "><L>"));
-  
- // AbstractContext::AbstractContext(Contexts::CTX_ROOT);//todo
-  this->server = server;
-  this->name = name;
-  this->eventConfirmation = eventConfirmation;
+{
+//todo
+//   FIFT_LOGIN= TableFormatPtr(new TableFormat(1, 1, "<" + FIF_LOGIN_CHALLENGE + "><S>"));
+//   FOFT_LOGIN= TableFormatPtr(new TableFormat(1, 1));
+//
+//   FOFT_LOGIN->addField("<" + FOF_LOGIN_OWNER + "><S>");
+//   FOFT_LOGIN->addField("<" + FOF_LOGIN_NAME + "><S>");
+//   FOFT_LOGIN->addField("<" + FOF_LOGIN_RESPONSE + "><S>");
+//
+//
+//   FOFT_REGISTER= TableFormatPtr(new TableFormat(1, 1,  "<" + FOF_REGISTER_PASSWORD + "><S>"));
+//
+//   FOFT_GET_HISTORY= TableFormatPtr(new TableFormat());
+//   FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_VARIABLE + "><S>");
+//   FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_TIMESTAMP + "><D>");
+//   FOFT_GET_HISTORY->addField("<" + FOF_GET_HISTORY_VALUE + "><T>");
+//
+//
+//   FIFT_CONFIRM_EVENT= TableFormatPtr(new TableFormat(1, 1,  "<" + FIF_CONFIRM_EVENT_ID + "><L>"));
+//
+//   EFT_EVENT_CONFIRMED= TableFormatPtr(new TableFormat(1, 1, "<" + EF_EVENT_CONFIRMED_ID + "><L>"));
+//
+// // AbstractContext::AbstractContext(Contexts::CTX_ROOT);//todo
+//  this->server = server;
+//  this->name = name;
+//  this->eventConfirmation = eventConfirmation;
 }
 
 

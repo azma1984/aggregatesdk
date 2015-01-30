@@ -1,6 +1,6 @@
 #ifndef SynchronizationParametersH
 #define SynchronizationParametersH
-
+ #define BOOST_THREAD_USE_LIB
 #include "util/Cloneable.h"
 #include "device/DeviceContext.h"
 #include <string>

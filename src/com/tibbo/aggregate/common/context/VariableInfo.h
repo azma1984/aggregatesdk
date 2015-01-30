@@ -1,5 +1,5 @@
-#ifndef _VariableInfo_H_
-#define _VariableInfo_H_
+#ifndef VariableInfoH
+#define VariableInfoH
 
 //#include "Cres.h"
 //#include "context/VariableDefinition.h"

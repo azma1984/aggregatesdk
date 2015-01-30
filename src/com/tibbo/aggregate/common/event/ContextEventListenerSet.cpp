@@ -22,10 +22,10 @@
 //	return localListeners;
 //}
 
-std::unordered_set<ContextEventListenerInfo> ContextEventListenerSet::getListenersInfo()
+boost::unordered_set<ContextEventListenerInfoPtr> ContextEventListenerSet::getListenersInfo()
 {
 	
-    std::unordered_set<ContextEventListenerInfo> localListeners;
+	boost::unordered_set<ContextEventListenerInfoPtr> localListeners;
    /* 
     for (auto *iterator = listeners)->iterator(); iterator)->hasNext(); ) {
         auto ref = java_cast< AgObjectPtr >(iterator)->next());
@@ -106,7 +106,7 @@ int ContextEventListenerSet::size()
   return listeners.size();
 }
 
-ContextEventListenerInfo* ContextEventListenerSet::getListenerInfo(AgObjectPtr ref)
+ContextEventListenerInfoPtr ContextEventListenerSet::getListenerInfo(AgObjectPtr ref)
 {
 	/*
     
@@ -119,7 +119,8 @@ ContextEventListenerInfo* ContextEventListenerSet::getListenerInfo(AgObjectPtr r
         throw new ContextRuntimeException(std::stringBuilder().append(u"Unexpected reference: "_j)->append(ref))->toString());
     }
 	*/
- return 0;
+ //return 0;
+ return ContextEventListenerInfoPtr();
 }
 
 

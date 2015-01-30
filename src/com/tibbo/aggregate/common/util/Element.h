@@ -3,6 +3,8 @@
 
 #include "../datatable/DataTableUtils.h"
 
+#include <string>
+
 class Element
 {
 

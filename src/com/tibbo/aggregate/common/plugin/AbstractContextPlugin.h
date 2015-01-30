@@ -25,10 +25,10 @@ class AbstractContextPlugin : public BasePlugin, public ContextPlugin
 
     ContextPtr createGlobalConfigContext(ContextPtr rootContext, bool requestReboot, VariableDefinitionPtr properties);
     ContextPtr createUserConfigContext(ContextPtr userContext, bool requestReboot, VariableDefinitionPtr properties);
-    const std::string & getDescription();
+	std::string getDescription();
     ContextPtr getGlobalConfigContext();
-    const std::string & getId();
-    const std::string & getShortId();
+	std::string getId();
+    std::string getShortId();
     int getSortIndex();
     ContextPtr getUserConfigContext(const std::string & username);
     void globalDeinit(ContextPtr rootContext);

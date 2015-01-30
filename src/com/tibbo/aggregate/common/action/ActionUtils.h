@@ -1,10 +1,10 @@
 #pragma once
+#ifndef ActionUtilsH
+#define ActionUtilsH
 
 #define BOOST_THREAD_USE_LIB
-#include "ActionInitializer.h"
-#include "ActionIdentifier.h"
-
-
+//#include "action/ActionInitializer.h"
+//#include "action/ActionIdentifier.h"
 //#include "action/DefaultActionInitializer.h"
 //#include "action/GenericActionCommand.h"
 //#include "action/ProtocolHandler.h"
@@ -29,13 +29,15 @@
 //#include "action/command/ShowSystemTree.h"
 //#include "context/Context.h"
 //#include "datatable/DataRecord.h"
-#include "datatable/DataTable.h"
-#include "datatable/TableFormat.h"
+//#include "datatable/DataTable.h"
+//#include "datatable/TableFormat.h"
 //#include "server/ServerContextConstants.h"
-
+ #include "util/Pointers.h"
 
 #include <string>
 #include <iostream>
+#include <map>
+
 
 class ActionUtils
 {
@@ -131,7 +133,7 @@ public:
 	DataTablePtr createDndActionParameters(const std::string & accepterContextPath);//  it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
     //Not used
-    //ServerActionInputPtr createActionInput(DataTablePtr executionParameters);
+    ServerActionInputPtr createActionInput(DataTablePtr executionParameters);
 
   	ActionIdentifierPtr initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, ActionExecutionModePtr mode, CallerControllerPtr callerController);
   	ActionIdentifierPtr initAction(ContextPtr context, const std::string & actionName, ServerActionInputPtr initialParameters, DataTablePtr inputData, std::map<std::string,AgObjectPtr> environment, ActionExecutionModePtr mode, CallerControllerPtr callerController, ErrorCollectorPtr collector);
@@ -139,3 +141,5 @@ public:
 	ActionUtils();
 
 };
+
+#endif

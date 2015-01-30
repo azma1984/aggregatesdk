@@ -1,5 +1,6 @@
 #pragma once
-
+ #ifndef ActionH
+#define ActionH
 //#include "ActionContext.h"
 //#include "ActionResult.h"
 #include "util/AgObject.h"
@@ -23,3 +24,5 @@ public:
     virtual ActionResultPtr destroy() = 0;
     virtual ActionCommandPtr service(ActionResponsePtr actionRequest) = 0;
 };
+
+#endif

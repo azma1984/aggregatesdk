@@ -19,7 +19,7 @@ public:
     void setProperty(const std::string & property);
     int hashCode();
     bool equals(AgObjectPtr obj);
-   // int compareTo(EntityReferencePtr ref); todo
+    int compareTo(EntityReferencePtr ref);
     std::string toString();
     //EntityReferencePtr clone(); todo
 

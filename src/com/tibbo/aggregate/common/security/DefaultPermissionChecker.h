@@ -1,6 +1,7 @@
-#ifndef _DefaultPermissionChecker_H_
-#define _DefaultPermissionChecker_H_
+#ifndef DefaultPermissionCheckerH
+#define DefaultPermissionCheckerH
 
+ #define BOOST_THREAD_USE_LIB
 #include "security/PermissionType.h"
 #include "security/PermissionChecker.h"
 #include <vector>
@@ -23,7 +24,7 @@ public:
     virtual bool has(CallerControllerPtr caller, PermissionsPtr requiredPermissions,
                      ContextPtr accessedContext);
     virtual std::string getLevel(PermissionsPtr perms, const std::string& context, ContextManagerPtr cm);
-    virtual bool canSee(Permissions perms, const std::string& context, ContextManagerPtr cm);
+    bool canSee(PermissionsPtr perms, const std::string& context, ContextManagerPtr cm);
     virtual std::string canActivate(PermissionsPtr has, PermissionsPtr requiredPermissions,
                                     ContextManagerPtr cm);
     virtual bool isValid(const std::string& permissionLevel);
@@ -36,4 +37,4 @@ private:
                         ContextPtr accessedContext);
     std::list<std::string> getAllowedPaths(PermissionPtr permission, ContextManagerPtr cm);
 };
-#endif  //_DefaultPermissionChecker_H_
+#endif  //DefaultPermissionCheckerH

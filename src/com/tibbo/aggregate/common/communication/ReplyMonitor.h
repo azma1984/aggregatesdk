@@ -5,7 +5,7 @@
 //#include "Log.h"
 #include "communication/Command.h"
 
-class ReplyMonitor
+template <class C,class R> class  ReplyMonitor
 {
  private:
     CommandPtr command;
@@ -27,7 +27,7 @@ public:
 	bool waitReply(long timeout);
 	long getTime();
 	long getStartTime();
-	const std::string & toString();
+	std::string toString();
 
 	ReplyMonitor(CommandPtr command);
 

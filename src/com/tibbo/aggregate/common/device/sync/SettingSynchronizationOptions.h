@@ -1,8 +1,8 @@
 #ifndef SettingSynchronizationOptionsH
 #define SettingSynchronizationOptionsH
-
+ #define BOOST_THREAD_USE_LIB
 #include "device/DeviceContext.h"
-#include "device/sync/SynchronizationHandler.h"
+//#include "device/sync/SynchronizationHandler.h"
 #include "expression/Expression.h"
 #include "util/Cloneable.h"
 #include <string>
@@ -19,7 +19,7 @@ private:
     std::string filter;
     std::string master;
     std::string condition;
-    ExpressionPtr filterExpression;
+	ExpressionPtr filterExpression;
     ExpressionPtr conditionExpression;
     SynchronizationHandlerPtr synchronizationHandler;
     int synchronizationsCounter;
@@ -46,7 +46,7 @@ public:
     void setSynchronizationHandler(SynchronizationHandlerPtr synchronizationHandler);
     int getSynchronizationsCounter();
     void incrementSynchronizationsCounter();
-    SettingSynchronizationOptionsPtr clone() const;
+   //	SettingSynchronizationOptionsPtr clone() const; //todo
 
     SettingSynchronizationOptions();
     SettingSynchronizationOptions(long  syncPeriod);

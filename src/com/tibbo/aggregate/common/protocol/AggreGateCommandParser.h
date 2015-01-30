@@ -15,7 +15,7 @@ public:
 	IncomingAggreGateCommandPtr createCommandFromBufferContent();
 
 
-    AggreGateCommandParser(::java::nio::channels::ReadableByteChannel* channel, unsigned char startChar, unsigned char endChar);
+   // AggreGateCommandParser(::java::nio::channels::ReadableByteChannel* channel, unsigned char startChar, unsigned char endChar);
 
 };
 

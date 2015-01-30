@@ -4,6 +4,8 @@
 #define BOOST_THREAD_USE_LIB
 
 #include "context/FunctionDefinition.h"
+#include <boost/thread/mutex.hpp>
+
 
 //todo - class stub
 class FunctionData//: public Comparable
@@ -11,7 +13,7 @@ class FunctionData//: public Comparable
 
 private:
 	FunctionDefinitionPtr definition;
-   //	std::mutex executionLock;
+	boost::mutex executionLock;
 	long executionCount;
 	bool implementationCached;
   //	::java::lang::reflect::Method* implementationMethod;  todo
@@ -19,7 +21,7 @@ private:
 public:
 	void registerExecution();
 	FunctionDefinitionPtr getDefinition();
-	//std::mutex  getExecutionLock();
+	boost::mutex  getExecutionLock();
 	long getExecutionCount();
 	bool isImplementationCached();
 	void setImplementationCached(bool implementationCached);

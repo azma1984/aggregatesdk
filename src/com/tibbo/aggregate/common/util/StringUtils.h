@@ -3,6 +3,13 @@
 #define StringUtilsH
 
 #include "util/ElementList.h"
+#include "util/pointers.h"
+
+
+#include <string>
+#include <list>
+#include <map>
+
 
 class StringUtils
 {

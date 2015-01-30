@@ -55,7 +55,9 @@ int SynchronizationResult::getCode()
 
 std::string SynchronizationResult::toString()
 {
-    return CODES[code] + (details.empty() == false ? ": " + details : "");
+	std::string str1 = ": " + details;
+	std::string str2 = "";
+	return CODES[code] + (details.empty() == false ? str1 : str2);
 }
 
 

@@ -10,22 +10,20 @@
 class EditCode : public GenericActionCommand
 {
 private:    
-    static TableFormatPtr CFT_EDIT_CODE_;
-    static TableFormatPtr RFT_EDIT_CODE_;
-    std::string code;
-    std::string mode;
+	std::string code;
+	std::string mode;
 
 public:
-    static const std::string CF_CODE_;
-    static const std::string CF_MODE_;
-    static const std::string RF_RESULT_;
-    static const std::string RF_CODE_;
+	static const std::string CF_CODE;
+	static const std::string CF_MODE;
+	static const std::string RF_RESULT;
+	static const std::string RF_CODE;
+	static TableFormatPtr CFT_EDIT_CODE;
+	static TableFormatPtr RFT_EDIT_CODE;
 
-public:
     DataTablePtr constructParameters();
 
-public:
-    std::string getCode();
+	std::string getCode();
     void setCode(const std::string& code);
     std::string getMode();
     void setMode(const std::string& mode);
@@ -34,9 +32,5 @@ public:
     EditCode();
     EditCode(const std::string & title, const std::string & code, const std::string & mode);
     EditCode(const std::string & title, DataTablePtr parameters);
-
-public:
-    static TableFormatPtr CFT_EDIT_CODE();
-    static TableFormatPtr RFT_EDIT_CODE();
 };
 #endif

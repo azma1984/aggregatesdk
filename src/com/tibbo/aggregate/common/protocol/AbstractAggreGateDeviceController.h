@@ -38,7 +38,7 @@ public:
     void setCallerController(CallerControllerPtr callerController);
 
 
-    encoding::FormatCachePtr getFormatCache();
+	FormatCachePtr getFormatCache();
     UserSettingsPtr getSettings();
     ClassicEncodingSettingsPtr createClassicEncodingSettings(bool forSending);
 
@@ -55,7 +55,7 @@ public:
     void destroy();
 
 	void disconnectImpl();
-    std::list  getProxyContexts(const std::string & path);
+   // std::list  getProxyContexts(const std::string & path);
    // ::java::util::concurrent::ExecutorService* getEventPreprocessor(); todo
 
 	IncomingAggreGateCommandPtr sendCommandAndCheckReplyCode(OutgoingAggreGateCommandPtr cmd);
@@ -73,7 +73,7 @@ public:
 
 	void connect();
 	void disconnect();
-	std::list  getActiveCommands();
+   //	std::list  getActiveCommands();
 	CommandProcessorStatisticsPtr getStatistics();
 	bool isActive();
 	void login();
@@ -86,3 +86,5 @@ public:
 	AbstractAggreGateDeviceController();
 
 };
+
+#endif

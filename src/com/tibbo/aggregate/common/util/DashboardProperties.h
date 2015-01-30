@@ -5,10 +5,12 @@
 #include "datatable/DataRecord.h"
 #include "datatable/TableFormat.h"
 
+#include <sstream>
+#include <iostream>
 #include <string>
 #include <boost/shared_ptr.hpp>
 
-class DashboardProperties : public AggreGateBean
+class DashboardProperties //: public AggreGateBean
 {
 public:
 	static std::string FIELD_NAME;

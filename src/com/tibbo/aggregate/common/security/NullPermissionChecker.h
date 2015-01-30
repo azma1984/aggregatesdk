@@ -1,6 +1,6 @@
 #ifndef _NullPermissionChecker_H_
 #define _NullPermissionChecker_H_
-
+  #define BOOST_THREAD_USE_LIB
 #include "security/PermissionChecker.h"
 
 #include <string>

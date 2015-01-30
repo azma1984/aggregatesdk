@@ -1,7 +1,5 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/RemoteServerController.java
-
-#ifndef H
-#define H
+#ifndef RemoteServerControllerH
+#define RemoteServerControllerH
 
 #include <AbstractAggreGateDeviceController.h>
 #include <string>
@@ -59,7 +57,7 @@ class RemoteServerController
 private:
 	AggreGateDevicePtr device;
 	*/
-	RemoteContextManagerPtrcontextManager;
+	RemoteContextManagerPtr contextManager;
 	/*
 	CallerControllerPtr callerController;
 	UserSettingsPtr userSettings;
@@ -153,3 +151,6 @@ private:
    //	AbstractAggreGateDeviceController(AggreGateDevicePtr device);
    public: */
 };
+
+
+#endif

@@ -1,4 +1,4 @@
-#include "data/data.h"
+﻿#include "data/data.h"
 #include <sstream>
 
 Data::Data() : id(0)
@@ -143,26 +143,27 @@ void Data::setAttachments(std::map<std::string, AgObjectPtr > &attachments)
 	this->attachments = attachments;
 }
 
-Data* Data::clone() const
-{
-    Data* cl = new Data();
-
-  //  try
-  //  {
-  //    cl = (Data) super.clone();
-  //  }
-  //  catch (CloneNotSupportedException ex)
-  //  {
-  //    throw new IllegalStateException(ex.getMessage(), ex);
-  //  }
-
-    cl->id = id;
-    cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
-    cl->data = data;//(byte[]) CloneUtils.deepClone(data);
-    //TODO: копирование std::map<std::string, AgObjectPtr> attachments;
-
-    return cl;
-}
+//todo
+//Data* Data::clone() const
+//{
+//    Data* cl = new Data();
+//
+//  //  try
+//  //  {
+//  //    cl = (Data) super.clone();
+//  //  }
+//  //  catch (CloneNotSupportedException ex)
+//  //  {
+//  //    throw new IllegalStateException(ex.getMessage(), ex);
+//  //  }
+//
+//    cl->id = id;
+//    cl->preview = preview;// (byte[]) CloneUtils.deepClone(preview);
+//    cl->data = data;//(byte[]) CloneUtils.deepClone(data);
+//    //TODO: копирование std::map<std::string, AgObjectPtr> attachments;
+//
+//    return cl;
+//}
 
 	
 bool Data::equals(Data *eq) const

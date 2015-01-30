@@ -26,16 +26,15 @@ class CommandProcessorStatistics
 {
 
 private:
-	static TableFormatPtr FORMAT_;
+	static TableFormatPtr FORMAT;
 	long  startTime;
 	long commandCount;
 	float averageResponseTime;
 	long outgoingTraffic;
 	long incomingTraffic;
 	long unrepliedCommandCount;
-	static TableFormatPtr& FORMAT();
 public:
-	void update(ReplyMonitor* monitor);
+	void update(ReplyMonitor<AgObjectPtr,AgObjectPtr>* monitor);
 	DataTablePtr toDataTable();
     long  getStartTime();
 	long  getConnectionTime();

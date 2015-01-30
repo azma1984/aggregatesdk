@@ -1,5 +1,5 @@
-#ifndef _EventProcessingRule_H_
-#define _EventProcessingRule_H_
+#ifndef EventProcessingRuleH
+#define EventProcessingRuleH
 
 #include <string>
 #include <list>
@@ -18,15 +18,15 @@
 class EventProcessingRule
 {
 private:
-    static const std::string FIELD_MASK_;
-    static const std::string FIELD_EVENT_;
-    static const std::string FIELD_PREFILTER_;
-    static const std::string FIELD_DEDUPLICATOR_;
-    static const std::string FIELD_QUEUE_;
-    static const std::string FIELD_DUPLICATE_DISPATCHING_;
-    static const std::string FIELD_PERIOD_;
-    static const std::string FIELD_ENRICHMENTS_;
-    static TableFormatPtr FORMAT_;
+    static const std::string FIELD_MASK;
+    static const std::string FIELD_EVENT;
+    static const std::string FIELD_PREFILTER;
+    static const std::string FIELD_DEDUPLICATOR;
+    static const std::string FIELD_QUEUE;
+    static const std::string FIELD_DUPLICATE_DISPATCHING;
+    static const std::string FIELD_PERIOD;
+    static const std::string FIELD_ENRICHMENTS;
+
     std::string mask;
     std::string event;
     std::string prefilter;
@@ -42,6 +42,7 @@ private:
     long duplicates;
 
 public:
+	static TableFormatPtr FORMAT;
     std::string getEvent();
     std::string getMask();
     long getPeriod();
@@ -70,10 +71,8 @@ public:
     int hashCode();
     bool equals(EventProcessingRulePtr obj);
 
-    // Generated
-    EventProcessingRule();
+	EventProcessingRule();
     EventProcessingRule(const std::string& mask, const std::string& event);
 
-    static TableFormatPtr& FORMAT();
 };
-#endif  //_EventProcessingRule_H_
+#endif  //EventProcessingRuleH

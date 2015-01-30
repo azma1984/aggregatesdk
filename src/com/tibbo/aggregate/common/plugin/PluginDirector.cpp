@@ -144,7 +144,7 @@
 //    return id;
 //}
 //
-//BasePlugin* PluginDirector::getExistingPlugin(const std::string & id)
+//BasePluginPtr PluginDirector::getExistingPlugin(const std::string & id)
 //{
 //    id = convertId(id);
 //    if(!isPluginAllowed(id)) {
@@ -153,7 +153,7 @@
 //    try {
 //        auto plugin = pluginManager)->getPlugin(id);
 //        plugin)->getClass())->getClassLoader())->loadClass(plugin)->getDescriptor())->getPluginClassName());
-//        return java_cast< BasePlugin* >(plugin);
+//        return java_cast< BasePluginPtr >(plugin);
 //    } catch (::java::lang::Throwable* ex) {
 //        throw new ::java::lang::IllegalArgumentException(std::stringBuilder().append(::java::text::MessageFormat::format(Cres::get())->getString(u"pluginNotAvail"_j), new voidArray({id)})))->append(ex)->getMessage())->toString(), ex);
 //    }
@@ -168,7 +168,7 @@
 //    auto plugin = getExistingPlugin(id);
 //    try {
 //        Log::PLUGINS())->debug(std::stringBuilder().append(u"Creating new instance of plugin "_j)->append(id)->toString());
-//        auto instance = java_cast< BasePlugin* >(plugin)->getClass())->newInstance());
+//        auto instance = java_cast< BasePluginPtr >(plugin)->getClass())->newInstance());
 //        instance)->setId(plugin)->getId());
 //        instance)->setDescription(plugin)->getDescription());
 //        instance)->setPluginDirector(this);

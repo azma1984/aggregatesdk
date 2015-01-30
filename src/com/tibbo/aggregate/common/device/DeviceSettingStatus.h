@@ -1,6 +1,7 @@
-#ifndef _DeviceSettingStatus_H_
-#define _DeviceSettingStatus_H_
+#ifndef DeviceSettingStatusH
+#define DeviceSettingStatusH
 
+ #define BOOST_THREAD_USE_LIB
 #include "datatable/TableFormat.h"
 #include "device/DeviceContext.h"
 #include <cstdio>
@@ -42,4 +43,5 @@ public:
     DeviceSettingStatus();
 
 };
+
 #endif

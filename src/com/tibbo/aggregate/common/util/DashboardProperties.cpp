@@ -16,7 +16,7 @@ int DashboardProperties::LAYOUT_SCROLLABLE = 1;
 TableFormatPtr DashboardProperties::FORMAT()
 {
     if (!FORMAT_) {
-        FORMAT_.reset( new TableFormat(1, 1) );
+	  //  FORMAT_.reset( new TableFormat(1, 1) );
         //TODO: Cres::get()->getString
 /*
         FieldFormat* ff = FieldFormat::create( std::string("<").append(FIELD_NAME).append("><S><F=N><D=")
@@ -54,23 +54,23 @@ TableFormatPtr DashboardProperties::FORMAT()
 }
 
 
-DashboardProperties::DashboardProperties() : 
-    AggreGateBean(FORMAT), layout(0), columns(0), closable(0), cleanup(0)
+DashboardProperties::DashboardProperties()
+//: AggreGateBean(FORMAT), layout(0), columns(0), closable(0), cleanup(0)
 {
 }
   
-DashboardProperties::DashboardProperties(DataRecord &data) :
-    AggreGateBean(FORMAT, data), layout(0), columns(0), closable(0), cleanup(0)
+DashboardProperties::DashboardProperties(DataRecord &data)
+//:  AggreGateBean(FORMAT, data), layout(0), columns(0), closable(0), cleanup(0)
 {
 }
   
-DashboardProperties::DashboardProperties(std::string& name, std::string& description) :
-    AggreGateBean(FORMAT), name(name), description(description), layout(0), columns(0), closable(0), cleanup(0)
-{    
+DashboardProperties::DashboardProperties(std::string& name, std::string& description)
+//: AggreGateBean(FORMAT), name(name), description(description), layout(0), columns(0), closable(0), cleanup(0)
+{
 }
-  
-DashboardProperties::DashboardProperties(std::string& name, std::string& description, int layout) :
-    AggreGateBean(FORMAT), name(name), description(description), layout(layout), columns(0), closable(0), cleanup(0)
+
+DashboardProperties::DashboardProperties(std::string& name, std::string& description, int layout)
+//: AggreGateBean(FORMAT), name(name), description(description), layout(layout), columns(0), closable(0), cleanup(0)
 {
 }
   
@@ -136,8 +136,8 @@ bool DashboardProperties::isClosable()
 
 DashboardProperties::operator std::string() const
 {
-    stringstream ss;
+	std::stringstream ss;
     ss <<"Dashboard [name=" <<name <<", description=" <<description <<", layout=" <<layout <<"]";
 
-    return ss.str();
+	return ss.str();
 }

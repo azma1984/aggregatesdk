@@ -49,21 +49,23 @@ int TimeUnit::hashCode()
 
 bool TimeUnit::equals(AgObjectPtr obj)
 {
-    if(this == obj)
-    {
-      return true;
-    }
+//todo E2034 Cannot convert 'TimeUnit * const' to 'AgObject * AgObjectPtr::*'
 
-    if(obj == 0)
-    {
-     return false;
-    }
-
-    TimeUnit* other = (TimeUnit*)(obj);
-    if(unit != other->unit)
-    {
-     return false;
-    }
+//    if(this == obj)
+//    {
+//      return true;
+//    }
+//
+//    if(obj == 0)
+//    {
+//     return false;
+//    }
+//
+//    TimeUnit* other = (TimeUnit*)(obj);
+//    if(unit != other->unit)
+//    {
+//     return false;
+//    }
     return true;
 }
 

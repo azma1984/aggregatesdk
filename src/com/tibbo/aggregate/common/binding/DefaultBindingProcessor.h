@@ -15,20 +15,28 @@
 #include "util/Util.h"
 #include "binding/BindingProcessor.h"
 #include "binding/BindingProvider.h"
+#include "util/TimerTask.h"
+#include "util/Future.h"
+#include "util/ExecutorService.h"
+#include "util/Timer.h"
+#include "util/Callable.h"
 #include <list>
+#include <set>
+
+
 
 class DefaultBindingProcessor : public BindingProcessor
 {
 private:
     BindingProviderPtr provider;
     EvaluatorPtr evaluator;
-	//Timer* timer;  todo
-   // ExecutorServicePtr executionService;  todo
-    bool disableStartupConcurrency;
+	Timer* timer;
+	ExecutorServicePtr executionService;
+	bool disableStartupConcurrency;
     bool shareConcurrency;
 	std::list<ReferenceListenerPtr>  listeners;
-  //  std::list<TimerTask>  timerTasks;  todo
-	//std::set  tasks;   todo
+	std::list<TimerTask*>  timerTasks;
+	std::set<Future*>  tasks;
 	bool stopped;
 	bool enabled;
 	void startImpl(bool concurrentProcessing);
@@ -46,11 +54,11 @@ public:
 
 	void stop();
 	bool isStopped();
-   //	void submit(::java::util::concurrent::Callable* task); todo
-   //	void setExecutionService(::java::util::concurrent::ExecutorService* service);   todo
+	void submit(Callable* task);
+	void setExecutionService(ExecutorServicePtr service);
 	void setEnabled(bool enabled);
 
- //	::java::util::concurrent::ExecutorService* getExecutorService(); todo
+	ExecutorServicePtr getExecutorService();
 
 	BindingProviderPtr getProvider();
 	EvaluatorPtr getEvaluator();
@@ -58,8 +66,8 @@ public:
 	void setDisableStartupConcurrency(bool disableStartupConcurrency);
 
 	DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator);
-  //	DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator, ::java::util::concurrent::ExecutorService* executionService);   todo
-  //	DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator, ::java::util::Timer* timer, ::java::util::concurrent::ExecutorService* executionService);
+	DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator, ExecutorServicePtr executionService);
+	DefaultBindingProcessor(BindingProviderPtr provider, EvaluatorPtr evaluator, Timer* timer, ExecutorServicePtr executionService);
 
 };
 

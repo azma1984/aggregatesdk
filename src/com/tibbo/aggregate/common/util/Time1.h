@@ -1,8 +1,9 @@
-#ifndef time1H
+﻿#ifndef time1H
 #define time1H
 
 #include <ctime>
 #include <string>
+#include <util/SString.h>
 
 
 /**

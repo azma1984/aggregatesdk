@@ -1,7 +1,7 @@
 #ifndef VariableDataH
 #define VariableDataH
 #include "context/VariableDefinition.h"
-
+#include <boost/thread/shared_mutex.hpp>
 
 //todo - class stub
 class VariableData:Comparable
@@ -9,7 +9,7 @@ class VariableData:Comparable
 private:
     VariableDefinitionPtr definition;
     AgObjectPtr value;
-   // boost::shared_mutex readWriteLock;  todo
+	boost::shared_mutex readWriteLock;
     long getCount;
     long setCount;
     bool getterCached;
@@ -28,7 +28,7 @@ public:
     void setValue(AgObjectPtr value);
 
 public:
-   // boost::shared_mutex getReadWriteLock();  todo
+	boost::shared_mutex getReadWriteLock();
     long getGetCount();
     long getSetCount();
     bool isGetterCached();

@@ -37,22 +37,23 @@ DeviceAssetDefinition::DeviceAssetDefinition(const std::string& id, const std::s
 
 void DeviceAssetDefinition::Init()
 {
-   FORMAT =  TableFormatPtr(new TableFormat());
- 
-   FORMAT->setUnresizable(true);
-    
-   FORMAT->addField("<" + FIELD_ID + "><S><F=HRK>");
-   FORMAT->addField("<" + FIELD_DESCRIPTION + "><S><F=R><D=" + Cres::get()->getString("description") + ">");
-   FORMAT->addField("<" + FIELD_ENABLED + "><B><A=1><D=" + Cres::get()->getString("enabled") + ">");
-    
-   FORMAT->addField(FieldFormat::create("<" + FIELD_CHILDREN + "><T><F=N><D=" + Cres::get()->getString("devNestedAssets") + ">"));
-    
-  // todo - Functions::AGGREGATE define is "Expression/Function/functions.h"
-//   FORMAT->setNamingExpression(Functions::AGGREGATE + "({}, \"{env/previous} + ({" + FIELD_ENABLED + "} ? 1 : 0)\", 0) + '/' + {#" + DefaultReferenceResolver::RECORDS + "}");
-    
-   std::string ref = FIELD_CHILDREN + "#" + DataTableBindingProvider::PROPERTY_ENABLED;
-   std::string exp = "{" + FIELD_ENABLED + "}";
-   FORMAT->addBinding(ref, exp);
+//todo
+//   FORMAT =  TableFormatPtr(new TableFormat());
+//
+//   FORMAT->setUnresizable(true);
+//
+//   FORMAT->addField("<" + FIELD_ID + "><S><F=HRK>");
+//   FORMAT->addField("<" + FIELD_DESCRIPTION + "><S><F=R><D=" + Cres::get()->getString("description") + ">");
+//   FORMAT->addField("<" + FIELD_ENABLED + "><B><A=1><D=" + Cres::get()->getString("enabled") + ">");
+//
+//   FORMAT->addField(FieldFormat::create("<" + FIELD_CHILDREN + "><T><F=N><D=" + Cres::get()->getString("devNestedAssets") + ">"));
+//
+//  // todo - Functions::AGGREGATE define is "Expression/Function/functions.h"
+////   FORMAT->setNamingExpression(Functions::AGGREGATE + "({}, \"{env/previous} + ({" + FIELD_ENABLED + "} ? 1 : 0)\", 0) + '/' + {#" + DefaultReferenceResolver::RECORDS + "}");
+//
+//   std::string ref = FIELD_CHILDREN + "#" + DataTableBindingProvider::PROPERTY_ENABLED;
+//   std::string exp = "{" + FIELD_ENABLED + "}";
+//   FORMAT->addBinding(ref, exp);
 }
 std::string DeviceAssetDefinition::getId()
 {
@@ -123,18 +124,19 @@ int DeviceAssetDefinition::hashCode()
 
 bool DeviceAssetDefinition::equals(DeviceAssetDefinitionPtr obj)
 {
-    if (this == obj)
-        return true;
-
-    if (obj == NULL)
-        return false;
-
-    DeviceAssetDefinitionPtr other = (DeviceAssetDefinitionPtr)(obj);
-    if (other == NULL)
-        return false;
-
-    if (other->description != description)
-        return false;
+//todo
+//	if (this == obj)
+//		return true;
+//
+//	if (obj == NULL)
+//		return false;
+//
+//	DeviceAssetDefinitionPtr other = (DeviceAssetDefinitionPtr)(obj);
+//	if (other == NULL)
+//		return false;
+//
+//	if (other->description != description)
+//		return false;
 
     return true;
 }

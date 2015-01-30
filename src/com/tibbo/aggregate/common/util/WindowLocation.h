@@ -8,27 +8,14 @@
 #include "datatable/FieldFormat.h"
 #include "datatable/TableFormat.h"
 //#include "datatable/validator/ValidatorHelper.h"
-#include "expression/DefaultReferenceResolver.h"
+//#include "expression/DefaultReferenceResolver.h"
 
 
 class WindowLocation : public AggreGateBean
 {
 
 private:
-	static const std::string FIELD_STATE_;
-	static const std::string FIELD_SIDE_;
-	static const std::string FIELD_INDEX_;
-	static const std::string FIELD_WIDTH_;
-	static const std::string FIELD_HEIGHT_;
-	static const std::string FIELD_RESIZABLE_;
-	static const std::string FIELD_CLOSABLE_;
-	static const std::string FIELD_MOVABLE_;
-	static const std::string FIELD_FLOATABLE_;
-	static const std::string FIELD_MAXIMIZABLE_;
-	static const std::string FIELD_AUTOHIDABLE_;
-	static const std::string FIELD_KEY_;
 
-	static TableFormatPtr FORMAT_;
 	int state;
 	int side;
 	int index;
@@ -42,6 +29,22 @@ private:
 	bool autohidable;
 	const std::string & key;
 public:
+
+	static const std::string FIELD_STATE;
+	static const std::string FIELD_SIDE;
+	static const std::string FIELD_INDEX;
+	static const std::string FIELD_WIDTH;
+	static const std::string FIELD_HEIGHT;
+	static const std::string FIELD_RESIZABLE;
+	static const std::string FIELD_CLOSABLE;
+	static const std::string FIELD_MOVABLE;
+	static const std::string FIELD_FLOATABLE;
+	static const std::string FIELD_MAXIMIZABLE;
+	static const std::string FIELD_AUTOHIDABLE;
+	static const std::string FIELD_KEY;
+
+	static TableFormatPtr FORMAT;
+
 	static const int STATE_DOCKED=0;
 	static const int STATE_FLOATING = 1;
 	static const int STATE_SIDE_BAR = 2;
@@ -51,8 +54,8 @@ public:
 	static const int SIDE_RIGHT = 3;
 
 
-    void applyDefaultSize(::java::awt::Dimension* defaultSize);
-    int getState();
+   //	void applyDefaultSize(::java::awt::Dimension* defaultSize);
+	int getState();
     void setState(int state);
     int getSide();
     void setSide(int side);
@@ -80,28 +83,13 @@ public:
 
 	WindowLocation();
     WindowLocation(int state);
-    WindowLocation(::java::awt::Dimension* size);
+   // WindowLocation(::java::awt::Dimension* size);
     WindowLocation(int side, int index);
-    WindowLocation(int side, int index, ::java::awt::Dimension* size);
-    WindowLocation(int column, ::java::awt::Dimension* size);
+  //  WindowLocation(int side, int index, ::java::awt::Dimension* size);
+  //  WindowLocation(int column, ::java::awt::Dimension* size);
     WindowLocation(int state, int side, int index);
-    WindowLocation(int state, int side, int index, ::java::awt::Dimension* size);
+   //	WindowLocation(int state, int side, int index, ::java::awt::Dimension* size);
     WindowLocation(DataRecordPtr data);
-
-
-	static const std::string& FIELD_STATE();
-    static const std::string& FIELD_SIDE();
-    static const std::string& FIELD_INDEX();
-    static const std::string& FIELD_WIDTH();
-    static const std::string& FIELD_HEIGHT();
-    static const std::string& FIELD_RESIZABLE();
-    static const std::string& FIELD_CLOSABLE();
-    static const std::string& FIELD_MOVABLE();
-    static const std::string& FIELD_FLOATABLE();
-    static const std::string& FIELD_MAXIMIZABLE();
-    static const std::string& FIELD_AUTOHIDABLE();
-    static const std::string& FIELD_KEY();
-	static TableFormatPtr& FORMAT();
 
 };
 

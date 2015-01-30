@@ -245,10 +245,10 @@ java::lang::Class* AbstractAggreGateDeviceController::class_()
     return c;
 }
  */
-void AbstractAggreGateDeviceController::connect()
-{
-	AbstractDeviceController::connect();
-}
+//void AbstractAggreGateDeviceController::connect()
+//{
+//	AbstractDeviceController::connect();
+//}
   /*
 void AbstractAggreGateDeviceController::disconnect()
 {

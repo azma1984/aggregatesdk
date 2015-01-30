@@ -101,7 +101,7 @@ public:
     std::string valueAsString(const std::string& name);
     std::string toString();
     boost::shared_ptr<DataTable> wrap();
-    virtual DataRecord* clone() const;    
+    //virtual DataRecord* clone() const;  todo
 
     bool equals(AgObjectPtr obj);
 };

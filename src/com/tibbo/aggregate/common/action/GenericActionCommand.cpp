@@ -1,21 +1,28 @@
 ﻿#include "action/GenericActionCommand.h"
 
-//GenericActionCommand::GenericActionCommand()
-//{
-//    init();
-//}
-//
-//GenericActionCommand::GenericActionCommand(
-//    const std::string& type,
-//    TableFormatPtr requestFormat,
-//    TableFormatPtr responseFormat
-//) {
-//    ctor(type,requestFormat,responseFormat);
-//}
-//
+GenericActionCommand::GenericActionCommand()
+{
+	init();
+}
+
+ /**
+  * This constructor is used by specific implementations.
+  */
+GenericActionCommand::GenericActionCommand( const std::string& type, TableFormatPtr requestFormat, TableFormatPtr responseFormat)
+{
+  init();
+  this->responseFormat = responseFormat;
+  setType(type);
+ // this->parameters = DataTablePtr(new DataTable(requestFormat));  todo
+}
+
 //GenericActionCommand::GenericActionCommand(const std::string& type, const std::string& title)
 //{
-//    ctor(type,title);
+//    ctor();
+//    init();
+//    setType(type);
+//    this->title = title;
+//}
 //}
 //
 //GenericActionCommand::GenericActionCommand(
@@ -35,32 +42,14 @@
 //    ctor(requestId,title,parameters);
 //}
 //
-//void GenericActionCommand::init()
-//{
-//    interactive = true;
-//    last = false;
-//    batchEntry = false;
-//}
-//
-//void GenericActionCommand::ctor(
-//    const std::string& type,
-//    TableFormatPtr requestFormat,
-//    TableFormatPtr responseFormat
-//) {
-//    ctor();
-//    init();
-//    *(this->responseFormat) = *responseFormat;
-//    setType(type);
-//    this->parameters = new DataTable(requestFormat);
-//}
-//
-//void GenericActionCommand::ctor(const std::string& type, const std::string& title)
-//{
-//    ctor();
-//    init();
-//    setType(type);
-//    this->title = title;
-//}
+void GenericActionCommand::init()
+{
+    interactive = true;
+    last = false;
+    batchEntry = false;
+}
+
+
 //
 //void GenericActionCommand::ctor(
 //    const std::string& type,

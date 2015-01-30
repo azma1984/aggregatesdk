@@ -1,5 +1,5 @@
-#ifndef _VariableStatus_H_
-#define _VariableStatus_H_
+#ifndef VariableStatusH
+#define VariableStatusH
 
 //todo - class stub
 

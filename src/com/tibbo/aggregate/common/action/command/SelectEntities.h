@@ -1,5 +1,5 @@
-#ifndef _SelectEntities_H_
-#define _SelectEntities_H_
+#ifndef SelectEntitiesH
+#define SelectEntitiesH
 
 #include "action/GenericActionCommand.h"
 
@@ -71,4 +71,4 @@ class SelectEntities : public GenericActionCommand
     SelectEntities(const std::string & title, std::list<std::string> contextTypes, const std::string & rootContext, const std::string & defaultContext, const std::string & expandedContext, bool showChildren, bool allowMasks, bool showVars, bool showFuncs, bool showEvents, bool showFields, bool singleSelection);
 
 };
-#endif  //_SelectEntities_H_
+#endif  //SelectEntitiesH

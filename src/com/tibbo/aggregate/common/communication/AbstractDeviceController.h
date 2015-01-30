@@ -65,12 +65,12 @@ template <class I,class O> class AbstractDeviceController : public CommandParser
     CommandParserPtr getCommandParser();
 
     void setResetTimeoutsOnData(bool resetTimeoutWhenDataReceived);
-   // std::list  getActiveCommands(); todo
+	std::list< ReplyMonitor<O, I> >  getActiveCommands();
     long getCommandTimeout();
   //  ::org::apache::log4j::Logger* getLogger();  //todo
     CommandProcessorStatisticsPtr getStatistics();
 
-  //  AbstractDeviceController(long commandTimeout, ::org::apache::log4j::Logger* logger); todo
+    AbstractDeviceController(long commandTimeout/*, ::org::apache::log4j::Logger* logger*/); //todo
 };
 
 #endif

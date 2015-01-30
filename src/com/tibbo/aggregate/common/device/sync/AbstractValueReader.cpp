@@ -20,7 +20,7 @@ const std::string &AbstractValueReader::toString()
 
 DataTablePtr AbstractValueReader::read(CallerControllerPtr callerController,RequestControllerPtr requestController)
 {
- return 0;
+ return DataTablePtr();
 }
 
 

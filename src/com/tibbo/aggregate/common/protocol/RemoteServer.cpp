@@ -1,5 +1,5 @@
-#include "protocol/RemoteServer.h>
-#include "Cres.h"
+#include "protocol/RemoteServer.h"
+
 
 const int RemoteServer::DEFAULT_PORT = 6460;
 

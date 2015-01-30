@@ -1,10 +1,13 @@
-#ifndef _CONFIRM_H_
-#define _CONFIRM_H_
+#ifndef ConfirmH
+#define ConfirmH
 
-#include "action/ActionUtils.h"
-#include "action/GenericActionResponse.h"
+//#include "action/ActionUtils.h"
+//#include "action/GenericActionResponse.h"
 #include "action/GenericActionCommand.h"
+//#include "DataTable/DataRecord.h"
 #include <boost/shared_ptr.hpp>
+#include "AggreGateException.h"
+#include "Cres.h"
 
 #include <string>
 
@@ -17,7 +20,7 @@ class Confirm : public GenericActionCommand
 
 protected:
     void init();
-    DataTablePtr constructParameters();// todo it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+	DataTablePtr constructParameters();//it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
     GenericActionResponsePtr createDefaultResponse();
@@ -33,8 +36,8 @@ public:
 	static std::string CF_OPTION_TYPE;
 	static std::string CF_MESSAGE_TYPE;
 	static std::string RF_OPTION;
-    static TableFormatPtr CFT_CONFIRM; // todo it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
-    static TableFormatPtr RFT_CONFIRM;
+	static TableFormatPtr CFT_CONFIRM; //it is defined in com\tibbo\aggregate\common\datatable\TableFormat.h
+	static TableFormatPtr RFT_CONFIRM;
         
     Confirm();
     Confirm(const std::string &message);
@@ -42,4 +45,4 @@ public:
     Confirm(const std::string &title, DataTablePtr parameters);
 	
 };
-#endif//_CONFIRM_H_
+#endif//ConfirmH

@@ -5,10 +5,10 @@
 
 DefaultPermissionChecker::DefaultPermissionChecker()
 {
-    CallerControllerPtr unchecked = new UncheckedCallerController();
-
-    PermissionTypePtr nullType = new PermissionType(0, NULL_PERMISSIONS_, Cres::get().getString("secNoPerms"));
-    permissionTypes.push_back( nullType );
+//    CallerControllerPtr unchecked = new UncheckedCallerController();
+//
+//    PermissionTypePtr nullType = new PermissionType(0, NULL_PERMISSIONS_, Cres::get().getString("secNoPerms"));
+//    permissionTypes.push_back( nullType );
 }
 
 const std::string DefaultPermissionChecker::NULL_PERMISSIONS()
@@ -23,8 +23,8 @@ void DefaultPermissionChecker::setPermissionTypes(std::vector<PermissionTypePtr>
 
 PermissionsPtr DefaultPermissionChecker::getNullPermissions()
 {
-    PermissionsPtr newPermiss = new Permissions();
-    return newPermiss;
+	PermissionsPtr newPermiss = PermissionsPtr(new Permissions());
+	return newPermiss;
 }
 
 bool DefaultPermissionChecker::has(
@@ -32,8 +32,8 @@ bool DefaultPermissionChecker::has(
     PermissionsPtr requiredPermissions,
     ContextPtr accessedContext
 ) {
-    try
-    {
+//    try
+//	{
         if (caller == NULL) {
             return requiredPermissions->size() == 0;
         }
@@ -45,10 +45,10 @@ bool DefaultPermissionChecker::has(
         PermissionsPtr existingPermissions = caller->getPermissions();
 
         if (existingPermissions == NULL) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Permission level of '" + caller + "' is 'null' and allow nothing, need " + requiredPermissions);
-            }
-            return false;
+//			if (logger.isDebugEnabled()) {
+//				logger.debug("Permission level of '" + caller + "' is 'null' and allow nothing, need " + requiredPermissions);
+//			}
+			return false;
         }
 
         if (requiredPermissions == NULL || requiredPermissions->size() == 0) {
@@ -111,10 +111,12 @@ bool DefaultPermissionChecker::has(
         */
 
         return true;
-    }catch (Exception ex){
-      //Log.SECURITY.error("Error checking permissions: ", ex);
-      return false;
-    }
+//	}
+//	catch (Exception ex)
+//	{
+//	  //Log.SECURITY.error("Error checking permissions: ", ex);
+//	  return false;
+//	}
 }
 
 std::string DefaultPermissionChecker::getLevel(
@@ -122,8 +124,8 @@ std::string DefaultPermissionChecker::getLevel(
     const std::string& context,
     ContextManagerPtr cm
 ) {
-    try
-    {
+//    try
+//	{
         std::string level;
 
         if (permissions == NULL)
@@ -149,19 +151,19 @@ std::string DefaultPermissionChecker::getLevel(
         */
 
         return NULL_PERMISSIONS_;
-    }
-    catch (Exception ex)
-    {
-        throw new SecurityException("Error getting permission type of '" + permissions + "' in '" + context + "': ", ex);
-    }
+//    }
+//	catch (Exception ex)
+//	{
+//		throw new SecurityException("Error getting permission type of '" + permissions + "' in '" + context + "': ", ex);
+//	}
 }
 
-bool DefaultPermissionChecker::canSee(Permissions permissions, const std::string& context, ContextManagerPtr cm)
+bool DefaultPermissionChecker::canSee(PermissionsPtr permissions, const std::string& context, ContextManagerPtr cm)
 {
-    try {
-        if (permissions == NULL) {
-            return false;
-        }
+//	try {
+//		if (permissions == NULL) {
+//			return false;
+//		}
 
         //TODO: Permissions need iterable
 //        for (Permission* permission : permissions) {
@@ -186,16 +188,17 @@ bool DefaultPermissionChecker::canSee(Permissions permissions, const std::string
 //            }
 //        }
 
-        return false;
-        //TODO: exception
-    }catch (Exception ex) {
-        //TODO: Log
-        //Log.SECURITY.error("Error checking permissions: ", ex);
-        return false;
-    }
+//        return false;
+//		//TODO: exception
+//	}catch (Exception ex) {
+//		//TODO: Log
+//		//Log.SECURITY.error("Error checking permissions: ", ex);
+//		return false;
+//	}
+return true;
 }
 
-virtual std::string DefaultPermissionChecker::canActivate(
+std::string DefaultPermissionChecker::canActivate(
     PermissionsPtr existingPermissions,
     PermissionsPtr requiredPermissions,
     ContextManagerPtr cm
@@ -217,54 +220,55 @@ virtual std::string DefaultPermissionChecker::canActivate(
     return "";
 }
 
-bool DefaultPermissionChecker::isValid(const std::string& permissionLevel) {
-    try {
-        for (int i = 0; i < permissionTypes.size(); i++) {
-            if (permissionTypes[i]->getName()->equals(permissionLevel))
-            {
-              return true;
-            }
-        }
-
-        return false;
-        //TODO: exception
-    }catch (Exception ex) {
-        return false;
-    }
+bool DefaultPermissionChecker::isValid(const std::string& permissionLevel)
+{
+//    try {
+//		for (int i = 0; i < permissionTypes.size(); i++) {
+//			if (permissionTypes[i]->getName()->equals(permissionLevel))
+//			{
+//			  return true;
+//			}
+//		}
+//
+//		return false;
+//		//TODO: exception
+//	}catch (Exception ex) {
+//		return false;
+//	}
 }
 
 std::map<std::string, std::string> DefaultPermissionChecker::getPermissionLevels()
 {
-    std::map<std::string, std::string> pm;
+//    std::map<std::string, std::string> pm;
+//
+//	for (int i = 0; i < permissionTypes.size(); i++) {
+//		pm.insert( std::pair<std::string, std::string>(permissionTypes[i]->getName(), permissionTypes[i]->getDescription()) );
+//	}
 
-    for (int i = 0; i < permissionTypes.size(); i++) {
-        pm.insert( std::pair<std::string, std::string>(permissionTypes[i]->getName(), permissionTypes[i]->getDescription()) );
-    }
-
-    return pm;
+//    return pm;
 }
 
 
 bool DefaultPermissionChecker::hasNecessaryLevel(const std::string& existingLevel, const std::string& requiredLevel)
 {
-    int existingLevelPattern = findPattern(existingLevel);
-    int requiredLevelPattern = findPattern(requiredLevel);
-
-    if ((requiredLevelPattern & existingLevelPattern) != requiredLevelPattern) {
-        return false;
-    }
+//    int existingLevelPattern = findPattern(existingLevel);
+//	int requiredLevelPattern = findPattern(requiredLevel);
+//
+//	if ((requiredLevelPattern & existingLevelPattern) != requiredLevelPattern) {
+//		return false;
+//	}
 
     return true;
 }
 
 int DefaultPermissionChecker::findPattern(const std::string &level) /* throws(SecurityException) */
 {
-    for (int i = 0; i < permissionTypes.size(); i++) {
-        if (permissionTypes[i]->getName() == level) {
-            return permissionTypes[i]->getPattern();
-        }
-    }
-    throw new SecurityException("Permission level '" + level + "' not found");
+//    for (int i = 0; i < permissionTypes.size(); i++) {
+//		if (permissionTypes[i]->getName() == level) {
+//			return permissionTypes[i]->getPattern();
+//		}
+//	}
+//	throw new SecurityException("Permission level '" + level + "' not found");
 }
 
 bool DefaultPermissionChecker::contextMatches(
@@ -272,47 +276,47 @@ bool DefaultPermissionChecker::contextMatches(
     PermissionPtr requiredPermission,
     ContextPtr accessedContext
 ){
-    if (existingPermission->getContext() == NULL) {
-        return true;
-    }
-
-    std::string accessedPath = requiredPermission.getContext() != null ? requiredPermission.getContext() : (accessedContext != null ? accessedContext.getPath() : null);
-
-    if (accessedPath.empty()) {
-        return false;
-    }
-
-    std::list<std::string> allowedPaths = getAllowedPaths(existingPermission, accessedContext != NULL ? accessedContext->getContextManager() : null);
-
-    for (std::list<std::string>::iterator allowedPath = allowedPaths.begin(); it!=allowedPaths.end(); ++it) {
-        if (ContextUtils::matchesToMask(*allowedPath, accessedPath, true, false)) {
-            return true;
-        }
-    }
+//    if (existingPermission->getContext() == NULL) {
+//		return true;
+//	}
+//
+//	std::string accessedPath = requiredPermission.getContext() != null ? requiredPermission.getContext() : (accessedContext != null ? accessedContext.getPath() : null);
+//
+//	if (accessedPath.empty()) {
+//		return false;
+//	}
+//
+//	std::list<std::string> allowedPaths = getAllowedPaths(existingPermission, accessedContext != NULL ? accessedContext->getContextManager() : null);
+//
+//	for (std::list<std::string>::iterator allowedPath = allowedPaths.begin(); it!=allowedPaths.end(); ++it) {
+//		if (ContextUtils::matchesToMask(*allowedPath, accessedPath, true, false)) {
+//			return true;
+//		}
+//	}
 
     return false;
 }
 
 std::list<std::string> DefaultPermissionChecker::getAllowedPaths(PermissionPtr permission, ContextManagerPtr cm)
 {
-    if (cm != NULL && permission->getContext().endsWith(ContextUtils.CONTEXT_NAME_SEPARATOR + ContextUtils.CONTEXT_GROUP_MASK)) {
-        std::string truncated = permission->getContext().substr(0, permission->getContext().length() - 2);
-
-        Context<Context> groupContext = cm->get(truncated, unchecked);
-
-        if (groupContext != NULL && groupContext.isMapped())
-        {
-            std::list<std::string> allowedPaths;
-            //TODO: groupContext->getMappedChildren
-//            for (Context mappedChild : groupContext->getMappedChildren(unchecked)) {
-//                allowedPaths.add(mappedChild.getPath());
-//            }
-            return allowedPaths;
-        }
-    }
-
-    std::list<std::string> paths;
-    paths.push_back( permission->getContext() );
-
-    return paths;//Collections.singletonList(permission->getContext());
+//    if (cm != NULL && permission->getContext().endsWith(ContextUtils.CONTEXT_NAME_SEPARATOR + ContextUtils.CONTEXT_GROUP_MASK)) {
+//        std::string truncated = permission->getContext().substr(0, permission->getContext().length() - 2);
+//
+//        Context<Context> groupContext = cm->get(truncated, unchecked);
+//
+//        if (groupContext != NULL && groupContext.isMapped())
+//        {
+//            std::list<std::string> allowedPaths;
+//            //TODO: groupContext->getMappedChildren
+////            for (Context mappedChild : groupContext->getMappedChildren(unchecked)) {
+////                allowedPaths.add(mappedChild.getPath());
+////            }
+//            return allowedPaths;
+//        }
+//    }
+//
+//    std::list<std::string> paths;
+//    paths.push_back( permission->getContext() );
+//
+//    return paths;//Collections.singletonList(permission->getContext());
 }

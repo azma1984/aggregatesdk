@@ -9,10 +9,10 @@
 //#include "datatable/validator/TableKeyFieldsValidator.h"
 //#include "validator/ValidatorHelper.h"
 #include "expression/Expression.h"
-#include "datatable/AggreGateBean.h"
+//#include "datatable/AggreGateBean.h"
 #include <string>
 
-class EventEnrichmentRule : public AggreGateBean
+class EventEnrichmentRule //: public AggreGateBean
 {
  private:
     static const std::string FIELD_NAME;

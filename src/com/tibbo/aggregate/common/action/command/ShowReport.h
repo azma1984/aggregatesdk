@@ -15,10 +15,9 @@
 class ShowReport : public GenericActionCommand
 {
 private:
-
-  // ::unsigned charArray* reportData;   //todo
- //   WindowLocationPtr location;   //todo
-  //  DashboardPropertiesPtr dashboard;  //todo
+	char* reportData;
+	WindowLocationPtr location;
+	DashboardPropertiesPtr dashboard;
 
 public:
 	static const std::string CF_REPORT_DATA;
@@ -27,15 +26,15 @@ public:
 	static TableFormatPtr CFT_SHOW_REPORT;
     DataTablePtr constructParameters();
 
-   //	::unsigned charArray* getReportData();    //todo
-  //  void setReportData(::unsigned charArray* reportData);  //todo
-   // WindowLocationPtr getLocation();   //todo
-	//void setLocation(WindowLocationPtr location);   //todo
-   // DashboardPropertiesPtr getDashboard();   //todo
-   // void setDashboard(DashboardPropertiesPtr dashboard);  //todo
+	char* getReportData();
+	void setReportData(char* reportData);
+	WindowLocationPtr getLocation();
+	void setLocation(WindowLocationPtr location);
+	DashboardPropertiesPtr getDashboard();
+	void setDashboard(DashboardPropertiesPtr dashboard);
 
     ShowReport();
-   //	ShowReport(const std::string & title, char* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard);  //todo
+   	ShowReport(const std::string & title, char* reportData, WindowLocationPtr location, DashboardPropertiesPtr dashboard);
     ShowReport(const std::string & title, DataTablePtr parameters);
 
 };

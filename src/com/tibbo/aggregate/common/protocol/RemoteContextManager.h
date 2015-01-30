@@ -6,6 +6,14 @@
 #include "ProxyContext.h"
 #include "AggreGateDevice.h"
 
+#include "Cres.h"
+#include "event/ContextEventListener.h"
+#include "expression/Expression.h"
+#include "protocol/AbstractAggreGateDeviceController.h"
+#include "protocol/AggreGateCommandUtils.h"
+#include "protocol/ProxyContext.h"
+
+
 class RemoteContextManager : public DefaultContextManager< ProxyContext< Context/*<Context>*/ > >
 {
 

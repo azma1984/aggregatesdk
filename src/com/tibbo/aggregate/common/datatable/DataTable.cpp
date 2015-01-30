@@ -23,8 +23,8 @@ DataTable::DataTable() : id(0)
 {
 
 }
-
-virtual DataTable* clone()
-{
-    //TODO: clone
-}
+//
+//virtual DataTable* clone()
+//{
+//    //TODO: clone
+//}

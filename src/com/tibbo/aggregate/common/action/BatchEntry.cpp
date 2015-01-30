@@ -1,5 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/action/BatchEntry.java
-#include "BatchEntry.h"
+#include "action/BatchEntry.h"
 
 
 BatchEntry::BatchEntry(ActionContextPtr actionContext, InitialRequestPtr initialRequest)

@@ -132,7 +132,7 @@ DateDataTablePtr DefaultClientController::callFunction(ContextPtr con, const std
 }
 */
 
-   ContextEventListenerPtrDefaultClientController::getDefaultEventListener()
+   ContextEventListenerPtr DefaultClientController::getDefaultEventListener()
   {
     return defaultEventListener;
   }
@@ -455,8 +455,7 @@ ContextPtr DefaultClientController::getContext(const std::string &path)
    
   //return getContextManager()->get(path, getCallerController();
   
-  ContextPtr con=NULL;
-  return con;
+  return ContextPtr();
 }
 /*
 com::tibbo::aggregate::common::event::ContextEventListenerPtr DefaultClientController::getDefaultEventListener()

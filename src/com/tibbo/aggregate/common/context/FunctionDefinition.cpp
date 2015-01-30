@@ -66,7 +66,7 @@ void FunctionDefinition::setInputFormat(TableFormatPtr inputFormat)
 {
 	if(inputFormat != 0)
 	{
-	   inputFormat->makeImmutable(DataTablePtr());
+	 inputFormat->makeImmutable(DataTablePtr());
 	}
 	this->inputFormat = inputFormat;
 }
