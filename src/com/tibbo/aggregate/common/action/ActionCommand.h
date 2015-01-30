@@ -1,10 +1,11 @@
 #ifndef ActionCommandH
 #define ActionCommandH
 
-#include "ActionResponse.h"
-#include "RequestIdentifier.h"
+//#include "ActionResponse.h"
+//#include "RequestIdentifier.h"
 #include "util/Interface.h"
 #include "util/Cloneable.h"
+#include "util/Pointers.h"
 
 class ActionCommand : public Cloneable, public Interface
 {

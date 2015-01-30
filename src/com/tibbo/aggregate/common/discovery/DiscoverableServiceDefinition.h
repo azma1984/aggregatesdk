@@ -1,6 +1,6 @@
-#ifndef _DiscoverableServiceDefinition_H_
-#define _DiscoverableServiceDefinition_H_
-
+#ifndef DiscoverableServiceDefinitionH
+#define DiscoverableServiceDefinitionH
+  #define BOOST_THREAD_USE_LIB
 #include "util/Cloneable.h"
 //#include "discovery/DiscoveryProvider.h"
 #include "discovery/DiscoveryResultItem.h"
@@ -9,7 +9,7 @@
 #include <string>
 #include <list>
 #include <boost/shared_ptr.hpp>
-#include "datatable.h"
+#include "datatable/DataTable.h"
 
 
 class DiscoveryProvider;

@@ -2,7 +2,7 @@
 #define ServerContextH
 
 #include "context/Context.h"
-#include "context/VariableDefinition.h"
+//#include "context/VariableDefinition.h"
 #include "DataTable/DataTable.h"
 //#include "server/groupcontext.h"
 #include "data/event.h"

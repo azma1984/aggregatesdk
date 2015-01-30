@@ -1,6 +1,5 @@
 #include "Confirm.h"
-#include "AggreGateException.h"
-#include "Cres.h"
+
 
 std::string Confirm::CF_MESSAGE = "message";
 std::string Confirm::CF_OPTION_TYPE =  "optionType";
@@ -8,48 +7,46 @@ std::string Confirm::CF_MESSAGE_TYPE = "messageType";
 std::string Confirm::RF_OPTION = "option";
 
 
-Confirm::Confirm()
-{
-	init();
-	//todo
-   // GenericActionCommand(ActionUtils::CMD_CONFIRM, CFT_CONFIRM, RFT_CONFIRM);
-}
+//Confirm::Confirm():GenericActionCommand(ActionUtils::CMD_CONFIRM, CFT_CONFIRM, RFT_CONFIRM)
+//{
+//  init();
+//}
 
 Confirm::Confirm(const std::string &message)
 {
-    init();
-    //TODO:
-    Confirm(Cres::get()->getString("confirmation"), message, ActionUtils::YES_NO_OPTION, ActionUtils::QUESTION_MESSAGE);
-//    this->message = message;
-//    this->optionType = ActionUtils::YES_NO_OPTION;
-//    this->messageType = ActionUtils::QUESTION_MESSAGE;
+ init();
+	//TODO:
+ // Confirm(Cres::get()->getString("confirmation"), message, ActionUtils::YES_NO_OPTION, ActionUtils::QUESTION_MESSAGE);
+
 }
 
-Confirm::Confirm(const std::string &title, const std::string &message, int optionType, int messageType)
-{
-    init();
-   // GenericActionCommand(ActionUtils::CMD_CONFIRM, title);   todo
-    this->message = message;
-    this->optionType = optionType;
-    this->messageType = messageType;
-}
+//Confirm::Confirm(const std::string &title, const std::string &message, int optionType, int messageType):GenericActionCommand(ActionUtils::CMD_CONFIRM, title)
+//{
+// init();
+//
+// this->message = message;
+// this->optionType = optionType;
+// this->messageType = messageType;
+//}
 
 
-Confirm::Confirm(const std::string& title, DataTablePtr parameters)
-{
-//todo
-   // GenericActionCommand(ActionUtils::CMD_CONFIRM, title, parameters, CFT_CONFIRM);
-}
+//Confirm::Confirm(const std::string& title, DataTablePtr parameters):GenericActionCommand(ActionUtils::CMD_CONFIRM, title, parameters, CFT_CONFIRM)
+//{
+//
+//}
 
 
 DataTablePtr Confirm::constructParameters()
 {
-    DataRecordPtr dr( new DataRecord(CFT_CONFIRM.get()) );
-    dr->addString(message);
-    dr->addInt(optionType);
-    dr->addInt(messageType);
+//todo
+ //	DataRecordPtr dr( new DataRecord(CFT_CONFIRM) );
+ //	dr->addString(message);
+//	dr->addInt(optionType);
+ //	dr->addInt(messageType);
 
-    return dr;
+  //	return dr;
+
+   return DataTablePtr();
 }
 
 GenericActionResponsePtr Confirm::createDefaultResponse()
@@ -142,17 +139,20 @@ void Confirm::setMessageType(int messageType)
 
 void Confirm::init()
 {
-    if (!CFT_CONFIRM) {
-        CFT_CONFIRM.reset( new TableFormat(1,1) );
-
-        CFT_CONFIRM->addField(std::string("<").append(Confirm::CF_MESSAGE).append("><S>"));
-        CFT_CONFIRM->addField(std::string("<").append(Confirm::CF_OPTION_TYPE).append("><I>"));
-        CFT_CONFIRM->addField(std::string("<").append(Confirm::CF_MESSAGE_TYPE).append("><I>"));
-    }
-
-    if (RFT_CONFIRM) {
-        RFT_CONFIRM(new TableFormat(1, 1, std::string("<").append(RF_OPTION).append("><I><D=").append(Cres.get().getString("option")).append(">") ) );
-    }
+//todo
+//	if (!CFT_CONFIRM)
+//	{
+//	 CFT_CONFIRM.reset( new TableFormat(1,1) );
+//
+//	 CFT_CONFIRM->addField("<"+CF_MESSAGE+"><S>");
+//	 CFT_CONFIRM->addField("<"+CF_OPTION_TYPE+"><I>");
+//	 CFT_CONFIRM->addField("<"+CF_MESSAGE_TYPE+"><I>");
+//	}
+//
+//	if (RFT_CONFIRM)
+//	{
+//	 RFT_CONFIRM = TableFormatPtr(new TableFormat(1, 1, "<"+RF_OPTION+"><I><D="+Cres::get()->getString("option")+">"));
+//	}
 }
 
 

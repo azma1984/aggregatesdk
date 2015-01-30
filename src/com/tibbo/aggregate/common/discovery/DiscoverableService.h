@@ -1,5 +1,5 @@
-#ifndef _DiscoverableService_H_
-#define _DiscoverableService_H_
+#ifndef DiscoverableServiceH
+#define DiscoverableServiceH
 
 //#include "discovery/DiscoverableServiceDefinition.h"
 //#include "discovery/DiscoveryResultItem.h"
@@ -13,4 +13,4 @@ class DiscoverableService :  public Interface
     virtual std::list<DiscoveryResultItemPtr>  check(DiscoverableServiceDefinitionPtr definition,
                                                   const std::string& address, long timeout, int retriesCount) = 0;
 };
-#endif  //_DiscoverableService_H_
+#endif  //DiscoverableServiceH

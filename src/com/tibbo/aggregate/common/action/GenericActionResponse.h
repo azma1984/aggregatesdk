@@ -4,7 +4,7 @@
 #include <boost/shared_ptr.hpp>
 #include "action/ActionResponse.h"
 #include "action/RequestIdentifier.h"
-#include "datatable/DataTable.h"
+//#include "datatable/DataTable.h"
 
 
 class GenericActionResponse: public ActionResponse

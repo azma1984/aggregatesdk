@@ -34,7 +34,7 @@ void SynchronizationHandler::setSynchronizationEnabled(bool synchronizationEnabl
 
 DataTablePtr SynchronizationHandler::readFromCache(CallerControllerPtr caller, RequestControllerPtr request)
 {
-    return 0;
+	return DataTablePtr();
 }
 
 void SynchronizationHandler::writeToCache(CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value) 
@@ -73,9 +73,10 @@ DatePtr SynchronizationHandler::getServerModificationTime()
   return deviceContext->getSettingStatus(variable)->getTime();
 }
 
-DatePtr SynchronizationHandler::getDeviceModificationTime() 
+DatePtr SynchronizationHandler::getDeviceModificationTime()
 {
-    return deviceContext->getDriver()->getVariableModificationTime(getVariable());
+  //	return deviceContext->getDriver()->getVariableModificationTime(getVariable());
+ return DatePtr();
 }
 
 bool SynchronizationHandler::isUpdatedOnTheServer(CallerControllerPtr caller) 
@@ -92,7 +93,7 @@ VariableDefinitionPtr SynchronizationHandler::getPersistentDefinition(VariableDe
 {
 	//todo - Clone() is undefined
    // return vd->clone();
-	return 0;
+	return VariableDefinitionPtr();
 }
 
 SettingSynchronizationOptionsPtr SynchronizationHandler::getSynchronizationOptions()

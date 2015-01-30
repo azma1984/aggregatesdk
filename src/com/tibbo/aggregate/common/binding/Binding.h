@@ -1,5 +1,5 @@
-#ifndef _BINDING_H_
-#define _BINDING_H_
+#ifndef BindingH
+#define BindingH
 
 #include "util/Cloneable.h"
 //#include "expression/Expression.h"
@@ -7,7 +7,7 @@
 //#include "expression/ExpressionUtils.h"
 #include <boost/shared_ptr.hpp>
 #include "util/pointers.h"
-//Required Expression.h and Reference.h
+
 class Binding : public Cloneable
 {
 public:

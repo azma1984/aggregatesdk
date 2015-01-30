@@ -23,7 +23,7 @@ DiscoverableServiceDefinition::DiscoverableServiceDefinition(
 // TODO: abstarct?
 DiscoverableServicePtr DiscoverableServiceDefinition::createServiceInstance()
 {
-    return NULL;
+	return DiscoverableServicePtr();//NULL;
 }
 
 std::string DiscoverableServiceDefinition::getName()
@@ -91,7 +91,7 @@ DiscoverableServiceDefinitionPtr DiscoverableServiceDefinition::clone()
     catch (...)
     {
       std::cout <<"Unable to clone DiscoverableServiceDescription";
-      return 0;
+	  return DiscoverableServiceDefinitionPtr();//0;
     }
 
 }
@@ -124,12 +124,13 @@ bool DiscoverableServiceDefinition::isEnabledByDefault()
     return isEnabledByDefault_;
 }
 
-std::list<DiscoveryResultItem>  DiscoverableServiceDefinition::check(const std::string& addressString, long timeoutMilliseconds, int triesCountInt)
+std::list<DiscoveryResultItemPtr>  DiscoverableServiceDefinition::check(const std::string& addressString, long timeoutMilliseconds, int triesCountInt)
 {
 	//todo - Where the virtual function is defined createServiceInstance()?
-    std::list<DiscoveryResultItem> res = createServiceInstance()->check(this, addressString, timeoutMilliseconds, triesCountInt);
-    return res;
-
+  //  std::list<DiscoveryResultItem> res = createServiceInstance()->check(this, addressString, timeoutMilliseconds, triesCountInt);
+  //  return res;
+  std::list<DiscoveryResultItemPtr>  ret;
+  return ret;
 }
 
 std::string DiscoverableServiceDefinition::toString()

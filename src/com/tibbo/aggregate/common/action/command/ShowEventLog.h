@@ -22,7 +22,7 @@ class ShowEventLog : public GenericActionCommand
 private:
 
 	const std::string eventFilter;
-   //	EntityListPtr events;  todo
+	EntityListPtr events;
     bool showRealtime;
     bool showHistory;
     bool preloadHistory;
@@ -34,8 +34,8 @@ private:
     bool showEnrichments;
     DataTablePtr filterParameters;
     int  customListenerCode;
-//    WindowLocationPtr location;   todo
- //	DashboardPropertiesPtr dashboard;todo
+	WindowLocationPtr location;
+	DashboardPropertiesPtr dashboard;
 
 	void init();
 
@@ -63,8 +63,8 @@ public:
 
     const std::string & getEventFilter();
     void setEventFilter(const std::string & eventFilter);
-	//EntityListPtr getEvents();   todo
-   // void setEvents(EntityListPtr eventList);   todo
+	EntityListPtr getEvents();
+	void setEvents(EntityListPtr eventList);
     bool isShowRealtime();
     void setShowRealtime(bool showRealtime);
     bool isShowHistory();
@@ -87,14 +87,14 @@ public:
     void setFilterParameters(DataTablePtr filterParameters);
     int  getCustomListenerCode();
     void setCustomListenerCode(int  customListenerCode);
-   // WindowLocationPtr getLocation(); //todo
-   // void setLocation(WindowLocationPtr location);// todo
-	//DashboardPropertiesPtr getDashboard();  todo
-   // void setDashboard(DashboardPropertiesPtr dashboard); todo
+	WindowLocationPtr getLocation();
+	void setLocation(WindowLocationPtr location);
+	DashboardPropertiesPtr getDashboard();
+	void setDashboard(DashboardPropertiesPtr dashboard);
 
-    ShowEventLog();
-   // ShowEventLog(const std::string & title, EntityListPtr eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, WindowLocationPtr location, DashboardPropertiesPtr dashboard);   todo
-    ShowEventLog(const std::string & title, const std::string & eventFilter, bool showRealtime, bool showHistory, bool preloadHistory);
+	ShowEventLog();
+    ShowEventLog(const std::string & title, EntityListPtr eventList, bool showRealtime, bool showHistory, bool preloadHistory, bool showContexts, bool showNames, bool showLevels, bool showAcknowledgements, bool showEnrichments, int  customListenerCode, WindowLocationPtr location, DashboardPropertiesPtr dashboard);
+	ShowEventLog(const std::string & title, const std::string & eventFilter, bool showRealtime, bool showHistory, bool preloadHistory);
     ShowEventLog(const std::string & title, DataTablePtr parameters);
 
 

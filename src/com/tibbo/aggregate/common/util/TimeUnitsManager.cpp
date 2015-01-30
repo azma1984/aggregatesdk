@@ -30,24 +30,24 @@ TimeUnitsManager::TimeUnitsManager(int minUnit, int maxUnit)
 
 void TimeUnitsManager::selectUnits()
 {
-    std::list<TimeUnit*> tu = TimeHelper::getInstance().getUnits();
-    for (std::list<TimeUnit*>::iterator it = tu.begin(); it != tu.end(); ++it) {
-        if ( (static_cast<TimeUnit*>(*it)->getUnit() >= minUnit) && (static_cast<TimeUnit*>(*it).getUnit() <= maxUnit) )
-        {
-            units.insert(*unit);
-        }
-    }
+//    std::list<TimeUnit*> tu = TimeHelper::getInstance().getUnits();
+//    for (std::list<TimeUnit*>::iterator it = tu.begin(); it != tu.end(); ++it) {
+//        if ( (static_cast<TimeUnit*>(*it)->getUnit() >= minUnit) && (static_cast<TimeUnit*>(*it).getUnit() <= maxUnit) )
+//        {
+//            units.insert(*unit);
+//        }
+//    }
 }
 
 void TimeUnitsManager::parseEditorOptions(const std::string & editorOptions)
 {
-    std::vector<std::string> parts = SString::split(editorOptions, ' ');
-    if (parts.size() > 0) {
-        minUnit = SString::fromNumber(parts.at(0));
-    }
-    if (parts.size() > 1) {
-        maxUnit = SString::fromNumber(parts.at(1));
-    }
+//    std::vector<std::string> parts = SString::split(editorOptions, ' ');
+//	if (parts.size() > 0) {
+//		minUnit = SString::fromNumber(parts.at(0));
+//	}
+//	if (parts.size() > 1) {
+//		maxUnit = SString::fromNumber(parts.at(1));
+//	}
 }
 
 int TimeUnitsManager::getMinUnit()
@@ -67,7 +67,7 @@ void TimeUnitsManager::setMinUnit(int minUnit)
 
 int TimeUnitsManager::getMaxUnit()
 {
-    return maxUnit
+    return maxUnit;
 }
 
 void TimeUnitsManager::setMaxUnit(int maxUnit)

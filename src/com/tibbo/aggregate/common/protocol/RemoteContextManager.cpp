@@ -1,25 +1,16 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/RemoteContextManager.java
-
-#include <RemoteContextManager.h>
-/*
-#include "Cres.h"
-#include "event/ContextEventListener.h"
-#include "expression/Expression.h"
-#include "protocol/AbstractAggreGateDeviceController.h"
-#include "protocol/AggreGateCommandUtils.h"
-#include "protocol/ProxyContext.h"
- */
+#include "protocol/RemoteContextManager.h"
 
 
-RemoteContextManager::RemoteContextManager(AggreGateDevicePtr server, bool async)
-{
 
- initialized = false;
- initializing = false;
-}
+//RemoteContextManager::RemoteContextManager(AggreGateDevicePtr server, bool async)
+//{
+//
+// initialized = false;
+// initializing = false;
+//}
 /*
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::initialize()
+void RemoteContextManager::initialize()
 {
 	if(initialized || initializing) {
         return;
@@ -37,18 +28,18 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::initialize()
     initialized = true;
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::stop()
+void RemoteContextManager::stop()
 {
     initialized = false;
     super::stop();
 }
 
-com::tibbo::aggregate::common::protocol::AbstractAggreGateDeviceControllerPtr com::tibbo::aggregate::common::protocol::RemoteContextManager::getController()
+AbstractAggreGateDeviceControllerPtr RemoteContextManager::getController()
 {
     return controller;
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendAddListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener)
+void RemoteContextManager::sendAddListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener)
 {
     try {
 		auto filterText = listener)->getFilter() != 0 ? listener)->getFilter())->getText() : static_cast< const std::string & >(0);
@@ -60,7 +51,7 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendAddListe
     }
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendRemoveListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener)
+void RemoteContextManager::sendRemoveListener(const std::string & context, const std::string & event, ContextEventListenerPtr listener)
 {
     try {
         auto filter = listener)->getFilter() != 0 ? listener)->getFilter())->getText() : static_cast< const std::string & >(0);
@@ -72,62 +63,58 @@ void com::tibbo::aggregate::common::protocol::RemoteContextManager::sendRemoveLi
     }
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerToContext(ProxyContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak)
+void RemoteContextManager::addListenerToContext(ProxyContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak)
 {
     con)->addEventListener(event, listener, false, !mask);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addListenerToContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak)
+void RemoteContextManager::addListenerToContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak)
 { 
     addListenerToContext(dynamic_cast< ProxyContextPtr >(con), event, listener, mask, weak);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListenerFromContext(ProxyContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask)
+void RemoteContextManager::removeListenerFromContext(ProxyContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask)
 {
     con)->removeEventListener(event, listener, !mask);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeListenerFromContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask)
+void RemoteContextManager::removeListenerFromContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask)
 { 
     removeListenerFromContext(dynamic_cast< ProxyContextPtr >(con), event, listener, mask);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener)
+void RemoteContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener)
 {
     super::addMaskEventListener(mask, event, listener);
     sendAddListener(mask, event, listener);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener)
+void RemoteContextManager::removeMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener)
 {
     super::removeMaskEventListener(mask, event, listener);
 	sendRemoveListener(mask, event, listener);
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemoved(ProxyContextPtr con)
+void RemoteContextManager::contextRemoved(ProxyContextPtr con)
 {
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::contextRemoved(ContextPtr con)
+void RemoteContextManager::contextRemoved(ContextPtr con)
 { 
     contextRemoved(dynamic_cast< ProxyContextPtr >(con));
 }
 
 
 
-java::lang::Class* com::tibbo::aggregate::common::protocol::RemoteContextManager::class_()
+java::lang::Class* RemoteContextManager::class_()
 {
     static AgClassPtr c = ::class_(u"com.tibbo.aggregate.common.protocol.RemoteContextManager", 56);
     return c;
 }
 
-void com::tibbo::aggregate::common::protocol::RemoteContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener, bool weak)
+void RemoteContextManager::addMaskEventListener(const std::string & mask, const std::string & event, ContextEventListenerPtr listener, bool weak)
 {
     super::addMaskEventListener(mask, event, listener, weak);
 }
 
-java::lang::Class* com::tibbo::aggregate::common::protocol::RemoteContextManager::getClass0()
-{
-    return class_();
-}
   */

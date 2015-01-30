@@ -1,5 +1,6 @@
-#ifndef VariableDefinitionH_
+#ifndef VariableDefinitionH
 #define VariableDefinitionH
+
  #define BOOST_THREAD_USE_LIB
 //#include "context/CompatibilityConverter.h"
 //#include "context/VariableGetter.h"
@@ -10,7 +11,9 @@
 #include "context/AbstractEntityDefinition.h"
 #include "util/Cloneable.h"
 #include "util/Comparable.h"
- #include "util/Pointers.h"
+#include "util/Pointers.h"
+
+#include <list>
 
 //todo - class stub
 class VariableDefinition : public AbstractEntityDefinition, public Cloneable , public Comparable
@@ -30,8 +33,8 @@ private:
 	long  changeEventsExpirationPeriod;
     bool localCachingEnabled;
     long  remoteCacheTime;
-    AgClassPtr valueClass;
-   // std::list<CompatibilityConverterPtr>  compatibilityConverters; todo
+	AgClassPtr valueClass;
+	std::list< CompatibilityConverterPtr >  compatibilityConverters;
 	bool persistent;
 	DataTablePtr defaultValue;
 
@@ -72,8 +75,8 @@ public:
     void setPersistent(bool persistent);
     bool isAllowUpdateEvents();
     void setAllowUpdateEvents(bool allowUpdateEvents);
-   // void addCompatibilityConverter(CompatibilityConverterPtr converter); todo
-   //	std::list  getCompatibilityConverters(); todo
+	void addCompatibilityConverter(CompatibilityConverterPtr converter);
+	std::list<CompatibilityConverterPtr>  getCompatibilityConverters();
 	VariableDefinitionPtr clone();
     int hashCode();
     bool equals(AgObjectPtr obj);

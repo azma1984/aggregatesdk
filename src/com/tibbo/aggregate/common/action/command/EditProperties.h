@@ -29,8 +29,8 @@ private:
     bool useDockableFrame;
     bool singleWindowMode;
     bool async;
-   //	WindowLocationPtr location;  //todo
-   //	DashboardPropertiesPtr dashboard; //todo
+	WindowLocationPtr location;
+	DashboardPropertiesPtr dashboard;
 	DataTablePtr createSlavesTable(std::list<std::string>  slaves);
 
 public:
@@ -75,10 +75,10 @@ public:
     void setSingleWindowMode(bool singleWindowMode);
     bool isAsync();
     void setAsync(bool async);
-	//WindowLocationPtr getLocation(); //todo
-  //	void setLocation(WindowLocationPtr location); //todo
-	//DashboardPropertiesPtr getDashboard(); //todo
-	//void setDashboard(DashboardPropertiesPtr dashboard);//todo
+	WindowLocationPtr getLocation();
+	void setLocation(WindowLocationPtr location);
+	DashboardPropertiesPtr getDashboard();
+	void setDashboard(DashboardPropertiesPtr dashboard);
 
 
 	EditProperties();

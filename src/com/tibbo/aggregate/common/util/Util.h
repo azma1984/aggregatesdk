@@ -5,6 +5,10 @@
 #include <list>
 #include <map>
 #include <vector>
+#include "util/pointers.h"
+#include <sstream>
+#include <iostream>
+
 
 class Util
 {
@@ -21,7 +25,7 @@ public:
     static bool convertToBoolean(AgObjectPtr value, bool validate, bool allowNull);    
     //static bool isFloatingPoint(Number* n);
     //TODO:
-  //  static std::string getObjectDescription(AgObjectPtr obj) const;
+	static std::string getObjectDescription(AgObjectPtr obj);// const;
 	//TODO:
 	/* 
     static Class* getListElementType(Type* listType);

@@ -47,7 +47,7 @@ protected:
 public:
     ActionManager(ActionDirectoryPtr actionDirectory);
     //TODO: not used
-    //std::list< ActionDefinitionPtr > resolveDefinitions(std::list< ActionLocatorPtr >  actionLocators);
+    std::list< ActionDefinitionPtr > resolveDefinitions(std::list< ActionLocatorPtr >  actionLocators);
 	ActionIdentifierPtr initActions(std::list<BatchEntryPtr>  entries, ActionContextPtr batchActionContext);
 	ActionIdentifierPtr initAction(ActionContextPtr actionContext, InitialRequestPtr initialParameters, ActionExecutionModePtr mode);
 	ActionCommandPtr service(ActionIdentifierPtr actionId, ActionResponsePtr actionRequest);

@@ -1,5 +1,5 @@
 #include "ActionUtils.h"
-#include "datatable/DataRecord.h"
+//#include "datatable/DataRecord.h"
 #include "action/DefaultActionInitializer.h"
 
 std::string ActionUtils::CMD_SHOW_MESSAGE = "showMessage";;
@@ -130,9 +130,12 @@ DataTablePtr ActionUtils::createDndActionParameters(ContextPtr acceptedContext)
 
 DataTablePtr ActionUtils::createDndActionParameters(const std::string& accepterContextPath)
 {
-    DataTablePtr paramsEntry( new DataTable(FORMAT_DND_ACTION) );
-    paramsEntry->addRecord()->addString(accepterContextPath);
-	return paramsEntry;
+//todo
+  //  DataTablePtr paramsEntry( new DataTable(FORMAT_DND_ACTION) );
+	//paramsEntry->addRecord()->addString(accepterContextPath);
+	//return paramsEntry;
+
+  return DataTablePtr();
 }
 
 //Not used
@@ -171,23 +174,24 @@ GenericActionCommandPtr ActionUtils::stepAction(ContextPtr context, ActionIdenti
 
 ActionUtils::ActionUtils()
 {
-    FORMAT_NORMAL_ACTION.reset( new TableFormat(1,1) );
-		{
-         FORMAT_NORMAL_ACTION->addField( std::string("<").append(FIELD_ACTION_EXECUTION_PARAMETERS).append(+"><T><F=N>") );
-        }
-
-    FORMAT_DND_ACTION.reset( new TableFormat(1, 1) );
-        {
-		 FORMAT_DND_ACTION->addField("<"+FIELD_ACTION_FROM_CONTEXT+"><S>");
-        }
-
-
-    FORMAT_PROPAGATED_ACTION.reset( new TableFormat(1, 1) );
-		{
-		 FORMAT_PROPAGATED_ACTION->addField("<"+FIELD_ACTION_TARGET_CONTEXT+"><S>");
-		}
-
-    ACTION_INITIALIZER.reset( new DefaultActionInitializer() );
+//todo
+//	FORMAT_NORMAL_ACTION.reset( new TableFormat(1,1) );
+//		{
+//		 FORMAT_NORMAL_ACTION->addField( std::string("<").append(FIELD_ACTION_EXECUTION_PARAMETERS).append(+"><T><F=N>") );
+//		}
+//
+//	FORMAT_DND_ACTION.reset( new TableFormat(1, 1) );
+//		{
+//		 FORMAT_DND_ACTION->addField("<"+FIELD_ACTION_FROM_CONTEXT+"><S>");
+//		}
+//
+//
+//	FORMAT_PROPAGATED_ACTION.reset( new TableFormat(1, 1) );
+//		{
+//		 FORMAT_PROPAGATED_ACTION->addField("<"+FIELD_ACTION_TARGET_CONTEXT+"><S>");
+//		}
+//
+//	ACTION_INITIALIZER.reset( new DefaultActionInitializer() );
 }
 
 

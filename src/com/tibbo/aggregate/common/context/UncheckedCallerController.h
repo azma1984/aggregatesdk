@@ -1,13 +1,13 @@
-#ifndef _UncheckedCallerController_H_
-#define _UncheckedCallerController_H_
+#ifndef UncheckedCallerControllerH
+#define UncheckedCallerControllerH
 
 //#include "security/DefaultPermissionChecker.h"
 //#include "security/Permissions.h"
-//#include "context/AbstractCallerController.h"
+#include "context/AbstractCallerController.h"
 #include "util/pointers.h"
 
 //todo - class stub
-class UncheckedCallerController// : public AbstractCallerController
+class UncheckedCallerController : public AbstractCallerController
 {
 
 private:

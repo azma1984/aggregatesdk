@@ -13,9 +13,9 @@ class DiscoverableServiceDefinition;
 class DiscoveryResultItem
 {
 private:
-   // DiscoverableServiceDefinitionPtr serviceDefinition;  todo
+  //	DiscoverableServiceDefinitionPtr serviceDefinition;  todo
    // DeviceRecommendationPtr deviceRecommendation;todo
-    DataRecordPtr parameters;
+	DataRecordPtr parameters;
 
 public:
   //	DiscoverableServiceDefinitionPtr getServiceDefinition(); todo

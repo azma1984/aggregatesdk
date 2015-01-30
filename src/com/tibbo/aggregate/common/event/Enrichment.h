@@ -1,15 +1,16 @@
 #ifndef _Enrichment_H_
 #define _Enrichment_H_
-
+#include <iostream>
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include "util/Date.h"
 #include "datatable/TableFormat.h"
-#include "Class.h"
+#include "util/AgClass.h"
 #include "datatable/DataTableConversion.h"
 #include "datatable/converter/DefaultFormatConverter.h"
 #include "event/Acknowledgement.h"
 #include "context/ContextUtils.h"
+
 
 class Enrichment
 {
@@ -35,7 +36,7 @@ class Enrichment
     std::string getAuthor();
     void setAuthor(const std::string& author);
 
-	static Class *class_()
+	static AgClass *class_()
 	{
 	 return 0;
 	}

@@ -79,7 +79,7 @@ public:
 
 	boost::mutex getExecutionLock();
 	//todo - JavaBeans
-   //	void removePropertyChangeListener(PropertyChangeListener l);
+   // void removePropertyChangeListener(PropertyChangeListener l);
 	//void addPropertyChangeListener(PropertyChangeListener l);
     bool isHeadless();
 	PermissionsPtr getPermissions();

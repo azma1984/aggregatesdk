@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include "Cres.h"
 
 /**
  * This class mimics the logic of org.rrd4j.core.Datasource
@@ -25,12 +26,12 @@ public:
 	ChangeProcessor(int type);
 	ChangeProcessor(int type, int outOfRangeValuesHandling, double minValue, double maxValue);
 
-	double process(long newTime, Double newValue);	
+	double process(long newTime, double newValue);
 
 	static std::map<int, std::string> getSelectionValues();
   
 private:
-	double calculateUpdateValue(long oldTime, Double oldValue, long newTime, double newValue);
+	double calculateUpdateValue(long oldTime, double oldValue, long newTime, double newValue);
 
 	static std::map<int, std::string> SELECTION_VALUES;
 	int type;

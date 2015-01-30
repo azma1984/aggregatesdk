@@ -12,15 +12,16 @@ const std::string Enrichment::FIELD_AUTHOR = "author";
 
 void Enrichment::Init()
 {
-  FORMAT = TableFormatPtr(new TableFormat());
-
-  FORMAT->addField("<"+FIELD_NAME+"><S><D="+Cres::get()->getString("name")+">");
-  FORMAT->addField("<"+FIELD_VALUE+"><S><D="+Cres::get()->getString("value")+">");
-  FORMAT->addField("<"+FIELD_DATE+"><D><D="+Cres::get()->getString("date")+">");
-  FORMAT->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
-  FORMAT->setNamingExpression(+"print({}, \"{"+FIELD_NAME+"} + '=' + {"+FIELD_VALUE+"} + ' (' + {"+FIELD_DATE+"} + ', ' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
-  
-  DataTableConversion::registerFormatConverter((FormatConverter*)(new DefaultFormatConverter(Enrichment::class_(), FORMAT)));
+//todo
+//  FORMAT = TableFormatPtr(new TableFormat());
+//
+//  FORMAT->addField("<"+FIELD_NAME+"><S><D="+Cres::get()->getString("name")+">");
+//  FORMAT->addField("<"+FIELD_VALUE+"><S><D="+Cres::get()->getString("value")+">");
+//  FORMAT->addField("<"+FIELD_DATE+"><D><D="+Cres::get()->getString("date")+">");
+//  FORMAT->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
+//  FORMAT->setNamingExpression(+"print({}, \"{"+FIELD_NAME+"} + '=' + {"+FIELD_VALUE+"} + ' (' + {"+FIELD_DATE+"} + ', ' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
+//
+//  DataTableConversion::registerFormatConverter((FormatConverter*)(new DefaultFormatConverter(Enrichment::class_(), FORMAT)));
 }
 
 

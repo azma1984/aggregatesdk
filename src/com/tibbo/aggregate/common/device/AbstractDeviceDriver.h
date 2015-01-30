@@ -1,6 +1,6 @@
-#ifndef _AbstractDeviceDriver_H_
-#define _AbstractDeviceDriver_H_
-
+#ifndef AbstractDeviceDriverH
+#define AbstractDeviceDriverH
+ #define BOOST_THREAD_USE_LIB
 #include "plugin/BasePlugin.h"
 #include "device/DeviceDriver.h"
 #include "context/CallerController.h"
@@ -66,8 +66,8 @@ public:
     virtual void finishSynchronization()=0 ;
     void setConnected(bool connected);
     DeviceContextPtr getDeviceContext();
-    DiscoveryProviderPtr createDiscoveryProvider();
-    std::string getProtocol();
+	DiscoveryProviderPtr createDiscoveryProvider();
+	std::string getProtocol();
 	TableFormatPtr getConnectionPropertiesFormat();
 
     TableFormatPtr createConnectionPropertiesFormat();
@@ -90,4 +90,4 @@ public:
 	void userDeinit(ContextPtr userContext);
 	void userInit(ContextPtr userContext);
 };
-#endif  //_AbstractDeviceDriver_H_
+#endif  //AbstractDeviceDriverH

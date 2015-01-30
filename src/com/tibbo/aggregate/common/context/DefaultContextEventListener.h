@@ -1,7 +1,7 @@
 #ifndef DefaultContextEventListenerH
 #define DefaultContextEventListenerH
 
-//#include "event/ContextEventListener.h"
+#include "event/ContextEventListener.h"
 //#include "context/CallerController.h"
 //#include "expression/Expression.h"
 //#include "expression/Evaluator.h"
@@ -14,7 +14,7 @@
 #include "util/pointers.h"
 
 //todo - class stub
-class DefaultContextEventListener //: public ContextEventListener
+class DefaultContextEventListener : public ContextEventListener
 {
 private:
     CallerControllerPtr callerController;

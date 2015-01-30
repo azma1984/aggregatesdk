@@ -1,5 +1,5 @@
-#ifndef _ExtensionsPlugin_H_
-#define _ExtensionsPlugin_H_
+#ifndef ExtensionsPluginH
+#define ExtensionsPluginH
 
 #include "plugin/BasePlugin.h"
 
@@ -13,3 +13,6 @@ public:
 
 
 };
+
+#endif
+

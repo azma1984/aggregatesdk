@@ -1,4 +1,6 @@
 #pragma once
+#ifndef BatchEntryH
+#define BatchEntryH
 
 #include "ActionContext.h"
 #include "InitialRequest.h"
@@ -11,14 +13,17 @@ class BatchEntry
 	InitialRequestPtr initialRequest;
 	bool fulfilled;
 
+
+
  public:
 	void setFulfilled(bool fulfilled);
-
- public:
-	BatchEntry(ActionContextPtr actionContext, InitialRequestPtr initialRequest);
+	bool isFulfilled();
 	ActionContextPtr getActionContext();
 	InitialRequestPtr getInitialRequest();
-	bool isFulfilled();
+
 	std::string toString();
 
+	BatchEntry(ActionContextPtr actionContext, InitialRequestPtr initialRequest);
 };
+
+#endif

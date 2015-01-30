@@ -1,5 +1,5 @@
-#ifndef H
-#define H
+#ifndef EditableChildContextConstantsH
+#define EditableChildContextConstantsH
 
 #include <string>
 
@@ -19,3 +19,6 @@ namespace EditableChildContextConstants
   static const std::string VF_CHILD_INFO_NAME = "name";
   static const std::string VF_CHILD_INFO_DESCRIPTION = "description";
 }
+
+#endif
+

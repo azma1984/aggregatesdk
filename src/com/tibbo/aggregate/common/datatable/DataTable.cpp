@@ -26,6 +26,5 @@ DataTable::DataTable() : id(0)
 
 DataTable* DataTable::clone() const
 {
-    //TODO: clone
-    return NULL;
+    return 0;
 }

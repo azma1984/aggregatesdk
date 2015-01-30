@@ -102,3 +102,4 @@ java::lang::Class* com::tibbo::aggregate::common::protocol::OutgoingAggreGateCom
     return class_();
 }
 	   */
+

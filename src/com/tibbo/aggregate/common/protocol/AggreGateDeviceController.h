@@ -16,7 +16,7 @@ public:
 	bool isActive();
 	CommandProcessorStatisticsPtr getStatistics();
 	CommandPtr sendCommand(CommandPtr cmd);
-	std::list  getActiveCommands();
+   //	std::list  getActiveCommands();
 
 
 };

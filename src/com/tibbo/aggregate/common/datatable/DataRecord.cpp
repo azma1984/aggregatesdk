@@ -681,7 +681,7 @@ boost::shared_ptr<DataTable> DataRecord::wrap()
 }
 
 
-DataRecord* DataRecord::clone() const
+DataRecord *DataRecord::clone() const
 {
 	//TODO: копирование
     /*DataRecord* cl;

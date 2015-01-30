@@ -1,28 +1,31 @@
 #include "discovery/DiscoveryResultItem.h"
 
 
-DiscoveryResultItem::DiscoveryResultItem(
-        DiscoverableServiceDefinitionPtr aDiscoverableServiceDefinition,
-        DataRecordPtr parametersDataRecord
-){
-    this->serviceDefinition = aDiscoverableServiceDefinition;
-    setParameters(parametersDataRecord);
-}
+//todo
+//DiscoveryResultItem::DiscoveryResultItem(
+//		DiscoverableServiceDefinitionPtr aDiscoverableServiceDefinition,
+//		DataRecordPtr parametersDataRecord
+//)
+//{
+//	this->serviceDefinition = aDiscoverableServiceDefinition;
+//	setParameters(parametersDataRecord);
+//}
 
-DiscoveryResultItem::DiscoveryResultItem(
-        DiscoverableServiceDefinitionPtr aDiscoverableServiceDefinition,
-        DataRecordPtr parametersDataRecord,
-        DeviceRecommendationPtr aDeviceRecommendation
-){
-    this->deviceRecommendation = aDeviceRecommendation;
-    this->serviceDefinition = aDiscoverableServiceDefinition;
-    setParameters(parametersDataRecord);
-}
+//todo
+//DiscoveryResultItem::DiscoveryResultItem(
+//		DiscoverableServiceDefinitionPtr aDiscoverableServiceDefinition,
+//		DataRecordPtr parametersDataRecord,
+//		DeviceRecommendationPtr aDeviceRecommendation
+//){
+//	this->deviceRecommendation = aDeviceRecommendation;
+//	this->serviceDefinition = aDiscoverableServiceDefinition;
+//	setParameters(parametersDataRecord);
+//}
 
-DiscoverableServiceDefinitionPtr DiscoveryResultItem::getServiceDefinition()
-{
-    return serviceDefinition;
-}
+//DiscoverableServiceDefinitionPtr DiscoveryResultItem::getServiceDefinition()
+//{
+//	return serviceDefinition;
+//}
 
 DataRecordPtr DiscoveryResultItem::getParameters()
 {
@@ -33,56 +36,56 @@ void DiscoveryResultItem::setParameters(DataRecordPtr parametersDataRecord)
 {
     this->parameters = parametersDataRecord;
 }
+//
+//std::string DiscoveryResultItem::getDeviceName()
+//{
+//	if (deviceRecommendation != NULL)
+//		return deviceRecommendation->getName();
+//
+//	return "";
+//}
 
-std::string DiscoveryResultItem::getDeviceName()
-{
-    if (deviceRecommendation != NULL)
-        return deviceRecommendation->getName();
+//std::string DiscoveryResultItem::getDeviceDescription()
+//{
+//	if (deviceRecommendation != NULL)
+//		return deviceRecommendation->getDescription();
+//
+//	return "";
+//}
 
-    return "";
-}
+//DiscoveryProviderPtr DiscoveryResultItem::getDiscoveryProvider()
+//{
+//	return serviceDefinition->getDiscoveryProvider();
+//}
 
-std::string DiscoveryResultItem::getDeviceDescription()
-{
-    if (deviceRecommendation != NULL)
-        return deviceRecommendation->getDescription();
+//std::string DiscoveryResultItem::getServiceName()
+//{
+//	return serviceDefinition->getName();
+//}
 
-    return "";
-}
+//std::string DiscoveryResultItem::getServiceDescription()
+//{
+//	return serviceDefinition->getDescription();
+//}
 
-DiscoveryProviderPtr DiscoveryResultItem::getDiscoveryProvider()
-{
-    return serviceDefinition->getDiscoveryProvider();
-}
-
-std::string DiscoveryResultItem::getServiceName()
-{
-    return serviceDefinition->getName();
-}
-
-std::string DiscoveryResultItem::getServiceDescription()
-{
-    return serviceDefinition->getDescription();
-}
-
-bool DiscoveryResultItem::isEnabledByDefault()
-{
-    return serviceDefinition->isEnabledByDefault();
-}
+//bool DiscoveryResultItem::isEnabledByDefault()
+//{
+//	return serviceDefinition->isEnabledByDefault();
+//}
 
 DataTablePtr DiscoveryResultItem::getParametersTable()
 {
     return (DataTablePtr)parameters->wrap();
 }
 
-DeviceRecommendationPtr DiscoveryResultItem::getDeviceRecommendation()
-{
-    return deviceRecommendation;
-}
+//DeviceRecommendationPtr DiscoveryResultItem::getDeviceRecommendation()
+//{
+//	return deviceRecommendation;
+//}
 
-std::string DiscoveryResultItem::toString()
-{
-    return std::string("DiscoveryResultItem [recommendation= ").append(deviceRecommendation->toString())
-            .append(", parameters= ").append(parameters->toString()).append("]");
-}
+//std::string DiscoveryResultItem::toString()
+//{
+//	return std::string("DiscoveryResultItem [recommendation= ").append(deviceRecommendation->toString())
+//			.append(", parameters= ").append(parameters->toString()).append("]");
+//}
 

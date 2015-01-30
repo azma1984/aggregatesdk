@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/event/EventEnrichmentRule.java
 #include "event/EventEnrichmentRule.h"
 
 
@@ -42,12 +41,13 @@ void EventEnrichmentRule::setExpression(const std::string & expression)
 }
 
 ExpressionPtr EventEnrichmentRule::getEnrichmentExpression()
-//{
+{
 //    if(enrichmentExpression == 0) 
 //	{
 //      enrichmentExpression = (expression != 0 && expression->length() > 0) ? new Expression(expression) : 0;
 //    }
-    return enrichmentExpression;
+  //  return enrichmentExpression;
+  return ExpressionPtr();
 }
 
 

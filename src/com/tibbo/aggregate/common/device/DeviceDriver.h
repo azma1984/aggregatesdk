@@ -272,7 +272,7 @@ public:
     * @throws DisconnectionException
     *           If device connection was lost during operation
     */
-    virtual DataTable executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters) = 0;//throws ContextException, DeviceException, DisconnectionException;
+    virtual DataTablePtr executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters) = 0;//throws ContextException, DeviceException, DisconnectionException;
 
     /**
     * This method should return timestamp of device setting last modification time as reported by the hardware. If modification-time-based synchronization is not supported, the method should return

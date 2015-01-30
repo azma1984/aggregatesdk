@@ -24,7 +24,7 @@ public:
     static std::map<int, std::string> getSelectionValues();
 
 private:
-    static std::map<int, std::string>& LEVELS();
-    static std::map<int, std::string>& SELECTION_VALUES();
+	static std::map<int, std::string> LEVELS();
+    static std::map<int, std::string> SELECTION_VALUES();
 };
 #endif 

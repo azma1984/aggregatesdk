@@ -12,8 +12,7 @@
 class EditWidget : public GenericActionCommand
 {
 private:
-
-	const std::string defaultContext;
+ 	const std::string defaultContext;
 	const std::string widgetContext;
 	const std::string widget;
 

@@ -1,6 +1,7 @@
 #ifndef BindingEventsHelperH
 #define BindingEventsHelperH
-  #define BOOST_THREAD_USE_LIB
+#define BOOST_THREAD_USE_LIB
+
 #include "binding/EvaluationOptions.h"
 #include "context/Context.h"
 #include "datatable/TableFormat.h"

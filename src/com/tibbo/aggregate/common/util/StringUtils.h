@@ -5,6 +5,12 @@
 #include "util/ElementList.h"
 #include "util/Pointers.h"
 
+
+#include <string>
+#include <list>
+#include <map>
+
+
 class StringUtils
 {
  public:

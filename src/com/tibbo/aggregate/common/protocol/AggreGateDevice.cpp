@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateDevice.java
 #include "AggreGateDevice.h"
 #include <string>
 
@@ -12,7 +11,7 @@ AggreGateDevice::AggreGateDevice()
     commandTimeout = DEFAULT_COMMAND_TIMEOUT;
     disabled = false;
     name = id;
-    description = type;
+	description = type;
 }
 
 AggreGateDevice::AggreGateDevice(std::string name)

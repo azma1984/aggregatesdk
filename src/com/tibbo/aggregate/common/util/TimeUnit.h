@@ -3,6 +3,7 @@
 
 #include <string>
 #include <stdint.h>
+#include "util/pointers.h"
 
 class TimeUnit
 {
@@ -21,7 +22,7 @@ class TimeUnit
     bool isSecondary();
     std::string toString();
     int hashCode();
-    bool equals(AgObjectPtr obj);
+	bool equals(AgObjectPtr obj);
 
     TimeUnit(int unit, uint64_t length, std::string description, int calendarField, bool secondary);
 };

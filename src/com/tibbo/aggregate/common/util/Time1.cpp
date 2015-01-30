@@ -1,5 +1,6 @@
+
 #include <util/Time1.h>
-#include <util/String.h>
+
 
 Time1::Time1() {
 	std::time_t curTime = time(NULL);
@@ -9,7 +10,7 @@ Time1::Time1() {
 	setSecond(timeinfo->tm_sec);
 }
 
-Time1::Time1(const Time & time) {
+Time1::Time1(const Time1 &time) {
 	setHour(time._hour);
 	setMinute(time._minute);
 	setSecond(time._second);
@@ -67,9 +68,9 @@ void Time1::setSecond(unsigned int second) {
 }
 
 std::string Time1::toString() const {
-	std::string hour = String::fromNumber(_hour);
-	std::string minute = String::fromNumber(_minute);
-	std::string second = String::fromNumber(_second);
+	std::string hour = SString::fromNumber(_hour);
+	std::string minute = SString::fromNumber(_minute);
+	std::string second = SString::fromNumber(_second);
 
 	if (hour.size() == 1) {
 		hour = "0" + hour;

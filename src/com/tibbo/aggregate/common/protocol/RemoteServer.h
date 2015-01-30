@@ -3,6 +3,7 @@
 
 #include "protocol/AggreGateNetworkDevice.h"
 #include <string>
+ #include "Cres.h"
 
 class RemoteServer: public AggreGateNetworkDevice
 {

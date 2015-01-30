@@ -1,9 +1,8 @@
 #ifndef DataH
 #define DataH
-
+#include "util/Pointers.h"
 #include "util/Cloneable.h"
 #include "util/AgObject.h"
-#include <boost/shared_ptr.hpp>
 #include <context/ContextManager.h>
 #include <context/CallerController.h>
 
@@ -40,7 +39,7 @@ public:
 
     void setAttachments(std::map<std::string, AgObjectPtr > &attachments);
 
-    virtual Data* clone() const;
+    //virtual Data* clone() const;   todo
     bool equals(Data* eq) const;
 		
 private:

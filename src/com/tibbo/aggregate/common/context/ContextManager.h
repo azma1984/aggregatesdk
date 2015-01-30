@@ -50,7 +50,7 @@ public:
       *          CallerController used for permission checking
       * @param contextName
       *          Context full name
-      * @return Requested context or null if this context not exist or not available with current PermissionsPtr/
+	  * @return Requested context or null if this context not exist or not available with current Permissions*/
     virtual ContextPtr get(const std::string &contextName, CallerControllerPtr caller) = 0;
 
     /**
@@ -61,7 +61,7 @@ public:
       *
       * @param contextName
       *          Context full name
-      * @return Requested context or null if this context not exist or not available with current PermissionsPtr/
+	  * @return Requested context or null if this context not exist or not available with current Permissions*/
      virtual ContextPtr get(const std::string &contextName) = 0;
 
      /**
@@ -80,11 +80,11 @@ public:
      virtual void removeMaskEventListener(const std::string &mask, const std::string &event, ContextEventListenerPtr listener) = 0;
 
      /**
-      * Called when new context is added to the ContextManagerPtr/
-     virtual void contextAdded(ContextPtr con) = 0;
+	  * Called when new context is added to the ContextManager*/
+	 virtual void contextAdded(ContextPtr con) = 0;
 
-     /**
-      * Called when context is removed from the ContextManagerPtr/
+	 /**
+	  * Called when context is removed from the ContextManager*/
      virtual void contextRemoved(ContextPtr con) = 0;
 
      /**
@@ -93,43 +93,43 @@ public:
      virtual void contextInfoChanged(ContextPtr con) = 0;
 
      /**
-      * Called when new variable definition is added to a ContextPtr/
-     virtual void variableAdded(ContextPtr con, VariableDefinitionPtr vd) = 0;
+	  * Called when new variable definition is added to a Context*/
+	 virtual void variableAdded(ContextPtr con, VariableDefinitionPtr vd) = 0;
 
-     /**
-      * Called when variable definition is removed from a ContextPtr/
-     virtual void variableRemoved(ContextPtr con, VariableDefinitionPtr vd) = 0;
+	 /**
+	  * Called when variable definition is removed from a Context*/
+	 virtual void variableRemoved(ContextPtr con, VariableDefinitionPtr vd) = 0;
 
-     /**
-      * Called when new function definition is added to a ContextPtr/
-     virtual void functionAdded(ContextPtr con, FunctionDefinitionPtr fd) = 0;
+	 /**
+	  * Called when new function definition is added to a Context*/
+	 virtual void functionAdded(ContextPtr con, FunctionDefinitionPtr fd) = 0;
 
-     /**
-      * Called when function definition is removed from a ContextPtr/
-     virtual void functionRemoved(ContextPtr con, FunctionDefinitionPtr fd) = 0;
+	 /**
+	  * Called when function definition is removed from a Context*/
+	 virtual void functionRemoved(ContextPtr con, FunctionDefinitionPtr fd) = 0;
 
-     /**
-      * Called when new event definition is added to a ContextPtr/
-     virtual void eventAdded(ContextPtr con, EventDefinitionPtr ed) = 0;
+	 /**
+	  * Called when new event definition is added to a Context*/
+	 virtual void eventAdded(ContextPtr con, EventDefinitionPtr ed) = 0;
 
-     /**
-      * Called when event definition is removed from a ContextPtr/
-     virtual void eventRemoved(ContextPtr con, EventDefinitionPtr ed) = 0;
+	 /**
+	  * Called when event definition is removed from a Context*/
+	 virtual void eventRemoved(ContextPtr con, EventDefinitionPtr ed) = 0;
 
-     /**
-      * Called when event if fired in one of the contexts in the tree
-      */
+	 /**
+	  * Called when event if fired in one of the contexts in the tree
+	  */
 	 virtual void queue(EventDataPtr ed, EventPtr ev) = 0;
 
-     /**
-      * Returns context manager's task execution service
-      */
+	 /**
+	  * Returns context manager's task execution service
+	  */
 	 virtual ExecutorService* getExecutorService() = 0;
 
 	 /**
 	  * Returns caller controller used by context manager for internal operations. This controller is unsafe since it doesn't perform any permission checking.
 	  */
-     virtual CallerControllerPtr getCallerController() = 0;
+	 virtual CallerControllerPtr getCallerController() = 0;
 
 };
 #endif

@@ -154,7 +154,7 @@ void AbstractDeviceDriver::writeVariableValue(VariableDefinitionPtr vd, DataTabl
 
 DatePtr AbstractDeviceDriver::getVariableModificationTime(const std::string & name) 
 {
-    return 0;
+    return DatePtr();
 }
 //
 //void AbstractDeviceDriver::updateVariableModificationTime(const std::string & name, DatePtr value) 

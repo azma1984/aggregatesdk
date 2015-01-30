@@ -24,7 +24,7 @@ struct ContextPlugin : public AggreGatePlugin
     * @throws PluginException
     *           If plugin internal error occurred
     */
-    virtual  void install(ContextManager contextManager) = 0;// throws ContextException, PluginException;
+	virtual  void install(ContextManagerPtr contextManager) = 0;// throws ContextException, PluginException;
 
     /**
     * This method is called before server context tree is destroyed.
@@ -34,7 +34,7 @@ struct ContextPlugin : public AggreGatePlugin
     * @throws PluginException
     *           If plugin internal error occurred
     */
-    virtual void deinstall(ContextManager contextManager) = 0 ;//throws ContextException, PluginException;
+	virtual void deinstall(ContextManagerPtr contextManager) = 0 ;//throws ContextException, PluginException;
 
     /**
     * This method is called when a new server context is created or loaded upon server startup.
@@ -44,7 +44,7 @@ struct ContextPlugin : public AggreGatePlugin
     * @throws PluginException
     *           If plugin internal error occurred
     */
-    virtual void install(ServerContext context) = 0 ;//throws ContextException, PluginException;
+    virtual void install(ServerContextPtr context) = 0 ;//throws ContextException, PluginException;
 
     /**
     * This method is called when a server context is destroyed or removed upon server shutdown.

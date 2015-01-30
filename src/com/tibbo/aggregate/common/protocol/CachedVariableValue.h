@@ -1,7 +1,7 @@
 #ifndef CachedVariableValueH
 #define CachedVariableValueH
 
-
+#include "datatable/DataTable.h"
 
 
 class CachedVariableValue

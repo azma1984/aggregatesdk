@@ -1,6 +1,6 @@
 #ifndef PermissionH
 #define PermissionH
-
+ #define BOOST_THREAD_USE_LIB
 #include "security/Permission.h"
 #include <string>
 #include <list>

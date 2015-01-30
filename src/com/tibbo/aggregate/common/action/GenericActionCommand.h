@@ -1,44 +1,32 @@
 #ifndef GenericActionCommandH
 #define GenericActionCommandH
 
-#include <boost/shared_ptr.hpp>
 #include "action/ActionCommand.h"
 #include "action/GenericActionResponse.h"
 #include "action/RequestIdentifier.h"
-#include "datatable/DataTable.h"
+//#include "datatable/DataTable.h"
 #include "datatable/DataTableConversion.h"
 #include "datatable/DataTableException.h"
-#include "datatable/TableFormat.h"
+//#include "datatable/TableFormat.h"
 #include "AggreGateException.h"
 
 class GenericActionCommand : public ActionCommand
 {
  private:
 	std::string type;
-    DataTablePtr parameters;
+	DataTablePtr parameters;
 	std::string title;
 	bool interactive;
 	bool last;
 	bool batchEntry;
     RequestIdentifierPtr requestId;
-    TableFormatPtr responseFormat;
-
-protected:
-    void ctor();
-    void ctor(const std::string& type, TableFormatPtr requestFormat,
-                         TableFormatPtr responseFormat);
-    void ctor(const std::string& type, const std::string& title);
-    void ctor(const std::string& type, const std::string& title,
-                         DataTablePtr parameters, TableFormatPtr format);
-    void ctor(const std::string& requestId, const std::string& title, DataTablePtr parameters);
+	TableFormatPtr responseFormat;
+	void init();
 
 public:
-    GenericActionCommand();
-    GenericActionCommand(const std::string& type, TableFormatPtr requestFormat,
-                         TableFormatPtr responseFormat);
-    GenericActionCommand(const std::string& type, const std::string& title);
-    GenericActionCommand(const std::string& type, const std::string& title,
-                         DataTablePtr parameters, TableFormatPtr format);
+	GenericActionCommand();
+
+	GenericActionCommand(const std::string& type, const std::string& title,DataTablePtr parameters, TableFormatPtr format);
     GenericActionCommand(const std::string& requestId, const std::string& title, DataTablePtr parameters);
 
     void setType(const std::string& type);
@@ -59,6 +47,10 @@ public:
     virtual bool isResponseValid(ActionResponsePtr actionRequest);
     virtual void setBatchEntry(bool batchEntry);
     virtual RequestIdentifierPtr getRequestId();
+<<<<<<< HEAD
+    //virtual GenericActionCommandPtr clone() const;  todo - conflicts with base class Cloneable
+=======
+>>>>>>> 3bd0c99b943ff6107dd58013b7bdee930e82cad9
 
     int hashCode();
     bool equals(AgObjectPtr obj);
@@ -66,7 +58,9 @@ public:
     //virtual GenericActionCommand * clone() const; // Для абстрактного класса этот метод не нужно реализовывать
 
 protected:
-    DataTablePtr constructParameters();        
+	DataTablePtr constructParameters();
+	GenericActionCommand(const std::string& type, TableFormatPtr requestFormat,TableFormatPtr responseFormat);
+	GenericActionCommand(const std::string& type, const std::string& title);
 };
 
 #endif

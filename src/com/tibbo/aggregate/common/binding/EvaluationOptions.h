@@ -11,23 +11,16 @@
 class EvaluationOptions : public Cloneable
 {
 
-public:
-    static const int STARTUP;
-    static const int EVENT;
-    static const int PERIODIC;
-
 private:
     int pattern;
     long period;
 	ReferencePtr activator;
     ExpressionPtr condition;
 
-protected:
-    void ctor();
-    void ctor(bool startup, bool event, long period);
-    void ctor(bool startup, const std::string & activator);
-
 public:
+	static const int STARTUP;
+    static const int EVENT;
+	static const int PERIODIC;
     int getPattern();
     long getPeriod();
 	ReferencePtr getActivator();

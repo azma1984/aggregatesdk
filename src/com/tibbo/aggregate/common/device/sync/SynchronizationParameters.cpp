@@ -1,4 +1,4 @@
-#include "device/sync/SynchronizationParameters.h"
+﻿#include "device/sync/SynchronizationParameters.h"
 
 
 SynchronizationParameters::SynchronizationParameters()
@@ -122,49 +122,49 @@ int SynchronizationParameters::hashCode()
 
 bool SynchronizationParameters::equals(SynchronizationParametersPtr obj)
 {
-    if (this == obj)
-        return true;
+	if (SynchronizationParametersPtr(this) == obj)
+		return true;
 
     if (obj == NULL)
-        return false;
+		return false;
+		//todo
+	//SynchronizationParametersPtr other = dynamic_cast<SynchronizationParameters*>(obj);
+  //  if (other == NULL)
+  //		return false;
 
-    SynchronizationParametersPtr other = dynamic_cast<SynchronizationParametersPtr>(obj);
-    if (other == NULL)
-        return false;
-
-    if (connectOnly != other->connectOnly)
-        return false;
-
-    if (directionOverride != other->directionOverride)
-        return false;
-    //TODO: сравнить каждый эелемент set с other->variables
-//   if (!variables.equals(other.variables))
- //       return false;
-
-    if (shouldPersistStatus != other->shouldPersistStatus)
-        return false;
-    if (shouldReadMetadata != other->shouldReadMetadata)
-        return false;
-    if (shouldUseExtendedStatus != other->shouldUseExtendedStatus)
-        return false;
+//	if (connectOnly != other->connectOnly)
+//		return false;
+//
+//	if (directionOverride != other->directionOverride)
+//        return false;
+//	//TODO: сравнить каждый эелемент set с other->variables
+////   if (!variables.equals(other.variables))
+// //       return false;
+//
+//	if (shouldPersistStatus != other->shouldPersistStatus)
+//		return false;
+//	if (shouldReadMetadata != other->shouldReadMetadata)
+//		return false;
+//	if (shouldUseExtendedStatus != other->shouldUseExtendedStatus)
+//		return false;
 
     return true;
 }
 
-SynchronizationParametersPtr SynchronizationParameters::clone() const
-{
-    SynchronizationParametersPtr cl = new SynchronizationParameters(this);
-
-	cl->connectOnly=connectOnly;
-    cl->shouldReadMetadata=shouldReadMetadata;
-    cl->shouldPersistStatus=shouldPersistStatus;
-    cl->shouldUseExtendedStatus=shouldUseExtendedStatus;
-	//todo - copy elements std::set<>
-   // cl->variables = variables;
-
-    cl->directionOverride=directionOverride;
-    
-
-    return cl;
-}
+//SynchronizationParametersPtr SynchronizationParameters::clone() const
+//{
+//	SynchronizationParametersPtr cl = new SynchronizationParameters(this);
+//
+//	cl->connectOnly=connectOnly;
+//	cl->shouldReadMetadata=shouldReadMetadata;
+//	cl->shouldPersistStatus=shouldPersistStatus;
+//	cl->shouldUseExtendedStatus=shouldUseExtendedStatus;
+//	//todo - copy elements std::set<>
+//   // cl->variables = variables;
+//
+//	cl->directionOverride=directionOverride;
+//
+//
+//	return cl;
+//}
 

@@ -21,12 +21,12 @@ static Throwable getRootCause(Throwable& th)
 
 std::vector<char> Util::readStream(std::iostream& is)
 {
-    typedef std::istream_iterator<char> istream_iterator;
-
-    std::vector<char> buffer;
-    std::copy(istream_iterator(is), istream_iterator(), std::back_inserter(buffer));
-
-    return buffer;
+//    typedef std::istream_iterator<char> istream_iterator;
+//
+//    std::vector<char> buffer;
+//    std::copy(istream_iterator(is), istream_iterator(), std::back_inserter(buffer));
+//
+//    return buffer;
 }
 
 //TODO:
@@ -96,7 +96,7 @@ if (value == null)
 }
 
 //TODO:
-static bool Util::convertToBoolean(AgObjectPtr value, bool validate, bool allowNull)
+bool Util::convertToBoolean(AgObjectPtr value, bool validate, bool allowNull)
 {
     /*
     if (value == null)
@@ -161,7 +161,7 @@ static bool isFloatingPoint(Number& n)
 */
 
 //TODO:
-std::string Util::getObjectDescription(AgObjectPtr obj) const
+std::string Util::getObjectDescription(AgObjectPtr obj)// const
 {
     /*
     if (o == null)
@@ -218,40 +218,40 @@ int Util::parseVersion(const std::string& version)
 
 std::string Util::nameToDescription(const std::string& name)
 {
-    std::stringstream ss;
-
-    bool prevWasUpper = false;
-    bool nextToUpper = false;
-
-    for (int i = 0; i < name.length(); i++)
-    {
-        char c = name.at(i);
-
-        if (Character.isUpperCase(c))
-        {
-            if (!prevWasUpper && i != 0)
-            {
-              ss <<" ";
-            }
-            prevWasUpper = true;
-        }else {
-            prevWasUpper = false;
-        }
-
-        if (i == 0 || nextToUpper) {
-            c = Character.toUpperCase(c);
-            nextToUpper = false;
-        }
-
-        if (c == '_') {
-            ss <<" ";
-            nextToUpper = true;
-        }else{
-            ss <<c;
-        }
-    }
-
-    return ss.str();
+//	std::stringstream ss;
+//
+//	bool prevWasUpper = false;
+//	bool nextToUpper = false;
+//
+//	for (int i = 0; i < name.length(); i++)
+//    {
+//        char c = name.at(i);
+//
+//		if (Character.isUpperCase(c))
+//        {
+//            if (!prevWasUpper && i != 0)
+//			{
+//              ss <<" ";
+//			}
+//			prevWasUpper = true;
+//        }else {
+//			prevWasUpper = false;
+//		}
+//
+//		if (i == 0 || nextToUpper) {
+//			c = Character.toUpperCase(c);
+//            nextToUpper = false;
+//        }
+//
+//		if (c == '_') {
+//			ss <<" ";
+//			nextToUpper = true;
+//		}else{
+//			ss <<c;
+//		}
+//	}
+//
+//	return ss.str();
 }
 
 //TODO:

@@ -40,7 +40,7 @@ template <class T> class DefaultContextManager: public ContextManager
     bool async;
 	ContextPtr rootContext;
     CallerControllerPtr callerController;
-   //	EventDispatcherPtr eventDispatcher;  todo
+	EventDispatcherPtr eventDispatcher;
 	std::map< std::string, std::map<std::string, ContextEventListenerSetPtr> > eventListeners;
 	std::map< std::string, std::map<std::string, ContextEventListenerSetPtr> > maskListeners;
 	boost::shared_mutex maskListenersLock;
@@ -56,7 +56,7 @@ template <class T> class DefaultContextManager: public ContextManager
 	void setRoot(ContextPtr newRoot);
 	ContextPtr get(const std::string & contextName, CallerControllerPtr caller);
 	ContextPtr get(const std::string & contextName);
-		void addListenerToContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak);
+	void addListenerToContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask, bool weak);
 
 
     void removeListenerFromContext(ContextPtr con, const std::string & event, ContextEventListenerPtr listener, bool mask);

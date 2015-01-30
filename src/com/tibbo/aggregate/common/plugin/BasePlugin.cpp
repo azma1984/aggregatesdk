@@ -8,7 +8,7 @@ BasePlugin::BasePlugin()
 
 BasePlugin::BasePlugin(const std::string & description) 
 {
-  BasePlugin();
+ //BasePlugin();
  this->description = description;
 }
 

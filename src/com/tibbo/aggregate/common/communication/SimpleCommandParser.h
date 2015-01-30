@@ -13,9 +13,9 @@ class SimpleCommandParser : public AbstractCommandParser
 {
 private:
 	static const int BUFFER_SIZE = 1024;
-   // ::java::lang::Byte* startChar;    todo
-    unsigned char endChar;
-   // ::java::lang::Byte* endChar2;  todo
+	unsigned char startChar;
+	unsigned char endChar;
+    unsigned char endChar2;
     bool needBoth;
     bool started;
     bool waitingEndChar2;

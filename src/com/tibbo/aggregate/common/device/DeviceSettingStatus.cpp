@@ -10,16 +10,17 @@
 
 DeviceSettingStatus::DeviceSettingStatus()
 {
-  FORMAT = TableFormatPtr(new TableFormat());
-  FORMAT->addField("<" + FIELD_NAME +"><S>");
-  FORMAT->addField("<" + FIELD_TIME + "><D><F=N>");
-  FORMAT->addField("<" + FIELD_DURATION + "><L><F=N>");
-  FORMAT->addField("<" + FIELD_UPDATED + "><B>");
-  char buf[10];
-  sprintf_s(buf,"%d",DeviceContext::DIRECTION_DEVICE_TO_SERVER);
-  FORMAT->addField("<" + FIELD_DIRECTION + "><I><A=" + buf + ">");
-  FORMAT->addField("<" + FIELD_ERROR + "><S><F=N>");
-  direction = DeviceContext::DIRECTION_DEVICE_TO_SERVER;
+//todo
+//  FORMAT = TableFormatPtr(new TableFormat());
+//  FORMAT->addField("<" + FIELD_NAME +"><S>");
+//  FORMAT->addField("<" + FIELD_TIME + "><D><F=N>");
+//  FORMAT->addField("<" + FIELD_DURATION + "><L><F=N>");
+//  FORMAT->addField("<" + FIELD_UPDATED + "><B>");
+//  char buf[10];
+//  sprintf_s(buf,"%d",DeviceContext::DIRECTION_DEVICE_TO_SERVER);
+//  FORMAT->addField("<" + FIELD_DIRECTION + "><I><A=" + buf + ">");
+//  FORMAT->addField("<" + FIELD_ERROR + "><S><F=N>");
+//  direction = DeviceContext::DIRECTION_DEVICE_TO_SERVER;
 }
 
 

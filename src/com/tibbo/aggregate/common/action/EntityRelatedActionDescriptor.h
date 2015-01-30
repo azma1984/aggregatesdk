@@ -2,7 +2,7 @@
 #define EntityRelatedActionDescriptorH
 
 #include "datatable/AggreGateBean.h"
-#include "datatable/TableFormat.h"
+//#include "datatable/TableFormat.h"
 
 
 

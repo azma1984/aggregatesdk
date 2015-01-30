@@ -12,10 +12,10 @@
 class ReferenceListener : public Interface
 {
 public:
-    //TODO: AgObjectPtr
+
 	virtual void referenceChanged(ReferencePtr cause, const std::map<std::string, AgObjectPtr>& environment,
 								  ChangeCachePtr cache) = 0 ;
-	//TODO: AgObjectPtr
+
 	virtual void referenceChanged(ReferencePtr cause, const std::map<std::string, AgObjectPtr>& environment,
 								  ChangeCachePtr cache, bool asynchronousProcessing) = 0;
 	virtual BindingProcessorPtr getBindingProcessor() = 0;

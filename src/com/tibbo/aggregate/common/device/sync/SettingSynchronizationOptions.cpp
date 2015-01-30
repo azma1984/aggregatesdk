@@ -88,7 +88,7 @@ ExpressionPtr SettingSynchronizationOptions::getFilterExpression()
 {
     if((filterExpression == 0) && (filter.empty() == false) && (filter.length() > 0)) 
 	{
-        filterExpression = new Expression(filter);
+	 // filterExpression = new Expression(filter); todo
     }
     return filterExpression;
 }
@@ -96,7 +96,7 @@ ExpressionPtr SettingSynchronizationOptions::getFilterExpression()
 void SettingSynchronizationOptions::setFilter(const std::string & filter)
 {
     this->filter = filter;
-    filterExpression =0;
+	filterExpression.reset();// =0;
 }
 
 std::string SettingSynchronizationOptions::getCondition()
@@ -108,7 +108,7 @@ ExpressionPtr SettingSynchronizationOptions::getConditionExpression()
 {
     if((conditionExpression == 0) && (condition.empty() == false) && (condition.length() > 0)) 
 	{
-      conditionExpression = new Expression(condition);
+	  //conditionExpression = new Expression(condition);//todo
     }
     return conditionExpression;
 }
@@ -116,7 +116,7 @@ ExpressionPtr SettingSynchronizationOptions::getConditionExpression()
 void SettingSynchronizationOptions::setCondition(const std::string & condition)
 {
     this->condition = condition;
-    conditionExpression=0;
+	conditionExpression.reset();// =0;
 }
 
 SynchronizationHandlerPtr SettingSynchronizationOptions::getSynchronizationHandler()
@@ -141,24 +141,24 @@ void SettingSynchronizationOptions::incrementSynchronizationsCounter()
 
 
 
-SettingSynchronizationOptionsPtr SettingSynchronizationOptions::clone() const
-{
-  SettingSynchronizationOptionsPtrsso = new  SettingSynchronizationOptions;
-
-  sso->mode = mode;
-  sso->updateHistoryStorageTime = updateHistoryStorageTime;
-  sso->syncPeriod = syncPeriod;
-  sso->historyRate = historyRate;
-  sso->filter = filter;
-  sso->master = master;
-  sso->condition = condition;
-  //todo - functions clone() indefined
-//  sso->filterExpression       = filterExpression->clone();
-//  sso->conditionExpression    = conditionExpression->clone();
-//  sso->synchronizationHandler =synchronizationHandler->clone();
-  sso->synchronizationsCounter =synchronizationsCounter;
-  return sso;
-}
+//SettingSynchronizationOptionsPtr SettingSynchronizationOptions::clone() const
+//{
+//  SettingSynchronizationOptionsPtrsso = new  SettingSynchronizationOptions;
+//
+//  sso->mode = mode;
+//  sso->updateHistoryStorageTime = updateHistoryStorageTime;
+//  sso->syncPeriod = syncPeriod;
+//  sso->historyRate = historyRate;
+//  sso->filter = filter;
+//  sso->master = master;
+//  sso->condition = condition;
+//  //todo - functions clone() indefined
+////  sso->filterExpression       = filterExpression->clone();
+////  sso->conditionExpression    = conditionExpression->clone();
+////  sso->synchronizationHandler =synchronizationHandler->clone();
+//  sso->synchronizationsCounter =synchronizationsCounter;
+//  return sso;
+//}
 
 
 

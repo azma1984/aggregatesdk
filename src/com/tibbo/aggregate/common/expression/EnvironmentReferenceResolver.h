@@ -1,10 +1,11 @@
-#pragma once
+#ifndef EnvironmentReferenceResolverH
+#define EnvironmentReferenceResolverH
 
 #include "expression/AbstractReferenceResolver.h"
 #include <map>
 #include <boost/shared_ptr.hpp>
-
-class EnvironmentReferenceResolver : public AbstractReferenceResolver
+											  //todo
+class EnvironmentReferenceResolver //: public AbstractReferenceResolver
 {
 private:
 	std::map< std::string, boost::shared_ptr<void*> > environment;
@@ -16,6 +17,7 @@ public:
 	void setEnvironment(std::map< std::string, boost::shared_ptr<void*> > environment);
     std::map< std::string, boost::shared_ptr<void*> > getEnvironment();
 
-    // Generated
-    EnvironmentReferenceResolver();
+	EnvironmentReferenceResolver();
 };
+
+#endif

@@ -1,5 +1,5 @@
-#ifndef H
-#define H
+#ifndef UserSettingsH
+#define UserSettingsH
 
 #include "action/EntityRelatedActionDescriptor.h"
 #include "util/Cloneable.h"
@@ -9,12 +9,12 @@
 class UserSettings : public Cloneable
 {
 private:
-    const std::string datePattern;
-    const std::string timePattern;
-    const std::string timeZone;
+	std::string datePattern;
+	std::string timePattern;
+	std::string timeZone;
     int weekStartDay;
-    std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  variableActions;
-    std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  eventActions;
+	std::list< EntityRelatedActionDescriptorPtr >  variableActions;
+	std::list< EntityRelatedActionDescriptorPtr >  eventActions;
 
 public:
     /*
@@ -30,16 +30,17 @@ public:
     void setTimeZone(const std::string & timeZone);
     int getWeekStartDay();
     void setWeekStartDay(int weekStartDay);
-    std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  getVariableActions();
-    void setVariableActions(std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  variableActions);
-    std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  getEventActions();
-    void setEventActions(std::list<boost::shared_ptr<EntityRelatedActionDescriptor>>  eventActions);
+	std::list< EntityRelatedActionDescriptorPtr >  getVariableActions();
+	void setVariableActions(std::list <EntityRelatedActionDescriptorPtr>  variableActions);
+	std::list< EntityRelatedActionDescriptorPtr >  getEventActions();
+	void setEventActions(std::list< EntityRelatedActionDescriptorPtr >  eventActions);
     UserSettingsPtr clone();
-    void fill(ContextManagerPtr cm, CallerControllerPtr callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
-    void fillBasicProperties(ContextManagerPtr cm, CallerControllerPtr callerController) /* throws(ContextException, RemoteDeviceErrorException) */;
+	void fill(ContextManagerPtr cm, CallerControllerPtr callerController);
+    void fillBasicProperties(ContextManagerPtr cm, CallerControllerPtr callerController);
     void fillActions(ContextManagerPtr cm, CallerControllerPtr callerController);
 
-    // Generated
-    UserSettings();
+	UserSettings();
     UserSettings(ContextManagerPtr cm, CallerControllerPtr callerController);
 };
+
+#endif

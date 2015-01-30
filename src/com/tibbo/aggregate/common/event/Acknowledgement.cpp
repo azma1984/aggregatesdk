@@ -1,6 +1,5 @@
 #include "event/Acknowledgement.h"
-#include "Cres.h"
-#include "datatable/TableFormat.h"
+
 
 const std::string Acknowledgement::FIELD_AUTHOR = "author";
 const std::string Acknowledgement::FIELD_TIME = "time";
@@ -22,15 +21,16 @@ Acknowledgement::Acknowledgement(const std::string& author, Date time, const std
 
 void Acknowledgement::initFormat()
 {
-    if (FORMAT.get() == NULL)
-    {
-        FORMAT = TableFormatPtr(new TableFormat());
-        FORMAT->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
-        FORMAT->addField("<"+FIELD_TIME+"><D><D="+Cres::get()->getString("time")+">");
-        FORMAT->addField("<"+FIELD_TEXT+"><S><D="+Cres::get()->getString("text")+">");
-
-        FORMAT->setNamingExpression("print({}, \"{"+FIELD_TIME+"} + ': ' + {"+FIELD_TEXT+"} + ' (' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
-    }
+//todo
+//    if (FORMAT.get() == NULL)
+//	{
+//		FORMAT = TableFormatPtr(new TableFormat());
+//		FORMAT->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
+//		FORMAT->addField("<"+FIELD_TIME+"><D><D="+Cres::get()->getString("time")+">");
+//		FORMAT->addField("<"+FIELD_TEXT+"><S><D="+Cres::get()->getString("text")+">");
+//
+//		FORMAT->setNamingExpression("print({}, \"{"+FIELD_TIME+"} + ': ' + {"+FIELD_TEXT+"} + ' (' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
+//	}
 
   //todo
   //DataTableConversion::registerFormatConverter((FormatConverter*)(new DefaultFormatConverter(Acknowledgement::class_(), FORMAT)));
@@ -73,13 +73,14 @@ TableFormatPtr Acknowledgement::getFormat()
     return FORMAT;
 }
 
+ //todo
+//Acknowledgement *Acknowledgement::clone() const
+//{
+//	Acknowledgement *ac = new Acknowledgement;
+//	ac->author = this->author;
+//	ac->time = this->time;
+//	ac->text = this->text;
+//
+//	return ac;
+//}
 
-Acknowledgement *Acknowledgement::clone() const
-{
-    Acknowledgement *ac = new Acknowledgement;
-    ac->author = this->author;
-    ac->time = this->time;
-    ac->text = this->text;
-
-    return ac;
-}

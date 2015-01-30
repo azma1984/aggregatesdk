@@ -2,6 +2,7 @@
 #define KeyStrokeH
 
 //This class is necessary?
+//todo - class stub
 class KeyStroke
 {
 /*
