@@ -1,5 +1,6 @@
 #ifndef BatchContextH
 #define BatchContextH
+
 #include <list>
 #include "BatchEntry.h"
 #include "util/pointers.h"

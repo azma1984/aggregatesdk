@@ -20,8 +20,12 @@ private:
 	std::string name;
     bool eventConfirmation;
 	bool isSynchronized;
-
-   
+    static TableFormatPtr FIFT_LOGIN_;
+    static TableFormatPtr FOFT_LOGIN_;
+    static TableFormatPtr FOFT_REGISTER_;
+    static TableFormatPtr FOFT_GET_HISTORY_;
+    static TableFormatPtr FIFT_CONFIRM_EVENT_;
+    static TableFormatPtr EFT_EVENT_CONFIRMED_;
     
 protected:    
     void confirmEvent(int id);
@@ -44,15 +48,7 @@ public:
     static const std::string FOF_GET_HISTORY_VARIABLE;
     static const std::string FOF_GET_HISTORY_TIMESTAMP;
     static const std::string FOF_GET_HISTORY_VALUE;
-    static const std::string EF_EVENT_CONFIRMED_ID;
-    
-    
-    static TableFormatPtr FIFT_LOGIN;
-    static TableFormatPtr FOFT_LOGIN;
-    static TableFormatPtr FOFT_REGISTER;
-    static TableFormatPtr FOFT_GET_HISTORY;
-    static TableFormatPtr FIFT_CONFIRM_EVENT;
-    static TableFormatPtr EFT_EVENT_CONFIRMED; 
+    static const std::string EF_EVENT_CONFIRMED_ID;           
 
     bool isSynchronized1();
     void setSynchronized(bool isSynchronized);
@@ -63,6 +59,13 @@ public:
     void setupMyself(); 
 
     AgentContext(RemoteServerPtr server, const std::string &name, bool eventConfirmation);
+
+    static TableFormatPtr FIFT_LOGIN();
+    static TableFormatPtr FOFT_LOGIN();
+    static TableFormatPtr FOFT_REGISTER();
+    static TableFormatPtr FOFT_GET_HISTORY();
+    static TableFormatPtr FIFT_CONFIRM_EVENT();
+    static TableFormatPtr EFT_EVENT_CONFIRMED();
 
 };
 #endif

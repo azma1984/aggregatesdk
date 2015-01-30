@@ -1,4 +1,3 @@
-
 #ifndef ActionResultH
 #define ActionResultH
 

@@ -102,7 +102,7 @@ class AggreGatePlugin : public Interface
     * @param properties
     *          List of global plugin properties
 	* @return Plugin global config Context*/
-    virtual ContextPtrcreateGlobalConfigContext(ContextPtr rootContext, bool requestReboot,
+    virtual ContextPtr createGlobalConfigContext(ContextPtr rootContext, bool requestReboot,
                                                VariableDefinitionPtr properties) = 0;
 
     /**
@@ -115,18 +115,18 @@ class AggreGatePlugin : public Interface
     * @param properties
     *          List of user-level plugin properties
 	* @return Plugin user-level config Context*/
-    virtual ContextPtrcreateUserConfigContext(ContextPtr userContext, bool requestReboot,
+    virtual ContextPtr createUserConfigContext(ContextPtr userContext, bool requestReboot,
                                             VariableDefinitionPtr properties) = 0;
 
     /**
 	* Returns plugin's global configuration Context*
 	* @return Global configuration Context*/
-    virtual ContextPtrgetGlobalConfigContext() = 0;
+    virtual ContextPtr getGlobalConfigContext() = 0;
 
     /**
     * Returns plugin's user-level configuration context or NULL if user-level configuration is disabled for the user.
     *
     * @return User-level configuration Context*/
-    virtual ContextPtrgetUserConfigContext(const std::string& username) = 0;
+    virtual ContextPtr getUserConfigContext(const std::string& username) = 0;
 };
 #endif  //_AggreGatePlugin_H_

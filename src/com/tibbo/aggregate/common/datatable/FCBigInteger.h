@@ -2,15 +2,15 @@
 
 #include "datatable/converter/SimpleFormatConverter.h"
 
-class DateFCBigInteger
+class FCBigInteger
     : public SimpleFormatConverter
 {
 public:
-    FieldFormat* createFieldFormat(const std::string & name);
-    BigInteger* simpleToBean(void* value);
+    FieldFormatPtr createFieldFormat(const std::string & name);
+    //TODO:
+    long int/*BigInteger*/ simpleToBean(void* value);
     void* convertToTable(long int value, TableFormat* format);
 
-    // Generated
     FCBigInteger();
 
 public:   

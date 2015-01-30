@@ -15,35 +15,56 @@ const std::string BindingEventsHelper::EF_BINDING_VALUE = "value";
 const std::string BindingEventsHelper::EF_BINDING_CAUSE = "cause";
 const std::string BindingEventsHelper::EF_BINDING_ERROR = "error";
 const std::string BindingEventsHelper::EF_BINDING_ERROR_STACK = "stack";
-//
-//
-//
-//TableFormat BindingEventsHelper::EFT_BINDING_EXECUTION()
-//{
-//
-//    return EFT_BINDING_EXECUTION_;
-//}
-//
-//
-//TableFormat BindingEventsHelper::EFT_BINDING_EXECUTION_EXT()
-//{
-//
-//    return EFT_BINDING_EXECUTION_EXT_;
-//}
-//
-//
-//TableFormat BindingEventsHelper::EFT_BINDING_ERROR()
-//{
-//
-//    return EFT_BINDING_ERROR_;
-//}
-//
-//
-//TableFormat BindingEventsHelper::EFT_BINDING_ERROR_EXT()
-//{
-//
-//    return EFT_BINDING_ERROR_EXT_;
-//}
+
+
+//TODO:init
+TableFormat BindingEventsHelper::EFT_BINDING_EXECUTION()
+{
+    if (!EFT_BINDING_EXECUTION_)     {
+//        EFT_BINDING_EXECUTION.addField(FieldFormat.create("<" + EF_BINDING_TARGET + "><S><D=" + Cres.get().getString("target") + "><F=N><E=" + StringFieldFormat.EDITOR_CONTEXT + ">"));
+//        EFT_BINDING_EXECUTION.addField(FieldFormat.create("<" + EF_BINDING_EXPRESSION + "><S><F=N><D=" + Cres.get().getString("expression") + ">"));
+//        EFT_BINDING_EXECUTION.addField(FieldFormat.create("<" + EF_BINDING_VALUE + "><S><F=N><D=" + Cres.get().getString("value") + ">"));
+//        EFT_BINDING_EXECUTION.addField(FieldFormat.create("<" + EF_BINDING_ACTIVATOR + "><S><F=N><D=" + Cres.get().getString("wActivatorDescr") + ">"));
+//        EFT_BINDING_EXECUTION.addField(FieldFormat.create("<" + EF_BINDING_CONDITION + "><S><F=N><D=" + Cres.get().getString("condition") + ">"));
+//        EFT_BINDING_EXECUTION.addField(FieldFormat.create("<" + EF_BINDING_EXECUTION + "><S><D=" + Cres.get().getString("wExecution") + ">"));
+//        EFT_BINDING_EXECUTION.addField(FieldFormat.create("<" + EF_BINDING_CAUSE + "><S><F=N><D=" + Cres.get().getString("cause") + ">"));
+    }
+
+    return EFT_BINDING_EXECUTION_;
+}
+
+
+TableFormat BindingEventsHelper::EFT_BINDING_EXECUTION_EXT()
+{
+    if (!EFT_BINDING_EXECUTION_EXT_) {
+        //EFT_BINDING_EXECUTION_EXT.addField(FieldFormat.create("<" + EF_BINDING_CONTEXT + "><S><D=" + Cres.get().getString("context") + "><F=N><E=" + StringFieldFormat.EDITOR_CONTEXT + ">"), 0);
+    }
+
+    return EFT_BINDING_EXECUTION_EXT_;
+}
+
+
+TableFormat BindingEventsHelper::EFT_BINDING_ERROR()
+{
+    if (!EFT_BINDING_ERROR_) {
+//        EFT_BINDING_ERROR.removeField(EF_BINDING_VALUE);
+//        EFT_BINDING_ERROR.removeField(EF_BINDING_CONDITION);
+//        EFT_BINDING_ERROR.addField(FieldFormat.create("<" + EF_BINDING_ERROR + "><S><D=" + Cres.get().getString("error") + "><E=" + StringFieldFormat.EDITOR_TEXT_AREA + ">"));
+//        EFT_BINDING_ERROR.addField(FieldFormat.create("<" + EF_BINDING_ERROR_STACK + "><T><D=" + Cres.get().getString("stack") + ">"));
+    }
+
+    return EFT_BINDING_ERROR_;
+}
+
+
+TableFormat BindingEventsHelper::EFT_BINDING_ERROR_EXT()
+{
+    if (!EFT_BINDING_ERROR_EXT_) {
+        //EFT_BINDING_ERROR_EXT.addField(FieldFormat.create("<" + EF_BINDING_CONTEXT + "><S><D=" + Cres.get().getString("context") + "><F=N>"), 0);
+    }
+
+    return EFT_BINDING_ERROR_EXT_;
+}
 //
 //DataTablePtr BindingEventsHelper::createBindingErrorEventDataPtr(
 //    ContextPtr con,

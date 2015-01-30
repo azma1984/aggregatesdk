@@ -40,7 +40,7 @@ public:
     PersistenceBindingPtr clone();
     int hashCode();
     bool equals(AgObjectPtr obj);
-    const std::string & toString();
+    std::string toString();
 
 	PersistenceBinding();
     PersistenceBinding(DataRecordPtr record);

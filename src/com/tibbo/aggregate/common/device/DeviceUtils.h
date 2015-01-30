@@ -3,7 +3,6 @@
 
 #include "datatable/FieldFormat.h"
 #include "datatable/validator/IdValidator.h"
-#include "datatable/validator/ValidatorHelper.h"
 #include <string>
 #include "cres.h"
 

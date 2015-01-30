@@ -1,6 +1,4 @@
 #pragma once
-#ifndef BatchEntryH
-#define BatchEntryH
 
 #include "ActionContext.h"
 #include "InitialRequest.h"
@@ -25,5 +23,3 @@ class BatchEntry
 
 	BatchEntry(ActionContextPtr actionContext, InitialRequestPtr initialRequest);
 };
-
-#endif

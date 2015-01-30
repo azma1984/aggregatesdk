@@ -182,8 +182,6 @@ public:
     TableFormatPtr wrapSimple();
 
     virtual int hashCode();
-    TableFormatPtr wrap();
-
 
     static FieldFormatPtr create(const std::string &name, AgClassPtr valueClass);
     static FieldFormatPtr create(const std::string &name, char type);

@@ -16,9 +16,7 @@ private:
 
 public:
 	int getCode();
-
 	ActionExecutionMode(int code1);
-
 };
 
 #endif

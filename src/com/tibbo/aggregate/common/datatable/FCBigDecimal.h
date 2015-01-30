@@ -2,7 +2,7 @@
 
 #include "datatable/converter/SimpleFormatConverter.h"
 
-class DateFCBigDecimal
+class FCBigDecimal
     : public SimpleFormatConverter
 {
 

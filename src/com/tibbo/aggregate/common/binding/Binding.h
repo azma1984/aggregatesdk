@@ -17,8 +17,8 @@ public:
 	ExpressionPtr getExpression();
 	ReferencePtr getReference();
     int hashCode();
-    bool equals(BindingPtr obj);
-    BindingPtr clone();
+    bool equals(Binding *obj);
+    Binding* clone() const;
     std::string toString();
     long getId() const;
     void setId(long id);

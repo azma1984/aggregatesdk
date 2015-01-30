@@ -8,23 +8,16 @@
 #include "datatable/DataTable.h"
 #include <string>
 #include <boost/shared_ptr.hpp>
-//#include "Cres.h"
-//#include "binding/Binding.h"
-//#include "context/Context.h"
-//#include "datatable/DataRecord.h"
-//#include "datatable/DataTable.h"
-//#include "datatable/FieldFormat.h"
-//#include "datatable/TableFormat.h"
-//#include "datatable/field/StringFieldFormat.h"
-//#include "expression/Expression.h"
-//#include "expression/Reference.h"
-//#include "util/ThreadUtils.h"
+
 
 class BindingEventsHelper
 {
 private:
 	static const std::string executionTypeDescription(int method);
-
+    static TableFormatPtr EFT_BINDING_EXECUTION_;
+    static TableFormatPtr EFT_BINDING_EXECUTION_EXT_;
+    static TableFormatPtr EFT_BINDING_ERROR_;
+    static TableFormatPtr EFT_BINDING_ERROR_EXT_;
 
 
 public:
@@ -40,16 +33,17 @@ public:
 	static const std::string EF_BINDING_CAUSE;
 	static const std::string EF_BINDING_ERROR;
 	static const std::string EF_BINDING_ERROR_STACK;
-	static TableFormatPtr EFT_BINDING_EXECUTION;
-	static TableFormatPtr EFT_BINDING_EXECUTION_EXT;
-	static TableFormatPtr EFT_BINDING_ERROR;
-	static TableFormatPtr EFT_BINDING_ERROR_EXT;
-	static DataTablePtr createBindingErrorEventDataPtr(ContextPtr con,BindingPtr binding, int method,
-																	const std::string & activator, ExceptionPtr error);
+
+    static TableFormatPtr EFT_BINDING_EXECUTION();
+    static TableFormatPtr EFT_BINDING_EXECUTION_EXT();
+    static TableFormatPtr EFT_BINDING_ERROR();
+    static TableFormatPtr EFT_BINDING_ERROR_EXT();
+    static DataTablePtr createBindingErrorEventDataPtr(ContextPtr con,BindingPtr binding, int method,
+                                                       const std::string & activator, ExceptionPtr error);
     static DataTablePtr createBindingExecutionEventDataPtr(ContextPtr con, int method,
-																		BindingPtr binding,
-																		EvaluationOptionsPtr options,
-																		ReferencePtr cause, AgObjectPtr result);
+                                                           BindingPtr binding,
+                                                           EvaluationOptionsPtr options,
+                                                           ReferencePtr cause, AgObjectPtr result);
 };
 
 #endif

@@ -1,6 +1,4 @@
 #pragma once
- #ifndef ActionCommandRegistryH
-#define ActionCommandRegistryH
 
 #include "action/GenericActionCommand.h"
 #include <map>
@@ -20,6 +18,3 @@ public:
     GenericActionCommandPtr getCommand(const std::string& type);
 	ActionCommandRegistry();
 };
-
-
-#endif

@@ -9,20 +9,20 @@
 
 class StringIdentifier
 {
-  private:
-   std::string id;
+private:
+    std::string id;
 
-  public:
-   StringIdentifier(const std::string &id);
+public:
+    StringIdentifier(const std::string &id);
 
-   std::string getId();
+    std::string getId();
 
-   bool equals(AgObjectPtr obj);
+    bool equals(AgObjectPtr obj);
 
-  //todo - Whether this function is necessary?
-   int hashCode();
+    //todo - Whether this function is necessary?
+    int hashCode();
 
-   std::string toString();
+    std::string toString();
 };
 
 #endif

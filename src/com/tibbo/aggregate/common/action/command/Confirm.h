@@ -4,7 +4,7 @@
 //#include "action/ActionUtils.h"
 //#include "action/GenericActionResponse.h"
 #include "action/GenericActionCommand.h"
-//#include "DataTable/DataRecord.h"
+#include "datatable/TableFormat.h"
 #include <boost/shared_ptr.hpp>
 #include "AggreGateException.h"
 #include "Cres.h"
