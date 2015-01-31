@@ -72,7 +72,7 @@
 //	return wrapped)->getKeys();
 //}
 //
-//bool WrappingResourceBundle::equals(AgObjectPtr obj)
+//bool WrappingResourceBundle::equals(WrappingResourceBundle* obj)
 //{
 //	if(this) == obj) {
 //        return true;

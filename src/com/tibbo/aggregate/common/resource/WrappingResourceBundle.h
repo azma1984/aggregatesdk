@@ -23,7 +23,7 @@ public:
 	AgObjectPtr handleGetObject(const std::string & key);
 
    //::java::util::Enumeration* getKeys(); todo
-	bool equals(AgObjectPtr obj);
+    bool equals(WrappingResourceBundle* obj);
 	int hashCode();
 
    //	WrappingResourceBundle(::java::util::PropertyResourceBundle* wrapped); todo
