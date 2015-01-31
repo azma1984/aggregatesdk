@@ -18,7 +18,7 @@ const std::string BindingEventsHelper::EF_BINDING_ERROR_STACK = "stack";
 
 
 //TODO:init
-TableFormat BindingEventsHelper::EFT_BINDING_EXECUTION()
+TableFormatPtr BindingEventsHelper::EFT_BINDING_EXECUTION()
 {
     if (!EFT_BINDING_EXECUTION_)     {
 //        EFT_BINDING_EXECUTION.addField(FieldFormat.create("<" + EF_BINDING_TARGET + "><S><D=" + Cres.get().getString("target") + "><F=N><E=" + StringFieldFormat.EDITOR_CONTEXT + ">"));
@@ -34,7 +34,7 @@ TableFormat BindingEventsHelper::EFT_BINDING_EXECUTION()
 }
 
 
-TableFormat BindingEventsHelper::EFT_BINDING_EXECUTION_EXT()
+TableFormatPtr BindingEventsHelper::EFT_BINDING_EXECUTION_EXT()
 {
     if (!EFT_BINDING_EXECUTION_EXT_) {
         //EFT_BINDING_EXECUTION_EXT.addField(FieldFormat.create("<" + EF_BINDING_CONTEXT + "><S><D=" + Cres.get().getString("context") + "><F=N><E=" + StringFieldFormat.EDITOR_CONTEXT + ">"), 0);
@@ -44,7 +44,7 @@ TableFormat BindingEventsHelper::EFT_BINDING_EXECUTION_EXT()
 }
 
 
-TableFormat BindingEventsHelper::EFT_BINDING_ERROR()
+TableFormatPtr BindingEventsHelper::EFT_BINDING_ERROR()
 {
     if (!EFT_BINDING_ERROR_) {
 //        EFT_BINDING_ERROR.removeField(EF_BINDING_VALUE);
@@ -57,7 +57,7 @@ TableFormat BindingEventsHelper::EFT_BINDING_ERROR()
 }
 
 
-TableFormat BindingEventsHelper::EFT_BINDING_ERROR_EXT()
+TableFormatPtr BindingEventsHelper::EFT_BINDING_ERROR_EXT()
 {
     if (!EFT_BINDING_ERROR_EXT_) {
         //EFT_BINDING_ERROR_EXT.addField(FieldFormat.create("<" + EF_BINDING_CONTEXT + "><S><D=" + Cres.get().getString("context") + "><F=N>"), 0);

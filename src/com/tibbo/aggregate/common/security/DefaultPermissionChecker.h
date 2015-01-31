@@ -4,6 +4,7 @@
  #define BOOST_THREAD_USE_LIB
 #include "security/PermissionType.h"
 #include "security/PermissionChecker.h"
+#include "util/Pointers.h"
 #include <vector>
 
 class DefaultPermissionChecker : public PermissionChecker

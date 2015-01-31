@@ -73,8 +73,8 @@ private:
 	static const std::string SETTER_METHOD_PREFIX;
 	static const std::string GETTER_METHOD_PREFIX;
 
-	static const int VERY_LOW_PERFORMANCE_THRESHOLD = 120000;
-    static const int LOW_PERFORMANCE_THRESHOLD = 20000;
+    static const int VERY_LOW_PERFORMANCE_THRESHOLD ;
+    static const int LOW_PERFORMANCE_THRESHOLD;
 	ContextManagerPtr contextManager;
 	std::map<std::string, VariableDataPtr> variableData;
 	boost::shared_mutex variableDataLock; //много читателей, один писатель

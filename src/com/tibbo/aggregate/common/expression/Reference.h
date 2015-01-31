@@ -89,7 +89,7 @@ public:
     void setSchema(const std::string & schema);
     void setRow(int row);
     void setServer(const std::string & server);
-    Reference* clone();
+    Reference* clone() const;
     bool equals(Reference* obj);
     //int hashCode();
 

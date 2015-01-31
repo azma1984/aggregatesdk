@@ -31,7 +31,7 @@ std::string AbstractDeviceDriver::getPrimaryAddress()
 //   //Java
 //  //   final String primaryAddress = getPrimaryAddress();
 //  //  return primaryAddress != null ? Collections.singleton(primaryAddress) : Collections.<String> emptySet();
-//	//Collections.singleton(primaryAddress) - Возвращает объект как неизменяемый набор. Простейший способ преобразовать отдельный объект в набор.
+//	//Collections.singleton(primaryAddress) - Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ РєР°Рє РЅРµРёР·РјРµРЅСЏРµРјС‹Р№ РЅР°Р±РѕСЂ. РџСЂРѕСЃС‚РµР№С€РёР№ СЃРїРѕСЃРѕР± РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РѕС‚РґРµР»СЊРЅС‹Р№ РѕР±СЉРµРєС‚ РІ РЅР°Р±РѕСЂ.
 //
 ////C++
 //   std::string primaryAddress = getPrimaryAddress();

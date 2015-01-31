@@ -2,8 +2,8 @@
 #define BindingH
 
 #include "util/Cloneable.h"
-//#include "expression/Expression.h"
-//#include "expression/Reference.h"
+#include "expression/Expression.h"
+#include "expression/Reference.h"
 //#include "expression/ExpressionUtils.h"
 #include <boost/shared_ptr.hpp>
 #include "util/pointers.h"

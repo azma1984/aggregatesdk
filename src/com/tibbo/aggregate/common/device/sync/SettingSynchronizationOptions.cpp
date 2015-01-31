@@ -141,24 +141,25 @@ void SettingSynchronizationOptions::incrementSynchronizationsCounter()
 
 
 
-//SettingSynchronizationOptionsPtr SettingSynchronizationOptions::clone() const
-//{
-//  SettingSynchronizationOptionsPtrsso = new  SettingSynchronizationOptions;
-//
-//  sso->mode = mode;
-//  sso->updateHistoryStorageTime = updateHistoryStorageTime;
-//  sso->syncPeriod = syncPeriod;
-//  sso->historyRate = historyRate;
-//  sso->filter = filter;
-//  sso->master = master;
-//  sso->condition = condition;
-//  //todo - functions clone() indefined
-////  sso->filterExpression       = filterExpression->clone();
-////  sso->conditionExpression    = conditionExpression->clone();
-////  sso->synchronizationHandler =synchronizationHandler->clone();
-//  sso->synchronizationsCounter =synchronizationsCounter;
-//  return sso;
-//}
+SettingSynchronizationOptions* SettingSynchronizationOptions::clone() const
+{
+    SettingSynchronizationOptions* sso = new SettingSynchronizationOptions();
+
+    sso->mode = mode;
+    sso->updateHistoryStorageTime = updateHistoryStorageTime;
+    sso->syncPeriod = syncPeriod;
+    sso->historyRate = historyRate;
+    sso->filter = filter;
+    sso->master = master;
+    sso->condition = condition;
+    //todo - functions clone() indefined
+    //  sso->filterExpression       = filterExpression->clone();
+    //  sso->conditionExpression    = conditionExpression->clone();
+    //  sso->synchronizationHandler =synchronizationHandler->clone();
+    sso->synchronizationsCounter =synchronizationsCounter;
+
+    return sso;
+}
 
 
 

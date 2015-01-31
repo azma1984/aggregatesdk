@@ -5,10 +5,10 @@
 
 DefaultPermissionChecker::DefaultPermissionChecker()
 {
-//    CallerControllerPtr unchecked = new UncheckedCallerController();
-//
-//    PermissionTypePtr nullType = new PermissionType(0, NULL_PERMISSIONS_, Cres::get().getString("secNoPerms"));
-//    permissionTypes.push_back( nullType );
+    unchecked = UncheckedCallerControllerPtr(new UncheckedCallerController());
+
+    PermissionTypePtr nullType = new PermissionType(0, NULL_PERMISSIONS_, Cres::get()->getString("secNoPerms"));
+    permissionTypes.push_back( nullType );
 }
 
 const std::string DefaultPermissionChecker::NULL_PERMISSIONS()

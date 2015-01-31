@@ -1,42 +1,34 @@
 #include "device/DeviceSettingStatus.h"
+#include "util/SString.h"
 
- const std::string DeviceSettingStatus::FIELD_NAME = "name";
- const std::string DeviceSettingStatus::FIELD_TIME = "time";
- const std::string DeviceSettingStatus::FIELD_DURATION = "duration";
- const std::string DeviceSettingStatus::FIELD_UPDATED = "updated";
- const std::string DeviceSettingStatus::FIELD_DIRECTION = "direction";
- const std::string DeviceSettingStatus::FIELD_ERROR = "error";
- TableFormatPtr DeviceSettingStatus::FORMAT;
+const std::string DeviceSettingStatus::FIELD_NAME = "name";
+const std::string DeviceSettingStatus::FIELD_TIME = "time";
+const std::string DeviceSettingStatus::FIELD_DURATION = "duration";
+const std::string DeviceSettingStatus::FIELD_UPDATED = "updated";
+const std::string DeviceSettingStatus::FIELD_DIRECTION = "direction";
+const std::string DeviceSettingStatus::FIELD_ERROR = "error";
+
 
 DeviceSettingStatus::DeviceSettingStatus()
 {
-//todo
-//  FORMAT = TableFormatPtr(new TableFormat());
-//  FORMAT->addField("<" + FIELD_NAME +"><S>");
-//  FORMAT->addField("<" + FIELD_TIME + "><D><F=N>");
-//  FORMAT->addField("<" + FIELD_DURATION + "><L><F=N>");
-//  FORMAT->addField("<" + FIELD_UPDATED + "><B>");
-//  char buf[10];
-//  sprintf_s(buf,"%d",DeviceContext::DIRECTION_DEVICE_TO_SERVER);
-//  FORMAT->addField("<" + FIELD_DIRECTION + "><I><A=" + buf + ">");
-//  FORMAT->addField("<" + FIELD_ERROR + "><S><F=N>");
-//  direction = DeviceContext::DIRECTION_DEVICE_TO_SERVER;
+    this->duration = 0;
+    this->direction = DeviceContext::DIRECTION_DEVICE_TO_SERVER;
 }
 
 
 DatePtr DeviceSettingStatus::getTime()
 {
-  return time;
+    return time;
 }
 
 void DeviceSettingStatus::setTime(DatePtr time)
 {
-  this->time = time;
+    this->time = time;
 }
 
 long DeviceSettingStatus::getDuration()
 {
-  return duration;
+    return duration;
 }
 
 void DeviceSettingStatus::setDuration(long duration)
@@ -72,4 +64,19 @@ std::string DeviceSettingStatus::getError()
 void DeviceSettingStatus::setError(const std::string& error)
 {
     this->error = error;
+}
+
+TableFormatPtr DeviceSettingStatus::FORMAT()
+{
+    if (!FORMAT_) {
+        FORMAT_ = TableFormatPtr(new TableFormat());
+        FORMAT_->addField("<" + FIELD_NAME + "><S>");
+        FORMAT_->addField("<" + FIELD_TIME + "><D><F=N>");
+        FORMAT_->addField("<" + FIELD_DURATION + "><L><F=N>");
+        FORMAT_->addField("<" + FIELD_UPDATED + "><B>");
+        FORMAT_->addField("<" + FIELD_DIRECTION + "><I><A=" + SString::fromNumber(DeviceContext::DIRECTION_DEVICE_TO_SERVER) + ">");
+        FORMAT_->addField("<" + FIELD_ERROR + "><S><F=N>");
+    }
+
+    return FORMAT_;
 }

@@ -101,6 +101,10 @@ const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_DEBUG= "debug";
 const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS= "no_updated_events";
 const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS= "no_change_events";
 
+
+const int AbstractContext::VERY_LOW_PERFORMANCE_THRESHOLD = 120000;
+const int AbstractContext::LOW_PERFORMANCE_THRESHOLD = 20000;
+
 AbstractContext::AbstractContext(const std::string &name)
 {
 //    setName(name);
@@ -445,7 +449,7 @@ void AbstractContext::start()
 //
 //  executeTasks(tasks);
 //  started = true;
-} //todo - thread stop
+} //todo - thread stop
   //AgObjectPtr call1()
 //   {
  //	long startTime = System.currentTimeMillis();
@@ -3390,7 +3394,7 @@ PermissionsPtr AbstractContext::getPermissions()
 //DataTablePtr AbstractContext::fetchVariableStatuses()
 //{
 //	return DataTablePtr(new DataTable(VFT_VARIABLE_STATUSES));
-//}
+//}
 ////
 ////void AbstractContext::updateVariableStatus(const std::string & variable, VariableStatusPtr status, bool persistent)
 ////{

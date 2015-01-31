@@ -14,8 +14,8 @@ Binding::Binding(ReferencePtr reference, ExpressionPtr expression)
 Binding::Binding(const std::string& reference, const std::string& expression)
 {
     id = 0;
-    this->reference = new Reference(reference);
-    this->expression = new Expression(expression);
+    this->reference = ReferencePtr(new Reference(reference));
+    this->expression = ExpressionPtr(new Expression(expression));
 }
 
 ExpressionPtr Binding::getExpression()
@@ -23,7 +23,7 @@ ExpressionPtr Binding::getExpression()
     return expression;
 }
 
-boost::ReferencePtr Binding::getReference()
+ReferencePtr Binding::getReference()
 {
     return reference;
 }
@@ -39,7 +39,7 @@ int Binding::hashCode()
 }
 */
 
-bool Binding::equals(BindingPtr obj)
+bool Binding::equals(Binding* obj)
 {
 
     //if(this == obj) {
@@ -80,6 +80,7 @@ bool Binding::equals(BindingPtr obj)
 
 Binding* Binding::clone() const
 {
+    //TODO:
     //try {
         //BindingPtr clone = new Binding();
         //clone->reference = reference->clone();
@@ -89,7 +90,7 @@ Binding* Binding::clone() const
 //    } catch (::java::lang::CloneNotSupportedException* ex) {
 //        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
 //    }
-    return BindingPtr();
+    return NULL;
 }
 
 std::string Binding::toString()

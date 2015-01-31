@@ -347,19 +347,21 @@ void setServer(const std::string & server)
     image;
 }
 
-Reference* clone()
+Reference* Reference::clone() const
 {
-    try {
-        return java_cast< Reference* >(super::clone());
-    } catch (::java::lang::CloneNotSupportedException* ex) {
-        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
-    }
+    //TODO:
+//    try {
+//        return java_cast< Reference* >(super::clone());
+//    } catch (::java::lang::CloneNotSupportedException* ex) {
+//        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
+//    }
 }
 
 bool equals(Reference* obj)
 {
-    auto const isReferenceNotNull = !(obj == 0 || !(dynamic_cast< Reference* >(obj) != 0));
-    return isReferenceNotNull && getImage())->equals((java_cast< Reference* >(obj)))->getImage()));
+    //TODO:
+//    auto const isReferenceNotNull = !(obj == 0 || !(dynamic_cast< Reference* >(obj) != 0));
+//    return isReferenceNotNull && getImage())->equals((java_cast< Reference* >(obj)))->getImage()));
 }
 
 //int hashCode()

@@ -4,6 +4,7 @@
 //#include "datatable/DataTable.h"
 #include <boost/shared_ptr.hpp>
 #include "util/Pointers.h"
+
 class CompatibilityConverter : public Interface
 {
 public:

@@ -46,7 +46,7 @@ public:
     void setSynchronizationHandler(SynchronizationHandlerPtr synchronizationHandler);
     int getSynchronizationsCounter();
     void incrementSynchronizationsCounter();
-   //	SettingSynchronizationOptionsPtr clone() const; //todo
+    SettingSynchronizationOptions* clone() const; //todo
 
     SettingSynchronizationOptions();
     SettingSynchronizationOptions(long  syncPeriod);

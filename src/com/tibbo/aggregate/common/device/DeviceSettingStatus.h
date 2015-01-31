@@ -18,6 +18,8 @@ private:
     bool updated;
     int direction;
     std::string error;
+    static TableFormatPtr FORMAT_;
+
 public:
     static const std::string FIELD_NAME;
     static const std::string FIELD_TIME;
@@ -26,7 +28,7 @@ public:
     static const std::string FIELD_DIRECTION;
     static const std::string FIELD_ERROR;
 	
-	static TableFormatPtr FORMAT;
+    static TableFormatPtr FORMAT();
 
 
     DatePtr getTime();

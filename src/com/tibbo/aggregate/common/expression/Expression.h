@@ -21,7 +21,7 @@ public:
     std::string toString();
 //    int hashCode();
     bool equals(Expression* obj);
-    Expression* clone();
+    Expression* clone() const;
 
     Expression(boost::shared_ptr<Reference> reference);
 	Expression(const std::string & text);
