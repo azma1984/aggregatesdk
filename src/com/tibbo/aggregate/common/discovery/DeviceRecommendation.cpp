@@ -1,4 +1,3 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/discovery/DeviceRecommendation.java
 #include "discovery/DeviceRecommendation.h"
 
     
@@ -16,8 +15,8 @@ DeviceRecommendation::DeviceRecommendation(const std::string& name, const std::s
 
 DeviceRecommendationPtr DeviceRecommendation::getBlank() 
 {
- DeviceRecommendationPtr blank = DeviceRecommendationPtr(new DeviceRecommendation());
- return blank;
+    DeviceRecommendationPtr blank = DeviceRecommendationPtr(new DeviceRecommendation());
+    return blank;
 }
 
 std::string DeviceRecommendation::getName() 

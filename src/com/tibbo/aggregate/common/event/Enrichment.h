@@ -19,14 +19,14 @@ class Enrichment
     static const std::string FIELD_VALUE;
     static const std::string FIELD_DATE;
     static const std::string FIELD_AUTHOR;
+    static TableFormatPtr FORMAT_;
 
     std::string name;
     std::string value;
     DatePtr date;
     std::string author;
 
- public:
-	TableFormatPtr FORMAT;
+ public:	
     std::string getName();
     void setName(const std::string& name);
     std::string getValue();
@@ -43,5 +43,7 @@ class Enrichment
 	void Init();
     Enrichment();
     Enrichment(const std::string& name, const std::string& value, DatePtr date, const std::string& author);
+
+    static TableFormatPtr FORMAT();
 };
 #endif  //_Enrichment_H_

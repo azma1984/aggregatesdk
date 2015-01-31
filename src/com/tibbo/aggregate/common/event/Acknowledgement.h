@@ -9,9 +9,8 @@
 #include "datatable/DataTableConversion.h"
 
 #include "datatable/converter/DefaultFormatConverter.h"
- #include "Cres.h"
+#include "Cres.h"
 #include "datatable/TableFormat.h"
-class TableFormat;
 
 class Acknowledgement : public Cloneable
 {
@@ -19,7 +18,7 @@ private:
     static const std::string FIELD_AUTHOR;
     static const std::string FIELD_TIME;
     static const std::string FIELD_TEXT;
-    static TableFormatPtr FORMAT;
+    static TableFormatPtr FORMAT_;
     std::string author;
     Date time;
     std::string text;
@@ -35,10 +34,12 @@ public:
     void setTime(Date time);
 	TableFormatPtr getFormat();
     
-	//virtual Acknowledgement *clone() const;
+    virtual Acknowledgement* clone() const;
 
     Acknowledgement();
     Acknowledgement(const std::string& author, Date time, const std::string& text);
+
+    static TableFormatPtr FORMAT();
 };
 
 #endif

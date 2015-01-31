@@ -119,8 +119,8 @@ public:
 
     bool extend(FieldFormatPtr other);
     std::string extendMessage(FieldFormatPtr other);
-    FieldFormatPtr addValidator(FieldValidatorPtr validator);
-    void setValidators(std::list<FieldValidatorPtr> validators);
+//    FieldFormatPtr addValidator(FieldValidatorPtr validator); TODO:
+//    void setValidators(std::list<FieldValidatorPtr> validators);  TODO:
     void createValidators(const std::string& source, ClassicEncodingSettingsPtr settings);
     AgObjectPtr checkAndConvertValue(AgObjectPtr value, bool validate);
 
@@ -137,8 +137,8 @@ public:
     std::map<AgObjectPtr, std::string> getSelectionValues();
     FieldFormatPtr addSelectionValue(AgObjectPtr value,const std::string &description);
     FieldFormatPtr addSelectionValue(AgObjectPtr value);
-    bool isExtendableSelectionValues();
-    std::list<FieldValidatorPtr> getValidators();
+    bool isExtendableSelectionValues();    
+//    std::list<FieldValidatorPtr> getValidators(); TODO:
     bool isReadonly();
     bool isNotReplicated();
     bool isTransferEncode();

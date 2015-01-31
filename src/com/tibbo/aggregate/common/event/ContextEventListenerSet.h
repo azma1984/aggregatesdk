@@ -10,15 +10,13 @@
 
 class ContextEventListenerSet
 {
-
 private:
-  //using namespace std;
-	boost::unordered_set <AgObjectPtr> listeners;
-	boost::unordered_set <AgObjectPtr> listeners_info;
+    boost::unordered_set<AgObjectPtr> listeners;
+    boost::unordered_set<AgObjectPtr> listeners_info;
 	static ContextEventListenerInfoPtr getListenerInfo(AgObjectPtr ref);
 
 public:
-  //  std::unordered_set<ContextEventListenerPtr>    getListeners();
+    boost::unordered_set<ContextEventListenerPtr>    getListeners();
     boost::unordered_set<ContextEventListenerInfoPtr> getListenersInfo();
     bool addListener(ContextEventListenerPtr listener, bool weak);
     bool removeListener(ContextEventListenerPtr listener);

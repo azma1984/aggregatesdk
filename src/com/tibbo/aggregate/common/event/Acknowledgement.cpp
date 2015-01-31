@@ -4,38 +4,19 @@
 const std::string Acknowledgement::FIELD_AUTHOR = "author";
 const std::string Acknowledgement::FIELD_TIME = "time";
 const std::string Acknowledgement::FIELD_TEXT = "text";
-TableFormatPtr Acknowledgement::FORMAT;
+
 
 Acknowledgement::Acknowledgement()
 {
-  initFormat();
 }
 
 Acknowledgement::Acknowledgement(const std::string& author, Date time, const std::string& text)
 {
-  initFormat();
   this->author = author;
   this->time = time;
   this->text = text;
 }
 
-void Acknowledgement::initFormat()
-{
-//todo
-//    if (FORMAT.get() == NULL)
-//	{
-//		FORMAT = TableFormatPtr(new TableFormat());
-//		FORMAT->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
-//		FORMAT->addField("<"+FIELD_TIME+"><D><D="+Cres::get()->getString("time")+">");
-//		FORMAT->addField("<"+FIELD_TEXT+"><S><D="+Cres::get()->getString("text")+">");
-//
-//		FORMAT->setNamingExpression("print({}, \"{"+FIELD_TIME+"} + ': ' + {"+FIELD_TEXT+"} + ' (' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
-//	}
-
-  //todo
-  //DataTableConversion::registerFormatConverter((FormatConverter*)(new DefaultFormatConverter(Acknowledgement::class_(), FORMAT)));
-
-}
 
 std::string Acknowledgement::getAuthor()
 {
@@ -73,14 +54,31 @@ TableFormatPtr Acknowledgement::getFormat()
     return FORMAT;
 }
 
- //todo
-//Acknowledgement *Acknowledgement::clone() const
-//{
-//	Acknowledgement *ac = new Acknowledgement;
-//	ac->author = this->author;
-//	ac->time = this->time;
-//	ac->text = this->text;
-//
-//	return ac;
-//}
+Acknowledgement* Acknowledgement::clone() const
+{
+    //TODO
+    Acknowledgement *ac = new Acknowledgement;
+    ac->author = this->author;
+    ac->time = this->time;
+    ac->text = this->text;
+
+    return ac;
+}
+
+TableFormatPtr Acknowledgement::FORMAT()
+{
+    if (!FORMAT_)
+    {
+        FORMAT_ = TableFormatPtr(new TableFormat());
+        FORMAT_->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
+        FORMAT_->addField("<"+FIELD_TIME+"><D><D="+Cres::get()->getString("time")+">");
+        FORMAT_->addField("<"+FIELD_TEXT+"><S><D="+Cres::get()->getString("text")+">");
+
+        FORMAT_->setNamingExpression("print({}, \"{"+FIELD_TIME+"} + ': ' + {"+FIELD_TEXT+"} + ' (' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
+
+        DataTableConversion::registerFormatConverter(FormatConverterPtr(new DefaultFormatConverter("Acknowledgement::class_()", FORMAT_)));
+    }
+
+    return FORMAT_;
+}
 
