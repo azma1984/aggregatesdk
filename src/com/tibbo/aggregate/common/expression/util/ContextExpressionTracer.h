@@ -16,8 +16,8 @@ public:
 private:
     boost::shared_ptr<TableFormat> EFT_TRACE_;
     boost::shared_ptr<Context> context;
-    const std::string traceEventGroup;
-    boost::shared_ptr<TableFormat> EFT_TRACE();
+    std::string traceEventGroup;
+    TableFormatPtr EFT_TRACE();
 
 protected:
     boost::shared_ptr<Context> getContext();

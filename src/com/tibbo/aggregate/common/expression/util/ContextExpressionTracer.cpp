@@ -26,16 +26,17 @@ void ContextExpressionTracer::install()
         return;
     }
 
-    EventDefinition* ed = new EventDefinition(E_TRACE_, EFT_TRACE(), Cres::get()->getString("trace"));
+    EventDefinitionPtr ed = EventDefinitionPtr(new EventDefinition(E_TRACE_, EFT_TRACE(), Cres::get()->getString("trace")));
     ed->setGroup(traceEventGroup);
     target->addEventDefinition(ed);
 }
 
 void ContextExpressionTracer::trace(void* value, const std::string & message)
 {
-    install();
-    boost::shared_ptr<Context> target = getContext();
-    target->fireEvent(E_TRACE_, (value != NULL) ? value->toString() : NULL, message);
+    //TODO:
+//    install();
+//    boost::shared_ptr<Context> target = getContext();
+//    target->fireEvent(E_TRACE_, (value != NULL) ? value->toString() : NULL, message);
 }
 
 boost::shared_ptr<Context> ContextExpressionTracer::getContext()
@@ -43,13 +44,13 @@ boost::shared_ptr<Context> ContextExpressionTracer::getContext()
     return context;
 }
 
-boost::shared_ptr<TableFormat> ContextExpressionTracer::EFT_TRACE()
+TableFormatPtr ContextExpressionTracer::EFT_TRACE()
 {
     if (!EFT_TRACE_) {
-        EFT_TRACE = new TableFormat(1, 1);
-        EFT_TRACE->addField( std::string("<").append(EF_TRACE_VALUE_).append("><S><F=N><D=")
+        EFT_TRACE_ = TableFormatPtr( new TableFormat(1, 1) );
+        EFT_TRACE_->addField( std::string("<").append(EF_TRACE_VALUE_).append("><S><F=N><D=")
                              .append(Cres::get()->getString("value")).append(">") );
-        EFT_TRACE->addField( std::string("<").append(EF_TRACE_MESSAGE_).append("><S><F=N><D=")
+        EFT_TRACE_->addField( std::string("<").append(EF_TRACE_MESSAGE_).append("><S><F=N><D=")
                              .append(Cres::get()->getString("message")).append(">") );
     }
 

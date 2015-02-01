@@ -3,6 +3,7 @@
 #include "context/ContextUtils.h"
 #include "expression/ExpressionUtils.h"
 #include "util/SString.h"
+#include <sstream>
 
 const std::string Reference::SCHEMA_FORM = "form";
 const std::string Reference::SCHEMA_TABLE = "table";
@@ -72,7 +73,7 @@ Reference::Reference(const std::string & context, const std::string & entity, in
     this->entityType = entityType;
 }
 
-Reference::Reference(const std::string & context, const std::string & function, vector<void*> parameters)
+Reference::Reference(const std::string & context, const std::string & function, std::vector<boost::shared_ptr<void>> parameters)
 {
     init();
     this->context = context;
@@ -134,13 +135,13 @@ void Reference::parse(const std::string& source)
         }
     }
 
-    size_t schemaEnd = src.find((SCHEMA_END);
+    size_t schemaEnd = src.find(SCHEMA_END);
     if (schemaEnd != std::string::npos) {
         schema = src.substr(0, schemaEnd);
         src = src.substr(schemaEnd + 1);
     }
 
-    size_t serverEnd = src.find(f(SERVER_END);
+    size_t serverEnd = src.find(SERVER_END);
     if (serverEnd != std::string::npos) {
         server = src.substr(0, serverEnd);
         src = src.substr(serverEnd + 1);
@@ -164,7 +165,7 @@ void Reference::parse(const std::string& source)
             //TODO:
             //throw IllegalArgumentException(u"No closing ']' in row reference"_j);
         }
-        row = src.substr(rowBegin + 1, rowEnd);
+        entity = src.substr(rowBegin + 1, rowEnd);
         src = src.substr(0, rowBegin);
     }
 
@@ -206,7 +207,7 @@ std::string Reference::getField()
     return field;
 }
 
-std::vector<void*> Reference::getParameters()
+std::vector<boost::shared_ptr<void> > Reference::getParameters()
 {
     return parameters;
 }
@@ -258,8 +259,8 @@ std::string Reference::createImage()
         ss << entity;
         if (entityType == ContextUtils::ENTITY_FUNCTION) {
             ss <<PARAMS_BEGIN;
-            ss <<ExpressionUtils::getFunctionParameters(parameters));
-            sb <<PARAMS_END;
+            ss <<ExpressionUtils::getFunctionParameters(parameters);
+            ss <<PARAMS_END;
         }
 
         if (entityType == ContextUtils::ENTITY_EVENT) {
@@ -313,7 +314,7 @@ void Reference::setEntityType(int entityType)
 
 void Reference::addParameter(const std::string & parameter)
 {
-    parameters->add(new std::string(parameter));
+    parameters.push_back(boost::shared_ptr<std::string>(new std::string(parameter)) );
 }
 
 void Reference::addParameter(boost::shared_ptr<Expression> parameter)
@@ -341,10 +342,10 @@ void Reference::setRow(int  row)
     this->row = row;   
 }
 
-void setServer(const std::string & server)
+void Reference::setServer(const std::string & server)
 {
     this->server = server;
-    image;
+    image.clear();
 }
 
 Reference* Reference::clone() const
@@ -355,13 +356,15 @@ Reference* Reference::clone() const
 //    } catch (::java::lang::CloneNotSupportedException* ex) {
 //        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
 //    }
+    return NULL;
 }
 
-bool equals(Reference* obj)
+bool Reference::equals(Reference* obj)
 {
     //TODO:
 //    auto const isReferenceNotNull = !(obj == 0 || !(dynamic_cast< Reference* >(obj) != 0));
 //    return isReferenceNotNull && getImage())->equals((java_cast< Reference* >(obj)))->getImage()));
+    return false;
 }
 
 //int hashCode()

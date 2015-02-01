@@ -50,8 +50,7 @@ void Acknowledgement::setTime(Date time)
 
 TableFormatPtr Acknowledgement::getFormat()
 {
-    initFormat();
-    return FORMAT;
+    return FORMAT();
 }
 
 Acknowledgement* Acknowledgement::clone() const
@@ -76,7 +75,8 @@ TableFormatPtr Acknowledgement::FORMAT()
 
         FORMAT_->setNamingExpression("print({}, \"{"+FIELD_TIME+"} + ': ' + {"+FIELD_TEXT+"} + ' (' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
 
-        DataTableConversion::registerFormatConverter(FormatConverterPtr(new DefaultFormatConverter("Acknowledgement::class_()", FORMAT_)));
+        //TODO:
+        //DataTableConversion::registerFormatConverter(FormatConverterPtr(new DefaultFormatConverter("Acknowledgement::class_()", FORMAT_)));
     }
 
     return FORMAT_;

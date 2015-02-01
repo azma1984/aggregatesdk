@@ -1,13 +1,15 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/expression/Evaluator.java
-
 #pragma once
 
-#include "expression/ReferenceResolver.h"
-#include "expression/Function.h"
-#include "expression/EnvironmentReferenceResolver.h"
+
+//#include "expression/EnvironmentReferenceResolver.h"
+#include "util/Pointers.h"
 #include <string>
 #include <map>
 #include <boost/shared_ptr.hpp>
+
+class ReferenceResolver;
+class EnvironmentReferenceResolver;
+class Function;
 
 class Evaluator
 {

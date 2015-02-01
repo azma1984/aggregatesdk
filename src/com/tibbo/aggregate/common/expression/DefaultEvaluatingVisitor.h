@@ -7,5 +7,5 @@ class DefaultEvaluatingVisitor : public AbstractEvaluatingVisitor
 public:
     void* visit(ASTValueReferenceNode* node, void* data);
 
-    DefaultEvaluatingVisitor(Evaluator* evaluator);      
+    DefaultEvaluatingVisitor(EvaluatorPtr evaluator);
 };

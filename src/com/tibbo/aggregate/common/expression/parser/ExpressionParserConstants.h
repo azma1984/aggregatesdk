@@ -33,7 +33,7 @@ const  int TRUE = 18;
   /** RegularExpression Id. */
 const  int FALSE = 19;
   /** RegularExpression Id. */
-const  int NULL = 20;
+const  int NULL_ = 20;
   /** RegularExpression Id. */
 const  int INTEGER_LITERAL = 21;
   /** RegularExpression Id. */

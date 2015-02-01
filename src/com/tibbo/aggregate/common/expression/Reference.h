@@ -37,16 +37,16 @@ public:
     static const char PROPERTY_BEGIN;
 
 private:
-    const std::string image;
-    const std::string schema;
-    const std::string server;
-    const std::string context;
-    const std::string entity;
+    std::string image;
+    std::string schema;
+    std::string server;
+    std::string context;
+    std::string entity;
     int entityType;
     //TODO: need boost:shared ?
-    std::vector<void*>  parameters; // May contain Strings, Expressions and NULLs
-    const std::string field;
-    const std::string property;
+    std::vector<boost::shared_ptr<void>>  parameters; // May contain Strings, Expressions and NULLs
+    std::string field;
+    std::string property;
     int  row;
     void init();
 
@@ -57,25 +57,25 @@ protected:
     void ctor(const std::string & entity, int entityType, const std::string & field);
     void ctor(const std::string & context, const std::string & entity, int entityType, const std::string & field);
     void ctor(const std::string & context, const std::string & entity, int entityType);
-    void ctor(const std::string & context, const std::string & function, std::vector<void*> parameters);
+    void ctor(const std::string & context, const std::string & function, std::vector<boost::shared_ptr<void>> parameters);
 
 public:// protected
     void parse(const std::string & source);
 
 public:
-    const std::string getServer();
-    const std::string getContext();
-    const std::string getEntity();
+    std::string getServer();
+    std::string getContext();
+    std::string getEntity();
     int getEntityType();
-    const std::string getField();
-    std::vector<void *> getParameters();
+    std::string getField();
+    std::vector<boost::shared_ptr<void>> getParameters();
     int getRow();
-    const std::string getSchema();
-    const std::string getProperty();
-    const std::string getImage();
+    std::string getSchema();
+    std::string getProperty();
+    std::string getImage();
 
 private:
-    const std::string createImage();
+    std::string createImage();
 
 public:
     std::string toString();
@@ -100,7 +100,7 @@ public:
     Reference(const std::string & entity, int entityType, const std::string & field);
     Reference(const std::string & context, const std::string & entity, int entityType, const std::string & field);
     Reference(const std::string & context, const std::string & entity, int entityType);
-    Reference(const std::string & context, const std::string & function, std::vector<void*> parameters);
+    Reference(const std::string & context, const std::string & function, std::vector<boost::shared_ptr<void>> parameters);
 };
 
 #endif  //_REFERENCE_H_

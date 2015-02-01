@@ -22,8 +22,8 @@ private:
 
 public:
     static void validateSyntax(boost::shared_ptr<Expression> expression, bool showExpressionInErrorText) /* throws(SyntaxErrorException) */;
-    static std::vector<void*>  getFunctionParameters(const std::string & paramsString, bool allowExpressions);
-    static std::string getFunctionParameters(std::vector<void*> params);
+    static std::vector<boost::shared_ptr<void>>  getFunctionParameters(const std::string & paramsString, bool allowExpressions);
+    static std::string getFunctionParameters(std::vector<boost::shared_ptr<void> > params);
     static void dump(const std::string & expression) /* throws(SyntaxErrorException) */;
     //TODO: ASTStart
     static boost::shared_ptr<ASTStart> parse(boost::shared_ptr<Expression> expression,

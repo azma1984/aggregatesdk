@@ -9,7 +9,7 @@ class DumpingVisitor : public ExpressionParserVisitor
 {   
 private:
     int indent;
-    const std::string & indentString();
+    std::string& indentString();
 //TODO:
 //public:
 //    void* visit(::SimpleNode* node, void* data);

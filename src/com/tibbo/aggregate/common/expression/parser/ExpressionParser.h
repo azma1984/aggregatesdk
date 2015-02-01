@@ -153,7 +153,8 @@ public: void disable_tracing();
 //  }
 
 //  return res;
-//}JJTExpressionParserState jjtree;
+//}
+  JJTExpressionParserState jjtree;
 private: bool jj_done;
 
 };

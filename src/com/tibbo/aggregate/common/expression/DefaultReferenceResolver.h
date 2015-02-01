@@ -24,7 +24,7 @@ public:
     DefaultReferenceResolver();
     DefaultReferenceResolver(DataTablePtr defaultTable);
 
-    boost::shared_ptr<void> resolveReference(boost::shared_ptr<Reference> ref, boost::shared_ptr<EvaluationEnvironment> environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */;
+    void* resolveReference(boost::shared_ptr<Reference> ref, boost::shared_ptr<EvaluationEnvironment> environment) /* throws(SyntaxErrorException, EvaluationException, ContextException) */;
     std::list<boost::shared_ptr<Context>>  getContexts(boost::shared_ptr<Reference> ref) ;
     boost::shared_ptr<Context> getContext(boost::shared_ptr<Reference> ref) ;
 

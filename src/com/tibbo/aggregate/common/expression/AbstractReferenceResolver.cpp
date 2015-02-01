@@ -26,7 +26,7 @@ int AbstractReferenceResolver::getDefaultRow()
     return defaultRow;
 }
 
-boost::shared_ptr<DateDataTable> AbstractReferenceResolver::getDefaultTable()
+boost::shared_ptr<DataTable> AbstractReferenceResolver::getDefaultTable()
 {
     return defaultTable;
 }

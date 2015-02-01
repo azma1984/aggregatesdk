@@ -5,8 +5,8 @@
 #include "context/CallerController.h"
 #include "datatable/DataTable.h"
 #include "expression/Evaluator.h"
-#include "expression/EvaluationEnvironment.h"
-#include "expression/Reference.h"
+//#include "expression/EvaluationEnvironment.h"
+//#include "expression/Reference.h"
 #include "util/Interface.h"
 #include <boost/shared_ptr.hpp>
 

@@ -14,6 +14,6 @@ public:
     virtual std::string getReturnValue() = 0;
     virtual std::string getParametersFootprint() = 0;
     //TODO: Object
-    virtual void*/*Object*/ execute(boost::shared_ptr<Evaluator> evaluator, boost::shared_ptr<EvaluationEnvironment> environment,
-                            std::vector<void*> parameters) = 0/* throws(EvaluationException) */;
+    virtual void* /*Object*/ execute(boost::shared_ptr<Evaluator> evaluator, boost::shared_ptr<EvaluationEnvironment> environment,
+                            std::vector<void> parameters) = 0/* throws(EvaluationException) */;
 };

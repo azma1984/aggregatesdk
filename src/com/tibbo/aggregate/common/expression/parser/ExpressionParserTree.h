@@ -39,9 +39,9 @@ class SimpleNode : public Node {
   public: virtual void * jjtGetValue() const;
 
   public: virtual Token *jjtGetFirstToken() const;
-  public: virtual void jjtSetFirstToken(Token token);
+  public: virtual void jjtSetFirstToken(Token *token);
   public: virtual Token *jjtGetLastToken() const;
-  public: virtual void jjtSetLastToken(Token token);
+  public: virtual void jjtSetLastToken(Token* token);
 
   /** Accept the visitor. **/
   public: virtual void  jjtAccept(ExpressionParserVisitor *visitor, void * data) const;
@@ -372,6 +372,8 @@ class ASTNullNode : public SimpleNode {
   public: virtual ~ASTNullNode();
 };
 class ASTValueReferenceNode : public SimpleNode {
+//  public: std::string uriImage;
+//  public: Reference reference;
   public: ASTValueReferenceNode(int id);
   public: ASTValueReferenceNode(ExpressionParser *p, int id);
 

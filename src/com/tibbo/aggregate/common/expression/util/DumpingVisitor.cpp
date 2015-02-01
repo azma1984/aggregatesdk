@@ -35,7 +35,8 @@
 //#include "expression/parser/ASTValueReferenceNode.h"
 //#include "expression/parser/SimpleNode.h"
 //#include "expression/parser/Token.h"
-
+#include <string>
+#include <sstream>
 
 DumpingVisitor::DumpingVisitor()
 {
@@ -43,7 +44,7 @@ DumpingVisitor::DumpingVisitor()
 }
 
 
-std::string DumpingVisitor::indentString()
+std::string& DumpingVisitor::indentString()
 {
     std::stringstream ss;
     for (int i = 0; i < indent; ++i) {

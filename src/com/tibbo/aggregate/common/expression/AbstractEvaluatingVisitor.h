@@ -11,7 +11,7 @@ private:
     static const std::string TEMP_FORMAT_NAME_;
     static std::map<std::string, boost::shared_ptr<Function>> DEFAULT_FUNCTIONS_;
     boost::shared_ptr<Evaluator> evaluator;
-    std::list<std::string, boost::shared_ptr<Function>>  stack;
+//    std::list<std::string, boost::shared_ptr<Function>>  stack;
 
 protected:
     int top;    

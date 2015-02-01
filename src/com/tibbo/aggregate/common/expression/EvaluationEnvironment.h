@@ -13,7 +13,7 @@ private:
 	std::map< std::string, boost::shared_ptr<void*> > environment;
 
 public:
-    Reference* getCause();
+    boost::shared_ptr<Reference> getCause();
     void setCause(boost::shared_ptr<Reference> cause);
 	std::map< std::string, boost::shared_ptr<void*> > getEnvironment();
 	void setEnvironment(std::map< std::string, boost::shared_ptr<void*> > environment);

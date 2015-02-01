@@ -1,5 +1,4 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AbstractAggreGateDeviceController.java
-#include <AbstractAggreGateDeviceController.h>
+#include "protocol/AbstractAggreGateDeviceController.h"
 
    /*
 #include "Cres.h"
@@ -248,7 +247,7 @@ java::lang::Class* AbstractAggreGateDeviceController::class_()
 //void AbstractAggreGateDeviceController::connect()
 //{
 //	AbstractDeviceController::connect();
-//}
+//}
   /*
 void AbstractAggreGateDeviceController::disconnect()
 {

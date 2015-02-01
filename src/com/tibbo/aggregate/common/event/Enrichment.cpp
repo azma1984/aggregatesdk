@@ -80,7 +80,8 @@ TableFormatPtr Enrichment::FORMAT()
         FORMAT_->addField("<"+FIELD_AUTHOR+"><S><F=N><D="+Cres::get()->getString("author")+">");
         FORMAT_->setNamingExpression(+"print({}, \"{"+FIELD_NAME+"} + '=' + {"+FIELD_VALUE+"} + ' (' + {"+FIELD_DATE+"} + ', ' + {"+FIELD_AUTHOR+"} + ')'\", \"; \")");
 
-        DataTableConversion::registerFormatConverter(FormatConverterPtr(new DefaultFormatConverter("Enrichment::class_()", FORMAT)));
+        //TODO:
+        //DataTableConversion::registerFormatConverter(FormatConverterPtr(new DefaultFormatConverter("Enrichment::class_()", FORMAT)));
     }
 
     return FORMAT_;

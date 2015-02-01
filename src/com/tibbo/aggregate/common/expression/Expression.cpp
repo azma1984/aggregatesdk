@@ -62,7 +62,7 @@ bool Expression::equals(Expression* other)
 Expression* Expression::clone() const
 {
     //TODO: need copy ASTStart* rootNode ?
-    return new Expression(this);
+    return new Expression("");
 }
 
 

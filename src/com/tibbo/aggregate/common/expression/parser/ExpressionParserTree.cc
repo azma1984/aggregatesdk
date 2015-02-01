@@ -45,10 +45,10 @@
   void SimpleNode::jjtSetValue(void * value) { this->value = value; }
   void * SimpleNode::jjtGetValue() const { return value; }
 
-  Token SimpleNode::jjtGetFirstToken() const { return firstToken; }
-  void SimpleNode::jjtSetFirstToken(Token token) { this->firstToken = token; }
-  Token SimpleNode::jjtGetLastToken() const { return lastToken; }
-  void SimpleNode::jjtSetLastToken(Token token) { this->lastToken = token; }
+  Token* SimpleNode::jjtGetFirstToken() const { return firstToken; }
+  void SimpleNode::jjtSetFirstToken(Token* token) { this->firstToken = token; }
+  Token* SimpleNode::jjtGetLastToken() const { return lastToken; }
+  void SimpleNode::jjtSetLastToken(Token *token) { this->lastToken = token; }
 
   /** Accept the visitor. **/
   void  SimpleNode::jjtAccept(ExpressionParserVisitor *visitor, void * data) const

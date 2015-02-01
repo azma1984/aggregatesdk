@@ -1,6 +1,7 @@
 #pragma once
 
 #include "expression/ReferenceResolver.h"
+#include <string>
 #include <boost/shared_ptr.hpp>
 
 

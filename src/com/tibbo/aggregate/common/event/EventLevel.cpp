@@ -34,31 +34,31 @@ std::map<int, std::string> EventLevel::getSelectionValues()
 
 std::map<int, std::string> EventLevel::LEVELS()
 {
-//    typedef std::pair<int, std::string> levelPair;
-//
-//	if (LEVELS_.empty()) {
-//		LEVELS_.insert( levelPair(NOTICE, Cres::get()->getString("conElNotice")) );
-//		LEVELS_.insert( levelPair(INFO, Cres::get()->getString("conElInfo")) );
-//		LEVELS_.insert( levelPair(WARNING, Cres::get()->getString("conElWarning")) );
-//		LEVELS_.insert( levelPair(ERROR, Cres::get()->getString("conElError")) );
-//		LEVELS_.insert( levelPair(FATAL, Cres::get()->getString("conElFatal")) );
-//		LEVELS_.insert( levelPair(NONE, Cres::get()->getString("conElNotDefined")) );
-//	}
-//
-//	return LEVELS_;
+    typedef std::pair<int, std::string> levelPair;
+
+    if (LEVELS_.empty()) {
+        LEVELS_.insert( levelPair(NOTICE, Cres::get()->getString("conElNotice")) );
+        LEVELS_.insert( levelPair(INFO, Cres::get()->getString("conElInfo")) );
+        LEVELS_.insert( levelPair(WARNING, Cres::get()->getString("conElWarning")) );
+        LEVELS_.insert( levelPair(ERROR, Cres::get()->getString("conElError")) );
+        LEVELS_.insert( levelPair(FATAL, Cres::get()->getString("conElFatal")) );
+        LEVELS_.insert( levelPair(NONE, Cres::get()->getString("conElNotDefined")) );
+    }
+
+    return LEVELS_;
 }
 
 std::map<int, std::string> EventLevel::SELECTION_VALUES()
 {
-//    typedef std::pair<int, std::string> levelPair;
-//
-//	if (SELECTION_VALUES_.empty()) {
-//		SELECTION_VALUES_.insert( levelPair(0, Cres::get()->getString("none")) );
-//
-//		for (int i = 1; i <= EventLevel.NUM_LEVELS; i++) {
-//			SELECTION_VALUES_.insert( levelPair(i, getName(i)) );
-//		}
-//	}
-//
-//	return SELECTION_VALUES_;
+    typedef std::pair<int, std::string> levelPair;
+
+    if (SELECTION_VALUES_.empty()) {
+        SELECTION_VALUES_.insert( levelPair(0, Cres::get()->getString("none")) );
+
+        for (int i = 1; i <= EventLevel::NUM_LEVELS; i++) {
+            SELECTION_VALUES_.insert( levelPair(i, getName(i)) );
+        }
+    }
+
+    return SELECTION_VALUES_;
 }
