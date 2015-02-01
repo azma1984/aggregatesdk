@@ -1,11 +1,7 @@
-#ifndef BindingProviderH
-#define BindingProviderH
+#pragma once
 
-#include "binding/Binding.h"
-#include "binding/EvaluationOptions.h"
-//#include "binding/ReferenceListener.h"
 #include <map>
-#include <boost/shared_ptr.hpp>
+#include "util/Pointers.h"
 
 class BindingProvider
 {
@@ -24,4 +20,3 @@ class BindingProvider
     virtual void processError(BindingPtr binding, int method, ReferencePtr cause, ExceptionPtr error) = 0;
 };
 
-#endif
