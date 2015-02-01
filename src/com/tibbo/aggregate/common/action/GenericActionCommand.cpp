@@ -37,7 +37,7 @@ GenericActionCommand::GenericActionCommand(
     this->title = title;
 
     try {
-        DataTableConversion::populateBeanFromRecord(this, parameters->rec(), format, true);
+        DataTableConversion::instance().populateBeanFromRecord(shared_from_this(), parameters->rec(), format, true);
     } catch (DataTableException& ex) {
         throw  AggreGateException(ex.getMessage(), ex.getDetails());
     }
@@ -78,10 +78,10 @@ GenericActionResponsePtr GenericActionCommand::createDefaultResponse()
     TableFormatPtr format = NULL;
 
     if (responseFormat == 0) {
-        GenericActionCommandPtr command = ActionCommandRegistry::getCommand(getType();
+        GenericActionCommandPtr command = ActionCommandRegistry::getCommand(getType());
         format = (command != 0) ? command->getResponseFormat() : ( (getParameters() != 0) ? getParameters()->getFormat() : NULL);
     }
-    DataTablePtr responseTable = (format != 0) ? GenericActionResponsePtr(new DataTable(format, true)) : 0;
+    DataTablePtr responseTable = (format != 0) ? DataTablePtr(new DataTable(format, true)) : 0;
 
     return GenericActionResponsePtr(new GenericActionResponse(responseTable));
 }

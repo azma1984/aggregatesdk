@@ -10,8 +10,8 @@ Browse::Browse()
 
 }
 
-//Browse::Browse(URI url)
-//    : GenericActionCommand(ActionUtils::CMD_BROWSE(), 0)
+//Browse::Browse(URI_Ptr url)
+//    : GenericActionCommand(ActionUtils::CMD_BROWSE(), "")
 //{
 //    this->url_ = url;
 //}
@@ -22,15 +22,15 @@ DataTable* Browse::constructParameters()
     return new DataTable(CFT_BROWSE(), url);
 }
 
-//URI Browse::getUrl()
-//{
-//    return url_;
-//}
+URI_Ptr Browse::getUrl()
+{
+    return url_;
+}
 
-//void Browse::setUrl(URI url)
-//{
-//    this->ur_l = url;
-//}
+void Browse::setUrl(URI_Ptr url)
+{
+    this->url_ = url;
+}
 
 TableFormatPtr Browse::CFT_BROWSE()
 {

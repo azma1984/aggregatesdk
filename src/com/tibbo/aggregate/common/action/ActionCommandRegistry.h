@@ -10,11 +10,11 @@
 class ActionCommandRegistry
 {
 private:
-	std::map<std::string, GenericActionCommandPtr> COMMANDS;
+    static std::map<std::string, GenericActionCommandPtr> COMMANDS;
 
-    void register1(GenericActionCommandPtr command);
+    static void register1(GenericActionCommandPtr command);
 
 public:
-    GenericActionCommandPtr getCommand(const std::string& type);
+    static GenericActionCommandPtr getCommand(const std::string& type);
 	ActionCommandRegistry();
 };

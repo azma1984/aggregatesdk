@@ -2,8 +2,8 @@
 #define ActivateDashboardH
 
 #include "action/GenericActionCommand.h"
-//#include "ActionUtils.h"
-
+#include <boost/shared_ptr.hpp>
+#include "datatable/TableFormat.h"
 
 
 class ActivateDashboard : public GenericActionCommand
@@ -14,7 +14,6 @@ private:
 	WindowLocationPtr location;  //it is defined in com/tibbo/aggregate/common/util/WindowLocation.h
 	DashboardPropertiesPtr dashboard; //it is defined in  com/tibbo/aggregate/common/util/DashboardProperties.h
     static TableFormatPtr CFT_ACTIVATE_DASHBOARD_;
-
 
 protected:
 	DataTablePtr constructParameters(); //it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
@@ -28,7 +27,6 @@ public:
     static TableFormatPtr CFT_ACTIVATE_DASHBOARD();
 
 	ActivateDashboard();
-
     ActivateDashboard(const std::string& title, DataTablePtr parameters);
     ActivateDashboard(const std::string& name);
 
