@@ -18,10 +18,11 @@ std::string Element::getValue()
   
 std::string Element::encode(bool useVisibleSeparators)
 {
-//    char elStart = useVisibleSeparators ? DataTableUtils::ELEMENT_VISIBLE_START : DataTableUtils::ELEMENT_START;
-//    char elEnd = useVisibleSeparators ? DataTableUtils::ELEMENT_VISIBLE_END : DataTableUtils::ELEMENT_END;
-//    char elNameValSep = useVisibleSeparators ? DataTableUtils::ELEMENT_VISIBLE_NAME_VALUE_SEPARATOR : DataTableUtils::ELEMENT_NAME_VALUE_SEPARATOR;
-//
-//	//TODO: ðàçíåñòè êîíñòðóêöèþ
-//    return elStart + (name != null ? name + elNameValSep : "") + value + elEnd;
+    //TODO: DataTableUtils
+    char elStart = 'n';//useVisibleSeparators ? DataTableUtils::ELEMENT_VISIBLE_START : DataTableUtils::ELEMENT_START;
+    char elEnd = 'n';//useVisibleSeparators ? DataTableUtils::ELEMENT_VISIBLE_END : DataTableUtils::ELEMENT_END;
+    char elNameValSep = 'n';//useVisibleSeparators ? DataTableUtils::ELEMENT_VISIBLE_NAME_VALUE_SEPARATOR : DataTableUtils::ELEMENT_NAME_VALUE_SEPARATOR;
+
+    //TODO: Ñ€Ð°Ð·Ð½ÐµÑÑ‚Ð¸ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ†Ð¸ÑŽ
+    return elStart + (name.length()>0 ? name + elNameValSep : "") + value + elEnd;
 }

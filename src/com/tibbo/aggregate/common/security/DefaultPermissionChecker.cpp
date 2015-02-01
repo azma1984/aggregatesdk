@@ -1,13 +1,14 @@
 ﻿#include "security/DefaultPermissionChecker.h"
 #include "context/UncheckedCallerController.h"
 #include "context/ContextUtils.h"
+#include "AggreGateException.h"
 #include "Cres.h"
 
 DefaultPermissionChecker::DefaultPermissionChecker()
 {
     unchecked = UncheckedCallerControllerPtr(new UncheckedCallerController());
 
-    PermissionTypePtr nullType = new PermissionType(0, NULL_PERMISSIONS_, Cres::get()->getString("secNoPerms"));
+    PermissionTypePtr nullType = PermissionTypePtr(new PermissionType(0, NULL_PERMISSIONS_, Cres::get()->getString("secNoPerms")));
     permissionTypes.push_back( nullType );
 }
 
@@ -222,30 +223,30 @@ std::string DefaultPermissionChecker::canActivate(
 
 bool DefaultPermissionChecker::isValid(const std::string& permissionLevel)
 {
-//    try {
-//		for (int i = 0; i < permissionTypes.size(); i++) {
-//			if (permissionTypes[i]->getName()->equals(permissionLevel))
-//			{
-//			  return true;
-//			}
-//		}
-//
-//		return false;
-//		//TODO: exception
-//	}catch (Exception ex) {
-//		return false;
-//	}
+    try {
+        for (int i = 0; i < permissionTypes.size(); i++) {
+            if (permissionTypes[i]->getName() == permissionLevel)
+            {
+              return true;
+            }
+        }
+
+        return false;
+        //TODO: exception
+    }catch (AggreGateException ex) {
+        return false;
+    }
 }
 
 std::map<std::string, std::string> DefaultPermissionChecker::getPermissionLevels()
 {
-//    std::map<std::string, std::string> pm;
-//
-//	for (int i = 0; i < permissionTypes.size(); i++) {
-//		pm.insert( std::pair<std::string, std::string>(permissionTypes[i]->getName(), permissionTypes[i]->getDescription()) );
-//	}
+    std::map<std::string, std::string> pm;
 
-//    return pm;
+    for (int i = 0; i < permissionTypes.size(); i++) {
+        pm.insert( std::pair<std::string, std::string>(permissionTypes[i]->getName(), permissionTypes[i]->getDescription()) );
+    }
+
+    return pm;
 }
 
 
@@ -263,12 +264,13 @@ bool DefaultPermissionChecker::hasNecessaryLevel(const std::string& existingLeve
 
 int DefaultPermissionChecker::findPattern(const std::string &level) /* throws(SecurityException) */
 {
-//    for (int i = 0; i < permissionTypes.size(); i++) {
-//		if (permissionTypes[i]->getName() == level) {
-//			return permissionTypes[i]->getPattern();
-//		}
-//	}
-//	throw new SecurityException("Permission level '" + level + "' not found");
+    for (int i = 0; i < permissionTypes.size(); i++) {
+        if (permissionTypes[i]->getName() == level) {
+            return permissionTypes[i]->getPattern();
+        }
+    }
+    //TODO: exception
+    //throw new SecurityException("Permission level '" + level + "' not found");
 }
 
 bool DefaultPermissionChecker::contextMatches(
@@ -315,8 +317,8 @@ std::list<std::string> DefaultPermissionChecker::getAllowedPaths(PermissionPtr p
 //        }
 //    }
 //
-//    std::list<std::string> paths;
-//    paths.push_back( permission->getContext() );
+    std::list<std::string> paths;
+    paths.push_back( permission->getContext() );
 //
-//    return paths;//Collections.singletonList(permission->getContext());
+    return paths;//Collections.singletonList(permission->getContext());
 }

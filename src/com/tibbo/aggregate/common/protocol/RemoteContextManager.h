@@ -1,7 +1,7 @@
 #ifndef RemoteContextManagerH
 #define RemoteContextManagerH
 
-#include "DefaultContextManager.h"
+#include "context/DefaultContextManager.h"
 #include "AbstractAggreGateDeviceController.h"
 #include "ProxyContext.h"
 #include "AggreGateDevice.h"

@@ -79,7 +79,7 @@ public:
     void setAutohidable(bool autohidable);
     const std::string & getKey();
     void setKey(const std::string & key);
-    const std::string & toString();
+    std::string toString();
 
 	WindowLocation();
     WindowLocation(int state);

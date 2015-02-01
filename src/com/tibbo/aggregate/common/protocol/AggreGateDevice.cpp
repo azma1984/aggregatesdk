@@ -78,10 +78,10 @@ std::string AggreGateDevice::getInfo()
 
 std::string AggreGateDevice::toString()
 {
-/*
-  std::string res = (getDescription() != 0 && getDescription()->length() > 0) ? getDescription() : getType();
 
-  return res + " (" + getInfo() + ")";  */
+    std::string res = (getDescription().length() > 0) ? getDescription() : getType();
+
+    return res + " (" + getInfo() + ")";
 }
 
 int AggreGateDevice::hashCode()
@@ -93,10 +93,12 @@ int AggreGateDevice::hashCode()
     result = prime * result + (disabled ? int(1231) : int(1237));
     result = prime * result + (name == 0) ? int(0) : name->hashCode();
 	return result;     */
+    return 0;
 }
 
 bool AggreGateDevice::equals(AgObjectPtr obj)
 {
+    //TODO
 /*
 	if(this == obj)
     {
@@ -128,6 +130,7 @@ bool AggreGateDevice::equals(AgObjectPtr obj)
         return false;
     }
 	return true;   */
+    return false;
 }
 
 

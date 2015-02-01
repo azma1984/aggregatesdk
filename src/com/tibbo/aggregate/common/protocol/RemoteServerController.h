@@ -1,7 +1,7 @@
 #ifndef RemoteServerControllerH
 #define RemoteServerControllerH
 
-#include <AbstractAggreGateDeviceController.h>
+#include "protocol/AbstractAggreGateDeviceController.h"
 #include <string>
 /*
 #include "Cres.h"
@@ -17,8 +17,8 @@
 #include "protocol/OutgoingAggreGateCommand.h"
 #include "protocol/ProxyContext.h"
  */
-#include <RemoteContextManager.h>
-#include <RemoteServer.h>
+#include "protocol/RemoteContextManager.h"
+#include "protocol/RemoteServer.h"
 /*
 #include "protocol/SslHelper.h"
 #include "server/CommonServerFormats.h"

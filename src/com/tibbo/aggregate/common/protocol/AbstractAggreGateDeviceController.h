@@ -1,9 +1,9 @@
 #ifndef AbstractAggreGateDeviceControllerH
 #define AbstractAggreGateDeviceControllerH
 
-#include "AbstractDeviceController.h"
-#include "IncomingAggreGateCommand.h"
-#include "OutgoingAggreGateCommand.h"
+#include "communication/AbstractDeviceController.h"
+#include "protocol/IncomingAggreGateCommand.h"
+#include "protocol/OutgoingAggreGateCommand.h"
 
 template <class D,class C> class AbstractAggreGateDeviceController//: public AbstractDeviceController<IncomingAggreGateCommand, OutgoingAggreGateCommand>, public AggreGateDeviceController<IncomingAggreGateCommand, OutgoingAggreGateCommand>
 {

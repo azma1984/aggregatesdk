@@ -1,7 +1,7 @@
 #ifndef ProxyContextH
 #define ProxyContextH
 
-#include "AbstractContext.h"
+#include "context/AbstractContext.h"
 
 
 template <class C> class ProxyContext: public AbstractContext
@@ -207,6 +207,6 @@ public:
 	std::list<VariableDefinitionPtr>  getVariableDefinitions(const std::string & group);
 	std::list<C>  getVisibleChildren();
 
-	ProxyContext(std::string name, AbstractAggreGateDeviceControllerPtr controller);
+	ProxyContext(std::string name, AbstractAggreGateDeviceControllerPtr controller);
 };
 #endif

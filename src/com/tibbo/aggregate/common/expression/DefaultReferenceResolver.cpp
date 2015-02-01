@@ -260,9 +260,10 @@ boost::shared_ptr<Context> DefaultReferenceResolver::getContext(boost::shared_pt
     boost::shared_ptr<Context> con = getDefaultContext();
     if (ref->getContext().length() != 0) {
         if(ContextUtils::isRelative(ref->getContext()) && con != 0) {
-            con.reset( con->get(ref->getContext(), getCallerController()) );
+            //TODO: con->get возвращает AgObject
+            //con = con->get(ref->getContext(), getCallerController());
         }else if(getContextManager() != 0) {
-            con.reset( getContextManager()->get(ref->getContext(), getCallerController()) );
+            con = getContextManager()->get(ref->getContext(), getCallerController()) ;
         }else {
             con.reset();
         }
@@ -294,11 +295,13 @@ boost::shared_ptr<DataTable> DefaultReferenceResolver::resolveEntity(
             //TODO: exception
             //throw new ::java::lang::IllegalStateException(::jav::text::MessageFormat::format(Cres::get())->getString(u"conFuncNotAvailExt"_j), new voidArray({ref)->getEntity()), con)->getPath())})));
         }
-        boost::shared_ptr<DataTable> parameters = DataTableConstruction::constructTable(ref->getParameters(),
-                                                                                        fd->getInputFormat(),
-                                                                                        getEvaluator(),
-                                                                                        environment);
-        return con->callFunction(ref->getEntity(), getCallerController(), DefaultRequestControllerPtr(new DefaultRequestController(getEvaluator()), parameters));
+        //TODO:
+//        boost::shared_ptr<DataTable> parameters = DataTableConstruction::constructTable(ref->getParameters(),
+//                                                                                        fd->getInputFormat(),
+//                                                                                        getEvaluator(),
+//                                                                                        environment);
+//        return con->callFunction(ref->getEntity(), getCallerController(), DefaultRequestControllerPtr(new DefaultRequestController(getEvaluator()), parameters));
+        return boost::shared_ptr<DataTable>(0);
     } else {
         //TODO: exception
         //throw new ::java::lang::IllegalStateException(std::stringBuilder().append(u"Illegal entity type: "_j)->append(ref)->getEntityType())->toString());

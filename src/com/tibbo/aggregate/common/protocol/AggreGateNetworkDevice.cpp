@@ -1,7 +1,7 @@
 // Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/protocol/AggreGateNetworkDevice.java
 
 #include "AggreGateNetworkDevice.h"
-
+#include "util/SString.h"
 
 AggreGateNetworkDevice::AggreGateNetworkDevice()
 {
@@ -45,8 +45,7 @@ void AggreGateNetworkDevice::setConnectionTimeout(long connectionTimeout)
 
 std::string AggreGateNetworkDevice::getInfo()
 {
-   ///	return std::stringBuilder().append(address)->append(u":"_j)
-	//    ->append(port)->toString();
+   return (address + SString::fromNumber(port));
 }
 
 int AggreGateNetworkDevice::hashCode()
