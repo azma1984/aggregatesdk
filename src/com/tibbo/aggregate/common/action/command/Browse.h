@@ -1,5 +1,4 @@
-#ifndef BrowseH
-#define BrowseH
+#pragma once
 
 #include "action/GenericActionCommand.h"
 #include "util/net.h"
@@ -11,7 +10,7 @@
 class Browse : public GenericActionCommand
 {
  private:
-//	URI_Ptr url_;
+    URI_Ptr url_;
     static TableFormatPtr CFT_BROWSE_;
 
  protected:
@@ -20,12 +19,10 @@ class Browse : public GenericActionCommand
  public:
 	static std::string CF_BROWSE_URI;	
 
-//	URI_Ptr getUrl();
-//	void setUrl(URI_Ptr url);
+    URI_Ptr getUrl();
+    void setUrl(URI_Ptr url);
 
     Browse();
-//	Browse(URI_Ptr url);
+//    Browse(URI_Ptr url);
     static TableFormatPtr CFT_BROWSE();
 };
-
-#endif  //BrowseH

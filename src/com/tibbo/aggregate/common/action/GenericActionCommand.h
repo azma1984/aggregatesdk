@@ -9,8 +9,10 @@
 #include "datatable/DataTableException.h"
 //#include "datatable/TableFormat.h"
 #include "AggreGateException.h"
+#include <boost/enable_shared_from_this.hpp>
 
-class GenericActionCommand : public ActionCommand, AgObject
+class GenericActionCommand
+        : public ActionCommand, public AgObject, public boost::enable_shared_from_this<GenericActionCommand>
 {
  private:
 	std::string type;
