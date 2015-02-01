@@ -1,6 +1,10 @@
 #include "datatable/DataTableQuery.h"
 
 
+DataTableQuery::DataTableQuery()
+{
+}
+
 DataTableQuery::DataTableQuery(std::list<QueryConditionPtr> conditions)
 {
     this->conditions = conditions;

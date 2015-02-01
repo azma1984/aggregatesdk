@@ -8,6 +8,7 @@ private:
     std::list<QueryConditionPtr>  conditions;
 
 public:
+    DataTableQuery();
     DataTableQuery(std::list<QueryConditionPtr> conditions);
     std::list<QueryConditionPtr> getConditions();
     void addCondition(QueryConditionPtr condition);
