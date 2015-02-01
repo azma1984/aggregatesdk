@@ -1,18 +1,17 @@
-#ifndef FIELDVALIDATOR_H
-#define FIELDVALIDATOR_H
+#pragma once
 
 #include "util/Cloneable.h"
 #include "util/Interface.h"
+#include "util/AgObject.h"
+#include "util/Pointers.h"
 
 #include <string>
 
-template <class T>
-class FieldValidator : public Cloneable, public Interface
+class FieldValidator : public Cloneable, public Interface, public AgObject
 {
   virtual bool shouldEncode() = 0;
   virtual char getType() = 0;
   virtual std::string encode() = 0;
-  virtual T validate(T value) = 0;// throws ValidationException;
+  virtual AgObjectPtr validate(AgObjectPtr value) = 0;
 };
 
-#endif // FIELDVALIDATOR_H
