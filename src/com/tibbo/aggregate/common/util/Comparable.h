@@ -1,25 +1,12 @@
-#ifndef _Comparable_H_
-#define _Comparable_H_
+#pragma once
 
 #include <boost/shared_ptr.hpp>
-#include <string>
 
-//todo - class stub
-class Comparable
+class Comparable 
 {
 public:
- std::string	toString(){return "";}
+    virtual ~Cloneable() {};
 
- bool equals(boost::shared_ptr<Comparable>)
- {
-  return true;
- }
-
- int compareTo(boost::shared_ptr<Comparable>)
- {
-  return true;
- }
-
+    virtual int compareTo(Comparable *obj) const = 0;
 };
 
-#endif
