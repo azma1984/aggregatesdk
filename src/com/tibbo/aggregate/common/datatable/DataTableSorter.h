@@ -1,37 +1,15 @@
 #pragma once
+#include <list>
+#include <datatable/SortOrder.h>
 
-//#include <java/lang/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/util/fwd-aggregate_sdk_5.11.00.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/Iterable.h"
-
-//TODO:
-class DateDataTableSorter// : public ::java::lang::Iterable
+class DataTableSorter
 {
-
-public:
-    typedef void super;
-
 private:
-    std::list  orders;
-protected:
-    void ctor(SortOrderArray*/*...*/ orders);
+    std::list<SortOrder>  orders;
 
 public:
-    std::list  getOrders();
-    void addOrder(SortOrder* order);
-    ::java::util::Iterator* iterator();
-
-    // Generated
-    DataTableSorter(SortOrderArray* orders);
-protected:
-    DataTableSorter(const ::default_init_tag&);
-
-
-public:
-    
-
-private:
-    void init();
-    ::java::lang::Class* getClass0();
+    DataTableSorter(const std::list<SortOrder> &orders);
+    std::list<SortOrder> getOrder();
+    void addOrder(SortOrder order);
+    std::list<SortOrder>::iterator iterator();
 };
