@@ -17,7 +17,7 @@ public:
 
     std::string getId();
 
-    bool equals(AgObjectPtr obj);
+    bool equals(StringIdentifier *obj);
 
     //todo - Whether this function is necessary?
     int hashCode();

@@ -7,7 +7,8 @@ const std::string EditText::RF_RESULT = "result";
 const std::string EditText::RF_TEXT = "text";
 
 
-EditText::EditText():GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, CFT_EDIT_TEXT, RFT_EDIT_TEXT)
+EditText::EditText()
+    : GenericActionCommand(ActionUtils::CMD_EDIT_TEXT, CFT_EDIT_TEXT, RFT_EDIT_TEXT)
 {
  Init();
 }

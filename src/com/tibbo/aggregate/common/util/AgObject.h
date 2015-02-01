@@ -31,7 +31,16 @@ class AgObject
         return std::string();
     }
 
+    virtual bool equals(AgObject* obj)
+    {
+        if (obj == NULL)
+            return false;
 
+        if (obj == this)
+            return false;
+
+        return true;
+    }
 
 };
 

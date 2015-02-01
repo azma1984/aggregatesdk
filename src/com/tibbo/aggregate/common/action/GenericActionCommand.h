@@ -10,7 +10,7 @@
 //#include "datatable/TableFormat.h"
 #include "AggreGateException.h"
 
-class GenericActionCommand : public ActionCommand
+class GenericActionCommand : public ActionCommand, AgObject
 {
  private:
 	std::string type;
@@ -49,7 +49,7 @@ public:
     virtual RequestIdentifierPtr getRequestId();
 
     int hashCode();
-    bool equals(AgObjectPtr obj);
+    bool equals(AgObject* obj);
     std::string toString();    
     //virtual GenericActionCommand * clone() const; // Для абстрактного класса этот метод не нужно реализовывать
 
