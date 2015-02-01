@@ -5,7 +5,7 @@
 class Comparable 
 {
 public:
-    virtual ~Cloneable() {};
+    virtual ~Comparable() {};
 
     virtual int compareTo(Comparable *obj) const = 0;
 };
