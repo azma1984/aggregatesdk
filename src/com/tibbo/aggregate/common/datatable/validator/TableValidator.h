@@ -1,20 +1,14 @@
-#ifndef _TABLE_VALIDATOR_H_
-#define _TABLE_VALIDATOR_H_
+#pragma once
 
 #include "util/Cloneable.h"
 #include "util/Interface.h"
-#include "datatable/DataTable.h"
+#include "util/AgObject.h"
+#include "util/Pointers.h"
 
-#include <string>
-#include <boost/shared_ptr.hpp>
-
-
-class TableValidator : public Interface, public Cloneable
+class TableValidator : public Interface, public Cloneable, public AgObject
 {
-	/*
-    virtual std::string getType() = 0;
+public:
+    virtual char getType() = 0;
     virtual std::string encode() = 0;
-    virtual void validate(boost::shared_ptr<DataTable> table) = 0; 
-	*/
+    virtual void validate(DataTablePtr table) = 0;
 };
-#endif  //_TABLE_VALIDATOR_H_

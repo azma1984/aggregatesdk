@@ -105,7 +105,7 @@ public:
 
     AgObjectPtr valueFromEncodedString(const std::string &source);
     AgObjectPtr valueFromEncodedString(const std::string &source, ClassicEncodingSettingsPtr settings, bool validate);
-    AgObjectPtr valueFromString(const std::string &value);
+    AgObject* valueFromString(const std::string &value);  // return raw pointer, called side need delete AgObject
     std::string valueToString(AgObjectPtr value);
     std::string valueToEncodedString(AgObjectPtr value,ClassicEncodingSettingsPtr settings);
     void setDefaultFromString(const std::string &value);

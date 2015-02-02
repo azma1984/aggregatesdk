@@ -1,39 +1,63 @@
 #include "datatable/validator/LimitsValidator.h"
-
-#include "datatable/ValidationException.h"
+#include <list>
+#include <sstream>
 #include "util/StringUtils.h"
+#include "datatable/FieldFormat.h"
+#include "util/simpleobject/AgInteger.h"
+#include "AggreGateException.h"
 #include "data/Data.h"
+#include "datatable/ValidationException.h"
 
-const char LimitsValidator::MIN_MAX_SEPARATOR = ' ';
-
-
-LimitsValidator::LimitsValidator(boost::shared_ptr<FieldFormat> fieldFormat, const std::string& source)
+LimitsValidator::LimitsValidator(FieldFormatPtr fieldFormat, const std::string &source)
 {
-	/*
-	std::list<std::string> minMax = StringUtils::split(source, MIN_MAX_SEPARATOR);
+    std::vector<std::string> minMax = StringUtils::split(source, MIN_MAX_SEPARATOR);
 
-    if (fieldFormat->getType() == FieldFormat::DATA_FIELD || fieldFormat->getType() == FieldFormat::STRING_FIELD) {
-        if (minMax.size() > 1) {
-            min = minMax.get(0);
-            max = minMax.get(1);
-        }else {
-            max = minMax.get(0);
+    if (fieldFormat->getType() == FieldFormat::DATA_FIELD || fieldFormat->getType() == FieldFormat::STRING_FIELD)
+    {
+        if (minMax.size() > 1)
+        {
+
+            min = ComparablePtr(new AgInteger(atoi(minMax[0].c_str())));
+            max = ComparablePtr(new AgInteger(atoi(minMax[1].c_str())));
         }
-    }else {
-        if (minMax.size() > 1) {
-            min = (Comparable) fieldFormat->valueFromString(minMax.get(0));
-            max = (Comparable) fieldFormat->valueFromString(minMax.get(1));
-        }else {
-            max = (Comparable) fieldFormat->valueFromString(minMax.get(0));
+        else
+        {
+            max = ComparablePtr(new AgInteger(atoi(minMax[0].c_str())));
         }
-    }*/
+    }
+    else
+    {
+        if (minMax.size() > 1)
+        {
+            Comparable *c1 = dynamic_cast<Comparable *>(fieldFormat->valueFromString(minMax[0]));
+            Comparable *c2 = dynamic_cast<Comparable *>(fieldFormat->valueFromString(minMax[1]));
+            if (c1 == NULL || c2 == NULL)
+            {
+                throw AggreGateException("Fatal error in LimitsValidator::LimitsValidator(FieldFormatPtr fieldFormat, const std::string &source)");
+            }
+
+            min = ComparablePtr(c1);
+            max = ComparablePtr(c2);
+        }
+        else
+        {
+            Comparable *c1 = dynamic_cast<Comparable *>(fieldFormat->valueFromString(minMax[0]));
+            if (c1 == NULL)
+            {
+                throw AggreGateException("Fatal error in LimitsValidator::LimitsValidator(FieldFormatPtr fieldFormat, const std::string &source)");
+            }
+
+            max = ComparablePtr(c1);
+        }
+    }
 }
 
-LimitsValidator::LimitsValidator(boost::shared_ptr<Comparable> min, boost::shared_ptr<Comparable> max)
+LimitsValidator::LimitsValidator(ComparablePtr min, ComparablePtr max)
 {
-    //TODO: нужно ли генерироват исключение?
-    //if (min != 0 && max != 0 && !min->equals(max))
-         //Log.DATATABLE.error("'min' and 'max' Limits Validator parameters should be the same type", new Throwable());
+    if (min.get() != NULL && max.get() != NULL && typeid(*min.get()) != typeid(*max.get()))
+    {
+        throw AggreGateException("min and max Limits Validator parameters should be the same type, LimitsValidator::LimitsValidator()");
+    }
 
     this->min = min;
     this->max = max;
@@ -49,13 +73,12 @@ char LimitsValidator::getType()
     return FieldFormat::VALIDATOR_LIMITS;
 }
 
-//TODO: Comparable
-boost::shared_ptr<Comparable> LimitsValidator::getMin()
+ComparablePtr LimitsValidator::getMin()
 {
     return min;
 }
 
-boost::shared_ptr<Comparable> LimitsValidator::getMax()
+ComparablePtr LimitsValidator::getMax()
 {
     return max;
 }
@@ -63,22 +86,40 @@ boost::shared_ptr<Comparable> LimitsValidator::getMax()
 std::string LimitsValidator::encode()
 {
     std::stringstream ss;
-    if (min != 0) {
-        ss << min->toString();
-        if (max != 0)
-            ss << MIN_MAX_SEPARATOR <<max->toString();
-    }else {
-        ss << (max != 0 ? max->toString() : "");
+    AgObject *objMin = dynamic_cast<AgObject *>(min.get());
+    AgObject *objMax = dynamic_cast<AgObject *>(max.get());
+    if (objMin == NULL || objMax == NULL)
+    {
+        throw AggreGateException("LimitsValidator::encode(), error cast to AgObject");
     }
-              return ss.str();
-//    return min != 0 ? min.toString() + (max != 0 ? MIN_MAX_SEPARATOR + max.toString() : "") : (max != 0 ? max.toString() : "");
+
+    if (min.get() != 0)
+    {
+
+        ss << objMin->toString();
+        if (max.get() != 0)
+            ss << MIN_MAX_SEPARATOR << objMax->toString();
+    }
+    else {
+        ss << (max.get() != 0 ? objMax->toString() : "");
+    }
+    return ss.str();
 }
 
-//TODO: ValidationException
-void* LimitsValidator::validate(void* value) 
+AgObjectPtr LimitsValidator::validate(AgObjectPtr value)
 {
- //   if (value == 0)
- //       return value;
+    if (value.get() == 0)
+        return value;
+
+    Data *data = dynamic_cast<Data *>(value.get());
+    if (data)
+    {
+        /*if (data.getData() != null)
+        {
+             Comparable size = data.getData().length;
+                compare(size, null, null);
+              }*/
+    }
 
  //   if ((Data*)(value) != 0) 
 	//{
@@ -108,61 +149,86 @@ void* LimitsValidator::validate(void* value)
     return value;
 }
 
-//TODO: ValidationException
-void LimitsValidator::compare(boost::shared_ptr<Comparable> cv, const std::string& smallMessage, const std::string& bigMessage) /* throws(ValidationException) */
+
+void LimitsValidator::compare(Comparable *cv, const std::string& smallMessage, const std::string& bigMessage)
 {
-    if (min != 0) {
-        if (cv->compareTo(min) < 0) {
-//            throw new ValidationException(MessageFormat.format(smallMessage != 0 ? smallMessage : Cres::get()->getString("dtValueTooSmall"), cv, min));
+    if (min.get() != 0)
+    {
+        if (cv->compareTo(min.get()) < 0)
+        {
+            throw ValidationException("dtValueTooSmall");
+            //todo
+            //throw ValidationException(MessageFormat.format(smallMessage != 0 ? smallMessage : Cres::get()->getString("dtValueTooSmall"), cv, min));
         }
     }
 
-    if (cv->compareTo(max) > 0) {
-//        throw new ValidationException(MessageFormat.format(bigMessage != 0 ? bigMessage : Cres::get()->getString("dtValueTooBig"), cv, max));
+    if (cv->compareTo(max.get()) > 0)
+    {
+        throw ValidationException("dtValueTooBig");
+        //todo
+        //throw new ValidationException(MessageFormat.format(bigMessage != 0 ? bigMessage : Cres::get()->getString("dtValueTooBig"), cv, max));
     }
 }
-/*
+
 int LimitsValidator::hashCode()
 {
-    final int prime = 31;
-        int result = 1;
-        result = prime * result + ((max == 0) ? 0 : max.hashCode());
-        result = prime * result + ((min == 0) ? 0 : min.hashCode());
-        return result;
+    int prime = 31;
+    int result = 1;
+    AgObject *objMin = dynamic_cast<AgObject *>(min.get());
+    AgObject *objMax = dynamic_cast<AgObject *>(max.get());
+    if (objMin == NULL || objMax == NULL)
+    {
+        throw AggreGateException("LimitsValidator::hashCode(), error cast to AgObject");
+    }
+    result = prime * result + ((max.get() == NULL) ? 0 : objMax->hashCode());
+    result = prime * result + ((min.get() == NULL) ? 0 : objMin->hashCode());
+    return result;
 }
-*/
 
-bool LimitsValidator::equals(void* obj)
+
+bool LimitsValidator::equals(AgObject* obj)
 {
-    if (this == obj) {
+    if (this == obj)
+    {
         return true;
     }
 
-   // if (!AbstractFieldValidator::equals(obj)) {
-  //      return false;
- //   }
-
-    //TODO:
-//    if (getClass() != obj.getClass()) {
-//        return false;
-//    }
-
-    LimitsValidator* other = (LimitsValidator*)(obj);
-    if (max == 0) {
-        if (other->max != 0) {
-            return false;
-        }
-    }else if (!max->equals(other->max)) {
+    if (!AbstractFieldValidator::equals(obj))
+    {
         return false;
     }
 
-    if (min == 0) {
-        if (other->min != 0) {
+    LimitsValidator *other = dynamic_cast<LimitsValidator*>(obj);
+    AgObject *objMin = dynamic_cast<AgObject *>(min.get());
+    AgObject *objMax = dynamic_cast<AgObject *>(max.get());
+    AgObject *objMinOther = dynamic_cast<AgObject *>(other->min.get());
+    AgObject *objMaxOther = dynamic_cast<AgObject *>(other->max.get());
+
+    if (max.get() == NULL)
+    {
+        if (other->max.get() != NULL)
+        {
             return false;
         }
-    }else if (!min->equals(other->min)) {
+    }
+    else if (!objMax->equals(objMaxOther))
+    {
+        return false;
+    }
+
+    if (min.get() == 0)
+    {
+        if (other->min.get() != 0)
+        {
+            return false;
+        }
+    }
+    else if (!objMin->equals(objMinOther))
+    {
         return false;
     }
 
     return true;
 }
+
+

@@ -1,39 +1,30 @@
-#ifndef _LimitsValidator_H_
-#define _LimitsValidator_H_
+#pragma once
 
-#include <boost/shared_ptr.hpp>
 #include "datatable/validator/AbstractFieldValidator.h"
-#include "datatable/FieldFormat.h"
-#include "util/Comparable.h"
-#include "cres.h"
-#include <sstream>
-#include <iostream>
+#include "util/Pointers.h"
+
 
 class LimitsValidator : public AbstractFieldValidator
 {
 private:
-    static const char MIN_MAX_SEPARATOR;
-    boost::shared_ptr<Comparable> min;
-    boost::shared_ptr<Comparable> max;
+    static const char MIN_MAX_SEPARATOR = ' ';
+    ComparablePtr min;
+    ComparablePtr max;
 
 public:
+    LimitsValidator(FieldFormatPtr fieldFormat, const std::string& source);
+    LimitsValidator(ComparablePtr min, ComparablePtr max);
     virtual bool shouldEncode();
     virtual char getType();
-    //TODO: Comparable
-    boost::shared_ptr<Comparable> getMin();
-    boost::shared_ptr<Comparable> getMax();
+
+    ComparablePtr getMin();
+    ComparablePtr getMax();
     virtual std::string encode();
-    virtual void* validate(void* value) /* throws(ValidationException) */;
+    virtual AgObjectPtr validate(AgObjectPtr value);
+    int hashCode();
+    virtual bool equals(AgObject* obj);
 
 private:
-    void compare(boost::shared_ptr<Comparable> cv, const std::string& smallMessage, const std::string& bigMessage) /* throws(ValidationException) */;
+    void compare(Comparable *cv, const std::string& smallMessage, const std::string& bigMessage);
 
-public:
-//    int hashCode();
-    virtual bool equals(void* obj);
-
-    // Generated
-    LimitsValidator(boost::shared_ptr<FieldFormat> fieldFormat, const std::string& source);
-    LimitsValidator(boost::shared_ptr<Comparable> min, boost::shared_ptr<Comparable> max);
 };
-#endif  //_LimitsValidator_H_

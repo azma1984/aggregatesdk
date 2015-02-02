@@ -9,6 +9,7 @@
 #include <string>
 #include <list>
 #include <map>
+#include <vector>
 
 
 class StringUtils
@@ -36,8 +37,8 @@ class StringUtils
 	static const std::string print(void* array, const std::string & separator);
     static const std::string remoteNonDigits(const std::string & src);
     static const std::string removeSuffix(const std::string & src, const std::string & suffix);
-	static std::list<std::string>  split(const std::string & str, int ch);
-    static std::list<std::string>  split(const std::string & str, int ch, int limit);
+    static std::vector<std::string>  split(const std::string & str, int ch);
+    static std::vector<std::string>  split(const std::string & str, int ch, int limit);
     static const std::string streamToString(std::iostream* is);
 	static std::list<std::string>  wrapText(const std::string & text, int len);
     static const std::string wrapText(const std::string & text, int len, const std::string & separator);

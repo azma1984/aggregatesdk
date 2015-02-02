@@ -14,6 +14,8 @@ public:
     static const int DEFAULT_MIN_RECORDS = 0;
     static const int DEFAULT_MAX_RECORDS = INT_MAX;
 
+    static const char RECORD_VALIDATOR_KEY_FIELDS = 'K';
+
 private:
     static const std::string ELEMENT_FLAGS;
     static const std::string ELEMENT_TABLE_VALIDATORS;
@@ -26,7 +28,6 @@ private:
     static const char TABLE_VALIDATOR_KEY_FIELDS = 'K';
     static const char TABLE_VALIDATOR_EXPRESSION = 'E';
 
-    static const char RECORD_VALIDATOR_KEY_FIELDS = 'K';
 
     static const char REORDERABLE_FLAG = 'R';
     static const char UNRESIZEBLE_FLAG = 'U';

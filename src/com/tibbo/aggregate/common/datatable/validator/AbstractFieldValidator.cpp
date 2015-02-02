@@ -14,3 +14,18 @@ char AbstractFieldValidator::getType()
 {
     return 0;
 }
+
+bool AbstractFieldValidator::equals(AgObject *obj)
+{
+    if (obj == NULL)
+    {
+        return false;
+    }
+
+    if (!(dynamic_cast<FieldValidator *>(obj)))
+    {
+        return false;
+    }
+
+    return typeid(*this) == typeid(obj);
+}
