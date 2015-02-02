@@ -119,17 +119,15 @@ SOURCES += main.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/StringFieldFormat.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/AbstractRecordValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/AbstractTableValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/IdValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/KeyFieldsValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/LimitsValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/NonNullValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/RegexValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/TableExpressionValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/TableKeyFieldsValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/TableValidator.cpp \
-#    src/com/tibbo/aggregate/common/datatable/validator/ValidatorHelper.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/IdValidator.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/KeyFieldsValidator.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/LimitsValidator.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/NonNullValidator.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/RegexValidator.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/TableExpressionValidator.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/TableKeyFieldsValidator.cpp \
+    src/com/tibbo/aggregate/common/datatable/validator/ValidatorHelper.cpp \
     src/com/tibbo/aggregate/common/datatable/AbstractDataTableBindingProvider.cpp \
     src/com/tibbo/aggregate/common/datatable/AggreGateBean.cpp \
     src/com/tibbo/aggregate/common/datatable/DataRecord.cpp \
@@ -242,9 +240,6 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/util/WindowLocation.cpp \
     src/com/tibbo/aggregate/common/Cres.cpp
 
-
-include(deployment.pri)
-qtcAddDeployment()
 
 HEADERS += \
     src/com/tibbo/aggregate/common/action/command/ActivateDashboard.h \
@@ -405,31 +400,31 @@ HEADERS += \
 #    src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/AbstractRecordValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/AbstractTableValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/FieldValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/IdValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/KeyFieldsValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/LimitsValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/NonNullValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/RecordValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/RegexValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/TableExpressionValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/TableKeyFieldsValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/TableValidator.h \
-#    src/com/tibbo/aggregate/common/datatable/validator/ValidatorHelper.h \
-#    src/com/tibbo/aggregate/common/datatable/AbstractDataTableBindingProvider.h \
+    src/com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/AbstractRecordValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/AbstractTableValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/FieldValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/IdValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/KeyFieldsValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/LimitsValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/NonNullValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/RecordValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/RegexValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/TableExpressionValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/TableKeyFieldsValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/TableValidator.h \
+    src/com/tibbo/aggregate/common/datatable/validator/ValidatorHelper.h \
+    src/com/tibbo/aggregate/common/datatable/AbstractDataTableBindingProvider.h \
     src/com/tibbo/aggregate/common/datatable/AggreGateBean.h \
     src/com/tibbo/aggregate/common/datatable/DataRecord.h \
     src/com/tibbo/aggregate/common/datatable/DataTable.h \
-#    src/com/tibbo/aggregate/common/datatable/DataTableBindingProvider.h \
+    src/com/tibbo/aggregate/common/datatable/DataTableBindingProvider.h \
     src/com/tibbo/aggregate/common/datatable/DataTableBuilding.h \
     src/com/tibbo/aggregate/common/datatable/DataTableConstruction.h \
     src/com/tibbo/aggregate/common/datatable/DataTableConversion.h \
     src/com/tibbo/aggregate/common/datatable/DataTableException.h \
     src/com/tibbo/aggregate/common/datatable/DataTableQuery.h \
-#    src/com/tibbo/aggregate/common/datatable/DataTableReplication.h \
+    src/com/tibbo/aggregate/common/datatable/DataTableReplication.h \
     src/com/tibbo/aggregate/common/datatable/DataTableSorter.h \
     src/com/tibbo/aggregate/common/datatable/DataTableUtils.h \
 #    src/com/tibbo/aggregate/common/datatable/FCBigDecimal.h \

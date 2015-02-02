@@ -2,6 +2,8 @@
 
 #include "datatable/FieldFormat.h"
 #include "datatable/ValidationException.h"
+#include "Cres.h"
+#include <boost/functional/hash.hpp>
 
 NonNullValidator::NonNullValidator()
 {
@@ -28,45 +30,48 @@ char NonNullValidator::getType()
     return FieldFormat::VALIDATOR_NON_NULL;
 }
 
-void* NonNullValidator::validate(void* value) /* throws(ValidationException) */
+AgObjectPtr NonNullValidator::validate(AgObjectPtr value)
 {
-    if (value == NULL) {
-        //throw new ValidationException(message != null ? message : Cres::get()->getString("dtValueIsRequired"));
+    if (value.get() == NULL)
+    {
+        throw ValidationException(message.length() != NULL ? message : Cres::get()->getString("dtValueIsRequired"));
     }
 
     return value;
 }
 
-//TODO: need?
-//int NonNullValidator::hashode()
-//{
-//    final int prime = 31;
-//    int result = 1;
-//    result = prime * result + ((message == null) ? 0 : message.hashCode());
-//    return result;
-//}
-
-bool NonNullValidator::equals(void* obj)
+int NonNullValidator::hashode()
 {
-    if (this == obj) {
+    static int prime = 31;
+    int result = 1;
+    boost::hash<std::string> string_hash;
+    result = prime * result + ((message.length() == NULL) ? 0 : string_hash(message));
+    return result;
+}
+
+bool NonNullValidator::equals(AgObjectPtr obj)
+{
+    if (this == obj.get())
+    {
         return true;
     }
 
-    if (!AbstractFieldValidator::equals(obj)) {
+    if (!AbstractFieldValidator::equals(obj.get()))
+    {
         return false;
     }
 
-    //TODO:
-//    if (getClass() != obj.getClass())
-//    {
-//      return false;
-//    }
-
-    NonNullValidator* other = dynamic_cast<NonNullValidator*>(obj);
-    if (message == NULL) {
-        if (other->message != message) {
+    NonNullValidator* other = dynamic_cast<NonNullValidator*>(obj.get());
+    if (other)
+    {
+         if (other->message != message)
+         {
             return false;
-        }
+         }
+    }
+    else
+    {
+        throw ValidationException("dynamic_cast<NonNullValidator*> error in NonNullValidator::equals()");
     }
 
     return true;

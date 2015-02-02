@@ -4,17 +4,17 @@
 
 //todo - Class stub!
 
-ResourceBundlePtr Cres::BUNDLE;
+ResourceBundle Cres::BUNDLE;
 
 Cres::Cres()
 {
     
 }
 
-ResourceBundlePtr Cres::get()
+ResourceBundle* Cres::get()
 {
     
-    return BUNDLE;
+    return &BUNDLE;
 }
 
 AgClassPtr Cres::getClass()

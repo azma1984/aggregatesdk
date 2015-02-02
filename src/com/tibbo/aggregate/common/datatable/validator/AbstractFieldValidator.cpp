@@ -1,4 +1,5 @@
 #include "datatable/validator/AbstractFieldValidator.h"
+#include "AggreGateException.h"
 
 bool AbstractFieldValidator::shouldEncode()
 {
@@ -28,4 +29,10 @@ bool AbstractFieldValidator::equals(AgObject *obj)
     }
 
     return typeid(*this) == typeid(obj);
+}
+
+Cloneable *AbstractFieldValidator::clone() const
+{
+    throw AggreGateException("No clone method");
+    return NULL;
 }

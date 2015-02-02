@@ -14,6 +14,7 @@ private:
 public:
     LimitsValidator(FieldFormatPtr fieldFormat, const std::string& source);
     LimitsValidator(ComparablePtr min, ComparablePtr max);
+    LimitsValidator(int min, int max);
     virtual bool shouldEncode();
     virtual char getType();
 
@@ -25,6 +26,6 @@ public:
     virtual bool equals(AgObject* obj);
 
 private:
-    void compare(Comparable *cv, const std::string& smallMessage, const std::string& bigMessage);
+    void compare(Comparable &cv, const std::string& smallMessage, const std::string& bigMessage);
 
 };

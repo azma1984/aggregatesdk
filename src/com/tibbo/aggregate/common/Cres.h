@@ -9,10 +9,10 @@
 class Cres
 {
  private:
-	static ResourceBundlePtr BUNDLE;
+    static ResourceBundle BUNDLE;
 
  public:
-	static ResourceBundlePtr get();
+    static ResourceBundle *get();
 
 	void reinit(LocalePtr locale);
 
