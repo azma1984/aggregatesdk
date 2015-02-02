@@ -87,6 +87,6 @@ public:
   /**
    * Returns the execution lock
    */
-   virtual boost::mutex getExecutionLock()=0;
+   virtual boost::mutex& getExecutionLock()=0;
 };
 #endif

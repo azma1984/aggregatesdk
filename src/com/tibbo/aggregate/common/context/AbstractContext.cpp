@@ -1,4 +1,6 @@
 #include "AbstractContext.h"
+#include "context/Contexts.h"
+#include "action/BasicActionDefinition.h"
 
 const std::string AbstractContext::IMPLEMENTATION_METHOD_PREFIX = "callF";
 const std::string AbstractContext::SETTER_METHOD_PREFIX = "setV";
@@ -858,890 +860,934 @@ void AbstractContext::setChildrenConcurrencyEnabled(bool childrenConcurrencyEnab
 //    }
 //}
 //
-//void AbstractContext::destroy(bool moving)
-//{
-////    if(!moving) {
-////        stop();
-////        destroyChildren(false);
-////    }
-////    if(fireUpdateEvents) {
-////        auto ed = getEventDefinition(E_DESTROYED());
-////        if(ed != 0) {
-////            fireEvent(ed)->getName());
-////        }
-////    }
-////    EventDataPtrLock)->readLock())->lock();
-////    {
-////        auto finally4 = finally([&] {
-////            EventDataPtrLock)->readLock())->unlock();
-////        });
-////        {
-////            for (auto _i = EventDataPtr)->values())->iterator(); _i->hasNext(); ) {
-////                EventDataPtr ed = java_cast< EventDataPtr >(_i->next());
-////                {
-////                    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
-////                    if(logger)->isDebugEnabled()) {
-////                        logger)->debug("Removing all listeners of event '"+ed)->getDefinition())->getName())
-////            +"'");
-////                    }
-////                    ed)->clearListeners();
-////                }
-////            }
-////        }
-////    }
-////
-////    removeFromParent();
-//}
-////
-////void AbstractContext::destroyChildren(bool moving)
-////{
-////    childrenLock)->writeLock())->lock();
-////    {
-////        auto finally5 = finally([&] {
-////            childrenLock)->writeLock())->unlock();
-////        });
-////        {
-////            for (auto _i = new ::java::util::ArrayList(static_cast< std::list >(children))->iterator(); _i->hasNext(); ) {
-////                ContextPtr child = java_cast< ContextPtr >(_i->next());
-////                {
-////                    child)->destroy(moving);
-////                }
-////            }
-////        }
-////    }
-////
-////}
-////
-//void AbstractContext::removeChild(ContextPtr child)
-//{
-////    child)->teardown();
-////    childrenLock)->writeLock())->lock();
-////    {
-////        auto finally6 = finally([&] {
-////            childrenLock)->writeLock())->unlock();
-////        });
-////        {
-////            if(children)->contains(child))) {
-////                if(getContextManager() != 0) {
-////                    try {
-////                        child)->accept(new AbstractContext_removeChild_3(this, child));
-////                    } catch (ContextException* ex) {
-////                        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
-////                    }
-////                }
-////                childrenMap)->remove(child)->getName());
-////                children)->remove(child));
-////                if(setupComplete && fireUpdateEvents) {
-////                    fireEvent(E_CHILD_REMOVED(), new voidArray({child)->getName())}));
-////                }
-////            }
-////        }
-////    }
-////
-//}
+void AbstractContext::destroy(bool moving)
+{
+    if (!moving) {
+        stop();
+        destroyChildren(false);
+    }
+
+    if (fireUpdateEvents) {
+        EventDefinitionPtr ed = getEventDefinition(E_DESTROYED);
+        if(ed != 0) {
+            fireEvent(ed->getName());
+        }
+    }
+    EventDataLock.lock();
+    try {
+        //TODO:
+//        auto finally4 = finally([&] {
+//            EventDataPtrLock)->readLock())->unlock();
+//        });
+//        {
+//            for (auto _i = EventDataPtr)->values())->iterator(); _i->hasNext(); ) {
+//                EventDataPtr ed = java_cast< EventDataPtr >(_i->next());
+//                {
+//                    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
+//                    if(logger)->isDebugEnabled()) {
+//                        logger)->debug("Removing all listeners of event '"+ed)->getDefinition())->getName())
+//            +"'");
+//                    }
+//                    ed)->clearListeners();
+//                }
+//            }
+//        }
+    }catch(...)
+    {
+      EventDataLock.unlock();
+    }
+
+    removeFromParent();
+}
+
+void AbstractContext::destroyChildren(bool moving)
+{
+    //TODO:
+//    childrenLock->lock();
+//    {
+//        auto finally5 = finally([&] {
+//            childrenLock)->writeLock())->unlock();
+//        });
+//        {
+//            for (auto _i = new ::java::util::ArrayList(static_cast< std::list >(children))->iterator(); _i->hasNext(); ) {
+//                ContextPtr child = java_cast< ContextPtr >(_i->next());
+//                {
+//                    child)->destroy(moving);
+//                }
+//            }
+//        }
+//    }catch(...)//finally
+//    {
+//      childrenLock.writeLock().unlock();
+//    }
+}
+
+void AbstractContext::removeChild(ContextPtr child)
+{
+//    child)->teardown();
+//    childrenLock)->writeLock())->lock();
+//    {
+//        auto finally6 = finally([&] {
+//            childrenLock)->writeLock())->unlock();
+//        });
+//        {
+//            if(children)->contains(child))) {
+//                if(getContextManager() != 0) {
+//                    try {
+//                        child)->accept(new AbstractContext_removeChild_3(this, child));
+//                    } catch (ContextException* ex) {
+//                        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
+//                    }
+//                }
+//                childrenMap)->remove(child)->getName());
+//                children)->remove(child));
+//                if(setupComplete && fireUpdateEvents) {
+//                    fireEvent(E_CHILD_REMOVED(), new voidArray({child)->getName())}));
+//                }
+//            }
+//        }
+//    }
 //
-//void AbstractContext::removeChild(const std::string & name)
-//{
-////    auto con = java_cast< ContextPtr >(getChildWithoutCheckingPerms(name));
-////    if(con != 0) {
-////        removeChild(con);
-////        return;
-////    }
-////    Log::CONTEXT_CHILDREN())->debug("Remove error: child '"+name)
-////        +"' not found in context ")
-////        +getPath())->toString());
-//}
-////
-////void AbstractContext::reorderChild(ContextPtr child, int index)
-////{
-////    if(childrenSortingEnabled) {
-////        throw new ::java::lang::IllegalStateException("Cannot reorder children when children sorting is enabled");
-////    }
-////    childrenLock)->writeLock())->lock();
-////    {
-////        auto finally7 = finally([&] {
-////            childrenLock)->writeLock())->unlock();
-////        });
-////        {
-////            auto oi = children)->indexOf(child);
-////            if(children)->remove(child))) {
-////                children)->add(index - (oi < index ? int(1) : int(0)), child);
-////            }
-////        }
-////    }
-////
-////}
-////
-//void AbstractContext::destroyChild(ContextPtr child, bool moving)
-//{
-////    child)->destroy(moving);
-//}
-////
-//void AbstractContext::destroyChild(const std::string & name, bool moving)
-//{
-////    auto con = java_cast< ContextPtr >(getChildWithoutCheckingPerms(name));
-////    if(con != 0) {
-////        destroyChild(con, moving);
-////        return;
-////    }
-////    Log::CONTEXT_CHILDREN())->warn("Destroy error: child '"+name)
-////        +"' not found in context ")
-////        +getPath())->toString());
-//}
-////
-////void AbstractContext::removeAllChildren()
-////{
-////    childrenLock)->readLock())->lock();
-////    {
-////        auto finally8 = finally([&] {
-////            childrenLock)->readLock())->unlock();
-////        });
-////        {
-////            for (auto _i = children)->iterator(); _i->hasNext(); ) {
-////                ContextPtr child = java_cast< ContextPtr >(_i->next());
-////                {
-////                    removeChild(child);
-////                }
-////            }
-////        }
-////    }
-////
-////}
-////
-////void AbstractContext::movePrepare(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
-////{
-////}
-////
-////void AbstractContext::moveInternal(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
-////{
-////    setName(newName);
-////    childrenLock)->readLock())->lock();
-////    {
-////        auto finally9 = finally([&] {
-////            childrenLock)->readLock())->unlock();
-////        });
-////        {
-////            for (auto _i = children)->iterator(); _i->hasNext(); ) {
-////                ContextPtr child = java_cast< ContextPtr >(_i->next());
-////                {
-////                    (java_cast< AbstractContextPtr >(child)))->moveInternal(ContextUtils::createName(new std::stringArray({oldPath, child)->getName()})), child)->getName(), ContextUtils::createName(new std::stringArray({newPath, child)->getName()})), child)->getName());
-////                }
-////            }
-////        }
-////    }
-////
-////}
-////
-////void AbstractContext::moveFinalize(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
-////{
-////}
-////
-////void AbstractContext::move(ContextPtr newParent, const std::string & newName)
-////{
-////    move(getPath(), newParent, newName);
-////}
-////
-////void AbstractContext::move(const std::string & oldPath, ContextPtr newParent, const std::string & newName)
-////{
-////    Log::CONTEXT())->debug("Moving context "+getPath())
-////        +" to ")
-////        +newParent)->getPath())
-////        +" and/or renaming to ")
-////        +newName)->toString());
-////    auto oldName = getName();
-////    auto newPath = ContextUtils::createName(new std::stringArray({newParent)->getPath(), newName}));
-////    movePrepare(oldPath, oldName, newPath, newName);
-////    java_cast< ContextPtr >(getParent()))->destroyChild(static_cast< ContextPtr >(this), true);
-////    moveInternal(oldPath, oldName, newPath, newName);
-////    newParent)->addChild(this);
-////    moveFinalize(oldPath, oldName, newPath, newName);
-////}
-////
-//AgObjectPtr AbstractContext::getChild(const std::string & name, CallerControllerPtr caller)
-//{
-////    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
-////        return 0;
-////    }
-////    auto child = java_cast< ContextPtr >(getChildWithoutCheckingPerms(name));
-////    if(child != 0 && shouldSeeChild(caller, child)) {
-////        return child;
-////    }
-//    return 0;
-//}
+}
+
+void AbstractContext::removeChild(const std::string & name)
+{
+    //TODO:
+//    auto con = java_cast< ContextPtr >(getChildWithoutCheckingPerms(name));
+//    if(con != 0) {
+//        removeChild(con);
+//        return;
+//    }
+//    Log::CONTEXT_CHILDREN())->debug("Remove error: child '"+name)
+//        +"' not found in context ")
+//        +getPath())->toString());
+}
+
+void AbstractContext::reorderChild(ContextPtr child, int index)
+{
+//TODO:
+//    if(childrenSortingEnabled) {
+//        throw new ::java::lang::IllegalStateException("Cannot reorder children when children sorting is enabled");
+//    }
+//    childrenLock)->writeLock())->lock();
+//    {
+//        auto finally7 = finally([&] {
+//            childrenLock)->writeLock())->unlock();
+//        });
+//        {
+//            auto oi = children)->indexOf(child);
+//            if(children)->remove(child))) {
+//                children)->add(index - (oi < index ? int(1) : int(0)), child);
+//            }
+//        }
+//    }
+
+}
+
+void AbstractContext::destroyChild(ContextPtr child, bool moving)
+{
+    child->destroy(moving);
+}
+
+void AbstractContext::destroyChild(const std::string & name, bool moving)
+{
+    ContextPtr con = getChildWithoutCheckingPerms(name);
+    if (con != 0) {
+        destroyChild(con, moving);
+        return;
+    }
+
+//    Log::CONTEXT_CHILDREN())->warn("Destroy error: child '"+name)
+//        +"' not found in context ")
+//        +getPath())->toString());
+}
+
+void AbstractContext::removeAllChildren()
+{
+    //TODO:
+//    childrenLock)->readLock())->lock();
+//    {
+//        auto finally8 = finally([&] {
+//            childrenLock)->readLock())->unlock();
+//        });
+//        {
+//            for (auto _i = children)->iterator(); _i->hasNext(); ) {
+//                ContextPtr child = java_cast< ContextPtr >(_i->next());
+//                {
+//                    removeChild(child);
+//                }
+//            }
+//        }
+//    }
+
+}
+
+void AbstractContext::movePrepare(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
+{
+}
+
+void AbstractContext::moveInternal(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
+{
+    //TODO:
+//    setName(newName);
+//    childrenLock)->readLock())->lock();
+//    {
+//        auto finally9 = finally([&] {
+//            childrenLock)->readLock())->unlock();
+//        });
+//        {
+//            for (auto _i = children)->iterator(); _i->hasNext(); ) {
+//                ContextPtr child = java_cast< ContextPtr >(_i->next());
+//                {
+//                    (java_cast< AbstractContextPtr >(child)))->moveInternal(ContextUtils::createName(new std::stringArray({oldPath, child)->getName()})), child)->getName(), ContextUtils::createName(new std::stringArray({newPath, child)->getName()})), child)->getName());
+//                }
+//            }
+//        }
+//    }
+
+}
+
+void AbstractContext::moveFinalize(const std::string & oldPath, const std::string & oldName, const std::string & newPath, const std::string & newName)
+{
+}
+
+void AbstractContext::move(ContextPtr newParent, const std::string & newName)
+{
+    move(getPath(), newParent, newName);
+}
+
+void AbstractContext::move(const std::string & oldPath, ContextPtr newParent, const std::string & newName)
+{
+    //TODO:
+//    Log::CONTEXT())->debug("Moving context "+getPath())
+//        +" to ")
+//        +newParent)->getPath())
+//        +" and/or renaming to ")
+//        +newName)->toString());
+//    auto oldName = getName();
+//    auto newPath = ContextUtils::createName(new std::stringArray({newParent)->getPath(), newName}));
+//    movePrepare(oldPath, oldName, newPath, newName);
+//    java_cast< ContextPtr >(getParent()))->destroyChild(static_cast< ContextPtr >(this), true);
+//    moveInternal(oldPath, oldName, newPath, newName);
+//    newParent)->addChild(this);
+//    moveFinalize(oldPath, oldName, newPath, newName);
+}
+
+AgObjectPtr AbstractContext::getChild(const std::string & name, CallerControllerPtr caller)
+{
+    //TODO:
+//    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
+//        return 0;
+//    }
+//    auto child = java_cast< ContextPtr >(getChildWithoutCheckingPerms(name));
+//    if(child != 0 && shouldSeeChild(caller, child)) {
+//        return child;
+//    }
+    return 0;
+}
+
+AgObjectPtr AbstractContext::getChild(const std::string & name)
+{
+    //TODO:
+//    return java_cast< ContextPtr >(getChild(name, static_cast< CallerControllerPtr >(0)));
+    return 0;
+}
+
+ContextPtr AbstractContext::getChildWithoutCheckingPerms(const std::string & name)
+{
+    //TODO:
+    //return java_cast< ContextPtr >(childrenMap[name]);
+    return ContextPtr();
+}
+
+std::string AbstractContext::getPath()
+{
+    if (getParent() == 0)
+    {
+      return createPath();
+    }
+
+    if (path.empty() == true)
+    {
+      path = createPath();
+    }
+
+    return path;
+}
+
+std::string AbstractContext::createPath()
+{
+    //TODO:
+//    ContextPtr con = this;
+//    auto nm = getName();
+//    do {
+//        con = java_cast< ContextPtr >(con)->getParent());
+//        if(con != 0) {
+//            if(java_cast< ContextPtr >(con)->getParent()) != 0) {
+//                nm = con)->getName())+ContextUtils::CONTEXT_NAME_SEPARATOR())
+//    +nm)->toString();
+//            }
+//        }
+//    } while (con != 0);
+//    return nm;
+    return "";
+}
+
+bool AbstractContext::addEventListener(const std::string & name, ContextEventListenerPtr listener)
+{
+    return addEventListener(name, listener, false);
+}
+
+bool AbstractContext::addEventListener(const std::string & name, ContextEventListenerPtr listener, bool weak)
+{
+    //TODO:
+//    auto ed = getEventDataPtr(name);
+//    if(ed == 0) {
+//        throw new ::java::lang::IllegalArgumentException(Cres::get()->getString("conEvtNotAvail"))+name)->toString());
+//    }
+//    {
+//        synchronized synchronized_0(ed);
+//        {
+//            try {
+//                checkPermissions(ed)->getDefinition())->getPermissions() != 0 ? ed)->getDefinition())->getPermissions() : getPermissions(), listener)->getCallerController());
+//            } catch (ContextSecurityException* ex) {
+//                Log::CONTEXT_EVENTS())->warn("Error adding listener '"+listener))
+//    +"' of event '")
+//    +ed)->getDefinition())->getName())
+//    +"' in context '")
+//    +getPath())
+//    +"': ")
+//    +ex)->getMessage())->toString(), new ::java::lang::Exception());
+//                return false;
+//            }
+//            auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
+//            if(logger)->isDebugEnabled()) {
+//                logger)->debug("Adding '"+listener))
+//    +"' as listener of event '")
+//    +ed)->getDefinition())->getName())
+//    +"' in '")
+//    +getPath())
+//    +"'");
+//            }
+//            return ed)->addListener(listener, weak);
+//        }
+//    }
+ return true;
+}
+
+bool AbstractContext::removeEventListener(const std::string & name, ContextEventListenerPtr listener)
+{
+    //TODO:
+//    auto ed = getEventDataPtr(name);
+//    if(ed == 0) {
+//        Log::CONTEXT_EVENTS())->warn("Error removing listener of event '"+name)
+//            +"' in context '")
+//            +getPath())
+//            +"': event definition not found", new ::java::lang::Exception());
+//        return false;
+//    }
+//    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
+//    if(logger)->isDebugEnabled()) {
+//        logger)->debug("Removing '"+listener))
+//            +"' listener of event '")
+//            +ed)->getDefinition())->getName())
+//            +"' in '")
+//            +getPath())
+//            +"'");
+//    }
+//    {
+//        synchronized synchronized_1(ed);
+//        {
+//            return ed)->removeListener(listener);
+//        }
+//    }
+
+ return true;
+}
+
+std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller)
+{
+    //TODO:
+//return getVariableDefinitions(caller, false);
+std::list<VariableDefinitionPtr> list;
+ return list;
+}
+
+std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller, bool includeHidden)
+{
+    //TODO:
+    std::list<VariableDefinitionPtr>  list;
+//    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
+//    variableDataLock)->readLock())->lock();
+//    {
+//        auto finally10 = finally([&] {
+//            variableDataLock)->readLock())->unlock();
+//        });
+//        {
+//            for (auto _i = variableData)->values())->iterator(); _i->hasNext(); ) {
+//                VariableDataPtr d = java_cast< VariableDataPtr >(_i->next());
+//                {
+//                    auto def = d)->getDefinition();
+//                    if((caller == 0 || caller)->isPermissionCheckingEnabled()) && !includeHidden && def)->isHidden()&& !debug) {
+//                        continue;
+//                    }
+//                    auto readAccessGranted = checkPermissions(def)->getReadPermissions() != 0 ? def)->getReadPermissions() : getPermissions(), caller, this);
+//                    auto writeAccessGranted = checkPermissions(def)->getWritePermissions() != 0 ? def)->getWritePermissions() : getPermissions(), caller, this);
+//                    if(!readAccessGranted && !writeAccessGranted) {
+//                        continue;
+//                    }
+//                    if((def)->isReadable() == readAccessGranted) && (def)->isWritable() == writeAccessGranted)) {
+//                        list)->add(def));
+//                    } else {
+//                        auto clone = def)->clone();
+//                        clone)->setReadable(def)->isReadable() ? readAccessGranted : false);
+//                        clone)->setWritable(def)->isWritable() ? writeAccessGranted : false);
+//                        list)->add(clone));
+//                    }
+//                }
+//            }
+//        }
+//    }
 //
-//AgObjectPtr AbstractContext::getChild(const std::string & name)
-//{
-////    return java_cast< ContextPtr >(getChild(name, static_cast< CallerControllerPtr >(0)));
-//	return 0;
-//}
+    return list;
+}
+
+std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions()
+{
+   return getVariableDefinitions(CallerControllerPtr(0));
+}
+
+std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller, const std::string & group)
+{
+    //TODO:
+  std::list<VariableDefinitionPtr>  defs;
+//    for (auto _i = getVariableDefinitions(caller))->iterator(); _i->hasNext(); ) {
+//        VariableDefinitionPtr vd = java_cast< VariableDefinitionPtr >(_i->next());
+//        {
+//            if(vd)->getGroup() != 0 && (Util::equals(group, vd)->getGroup()) || vd)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
+//                defs)->add(vd));
+//            }
+//        }
+//    }
+  return defs;
+}
+
+std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(const std::string & group)
+{
+   return getVariableDefinitions(0, group);
+}
+
+PermissionCheckerPtr AbstractContext::getPermissionChecker()
+{
+    return permissionChecker;
+}
+
+PermissionsPtr AbstractContext::getChildrenViewPermissions()
+{
+    return childrenViewPermissions != 0 ? childrenViewPermissions : getPermissions();
+}
+
+ContextManagerPtr AbstractContext::getContextManager()
+{
+    return contextManager;
+}
+
+ /*template <class C> */bool AbstractContext/*<C> */::isSetupComplete()
+{
+    return setupComplete;
+}
+
+bool AbstractContext::isStarted()
+{
+    return started;
+}
+
+bool AbstractContext ::isInitializedInfo()
+{
+    return setupComplete;
+}
+
+bool AbstractContext ::isInitializedChildren()
+{
+    return setupComplete;
+}
+
+bool AbstractContext::isInitializedVariables()
+{
+    return setupComplete;
+}
+
+bool AbstractContext::isInitializedFunctions()
+{
+    return setupComplete;
+}
+
+bool AbstractContext::isInitializedEvents()
+{
+    return setupComplete;
+}
+
+std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions(CallerControllerPtr caller)
+{
+  return getFunctionDefinitions(caller, false);
+}
+
+std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions(CallerControllerPtr caller, bool includeHidden)
+{
+    //TODO:
+   std::list<FunctionDefinitionPtr>  list;
+//    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
+//    functionDataLock)->readLock())->lock();
+//    {
+//        auto finally11 = finally([&] {
+//            functionDataLock)->readLock())->unlock();
+//        });
+//        {
+//            for (auto _i = functionData)->values())->iterator(); _i->hasNext(); ) {
+//                FunctionDataPtr d = java_cast< FunctionDataPtr >(_i->next());
+//                {
+//                    auto def = d)->getDefinition();
+//                    if(!checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller, this)) {
+//                        continue;
+//                    }
+//                    if((caller == 0 || caller)->isPermissionCheckingEnabled()) && !includeHidden && def)->isHidden()&& !debug) {
+//                        continue;
+//                    }
+//                    list)->add(def));
+//                }
+//            }
+//        }
+//    }
 //
-////ContextPtr AbstractContext::getChildWithoutCheckingPerms(const std::string & name)
-////{
-////    return java_cast< ContextPtr >(childrenMap)->get(name));
-////}
-////
-////std::string AbstractContext::getPath()
-////{
-////    if(java_cast< ContextPtr >(getParent()) == 0) {
-////        return createPath();
-////    }
-////    if(path == 0) {
-////        path = createPath();
-////    }
-////    return path;
-////}
-////
-////std::string AbstractContext::createPath()
-////{
-////    ContextPtr con = this;
-////    auto nm = getName();
-////    do {
-////        con = java_cast< ContextPtr >(con)->getParent());
-////        if(con != 0) {
-////            if(java_cast< ContextPtr >(con)->getParent()) != 0) {
-////                nm = con)->getName())+ContextUtils::CONTEXT_NAME_SEPARATOR())
-////    +nm)->toString();
-////            }
-////        }
-////    } while (con != 0);
-////    return nm;
-////}
-////
-//bool AbstractContext::addEventListener(const std::string & name, ContextEventListenerPtr listener)
+    return list;
+}
+
+std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions()
+{
+    return getFunctionDefinitions(CallerControllerPtr(0));
+}
+
+std::list<FunctionDefinitionPtr>  AbstractContext ::getFunctionDefinitions(CallerControllerPtr caller, const std::string & group)
+{
+    //TODO:
+  std::list<FunctionDefinitionPtr> defs;
+//    for (auto _i = getFunctionDefinitions(caller))->iterator(); _i->hasNext(); ) {
+//        FunctionDefinitionPtr fd = java_cast< FunctionDefinitionPtr >(_i->next());
+//        {
+//            if(fd)->getGroup() != 0 && (Util::equals(group, fd)->getGroup()) || fd)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
+//                defs)->add(fd));
+//            }
+//        }
+//    }
+  return defs;
+}
+
+std::list<FunctionDefinitionPtr>  /*template <class C> */AbstractContext/*<C>*/ ::getFunctionDefinitions(const std::string & group)
+{
+  return getFunctionDefinitions(0, group);
+}
+
+//java::util::concurrent::locks::ReentrantReadWriteLock* AbstractContext::getChildrenLock()
 //{
-//    return addEventListener(name, listener, false);
+//    return childrenLock;
 //}
+
+std::string AbstractContext::getType()
+{
+   // return type != 0 ? type : ContextUtils::getTypeForClass(getClass());
+    return "";
+}
+
+bool AbstractContext::isPermissionCheckingEnabled()
+{
+    return permissionCheckingEnabled;
+}
+
+std::string AbstractContext::getIconId()
+{
+    return iconId;
+}
+
+int AbstractContext::getIndex()
+{
+    return index;
+}
+
+std::string AbstractContext::getGroup()
+{
+    return group;
+}
+
+std::string AbstractContext::getLocalRoot()
+{
+    return Contexts::CTX_ROOT;
+}
+
+bool AbstractContext::isProxy()
+{
+    return false;
+}
+
+bool AbstractContext::isDistributed()
+{
+    return false;
+}
+
+std::string AbstractContext::getRemoteRoot()
+{
+    return 0;
+}
+
+std::string AbstractContext::getRemotePath()
+{
+    return getPath();
+}
+
+std::string AbstractContext::getRemotePrimaryRoot()
+{
+    return 0;
+}
+
+void AbstractContext::setType(const std::string & type)
+{
+    //TODO:
+//    if(!ContextUtils::isValidContextType(type)) {
+//        throw new ::java::lang::IllegalArgumentException(Cres::get()->getString("conIllegalType"))+type)->toString());
+//    }
+//    auto old = this->type;
+//    this->type = type;
+//    if(old == 0 || !old)->equals(type))) {
+//        contextInfoChanded();
+//    }
+}
+
+void AbstractContext::setPermissionCheckingEnabled(bool permissionCheckingEnabled)
+{
+    this->permissionCheckingEnabled = permissionCheckingEnabled;
+}
+
+void AbstractContext::setIconId(const std::string & iconId)
+{
+    //TODO:
+//    auto old = this->iconId;
+//    this->iconId = iconId;
+//    if(old == 0 || !old)->equals(iconId))) {
+//        contextInfoChanded();
+//    }
+}
+
+void AbstractContext::contextInfoChanded()
+{
+    //TODO:
+//    if(setupComplete) {
+//        auto cm = getContextManager();
+//        if(cm != 0) {
+//            cm)->contextInfoChanged(this);
+//        }
+//        if(fireUpdateEvents) {
+//            auto ed = getEventDefinition(E_INFO_CHANGED());
+//            if(ed != 0) {
+//                fireEvent(E_INFO_CHANGED(), createContextInfoTable());
+//            }
+//        }
+//    }
+}
+
+void AbstractContext::setIndex(int  index)
+{
+    this->index = index;
+}
+
+void AbstractContext::setGroup(const std::string & group)
+{
+    //TODO:
+//    auto old = this->group;
+//    this->group = group;
+//    if(old == 0 || !old)->equals(group))) {
+//        contextInfoChanded();
+//    }
+}
+
+std::list<EventDefinitionPtr>  AbstractContext::getEventDefinitions(CallerControllerPtr caller)
+{
+    return getEventDefinitions(caller, false);
+}
+
+std::list<EventDefinitionPtr>  AbstractContext::getEventDefinitions(CallerControllerPtr caller, bool includeHidden)
+{
+    std::list<EventDefinitionPtr>  list;
+    //TODO:
+//    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
+//    EventDataPtrLock)->readLock())->lock();
+//    {
+//        auto finally12 = finally([&] {
+//            EventDataPtrLock)->readLock())->unlock();
+//        });
+//        {
+//            for (auto _i = EventDataPtr)->values())->iterator(); _i->hasNext(); ) {
+//                EventDataPtr d = java_cast< EventDataPtr >(_i->next());
+//                {
+//                    if(!checkPermissions(d)->getDefinition())->getPermissions() != 0 ? d)->getDefinition())->getPermissions() : getPermissions(), caller, this)) {
+//                        continue;
+//                    }
+//                    if((caller == 0 || caller)->isPermissionCheckingEnabled()) && !includeHidden && d)->getDefinition())->isHidden()&& !debug) {
+//                        continue;
+//                    }
+//                    list)->add(d)->getDefinition()));
+//                }
+//            }
+//        }
+//    }
+
+    return list;
+}
+
+std::list<EventDefinitionPtr>  AbstractContext::getEventDefinitions()
+{
+    return getEventDefinitions(static_cast< CallerControllerPtr >(0));
+}
+
+std::list<EventDefinitionPtr>  AbstractContext::getEventDefinitions(CallerControllerPtr caller, const std::string & group)
+{
+    std::list<EventDefinitionPtr>  res;
+//    for (auto _i = getEventDefinitions(caller))->iterator(); _i->hasNext(); ) {
+//        EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
+//        {
+//            if(ed)->getGroup() != 0 && (Util::equals(group, ed)->getGroup()) || ed)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
+//                res)->add(ed));
+//            }
+//        }
+//    }
+    return res;
+}
+
+std::list<EventDefinitionPtr>  AbstractContext::getEventDefinitions(const std::string & group)
+{
+    return getEventDefinitions(static_cast< CallerControllerPtr >(0), group);
+}
+
+ActionDefinitionPtr AbstractContext::getActionDefinition(const std::string & name)
+{
+    //TODO:
+//    actionDefinitionsLock)->readLock())->lock();
+//    {
+//        auto finally13 = finally([&] {
+//            actionDefinitionsLock)->readLock())->unlock();
+//        });
+//        {
+//            for (auto _i = actionDefinitions)->iterator(); _i->hasNext(); ) {
+//                ::com::tibbo::aggregate::common::action::ActionDefinitionPtr def = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
+//                {
+//                    if(def)->getName())->equals(name))) {
+//                        return def;
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    return 0;
+}
+
+
+ActionDefinitionPtr AbstractContext::getActionDefinition(const std::string & name, CallerControllerPtr caller)
+{
+//TODO:
+//    for (auto _i = getActionDefinitions(caller, true))->iterator(); _i->hasNext(); ) {
+//        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
+//        {
+//            if(ad)->getName())->equals(name))) {
+//                return ad;
+//            }
+//        }
+//    }
+    return 0;
+}
+
+ActionDefinitionPtr AbstractContext::getDefaultActionDefinition(CallerControllerPtr caller)
+{
+    //TODO:
+//    for (auto _i = getActionDefinitions(caller, true))->iterator(); _i->hasNext(); ) {
+//        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
+//        {
+//            if(ad)->isDefault()) {
+//                return ad;
+//            }
+//        }
+//    }
+    return 0;
+}
+
+std::list<ActionDefinitionPtr>  AbstractContext::getActionDefinitions(CallerControllerPtr caller)
+{
+    return getActionDefinitions(caller, false);
+}
+
+void AbstractContext::addActionDefinition(ActionDefinitionPtr def)
+{
+    //TODO:
+//    if(def)->getName() == 0) {
+//        throw new ::java::lang::NullPointerException("Action name can't be NULL");
+//    }
+//    if(getActionDefinition(def)->getName()) != 0) {
+//        throw new ::java::lang::IllegalArgumentException("Action '"+def)->getName())
+//            +"' is already defined in context '")
+//            +getPath())
+//            +"'");
+//    }
+//    actionDefinitionsLock)->writeLock())->lock();
+//    {
+//        auto finally14 = finally([&] {
+//            actionDefinitionsLock)->writeLock())->unlock();
+//        });
+//        {
+//            actionDefinitions)->add(def));
+//            ::java::util::Collections::sort(actionDefinitions);
+//            if(isSetupComplete() && isFireUpdateEvents()) {
+//                auto ed = getEventDefinition(AbstractContext::E_ACTION_ADDED());
+//                if(ed != 0) {
+//                    fireEvent(ed)->getName(), actDefToDataRecord(def))->wrap());
+//                }
+//            }
+//        }
+//    }
+
+}
+
+std::list<ActionDefinitionPtr>  AbstractContext::getActionDefinitions(CallerControllerPtr caller, bool includeHidden)
+{
+    std::list<ActionDefinitionPtr> list;
+//    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
+//    actionDefinitionsLock)->readLock())->lock();
+//    {
+//        auto finally15 = finally([&] {
+//            actionDefinitionsLock)->readLock())->unlock();
+//        });
+//        {
+//            for (auto _i = actionDefinitions)->iterator(); _i->hasNext(); ) {
+//                ::com::tibbo::aggregate::common::action::ActionDefinitionPtr d = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
+//                {
+//                    if(!checkPermissions(d)->getPermissions() != 0 ? d)->getPermissions() : getPermissions(), caller, this)) {
+//                        continue;
+//                    }
+//                    if(d)->isHidden() && !debug && !includeHidden) {
+//                        continue;
+//                    }
+//                    list)->add(d));
+//                }
+//            }
+//        }
+//    }
+
+    return list;
+}
+
+std::list<ActionDefinitionPtr>  AbstractContext::getActionDefinitions()
+{
+    return getActionDefinitions(static_cast< CallerControllerPtr >(0));
+}
+
+void AbstractContext::removeActionDefinition(const std::string & name)
+{
+    //TODO:
+//    auto def = getActionDefinition(name);
+//    actionDefinitionsLock)->writeLock())->lock();
+//    {
+//        auto finally16 = finally([&] {
+//            actionDefinitionsLock)->writeLock())->unlock();
+//        });
+//        {
+//            if(actionDefinitions)->remove(def))) {
+//                if(isSetupComplete() && isFireUpdateEvents()) {
+//                    auto ed = getEventDefinition(AbstractContext::E_ACTION_REMOVED());
+//                    if(ed != 0) {
+//                        fireEvent(ed)->getName(), new voidArray({name)}));
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+}
+
+ActionDefinitionPtr AbstractContext::actDefFromDataRecord(DataRecordPtr rec)
+{
+    BasicActionDefinition* def = new BasicActionDefinition(rec->getString(ActionConstants::FIELD_AD_NAME));
+    //TODO:
+//    def)->setDescription(rec)->getString(ActionConstants::FIELD_AD_DESCRIPTION()));
+//    def)->setHelp(rec)->getString(ActionConstants::FIELD_AD_HELP()));
+//    auto accelerator = rec)->getString(ActionConstants::FIELD_AD_ACCELERATOR());
+//    if(accelerator != 0) {
+//        def)->setAccelerator(new ::com::tibbo::aggregate::common::action::KeyStroke(accelerator));
+//    }
+//    auto dropSourcesTable = rec)->getDataTable(ActionConstants::FIELD_AD_DROP_SOURCES());
+//    if(dropSourcesTable != 0 && dropSourcesTable)->getRecordCount() > 0) {
+//        std::list  dropSources = new ::java::util::LinkedList();
+//        for (auto _i = dropSourcesTable)->iterator(); _i->hasNext(); ) {
+//            ::DataRecordPtr* ds = java_cast< ::DataRecordPtr* >(_i->next());
+//            {
+//                dropSources->add(new TreeMask(ds)->getString(ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK()))));
+//            }
+//        }
+//        def)->setDropSources(dropSources);
+//    }
+//    def)->setHidden((rec)->getBoolean(ActionConstants::FIELD_AD_HIDDEN())))->booleanValue());
+//    def)->setEnabled((rec)->getBoolean(ActionConstants::FIELD_AD_ENABLED())))->booleanValue());
+//    def)->setIconId(rec)->getString(ActionConstants::FIELD_AD_ICON_ID()));
+//    def)->setGroup(rec)->getString(ActionConstants::FIELD_AD_GROUP()));
+//    auto executionGroup = rec)->getString(ActionConstants::FIELD_AD_EXECUTION_GROUP());
+//    if(executionGroup != 0) {
+//        def)->setExecutionGroup(new ::com::tibbo::aggregate::common::action::GroupIdentifier(executionGroup));
+//    }
+//    def)->setDefault((rec)->getBoolean(ActionConstants::FIELD_AD_DEFAULT())))->booleanValue());
+    return ActionDefinitionPtr(def);
+}
 //
-//bool AbstractContext::addEventListener(const std::string & name, ContextEventListenerPtr listener, bool weak)
-//{
-////    auto ed = getEventDataPtr(name);
-////    if(ed == 0) {
-////        throw new ::java::lang::IllegalArgumentException(Cres::get()->getString("conEvtNotAvail"))+name)->toString());
-////    }
-////    {
-////        synchronized synchronized_0(ed);
-////        {
-////            try {
-////                checkPermissions(ed)->getDefinition())->getPermissions() != 0 ? ed)->getDefinition())->getPermissions() : getPermissions(), listener)->getCallerController());
-////            } catch (ContextSecurityException* ex) {
-////                Log::CONTEXT_EVENTS())->warn("Error adding listener '"+listener))
-////    +"' of event '")
-////    +ed)->getDefinition())->getName())
-////    +"' in context '")
-////    +getPath())
-////    +"': ")
-////    +ex)->getMessage())->toString(), new ::java::lang::Exception());
-////                return false;
-////            }
-////            auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
-////            if(logger)->isDebugEnabled()) {
-////                logger)->debug("Adding '"+listener))
-////    +"' as listener of event '")
-////    +ed)->getDefinition())->getName())
-////    +"' in '")
-////    +getPath())
-////    +"'");
-////            }
-////            return ed)->addListener(listener, weak);
-////        }
-////    }
-// return true;
-//}
-//
-//bool AbstractContext::removeEventListener(const std::string & name, ContextEventListenerPtr listener)
-//{
-////    auto ed = getEventDataPtr(name);
-////    if(ed == 0) {
-////        Log::CONTEXT_EVENTS())->warn("Error removing listener of event '"+name)
-////            +"' in context '")
-////            +getPath())
-////            +"': event definition not found", new ::java::lang::Exception());
-////        return false;
-////    }
-////    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
-////    if(logger)->isDebugEnabled()) {
-////        logger)->debug("Removing '"+listener))
-////            +"' listener of event '")
-////            +ed)->getDefinition())->getName())
-////            +"' in '")
-////            +getPath())
-////            +"'");
-////    }
-////    {
-////        synchronized synchronized_1(ed);
-////        {
-////            return ed)->removeListener(listener);
-////        }
-////    }
-//
-// return true;
-//}
-//
-//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller)
-//{
-////return getVariableDefinitions(caller, false);
-//std::list<VariableDefinitionPtr> list;
-// return list;
-//}
-//
-//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller, bool includeHidden)
-//{
-//    std::list<VariableDefinitionPtr>  list;
-////    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
-////    variableDataLock)->readLock())->lock();
-////    {
-////        auto finally10 = finally([&] {
-////            variableDataLock)->readLock())->unlock();
-////        });
-////        {
-////            for (auto _i = variableData)->values())->iterator(); _i->hasNext(); ) {
-////                VariableDataPtr d = java_cast< VariableDataPtr >(_i->next());
-////                {
-////                    auto def = d)->getDefinition();
-////                    if((caller == 0 || caller)->isPermissionCheckingEnabled()) && !includeHidden && def)->isHidden()&& !debug) {
-////                        continue;
-////                    }
-////                    auto readAccessGranted = checkPermissions(def)->getReadPermissions() != 0 ? def)->getReadPermissions() : getPermissions(), caller, this);
-////                    auto writeAccessGranted = checkPermissions(def)->getWritePermissions() != 0 ? def)->getWritePermissions() : getPermissions(), caller, this);
-////                    if(!readAccessGranted && !writeAccessGranted) {
-////                        continue;
-////                    }
-////                    if((def)->isReadable() == readAccessGranted) && (def)->isWritable() == writeAccessGranted)) {
-////                        list)->add(def));
-////                    } else {
-////                        auto clone = def)->clone();
-////                        clone)->setReadable(def)->isReadable() ? readAccessGranted : false);
-////                        clone)->setWritable(def)->isWritable() ? writeAccessGranted : false);
-////                        list)->add(clone));
-////                    }
-////                }
-////            }
-////        }
-////    }
-////
-//    return list;
-//}
-//
-//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions()
-//{
-//   return getVariableDefinitions(0);
-//}
-//
-//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(CallerControllerPtr caller, const std::string & group)
-//{
-//  std::list<VariableDefinitionPtr>  defs;
-////    for (auto _i = getVariableDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        VariableDefinitionPtr vd = java_cast< VariableDefinitionPtr >(_i->next());
-////        {
-////            if(vd)->getGroup() != 0 && (Util::equals(group, vd)->getGroup()) || vd)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
-////                defs)->add(vd));
-////            }
-////        }
-////    }
-//  return defs;
-//}
-//
-//std::list<VariableDefinitionPtr>  AbstractContext::getVariableDefinitions(const std::string & group)
-//{
-//   return getVariableDefinitions(0, group);
-//}
-////
-////PermissionChecker* AbstractContext::getPermissionChecker()
-////{
-////    return permissionChecker;
-////}
-////
-//PermissionsPtr AbstractContext::getChildrenViewPermissions()
-//{
-//    return childrenViewPermissions != 0 ? childrenViewPermissions : getPermissions();
-//}
-////
-//ContextManagerPtr AbstractContext::getContextManager()
-//{
-//    return contextManager;
-//}
-//
-// /*template <class C> */bool AbstractContext/*<C> */::isSetupComplete()
-//{
-//    return setupComplete;
-//}
-//
-//bool AbstractContext::isStarted()
-//{
-//    return started;
-//}
-//
-//bool AbstractContext ::isInitializedInfo()
-//{
-//    return setupComplete;
-//}
-//
-//bool AbstractContext ::isInitializedChildren()
-//{
-//    return setupComplete;
-//}
-//
-//bool AbstractContext::isInitializedVariables()
-//{
-//    return setupComplete;
-//}
-//
-//bool AbstractContext::isInitializedFunctions()
-//{
-//    return setupComplete;
-//}
-//
-//bool AbstractContext::isInitializedEvents()
-//{
-//    return setupComplete;
-//}
-//
-//std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions(CallerControllerPtr caller)
-//{
-//  return getFunctionDefinitions(caller, false);
-//}
-//
-//std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions(CallerControllerPtr caller, bool includeHidden)
-//{
-//   std::list<FunctionDefinitionPtr>  list;
-////    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
-////    functionDataLock)->readLock())->lock();
-////    {
-////        auto finally11 = finally([&] {
-////            functionDataLock)->readLock())->unlock();
-////        });
-////        {
-////            for (auto _i = functionData)->values())->iterator(); _i->hasNext(); ) {
-////                FunctionDataPtr d = java_cast< FunctionDataPtr >(_i->next());
-////                {
-////                    auto def = d)->getDefinition();
-////                    if(!checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller, this)) {
-////                        continue;
-////                    }
-////                    if((caller == 0 || caller)->isPermissionCheckingEnabled()) && !includeHidden && def)->isHidden()&& !debug) {
-////                        continue;
-////                    }
-////                    list)->add(def));
-////                }
-////            }
-////        }
-////    }
-////
-//    return list;
-//}
-//
-//std::list<FunctionDefinitionPtr>  AbstractContext::getFunctionDefinitions()
-//{
-//    return getFunctionDefinitions(0);
-//}
-//
-//std::list<FunctionDefinitionPtr>  AbstractContext ::getFunctionDefinitions(CallerControllerPtr caller, const std::string & group)
-//{
-//  std::list<FunctionDefinitionPtr> defs;
-////    for (auto _i = getFunctionDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        FunctionDefinitionPtr fd = java_cast< FunctionDefinitionPtr >(_i->next());
-////        {
-////            if(fd)->getGroup() != 0 && (Util::equals(group, fd)->getGroup()) || fd)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
-////                defs)->add(fd));
-////            }
-////        }
-////    }
-//  return defs;
-//}
-//
-//std::list<FunctionDefinitionPtr>  /*template <class C> */AbstractContext/*<C>*/ ::getFunctionDefinitions(const std::string & group)
-//{
-//  return getFunctionDefinitions(0, group);
-//}
-//
-////java::util::concurrent::locks::ReentrantReadWriteLock* AbstractContext::getChildrenLock()
-////{
-////    return childrenLock;
-////}
-//
-//std::string AbstractContext::getType()
-//{
-//   // return type != 0 ? type : ContextUtils::getTypeForClass(getClass());
-//	return "";
-//}
-//
-////bool AbstractContext::isPermissionCheckingEnabled()
-////{
-////    return permissionCheckingEnabled;
-////}
-////
-//std::string AbstractContext::getIconId()
-//{
-//    return iconId;
-//}
-//
-//int AbstractContext::getIndex()
-//{
-//    return index;
-//}
-//
-//std::string AbstractContext::getGroup()
-//{
-//    return group;
-//}
-////
-////std::string AbstractContext::getLocalRoot()
-////{
-////    return Contexts::CTX_ROOT();
-////}
-////
-//bool AbstractContext::isProxy()
-//{
-//    return false;
-//}
-//
-//bool AbstractContext::isDistributed()
-//{
-//    return false;
-//}
-//
-//std::string AbstractContext::getRemoteRoot()
-//{
-//    return 0;
-//}
-//
-//std::string AbstractContext::getRemotePath()
-//{
-//    return getPath();
-//}
-//
-////std::string AbstractContext::getRemotePrimaryRoot()
-////{
-////    return 0;
-////}
-////
-////void AbstractContext::setType(const std::string & type)
-////{
-////    if(!ContextUtils::isValidContextType(type)) {
-////        throw new ::java::lang::IllegalArgumentException(Cres::get()->getString("conIllegalType"))+type)->toString());
-////    }
-////    auto old = this->type;
-////    this->type = type;
-////    if(old == 0 || !old)->equals(type))) {
-////        contextInfoChanded();
-////    }
-////}
-////
-////void AbstractContext::setPermissionCheckingEnabled(bool permissionCheckingEnabled)
-////{
-////    this->permissionCheckingEnabled = permissionCheckingEnabled;
-////}
-////
-////void AbstractContext::setIconId(const std::string & iconId)
-////{
-////    auto old = this->iconId;
-////    this->iconId = iconId;
-////    if(old == 0 || !old)->equals(iconId))) {
-////        contextInfoChanded();
-////    }
-////}
-////
-////void AbstractContext::contextInfoChanded()
-////{
-////    if(setupComplete) {
-////        auto cm = getContextManager();
-////        if(cm != 0) {
-////            cm)->contextInfoChanged(this);
-////        }
-////        if(fireUpdateEvents) {
-////            auto ed = getEventDefinition(E_INFO_CHANGED());
-////            if(ed != 0) {
-////                fireEvent(E_INFO_CHANGED(), createContextInfoTable());
-////            }
-////        }
-////    }
-////}
-////
-////void AbstractContext::setIndex(int  index)
-////{
-////    this->index = index;
-////}
-////
-////void AbstractContext::setGroup(const std::string & group)
-////{
-////    auto old = this->group;
-////    this->group = group;
-////    if(old == 0 || !old)->equals(group))) {
-////        contextInfoChanded();
-////    }
-////}
-////
-////std::list  AbstractContext::getEventDefinitions(CallerControllerPtr caller)
-////{
-////    return getEventDefinitions(caller, false);
-////}
-////
-////std::list  AbstractContext::getEventDefinitions(CallerControllerPtr caller, bool includeHidden)
-////{
-////    std::list  list = new ::java::util::LinkedList();
-////    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
-////    EventDataPtrLock)->readLock())->lock();
-////    {
-////        auto finally12 = finally([&] {
-////            EventDataPtrLock)->readLock())->unlock();
-////        });
-////        {
-////            for (auto _i = EventDataPtr)->values())->iterator(); _i->hasNext(); ) {
-////                EventDataPtr d = java_cast< EventDataPtr >(_i->next());
-////                {
-////                    if(!checkPermissions(d)->getDefinition())->getPermissions() != 0 ? d)->getDefinition())->getPermissions() : getPermissions(), caller, this)) {
-////                        continue;
-////                    }
-////                    if((caller == 0 || caller)->isPermissionCheckingEnabled()) && !includeHidden && d)->getDefinition())->isHidden()&& !debug) {
-////                        continue;
-////                    }
-////                    list)->add(d)->getDefinition()));
-////                }
-////            }
-////        }
-////    }
-////
-////    return list;
-////}
-////
-////std::list  AbstractContext::getEventDefinitions()
-////{
-////    return getEventDefinitions(static_cast< CallerControllerPtr >(0));
-////}
-////
-////std::list  AbstractContext::getEventDefinitions(CallerControllerPtr caller, const std::string & group)
-////{
-////    std::list  res = new ::java::util::LinkedList();
-////    for (auto _i = getEventDefinitions(caller))->iterator(); _i->hasNext(); ) {
-////        EventDefinitionPtr ed = java_cast< EventDefinitionPtr >(_i->next());
-////        {
-////            if(ed)->getGroup() != 0 && (Util::equals(group, ed)->getGroup()) || ed)->getGroup())->startsWith(group)+ContextUtils::ENTITY_GROUP_SEPARATOR())->toString()))) {
-////                res)->add(ed));
-////            }
-////        }
-////    }
-////    return res;
-////}
-////
-////std::list  AbstractContext::getEventDefinitions(const std::string & group)
-////{
-////    return getEventDefinitions(static_cast< CallerControllerPtr >(0), group);
-////}
-////
-////com::tibbo::aggregate::common::action::ActionDefinitionPtr AbstractContext::getActionDefinition(const std::string & name)
-////{
-////    actionDefinitionsLock)->readLock())->lock();
-////    {
-////        auto finally13 = finally([&] {
-////            actionDefinitionsLock)->readLock())->unlock();
-////        });
-////        {
-////            for (auto _i = actionDefinitions)->iterator(); _i->hasNext(); ) {
-////                ::com::tibbo::aggregate::common::action::ActionDefinitionPtr def = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
-////                {
-////                    if(def)->getName())->equals(name))) {
-////                        return def;
-////                    }
-////                }
-////            }
-////        }
-////    }
-////
-////    return 0;
-////}
-////
-////com::tibbo::aggregate::common::action::ActionDefinitionPtr AbstractContext::getActionDefinition(const std::string & name, CallerControllerPtr caller)
-////{
-////    for (auto _i = getActionDefinitions(caller, true))->iterator(); _i->hasNext(); ) {
-////        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
-////        {
-////            if(ad)->getName())->equals(name))) {
-////                return ad;
-////            }
-////        }
-////    }
-////    return 0;
-////}
-////
-////com::tibbo::aggregate::common::action::ActionDefinitionPtr AbstractContext::getDefaultActionDefinition(CallerControllerPtr caller)
-////{
-////    for (auto _i = getActionDefinitions(caller, true))->iterator(); _i->hasNext(); ) {
-////        ::com::tibbo::aggregate::common::action::ActionDefinitionPtr ad = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
-////        {
-////            if(ad)->isDefault()) {
-////                return ad;
-////            }
-////        }
-////    }
-////    return 0;
-////}
-////
-////std::list  AbstractContext::getActionDefinitions(CallerControllerPtr caller)
-////{
-////    return getActionDefinitions(caller, false);
-////}
-////
-////void AbstractContext::addActionDefinition(::com::tibbo::aggregate::common::action::ActionDefinitionPtr def)
-////{
-////    if(def)->getName() == 0) {
-////        throw new ::java::lang::NullPointerException("Action name can't be NULL");
-////    }
-////    if(getActionDefinition(def)->getName()) != 0) {
-////        throw new ::java::lang::IllegalArgumentException("Action '"+def)->getName())
-////            +"' is already defined in context '")
-////            +getPath())
-////            +"'");
-////    }
-////    actionDefinitionsLock)->writeLock())->lock();
-////    {
-////        auto finally14 = finally([&] {
-////            actionDefinitionsLock)->writeLock())->unlock();
-////        });
-////        {
-////            actionDefinitions)->add(def));
-////            ::java::util::Collections::sort(actionDefinitions);
-////            if(isSetupComplete() && isFireUpdateEvents()) {
-////                auto ed = getEventDefinition(AbstractContext::E_ACTION_ADDED());
-////                if(ed != 0) {
-////                    fireEvent(ed)->getName(), actDefToDataRecord(def))->wrap());
-////                }
-////            }
-////        }
-////    }
-////
-////}
-////
-////std::list  AbstractContext::getActionDefinitions(CallerControllerPtr caller, bool includeHidden)
-////{
-////    std::list  list = new ::java::util::LinkedList();
-////    auto debug = caller != 0 ? caller)->getProperties())->containsKey(CALLER_CONTROLLER_PROPERTY_DEBUG()) : false;
-////    actionDefinitionsLock)->readLock())->lock();
-////    {
-////        auto finally15 = finally([&] {
-////            actionDefinitionsLock)->readLock())->unlock();
-////        });
-////        {
-////            for (auto _i = actionDefinitions)->iterator(); _i->hasNext(); ) {
-////                ::com::tibbo::aggregate::common::action::ActionDefinitionPtr d = java_cast< ::com::tibbo::aggregate::common::action::ActionDefinitionPtr >(_i->next());
-////                {
-////                    if(!checkPermissions(d)->getPermissions() != 0 ? d)->getPermissions() : getPermissions(), caller, this)) {
-////                        continue;
-////                    }
-////                    if(d)->isHidden() && !debug && !includeHidden) {
-////                        continue;
-////                    }
-////                    list)->add(d));
-////                }
-////            }
-////        }
-////    }
-////
-////    return list;
-////}
-////
-////std::list  AbstractContext::getActionDefinitions()
-////{
-////    return getActionDefinitions(static_cast< CallerControllerPtr >(0));
-////}
-////
-////void AbstractContext::removeActionDefinition(const std::string & name)
-////{
-////    auto def = getActionDefinition(name);
-////    actionDefinitionsLock)->writeLock())->lock();
-////    {
-////        auto finally16 = finally([&] {
-////            actionDefinitionsLock)->writeLock())->unlock();
-////        });
-////        {
-////            if(actionDefinitions)->remove(def))) {
-////                if(isSetupComplete() && isFireUpdateEvents()) {
-////                    auto ed = getEventDefinition(AbstractContext::E_ACTION_REMOVED());
-////                    if(ed != 0) {
-////                        fireEvent(ed)->getName(), new voidArray({name)}));
-////                    }
-////                }
-////            }
-////        }
-////    }
-////
-////}
-////
-////com::tibbo::aggregate::common::action::ActionDefinitionPtr AbstractContext::actDefFromDataRecord(::DataRecordPtr* rec)
-////{
-////    auto def = new ::com::tibbo::aggregate::common::action::BasicActionDefinition(rec)->getString(ActionConstants::FIELD_AD_NAME()));
-////    def)->setDescription(rec)->getString(ActionConstants::FIELD_AD_DESCRIPTION()));
-////    def)->setHelp(rec)->getString(ActionConstants::FIELD_AD_HELP()));
-////    auto accelerator = rec)->getString(ActionConstants::FIELD_AD_ACCELERATOR());
-////    if(accelerator != 0) {
-////        def)->setAccelerator(new ::com::tibbo::aggregate::common::action::KeyStroke(accelerator));
-////    }
-////    auto dropSourcesTable = rec)->getDataTable(ActionConstants::FIELD_AD_DROP_SOURCES());
-////    if(dropSourcesTable != 0 && dropSourcesTable)->getRecordCount() > 0) {
-////        std::list  dropSources = new ::java::util::LinkedList();
-////        for (auto _i = dropSourcesTable)->iterator(); _i->hasNext(); ) {
-////            ::DataRecordPtr* ds = java_cast< ::DataRecordPtr* >(_i->next());
-////            {
-////                dropSources->add(new TreeMask(ds)->getString(ActionConstants::FIELD_AD_RESOURCE_MASKS_RESOURCE_MASK()))));
-////            }
-////        }
-////        def)->setDropSources(dropSources);
-////    }
-////    def)->setHidden((rec)->getBoolean(ActionConstants::FIELD_AD_HIDDEN())))->booleanValue());
-////    def)->setEnabled((rec)->getBoolean(ActionConstants::FIELD_AD_ENABLED())))->booleanValue());
-////    def)->setIconId(rec)->getString(ActionConstants::FIELD_AD_ICON_ID()));
-////    def)->setGroup(rec)->getString(ActionConstants::FIELD_AD_GROUP()));
-////    auto executionGroup = rec)->getString(ActionConstants::FIELD_AD_EXECUTION_GROUP());
-////    if(executionGroup != 0) {
-////        def)->setExecutionGroup(new ::com::tibbo::aggregate::common::action::GroupIdentifier(executionGroup));
-////    }
-////    def)->setDefault((rec)->getBoolean(ActionConstants::FIELD_AD_DEFAULT())))->booleanValue());
-////    return def;
-////}
-////
-////DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
-////{
-////    auto startTime = ::java::lang::System::currentTimeMillis();
-////    setupVariables();
-////    auto data = getVariableData(def)->getName());
-////    lock(request, data)->getReadWriteLock())->readLock());
-////    {
-////        auto finally17 = finally([&] {
-////            data)->getReadWriteLock())->readLock())->unlock();
-////            data)->registerGetOperation();
-////        });
-////        {
-////            try {
-////                checkPermissions(def)->getReadPermissions() != 0 ? def)->getReadPermissions() : getPermissions(), caller);
-////                if(Log::CONTEXT_VARIABLES())->isDebugEnabled()) {
-////                    Log::CONTEXT_VARIABLES())->debug("Trying to get variable '"+def)->getName())
-////        +"' from context '")
-////        +this->getPath())
-////        +"'");
-////                }
-////                auto result = executeGetter(data, caller, request);
-////                if(result)->isInvalid()) {
-////                    throw new ContextException(result)->getInvalidationMessage());
-////                }
-////                result = checkVariableValue(def, result);
-////                auto endTime = ::java::lang::System::currentTimeMillis();
-////                if(endTime - startTime > LOW_PERFORMANCE_THRESHOLD) {
-////                    auto level = endTime - startTime > VERY_LOW_PERFORMANCE_THRESHOLD ? ::org::apache::log4j::Level::INFO() : ::org::apache::log4j::Level::DEBUG();
-////                    Log::PERFORMANCE())->log(level, "Getting value of variable '"+def))
-////        +"' in context '")
-////        +getPath())
-////        +"' took ")
-////        +(endTime - startTime))
-////        +" milliseconds");
-////                }
-////                return result;
-////            } catch (::java::lang::Exception* ex) {
-////                throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conErrGettingVar"), new voidArray({def)->toString()), toString())})))+ex)->getMessage())->toString(), ex);
-////            }
-////        }
-////    }
-////
-////}
-////
+DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
+{
+    //TODO:
+//    auto startTime = ::java::lang::System::currentTimeMillis();
+//    setupVariables();
+//    auto data = getVariableData(def)->getName());
+//    lock(request, data)->getReadWriteLock())->readLock());
+//    {
+//        auto finally17 = finally([&] {
+//            data)->getReadWriteLock())->readLock())->unlock();
+//            data)->registerGetOperation();
+//        });
+//        {
+//            try {
+//                checkPermissions(def)->getReadPermissions() != 0 ? def)->getReadPermissions() : getPermissions(), caller);
+//                if(Log::CONTEXT_VARIABLES())->isDebugEnabled()) {
+//                    Log::CONTEXT_VARIABLES())->debug("Trying to get variable '"+def)->getName())
+//        +"' from context '")
+//        +this->getPath())
+//        +"'");
+//                }
+//                auto result = executeGetter(data, caller, request);
+//                if(result)->isInvalid()) {
+//                    throw new ContextException(result)->getInvalidationMessage());
+//                }
+//                result = checkVariableValue(def, result);
+//                auto endTime = ::java::lang::System::currentTimeMillis();
+//                if(endTime - startTime > LOW_PERFORMANCE_THRESHOLD) {
+//                    auto level = endTime - startTime > VERY_LOW_PERFORMANCE_THRESHOLD ? ::org::apache::log4j::Level::INFO() : ::org::apache::log4j::Level::DEBUG();
+//                    Log::PERFORMANCE())->log(level, "Getting value of variable '"+def))
+//        +"' in context '")
+//        +getPath())
+//        +"' took ")
+//        +(endTime - startTime))
+//        +" milliseconds");
+//                }
+//                return result;
+//            } catch (::java::lang::Exception* ex) {
+//                throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conErrGettingVar"), new voidArray({def)->toString()), toString())})))+ex)->getMessage())->toString(), ex);
+//            }
+//        }
+//    }
+    return DataTablePtr(0);
+}
+
 ////DataTablePtr AbstractContext::checkVariableValue(VariableDefinitionPtr def, ::DataTablePtr val)
 ////{
 ////    if(!valueCheckingEnabled) {
@@ -3645,22 +3691,6 @@ std::string AbstractContext::toString()
 ////
 //
 //
-std::string AbstractContext::getPath()
-  {
-
-	if (getParent() == 0)
-	{
-      return createPath();
-    }
-
-	if (path.empty() == true)
-    {
-      path = createPath();
-    }
-
-    return path;
-  }
-
 
 PermissionsPtr AbstractContext::DEFAULT_PERMISSIONS()
 {

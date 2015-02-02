@@ -125,12 +125,12 @@ private:
 
 	void move(const std::string & oldPath, ContextPtr newParent, const std::string & newName);
     ContextPtr getChildWithoutCheckingPerms(const std::string & name);
-	const std::string & createPath();
+    std::string createPath();
 	VariableDefinitionPtr getAndCheckVariableDefinition(const std::string & name) ;
 	DataTablePtr executeDefaultGetter(VariableDefinitionPtr def, CallerControllerPtr caller, bool check, bool createDefault) ;
 	DataTablePtr getVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request) ;
 	DataTablePtr checkVariableValue(VariableDefinitionPtr def, DataTablePtr val) ;
-    const std::string & checkVariableValueFormat(VariableDefinitionPtr def, DataTablePtr table);
+    std::string  checkVariableValueFormat(VariableDefinitionPtr def, DataTablePtr table);
 	DataTablePtr executeGetter(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request) ;
 	DataTablePtr executeGetterMethod(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request) ;
 	void contextInfoChanded();
@@ -434,14 +434,14 @@ public:
     int getIndex();
 	
     std::string getGroup();
-    const std::string & getLocalRoot();
+    std::string  getLocalRoot();
     bool isProxy();
     bool isDistributed();
 	
     std::string getRemoteRoot();
     std::string getRemotePath();
    
-	const std::string & getRemotePrimaryRoot();
+    std::string getRemotePrimaryRoot();
     void setType(const std::string & type);
 
     void setIndex(int  index);

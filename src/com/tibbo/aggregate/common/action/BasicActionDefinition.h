@@ -14,6 +14,8 @@
 #include "action/KeyStroke.h"
 #include "action/RequestIdentifier.h"
 #include "action/ResourceMask.h"
+#include <string>
+
 class BasicActionDefinition
 	: public AbstractEntityDefinition
 	, public ActionDefinition
@@ -44,6 +46,7 @@ private:
 	boost::mutex executionLock;
 
 	void init();
+    void ctor(const std::string & name, AgClassPtr actionClass);
 
 public:
     bool concurrent;
@@ -77,13 +80,13 @@ public:
     void unregisterCommand(const std::string & id);
 
 
-	boost::mutex getExecutionLock();
+    boost::mutex& getExecutionLock();
 	//todo - JavaBeans
    // void removePropertyChangeListener(PropertyChangeListener l);
 	//void addPropertyChangeListener(PropertyChangeListener l);
     bool isHeadless();
 	PermissionsPtr getPermissions();
-	int compareTo(BasicActionDefinitionPtr o);
+    int compareTo(BasicActionDefinition* o);
 
 
     BasicActionDefinition(const std::string & name);
