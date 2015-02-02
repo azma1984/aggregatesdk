@@ -21,7 +21,7 @@ class Confirm : public GenericActionCommand
 	int messageType;
 
 protected:
-    DataTable* constructParameters();//it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
+    DataTablePtr constructParameters();//it is defined in com\tibbo\aggregate\common\datatable\DataTable.h
 
 public:
     GenericActionResponsePtr createDefaultResponse();

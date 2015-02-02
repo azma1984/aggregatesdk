@@ -3,6 +3,7 @@
 #include "datatable/FieldFormat.h"
 
 std::string Browse::CF_BROWSE_URI = "uri";
+TableFormatPtr Browse::CFT_BROWSE_;
 
 Browse::Browse()
     : GenericActionCommand(ActionUtils::CMD_BROWSE, CFT_BROWSE(), 0)
@@ -16,10 +17,10 @@ Browse::Browse()
 //    this->url_ = url;
 //}
 
-DataTable* Browse::constructParameters()
+DataTablePtr Browse::constructParameters()
 {
     std::list<AgObjectPtr> url;
-    return new DataTable(CFT_BROWSE(), url);
+    return DataTablePtr(new DataTable(CFT_BROWSE(), url));
 }
 
 URI_Ptr Browse::getUrl()

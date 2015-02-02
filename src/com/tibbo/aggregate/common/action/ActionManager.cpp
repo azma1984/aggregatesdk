@@ -196,28 +196,23 @@ ActionPtr ActionManager::instantiateAction(ActionDefinitionPtr actionDefinition)
 //
 //}
 
-//void ActionManager::destroyAll()
-//{
-   //todo That has to be destroyed?
-  //	for (;;)
-  //	{
-   //	   ActionIdentifierPtr actionId = ActionIdentifierPtrMap;
-   //	   {
-	  //		destroyAction(actionId);
-   //	  }
-   //	}
-//}
+void ActionManager::destroyAll()
+{
+//   todo That has to be destroyed?
+//  	for (;;)
+//  	{
+//   	   ActionIdentifierPtr actionId = ActionIdentifierPtrMap;
+//   	   {
+//	  		destroyAction(actionId);
+//   	  }
+//   	}
+}
 
-//ActionContextPtr ActionManager::getActionContext(ActionIdentifierPtr actionId)
-//{
-//	Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * action =  actions->get(actionId));
-//	return actionContexts->get(action);
-//}
-
-//ActionDirectoryPtr ActionManager::getActionDirectory()
-//{
-//	return actionDirectory;
-//}
+ActionContextPtr ActionManager::getActionContext(ActionIdentifierPtr actionId)
+{
+    ActionPtr action =  actions[actionId];
+    return actionContexts[action];
+}
 
 ActionDirectoryPtr ActionManager::getActionDirectory()
 {

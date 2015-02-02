@@ -1,11 +1,12 @@
 #include "action/command/EditCode.h"
 
-
-
 const std::string EditCode::CF_CODE = "code";
 const std::string EditCode::CF_MODE = "mode";
 const std::string EditCode::RF_RESULT = "result";
 const std::string EditCode::RF_CODE = "code";
+
+TableFormatPtr EditCode::CFT_EDIT_CODE_;
+TableFormatPtr EditCode::RFT_EDIT_CODE_;
 
 
 EditCode::EditCode()

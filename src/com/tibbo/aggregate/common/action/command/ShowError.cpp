@@ -1,9 +1,14 @@
 #include "action/command/ShowError.h"
 
+const std::string ShowError::CF_LEVEL = "level";
+const std::string ShowError::CF_MESSAGE = "message";
+const std::string ShowError::CF_EXCEPTION = "exception";
+TableFormatPtr ShowError::CFT_SHOW_ERROR_;
+
 ShowError::ShowError()
-	: GenericActionCommand(ActionUtils::CMD_SHOW_ERROR, CFT_SHOW_ERROR, TableFormatPtr())
+    : GenericActionCommand(ActionUtils::CMD_SHOW_ERROR, CFT_SHOW_ERROR(), TableFormatPtr())
 {
- level = 0;
+    level = 0;
 }
 
 //ShowError::ShowError(const std::string & title, const std::string & message, int level, ::java::lang::Throwable* exception):GenericActionCommand(ActionUtils::CMD_SHOW_ERROR, title)
@@ -11,19 +16,19 @@ ShowError::ShowError()
 // this->message = message;
 // this->level = level;
 // this->exception = exception;
-//}
+//}
 
-void ShowError::Init()
+TableFormatPtr ShowError::CFT_SHOW_ERROR()
 {
-//todo
-// if (!CFT_SHOW_ERROR)
-//  {
-//	CFT_SHOW_ERROR = TableFormatPtr (new TableFormat(1, 1));
-//	CFT_SHOW_ERROR->addField("<" + CF_LEVEL + "><I>");
-//	CFT_SHOW_ERROR->addField("<" + CF_MESSAGE + "><S><F=N>");
-//	CFT_SHOW_ERROR->addField("<" + CF_EXCEPTION + "><S><F=N>");
-//   }
+    if (!CFT_SHOW_ERROR_)
+    {
+        CFT_SHOW_ERROR_ = TableFormatPtr (new TableFormat(1, 1));
+        CFT_SHOW_ERROR_->addField("<" + CF_LEVEL + "><I>");
+        CFT_SHOW_ERROR_->addField("<" + CF_MESSAGE + "><S><F=N>");
+        CFT_SHOW_ERROR_->addField("<" + CF_EXCEPTION + "><S><F=N>");
+    }
 
+    return CFT_SHOW_ERROR_;
 }
 
 DataTablePtr ShowError::constructParameters()

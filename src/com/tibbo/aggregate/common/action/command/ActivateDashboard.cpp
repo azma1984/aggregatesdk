@@ -10,6 +10,8 @@ std::string  ActivateDashboard::CF_PATH      = "path";
 std::string  ActivateDashboard::CF_LOCATION  = "location";
 std::string  ActivateDashboard::CF_DASHBOARD = "dashboard";
 
+TableFormatPtr ActivateDashboard::CFT_ACTIVATE_DASHBOARD_;
+
 
 ActivateDashboard::ActivateDashboard()
     : GenericActionCommand(ActionUtils::CMD_ACTIVATE_DASHBOARD, CFT_ACTIVATE_DASHBOARD(),0)

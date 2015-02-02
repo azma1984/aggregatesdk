@@ -3,7 +3,7 @@
 
 #include "action/GenericActionCommand.h"
 #include <boost/shared_ptr.hpp>
-#include "datatable/TableFormat.h"
+//#include "datatable/TableFormat.h"
 
 
 class ActivateDashboard : public GenericActionCommand

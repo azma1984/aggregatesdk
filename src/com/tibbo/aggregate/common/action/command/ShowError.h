@@ -17,13 +17,13 @@ private:
 
 	int level;
 	std::string message;
-	void Init();
+    static TableFormatPtr CFT_SHOW_ERROR_;
 
 public:
 	static const std::string CF_LEVEL;
 	static const std::string CF_MESSAGE;
-	static const std::string CF_EXCEPTION;
-	static TableFormatPtr CFT_SHOW_ERROR;
+	static const std::string CF_EXCEPTION;	
+    static TableFormatPtr CFT_SHOW_ERROR();
    // ::java::lang::Throwable* exception; //todo
 
     DataTablePtr constructParameters();

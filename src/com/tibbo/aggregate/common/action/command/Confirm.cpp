@@ -6,6 +6,9 @@ std::string Confirm::CF_OPTION_TYPE =  "optionType";
 std::string Confirm::CF_MESSAGE_TYPE = "messageType";
 std::string Confirm::RF_OPTION = "option";
 
+TableFormatPtr Confirm::CFT_CONFIRM_;
+TableFormatPtr Confirm::RFT_CONFIRM_;
+
 
 Confirm::Confirm()
     : GenericActionCommand(ActionUtils::CMD_CONFIRM, CFT_CONFIRM(), RFT_CONFIRM())
@@ -37,7 +40,7 @@ Confirm::Confirm(const std::string& title, DataTablePtr parameters)
 }
 
 
-DataTable *Confirm::constructParameters()
+DataTablePtr Confirm::constructParameters()
 {
 //todo
  //	DataRecordPtr dr( new DataRecord(CFT_CONFIRM) );

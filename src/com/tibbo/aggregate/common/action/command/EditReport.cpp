@@ -7,6 +7,9 @@ const std::string EditReport::CF_DATA = "data";
 const std::string EditReport::RF_TEMPLATE = "template";
 const std::string EditReport::RF_RESULT = "result";
 
+TableFormatPtr EditReport::CFT_EDIT_REPORT;
+TableFormatPtr EditReport::RFT_EDIT_REPORT;
+
 
 EditReport::EditReport()
 	: GenericActionCommand(ActionUtils::CMD_EDIT_REPORT, CFT_EDIT_REPORT, RFT_EDIT_REPORT)
@@ -31,22 +34,21 @@ Init();
 
 void EditReport::Init()
 {
-//todo
-//	if (!CFT_EDIT_REPORT)
-//	{
-//	 CFT_EDIT_REPORT.reset(new TableFormat(1, 1));
-//
-//	 CFT_EDIT_REPORT->addField("<"+CF_TEMPLATE+"><S>");
-//	 CFT_EDIT_REPORT->addField("<"+CF_DATA+"><T>" );
-//    }
-//
-//	if (!RFT_EDIT_REPORT)
-//	{
-//		RFT_EDIT_REPORT.reset(new TableFormat(1, 1));
-//
-//		RFT_EDIT_REPORT->addField("<"+RF_RESULT+"><S>");
-//		RFT_EDIT_REPORT->addField("<"+RF_TEMPLATE+"><S><F=N>");
-//	}
+    if (!CFT_EDIT_REPORT)
+    {
+     CFT_EDIT_REPORT = TableFormatPtr(new TableFormat(1, 1));
+
+     CFT_EDIT_REPORT->addField("<"+CF_TEMPLATE+"><S>");
+     CFT_EDIT_REPORT->addField("<"+CF_DATA+"><T>" );
+    }
+
+    if (!RFT_EDIT_REPORT)
+    {
+        RFT_EDIT_REPORT = TableFormatPtr(new TableFormat(1, 1));
+
+        RFT_EDIT_REPORT->addField("<"+RF_RESULT+"><S>");
+        RFT_EDIT_REPORT->addField("<"+RF_TEMPLATE+"><S><F=N>");
+    }
 
 }
 

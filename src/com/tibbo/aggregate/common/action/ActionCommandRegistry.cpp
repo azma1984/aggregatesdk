@@ -18,6 +18,9 @@
 #include "command/ShowReport.h"
 #include "command/ShowSystemTree.h"
 */
+
+std::map<std::string, GenericActionCommandPtr> ActionCommandRegistry::COMMANDS;
+
 ActionCommandRegistry::ActionCommandRegistry()
 {
 	/*
