@@ -40,7 +40,7 @@ class ActionContext
 	unsigned char getActionState();
 	ActionManagerPtr getActionManager();
 
-	std::list<RequestIdentifierPtr> getRequestedIds();
+    std::list<RequestIdentifierPtr> &getRequestedIds();
 
 	void setActionDefinition(ActionDefinitionPtr actionDefinition);
 

@@ -75,6 +75,9 @@ private:
 
     static const int VERY_LOW_PERFORMANCE_THRESHOLD ;
     static const int LOW_PERFORMANCE_THRESHOLD;
+
+    static PermissionsPtr DEFAULT_PERMISSIONS_;
+
 	ContextManagerPtr contextManager;
 	std::map<std::string, VariableDataPtr> variableData;
 	boost::shared_mutex variableDataLock; //много читателей, один писатель
@@ -309,7 +312,7 @@ public:
     static EventDefinitionPtr ED_DESTROYED;
     TableFormatPtr VFT_VARIABLE_STATUSES;
     static const int DEFAULT_EVENT_LEVEL = -1;
-    static PermissionsPtr DEFAULT_PERMISSIONS;
+    static PermissionsPtr DEFAULT_PERMISSIONS();
 
     static const std::string CALLER_CONTROLLER_PROPERTY_DEBUG;
     static const std::string CALLER_CONTROLLER_PROPERTY_NO_UPDATED_EVENTS;
@@ -529,7 +532,7 @@ public:
 
 	std::list<EventPtr>  getEventHistory(const std::string & name);
 
-    const std::string & toString();
+    std::string toString();
     std::string toDetailedString();
 	void accept(ContextVisitorPtr visitor) ;
 

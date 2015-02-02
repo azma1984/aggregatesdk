@@ -105,6 +105,9 @@ const std::string AbstractContext::CALLER_CONTROLLER_PROPERTY_NO_CHANGE_EVENTS= 
 const int AbstractContext::VERY_LOW_PERFORMANCE_THRESHOLD = 120000;
 const int AbstractContext::LOW_PERFORMANCE_THRESHOLD = 20000;
 
+PermissionsPtr AbstractContext::DEFAULT_PERMISSIONS_;
+
+
 AbstractContext::AbstractContext(const std::string &name)
 {
 //    setName(name);
@@ -507,30 +510,31 @@ int AbstractContext::compareTo(ContextPtr context)
 	}
 }
 
-//std::list<AgObjectPtr>  AbstractContext::getChildren(CallerControllerPtr caller)
-//{
-////    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
-////        if(Log::CONTEXT_CHILDREN())->isDebugEnabled()) {
-////            Log::CONTEXT_CHILDREN())->debug("Access to child '"+name)
-////+"' denied in context '")
-////+getPath())
-////+"'");
-////        }
-////        return ::java::util::Collections::emptyList();
-////    }
-////    std::list  childList = new ::java::util::LinkedList(children);
-////    for (auto *iterator = childList)->iterator(); iterator)->hasNext(); ) {
-////        auto cur = java_cast< ContextPtr >(iterator)->next());
-////        if(!shouldSeeChild(caller, cur)) {
-////            iterator)->remove();
-////        }
-////    }
-////    return childList;
-//
-//	std::list<AgObjectPtr> list;
-//	return list;
-//}
-//
+std::list<AgObjectPtr>  AbstractContext::getChildren(CallerControllerPtr caller)
+{
+    //TODO:
+//    if(!checkPermissions(getChildrenViewPermissions(), caller, this)) {
+//        if(Log::CONTEXT_CHILDREN())->isDebugEnabled()) {
+//            Log::CONTEXT_CHILDREN())->debug("Access to child '"+name)
+//+"' denied in context '")
+//+getPath())
+//+"'");
+//        }
+//        return ::java::util::Collections::emptyList();
+//    }
+//    std::list  childList = new ::java::util::LinkedList(children);
+//    for (auto *iterator = childList)->iterator(); iterator)->hasNext(); ) {
+//        auto cur = java_cast< ContextPtr >(iterator)->next());
+//        if(!shouldSeeChild(caller, cur)) {
+//            iterator)->remove();
+//        }
+//    }
+//    return childList;
+
+    std::list<AgObjectPtr> list;
+    return list;
+}
+
 ////bool AbstractContext::shouldSeeChild(CallerControllerPtr caller, ContextPtr cur)
 ////{
 ////    return checkPermissions(cur)->getPermissions(), caller, cur) || canSee(caller, cur);
@@ -544,189 +548,186 @@ int AbstractContext::compareTo(ContextPtr context)
 ////    return getPermissionChecker())->canSee(caller != 0 ? caller)->getPermissions() : static_cast< PermissionsPtr >(0), con)->getPath(), getContextManager());
 ////}
 ////
-//std::list<AgObjectPtr>  AbstractContext::getChildren()
-//{
-////    return getChildren(static_cast< CallerControllerPtr >(0));
-//	std::list<AgObjectPtr> list;
-//	return list;
-//}
-////
-//std::list<AgObjectPtr>   AbstractContext::getVisibleChildren(CallerControllerPtr caller)
-//{
-////    return getChildren(caller);
-//		std::list<AgObjectPtr> list;
-//	return list;
-//}
-////
-//std::list<AgObjectPtr>   AbstractContext::getVisibleChildren()
-//{
-////    return getVisibleChildren(static_cast< CallerControllerPtr >(0));
-//		std::list<AgObjectPtr> list;
-//	return list;
-//}
-//
-//bool AbstractContext::isMapped()
-//{
-//    return false;
-//}
-//
-//std::list<AgObjectPtr>   AbstractContext::getMappedChildren(CallerControllerPtr caller)
-//{
-////    return isMapped() ? getVisibleChildren(caller) : getChildren(caller);
-//		std::list<AgObjectPtr> list;
-//	return list;
-//}
-//
-//std::list<AgObjectPtr>   AbstractContext::getMappedChildren()
-//{
-////    return getMappedChildren(static_cast< CallerControllerPtr >(0));
-//		std::list<AgObjectPtr> list;
-//	return list;
-//}
-//
-//std::string AbstractContext::getName()
-//{
-//    return name;
-//}
-//
-//std::string AbstractContext::getDescription()
-//{
-//    return description;
-//}
-////
-////void AbstractContext::setDescription(const std::string & description)
-////{
-////    auto old = this->description;
-////    this->description = description;
-////    if(old == 0 || !old)->equals(description))) {
-////        contextInfoChanded();
-////    }
-////}
-////
-//AgObjectPtr AbstractContext::getParent()
-//{
-//    return (AgObjectPtr)parent;
-//}
-////
-////bool AbstractContext::hasParent(ContextPtr parentContext)
-////{
-////    ContextPtr root = this;
-////    do {
-////        root = java_cast< ContextPtr >(root)->getParent());
-////        if(root == static_cast< ContextPtr >(parentContext)) {
-////            return true;
-////        }
-////    } while (java_cast< ContextPtr >(root)->getParent()) != 0);
-////    return false;
-////}
-////
-//AgObjectPtr AbstractContext::getRoot()
-//{
-//    ContextPtr root = this;
-//    while (root->getParent() != 0) 
-//	{
-//     root =  (ContextPtr)root->getParent();
-//    }
-//    return (AgObjectPtr)(root);
-//}
-//
-//AgObjectPtr AbstractContext::get(const std::string & contextPath, CallerControllerPtr caller)
-//{
-////    if(contextPath == 0) {
-////        return 0;
-////    }
-////    auto relative = ContextUtils::isRelative(contextPath);
-////    if(relative) {
-////        contextPath = contextPath)->substring(1);
-////    }
-////    auto cur = relative ? java_cast< ContextPtr >(this) : java_cast< ContextPtr >(getRoot());
-////    if(contextPath)->length() == 0) {
-////        return cur;
-////    }
-////    auto lastName = java_cast< ContextPtr >(getRoot()))->getName();
-////    auto names = StringUtils::split(contextPath, ContextUtils::CONTEXT_NAME_SEPARATOR())->charAt(int(0)));
-////    for (auto _i = names)->iterator(); _i->hasNext(); ) {
-////        const std::string & child = java_cast< const std::string & >(_i->next());
-////        {
-////            if(child)->length() == 0) {
-////                return 0;
-////            }
-////            if(cur == 0) {
-////                break;
-////            }
-////            lastName = cur)->getName();
-////            cur = java_cast< ContextPtr >(java_cast< ContextPtr >(cur)->getChild(child, caller)));
-////        }
-////    }
-////    if(cur == 0) {
-////        Log::CONTEXT_CHILDREN())->debug("Context '"+contextPath)
-////            +"' not found in '")
-////            +getPath())
-////            +"', last found: '")
-////            +lastName)
-////            +"'");
-////    }
-////    return cur;
-//	return 0;
-//}
-//
-//AgObjectPtr AbstractContext::get(const std::string & contextName)
-//{
-////    return java_cast< ContextPtr >(get(contextName, static_cast< CallerControllerPtr >(0)));
-//	return 0;
-//}
-//
-PermissionsPtr AbstractContext::getPermissions()
+std::list<AgObjectPtr>  AbstractContext::getChildren()
 {
-////    if(!permissionCheckingEnabled) {
-////        return DEFAULT_PERMISSIONS();
-////    }
-////    if(permissions != 0) {
-////        return permissions;
-////    }
-////    if(java_cast< ContextPtr >(getParent()) != 0) {
-////        return java_cast< ContextPtr >(getParent()))->getPermissions();
-////    }
-////    return DEFAULT_PERMISSIONS();
-//
-	return PermissionsPtr();
+    return getChildren(static_cast< CallerControllerPtr >(0));
+}
+
+std::list<AgObjectPtr>   AbstractContext::getVisibleChildren(CallerControllerPtr caller)
+{
+    return getChildren(caller);
+}
+
+std::list<AgObjectPtr>   AbstractContext::getVisibleChildren()
+{
+    return getVisibleChildren(static_cast< CallerControllerPtr >(0));
 }
 //
-//void AbstractContext::setName(const std::string &name)
-//{
-//   // path;
-//   // if(!ContextUtils::isValidContextName(name)) 
-//	//{
-//   //     throw new ::java::lang::IllegalArgumentException(Cres::get()->getString("conIllegalName"))+name)->toString());
-//   // }
-//    this->name = name;
-//}
-////
-////void AbstractContext::setParent(ContextPtr parent)
-////{
-////    this->parent = parent;
-////}
-////
-////void AbstractContext::setPermissions(PermissionsPtr permissions)
-////{
-////    this->permissions = permissions;
-////}
-////
-////void AbstractContext::setPermissionChecker(PermissionChecker* permissionChecker)
-////{
-////    this->permissionChecker = permissionChecker;
-////}
-////
-////void AbstractContext::setFireUpdateEvents(bool fireUpdateEvents)
-////{
-////    this->fireUpdateEvents = fireUpdateEvents;
-////}
-////
-////bool AbstractContext::isFireUpdateEvents()
-////{
-////    return fireUpdateEvents;
-////}
-////
+bool AbstractContext::isMapped()
+{
+    return false;
+}
+
+std::list<AgObjectPtr>   AbstractContext::getMappedChildren(CallerControllerPtr caller)
+{
+    return isMapped() ? getVisibleChildren(caller) : getChildren(caller);
+//		std::list<AgObjectPtr> list;
+//	return list;
+}
+
+std::list<AgObjectPtr>   AbstractContext::getMappedChildren()
+{
+    return getMappedChildren(static_cast< CallerControllerPtr >(0));
+}
+
+std::string AbstractContext::getName()
+{
+    return name;
+}
+
+std::string AbstractContext::getDescription()
+{
+    return description;
+}
+
+void AbstractContext::setDescription(const std::string & description)
+{
+    std::string old = this->description;
+    this->description = description;
+    if (old == description) {
+        contextInfoChanded();
+    }
+}
+
+AgObjectPtr AbstractContext::getParent()
+{
+    return static_cast<AgObjectPtr>(parent);
+}
+
+bool AbstractContext::hasParent(ContextPtr parentContext)
+{
+    ContextPtr root = this;
+    do {
+        root = root->getParent();
+        if(root == parentContext) {
+            return true;
+        }
+    } while (root->getParent() != 0);
+
+    return false;
+}
+
+AgObjectPtr AbstractContext::getRoot()
+{
+    ContextPtr root = this;
+    while (root->getParent() != 0)
+    {
+        root = (ContextPtr)root->getParent();
+    }
+
+    return (AgObjectPtr)(root);
+}
+
+AgObjectPtr AbstractContext::get(const std::string & contextPath, CallerControllerPtr caller)
+{
+//    if(contextPath == 0) {
+//        return 0;
+//    }
+//    auto relative = ContextUtils::isRelative(contextPath);
+//    if(relative) {
+//        contextPath = contextPath)->substring(1);
+//    }
+//    auto cur = relative ? java_cast< ContextPtr >(this) : java_cast< ContextPtr >(getRoot());
+//    if(contextPath)->length() == 0) {
+//        return cur;
+//    }
+//    auto lastName = java_cast< ContextPtr >(getRoot()))->getName();
+//    auto names = StringUtils::split(contextPath, ContextUtils::CONTEXT_NAME_SEPARATOR())->charAt(int(0)));
+//    for (auto _i = names)->iterator(); _i->hasNext(); ) {
+//        const std::string & child = java_cast< const std::string & >(_i->next());
+//        {
+//            if(child)->length() == 0) {
+//                return 0;
+//            }
+//            if(cur == 0) {
+//                break;
+//            }
+//            lastName = cur)->getName();
+//            cur = java_cast< ContextPtr >(java_cast< ContextPtr >(cur)->getChild(child, caller)));
+//        }
+//    }
+//    if(cur == 0) {
+//        Log::CONTEXT_CHILDREN())->debug("Context '"+contextPath)
+//            +"' not found in '")
+//            +getPath())
+//            +"', last found: '")
+//            +lastName)
+//            +"'");
+//    }
+//    return cur;
+    return 0;
+}
+
+AgObjectPtr AbstractContext::get(const std::string & contextName)
+{
+    return get(contextName, static_cast< CallerControllerPtr >(0));
+}
+
+PermissionsPtr AbstractContext::getPermissions()
+{
+        AgObjectPtr ag = NULL;
+        ContextPtr cn = static_cast<ContextPtr>(ag);
+    cn->getPermissions();
+
+    if (!permissionCheckingEnabled) {
+        return DEFAULT_PERMISSIONS();
+    }
+
+    if (permissions != 0) {
+        return permissions;
+    }
+
+    if (getParent() != 0) {
+        return static_cast<ContextPtr>(getParent())->getPermissions();
+    }
+    return DEFAULT_PERMISSIONS();
+}
+
+void AbstractContext::setName(const std::string &name)
+{
+    if(!ContextUtils::isValidContextName(name))
+    {
+        //TODO:
+        //throw new IllegalArgumentException(Cres.get().getString("conIllegalName") + name);
+    }
+    this->name = name;
+}
+
+void AbstractContext::setParent(ContextPtr parent)
+{
+    this->parent = parent;
+}
+
+void AbstractContext::setPermissions(PermissionsPtr permissions)
+{
+    this->permissions = permissions;
+}
+
+void AbstractContext::setPermissionChecker(PermissionCheckerPtr permissionChecker)
+{
+    this->permissionChecker = permissionChecker;
+}
+
+void AbstractContext::setFireUpdateEvents(bool fireUpdateEvents)
+{
+    this->fireUpdateEvents = fireUpdateEvents;
+}
+
+bool AbstractContext::isFireUpdateEvents()
+{
+    return fireUpdateEvents;
+}
+
 ////void AbstractContext::setContextManager(ContextManagerPtr contextManager)
 ////{
 ////    if(java_cast< ContextManagerPtr >(this->contextManager) != 0 && java_cast< ContextManagerPtr >(this->contextManager)) != contextManager)) {
@@ -734,37 +735,37 @@ PermissionsPtr AbstractContext::getPermissions()
 ////    }
 ////    this->contextManager = contextManager;
 ////}
-////
-////void AbstractContext::setChildrenViewPermissions(PermissionsPtr childrenViewPermissions)
-////{
-////    this->childrenViewPermissions = childrenViewPermissions;
-////}
-////
-////void AbstractContext::setChildrenSortingEnabled(bool childrenSortingEnabled)
-////{
-////    this->childrenSortingEnabled = childrenSortingEnabled;
-////}
-////
-////bool AbstractContext::isChildrenSortingEnabled()
-////{
-////    return childrenSortingEnabled;
-////}
-////
-////void AbstractContext::setValueCheckingEnabled(bool valueCheckingEnabled)
-////{
-////    this->valueCheckingEnabled = valueCheckingEnabled;
-////}
-////
-////bool AbstractContext::isChildrenConcurrencyEnabled()
-////{
-////    return childrenConcurrencyEnabled;
-////}
-////
-////void AbstractContext::setChildrenConcurrencyEnabled(bool childrenConcurrencyEnabled)
-////{
-////    this->childrenConcurrencyEnabled = childrenConcurrencyEnabled;
-////}
-////
+
+void AbstractContext::setChildrenViewPermissions(PermissionsPtr childrenViewPermissions)
+{
+    this->childrenViewPermissions = childrenViewPermissions;
+}
+
+void AbstractContext::setChildrenSortingEnabled(bool childrenSortingEnabled)
+{
+    this->childrenSortingEnabled = childrenSortingEnabled;
+}
+
+bool AbstractContext::isChildrenSortingEnabled()
+{
+    return childrenSortingEnabled;
+}
+
+void AbstractContext::setValueCheckingEnabled(bool valueCheckingEnabled)
+{
+    this->valueCheckingEnabled = valueCheckingEnabled;
+}
+
+bool AbstractContext::isChildrenConcurrencyEnabled()
+{
+    return childrenConcurrencyEnabled;
+}
+
+void AbstractContext::setChildrenConcurrencyEnabled(bool childrenConcurrencyEnabled)
+{
+    this->childrenConcurrencyEnabled = childrenConcurrencyEnabled;
+}
+
 ////void AbstractContext::checkPermissions(PermissionsPtr needPermissions, CallerControllerPtr caller)
 ////{
 ////    if(!checkPermissions(needPermissions, caller, this)) {
@@ -779,86 +780,86 @@ PermissionsPtr AbstractContext::getPermissions()
 ////    }
 ////    return getPermissionChecker())->has(caller, needPermissions, accessedContext);
 ////}
-////
-////void AbstractContext::addChild(ContextPtr child)
-////{
-////    addChild(child, 0);
-////}
-////
-////void AbstractContext::addChild(ContextPtr child, int  index)
-////{
-////    auto startTime = ::java::lang::System::currentTimeMillis();
-////    childrenLock)->writeLock())->lock();
-////    {
-////        auto finally2 = finally([&] {
-////            childrenLock)->writeLock())->unlock();
-////        });
-////        {
-////            auto existing = java_cast< ContextPtr >(getChildWithoutCheckingPerms(child)->getName()));
-////            if(existing != 0) {
-////                throw new ::java::lang::IllegalArgumentException(::java::text::MessageFormat::format(Cres::get()->getString("conChildExists"), new voidArray({child)->getName()), getPath())})));
-////            }
-////            if(index != 0) {
-////                if(childrenSortingEnabled) {
-////                    throw new ::java::lang::IllegalStateException("Cannot add child with pre-defined index as children sorting is enabled");
-////                }
-////                children)->add((index))->intValue(), child);
-////            } else {
-////                children)->add(child));
-////            }
-////            childrenMap)->put(child)->getName(), child);
-////            if(childrenSortingEnabled) {
-////                ::java::util::Collections::sort(children);
-////            }
-////        }
-////    }
-////
-////    try {
-////        child)->setParent(this);
-////        child)->setup(getContextManager());
-////        if(setupComplete && fireUpdateEvents) {
-////            fireEvent(E_CHILD_ADDED(), new voidArray({child)->getName())}));
-////        }
-////        if(getContextManager() != 0) {
-////            getContextManager())->contextAdded(child);
-////        }
-////    } catch (::java::lang::Exception* ex) {
-////        childrenLock)->writeLock())->lock();
-////        {
-////            auto finally3 = finally([&] {
-////                childrenLock)->writeLock())->unlock();
-////            });
-////            {
-////                childrenMap)->remove(child)->getName());
-////                children)->remove(child));
-////                throw new ContextRuntimeException("Error adding child '"+child)->toString())
-////    +"' to context '")
-////    +toString())
-////    +"': ")
-////    +ex)->getMessage())->toString(), ex);
-////            }
-////        }
-////
-////    }
-////    Log::CONTEXT_CHILDREN())->debug("Added child '"+child)->getName())
-////        +"' to '")
-////        +getPath())
-////        +"' in ")
-////        +(::java::lang::System::currentTimeMillis() - startTime))
-////        +" ms");
-////}
-////
-////void AbstractContext::removeFromParent()
-////{
-////    if(java_cast< ContextPtr >(getParent()) != 0) {
-////        java_cast< ContextPtr >(getParent()))->removeChild(static_cast< ContextPtr >(this));
-////        setParent(static_cast< ContextPtr >(0));
-////    } else {
-////        Log::CONTEXT_CHILDREN())->debug("Can't remove context '"+getPath())
-////            +"' from its parent: no parent context was set");
-////    }
-////}
-////
+
+//void AbstractContext::addChild(ContextPtr child)
+//{
+//    addChild(child, 0);
+//}
+
+//void AbstractContext::addChild(ContextPtr child, int  index)
+//{
+//    auto startTime = ::java::lang::System::currentTimeMillis();
+//    childrenLock)->writeLock())->lock();
+//    {
+//        auto finally2 = finally([&] {
+//            childrenLock)->writeLock())->unlock();
+//        });
+//        {
+//            auto existing = java_cast< ContextPtr >(getChildWithoutCheckingPerms(child)->getName()));
+//            if(existing != 0) {
+//                throw new ::java::lang::IllegalArgumentException(::java::text::MessageFormat::format(Cres::get()->getString("conChildExists"), new voidArray({child)->getName()), getPath())})));
+//            }
+//            if(index != 0) {
+//                if(childrenSortingEnabled) {
+//                    throw new ::java::lang::IllegalStateException("Cannot add child with pre-defined index as children sorting is enabled");
+//                }
+//                children)->add((index))->intValue(), child);
+//            } else {
+//                children)->add(child));
+//            }
+//            childrenMap)->put(child)->getName(), child);
+//            if(childrenSortingEnabled) {
+//                ::java::util::Collections::sort(children);
+//            }
+//        }
+//    }
+//
+//    try {
+//        child)->setParent(this);
+//        child)->setup(getContextManager());
+//        if(setupComplete && fireUpdateEvents) {
+//            fireEvent(E_CHILD_ADDED(), new voidArray({child)->getName())}));
+//        }
+//        if(getContextManager() != 0) {
+//            getContextManager())->contextAdded(child);
+//        }
+//    } catch (::java::lang::Exception* ex) {
+//        childrenLock)->writeLock())->lock();
+//        {
+//            auto finally3 = finally([&] {
+//                childrenLock)->writeLock())->unlock();
+//            });
+//            {
+//                childrenMap)->remove(child)->getName());
+//                children)->remove(child));
+//                throw new ContextRuntimeException("Error adding child '"+child)->toString())
+//    +"' to context '")
+//    +toString())
+//    +"': ")
+//    +ex)->getMessage())->toString(), ex);
+//            }
+//        }
+//
+//    }
+//    Log::CONTEXT_CHILDREN())->debug("Added child '"+child)->getName())
+//        +"' to '")
+//        +getPath())
+//        +"' in ")
+//        +(::java::lang::System::currentTimeMillis() - startTime))
+//        +" ms");
+//}
+//
+//void AbstractContext::removeFromParent()
+//{
+//    if(java_cast< ContextPtr >(getParent()) != 0) {
+//        java_cast< ContextPtr >(getParent()))->removeChild(static_cast< ContextPtr >(this));
+//        setParent(static_cast< ContextPtr >(0));
+//    } else {
+//        Log::CONTEXT_CHILDREN())->debug("Can't remove context '"+getPath())
+//            +"' from its parent: no parent context was set");
+//    }
+//}
+//
 //void AbstractContext::destroy(bool moving)
 //{
 ////    if(!moving) {
@@ -3053,13 +3054,13 @@ PermissionsPtr AbstractContext::getPermissions()
 ////        lock)->lock();
 ////    }
 ////}
-////
-////std::string AbstractContext::toString()
-////{
-////    auto desc = getDescription();
-////    return desc != 0 ? desc : getPath();
-////}
-////
+
+std::string AbstractContext::toString()
+{
+    std::string desc = getDescription();
+    return desc.length() > 0 ? desc : getPath();
+}
+
 //std::string AbstractContext::toDetailedString()
 //{
 //    //auto decription = getDescription();
@@ -3661,3 +3662,13 @@ std::string AbstractContext::getPath()
 
     return path;
   }
+
+
+PermissionsPtr AbstractContext::DEFAULT_PERMISSIONS()
+{
+    if (!DEFAULT_PERMISSIONS_) {
+        DEFAULT_PERMISSIONS_ = DefaultPermissionChecker::getNullPermissions();
+    }
+
+    return DEFAULT_PERMISSIONS_;
+}

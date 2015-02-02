@@ -32,7 +32,7 @@ ActionManagerPtr ActionContext::getActionManager()
     return actionManager;
 }
 
-std::list<RequestIdentifierPtr> ActionContext::getRequestedIds()
+std::list<RequestIdentifierPtr>& ActionContext::getRequestedIds()
 {
 	return requestedIds;
 }

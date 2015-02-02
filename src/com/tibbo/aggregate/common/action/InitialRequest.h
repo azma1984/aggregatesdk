@@ -6,8 +6,6 @@
 
 class InitialRequest: public ActionResponse
 {
-public:
-    InitialRequest();
 
 };
 

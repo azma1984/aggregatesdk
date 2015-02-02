@@ -31,7 +31,6 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/action/ActionCommandRegistry.cpp \
     src/com/tibbo/aggregate/common/action/ActionContext.cpp \
     src/com/tibbo/aggregate/common/action/ActionExecutionMode.cpp \
-    src/com/tibbo/aggregate/common/action/ActionIdentifier.cpp \
     src/com/tibbo/aggregate/common/action/ActionIdGenerator.cpp \
     src/com/tibbo/aggregate/common/action/ActionManager.cpp \
     src/com/tibbo/aggregate/common/action/ActionUtils.cpp \

@@ -114,87 +114,95 @@ ActionPtr ActionManager::instantiateAction(ActionDefinitionPtr actionDefinition)
 }
 
   //todo
-//ActionCommandPtr ActionManager::service(ActionIdentifierPtr actionId, ActionResponsePtr actionRequest)
-//{
-//	if(actionId == 0) {
-//		std::exception("Pointer = NULL!");
-//	}
-//	Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * action = actions->get(actionId));
-//	if(action == 0)
-//	{
-//	 std::cout<<"Action with id '"+actionId+"' doesn't exists";
-//	}
-//	ActionContextPtr actionContext = (ActionContextPtr)(actionContexts)->get(action);
-//
-//	if(actionRequest == 0 && actionContext->getActionState() != ActionContext.ActionState::INITIALIZED)
-//	{
-//	  std::cout<<"Null actionRequest is allowed only within first call to service()";
-//	}
-//	actionContext->setActionState(ActionContext.ActionState::WORKING);
-//	ActionCommandPtr actionCommand=0;
-//	ActionResponsePtractiveRequest = actionRequest;
-//	do
-//	{
-//		RequestCachePtrrequestCache = actionContext->getRequestCache();
-//
-//		if((activeRequest != 0 && (activeRequest->getRequestId() != 0) && (activeRequest->shouldRemember()==true))
-//		{
-//			if(requestCache == 0)
-//			{
-//			  RequestCachePtr  requestCache = new RequestCache();
-//			  actionContext->setRequestCache(requestCache);
-//            }
-//		   requestCache->addRequest(activeRequest->getRequestId(), activeRequest);
-//		}
-//
-//		actionCommand = action->service(activeRequest));
-//
-//		if((requestCache != 0) && (actionCommand != 0) && (actionCommand->getRequestId() != 0) && !actionContext->getRequestedIds()->contains(actionCommand->getRequestId()))
-//		{
-//		 activeRequest = requestCache->getRequest(actionCommand->getRequestId());
-//		}
-//		else
-//		{
-//		 activeRequest = 0;
-//        }
-//
-//		if((actionCommand != 0) && (actionCommand->getRequestId() != 0))
-//		{
-//		 actionContext->getRequestedIds()->add(actionCommand->getRequestId());
-//		}
-//	}
-//	while (activeRequest != 0);
-//
-//	return actionCommand;
-//}
+ActionCommandPtr ActionManager::service(ActionIdentifierPtr actionId, ActionResponsePtr actionRequest)
+{
+    if(actionId == 0) {
+        //TODO:
+        //throw new NullPointerException();
+    }
+    ActionPtr action = actions[actionId];
+    if(action == 0)
+    {
+        //TODO:
+        //throw new IllegalStateException("Action with id '" + actionId + "' doesn't exists");
+    }
+    ActionContextPtr actionContext = actionContexts[action];
+
+    if(actionRequest == 0 && actionContext->getActionState() != ActionContext::INITIALIZED)
+    {
+        //TODO:
+        //throw new IllegalArgumentException("Null actionRequest is allowed only within first call to service()");
+    }
+
+    actionContext->setActionState(ActionContext::WORKING);
+    ActionCommandPtr actionCommand=0;
+    ActionResponsePtr activeRequest = actionRequest;
+    do
+    {
+        RequestCachePtr requestCache = actionContext->getRequestCache();
+
+        if((activeRequest != 0) && (activeRequest->getRequestId() != 0) && (activeRequest->shouldRemember()==true))
+        {
+            if(requestCache == 0)
+            {
+              RequestCachePtr  requestCache = RequestCachePtr(new RequestCache());
+              actionContext->setRequestCache(requestCache);
+            }
+           requestCache->addRequest(activeRequest->getRequestId(), activeRequest);
+        }
+
+        actionCommand = action->service(activeRequest);
+
+        if ( (requestCache != 0) && (actionCommand != 0) && (actionCommand->getRequestId() != 0) &&
+                (std::find(actionContext->getRequestedIds().begin(),
+                           actionContext->getRequestedIds().end(),
+                           actionCommand->getRequestId()) == actionContext->getRequestedIds().end()) )
+        {
+            activeRequest = requestCache->getRequest(actionCommand->getRequestId());
+        }
+        else
+        {
+            activeRequest = 0;
+        }
+
+        if((actionCommand != 0) && (actionCommand->getRequestId() != 0))
+        {
+            actionContext->getRequestedIds().push_back(actionCommand->getRequestId());
+        }
+    }
+
+    while (activeRequest != 0);
+
+    return actionCommand;
+}
+
  //todo
-//ActionResultPtr ActionManager::destroyAction(ActionIdentifierPtr actionId)
-//{
-//	if(actionId == 0)
-//	{
-//	 std::cout<<"Pointer = NULL!";
-//	}
-//
-//	Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr>  *action = actions->get(actionId);
-//
-//	if(action == 0)
-//	{
-//	 std::cout<<"Action with id '" + actionId + "' doesn't exists";
-//	 return 0;
-//    }
-//
-//	try
-//	 {
-//	  actionContexts->get(action)->setActionState(ActionContext.ActionState::DESTROYED);
-//	  return action->destroy();
-//	 }
-//	 __finally
-//	 {
-//	  actions->remove(actionId);
-//	  actionContexts->remove(action);
-//	 }
-//
-//}
+ActionResultPtr ActionManager::destroyAction(ActionIdentifierPtr actionId)
+{
+    if(actionId == 0)
+    {
+        //TODO:
+        //throw new NullPointerException();
+    }
+
+    ActionPtr action = actions[actionId];
+
+    if(action == 0)
+    {
+        //std::cout<<"Action with id '" + actionId + "' doesn't exists";
+        //return 0;
+    }
+
+    try
+    {
+        actionContexts[action]->setActionState(ActionContext::DESTROYED);
+        return action->destroy();
+    }catch(...) {// TODO: finaly
+        actions.erase(actionId);
+        actionContexts.erase(action);
+    }
+
+}
 
 void ActionManager::destroyAll()
 {
@@ -219,15 +227,13 @@ ActionDirectoryPtr ActionManager::getActionDirectory()
     return actionDirectory;
 }
 
-//ActionIdentifierPtr ActionManager::registerAction(ActionContextPtr actionContext, Action<InitialRequestPtr,ActionCommandPtr,ActionResponsePtr> * action, ActionExecutionModePtr mode)
-//{
-   //	todo
+ActionIdentifierPtr ActionManager::registerAction(ActionContextPtr actionContext, ActionPtr action, ActionExecutionModePtr mode)
+{
+    ActionIdentifierPtr actionId = actionIdGenerator->generate(action);
+    actions[actionId]= action;
+    actionContexts[action]= actionContext;
 
-   //	ActionIdentifierPtr actionId = actionIdGenerator->generate(action);
-   //	actions[actionId]= action;
-   //	actionContexts[action]= actionContext;
-
-   //	return actionId;
-//}
+    return actionId;
+}
 
 

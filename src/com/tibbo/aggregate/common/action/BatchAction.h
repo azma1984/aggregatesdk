@@ -1,15 +1,12 @@
 #ifndef BatchActionH
 #define BatchActionH
 
-#include "Action.h"
-#include "ActionCommand.h"
-#include "ActionContext.h"
-#include "ActionExecutionMode.h"
-#include "ActionIdentifier.h"
-//#include "ActionManager.h"
-#include "BatchContext.h"
-//#include "BatchEntry.h"
-
+#include "action/Action.h"
+#include "action/ActionCommand.h"
+#include "action/ActionContext.h"
+#include "action/ActionExecutionMode.h"
+#include "action/ActionIdentifier.h"
+#include "action/BatchContext.h"
 
 
 class BatchAction : public Action

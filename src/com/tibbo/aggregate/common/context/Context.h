@@ -13,6 +13,7 @@
 //#include "context/VariableDefinition.h"
 //#include "datatable/DataTable.h"
 #include "util/Date.h"
+#include "util/AgObject.h"
 #include "event/FireEventRequestController.h"
 //#include "action/ActionDefinition.h"
 //#include "security/Permissions.h"
@@ -37,7 +38,7 @@ class FunctionData;
 так называемые прокси контексты созданы для операционных объектов
 стороны сервера через тот же самый интерфейс.
 */
-class Context
+class Context : public AgObject
 {
 
  public:

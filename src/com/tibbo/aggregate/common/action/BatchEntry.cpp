@@ -14,11 +14,11 @@ BatchEntry::BatchEntry(ActionContextPtr actionContext, InitialRequestPtr initial
 	this->initialRequest = initialRequest;
 }
 
-/*
+
 ActionContextPtr BatchEntry::getActionContext()
 {
 	return actionContext;
-}     */
+}
 
 InitialRequestPtr BatchEntry::getInitialRequest()
 {
