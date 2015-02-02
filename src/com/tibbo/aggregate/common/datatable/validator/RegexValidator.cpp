@@ -1,11 +1,15 @@
 #include "datatable/validator/RegexValidator.h"
+#include "datatable/FieldFormat.h"
+#include <regex>
+#include <boost/functional/hash.hpp>
+#include "datatable/ValidationException.h"
 
-const std::string RegexValidator::SEPARATOR_ = "^^";
-const std::string RegexValidator::SEPARATOR_REGEX_ = "\\^\\^";
+const std::string RegexValidator::SEPARATOR = "^^";
+const std::string RegexValidator::SEPARATOR_REGEX = "\\^\\^";
 
 RegexValidator::RegexValidator(const std::string& source)
 {
-    std::size_t found = source.find(SEPARATOR_REGEX_);
+    std::size_t found = source.find(SEPARATOR_REGEX);
     if (found != std::string::npos) {
         this->regex = source.substr(0, found);
         this->message = source.substr( found, source.length() - found);
@@ -27,51 +31,46 @@ bool RegexValidator::shouldEncode()
 
 std::string RegexValidator::encode()
 {
-//    return std::string(regex).append( (message.empty() != 0 ? std::string(SEPARATOR).append(message) : "") );
-	//todo- function stub
-	return "";
+    return regex + (message.length() != 0 ? SEPARATOR + message : "");
 }
 
 char RegexValidator::getType()
 {
-   // return FieldFormat::VALIDATOR_REGEX;
-	//todo- function stub
-	return 0;
+    return FieldFormat::VALIDATOR_REGEX;
 }
 
-//TODO:
-void* RegexValidator::validate(void* value) /* throws(ValidationException) */
+AgObjectPtr RegexValidator::validate(AgObjectPtr value)
 {
-//    try
-//    {
-//      if (value != null && !value.toString().matches(regex))
-//      {
-//        throw new ValidationException(message != null ? message : MessageFormat.format(Cres::get()->getString("dtValueDoesNotMatchPattern"), value, regex));
-//      }
-//    }
-//    catch (PatternSyntaxException ex)
-//    {
-//      throw new ValidationException(ex.getMessage(), ex);
-//    }
-
+    if (!std::regex_match(value->toString(), std::regex(regex)))
+    {
+        throw ValidationException("dtValueDoesNotMatchPattern,  RegexValidator::validate");
+    }
     return value;
 }
 
-bool RegexValidator::equals(void* obj)
+int RegexValidator::hashCode()
 {
-    if (this == obj) {
+    static int prime = 31;
+    int result = 1;
+    boost::hash<std::string> string_hash;
+    result = prime * result + ((message.length() == NULL) ? 0 : string_hash(message));
+    result = prime * result + ((regex.length() == NULL) ? 0 : string_hash(regex));
+    return result;
+}
+
+bool RegexValidator::equals(AgObject* obj)
+{
+    if (this == obj)
+    {
         return true;
     }
 
-//    if (!AbstractFieldValidator::equals(obj)) {
-   //     return false;
-  //  }
+    if (!AbstractFieldValidator::equals(obj))
+    {
+        return false;
+    }
 
-//    if (getClass() != obj.getClass()) {
-//      return false;
-//    }
-
-    RegexValidator* other = (RegexValidator*)(obj);
+    RegexValidator *other = dynamic_cast<RegexValidator*>(obj);
     if (!other)
         return false;
 
@@ -86,13 +85,4 @@ bool RegexValidator::equals(void* obj)
     return true;
 }
 
-//TODO: need?
-//int RegexValidator::hashCode()
-//{
-//    final int prime = 31;
-//    int result = 1;
-//    result = prime * result + ((message == null) ? 0 : message.hashCode());
-//    result = prime * result + ((regex == null) ? 0 : regex.hashCode());
-//    return result;
-//}
 

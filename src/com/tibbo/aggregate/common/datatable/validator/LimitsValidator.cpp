@@ -65,6 +65,12 @@ LimitsValidator::LimitsValidator(ComparablePtr min, ComparablePtr max)
     this->max = max;
 }
 
+LimitsValidator::LimitsValidator(int min, int max)
+{
+    this->min = ComparablePtr(new AgInteger(min));
+    this->max = ComparablePtr(new AgInteger(max));
+}
+
 bool LimitsValidator::shouldEncode()
 {
     return true;

@@ -25,6 +25,7 @@ class Binding;
 class Reference;
 class QueryCondition;
 class EvaluationEnvironment;
+class FieldValidator;
 
 
 typedef boost::shared_ptr<AgObject> AgObjectPtr;
@@ -48,6 +49,7 @@ typedef boost::shared_ptr<Binding> BindingPtr;
 typedef boost::shared_ptr<Reference> ReferencePtr;
 typedef boost::shared_ptr<QueryCondition> QueryConditionPtr;
 typedef boost::shared_ptr<EvaluationEnvironment> EvaluationEnvironmentPtr;
+typedef boost::shared_ptr<FieldValidator> FieldValidatorPtr;
 
 
 

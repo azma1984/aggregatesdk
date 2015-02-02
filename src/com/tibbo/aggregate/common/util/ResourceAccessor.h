@@ -40,9 +40,9 @@ class ResourceAccessor
  //   static const std::string RESOURCE_PACKAGE_NAME = "res";
 
  public:
-   static ResourceBundlePtr fetch(AgClassPtr clazz, LocalePtr locale)
+   static ResourceBundle fetch(AgClassPtr clazz, LocalePtr locale)
 	{
-	 return ResourceBundlePtr();
+     return ResourceBundle();
 	}
 	
 		// static ResourceBundle* fetch(Class* clazz, Locale* locale, ClassLoader* classLoader);

@@ -9,6 +9,7 @@ public:
     virtual std::string encode();
     virtual char getType();
     virtual bool equals(AgObject* obj);
+    virtual Cloneable *clone() const;
 
 };
 

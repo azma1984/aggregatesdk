@@ -14,6 +14,7 @@ private:
 public:
     LimitsValidator(FieldFormatPtr fieldFormat, const std::string& source);
     LimitsValidator(ComparablePtr min, ComparablePtr max);
+    LimitsValidator(int min, int max);
     virtual bool shouldEncode();
     virtual char getType();
 

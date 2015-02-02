@@ -4,7 +4,7 @@
 
 //todo - Class stub!
 
-ResourceBundlePtr Cres::BUNDLE;
+ResourceBundle Cres::BUNDLE;
 
 Cres::Cres()
 {

@@ -11,7 +11,7 @@ class DataTable: public Cloneable
 
 private:
 	//Evaluator * namingEvaluator;
-	std::list<DataRecord*> records;
+    std::list<DataRecordPtr> records;
 
 protected:
     static TableFormatPtr DEFAULT_FORMAT;
@@ -107,8 +107,8 @@ public:
     void splitFormat();
     void joinFormats();
 
-    //todo
-    //::java::util::Iterator* iterator();
+    std::list<DataRecordPtr>::iterator iteratorBegin();
+    std::list<DataRecordPtr>::iterator iteratorEnd();
 
     virtual DataTable* clone() const;
     int compareTo(DataTablePtr other);
