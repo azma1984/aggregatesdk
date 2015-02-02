@@ -606,10 +606,10 @@ AgObjectPtr AbstractContext::getParent()
 
 bool AbstractContext::hasParent(ContextPtr parentContext)
 {
-    ContextPtr root = this;
+    Context* root = this;
     do {
-        root = root->getParent();
-        if(root == parentContext) {
+        root = dynamic_cast<Context*>(root->getParent().get());
+        if(root == parentContext.get()) {
             return true;
         }
     } while (root->getParent() != 0);
@@ -619,13 +619,15 @@ bool AbstractContext::hasParent(ContextPtr parentContext)
 
 AgObjectPtr AbstractContext::getRoot()
 {
-    ContextPtr root = this;
-    while (root->getParent() != 0)
-    {
-        root = (ContextPtr)root->getParent();
-    }
+    //TODO:
+//    Context* root = static_cast<Context*>(this);
+//    while (root->getParent() != 0)
+//    {
+//        root = root->getParent();
+//    }
 
-    return (AgObjectPtr)(root);
+//    return (AgObjectPtr)(root);
+    return 0;
 }
 
 AgObjectPtr AbstractContext::get(const std::string & contextPath, CallerControllerPtr caller)
@@ -675,10 +677,6 @@ AgObjectPtr AbstractContext::get(const std::string & contextName)
 
 PermissionsPtr AbstractContext::getPermissions()
 {
-        AgObjectPtr ag = NULL;
-        ContextPtr cn = static_cast<ContextPtr>(ag);
-    cn->getPermissions();
-
     if (!permissionCheckingEnabled) {
         return DEFAULT_PERMISSIONS();
     }
@@ -688,7 +686,7 @@ PermissionsPtr AbstractContext::getPermissions()
     }
 
     if (getParent() != 0) {
-        return static_cast<ContextPtr>(getParent())->getPermissions();
+        return dynamic_cast<Context*>(getParent().get())->getPermissions();
     }
     return DEFAULT_PERMISSIONS();
 }
