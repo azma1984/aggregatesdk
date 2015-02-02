@@ -4,9 +4,11 @@
 #include "util/StringUtils.h"
 #include "datatable/FieldFormat.h"
 #include "util/simpleobject/AgInteger.h"
+#include "util/simpleobject/AgString.h"
 #include "AggreGateException.h"
 #include "data/Data.h"
 #include "datatable/ValidationException.h"
+#include "Cres.h"
 
 LimitsValidator::LimitsValidator(FieldFormatPtr fieldFormat, const std::string &source)
 {
@@ -111,50 +113,38 @@ AgObjectPtr LimitsValidator::validate(AgObjectPtr value)
     if (value.get() == 0)
         return value;
 
-    Data *data = dynamic_cast<Data *>(value.get());
-    if (data)
+    if (Data *data = dynamic_cast<Data *>(value.get()))
     {
-        /*if (data.getData() != null)
-        {
-             Comparable size = data.getData().length;
-                compare(size, null, null);
-              }*/
+        AgInteger i(data->getData().size());
+        compare(i, "", "");
     }
+    else if (AgString *str = dynamic_cast<AgString *>(value.get()))
+    {
+        AgInteger i(str->value.length());
+        compare(i, Cres::get()->getString("dtValueTooShort"), Cres::get()->getString("dtValueTooLong"));
+    }
+    else
+    {
+        Comparable *cv = dynamic_cast<Comparable *>(value.get());
+        if (cv)
+        {
+            compare(*cv, NULL, NULL);
+        }
+        else
+        {
+            throw ValidationException("Value not comparable, LimitsValidator::validate");
+        }
 
- //   if ((Data*)(value) != 0) 
-	//{
- //       Data* data = (Data*)(value);
-
- //      // if (data->getData() != 0) 
-	////	{
- //     //      Comparable *size = data->getData().size();
- //     //      compare(size, 0, 0);
- //     //  }
- //   }
-	//else 
-	//if ((const std::string &)(value) != 0) 
-	//{
- //   // const std::string & string = (const std::string &)(value);
- //    // compare(string.length(), Cres::get()->getString("dtValueTooShort"), Cres::get()->getString("dtValueTooLong"));
- //   }
-	//else {
- //       if (!(Comparable*)(value) != 0) {
- //           throw new ValidationException("Value not comparable: " + value);
- //       }
-
- //       Comparable* cv = (Comparable*)(value);
- //       compare(cv, 0, 0);
- //   }
-
+    }
     return value;
 }
 
 
-void LimitsValidator::compare(Comparable *cv, const std::string& smallMessage, const std::string& bigMessage)
+void LimitsValidator::compare(Comparable &cv, const std::string& smallMessage, const std::string& bigMessage)
 {
     if (min.get() != 0)
     {
-        if (cv->compareTo(min.get()) < 0)
+        if (cv.compareTo(min.get()) < 0)
         {
             throw ValidationException("dtValueTooSmall");
             //todo
@@ -162,7 +152,7 @@ void LimitsValidator::compare(Comparable *cv, const std::string& smallMessage, c
         }
     }
 
-    if (cv->compareTo(max.get()) > 0)
+    if (cv.compareTo(max.get()) > 0)
     {
         throw ValidationException("dtValueTooBig");
         //todo

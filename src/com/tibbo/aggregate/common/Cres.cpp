@@ -11,10 +11,10 @@ Cres::Cres()
     
 }
 
-ResourceBundlePtr Cres::get()
+ResourceBundle* Cres::get()
 {
     
-    return BUNDLE;
+    return &BUNDLE;
 }
 
 AgClassPtr Cres::getClass()
