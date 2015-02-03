@@ -25,8 +25,8 @@ class StringUtils
     static const std::string truncate(const std::string & str, int maxLength);
     static const std::string truncate(const std::string & str, int maxLength, const std::string & suffix);
     static const std::string byteToHexString(int i);
-    static const std::string colorToString(ColorPtr color);
-	static ElementList* elements(const std::string & source, bool useVisibleSeparators);
+    static const std::string colorToString(AgColorPtr color);
+    static ElementList* elements(const std::string & source, bool useVisibleSeparators);
     static const std::string escapeHtml(const std::string & text);
 	static const std::string print(std::list<AgObjectPtr> col);
 	static const std::string print(std::list<AgObjectPtr> col, const std::string & separator);

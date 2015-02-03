@@ -158,4 +158,7 @@ void TableFormat::makeImmutable(DataTablePtr immutabilizer)
 
 }
 
-
+bool TableFormat::equals(TableFormatPtr obj)
+{
+    return 0;
+}

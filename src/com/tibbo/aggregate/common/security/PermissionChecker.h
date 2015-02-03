@@ -15,6 +15,7 @@
  */
 class PermissionChecker : public Interface
 {
+public:
     /**
     * Returns a map of all permission levels supported by the checker. Each level is defined by a name string and description string.
     */

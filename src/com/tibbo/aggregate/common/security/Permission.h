@@ -10,24 +10,24 @@ class Permission : public Cloneable
 {
 
 private:
-    static const char PERMISSION_SEPARATOR;
+    static const char PERMISSION_FIELDS_SEPARATOR;
     boost::mutex permissionsLock;
     std::string context;
     std::string level;
 
 public:
     Permission(const std::string& data, boost::shared_ptr<PermissionChecker> checker);
-    Permission(const std::string& context, std::string& level);
+    Permission(const std::string& context, const std::string& level);
 
     std::string getContext();
     std::string getLevel();
     void setContext(const std::string& entity);
     void setLevel(const std::string& level);
     std::string encode();
-    Permission* clone();
+    Permission* clone() const;
 
     //int hashCode();
-    bool equals(Permission* obj);
+    bool equals(Permission* other);
     std::string toString();
 };
 #endif

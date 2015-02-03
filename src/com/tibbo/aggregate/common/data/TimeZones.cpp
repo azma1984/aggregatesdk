@@ -2,6 +2,9 @@
 
 #include "Cres.h"
 
+const std::string TimeZones::DEFAULT_TIME_ZONE_ID;
+std::map<std::string, std::string> TimeZones::ZONES;
+
 /*
 public final static String DEFAULT_TIME_ZONE_ID = "GMT";
 

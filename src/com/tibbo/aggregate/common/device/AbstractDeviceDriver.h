@@ -32,7 +32,7 @@ public:
     AbstractDeviceDriver(const std::string& description, const std::string& protocol, TableFormatPtr connectionProperties);
 
     std::string getPrimaryAddress();
-	std::set<std::string> getAddresses();
+    //std::set<std::string> getAddresses();
 	std::string getStatus();
 	std::list<Expression>  getStatusExpressions(CallerControllerPtr aCallerController);
     void setupDeviceContext(DeviceContextPtr deviceContext) ;

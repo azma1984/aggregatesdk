@@ -95,93 +95,94 @@ bool AbstractDeviceDriver::isUsesAssets()
 }
 
 //Function is not used!
-//std::list<DeviceAssetDefinition>  AbstractDeviceDriver::readAssets() 
-//{
-//  std::list<DeviceAssetDefinition> list;
-//    return list;
-//}
+std::list<DeviceAssetDefinition>  AbstractDeviceDriver::readAssets()
+{
+    std::list<DeviceAssetDefinition> list;
+    return list;
+}
 
 bool AbstractDeviceDriver::isUseDeviceSideValuesCache()
 {
     return false;
 }
-//
-//std::list<VariableDefinition>  AbstractDeviceDriver::readVariableDefinitions() 
-//{
-//    return 0;
-//}
 
-//
-//std::list<VariableDefinition>   AbstractDeviceDriver::readVariableDefinitions(std::list<DeviceAssetDefinition>  groups) 
-//{
-//    return readVariableDefinitions();
-//}
+std::list<VariableDefinition>  AbstractDeviceDriver::readVariableDefinitions()
+{
+    return 0;
+}
 
-//
-//std::list<FunctionDefinition>   AbstractDeviceDriver::readFunctionDefinitions() 
-//{
-//   return 0;
-//}
-//
-//std::list<FunctionDefinition>   AbstractDeviceDriver::readFunctionDefinitions(std::list<DeviceAssetDefinition>  groups) 
-//{
-//    return 0;
-//}
-//
-//std::list<EventDefinition>   AbstractDeviceDriver::readEventDefinitions() 
-//{
-//    return 0;
-//}
-//
-//std::list<EventDefinition>   AbstractDeviceDriver::readEventDefinitions(std::list<DeviceAssetDefinition>   groups) 
-//{
-//    return 0;
-//}
 
-//DataTablePtr AbstractDeviceDriver::readVariableValue(VariableDefinitionPtr vd) 
-//{
-//  //  return 0;
-//}
+std::list<VariableDefinition>   AbstractDeviceDriver::readVariableDefinitions(std::list<DeviceAssetDefinition>  groups)
+{
+    return readVariableDefinitions();
+}
+
+
+std::list<FunctionDefinition>   AbstractDeviceDriver::readFunctionDefinitions()
+{
+   return 0;
+}
+
+std::list<FunctionDefinition>   AbstractDeviceDriver::readFunctionDefinitions(std::list<DeviceAssetDefinition>  groups)
+{
+    return 0;
+}
+
+std::list<EventDefinition>   AbstractDeviceDriver::readEventDefinitions()
+{
+    return 0;
+}
+
+std::list<EventDefinition>   AbstractDeviceDriver::readEventDefinitions(std::list<DeviceAssetDefinition>   groups)
+{
+    return 0;
+}
+
+DataTablePtr AbstractDeviceDriver::readVariableValue(VariableDefinitionPtr vd)
+{
+    return 0;
+}
 
 void AbstractDeviceDriver::writeVariableValue(VariableDefinitionPtr vd, DataTablePtr value, DataTablePtr deviceValue) 
 {
 }
-	//todo - functions is not used
-//DataTablePtr AbstractDeviceDriver::executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters) 
-//{
- //   throw new ::java::lang::UnsupportedOperationException();
-//}
+
+//todo - functions is not used
+DataTablePtr AbstractDeviceDriver::executeFunction(FunctionDefinitionPtr fd, DataTablePtr parameters)
+{
+    //TODO:
+    //throw new ::java::lang::UnsupportedOperationException();
+}
 
 DatePtr AbstractDeviceDriver::getVariableModificationTime(const std::string & name) 
 {
     return DatePtr();
 }
-//
-//void AbstractDeviceDriver::updateVariableModificationTime(const std::string & name, DatePtr value) 
-//{
-//}
-//
-//VariableStatusPtr AbstractDeviceDriver::getCustomVariableStatus(const std::string & name) 
-//{
-//    return 0;
-//}
-//
-//void AbstractDeviceDriver::disconnect() 
-//{
-//    setConnected(false);
-//}
-//
-//void AbstractDeviceDriver::finishSynchronization() 
-//{
-//}
-//
+
+void AbstractDeviceDriver::updateVariableModificationTime(const std::string & name, DatePtr value)
+{
+}
+
+VariableStatusPtr AbstractDeviceDriver::getCustomVariableStatus(const std::string & name)
+{
+    return 0;
+}
+
+void AbstractDeviceDriver::disconnect()
+{
+    setConnected(false);
+}
+
+void AbstractDeviceDriver::finishSynchronization()
+{
+}
+
 void AbstractDeviceDriver::setConnected(bool connected)
 {
     this->connected = connected;
 }
 
 
-	//todo - functions is not used
 //
 //DeviceContextPtr AbstractDeviceDriver::getDeviceContext()
 //{

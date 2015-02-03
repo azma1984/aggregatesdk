@@ -91,3 +91,8 @@ FieldFormatPtr FieldFormat::create(const std::string &format)
 {
     return 0;
 }
+
+int FieldFormat::hashCode()
+{
+    return 0;
+}
