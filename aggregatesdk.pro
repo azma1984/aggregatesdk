@@ -112,6 +112,7 @@ SOURCES += main.cpp \
 #    src/com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.cpp \
 #    src/com/tibbo/aggregate/common/datatable/encoding/XMLEncodingSettings.cpp \
     src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.cpp \
@@ -239,6 +240,10 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/util/UserSettings.cpp \
     src/com/tibbo/aggregate/common/util/Util.cpp \
     src/com/tibbo/aggregate/common/util/WindowLocation.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgBoolean.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgColor.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgInteger.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgString.cpp \
     src/com/tibbo/aggregate/common/Cres.cpp
 
 
@@ -392,7 +397,7 @@ HEADERS += \
     src/com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.h \
     src/com/tibbo/aggregate/common/datatable/encoding/XMLEncodingSettings.h \
     src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.h \
@@ -635,6 +640,10 @@ HEADERS += \
     src/com/tibbo/aggregate/common/util/UserSettings.h \
     src/com/tibbo/aggregate/common/util/Util.h \
     src/com/tibbo/aggregate/common/util/WindowLocation.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgBoolean.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgColor.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgInteger.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgString.h \
     src/com/tibbo/aggregate/common/AggreGateException.h \
     src/com/tibbo/aggregate/common/Constants.h \
     src/com/tibbo/aggregate/common/Cres.h \
