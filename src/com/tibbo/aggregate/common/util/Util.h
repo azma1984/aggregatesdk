@@ -10,7 +10,7 @@
 #include <iostream>
 #include "util/simpleobject/AgDouble.h"
 #include "util/simpleobject/AgFloat.h"
-
+#include "util/simpleobject/AgInteger.h"
 
 class Util
 {
@@ -27,6 +27,7 @@ public:
 
     static AgDouble* convertToNumberAsDouble(AgObjectPtr value, bool validate, bool allowNull);
     static AgFloat* convertToNumberAsFloat(AgObjectPtr value, bool validate, bool allowNull);
+    static AgInteger* convertToNumberAsInteger(AgObjectPtr value, bool validate, bool allowNull);
 
     static bool convertToBoolean(AgObjectPtr value, bool validate, bool allowNull);    
     //static bool isFloatingPoint(Number* n);
