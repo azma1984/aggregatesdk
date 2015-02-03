@@ -1,20 +1,8 @@
 #include "util/simpleobject/AgBoolean.h"
 
 
-AgBoolean::AgBoolean()
+AgBoolean::AgBoolean(bool value)
 {
-    value = false;
+    this->value = false;
 }
-
-void AgBoolean::setValue(bool value)
-{
-    this->value = value;
-}
-
-bool AgBoolean::getValue()
-{
-    return value;
-}
-
-
 

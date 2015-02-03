@@ -66,13 +66,13 @@ private:
     std::string getEncodedSelectionValues(ClassicEncodingSettingsPtr settings);
     std::string getEncodedFlags();
     //static void encAppend(StringBuffer buffer, String name, String value, ClassicEncodingSettings settings);
-    std::list<std::string> getSuitableEditors();
 
 
 protected:
     FieldFormat(const std::string &name);
     AgObjectPtr convertValue(AgObjectPtr value);
     FieldFormatPtr setTransferEncode(bool transferEncode);
+    virtual std::list<std::string> getSuitableEditors();
 
 public:
     static const char INTEGER_FIELD;
@@ -97,8 +97,8 @@ public:
 
 
     virtual char getType() = 0;
-    virtual AgClassPtr getFieldClass() = 0;
-    virtual AgClassPtr getFieldWrappedClass() = 0;
+    virtual const std::type_info& getFieldClass() = 0;
+    virtual const std::type_info& getFieldWrappedClass() = 0;
     virtual AgObjectPtr getNotNullDefault() = 0;
     virtual AgObjectPtr valueFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate) = 0;
     virtual std::string valueToString(AgObjectPtr value, ClassicEncodingSettingsPtr settings) = 0;
@@ -119,7 +119,7 @@ public:
 
     bool extend(FieldFormatPtr other);
     std::string extendMessage(FieldFormatPtr other);
-//    FieldFormatPtr addValidator(FieldValidatorPtr validator); TODO:
+    FieldFormatPtr addValidator(FieldValidatorPtr validator);
 //    void setValidators(std::list<FieldValidatorPtr> validators);  TODO:
     void createValidators(const std::string& source, ClassicEncodingSettingsPtr settings);
     AgObjectPtr checkAndConvertValue(AgObjectPtr value, bool validate);

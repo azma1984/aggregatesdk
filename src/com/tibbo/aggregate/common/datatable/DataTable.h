@@ -5,8 +5,9 @@
 #include <list>
 #include "util/Pointers.h"
 #include "util/Cloneable.h"
+#include "util/AgObject.h"
 
-class DataTable: public Cloneable
+class DataTable: public Cloneable, public AgObject
 {
 
 private:
@@ -82,7 +83,7 @@ public:
     const std::string encode();
     const std::string encode(bool useVisibleSeparators);
     const std::string encode(ClassicEncodingSettingsPtr settings);
-    const std::string toString();
+    std::string toString();
     const std::string getDescription();
 
     void fixRecords();

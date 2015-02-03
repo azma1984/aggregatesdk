@@ -20,6 +20,15 @@ int SString::toInteger() const {
 	return tmp;
 }
 
+long SString::toLong() const {
+    long tmp = 0;
+
+    stringstream ss(c_str());
+    ss >> tmp;
+
+    return tmp;
+}
+
 bool SString::toBoolean() const {
 	SString tmp(c_str());
 	tmp = tmp.toLowerCase();
