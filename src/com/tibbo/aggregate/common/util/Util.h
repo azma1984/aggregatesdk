@@ -8,6 +8,7 @@
 #include "util/pointers.h"
 #include <sstream>
 #include <iostream>
+#include "util/simpleobject/AgDouble.h"
 
 
 class Util
@@ -22,6 +23,9 @@ public:
 	*/
     static std::vector<char> readStream(std::iostream& is) ;
     static long convertToNumber(AgObjectPtr value, bool validate, bool allowNull);
+
+    static AgDouble* convertToNumberAsDouble(AgObjectPtr value, bool validate, bool allowNull);
+
     static bool convertToBoolean(AgObjectPtr value, bool validate, bool allowNull);    
     //static bool isFloatingPoint(Number* n);
     //TODO:
