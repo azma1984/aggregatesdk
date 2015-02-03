@@ -106,7 +106,7 @@ bool AbstractDeviceDriver::isUseDeviceSideValuesCache()
     return false;
 }
 
-std::list<VariableDefinition>  AbstractDeviceDriver::readVariableDefinitions()
+/*std::list<VariableDefinition>  AbstractDeviceDriver::readVariableDefinitions()
 {
     return 0;
 }
@@ -131,12 +131,12 @@ std::list<FunctionDefinition>   AbstractDeviceDriver::readFunctionDefinitions(st
 std::list<EventDefinition>   AbstractDeviceDriver::readEventDefinitions()
 {
     return 0;
-}
+}*/
 
-std::list<EventDefinition>   AbstractDeviceDriver::readEventDefinitions(std::list<DeviceAssetDefinition>   groups)
+/*std::list<EventDefinition>   AbstractDeviceDriver::readEventDefinitions(std::list<DeviceAssetDefinition>   groups)
 {
     return 0;
-}
+}*/
 
 DataTablePtr AbstractDeviceDriver::readVariableValue(VariableDefinitionPtr vd)
 {
@@ -152,6 +152,7 @@ DataTablePtr AbstractDeviceDriver::executeFunction(FunctionDefinitionPtr fd, Dat
 {
     //TODO:
     //throw new ::java::lang::UnsupportedOperationException();
+    return 0;
 }
 
 DatePtr AbstractDeviceDriver::getVariableModificationTime(const std::string & name) 

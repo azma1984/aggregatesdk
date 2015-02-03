@@ -39,7 +39,7 @@ private:
     std::list<DeviceAssetDefinitionPtr> getChildren();
     void setChildren(std::list<DeviceAssetDefinitionPtr>  children);
     void addSubgroup(DeviceAssetDefinitionPtr child);
-    int compareTo(DeviceAssetDefinitionPtr other);
+    int compareTo(Comparable *other) const;
     std::string toString();
     int hashCode();
     bool equals(DeviceAssetDefinitionPtr obj);

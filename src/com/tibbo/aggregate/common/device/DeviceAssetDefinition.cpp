@@ -100,9 +100,10 @@ void DeviceAssetDefinition::addSubgroup(DeviceAssetDefinitionPtr child)
    getChildren().push_back(child);
 }
 
-int DeviceAssetDefinition::compareTo(DeviceAssetDefinitionPtr other)
+int DeviceAssetDefinition::compareTo(Comparable *other) const
 {
-    return description.compare(other->description);
+    return 0;
+    //return description.compare(other->description);
 }
 
 std::string DeviceAssetDefinition::toString()

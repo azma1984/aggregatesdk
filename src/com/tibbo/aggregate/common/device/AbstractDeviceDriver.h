@@ -1,14 +1,11 @@
-#ifndef AbstractDeviceDriverH
-#define AbstractDeviceDriverH
- #define BOOST_THREAD_USE_LIB
+#pragma once
+
 #include "plugin/BasePlugin.h"
 #include "device/DeviceDriver.h"
 #include "context/CallerController.h"
-//#include "datatable/TableFormat.h"
 #include "context/Context.h"
 #include "datatable/TableFormat.h"
 #include "device/DeviceContext.h"
-//#include "device/DeviceUtils.h"
 #include "device/sync/SynchronizationParameters.h"
 
 #include "context/VariableStatus.h"
@@ -90,4 +87,3 @@ public:
 	void userDeinit(ContextPtr userContext);
 	void userInit(ContextPtr userContext);
 };
-#endif  //AbstractDeviceDriverH
