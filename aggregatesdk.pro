@@ -119,7 +119,7 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/datatable/field/DoubleFieldFormat.cpp \
     src/com/tibbo/aggregate/common/datatable/field/FloatFieldFormat.cpp \
     src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.cpp \
-#    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/StringFieldFormat.cpp \
     src/com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.cpp \
     src/com/tibbo/aggregate/common/datatable/validator/IdValidator.cpp \
@@ -407,7 +407,7 @@ HEADERS += \
     src/com/tibbo/aggregate/common/datatable/field/DoubleFieldFormat.h \
     src/com/tibbo/aggregate/common/datatable/field/FloatFieldFormat.h \
     src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h \
     src/com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.h \
     src/com/tibbo/aggregate/common/datatable/validator/AbstractRecordValidator.h \
