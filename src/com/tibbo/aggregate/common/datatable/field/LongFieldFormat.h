@@ -1,56 +1,24 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.java
-
 #pragma once
 
 #include "datatable/FieldFormat.h"
 
-
-
-
 class LongFieldFormat : public FieldFormat
 {
+public:
+    static const std::string EDITOR_PERIOD;
 
-//public:
-//    typedef FieldFormat super;
+    LongFieldFormat(const std::string &name);
+    char getType();
+    const std::type_info& getFieldClass();
+    const std::type_info& getFieldWrappedClass();
+    AgObjectPtr getNotNullDefault();
+    AgObjectPtr valueFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate);
+    std::string valueToString(AgObjectPtr value, ClassicEncodingSettingsPtr settings);
 
-//private:
-//    static const std::string EDITOR_PERIOD_;
-//protected:
-//    void ctor(const std::string & name);
+    static std::string encodePeriodEditorOptions(int minUnit, int maxUnit);
 
-//public:
-//    char16_t getType();
-//    ::java::lang::Class* getFieldClass();
-//    ::java::lang::Class* getFieldWrappedClass();
-//    long  getNotNullDefault();
+protected:
+    std::list<std::string> getSuitableEditors();
+    AgObjectPtr convertValue(AgObjectPtr value);
 
-//public: /* protected */
-//    void* convertValue(void* value) /* throws(ValidationException) */;
-
-//public:
-//    long  valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate);
-//    const std::string & valueToString(long  value, encoding::ClassicEncodingSettings* settings);
-
-//public: /* protected */
-//    std::list  getSuitableEditors();
-
-//public:
-//    static const std::string encodePeriodEditorOptions(int minUnit, int maxUnit);
-
-//    // Generated
-//    LongFieldFormat(const std::string & name);
-//protected:
-//    LongFieldFormat(const ::default_init_tag&);
-
-
-//public:
-    
-//    static void
-//    const std::string & valueToString(void* value, encoding::ClassicEncodingSettings* settings);
-//    void* valueFromString(const std::string & value);
-//    const std::string & valueToString(void* value);
-//    static const std::string& EDITOR_PERIOD();
-
-//private:
-//    ::java::lang::Class* getClass0();
 };

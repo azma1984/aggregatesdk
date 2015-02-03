@@ -70,7 +70,7 @@ private:
 
 protected:
     FieldFormat(const std::string &name);
-    AgObjectPtr convertValue(AgObjectPtr value);
+    virtual AgObjectPtr convertValue(AgObjectPtr value);
     FieldFormatPtr setTransferEncode(bool transferEncode);
     virtual std::list<std::string> getSuitableEditors();
 

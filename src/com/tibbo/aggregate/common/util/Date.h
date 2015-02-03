@@ -3,13 +3,15 @@
 
 #include <ctime>
 #include <string>
+#include "util/AgObject.h"
+#include "util/Comparable.h"
 
 /**
  * Represents a date.
  *
  * @author Philippe Bernery
  */
-class Date {	
+class Date : public AgObject, public Comparable {
 public:
 
 	/**
@@ -80,7 +82,12 @@ public:
 	/**
 	 * @return a string representing the date. (e.g: "yyyy-mm-dd")
 	 */
-	 std::string toString() const;
+     virtual std::string toString();
+
+
+     //todo implement
+     int compareTo(Comparable *obj) const { return 0; }
+
 
 private:
 	unsigned _day;

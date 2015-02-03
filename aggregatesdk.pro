@@ -115,11 +115,11 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.cpp \
     src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.cpp \
     src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.cpp \
-#    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.cpp \
-#    src/com/tibbo/aggregate/common/datatable/field/DoubleFieldFormat.cpp \
-#    src/com/tibbo/aggregate/common/datatable/field/FloatFieldFormat.cpp \
-#    src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.cpp \
-#    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/DoubleFieldFormat.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/FloatFieldFormat.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/StringFieldFormat.cpp \
     src/com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.cpp \
     src/com/tibbo/aggregate/common/datatable/validator/IdValidator.cpp \
@@ -242,7 +242,10 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/util/WindowLocation.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgBoolean.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgColor.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgDouble.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgFloat.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgInteger.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgLong.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgString.cpp \
     src/com/tibbo/aggregate/common/Cres.cpp \
     src/com/tibbo/aggregate/common/util/StringUtils.cpp
@@ -401,11 +404,11 @@ HEADERS += \
     src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.h \
     src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.h \
     src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/field/DoubleFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/field/FloatFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/DoubleFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/FloatFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/IntFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/LongFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/StringFieldFormat.h \
     src/com/tibbo/aggregate/common/datatable/validator/AbstractFieldValidator.h \
     src/com/tibbo/aggregate/common/datatable/validator/AbstractRecordValidator.h \
@@ -642,7 +645,10 @@ HEADERS += \
     src/com/tibbo/aggregate/common/util/WindowLocation.h \
     src/com/tibbo/aggregate/common/util/simpleobject/AgBoolean.h \
     src/com/tibbo/aggregate/common/util/simpleobject/AgColor.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgDouble.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgFloat.h \
     src/com/tibbo/aggregate/common/util/simpleobject/AgInteger.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgLong.h \
     src/com/tibbo/aggregate/common/util/simpleobject/AgString.h \
     src/com/tibbo/aggregate/common/AggreGateException.h \
     src/com/tibbo/aggregate/common/Constants.h \
