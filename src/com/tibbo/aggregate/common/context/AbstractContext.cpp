@@ -5,7 +5,9 @@
 #include "context/VariableData.h"
 #include "context/FunctionData.h"
 #include "context/EventData.h"
+#include "context/ContextException.h"
 #include "datatable/DataTable.h"
+#include "IllegalStateException.h"
 
 const std::string AbstractContext::IMPLEMENTATION_METHOD_PREFIX = "callF";
 const std::string AbstractContext::SETTER_METHOD_PREFIX = "setV";
@@ -113,6 +115,60 @@ const int AbstractContext::VERY_LOW_PERFORMANCE_THRESHOLD = 120000;
 const int AbstractContext::LOW_PERFORMANCE_THRESHOLD = 20000;
 
 PermissionsPtr AbstractContext::DEFAULT_PERMISSIONS_;
+
+TableFormatPtr AbstractContext::VARIABLE_DEFINITION_FORMAT;
+TableFormatPtr AbstractContext::EF_VARIABLE_ADDED;
+TableFormatPtr AbstractContext::FUNCTION_DEFINITION_FORMAT;
+TableFormatPtr AbstractContext::EF_FUNCTION_ADDED;
+TableFormatPtr AbstractContext::EVENT_DEFINITION_FORMAT;
+TableFormatPtr AbstractContext::EF_EVENT_ADDED;
+TableFormatPtr AbstractContext::VFT_CHILDREN;
+TableFormatPtr AbstractContext::INFO_DEFINITION_FORMAT;
+TableFormatPtr AbstractContext::ACTION_DEF_FORMAT;
+TableFormatPtr AbstractContext::RESOURCE_MASKS_FORMAT;
+TableFormatPtr AbstractContext::FIFT_GET_COPY_DATA;
+TableFormatPtr AbstractContext::FIFT_GET_COPY_DATA_RECIPIENTS;
+TableFormatPtr AbstractContext::REPLICATE_INPUT_FORMAT;
+TableFormatPtr AbstractContext::FIFT_REPLICATE_FIELDS;
+TableFormatPtr AbstractContext::REPLICATE_OUTPUT_FORMAT;
+TableFormatPtr AbstractContext::REPLICATE_TO_CHILDREN_OUTPUT_FORMAT;
+TableFormatPtr AbstractContext::EF_UPDATED;
+TableFormatPtr AbstractContext::EF_CHANGE;
+TableFormatPtr AbstractContext::EFT_INFO;
+TableFormatPtr AbstractContext::EFT_VARIABLE_REMOVED;
+TableFormatPtr AbstractContext::EFT_EVENT_REMOVED;
+TableFormatPtr AbstractContext::EFT_FUNCTION_REMOVED;
+TableFormatPtr AbstractContext::EFT_CHILD_REMOVED;
+TableFormatPtr AbstractContext::EFT_CHILD_ADDED;
+TableFormatPtr AbstractContext::EFT_ACTION_REMOVED;
+VariableDefinitionPtr AbstractContext::VD_INFO;
+VariableDefinitionPtr AbstractContext::VD_VARIABLES;
+VariableDefinitionPtr AbstractContext::VD_FUNCTIONS;
+VariableDefinitionPtr AbstractContext::VD_EVENTS;
+VariableDefinitionPtr AbstractContext::VD_ACTIONS;
+VariableDefinitionPtr AbstractContext::VD_CHILDREN;
+FunctionDefinitionPtr AbstractContext::FD_GET_COPY_DATA;
+FunctionDefinitionPtr AbstractContext::FD_COPY;
+FunctionDefinitionPtr AbstractContext::FD_COPY_TO_CHILDREN;
+EventDefinitionPtr AbstractContext::ED_INFO;
+EventDefinitionPtr AbstractContext::ED_CHILD_ADDED;
+EventDefinitionPtr AbstractContext::ED_CHILD_REMOVED;
+EventDefinitionPtr AbstractContext::ED_VARIABLE_ADDED;
+EventDefinitionPtr AbstractContext::ED_VARIABLE_REMOVED;
+EventDefinitionPtr AbstractContext::ED_FUNCTION_ADDED;
+EventDefinitionPtr AbstractContext::ED_FUNCTION_REMOVED;
+EventDefinitionPtr AbstractContext::ED_EVENT_ADDED;
+EventDefinitionPtr AbstractContext::ED_EVENT_REMOVED;
+EventDefinitionPtr AbstractContext::ED_ACTION_ADDED;
+EventDefinitionPtr AbstractContext::ED_ACTION_REMOVED;
+EventDefinitionPtr AbstractContext::ED_ACTION_STATE_CHANGED;
+EventDefinitionPtr AbstractContext::ED_INFO_CHANGED;
+EventDefinitionPtr AbstractContext::ED_UPDATED;
+EventDefinitionPtr AbstractContext::ED_CHANGE;
+EventDefinitionPtr AbstractContext::ED_DESTROYED;
+TableFormatPtr AbstractContext::VFT_VARIABLE_STATUSES;
+const int AbstractContext::DEFAULT_EVENT_LEVEL = -1;
+PermissionsPtr AbstractContext::DEFAULT_PERMISSIONS;
 
 
 AbstractContext::AbstractContext(const std::string &name)
@@ -685,7 +741,7 @@ AgObjectPtr AbstractContext::get(const std::string & contextName)
 PermissionsPtr AbstractContext::getPermissions()
 {
     if (!permissionCheckingEnabled) {
-        return DEFAULT_PERMISSIONS();
+        return DEFAULT_PERMISSIONS;
     }
 
     if (permissions != 0) {
@@ -695,7 +751,7 @@ PermissionsPtr AbstractContext::getPermissions()
     if (getParent() != 0) {
         return dynamic_cast<Context*>(getParent().get())->getPermissions();
     }
-    return DEFAULT_PERMISSIONS();
+    return DEFAULT_PERMISSIONS;
 }
 
 void AbstractContext::setName(const std::string &name)
@@ -733,13 +789,13 @@ bool AbstractContext::isFireUpdateEvents()
     return fireUpdateEvents;
 }
 
-////void AbstractContext::setContextManager(ContextManagerPtr contextManager)
-////{
-////    if(java_cast< ContextManagerPtr >(this->contextManager) != 0 && java_cast< ContextManagerPtr >(this->contextManager)) != contextManager)) {
-////        throw new ::java::lang::IllegalStateException("Context manager already set");
-////    }
-////    this->contextManager = contextManager;
-////}
+void AbstractContext::setContextManager(ContextManagerPtr contextManager)
+{
+    if ((this->contextManager != 0) &&  (this->contextManager != contextManager)) {
+        throw IllegalStateException("Context manager already set");
+    }
+    this->contextManager = contextManager;
+}
 
 void AbstractContext::setChildrenViewPermissions(PermissionsPtr childrenViewPermissions)
 {
@@ -853,9 +909,10 @@ void AbstractContext::setChildrenConcurrencyEnabled(bool childrenConcurrencyEnab
 //        +(::java::lang::System::currentTimeMillis() - startTime))
 //        +" ms");
 //}
-//
-//void AbstractContext::removeFromParent()
-//{
+
+void AbstractContext::removeFromParent()
+{
+    //TODO:
 //    if(java_cast< ContextPtr >(getParent()) != 0) {
 //        java_cast< ContextPtr >(getParent()))->removeChild(static_cast< ContextPtr >(this));
 //        setParent(static_cast< ContextPtr >(0));
@@ -863,8 +920,8 @@ void AbstractContext::setChildrenConcurrencyEnabled(bool childrenConcurrencyEnab
 //        Log::CONTEXT_CHILDREN())->debug("Can't remove context '"+getPath())
 //            +"' from its parent: no parent context was set");
 //    }
-//}
-//
+}
+
 void AbstractContext::destroy(bool moving)
 {
     if (!moving) {
@@ -2256,17 +2313,17 @@ void AbstractContext::setVariable(const std::string & name, std::list<AgObjectPt
 ////{
 ////    return false;
 ////}
-////
-////VariableDefinitionPtr AbstractContext::getAndCheckVariableDefinition(const std::string & name)
-////{
-////    setupVariables();
-////    auto def = getVariableDefinition(name);
-////    if(def == 0) {
-////        throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conVarNotAvailExt"), new voidArray({name), getPath())})));
-////    }
-////    return def;
-////}
-////
+
+VariableDefinitionPtr AbstractContext::getAndCheckVariableDefinition(const std::string & name)
+{
+    setupVariables();
+    VariableDefinitionPtr def = getVariableDefinition(name);
+    if (def == 0) {
+        throw ContextException("conVarNotAvailExt");//(MessageFormat::format(Cres::get()->getString("conVarNotAvailExt"), new voidArray({name), getPath())})));
+    }
+    return def;
+}
+
 bool AbstractContext::setVariableField(
         const std::string & variable,
         const std::string & field,
@@ -2490,10 +2547,10 @@ DataTablePtr AbstractContext::callFunction(
 ////    return format != 0 ? new ::DataTable(format, true) : new ::DataTable();
 ////}
 ////
-////void AbstractContext::setupFunctions()
-////{
-////}
-////
+void AbstractContext::setupFunctions()
+{
+}
+
 DataTablePtr AbstractContext::callFunction(
         const std::string & name,
         CallerControllerPtr caller,
@@ -2543,16 +2600,17 @@ DataTablePtr AbstractContext::callFunction(const std::string & name, std::list<A
 ////{
 ////    return 0;
 ////}
-////
-////FunctionDefinitionPtr AbstractContext::getAndCheckFunctionDefinition(const std::string & name)
-////{
-////    setupFunctions();
-////    auto def = getFunctionDefinition(name);
-////    if(def == 0) {
-////        throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conFuncNotAvailExt"), new voidArray({name), getPath())})));
-////    }
-////    return def;
-////}
+
+FunctionDefinitionPtr AbstractContext::getAndCheckFunctionDefinition(const std::string & name)
+{
+    setupFunctions();
+    FunctionDefinitionPtr def = getFunctionDefinition(name);
+    if(def == 0) {
+        //TODO
+        throw new ContextException(Cres::get()->getString("conFuncNotAvailExt"));//(::java::text::MessageFormat::format(Cres::get()->getString("conFuncNotAvailExt"), new voidArray({name), getPath())})));
+    }
+    return def;
+}
 
 void AbstractContext::addVariableDefinition(VariableDefinitionPtr def)
 {
@@ -2876,20 +2934,20 @@ EventDefinitionPtr AbstractContext::getEventDefinition(const std::string & name,
     return accessGranted ? def : static_cast< EventDefinitionPtr >(0);
 }
 
-////EventDefinitionPtr AbstractContext::getAndCheckEventDefinition(const std::string & name)
-////{
-////    setupEvents();
-////    auto def = getEventDefinition(name);
-////    if(def == 0) {
-////        throw new ContextRuntimeException(::java::text::MessageFormat::format(Cres::get()->getString("conEvtNotAvailExt"), new voidArray({name), getPath())})));
-////    }
-////    return def;
-////}
-////
-////void AbstractContext::setupEvents()
-////{
-////}
-////
+EventDefinitionPtr AbstractContext::getAndCheckEventDefinition(const std::string & name)
+{
+    setupEvents();
+    auto def = getEventDefinition(name);
+    if(def == 0) {
+        throw ContextRuntimeException(Cres::get()->getString("conEvtNotAvailExt"));//(:MessageFormat::format(Cres::get()->getString("conEvtNotAvailExt"), new voidArray({name), getPath())})));
+    }
+    return def;
+}
+
+void AbstractContext::setupEvents()
+{
+}
+
 ////void AbstractContext::postEvent(EventPtr ev, EventDefinitionPtr ed, CallerControllerPtr caller, FireEventRequestControllerPtr request)
 ////{
 ////}
@@ -3212,11 +3270,11 @@ void AbstractContext::accept(ContextVisitorPtr visitor)
 //    }
 }
 
-////EventDefinitionPtr AbstractContext::getChangeEventDefinition()
-////{
-////    return ED_CHANGE();
-////}
-////
+EventDefinitionPtr AbstractContext::getChangeEventDefinition()
+{
+    return ED_CHANGE;
+}
+
 ////DataTablePtr AbstractContext::getVvariables(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
 ////{
 ////    auto ans = new ::DataTable(def)->getFormat());
@@ -3768,11 +3826,12 @@ ContextStatusPtr AbstractContext::getStatus()
 //
 //
 
-PermissionsPtr AbstractContext::DEFAULT_PERMISSIONS()
-{
-    if (!DEFAULT_PERMISSIONS_) {
-        DEFAULT_PERMISSIONS_ = DefaultPermissionChecker::getNullPermissions();
-    }
+//TODO:
+//PermissionsPtr AbstractContext::DEFAULT_PERMISSIONS()
+//{
+//    if (!DEFAULT_PERMISSIONS_) {
+//        DEFAULT_PERMISSIONS_ = DefaultPermissionChecker::getNullPermissions();
+//    }
 
-    return DEFAULT_PERMISSIONS_;
-}
+//    return DEFAULT_PERMISSIONS_;
+//}

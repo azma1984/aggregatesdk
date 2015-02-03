@@ -1,54 +1,54 @@
 ﻿#include "data/Event.h"
+#include "context/EventDefinition.h"
+#include "event/Acknowledgement.h"
+#include "event/Enrichment.h"
 #include "util/TimeHelper.h"
+#include <sstream>
 
-//const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD = 100 * TimeHelper::DAY_IN_MS; // Milliseconds
+const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD = 100 * TimeHelper::DAY_IN_MS; // Milliseconds
 
 
-/*Event::Event(const std::string& context, EventDefinitionPtr def, int level,
+Event::Event()
+{
+    init();
+    //TODO:
+    setCreationtime( DatePtr(new Date(0/*System::currentTimeMillis()*/)));
+}
+
+Event::Event(const std::string& context, EventDefinitionPtr def, int level,
              DataTablePtr data, long id, DatePtr creationtime, PermissionsPtr permissions)
 {
-    ctor(context,def,level,data,id,creationtime,permissions);
+    init();
+    setCreationtime( DatePtr(new Date(0/*System::currentTimeMillis()*/)) );
+    init_(context, def->getName(), level, data, id);
+
+    this->name = def->getName();
+    this->permissions = permissions;
+
+    if (creationtime != NULL) {
+        this->creationtime = creationtime;
+    }
+
+    if (def->getExpirationPeriod() > 0) {
+        setExpirationtime( DatePtr(new Date(/*System.currentTimeMillis() + */def->getExpirationPeriod())) );
+    }
 }
 
 Event::Event(const std::string& context, const std::string& name, int level, DataTablePtr data, long id)
 {
-    ctor(context,name,level,data,id);
+    init();
+    //TODO:
+    setCreationtime( DatePtr(new Date(0/*System::currentTimeMillis()*/)) );
+    init_(context, name, level, data, id);
 }
 
 void Event::init()
 {
-    instantiationtime = new Date();
+    instantiationtime = DatePtr(new Date());
     data = 0;
 	count = 1;
-}
-
-const long Event::DEFAULT_EVENT_EXPIRATION_PERIOD;
-
-void Event::ctor()
-{
-    super::ctor();
-    init();
-    setCreationtime(new Date(::java::lang::System::currentTimeMillis()));
-}
-
-void Event::ctor(const std::string & context, EventDefinitionPtr def, int level, DataTablePtr data, long  id, DatePtr creationtime, PermissionsPtr permissions)
-{
-    ctor();
-    init_(context, def)->getName(), level, data, id);
-    this->name = def)->getName();
-    this->permissions = permissions;
-    if(creationtime != 0) {
-        this->creationtime = creationtime;
-    }
-    if(def)->getExpirationPeriod() > 0) {
-        setExpirationtime(new Date(::java::lang::System::currentTimeMillis() + def)->getExpirationPeriod()));
-    }
-}
-
-void Event::ctor(const std::string & context, const std::string & name, int level, DataTablePtr data, long  id)
-{
-    ctor();
-    init_(context, name, level, data, id);
+    listener = 0;
+    level = 0;
 }
 
 void Event::init_(const std::string & context, const std::string & name, int level, DataTablePtr data, long  id)
@@ -92,38 +92,45 @@ DatePtr Event::getExpirationtime()
 
 DataTablePtr Event::getAcknowledgementsTable()
 {
-    try {
-        return DataTableConversion::beansToTable(acknowledgements, Acknowledgement::FORMAT(), false);
-    } catch (DataTableException& ex) {
-        throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
-    }
+    //TODO:
+//    try {
+//        return DataTableConversion::beansToTable(acknowledgements, Acknowledgement::FORMAT(), false);
+//    } catch (DataTableException& ex) {
+//        //TODO:
+//        //throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
+//    }
+    return DataTablePtr(0);
 }
 
 DataTablePtr Event::getEnrichmentsTable()
 {
-    try {
-        return DataTableConversion::beansToTable(enrichments, Enrichment::FORMAT(), false);
-    } catch (DataTableException& ex) {
-        throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
-    }
+    //TODO:
+//    try {
+//        return DataTableConversion::beansToTable(enrichments, Enrichment::FORMAT(), false);
+//    } catch (DataTableException& ex) {
+//        //TODO:
+//        //throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
+//    }
+    return DataTablePtr(0);
 }
 
 void Event::setAcknowledgementsTable(DataTablePtr data)
 {
-    try {
-        acknowledgements = DataTableConversion::beansFromTable(data, Acknowledgement::class_(), Acknowledgement::FORMAT, false);
-    } catch (DataTableException& ex) {
-        throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
-    }
+//    try {
+//        acknowledgements = DataTableConversion::beansFromTable(data, Acknowledgement::class_(), Acknowledgement::FORMAT(), false);
+//    } catch (DataTableException& ex) {
+//        //TODO:
+//        //throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
+//    }
 }
 
 void Event::setEnrichmentsTable(DataTablePtr data)
 {
-    try {
-        enrichments = DataTableConversion::beansFromTable(data, Enrichment::class_(), Enrichment::FORMAT, false);
-    } catch (DataTableException& ex) {
-        throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
-    }
+//    try {
+//        enrichments = DataTableConversion::beansFromTable(data, Enrichment::class_(), Enrichment::FORMAT(), false);
+//    } catch (DataTableException& ex) {
+//        throw IllegalStateException(static_cast< ::java::lang::Throwable* >(ex));
+//    }
 }
 
 void Event::addAcknowledgement(AcknowledgementPtr ack)
@@ -205,12 +212,12 @@ int Event::getLevel()
 {
     return level;
 }
-  */
+
 PermissionsPtr Event::getPermissions()
 {
     return this->permissions;
 }
-/*
+
 void Event::setPermissions(PermissionsPtr permissions)
 {
     this->permissions = permissions;
@@ -242,10 +249,10 @@ void Event::setDeduplicationId(const std::string& deduplicationId)
 }
 
 //TODO: копирование списков
-EventPtr Event::clone()
+Event* Event::clone() const
 {
 //    try {
-        EventPtr clone = new Event(this);
+        Event* clone;// = new Event(this);
       
         //clone->acknowledgements = java_cast< std::list  >(CloneUtils::deepClone(acknowledgements));
         //clone->enrichments = java_cast< std::list  >(CloneUtils::deepClone(enrichments));
@@ -264,7 +271,7 @@ EventPtr Event::clone()
 //    return result;
 //}
 
-bool Event::equals(EventPtr obj)
+bool Event::equals(Event* obj)
 {
     if(this == obj)
         return true;
@@ -280,11 +287,10 @@ bool Event::equals(EventPtr obj)
 
 std::string Event::toString()
 {
-    sdt::stringstream ss;
+    std::stringstream ss;
 
-    ss <<"Event '" <<name <<"' in context '" <<context <<"': " <<(data != null ? data->dataAsString() : "no data")
+    ss <<"Event '" <<name <<"' in context '" <<context <<"': " <<(data != NULL ? data->dataAsString() : "no data")
       <<", for listener '" <<listener <<"'";
 
     return ss.str();
 }
-*/

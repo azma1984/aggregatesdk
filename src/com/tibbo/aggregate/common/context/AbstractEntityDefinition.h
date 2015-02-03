@@ -4,8 +4,6 @@
 
 #include "EntityDefinition.h"
 
-
-
 class AbstractEntityDefinition:public EntityDefinition
 {
 

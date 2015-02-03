@@ -6,8 +6,7 @@
 //#include "context/VariableGetter.h"
 //#include "context/VariableSetter.h"
 //#include "datatable/DataTable.h"
-//#include "datatable/TableFormat.h"
-//#include "security/Permissions.h"
+
 #include "context/AbstractEntityDefinition.h"
 #include "util/Cloneable.h"
 #include "util/Comparable.h"
@@ -69,18 +68,18 @@ public:
     void setLocalCachingEnabled(bool valueCachingEnabled);
     long  getRemoteCacheTime();
 	void setRemoteCacheTime(long  remoteCacheTime);
-	  DataTablePtr getDefaultValue();
-	  void setDefaultValue(DataTablePtr defaultValue);
+    DataTablePtr getDefaultValue();
+    void setDefaultValue(DataTablePtr defaultValue);
     bool isPersistent();
     void setPersistent(bool persistent);
     bool isAllowUpdateEvents();
     void setAllowUpdateEvents(bool allowUpdateEvents);
 	void addCompatibilityConverter(CompatibilityConverterPtr converter);
 	std::list<CompatibilityConverterPtr>  getCompatibilityConverters();
-	VariableDefinitionPtr clone();
+    VariableDefinition *clone() const;
     int hashCode();
-    bool equals(AgObjectPtr obj);
-	int compareTo(VariableDefinitionPtr d);
+    bool equals(VariableDefinition* obj);
+    int compareTo(VariableDefinition* d) const;
 
  	VariableDefinition(const std::string & name, TableFormatPtr format, bool readable, bool writable);
 	VariableDefinition(const std::string & name, TableFormatPtr format, bool readable, bool writable, const std::string & description);
