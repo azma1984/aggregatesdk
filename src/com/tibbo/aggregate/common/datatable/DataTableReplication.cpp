@@ -3,67 +3,67 @@
 
 
 
-std::set<std::string> DataTableReplication::copy(DataTablePtr source, DataTablePtr target)
+std::set<std::string> DataTableReplication::copy(DataTable& source, DataTablePtr target)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copy(DataTablePtr source, DataTablePtr target, bool copyReadOnlyFields)
+std::set<std::string> DataTableReplication::copy(DataTable& source, DataTablePtr target, bool copyReadOnlyFields)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copy(DataTablePtr source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields)
+std::set<std::string> DataTableReplication::copy(DataTable& source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copy(DataTablePtr source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget)
+std::set<std::string> DataTableReplication::copy(DataTable& source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copy(DataTablePtr source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget)
+std::set<std::string> DataTableReplication::copy(DataTable& source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copy(DataTablePtr source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable)
+std::set<std::string> DataTableReplication::copy(DataTable& source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copy(DataTablePtr source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, std::list<std::string> fields)
+std::set<std::string> DataTableReplication::copy(DataTable& source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, std::list<std::string> fields)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copyWithKeyFields(DataTablePtr source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, std::list<std::string> fields)
+std::set<std::string> DataTableReplication::copyWithKeyFields(DataTable& source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, std::list<std::string> fields)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copyWithoutKeyFields(DataTablePtr source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, std::list<std::string> fields)
+std::set<std::string> DataTableReplication::copyWithoutKeyFields(DataTable& source, DataTablePtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, bool ignoreUnresizable, std::list<std::string> fields)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copyRecord(DataRecordPtr source, DataRecordPtr target)
+std::set<std::string> DataTableReplication::copyRecord(DataRecord& source, DataRecordPtr target)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copyRecord(DataRecordPtr source, DataRecordPtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields)
+std::set<std::string> DataTableReplication::copyRecord(DataRecord& source, DataRecordPtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copyRecord(DataRecordPtr source, DataRecordPtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, std::list<std::string> fields)
+std::set<std::string> DataTableReplication::copyRecord(DataRecord& source, DataRecordPtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, std::list<std::string> fields)
 {
     return std::set<std::string>();
 }
 
-std::set<std::string> DataTableReplication::copyRecord(DataRecordPtr source, DataRecordPtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, std::list<std::string> fields)
+std::set<std::string> DataTableReplication::copyRecord(DataRecord& source, DataRecordPtr target, bool copyReadOnlyFields, bool copyNonReplicatableFields, bool removeRecordsFromTarget, bool addRecordsToTarget, std::list<std::string> fields)
 {
     return std::set<std::string>();
 }

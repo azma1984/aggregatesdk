@@ -114,7 +114,7 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.cpp \
     src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.cpp \
     src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.cpp \
-#    src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/DoubleFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/FloatFieldFormat.cpp \
@@ -399,7 +399,7 @@ HEADERS += \
     src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.h \
     src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.h \
     src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.h \
-#    src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/DoubleFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/FloatFieldFormat.h \

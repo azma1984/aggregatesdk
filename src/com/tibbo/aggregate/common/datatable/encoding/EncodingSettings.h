@@ -1,32 +1,27 @@
-#ifndef EncodingSettingsH
-#define EncodingSettingsH
+#pragma once
 
-#include <boost/shared_ptr.hpp>
-//#include "datatable/TableFormat.h"
-
-
-class TableFormat;
+#include "util/Pointers.h"
 
 class EncodingSettings
 {
 
 private:
     bool        encodeFormat;
-    boost::shared_ptr<TableFormat> format;
+    TableFormatPtr format;
 
 public:
-    EncodingSettings(bool encodeFormat, boost::shared_ptr<TableFormat> format) : encodeFormat(true)
+    EncodingSettings(bool encodeFormat, TableFormatPtr format) : encodeFormat(true)
     {
         this->encodeFormat = encodeFormat;
         this->format = format;
     }
 
-    boost::shared_ptr<TableFormat> getFormat()
+    TableFormatPtr getFormat()
     {
         return format;
     }
 
-    void setFormat(boost::shared_ptr<TableFormat> format)
+    void setFormat(TableFormatPtr format)
     {
         this->format = format;
     }
@@ -42,4 +37,3 @@ public:
     }
 
 };
-#endif 

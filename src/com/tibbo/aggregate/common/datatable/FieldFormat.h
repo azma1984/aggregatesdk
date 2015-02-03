@@ -119,7 +119,7 @@ public:
 
     bool extend(FieldFormatPtr other);
     std::string extendMessage(FieldFormatPtr other);
-//    FieldFormatPtr addValidator(FieldValidatorPtr validator); TODO:
+    FieldFormatPtr addValidator(FieldValidatorPtr validator);
 //    void setValidators(std::list<FieldValidatorPtr> validators);  TODO:
     void createValidators(const std::string& source, ClassicEncodingSettingsPtr settings);
     AgObjectPtr checkAndConvertValue(AgObjectPtr value, bool validate);
