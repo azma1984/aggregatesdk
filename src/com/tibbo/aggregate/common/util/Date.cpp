@@ -66,7 +66,7 @@ void Date::setYear(unsigned year) {
 	_year = year;
 }
 
-std::string Date::toString() const {
+std::string Date::toString() {
     std::string month = SString::fromNumber(_month);
     std::string day = SString::fromNumber(_day);
 
