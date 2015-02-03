@@ -44,6 +44,7 @@ public:
 	 * @return the string converted to an int or 0 if failed to convert
 	 */
 	 int toInteger() const;
+     long toLong() const;
 
 	/**
 	 * Converts this string to a boolean.

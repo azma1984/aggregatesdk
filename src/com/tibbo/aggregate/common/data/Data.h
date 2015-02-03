@@ -18,13 +18,13 @@ public:
     Data(const std::vector<char> &data);
     Data(const std::string &name, const std::vector<char> &data);
 
-    void setPreview(const std::vector<char> &preview);
+    void setPreview(const std::string &preview);
 	void setId(long id);  
     void setData(const std::vector<char> &data);
     void setBlob(const std::vector<char> &blob);
     void setName(const std::string &name);
 
-    std::vector<char> getPreview();
+    std::string getPreview();
 	std::string getName();
 	long getId();
 	std::vector<char> getData();
@@ -45,7 +45,7 @@ public:
 private:
 	long id;
 	std::string name;
-	std::vector<char> preview;
+    std::string preview;
 	std::vector<char> data;
     std::map<std::string, AgObjectPtr > attachments;
 

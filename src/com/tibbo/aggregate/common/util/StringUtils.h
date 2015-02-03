@@ -49,6 +49,8 @@ class StringUtils
     static bool isEmpty(const std::string & text);
 
     static std::string colorToString(AgColor &color);
+    static std::vector<std::string> split(const std::string &str, char ch);
+    static std::vector<std::string> split(const std::string &str, char ch, int limit);
 
 	StringUtils();
 

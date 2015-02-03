@@ -1,328 +1,233 @@
-// Generated from /aggregate_sdk_5.11.00/src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.java
-//#include "datatable/field/DataFieldFormat.h"
-
+#include "datatable/field/DataFieldFormat.h"
 #include "data/Data.h"
-#include "datatable/DataRecord.h"
-#include "datatable/DataTable.h"
-#include "datatable/DataTableUtils.h"
-#include "datatable/FieldFormat.h"
-#include "datatable/TableFormat.h"
-#include "datatable/field/DataTableFieldFormat.h"
-#include "datatable/field/StringFieldFormat.h"
 #include "util/StringUtils.h"
-/*
-//#include <java/lang/Class.h"
-//#include <java/lang/ClassCastException.h"
-//#include <java/lang/Exception.h"
-//#include <java/lang/IllegalArgumentException.h"
-//#include <java/lang/Integer.h"
-//#include <java/lang/Long.h"
-//#include <java/lang/NullPointerException.h"
-//#include <java/lang/Object.h"
-//#include <java/lang/String.h"
-//#include <java/lang/StringBuilder.h"
-//#include <java/util/Arrays.h"
-//#include <java/util/Iterator.h"
-//#include <java/util/List.h"
-#include <Array.h"
-#include <ObjectArray.h"
-*/
+#include "AggreGateException.h"
+#include "datatable/DataTableUtils.h"
+#include "util/SString.h"
+#include "util/simpleobject/AgString.h"
+#include <sstream>
+#include "datatable/TableFormat.h"
+#include "datatable/DataTable.h"
+#include "datatable/DataRecord.h"
 
-Datefield::DataFieldFormat::DataFieldFormat(const ::default_init_tag&)
-    : super(*static_cast< ::default_init_tag* >(0))
+const std::string DataFieldFormat::EDITOR_TEXT = "dtext";
+const std::string DataFieldFormat::EDITOR_IMAGE = "image";
+const std::string DataFieldFormat::EDITOR_SOUND = "sound";
+const std::string DataFieldFormat::EDITOR_HEX = "hex";
+const std::string DataFieldFormat::EDITOR_REPORT = "report";
+
+const std::string DataFieldFormat::EXTENSIONS_DESCR_FIELD = "extensionsDescr";
+const std::string DataFieldFormat::MODE_FIELD = "mode";
+const std::string DataFieldFormat::EXTENSIONS_FIELD = "extensions";
+const std::string DataFieldFormat::EXTENSION_FIELD = "extension";
+
+const std::string DataFieldFormat::FOLDER_FIELD = "folder";
+
+DataFieldFormat::DataFieldFormat(const std::string &name) : FieldFormat(name)
 {
-    
-}
-
-Datefield::DataFieldFormat::DataFieldFormat(const std::string & name) 
-    : DataFieldFormat(*static_cast< ::default_init_tag* >(0))
-{
-    ctor(name);
-}
-
-const int Datefield::DataFieldFormat::TRANSCODER_VERSION;
-
-std::string& Datefield::DataFieldFormat::EDITOR_TEXT()
-{
-    
-    return EDITOR_TEXT_;
-}
-std::string Datefield::DataFieldFormat::EDITOR_TEXT_;
-
-std::string& Datefield::DataFieldFormat::EDITOR_IMAGE()
-{
-    
-    return EDITOR_IMAGE_;
-}
-std::string Datefield::DataFieldFormat::EDITOR_IMAGE_;
-
-std::string& Datefield::DataFieldFormat::EDITOR_SOUND()
-{
-    
-    return EDITOR_SOUND_;
-}
-std::string Datefield::DataFieldFormat::EDITOR_SOUND_;
-
-std::string& Datefield::DataFieldFormat::EDITOR_HEX()
-{
-    
-    return EDITOR_HEX_;
-}
-std::string Datefield::DataFieldFormat::EDITOR_HEX_;
-
-std::string& Datefield::DataFieldFormat::EDITOR_REPORT()
-{
-    
-    return EDITOR_REPORT_;
-}
-std::string Datefield::DataFieldFormat::EDITOR_REPORT_;
-
-const char16_t Datefield::DataFieldFormat::SEPARATOR;
-
-std::string& Datefield::DataFieldFormat::EXTENSIONS_DESCR_FIELD()
-{
-    
-    return EXTENSIONS_DESCR_FIELD_;
-}
-std::string Datefield::DataFieldFormat::EXTENSIONS_DESCR_FIELD_;
-
-std::string& Datefield::DataFieldFormat::MODE_FIELD()
-{
-    
-    return MODE_FIELD_;
-}
-std::string Datefield::DataFieldFormat::MODE_FIELD_;
-
-std::string& Datefield::DataFieldFormat::EXTENSIONS_FIELD()
-{
-    
-    return EXTENSIONS_FIELD_;
-}
-std::string Datefield::DataFieldFormat::EXTENSIONS_FIELD_;
-
-std::string& Datefield::DataFieldFormat::EXTENSION_FIELD()
-{
-    
-    return EXTENSION_FIELD_;
-}
-std::string Datefield::DataFieldFormat::EXTENSION_FIELD_;
-
-std::string& Datefield::DataFieldFormat::FOLDER_FIELD()
-{
-    
-    return FOLDER_FIELD_;
-}
-std::string Datefield::DataFieldFormat::FOLDER_FIELD_;
-
-DateTableFormat*& Datefield::DataFieldFormat::EXTENSIONS_FORMAT()
-{
-    
-    return EXTENSIONS_FORMAT_;
-}
-DateTableFormat* Datefield::DataFieldFormat::EXTENSIONS_FORMAT_;
-
-DateTableFormat*& Datefield::DataFieldFormat::DATA_EDITOR_OPTIONS_FORMAT()
-{
-    
-    return DATA_EDITOR_OPTIONS_FORMAT_;
-}
-DateTableFormat* Datefield::DataFieldFormat::DATA_EDITOR_OPTIONS_FORMAT_;
-
-void Datefield::DataFieldFormat::ctor(const std::string & name)
-{
-    super::ctor(name);
     setTransferEncode(true);
 }
 
-char16_t Datefield::DataFieldFormat::getType()
+char DataFieldFormat::getType()
 {
     return FieldFormat::DATA_FIELD;
 }
 
-java::lang::Class* Datefield::DataFieldFormat::getFieldClass()
+const type_info &DataFieldFormat::getFieldClass()
 {
-    return Data::class_();
+    return typeid(Data);
 }
 
-java::lang::Class* Datefield::DataFieldFormat::getFieldWrappedClass()
+const type_info &DataFieldFormat::getFieldWrappedClass()
 {
-    return Data::class_();
+    return typeid(Data);
 }
 
-Data* Datefield::DataFieldFormat::getNotNullDefault()
+AgObjectPtr DataFieldFormat::getNotNullDefault()
 {
-    return new Data();
+    return AgObjectPtr(new Data());
 }
 
-Data* Datefield::DataFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
+AgObjectPtr DataFieldFormat::valueFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate)
 {
-    try {
-        auto data = new Data();
-        auto parts = ::com::tibbo::aggregate::common::util::StringUtils::split(value, SEPARATOR, 5);
-        if(!java_cast< const std::string & >(parts)->get(1)))->equals(DataTableUtils::DATA_TABLE_NULL()))) {
-            data)->setId(::java::lang::Long::valueOf(java_cast< const std::string & >(parts)->get(1))));
-        }
-        if(!java_cast< const std::string & >(parts)->get(2)))->equals(DataTableUtils::DATA_TABLE_NULL()))) {
-            data)->setName(java_cast< const std::string & >(parts)->get(2)));
-        }
-        int previewLen = (java_cast< const std::string & >(parts)->get(3)))))->intValue();
-        if(previewLen != -int(1)) {
-            data)->setPreview(java_cast< const std::string & >(parts)->get(5)))->substring(0, previewLen))->getBytes(::com::tibbo::aggregate::common::util::StringUtils::ASCII_CHARSET()));
-        }
-        int dataLen = (java_cast< const std::string & >(parts)->get(4)))))->intValue();
-        if(dataLen != -int(1)) {
-            data)->setData(java_cast< const std::string & >(parts)->get(5)))->substring(previewLen <= 0 ? int(0) : previewLen))->getBytes(::com::tibbo::aggregate::common::util::StringUtils::ASCII_CHARSET()));
-        }
-        return data;
-    } catch (::java::lang::Exception* ex) {
-        std::cout <<"Invalid data block: "_j)->append(ex)->getMessage())->toString(), ex);
-    }
-}
+    //todo StringUtils.ASCII_CHARSET
+    try
+    {
+        Data *data = new Data();
+        std::vector<std::string> parts = StringUtils::split(value, SEPARATOR, 5);
+        // parts.get(0) will return transcoder version, currently ignored
 
-std::string Datefield::DataFieldFormat::valueToString(Data* value, encoding::ClassicEncodingSettings* settings)
-{
-    if(value == 0) {
-        return 0;
-    }
-    auto buf = new std::stringBuilder();
-    buf)->append(std::string::valueOf(TRANSCODER_VERSION));
-    buf)->append(SEPARATOR);
-    buf)->append(value)->getId() != 0 ? std::string::valueOf(value)->getId())) : DataTableUtils::DATA_TABLE_NULL());
-    buf)->append(SEPARATOR);
-    buf)->append(value)->getName() != 0 ? value)->getName() : DataTableUtils::DATA_TABLE_NULL());
-    buf)->append(SEPARATOR);
-    auto previewStr = value)->getPreview() != 0 ? new std::string(value)->getPreview(), ::com::tibbo::aggregate::common::util::StringUtils::ASCII_CHARSET()) : u""_j;
-    buf)->append(value)->getPreview() != 0 ? std::string::valueOf(previewStr)->length()) : std::string::valueOf(-int(1)));
-    buf)->append(SEPARATOR);
-    auto dataStr = value)->getData() != 0 ? new std::string(value)->getData(), ::com::tibbo::aggregate::common::util::StringUtils::ASCII_CHARSET()) : u""_j;
-    buf)->append(value)->getData() != 0 ? std::string::valueOf(dataStr)->length()) : std::string::valueOf(-int(1)));
-    buf)->append(SEPARATOR);
-    if(value)->getPreview() != 0) {
-        buf)->append(previewStr);
-    }
-    if(value)->getData() != 0) {
-        buf)->append(dataStr);
-    }
-    return buf)->toString();
-}
-
-std::string Datefield::DataFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
-{ 
-    return valueToString(dynamic_cast< Data* >(value), settings);
-}
-
-std::list  Datefield::DataFieldFormat::getSuitableEditors()
-{
-    return ::java::util::Arrays::asList(new voidArray({EDITOR_LIST()), EDITOR_TEXT_), EDITOR_IMAGE_), EDITOR_SOUND_), EDITOR_HEX_), EDITOR_REPORT_)}));
-}
-
-std::string Datefield::DataFieldFormat::encodeTextEditorOptions(const std::string & mode)
-{
-    
-    return encodeTextEditorOptions(mode, 0, 0, 0);
-}
-
-std::string Datefield::DataFieldFormat::encodeTextEditorOptions(const std::string & extensionsDescription, const std::string & folder, std::list  extensions)
-{
-    
-    return encodeTextEditorOptions(0, extensionsDescription, folder, extensions);
-}
-
-std::string Datefield::DataFieldFormat::encodeTextEditorOptions(const std::string & mode, const std::string & extensionsDescription, const std::string & folder, std::list  extensions)
-{
-    
-    DataTable* esdt;
-    if(extensions != 0) {
-        esdt = new DataTable(EXTENSIONS_FORMAT_);
-        for (auto _i = extensions)->iterator(); _i->hasNext(); ) {
-            const std::string & ext = java_cast< const std::string & >(_i->next());
-            {
-                auto dr = esdt)->addRecord();
-                dr)->setValue(EXTENSION_FIELD_, ext));
-            }
-        }
-    }
-    auto eodt = new DataTable(DATA_EDITOR_OPTIONS_FORMAT_);
-    auto dr = eodt)->addRecord();
-    dr)->setValue(MODE_FIELD_, mode));
-    dr)->setValue(FOLDER_FIELD_, folder));
-    dr)->setValue(EXTENSIONS_DESCR_FIELD_, extensionsDescription));
-    dr)->setValue(EXTENSIONS_FIELD_, esdt));
-    return eodt)->encode();
-}
-
-
-
-java::lang::Class* Datefield::DataFieldFormat::class_()
-{
-    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.DataFieldFormat", 58);
-    return c;
-}
-
-void Datefield::DataFieldFormat::clinit()
-{
-struct string_init_ {
-    string_init_() {
-    EDITOR_TEXT_ = u"dtext"_j;
-    EDITOR_IMAGE_ = u"image"_j;
-    EDITOR_SOUND_ = u"sound"_j;
-    EDITOR_HEX_ = u"hex"_j;
-    EDITOR_REPORT_ = u"report"_j;
-    EXTENSIONS_DESCR_FIELD_ = u"extensionsDescr"_j;
-    MODE_FIELD_ = u"mode"_j;
-    EXTENSIONS_FIELD_ = u"extensions"_j;
-    EXTENSION_FIELD_ = u"extension"_j;
-    FOLDER_FIELD_ = u"folder"_j;
-    }
-};
-
-    static string_init_ string_init_instance;
-
-    super::
-    static bool in_cl_init = false;
-struct clinit_ {
-    clinit_() {
-        in_cl_init = true;
-        EXTENSIONS_FORMAT_ = new TableFormat();
-        DATA_EDITOR_OPTIONS_FORMAT_ = new TableFormat(int(1), int(1));
+        if (parts[1] != std::string(DataTableUtils::DATA_TABLE_NULL))
         {
-            auto modeF = FieldFormat::create(MODE_FIELD_, StringFieldFormat::STRING_FIELD);
-            modeF)->setNullable(true);
-            auto edF = FieldFormat::create(EXTENSIONS_DESCR_FIELD_, StringFieldFormat::STRING_FIELD);
-            edF)->setNullable(true);
-            auto extF = FieldFormat::create(EXTENSION_FIELD_, StringFieldFormat::STRING_FIELD);
-            EXTENSIONS_FORMAT_)->addField(extF);
-            auto dt = new DataTable(EXTENSIONS_FORMAT_);
-            auto extsF = FieldFormat::create(EXTENSIONS_FIELD_, DataTableFieldFormat::DATATABLE_FIELD);
-            extsF)->setDefault(dt);
-            extsF)->setNullable(true);
-            auto folderF = FieldFormat::create(FOLDER_FIELD_, DataTableFieldFormat::STRING_FIELD);
-            folderF)->setNullable(true);
-            DATA_EDITOR_OPTIONS_FORMAT_)->addField(modeF);
-            DATA_EDITOR_OPTIONS_FORMAT_)->addField(edF);
-            DATA_EDITOR_OPTIONS_FORMAT_)->addField(static_cast< FieldFormat* >(extsF));
-            DATA_EDITOR_OPTIONS_FORMAT_)->addField(folderF);
+            SString ss(parts[1]);
+            data->setId(ss.toLong());
+        }
+        if (parts[2] != std::string(DataTableUtils::DATA_TABLE_NULL))
+        {
+            data->setName(parts[2]);
+        }
+
+        SString ss3(parts[3]);
+        int previewLen = ss3.toInteger();
+        if (previewLen != -1)
+        {
+            data->setPreview(parts[5].substr(0, previewLen));
+        }
+
+        SString ss4(parts[4]);
+        int dataLen = ss4.toInteger();
+
+        if (dataLen != -1)
+        {
+            std::string str5 = parts[5].substr(previewLen <= 0 ? 0 : previewLen);
+            std::vector<char> dv(str5.begin(), str5.end());
+            data->setData(dv);
+        }
+
+        return AgObjectPtr(data);
+    }
+    catch(...)
+    {
+        throw AggreGateException("Invalid data block, DataFieldFormat::valueFromString");
+    }
+}
+
+std::string DataFieldFormat::valueToString(AgObjectPtr value, ClassicEncodingSettingsPtr settings)
+{
+    //todo StringUtils.ASCII_CHARSET
+    if (value.get() == NULL)
+        return "";
+    Data *data = dynamic_cast<Data *> (value.get());
+    if (!data)
+    {
+        return "";
+    }
+
+    std::stringstream buf;
+    buf << TRANSCODER_VERSION;
+    buf << SEPARATOR;
+
+    if (data->getId() != 0)
+        buf << data->getId();
+    else
+        buf << std::string(DataTableUtils::DATA_TABLE_NULL);
+
+    buf << SEPARATOR;
+
+    if (data->getName().length() != 0)
+        buf << data->getName();
+    else
+        buf << std::string(DataTableUtils::DATA_TABLE_NULL);
+
+    buf << SEPARATOR;
+
+    std::string previewStr = data->getPreview();
+    if (previewStr.length() != 0)
+    {
+        buf << previewStr.length();
+    }
+    else
+    {
+        buf << -1;
+    }
+
+    std::string dataStr(data->getData().begin(), data->getData().end());
+    if (dataStr.length() != 0)
+    {
+        buf << dataStr.length();
+    }
+    else
+    {
+        buf << -1;
+    }
+
+    buf << SEPARATOR;
+
+    if (previewStr.length() != NULL)
+    {
+        buf << previewStr;
+    }
+
+    if (dataStr.length() != NULL)
+    {
+        buf << dataStr;
+    }
+
+    return buf.str();
+}
+
+std::string DataFieldFormat::encodeTextEditorOptions(const std::string &mode)
+{
+    return encodeTextEditorOptions(mode, "", "", std::list<std::string>());
+}
+
+std::string DataFieldFormat::encodeTextEditorOptions(const std::string &extensionsDescription, const std::string &folder, std::list<std::string> extensions)
+{
+    return encodeTextEditorOptions("", extensionsDescription, folder, extensions);
+}
+
+std::string DataFieldFormat::encodeTextEditorOptions(const std::string &mode, const std::string &extensionsDescription, const std::string &folder, std::list<std::string> extensions)
+{
+    // init variables
+    if (EXTENSIONS_FORMAT.get() == NULL)
+    {
+        EXTENSIONS_FORMAT = TableFormatPtr(new TableFormat());
+        DATA_EDITOR_OPTIONS_FORMAT = TableFormatPtr(new TableFormat(1, 1));
+
+        FieldFormatPtr modeF = FieldFormat::create(MODE_FIELD, FieldFormat::STRING_FIELD);
+        modeF->setNullable(true);
+
+        FieldFormatPtr edF = FieldFormat::create(EXTENSIONS_DESCR_FIELD, FieldFormat::STRING_FIELD);
+        edF->setNullable(true);
+
+        // Default value for 'extensions' field
+        FieldFormatPtr extF = FieldFormat::create(EXTENSION_FIELD, FieldFormat::STRING_FIELD);
+        EXTENSIONS_FORMAT->addField(extF);
+        DataTable *dt = new DataTable(EXTENSIONS_FORMAT);
+        AgObjectPtr dtobject = AgObjectPtr(dt);
+
+        FieldFormatPtr extsF = FieldFormat::create(EXTENSIONS_FIELD, FieldFormat::DATATABLE_FIELD);
+        extsF->setDefault(dtobject);
+        extsF->setNullable(true);
+
+        FieldFormatPtr folderF = FieldFormat::create(FOLDER_FIELD, FieldFormat::STRING_FIELD);
+        folderF->setNullable(true);
+
+        DATA_EDITOR_OPTIONS_FORMAT->addField(modeF);
+        DATA_EDITOR_OPTIONS_FORMAT->addField(edF);
+        DATA_EDITOR_OPTIONS_FORMAT->addField(extsF);
+        DATA_EDITOR_OPTIONS_FORMAT->addField(folderF);
+    }
+
+    DataTablePtr esdt = NULL;
+    if (extensions.size() != 0)
+    {
+        esdt = DataTablePtr(new DataTable(EXTENSIONS_FORMAT));
+        for (std::list<std::string>::iterator it = extensions.begin(); it != extensions.end(); ++it)
+        {
+            DataRecordPtr dr = esdt->addRecord();
+            dr->setValue(EXTENSION_FIELD, AgObjectPtr(new AgString(*it)));
         }
     }
-};
+    DataTablePtr eodt = DataTablePtr(new DataTable(DATA_EDITOR_OPTIONS_FORMAT));
+    DataRecordPtr dr = eodt->addRecord();
 
-    if(!in_cl_init) {
-        static clinit_ clinit_instance;
-    }
+    dr->setValue(MODE_FIELD, AgObjectPtr(new AgString(mode)));
+    dr->setValue(FOLDER_FIELD, AgObjectPtr(new AgString(folder)));
+    dr->setValue(EXTENSIONS_DESCR_FIELD, AgObjectPtr(new AgString(extensionsDescription)));
+    dr->setValue(EXTENSIONS_FIELD, esdt);
+
+    return eodt->encode();
 }
 
-void* Datefield::DataFieldFormat::valueFromString(const std::string & value)
+std::list<std::string> DataFieldFormat::getSuitableEditors()
 {
-    return super::valueFromString(value);
+    std::list<std::string> list;
+    list.push_back(EDITOR_LIST);
+    list.push_back(EDITOR_TEXT);
+    list.push_back(EDITOR_IMAGE);
+    list.push_back(EDITOR_SOUND);
+    list.push_back(EDITOR_HEX);
+    list.push_back(EDITOR_REPORT);
+    return list;
 }
-
-std::string Datefield::DataFieldFormat::valueToString(void* value)
-{
-    return super::valueToString(value);
-}
-
-java::lang::Class* Datefield::DataFieldFormat::getClass0()
-{
-    return class_();
-}
-

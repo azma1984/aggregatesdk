@@ -16,7 +16,7 @@ Data::Data(const std::string &name, const std::vector<char> &data) : id(0)
 	this->name = name;
 }
 
-void Data::setPreview(const std::vector<char> &preview)
+void Data::setPreview(const std::string &preview)
 {
 	this->preview = preview;
 }
@@ -41,7 +41,7 @@ void Data::setName(const std::string &name)
 	this->name = name;
 }
 
-std::vector<char> Data::getPreview()  
+std::string Data::getPreview()
 {
 	return this->preview;
 }
