@@ -1,6 +1,11 @@
 #include "AbstractContext.h"
 #include "context/Contexts.h"
+#include "context/VariableDefinition.h"
 #include "action/BasicActionDefinition.h"
+#include "context/VariableData.h"
+#include "context/FunctionData.h"
+#include "context/EventData.h"
+#include "datatable/DataTable.h"
 
 const std::string AbstractContext::IMPLEMENTATION_METHOD_PREFIX = "callF";
 const std::string AbstractContext::SETTER_METHOD_PREFIX = "setV";
@@ -1928,173 +1933,182 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////    return value != 0 ? java_cast< ::DataTablePtr >(value) : getDefaultValue(vd);
 ////}
 ////
-////int AbstractContext::hashCode()
-////{
-////    if(java_cast< ContextPtr >(getParent()) == 0) {
-////        return super::hashCode();
-////    }
-////    auto const prime = int(31);
-////    auto result = int(1);
-////    auto root = java_cast< ContextPtr >(getRoot());
-////    auto path = getPath();
-////    result = prime * result + ((root == 0) ? int(0) : root)->hashCode());
-////    result = prime * result + ((path == 0) ? int(0) : path)->hashCode());
-////    return result;
-////}
-////
-////bool AbstractContext::equals(AgObjectPtr obj)
-////{
-////    if(this) == obj) {
-////        return true;
-////    }
-////    if(obj == 0) {
-////        return false;
-////    }
-////    auto other = java_cast< AbstractContextPtr >(obj);
-////    if(java_cast< ContextPtr >(getRoot())) != java_cast< ContextPtr >(other)->getRoot()))) {
-////        return false;
-////    }
-////    if(!Util::equals(getPath(), other)->getPath())) {
-////        return false;
-////    }
-////    return true;
-////}
-////
-////DataTablePtr AbstractContext::getVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request)
-////{
-////    return getVariable(getAndCheckVariableDefinition(name), caller, request);
-////}
-////
-////DataTablePtr AbstractContext::getVariable(const std::string & name, CallerControllerPtr caller)
-////{
-////    return getVariable(getAndCheckVariableDefinition(name), caller, static_cast< RequestControllerPtr >(0));
-////}
-////
-////DataTablePtr AbstractContext::getVariable(const std::string & name)
-////{
-////    return getVariable(getAndCheckVariableDefinition(name), static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0));
-////}
-////
-////DataTablePtr AbstractContext::getVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
-////{
-////    return 0;
-////}
-////
-////AgObjectPtr AbstractContext::getVariableObject(const std::string & name, CallerControllerPtr caller)
-////{
-////    try {
-////        auto def = getAndCheckVariableDefinition(name);
-////        auto data = getVariableData(name);
-////        data)->getReadWriteLock())->readLock())->lock();
-////        {
-////            auto finally19 = finally([&] {
-////                data)->getReadWriteLock())->readLock())->unlock();
-////            });
-////            {
-////                if(isSetupComplete() && data)->getValue() != 0) {
-////                    return data)->getValue();
-////                }
-////                if(def)->getValueClass() == 0) {
-////                    throw new ContextException("Value class not defined for variable: "+def)->toDetailedString())->toString());
-////                }
-////                AgObjectPtr value;
-////                auto table = getVariable(name, caller);
-////                auto list = ::DataTableConversion::beansFromTable(table, def)->getValueClass(), def)->getFormat(), true);
-////                if(def)->getFormat())->isSingleRecord()) {
-////                    value = java_cast< AgObjectPtr >(list)->get(0));
-////                } else {
-////                    value = list;
-////                }
-////                if(isSetupComplete() && def)->isLocalCachingEnabled() && !data)->getReadWriteLock())->isWriteLockedByCurrentThread()) {
-////                    data)->setValue(value);
-////                }
-////                return value;
-////            }
-////        }
-////
-////    } catch (::java::lang::Exception* ex) {
-////        throw new ContextRuntimeException(ex)->getMessage(), ex);
-////    }
-////}
-////
-////void AbstractContext::setVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
-////{
-////    auto startTime = ::java::lang::System::currentTimeMillis();
-////    setupVariables();
-////    auto data = getVariableData(def)->getName());
-////    auto readLockedBySameThread = data)->getReadWriteLock())->getReadHoldCount() > 0;
-////    if(!readLockedBySameThread) {
-////        lock(request, data)->getReadWriteLock())->writeLock());
-////    }
-////    {
-////        auto finally20 = finally([&] {
-////            if(!readLockedBySameThread) {
-////                data)->getReadWriteLock())->writeLock())->unlock();
-////            }
-////            data)->registerSetOperation();
-////        });
-////        {
-////            if(value == 0) {
-////                throw new ContextException("Value cannot be NULL");
-////            }
-////            auto resultingValue = value;
-////            try {
-////                checkPermissions(def)->getWritePermissions() != 0 ? def)->getWritePermissions() : getPermissions(), caller);
-////                if(!def)->isWritable() && caller != 0 && caller)->isPermissionCheckingEnabled()) {
-////                    throw new ContextException(Cres::get()->getString("conVarReadOnly"));
-////                }
-////                if(Log::CONTEXT_VARIABLES())->isDebugEnabled()) {
-////                    Log::CONTEXT_VARIABLES())->debug("Trying to set variable '"+def)->getName())
-////        +"' in context '")
-////        +this->getPath())
-////        +"'");
-////                }
-////                if(value)->isInvalid()) {
-////                    throw new ContextException(value)->getInvalidationMessage());
-////                }
-////                if(def)->getFormat() != 0 && def)->getFormat())->hasReadOnlyFields() && caller != 0 && caller)->isPermissionCheckingEnabled()) {
-////                    resultingValue = getVariable(def, caller, request);
-////                    ::DataTableReplication::copy(value, resultingValue, false, true, true, true, true);
-////                    checkVariableValueFormat(def, resultingValue);
-////                }
-////                auto msg = checkVariableValueFormat(def, resultingValue);
-////                if(msg != 0) {
-////                    Log::CONTEXT_VARIABLES())->debug("Invalid value of variable '"+def)->getName())
-////        +"': ")
-////        +msg)
-////        +" (value: ")
-////        +resultingValue))
-////        +")");
-////                    value = resultingValue;
-////                    resultingValue = getVariable(def, caller, request);
-////                    ::DataTableReplication::copy(value, resultingValue, true, true, true, true, true);
-////                    checkVariableValueFormat(def, resultingValue);
-////                }
-////                if(def)->isLocalCachingEnabled()) {
-////                    data)->setValue(0);
-////                }
-////                executeSetter(data, caller, request, resultingValue);
-////                variableUpdated(def, caller, resultingValue);
-////                auto endTime = ::java::lang::System::currentTimeMillis();
-////                if(endTime - startTime > LOW_PERFORMANCE_THRESHOLD) {
-////                    auto level = endTime - startTime > VERY_LOW_PERFORMANCE_THRESHOLD ? ::org::apache::log4j::Level::INFO() : ::org::apache::log4j::Level::DEBUG();
-////                    Log::PERFORMANCE())->log(level, "Setting value of variable '"+def))
-////        +"' in context '")
-////        +getPath())
-////        +"' took ")
-////        +(endTime - startTime))
-////        +" milliseconds");
-////                }
-////            } catch (::ValidationException* ex) {
-////                throw ex;
-////            } catch (::java::lang::Exception* ex) {
-////                throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conErrSettingVar"), new voidArray({def)->toString()), toString())})))+ex)->getMessage())->toString(), ex);
-////            }
-////        }
-////    }
-////
-////}
-////
+int AbstractContext::hashCode()
+{
+    if(static_cast< Context* >(getParent().get()) == 0) {
+        return 0;
+    }
+
+    int const prime = int(31);
+    int result = int(1);
+//    auto root = java_cast< ContextPtr >(getRoot());
+//    auto path = getPath();
+//    result = prime * result + ((root == 0) ? int(0) : root)->hashCode());
+//    result = prime * result + ((path == 0) ? int(0) : path)->hashCode());
+    return result;
+}
+
+bool AbstractContext::equals(AbstractContext *obj)
+{
+    if (this == obj) {
+        return true;
+    }
+
+    if(obj == 0) {
+        return false;
+    }
+
+    //TODO:
+//    auto other = java_cast< AbstractContextPtr >(obj);
+//    if(java_cast< ContextPtr >(getRoot())) != java_cast< ContextPtr >(other)->getRoot()))) {
+//        return false;
+//    }
+
+    if (!Util::equals(getPath(), obj->getPath())) {
+        return false;
+    }
+
+    return true;
+}
+
+DataTablePtr AbstractContext::getVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request)
+{
+    return getVariable(getAndCheckVariableDefinition(name), caller, request);
+}
+
+DataTablePtr AbstractContext::getVariable(const std::string & name, CallerControllerPtr caller)
+{
+    return getVariable(getAndCheckVariableDefinition(name), caller, static_cast< RequestControllerPtr >(0));
+}
+
+DataTablePtr AbstractContext::getVariable(const std::string & name)
+{
+    return getVariable(getAndCheckVariableDefinition(name), static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0));
+}
+
+DataTablePtr AbstractContext::getVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request)
+{
+    return 0;
+}
+
+AgObjectPtr AbstractContext::getVariableObject(const std::string & name, CallerControllerPtr caller)
+{
+    //TODO
+//    try {
+//        auto def = getAndCheckVariableDefinition(name);
+//        auto data = getVariableData(name);
+//        data)->getReadWriteLock())->readLock())->lock();
+//        {
+//            auto finally19 = finally([&] {
+//                data)->getReadWriteLock())->readLock())->unlock();
+//            });
+//            {
+//                if(isSetupComplete() && data)->getValue() != 0) {
+//                    return data)->getValue();
+//                }
+//                if(def)->getValueClass() == 0) {
+//                    throw new ContextException("Value class not defined for variable: "+def)->toDetailedString())->toString());
+//                }
+//                AgObjectPtr value;
+//                auto table = getVariable(name, caller);
+//                auto list = ::DataTableConversion::beansFromTable(table, def)->getValueClass(), def)->getFormat(), true);
+//                if(def)->getFormat())->isSingleRecord()) {
+//                    value = java_cast< AgObjectPtr >(list)->get(0));
+//                } else {
+//                    value = list;
+//                }
+//                if(isSetupComplete() && def)->isLocalCachingEnabled() && !data)->getReadWriteLock())->isWriteLockedByCurrentThread()) {
+//                    data)->setValue(value);
+//                }
+//                return value;
+//            }
+//        }
+
+//    } catch (::java::lang::Exception* ex) {
+//        throw new ContextRuntimeException(ex)->getMessage(), ex);
+//    }
+    return AgObjectPtr(0);
+}
+
+void AbstractContext::setVariable(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
+{
+    //TODO:
+//    auto startTime = ::java::lang::System::currentTimeMillis();
+//    setupVariables();
+//    auto data = getVariableData(def)->getName());
+//    auto readLockedBySameThread = data)->getReadWriteLock())->getReadHoldCount() > 0;
+//    if(!readLockedBySameThread) {
+//        lock(request, data)->getReadWriteLock())->writeLock());
+//    }
+//    {
+//        auto finally20 = finally([&] {
+//            if(!readLockedBySameThread) {
+//                data)->getReadWriteLock())->writeLock())->unlock();
+//            }
+//            data)->registerSetOperation();
+//        });
+//        {
+//            if(value == 0) {
+//                throw new ContextException("Value cannot be NULL");
+//            }
+//            auto resultingValue = value;
+//            try {
+//                checkPermissions(def)->getWritePermissions() != 0 ? def)->getWritePermissions() : getPermissions(), caller);
+//                if(!def)->isWritable() && caller != 0 && caller)->isPermissionCheckingEnabled()) {
+//                    throw new ContextException(Cres::get()->getString("conVarReadOnly"));
+//                }
+//                if(Log::CONTEXT_VARIABLES())->isDebugEnabled()) {
+//                    Log::CONTEXT_VARIABLES())->debug("Trying to set variable '"+def)->getName())
+//        +"' in context '")
+//        +this->getPath())
+//        +"'");
+//                }
+//                if(value)->isInvalid()) {
+//                    throw new ContextException(value)->getInvalidationMessage());
+//                }
+//                if(def)->getFormat() != 0 && def)->getFormat())->hasReadOnlyFields() && caller != 0 && caller)->isPermissionCheckingEnabled()) {
+//                    resultingValue = getVariable(def, caller, request);
+//                    ::DataTableReplication::copy(value, resultingValue, false, true, true, true, true);
+//                    checkVariableValueFormat(def, resultingValue);
+//                }
+//                auto msg = checkVariableValueFormat(def, resultingValue);
+//                if(msg != 0) {
+//                    Log::CONTEXT_VARIABLES())->debug("Invalid value of variable '"+def)->getName())
+//        +"': ")
+//        +msg)
+//        +" (value: ")
+//        +resultingValue))
+//        +")");
+//                    value = resultingValue;
+//                    resultingValue = getVariable(def, caller, request);
+//                    ::DataTableReplication::copy(value, resultingValue, true, true, true, true, true);
+//                    checkVariableValueFormat(def, resultingValue);
+//                }
+//                if(def)->isLocalCachingEnabled()) {
+//                    data)->setValue(0);
+//                }
+//                executeSetter(data, caller, request, resultingValue);
+//                variableUpdated(def, caller, resultingValue);
+//                auto endTime = ::java::lang::System::currentTimeMillis();
+//                if(endTime - startTime > LOW_PERFORMANCE_THRESHOLD) {
+//                    auto level = endTime - startTime > VERY_LOW_PERFORMANCE_THRESHOLD ? ::org::apache::log4j::Level::INFO() : ::org::apache::log4j::Level::DEBUG();
+//                    Log::PERFORMANCE())->log(level, "Setting value of variable '"+def))
+//        +"' in context '")
+//        +getPath())
+//        +"' took ")
+//        +(endTime - startTime))
+//        +" milliseconds");
+//                }
+//            } catch (::ValidationException* ex) {
+//                throw ex;
+//            } catch (::java::lang::Exception* ex) {
+//                throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conErrSettingVar"), new voidArray({def)->toString()), toString())})))+ex)->getMessage())->toString(), ex);
+//            }
+//        }
+//    }
+
+}
+
 ////void AbstractContext::variableUpdated(VariableDefinitionPtr def, CallerControllerPtr caller, ::DataTablePtr value)
 ////{
 ////    fireUpdatedEvent(def, caller, value);
@@ -2125,10 +2139,10 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////    }
 ////}
 ////
-////void AbstractContext::setupVariables()
-////{
-////}
-////
+void AbstractContext::setupVariables()
+{
+}
+
 ////void AbstractContext::executeSetter(VariableDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
 ////{
 ////    auto def = data)->getDefinition();
@@ -2211,33 +2225,33 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////    getVariableData(vd)->getName()))->setValue(value);
 ////}
 ////
-////void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
-////{
-////    auto def = getAndCheckVariableDefinition(name);
-////    setVariable(def, caller, request, value);
-////}
-////
-////void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, ::DataTablePtr value)
-////{
-////    setVariable(name, caller, static_cast< RequestControllerPtr >(0), value);
-////}
-////
-////void AbstractContext::setVariable(const std::string & name, ::DataTablePtr value)
-////{
-////    setVariable(name, static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0), value);
-////}
-////
-////void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, voidArray* value)
-////{
-////    auto def = getAndCheckVariableDefinition(name);
-////    setVariable(name, caller, static_cast< RequestControllerPtr >(0), new ::DataTable(def)->getFormat(), value));
-////}
-////
-////void AbstractContext::setVariable(const std::string & name, voidArray* value)
-////{
-////    setVariable(name, static_cast< CallerControllerPtr >(0), value);
-////}
-////
+void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value)
+{
+    VariableDefinitionPtr def = getAndCheckVariableDefinition(name);
+    setVariable(def, caller, request, value);
+}
+
+void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, DataTablePtr value)
+{
+    setVariable(name, caller, static_cast< RequestControllerPtr >(0), value);
+}
+
+void AbstractContext::setVariable(const std::string & name, DataTablePtr value)
+{
+    setVariable(name, static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0), value);
+}
+
+void AbstractContext::setVariable(const std::string & name, CallerControllerPtr caller, std::list<AgObjectPtr> values)
+{
+    VariableDefinitionPtr def = getAndCheckVariableDefinition(name);
+    setVariable(name, caller, static_cast< RequestControllerPtr >(0), DataTablePtr(new DataTable(def->getFormat(), values)));
+}
+
+void AbstractContext::setVariable(const std::string & name, std::list<AgObjectPtr> value)
+{
+    setVariable(name, static_cast< CallerControllerPtr >(0), value);
+}
+
 ////bool AbstractContext::setVariableImpl(VariableDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr value)
 ////{
 ////    return false;
@@ -2253,35 +2267,42 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////    return def;
 ////}
 ////
-////bool AbstractContext::setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, CallerControllerPtr cc)
-////{
-////    return setVariableField(variable, field, int(0), value, cc);
-////}
-////
-////bool AbstractContext::setVariableField(const std::string & variable, const std::string & field, int record, AgObjectPtr value, CallerControllerPtr cc)
-////{
-////    auto tab = getVariable(variable, cc);
-////    auto old = tab)->getRecord(record))->getValue(field);
-////    tab)->getRecord(record))->setValue(field, value);
-////    setVariable(variable, cc, tab);
-////    return old == 0 ? value != 0 : !old)->equals(value);
-////}
-////
-////void AbstractContext::setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, const std::string & compareField, AgObjectPtr compareValue, CallerControllerPtr cc)
-////{
-////    auto tab = getVariable(variable, cc);
-////    auto rec = tab)->select(compareField, compareValue);
-////    if(rec != 0) {
-////        rec)->setValue(field, value);
-////    } else {
-////        throw new ContextException("Record with "+compareField)
-////            +"=")
-////            +compareValue))
-////            +" not found");
-////    }
-////    setVariable(variable, cc, tab);
-////}
-////
+bool AbstractContext::setVariableField(
+        const std::string & variable,
+        const std::string & field,
+        AgObjectPtr value,
+        CallerControllerPtr cc)
+{
+    return setVariableField(variable, field, int(0), value, cc);
+}
+
+bool AbstractContext::setVariableField(const std::string & variable, const std::string & field, int record, AgObjectPtr value, CallerControllerPtr cc)
+{
+    //TODO
+//    auto tab = getVariable(variable, cc);
+//    auto old = tab)->getRecord(record))->getValue(field);
+//    tab)->getRecord(record))->setValue(field, value);
+//    setVariable(variable, cc, tab);
+//    return old == 0 ? value != 0 : !old)->equals(value);
+    return false;
+}
+
+void AbstractContext::setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, const std::string & compareField, AgObjectPtr compareValue, CallerControllerPtr cc)
+{
+    //TODO:
+//    auto tab = getVariable(variable, cc);
+//    auto rec = tab)->select(compareField, compareValue);
+//    if(rec != 0) {
+//        rec)->setValue(field, value);
+//    } else {
+//        throw new ContextException("Record with "+compareField)
+//            +"=")
+//            +compareValue))
+//            +" not found");
+//    }
+//    setVariable(variable, cc, tab);
+}
+
 ////void AbstractContext::addVariableRecord(const std::string & variable, CallerControllerPtr cc, ::DataRecordPtr* record)
 ////{
 ////    auto tab = getVariable(variable, cc);
@@ -2311,89 +2332,94 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////    setVariable(variable, cc, tab);
 ////}
 ////
-////DataTablePtr AbstractContext::callFunction(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
-////{
-////    auto startTime = ::java::lang::System::currentTimeMillis();
-////    setupFunctions();
-////    auto data = getFunctionData(def)->getName());
-////    if(!def)->isConcurrent()) {
-////        lock(request, data)->getExecutionLock());
-////    }
-////    {
-////        auto finally22 = finally([&] {
-////            if(!def)->isConcurrent()) {
-////                data)->getExecutionLock())->unlock();
-////            }
-////            data)->registerExecution();
-////        });
-////        {
-////            try {
-////                checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller);
-////                Log::CONTEXT_FUNCTIONS())->debug("Trying to call function '"+def)->getName())
-////    +"' of context '")
-////    +getPath())
-////    +"'");
-////                if(def)->getPermissions() != 0) {
-////                    checkPermissions(def)->getPermissions(), caller);
-////                }
-////                auto requiredInputFormat = def)->getInputFormat();
-////                auto requiredOutputFormat = def)->getOutputFormat();
-////                if(parameters)->isInvalid()) {
-////                    throw new ContextException(parameters)->getInvalidationMessage());
-////                }
-////                if(valueCheckingEnabled && requiredInputFormat != 0) {
-////                    auto msg = parameters)->conformMessage(requiredInputFormat);
-////                    if(msg != 0) {
-////                        Log::CONTEXT_FUNCTIONS())->debug("Invalid input format of function '"+def)->getName())
-////            +"': ")
-////            +msg)->toString());
-////                        auto newParameters = new ::DataTable(def)->getInputFormat(), true);
-////                        ::DataTableReplication::copy(parameters, newParameters, true, true, true, true, true);
-////                        parameters = newParameters;
-////                        msg = parameters)->conformMessage(requiredInputFormat);
-////                        if(msg != 0) {
-////                            throw new ContextException("Invalid format: "+msg)->toString());
-////                        }
-////                    }
-////                }
-////                auto result = executeImplementation(data, caller, request, parameters);
-////                if(result)->isInvalid()) {
-////                    throw new ContextException(result)->getInvalidationMessage());
-////                }
-////                if(result)->getRecordCount() == 0 && result)->getFormat())->getFieldCount() == 0) {
-////                    result)->setFormat(def)->getOutputFormat());
-////                }
-////                if(valueCheckingEnabled && requiredOutputFormat != 0) {
-////                    auto msg = result)->conformMessage(requiredOutputFormat);
-////                    if(msg != 0) {
-////                        throw new ContextException("Function '"+def)->getName())
-////            +"' of context '")
-////            +getPath())
-////            +"' returned value of invalid format: ")
-////            +msg)->toString());
-////                    }
-////                }
-////                auto endTime = ::java::lang::System::currentTimeMillis();
-////                if(endTime - startTime > LOW_PERFORMANCE_THRESHOLD) {
-////                    auto level = endTime - startTime > VERY_LOW_PERFORMANCE_THRESHOLD ? ::org::apache::log4j::Level::INFO() : ::org::apache::log4j::Level::DEBUG();
-////                    Log::PERFORMANCE())->log(level, "Function '"+def))
-////        +"' in context '")
-////        +getPath())
-////        +"' was executing for ")
-////        +(endTime - startTime))
-////        +" milliseconds");
-////                }
-////                return result;
-////            } catch (ContextException* ex) {
-////                throw ex;
-////            } catch (::java::lang::Exception* ex) {
-////                throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conErrCallingFunc"), new voidArray({def)->toString()), toString())})))+ex)->getMessage())->toString(), ex);
-////            }
-////        }
-////    }
-////
-////}
-////
+DataTablePtr AbstractContext::callFunction(
+        FunctionDefinitionPtr def,
+        CallerControllerPtr caller,
+        RequestControllerPtr request,
+        DataTablePtr parameters)
+{
+    //TODO:
+//    auto startTime = ::java::lang::System::currentTimeMillis();
+//    setupFunctions();
+//    auto data = getFunctionData(def)->getName());
+//    if(!def)->isConcurrent()) {
+//        lock(request, data)->getExecutionLock());
+//    }
+//    {
+//        auto finally22 = finally([&] {
+//            if(!def)->isConcurrent()) {
+//                data)->getExecutionLock())->unlock();
+//            }
+//            data)->registerExecution();
+//        });
+//        {
+//            try {
+//                checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller);
+//                Log::CONTEXT_FUNCTIONS())->debug("Trying to call function '"+def)->getName())
+//    +"' of context '")
+//    +getPath())
+//    +"'");
+//                if(def)->getPermissions() != 0) {
+//                    checkPermissions(def)->getPermissions(), caller);
+//                }
+//                auto requiredInputFormat = def)->getInputFormat();
+//                auto requiredOutputFormat = def)->getOutputFormat();
+//                if(parameters)->isInvalid()) {
+//                    throw new ContextException(parameters)->getInvalidationMessage());
+//                }
+//                if(valueCheckingEnabled && requiredInputFormat != 0) {
+//                    auto msg = parameters)->conformMessage(requiredInputFormat);
+//                    if(msg != 0) {
+//                        Log::CONTEXT_FUNCTIONS())->debug("Invalid input format of function '"+def)->getName())
+//            +"': ")
+//            +msg)->toString());
+//                        auto newParameters = new ::DataTable(def)->getInputFormat(), true);
+//                        ::DataTableReplication::copy(parameters, newParameters, true, true, true, true, true);
+//                        parameters = newParameters;
+//                        msg = parameters)->conformMessage(requiredInputFormat);
+//                        if(msg != 0) {
+//                            throw new ContextException("Invalid format: "+msg)->toString());
+//                        }
+//                    }
+//                }
+//                auto result = executeImplementation(data, caller, request, parameters);
+//                if(result)->isInvalid()) {
+//                    throw new ContextException(result)->getInvalidationMessage());
+//                }
+//                if(result)->getRecordCount() == 0 && result)->getFormat())->getFieldCount() == 0) {
+//                    result)->setFormat(def)->getOutputFormat());
+//                }
+//                if(valueCheckingEnabled && requiredOutputFormat != 0) {
+//                    auto msg = result)->conformMessage(requiredOutputFormat);
+//                    if(msg != 0) {
+//                        throw new ContextException("Function '"+def)->getName())
+//            +"' of context '")
+//            +getPath())
+//            +"' returned value of invalid format: ")
+//            +msg)->toString());
+//                    }
+//                }
+//                auto endTime = ::java::lang::System::currentTimeMillis();
+//                if(endTime - startTime > LOW_PERFORMANCE_THRESHOLD) {
+//                    auto level = endTime - startTime > VERY_LOW_PERFORMANCE_THRESHOLD ? ::org::apache::log4j::Level::INFO() : ::org::apache::log4j::Level::DEBUG();
+//                    Log::PERFORMANCE())->log(level, "Function '"+def))
+//        +"' in context '")
+//        +getPath())
+//        +"' was executing for ")
+//        +(endTime - startTime))
+//        +" milliseconds");
+//                }
+//                return result;
+//            } catch (ContextException* ex) {
+//                throw ex;
+//            } catch (::java::lang::Exception* ex) {
+//                throw new ContextException(::java::text::MessageFormat::format(Cres::get()->getString("conErrCallingFunc"), new voidArray({def)->toString()), toString())})))+ex)->getMessage())->toString(), ex);
+//            }
+//        }
+//    }
+    return DataTablePtr(0);
+}
+
 ////DataTablePtr AbstractContext::executeImplementation(FunctionDataPtr data, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    auto result = executeImplementationMethod(data, caller, request, parameters);
@@ -2468,45 +2494,51 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////{
 ////}
 ////
-////DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
-////{
-////    auto def = getAndCheckFunctionDefinition(name);
-////    return callFunction(def, caller, request, parameters);
-////}
-////
-////DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller, ::DataTablePtr parameters)
-////{
-////    return callFunction(name, caller, static_cast< RequestControllerPtr >(0), parameters);
-////}
-////
-////DataTablePtr AbstractContext::callFunction(const std::string & name, ::DataTablePtr parameters)
-////{
-////    return callFunction(getAndCheckFunctionDefinition(name), static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0), parameters);
-////}
-////
-////DataTablePtr AbstractContext::callFunction(const std::string & name)
-////{
-////    auto def = getAndCheckFunctionDefinition(name);
-////    return callFunction(def, static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0), new ::DataTable(def)->getInputFormat(), true));
-////}
-////
-////DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller)
-////{
-////    auto def = getAndCheckFunctionDefinition(name);
-////    return callFunction(def, caller, static_cast< RequestControllerPtr >(0), new ::DataTable(def)->getInputFormat(), true));
-////}
-////
-////DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller, voidArray* parameters)
-////{
-////    auto def = getAndCheckFunctionDefinition(name);
-////    return callFunction(name, caller, new ::DataTable(def)->getInputFormat(), parameters));
-////}
-////
-////DataTablePtr AbstractContext::callFunction(const std::string & name, voidArray* parameters)
-////{
-////    return callFunction(name, static_cast< CallerControllerPtr >(0), parameters);
-////}
-////
+DataTablePtr AbstractContext::callFunction(
+        const std::string & name,
+        CallerControllerPtr caller,
+        RequestControllerPtr request,
+        DataTablePtr parameters)
+{
+    auto def = getAndCheckFunctionDefinition(name);
+    return callFunction(def, caller, request, parameters);
+}
+
+DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller, ::DataTablePtr parameters)
+{
+    return callFunction(name, caller, static_cast< RequestControllerPtr >(0), parameters);
+}
+
+DataTablePtr AbstractContext::callFunction(const std::string & name, DataTablePtr parameters)
+{
+    return callFunction(getAndCheckFunctionDefinition(name), static_cast< CallerControllerPtr >(0),
+                        static_cast< RequestControllerPtr >(0), parameters);
+}
+
+DataTablePtr AbstractContext::callFunction(const std::string & name)
+{
+    FunctionDefinitionPtr def = getAndCheckFunctionDefinition(name);
+    return callFunction(def, static_cast< CallerControllerPtr >(0), static_cast< RequestControllerPtr >(0),
+                        DataTablePtr(new DataTable(def->getInputFormat(), true)));
+}
+
+DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller)
+{
+    FunctionDefinitionPtr def = getAndCheckFunctionDefinition(name);
+    return callFunction(def, caller, static_cast< RequestControllerPtr >(0), DataTablePtr(new DataTable(def->getInputFormat(), true)));
+}
+
+DataTablePtr AbstractContext::callFunction(const std::string & name, CallerControllerPtr caller, std::list<AgObjectPtr> parameters)
+{
+    FunctionDefinitionPtr def = getAndCheckFunctionDefinition(name);
+    return callFunction(name, caller, DataTablePtr(new DataTable(def->getInputFormat(), parameters)));
+}
+
+DataTablePtr AbstractContext::callFunction(const std::string & name, std::list<AgObjectPtr> parameters)
+{
+    return callFunction(name, static_cast< CallerControllerPtr >(0), parameters);
+}
+
 ////DataTablePtr AbstractContext::callFunctionImpl(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, ::DataTablePtr parameters)
 ////{
 ////    return 0;
@@ -2521,281 +2553,296 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////    }
 ////    return def;
 ////}
-////
-////void AbstractContext::addVariableDefinition(VariableDefinitionPtr def)
-////{
-////    if(getVariableDefinition(def)->getName()) != 0) {
-////        throw new ::java::lang::IllegalArgumentException("Variable '"+def)->getName())
-////            +"' already defined in context '")
-////            +getPath())
-////            +"'");
-////    }
-////    variableDataLock)->writeLock())->lock();
-////    {
-////        auto finally24 = finally([&] {
-////            variableDataLock)->writeLock())->unlock();
-////        });
-////        {
-////            variableData)->put(def)->getName(), new VariableData(def));
-////            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
-////                auto ed = getEventDefinition(E_VARIABLE_ADDED());
-////                if(ed != 0) {
-////                    fireEvent(ed)->getName(), new ::DataTable(varDefToDataRecord(def, 0)));
-////                }
-////            }
-////            if(getContextManager() != 0) {
-////                getContextManager())->variableAdded(java_cast< ContextPtr >(this), def);
-////            }
-////        }
-////    }
-////
-////}
-////
-////void AbstractContext::removeVariableDefinition(const std::string & name)
-////{
-////    removeVariableDefinition(getVariableDefinition(name));
-////}
-////
-////void AbstractContext::removeVariableDefinition(VariableDefinitionPtr def)
-////{
-////    if(def == 0) {
-////        return;
-////    }
-////    VariableDataPtr data;
-////    variableDataLock)->writeLock())->lock();
-////    {
-////        auto finally25 = finally([&] {
-////            variableDataLock)->writeLock())->unlock();
-////        });
-////        {
-////            data = java_cast< VariableDataPtr >(variableData)->remove(def)->getName()));
-////        }
-////    }
-////
-////    data)->getReadWriteLock())->writeLock())->lock();
-////    {
-////        auto finally26 = finally([&] {
-////            data)->getReadWriteLock())->writeLock())->unlock();
-////        });
-////        {
-////            variableStatusesLock)->writeLock())->lock();
-////            {
-////                auto finally27 = finally([&] {
-////                    variableStatusesLock)->writeLock())->unlock();
-////                });
-////                {
-////                    if(variableStatuses != 0) {
-////                        variableStatuses)->remove(def)->getName());
-////                    }
-////                }
-////            }
-////
-////            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
-////                auto ed = getEventDefinition(E_VARIABLE_REMOVED());
-////                if(ed != 0) {
-////                    fireEvent(ed)->getName(), new voidArray({def)->getName())}));
-////                }
-////            }
-////            if(getContextManager() != 0) {
-////                getContextManager())->variableRemoved(java_cast< ContextPtr >(this), def);
-////            }
-////        }
-////    }
-////
-////}
-////
-//void AbstractContext::addFunctionDefinition(FunctionDefinitionPtr def)
-//{
-//    /*if(getFunctionDefinition(def)->getName()) != 0) {
-//        throw new ::java::lang::IllegalArgumentException("Function '"+def)->getName())
+
+void AbstractContext::addVariableDefinition(VariableDefinitionPtr def)
+{
+    //TODO:
+//    if(getVariableDefinition(def)->getName()) != 0) {
+//        throw new ::java::lang::IllegalArgumentException("Variable '"+def)->getName())
 //            +"' already defined in context '")
 //            +getPath())
 //            +"'");
 //    }
-//    functionDataLock)->writeLock())->lock();
+//    variableDataLock)->writeLock())->lock();
 //    {
-//        auto finally28 = finally([&] {
-//            functionDataLock)->writeLock())->unlock();
+//        auto finally24 = finally([&] {
+//            variableDataLock)->writeLock())->unlock();
 //        });
 //        {
-//            functionData)->put(def)->getName(), new FunctionData(def));
+//            variableData)->put(def)->getName(), new VariableData(def));
 //            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
-//                auto ed = getEventDefinition(E_FUNCTION_ADDED());
+//                auto ed = getEventDefinition(E_VARIABLE_ADDED());
 //                if(ed != 0) {
-//                    fireEvent(ed)->getName(), new ::DataTable(funcDefToDataRecord(def, 0)));
+//                    fireEvent(ed)->getName(), new ::DataTable(varDefToDataRecord(def, 0)));
 //                }
 //            }
 //            if(getContextManager() != 0) {
-//                getContextManager())->functionAdded(java_cast< ContextPtr >(this), def);
+//                getContextManager())->variableAdded(java_cast< ContextPtr >(this), def);
 //            }
 //        }
-//    }*/
-//
-//}
-////
-////void AbstractContext::removeFunctionDefinition(const std::string & name)
-////{
-////    removeFunctionDefinition(getFunctionDefinition(name));
-////}
-////
-////void AbstractContext::removeFunctionDefinition(FunctionDefinitionPtr def)
-////{
-////    if(def == 0) {
-////        return;
-////    }
-////    FunctionDataPtr data;
-////    functionDataLock)->writeLock())->lock();
-////    {
-////        auto finally29 = finally([&] {
-////            functionDataLock)->writeLock())->unlock();
-////        });
-////        {
-////            data = java_cast< FunctionDataPtr >(functionData)->remove(def)->getName()));
-////        }
-////    }
-////
-////    data)->getExecutionLock())->lock();
-////    {
-////        auto finally30 = finally([&] {
-////            data)->getExecutionLock())->unlock();
-////        });
-////        {
-////            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
-////                auto ed = getEventDefinition(E_FUNCTION_REMOVED());
-////                if(ed != 0) {
-////                    fireEvent(ed)->getName(), new voidArray({def)->getName())}));
-////                }
-////            }
-////            if(getContextManager() != 0) {
-////                getContextManager())->functionRemoved(java_cast< ContextPtr >(this), def);
-////            }
-////        }
-////    }
-////
-////}
-////
-//void AbstractContext::addEventDefinition(EventDefinitionPtr def)
-//{
-////    if(getEventDefinition(def)->getName()) != 0) {
-////        throw new ::java::lang::IllegalArgumentException("Event '"+def)->getName())
-////            +"' already defined in context '")
-////            +getPath())
-////            +"'");
-////    }
-////    EventDataPtrLock)->writeLock())->lock();
-////    {
-////        auto finally31 = finally([&] {
-////            EventDataPtrLock)->writeLock())->unlock();
-////        });
-////        {
-////            EventDataPtr)->put(def)->getName(), new EventDataPtr(def));
-////            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
-////                auto ed = getEventDefinition(E_EVENT_ADDED());
-////                if(ed != 0) {
-////                    fireEvent(ed)->getName(), new ::DataTable(evtDefToDataRecord(def, 0)));
-////                }
-////            }
-////            if(getContextManager() != 0) {
-////                getContextManager())->eventAdded(java_cast< ContextPtr >(this), def);
-////            }
-////        }
-////    }
-//
-//}
-////
-////void AbstractContext::removeEventDefinition(const std::string & name)
-////{
-////    removeEventDefinition(getEventDefinition(name));
-////}
-////
-////void AbstractContext::removeEventDefinition(EventDefinitionPtr def)
-////{
-////    if(def == 0) {
-////        return;
-////    }
-////    EventDataPtrLock)->writeLock())->lock();
-////    {
-////        auto finally32 = finally([&] {
-////            EventDataPtrLock)->writeLock())->unlock();
-////        });
-////        {
-////            if(java_cast< EventDataPtr >(EventDataPtr)->remove(def)->getName())) != 0) {
-////                if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
-////                    auto ed = getEventDefinition(E_EVENT_REMOVED());
-////                    if(ed != 0) {
-////                        fireEvent(ed)->getName(), new voidArray({def)->getName())}));
-////                    }
-////                }
-////                if(getContextManager() != 0) {
-////                    getContextManager())->eventRemoved(java_cast< ContextPtr >(this), def);
-////                }
-////            }
-////        }
-////    }
-////
-////}
-////
-////VariableDataPtr AbstractContext::getVariableData(const std::string & name)
-////{
-////    variableDataLock)->readLock())->lock();
-////    {
-////        auto finally33 = finally([&] {
-////            variableDataLock)->readLock())->unlock();
-////        });
-////        {
-////            return java_cast< VariableDataPtr >(variableData)->get(name));
-////        }
-////    }
-////
-////}
-////
-////VariableDefinitionPtr AbstractContext::getVariableDefinition(const std::string & name)
-////{
-////    auto data = getVariableData(name);
-////    return data != 0 ? data)->getDefinition() : static_cast< VariableDefinitionPtr >(0);
-////}
-////
-////VariableDefinitionPtr AbstractContext::getVariableDefinition(const std::string & name, CallerControllerPtr caller)
-////{
-////    auto def = getVariableDefinition(name);
-////    if(def == 0) {
-////        return 0;
-////    }
-////    auto readAccessGranted = checkPermissions(def)->getReadPermissions() != 0 ? def)->getReadPermissions() : getPermissions(), caller, this);
-////    auto writeAccessGranted = checkPermissions(def)->getWritePermissions() != 0 ? def)->getWritePermissions() : getPermissions(), caller, this);
-////    return (readAccessGranted || writeAccessGranted) ? def : static_cast< VariableDefinitionPtr >(0);
-////}
-////
-////FunctionDataPtr AbstractContext::getFunctionData(const std::string & name)
-////{
-////    functionDataLock)->readLock())->lock();
-////    {
-////        auto finally34 = finally([&] {
-////            functionDataLock)->readLock())->unlock();
-////        });
-////        {
-////            return java_cast< FunctionDataPtr >(functionData)->get(name));
-////        }
-////    }
-////
-////}
-////
-////FunctionDefinitionPtr AbstractContext::getFunctionDefinition(const std::string & name)
-////{
-////    auto data = getFunctionData(name);
-////    return data != 0 ? data)->getDefinition() : static_cast< FunctionDefinitionPtr >(0);
-////}
-////
-////FunctionDefinitionPtr AbstractContext::getFunctionDefinition(const std::string & name, CallerControllerPtr caller)
-////{
-////    auto def = getFunctionDefinition(name);
-////    if(def == 0) {
-////        return 0;
-////    }
-////    auto accessGranted = checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller, this);
-////    return accessGranted ? def : static_cast< FunctionDefinitionPtr >(0);
-////}
-////
+//    }
+
+}
+
+void AbstractContext::removeVariableDefinition(const std::string & name)
+{
+    removeVariableDefinition(getVariableDefinition(name));
+}
+
+void AbstractContext::removeVariableDefinition(VariableDefinitionPtr def)
+{
+    //TODO:
+//    if(def == 0) {
+//        return;
+//    }
+//    VariableDataPtr data;
+//    variableDataLock)->writeLock())->lock();
+//    {
+//        auto finally25 = finally([&] {
+//            variableDataLock)->writeLock())->unlock();
+//        });
+//        {
+//            data = java_cast< VariableDataPtr >(variableData)->remove(def)->getName()));
+//        }
+//    }
+
+//    data)->getReadWriteLock())->writeLock())->lock();
+//    {
+//        auto finally26 = finally([&] {
+//            data)->getReadWriteLock())->writeLock())->unlock();
+//        });
+//        {
+//            variableStatusesLock)->writeLock())->lock();
+//            {
+//                auto finally27 = finally([&] {
+//                    variableStatusesLock)->writeLock())->unlock();
+//                });
+//                {
+//                    if(variableStatuses != 0) {
+//                        variableStatuses)->remove(def)->getName());
+//                    }
+//                }
+//            }
+
+//            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
+//                auto ed = getEventDefinition(E_VARIABLE_REMOVED());
+//                if(ed != 0) {
+//                    fireEvent(ed)->getName(), new voidArray({def)->getName())}));
+//                }
+//            }
+//            if(getContextManager() != 0) {
+//                getContextManager())->variableRemoved(java_cast< ContextPtr >(this), def);
+//            }
+//        }
+//    }
+
+}
+
+void AbstractContext::addFunctionDefinition(FunctionDefinitionPtr def)
+{
+    //TODO:
+    /*if(getFunctionDefinition(def)->getName()) != 0) {
+        throw new ::java::lang::IllegalArgumentException("Function '"+def)->getName())
+            +"' already defined in context '")
+            +getPath())
+            +"'");
+    }
+    functionDataLock)->writeLock())->lock();
+    {
+        auto finally28 = finally([&] {
+            functionDataLock)->writeLock())->unlock();
+        });
+        {
+            functionData)->put(def)->getName(), new FunctionData(def));
+            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
+                auto ed = getEventDefinition(E_FUNCTION_ADDED());
+                if(ed != 0) {
+                    fireEvent(ed)->getName(), new ::DataTable(funcDefToDataRecord(def, 0)));
+                }
+            }
+            if(getContextManager() != 0) {
+                getContextManager())->functionAdded(java_cast< ContextPtr >(this), def);
+            }
+        }
+    }*/
+
+}
+
+void AbstractContext::removeFunctionDefinition(const std::string & name)
+{
+    removeFunctionDefinition(getFunctionDefinition(name));
+}
+
+void AbstractContext::removeFunctionDefinition(FunctionDefinitionPtr def)
+{
+    //TODO:
+    if(def == 0) {
+        return;
+    }
+//    FunctionDataPtr data;
+//    functionDataLock)->writeLock())->lock();
+//    {
+//        auto finally29 = finally([&] {
+//            functionDataLock)->writeLock())->unlock();
+//        });
+//        {
+//            data = java_cast< FunctionDataPtr >(functionData)->remove(def)->getName()));
+//        }
+//    }
+
+//    data)->getExecutionLock())->lock();
+//    {
+//        auto finally30 = finally([&] {
+//            data)->getExecutionLock())->unlock();
+//        });
+//        {
+//            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
+//                auto ed = getEventDefinition(E_FUNCTION_REMOVED());
+//                if(ed != 0) {
+//                    fireEvent(ed)->getName(), new voidArray({def)->getName())}));
+//                }
+//            }
+//            if(getContextManager() != 0) {
+//                getContextManager())->functionRemoved(java_cast< ContextPtr >(this), def);
+//            }
+//        }
+//    }
+
+}
+
+void AbstractContext::addEventDefinition(EventDefinitionPtr def)
+{
+    //TODO:
+//    if(getEventDefinition(def)->getName()) != 0) {
+//        throw new ::java::lang::IllegalArgumentException("Event '"+def)->getName())
+//            +"' already defined in context '")
+//            +getPath())
+//            +"'");
+//    }
+//    EventDataPtrLock)->writeLock())->lock();
+//    {
+//        auto finally31 = finally([&] {
+//            EventDataPtrLock)->writeLock())->unlock();
+//        });
+//        {
+//            EventDataPtr)->put(def)->getName(), new EventDataPtr(def));
+//            if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
+//                auto ed = getEventDefinition(E_EVENT_ADDED());
+//                if(ed != 0) {
+//                    fireEvent(ed)->getName(), new ::DataTable(evtDefToDataRecord(def, 0)));
+//                }
+//            }
+//            if(getContextManager() != 0) {
+//                getContextManager())->eventAdded(java_cast< ContextPtr >(this), def);
+//            }
+//        }
+//    }
+
+}
+
+void AbstractContext::removeEventDefinition(const std::string & name)
+{
+    removeEventDefinition(getEventDefinition(name));
+}
+
+void AbstractContext::removeEventDefinition(EventDefinitionPtr def)
+{
+    //TODO:
+    if(def == 0) {
+        return;
+    }
+//    EventDataPtrLock)->writeLock())->lock();
+//    {
+//        auto finally32 = finally([&] {
+//            EventDataPtrLock)->writeLock())->unlock();
+//        });
+//        {
+//            if(java_cast< EventDataPtr >(EventDataPtr)->remove(def)->getName())) != 0) {
+//                if(setupComplete && fireUpdateEvents && !def)->isHidden()) {
+//                    auto ed = getEventDefinition(E_EVENT_REMOVED());
+//                    if(ed != 0) {
+//                        fireEvent(ed)->getName(), new voidArray({def)->getName())}));
+//                    }
+//                }
+//                if(getContextManager() != 0) {
+//                    getContextManager())->eventRemoved(java_cast< ContextPtr >(this), def);
+//                }
+//            }
+//        }
+//    }
+
+}
+
+VariableDataPtr AbstractContext::getVariableData(const std::string & name)
+{
+    //TODO:
+//    variableDataLock)->readLock())->lock();
+//    {
+//        auto finally33 = finally([&] {
+//            variableDataLock)->readLock())->unlock();
+//        });
+//        {
+//            return java_cast< VariableDataPtr >(variableData)->get(name));
+//        }
+//    }
+    return VariableDataPtr(0);
+}
+
+VariableDefinitionPtr AbstractContext::getVariableDefinition(const std::string & name)
+{
+    VariableDataPtr data = getVariableData(name);
+    return data != 0 ? data->getDefinition() : static_cast< VariableDefinitionPtr >(0);
+}
+
+VariableDefinitionPtr AbstractContext::getVariableDefinition(const std::string & name, CallerControllerPtr caller)
+{
+    VariableDefinitionPtr def = getVariableDefinition(name);
+    if (def == 0) {
+        return 0;
+    }
+
+    //TODO:
+//    auto readAccessGranted = checkPermissions(def)->getReadPermissions() != 0 ? def)->getReadPermissions() : getPermissions(), caller, this);
+//    auto writeAccessGranted = checkPermissions(def)->getWritePermissions() != 0 ? def)->getWritePermissions() : getPermissions(), caller, this);
+//    return (readAccessGranted || writeAccessGranted) ? def : static_cast< VariableDefinitionPtr >(0);
+
+    return VariableDefinitionPtr(0);
+}
+
+FunctionDataPtr AbstractContext::getFunctionData(const std::string & name)
+{
+    //TODO
+//    functionDataLock)->readLock())->lock();
+//    {
+//        auto finally34 = finally([&] {
+//            functionDataLock)->readLock())->unlock();
+//        });
+//        {
+//            return java_cast< FunctionDataPtr >(functionData)->get(name));
+//        }
+//    }
+    return FunctionDataPtr(0);
+}
+
+FunctionDefinitionPtr AbstractContext::getFunctionDefinition(const std::string & name)
+{
+    FunctionDataPtr data = getFunctionData(name);
+    return data != 0 ? data->getDefinition() : static_cast< FunctionDefinitionPtr >(0);
+}
+
+FunctionDefinitionPtr AbstractContext::getFunctionDefinition(const std::string & name, CallerControllerPtr caller)
+{
+    FunctionDefinitionPtr def = getFunctionDefinition(name);
+    if (def == 0) {
+        return 0;
+    }
+    //TODO:
+    //auto accessGranted = checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller, this);
+    //return accessGranted ? def : static_cast< FunctionDefinitionPtr >(0);
+
+    return FunctionDefinitionPtr(0);
+}
+
 ////EventDataPtr AbstractContext::getEventDataPtr(const std::string & name)
 ////{
 ////    EventDataPtrLock)->readLock())->lock();
@@ -2810,24 +2857,25 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////
 ////}
 ////
-//EventDefinitionPtr AbstractContext::getEventDefinition(const std::string & name)
-//{
-////    auto ed = getEventDataPtr(name);
-////    return ed != 0 ? ed)->getDefinition() : static_cast< EventDefinitionPtr >(0);
-//
-//	return 0;
-//}
-////
-////EventDefinitionPtr AbstractContext::getEventDefinition(const std::string & name, CallerControllerPtr caller)
-////{
-////    auto def = getEventDefinition(name);
-////    if(def == 0) {
-////        return 0;
-////    }
-////    auto accessGranted = checkPermissions(def)->getPermissions() != 0 ? def)->getPermissions() : getPermissions(), caller, this);
-////    return accessGranted ? def : static_cast< EventDefinitionPtr >(0);
-////}
-////
+EventDefinitionPtr AbstractContext::getEventDefinition(const std::string & name)
+{
+    EventDataPtr ed = getEventDataPtr(name);
+    return ed != 0 ? ed->getDefinition() : static_cast< EventDefinitionPtr >(0);
+
+    return 0;
+}
+
+EventDefinitionPtr AbstractContext::getEventDefinition(const std::string & name, CallerControllerPtr caller)
+{
+    EventDefinitionPtr def = getEventDefinition(name);
+    if (def == 0) {
+        return 0;
+    }
+    //TODO:
+    bool accessGranted = false;//checkPermissions(def->getPermissions() != 0 ? def->getPermissions() : getPermissions(), caller, this);
+    return accessGranted ? def : static_cast< EventDefinitionPtr >(0);
+}
+
 ////EventDefinitionPtr AbstractContext::getAndCheckEventDefinition(const std::string & name)
 ////{
 ////    setupEvents();
@@ -2850,188 +2898,214 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////{
 ////}
 ////
-////EventPtr AbstractContext::fireEvent(EventDefinitionPtr ed, ::DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions)
-////{
-////    if(id == 0) {
-////        id = ::java::lang::Long::valueOf(EventUtils::generateEventId());
-////    }
-////    auto event = new Event(getPath(), ed, level == DEFAULT_EVENT_LEVEL ? ed)->getLevel() : level, data, id, creationtime, permissions);
-////    return fireEvent(ed, event, listener, caller, request);
-////}
-////
-////EventPtr AbstractContext::fireEvent(EventPtr event)
-////{
-////    return fireEvent(getAndCheckEventDefinition(event)->getName()), event, 0, 0, 0);
-////}
-////
-////EventPtr AbstractContext::fireEvent(EventDefinitionPtr ed, EventPtr event, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request)
-////{
-////    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
-////    if(caller != 0) {
-////        try {
-////            checkPermissions(ed)->getFirePermissions() != 0 ? ed)->getFirePermissions() : getPermissions(), caller);
-////        } catch (ContextSecurityException* ex) {
-////            throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
-////        }
-////    }
-////    auto rule = getEventProcessingRule(event);
-////    auto prefilter = rule != 0 ? rule)->getPrefilterExpression() : static_cast< ExpressionPtr >(0);
-////    if(prefilter != 0) {
-////        try {
-////            auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
-////            if(!evaluator)->evaluateToBoolean(prefilter)) {
-////                rule)->addFiltered();
-////                if(logger)->isDebugEnabled()) {
-////                    logger)->debug("Event '"+ed))
-////        +"' in context '")
-////        +getPath())
-////        +"' was suppressed by pre-filter");
-////                }
-////                return 0;
-////            }
-////        } catch (::java::lang::Exception* ex) {
-////            logger)->info("Error processing pre-filter expression for event '"+ed))
-////+"' in context '")
-////+getPath())
-////+"': ")
-////+ex)->getMessage())->toString(), ex);
-////        }
-////    }
-////    if(logger)->isDebugEnabled()) {
-////        logger)->debug("Event '"+ed))
-////            +"' fired in context '")
-////            +getPath())
-////            +"': ")
-////            +event))->toString());
-////    }
-////    event)->setListener(listener);
-////    if(request != 0) {
-////        event)->setOriginator(request)->getOriginator());
-////    }
-////    auto edata = getEventDataPtr(ed)->getName());
-////    edata)->registerFiredEvent();
-////    auto deduplicator = rule != 0 ? rule)->getDeduplicatorExpression() : static_cast< ExpressionPtr >(0);
-////    if(deduplicator != 0) {
-////        try {
-////            auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
-////            auto deduplicationId = evaluator)->evaluateToString(deduplicator);
-////            event)->setDeduplicationId(deduplicationId);
-////        } catch (::java::lang::Exception* ex) {
-////            logger)->info("Error processing deduplicator expression for event '"+ed))
-////+"' in context '")
-////+getPath())
-////+"': ")
-////+ex)->getMessage())->toString(), ex);
-////        }
-////    }
-////    if(event)->getData())->isInvalid()) {
-////        throw new ContextRuntimeException(event)->getData())->getInvalidationMessage());
-////    }
-////    if(ed)->getFormat() != 0) {
-////        auto msg = event)->getData())->conformMessage(ed)->getFormat());
-////        if(msg != 0) {
-////            logger)->debug("Wrong format data for event '"+ed))
-////+"' in context '")
-////+toString())
-////+"': ")
-////+msg)->toString());
-////            auto newData = new ::DataTable(ed)->getFormat(), true);
-////            ::DataTableReplication::copy(event)->getData(), newData);
-////            event)->setData(newData);
-////        }
-////    }
-////    processBindings(event);
-////    processEnrichments(event, rule, caller);
-////    long  customExpirationPeriod;
-////    if(request != 0 && request)->getCustomExpirationPeriod() != 0) {
-////        customExpirationPeriod = request)->getCustomExpirationPeriod();
-////    }
-////    if(customExpirationPeriod != 0) {
-////        if((customExpirationPeriod))->longValue() > 0) {
-////            event)->setExpirationtime(new Date(::java::lang::System::currentTimeMillis() + (customExpirationPeriod))->longValue()));
-////        }
-////    } else {
-////        auto userDefinedExpirationPeriod = rule != 0 ? ::java::lang::Long::valueOf(rule)->getPeriod()) : static_cast< long  >(0);
-////        if(userDefinedExpirationPeriod != 0 && (userDefinedExpirationPeriod))->longValue() > 0) {
-////            event)->setExpirationtime(new Date(::java::lang::System::currentTimeMillis() + (userDefinedExpirationPeriod))->longValue()));
-////        }
-////    }
-////    auto const customMemoryStorageSize = rule != 0 ? ((rule)->getDeduplicator() != 0 && rule)->getDeduplicator())->length() > 0) ? rule)->getQueue()) : static_cast< int  >(0)) : static_cast< int  >(0);
-////    auto processed = request != 0 ? request)->process(event) : event;
-////    if(processed == 0) {
-////        return 0;
-////    }
-////    auto duplicate = edata)->store(processed, customMemoryStorageSize);
-////    try {
-////        if(duplicate == 0) {
-////            postEvent(event, ed, caller, request);
-////            if(rule != 0) {
-////                rule)->addSaved();
-////            }
-////        } else {
-////            updateEvent(duplicate, ed, caller, request);
-////            if(rule != 0) {
-////                rule)->addDuplicate();
-////            }
-////        }
-////    } catch (ContextException* ex) {
-////        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
-////    }
-////    if(contextManager != 0 && (duplicate == 0 || rule == 0 || rule)->isDuplicateDispatching())) {
-////        contextManager)->queue(edata, event);
-////    }
-////    return event;
-////}
-////
-////EventPtr AbstractContext::fireEvent(const std::string & name, int level, CallerControllerPtr caller, FireEventRequestControllerPtr request, PermissionsPtr permissions, ::DataTablePtr data)
-////{
-////    auto ed = getAndCheckEventDefinition(name);
-////    return fireEvent(ed, data, level, 0, 0, 0, caller, request, permissions);
-////}
-////
-////EventPtr AbstractContext::fireEvent(const std::string & name, ::DataTablePtr data, int level, long  id, DatePtr creationtime, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request)
-////{
-////    return fireEvent(getAndCheckEventDefinition(name), data, level, id, creationtime, listener, caller, request, 0);
-////}
-////
-////EventPtr AbstractContext::fireEvent(const std::string & name, ::DataTablePtr data)
-////{
-////    return fireEvent(getAndCheckEventDefinition(name), data, DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
-////}
-////
-////EventPtr AbstractContext::fireEvent(const std::string & name, CallerControllerPtr caller, ::DataTablePtr data)
-////{
-////    return fireEvent(getAndCheckEventDefinition(name), data, DEFAULT_EVENT_LEVEL, 0, 0, 0, caller, 0, 0);
-////}
-////
-////EventPtr AbstractContext::fireEvent(const std::string & name, int level, ::DataTablePtr data)
-////{
-////    return fireEvent(getAndCheckEventDefinition(name), data, level, 0, 0, 0, 0, 0, 0);
-////}
-////
-////EventPtr AbstractContext::fireEvent(const std::string & name, int level, CallerControllerPtr caller, ::DataTablePtr data)
-////{
-////    return fireEvent(getAndCheckEventDefinition(name), data, level, 0, 0, 0, caller, 0, 0);
-////}
-////
-////EventPtr AbstractContext::fireEvent(const std::string & name)
-////{
-////    auto ed = getAndCheckEventDefinition(name);
-////    return fireEvent(ed, new ::DataTable(ed)->getFormat(), true), DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
-////}
-////
-////EventPtr AbstractContext::fireEvent(const std::string & name, CallerControllerPtr caller)
-////{
-////    auto ed = getAndCheckEventDefinition(name);
-////    return fireEvent(ed, new ::DataTable(ed)->getFormat(), true), DEFAULT_EVENT_LEVEL, 0, 0, 0, caller, 0, 0);
-////}
-////
-//EventPtr AbstractContext::fireEvent(const std::string & name, AgObjectPtr data)
-//{
-////    auto ed = getAndCheckEventDefinition(name);
-////    return fireEvent(ed, new ::DataTable(ed)->getFormat(), data), DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
-//	return 0;
-//}
+EventPtr AbstractContext::fireEvent(
+        EventDefinitionPtr ed,
+        DataTablePtr data,
+        int level, long  id,
+        DatePtr creationtime,
+        int  listener,
+        CallerControllerPtr caller,
+        FireEventRequestControllerPtr request,
+        PermissionsPtr permissions)
+{
+//    if(id == 0) {
+//        id = ::java::lang::Long::valueOf(EventUtils::generateEventId());
+//    }
+//    auto event = new Event(getPath(), ed, level == DEFAULT_EVENT_LEVEL ? ed)->getLevel() : level, data, id, creationtime, permissions);
+//    return fireEvent(ed, event, listener, caller, request);
+
+    return EventPtr(0);
+}
+
+EventPtr AbstractContext::fireEvent(EventPtr event)
+{
+    return fireEvent(getAndCheckEventDefinition(event->getName()), event, 0, 0, 0);
+}
+
+EventPtr AbstractContext::fireEvent(EventDefinitionPtr ed, EventPtr event, int  listener, CallerControllerPtr caller, FireEventRequestControllerPtr request)
+{
+    //TODO:
+//    auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
+//    if(caller != 0) {
+//        try {
+//            checkPermissions(ed)->getFirePermissions() != 0 ? ed)->getFirePermissions() : getPermissions(), caller);
+//        } catch (ContextSecurityException* ex) {
+//            throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
+//        }
+//    }
+//    auto rule = getEventProcessingRule(event);
+//    auto prefilter = rule != 0 ? rule)->getPrefilterExpression() : static_cast< ExpressionPtr >(0);
+//    if(prefilter != 0) {
+//        try {
+//            auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
+//            if(!evaluator)->evaluateToBoolean(prefilter)) {
+//                rule)->addFiltered();
+//                if(logger)->isDebugEnabled()) {
+//                    logger)->debug("Event '"+ed))
+//        +"' in context '")
+//        +getPath())
+//        +"' was suppressed by pre-filter");
+//                }
+//                return 0;
+//            }
+//        } catch (::java::lang::Exception* ex) {
+//            logger)->info("Error processing pre-filter expression for event '"+ed))
+//+"' in context '")
+//+getPath())
+//+"': ")
+//+ex)->getMessage())->toString(), ex);
+//        }
+//    }
+//    if(logger)->isDebugEnabled()) {
+//        logger)->debug("Event '"+ed))
+//            +"' fired in context '")
+//            +getPath())
+//            +"': ")
+//            +event))->toString());
+//    }
+//    event)->setListener(listener);
+//    if(request != 0) {
+//        event)->setOriginator(request)->getOriginator());
+//    }
+//    auto edata = getEventDataPtr(ed)->getName());
+//    edata)->registerFiredEvent();
+//    auto deduplicator = rule != 0 ? rule)->getDeduplicatorExpression() : static_cast< ExpressionPtr >(0);
+//    if(deduplicator != 0) {
+//        try {
+//            auto evaluator = new Evaluator(getContextManager(), this, event)->getData(), getEventProcessingCallerController());
+//            auto deduplicationId = evaluator)->evaluateToString(deduplicator);
+//            event)->setDeduplicationId(deduplicationId);
+//        } catch (::java::lang::Exception* ex) {
+//            logger)->info("Error processing deduplicator expression for event '"+ed))
+//+"' in context '")
+//+getPath())
+//+"': ")
+//+ex)->getMessage())->toString(), ex);
+//        }
+//    }
+//    if(event)->getData())->isInvalid()) {
+//        throw new ContextRuntimeException(event)->getData())->getInvalidationMessage());
+//    }
+//    if(ed)->getFormat() != 0) {
+//        auto msg = event)->getData())->conformMessage(ed)->getFormat());
+//        if(msg != 0) {
+//            logger)->debug("Wrong format data for event '"+ed))
+//+"' in context '")
+//+toString())
+//+"': ")
+//+msg)->toString());
+//            auto newData = new ::DataTable(ed)->getFormat(), true);
+//            ::DataTableReplication::copy(event)->getData(), newData);
+//            event)->setData(newData);
+//        }
+//    }
+//    processBindings(event);
+//    processEnrichments(event, rule, caller);
+//    long  customExpirationPeriod;
+//    if(request != 0 && request)->getCustomExpirationPeriod() != 0) {
+//        customExpirationPeriod = request)->getCustomExpirationPeriod();
+//    }
+//    if(customExpirationPeriod != 0) {
+//        if((customExpirationPeriod))->longValue() > 0) {
+//            event)->setExpirationtime(new Date(::java::lang::System::currentTimeMillis() + (customExpirationPeriod))->longValue()));
+//        }
+//    } else {
+//        auto userDefinedExpirationPeriod = rule != 0 ? ::java::lang::Long::valueOf(rule)->getPeriod()) : static_cast< long  >(0);
+//        if(userDefinedExpirationPeriod != 0 && (userDefinedExpirationPeriod))->longValue() > 0) {
+//            event)->setExpirationtime(new Date(::java::lang::System::currentTimeMillis() + (userDefinedExpirationPeriod))->longValue()));
+//        }
+//    }
+//    auto const customMemoryStorageSize = rule != 0 ? ((rule)->getDeduplicator() != 0 && rule)->getDeduplicator())->length() > 0) ? rule)->getQueue()) : static_cast< int  >(0)) : static_cast< int  >(0);
+//    auto processed = request != 0 ? request)->process(event) : event;
+//    if(processed == 0) {
+//        return 0;
+//    }
+//    auto duplicate = edata)->store(processed, customMemoryStorageSize);
+//    try {
+//        if(duplicate == 0) {
+//            postEvent(event, ed, caller, request);
+//            if(rule != 0) {
+//                rule)->addSaved();
+//            }
+//        } else {
+//            updateEvent(duplicate, ed, caller, request);
+//            if(rule != 0) {
+//                rule)->addDuplicate();
+//            }
+//        }
+//    } catch (ContextException* ex) {
+//        throw new ContextRuntimeException(static_cast< ::java::lang::Throwable* >(ex));
+//    }
+//    if(contextManager != 0 && (duplicate == 0 || rule == 0 || rule)->isDuplicateDispatching())) {
+//        contextManager)->queue(edata, event);
+//    }
+//    return event;
+    return EventPtr(0);
+}
+
+EventPtr AbstractContext::fireEvent(
+        const std::string & name,
+        int level,
+        CallerControllerPtr caller,
+        FireEventRequestControllerPtr request,
+        PermissionsPtr permissions,
+        DataTablePtr data)
+{
+    EventDefinitionPtr ed = getAndCheckEventDefinition(name);
+    return fireEvent(ed, data, level, 0, 0, 0, caller, request, permissions);
+}
+
+EventPtr AbstractContext::fireEvent(
+        const std::string & name,
+        DataTablePtr data,
+        int level,
+        long  id,
+        DatePtr creationtime,
+        int  listener,
+        CallerControllerPtr caller,
+        FireEventRequestControllerPtr request)
+{
+    return fireEvent(getAndCheckEventDefinition(name), data, level, id, creationtime, listener, caller, request, 0);
+}
+
+EventPtr AbstractContext::fireEvent(const std::string & name, ::DataTablePtr data)
+{
+    return fireEvent(getAndCheckEventDefinition(name), data, DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
+}
+
+EventPtr AbstractContext::fireEvent(const std::string & name, CallerControllerPtr caller, DataTablePtr data)
+{
+    return fireEvent(getAndCheckEventDefinition(name), data, DEFAULT_EVENT_LEVEL, 0, 0, 0, caller, 0, 0);
+}
+
+EventPtr AbstractContext::fireEvent(const std::string & name, int level, DataTablePtr data)
+{
+    return fireEvent(getAndCheckEventDefinition(name), data, level, 0, 0, 0, 0, 0, 0);
+}
+
+EventPtr AbstractContext::fireEvent(const std::string & name, int level, CallerControllerPtr caller, DataTablePtr data)
+{
+    return fireEvent(getAndCheckEventDefinition(name), data, level, 0, 0, 0, caller, 0, 0);
+}
+
+EventPtr AbstractContext::fireEvent(const std::string & name)
+{
+    EventDefinitionPtr ed = getAndCheckEventDefinition(name);
+    return fireEvent(ed, DataTablePtr(new DataTable(ed->getFormat(), true)), DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
+}
+
+EventPtr AbstractContext::fireEvent(const std::string & name, CallerControllerPtr caller)
+{
+    EventDefinitionPtr ed = getAndCheckEventDefinition(name);
+    return fireEvent(ed, DataTablePtr(new DataTable(ed->getFormat(), true)), DEFAULT_EVENT_LEVEL, 0, 0, 0, caller, 0, 0);
+}
+
+EventPtr AbstractContext::fireEvent(const std::string & name, AgObjectPtr data)
+{
+    EventDefinitionPtr ed = getAndCheckEventDefinition(name);
+    return fireEvent(ed, DataTablePtr(new DataTable(ed->getFormat(), data)), DEFAULT_EVENT_LEVEL, 0, 0, 0, 0, 0, 0);
+    return 0;
+}
 ////
 ////EventProcessingRulePtr AbstractContext::getEventProcessingRule(EventPtr event)
 ////{
@@ -3073,16 +3147,17 @@ DataTablePtr AbstractContext::getVariable(VariableDefinitionPtr def, CallerContr
 ////{
 ////    return getContextManager())->getCallerController();
 ////}
-////
-////std::list  AbstractContext::getEventHistory(const std::string & name)
-////{
-////    auto ed = getEventDataPtr(name);
-////    if(ed == 0) {
-////        throw new ::java::lang::IllegalStateException(Cres::get()->getString("conEvtNotAvail"))+name)->toString());
-////    }
-////    return ed)->getHistory();
-////}
-////
+
+std::list<EventPtr>  AbstractContext::getEventHistory(const std::string & name)
+{
+    EventDataPtr ed = getEventDataPtr(name);
+    if(ed == 0) {
+        //TODO: exception
+        //throw new ::java::lang::IllegalStateException(Cres::get()->getString("conEvtNotAvail"))+name)->toString());
+    }
+    return ed->getHistory();
+}
+
 ////void AbstractContext::lock(RequestControllerPtr request, ::java::util::concurrent::locks::Lock* lock)
 ////{
 ////    auto lockTimeout = (request != 0 && request)->getLockTimeout() != 0) ? request)->getLockTimeout() : static_cast< long  >(0);
@@ -3105,37 +3180,38 @@ std::string AbstractContext::toString()
     return desc.length() > 0 ? desc : getPath();
 }
 
-//std::string AbstractContext::toDetailedString()
-//{
-//    //auto decription = getDescription();
-//    //return decription != 0 ? decription)+" (")
-//    //    +getPath())
-//    //    +")" : getPath();
-//	return "";
-//}
-//
-////void AbstractContext::accept(ContextVisitorPtr visitor)
-////{
-////    if(visitor->shouldVisit(this)) {
-////        visitor->visit(this);
-////        childrenLock)->readLock())->lock();
-////        {
-////            auto finally36 = finally([&] {
-////                childrenLock)->readLock())->unlock();
-////            });
-////            {
-////                for (auto _i = children)->iterator(); _i->hasNext(); ) {
-////                    ContextPtr child = java_cast< ContextPtr >(_i->next());
-////                    {
-////                        child)->accept(visitor);
-////                    }
-////                }
-////            }
-////        }
-////
-////    }
-////}
-////
+std::string AbstractContext::toDetailedString()
+{
+    //auto decription = getDescription();
+    //return decription != 0 ? decription)+" (")
+    //    +getPath())
+    //    +")" : getPath();
+    return "";
+}
+
+void AbstractContext::accept(ContextVisitorPtr visitor)
+{
+    //TODO:
+//    if(visitor->shouldVisit(this)) {
+//        visitor->visit(this);
+//        childrenLock)->readLock())->lock();
+//        {
+//            auto finally36 = finally([&] {
+//                childrenLock)->readLock())->unlock();
+//            });
+//            {
+//                for (auto _i = children)->iterator(); _i->hasNext(); ) {
+//                    ContextPtr child = java_cast< ContextPtr >(_i->next());
+//                    {
+//                        child)->accept(visitor);
+//                    }
+//                }
+//            }
+//        }
+
+//    }
+}
+
 ////EventDefinitionPtr AbstractContext::getChangeEventDefinition()
 ////{
 ////    return ED_CHANGE();
@@ -3355,17 +3431,17 @@ std::string AbstractContext::toString()
 ////        throw new ::java::lang::IllegalStateException(ex)->getMessage(), ex);
 ////    }
 ////}
-////
-////void AbstractContext::enableStatus()
-////{
-////    status = new ContextStatus();
-////}
-////
-////ContextStatusPtr AbstractContext::getStatus()
-////{
-////    return status;
-////}
-////
+
+void AbstractContext::enableStatus()
+{
+    status = ContextStatusPtr(new ContextStatus());
+}
+
+ContextStatusPtr AbstractContext::getStatus()
+{
+    return status;
+}
+
 ////void AbstractContext::setStatus(int status, const std::string & comment)
 ////{
 ////    auto statusChanged = this->status)->getStatus() != status;

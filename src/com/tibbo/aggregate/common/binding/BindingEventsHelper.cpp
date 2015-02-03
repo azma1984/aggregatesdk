@@ -16,6 +16,10 @@ const std::string BindingEventsHelper::EF_BINDING_CAUSE = "cause";
 const std::string BindingEventsHelper::EF_BINDING_ERROR = "error";
 const std::string BindingEventsHelper::EF_BINDING_ERROR_STACK = "stack";
 
+TableFormatPtr BindingEventsHelper::EFT_BINDING_EXECUTION_;
+TableFormatPtr BindingEventsHelper::EFT_BINDING_EXECUTION_EXT_;
+TableFormatPtr BindingEventsHelper::EFT_BINDING_ERROR_;
+TableFormatPtr BindingEventsHelper::EFT_BINDING_ERROR_EXT_;
 
 //TODO:init
 TableFormatPtr BindingEventsHelper::EFT_BINDING_EXECUTION()

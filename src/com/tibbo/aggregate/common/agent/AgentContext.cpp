@@ -19,8 +19,16 @@ const std::string AgentContext::FOF_GET_HISTORY_TIMESTAMP= "timestamp";
 const std::string AgentContext::FOF_GET_HISTORY_VALUE= "value";
 const std::string AgentContext::EF_EVENT_CONFIRMED_ID= "id";
 
+TableFormatPtr AgentContext::FIFT_LOGIN_;
+TableFormatPtr AgentContext::FOFT_LOGIN_;
+TableFormatPtr AgentContext::FOFT_REGISTER_;
+TableFormatPtr AgentContext::FOFT_GET_HISTORY_;
+TableFormatPtr AgentContext::FIFT_CONFIRM_EVENT_;
+TableFormatPtr AgentContext::EFT_EVENT_CONFIRMED_;
+
 
 AgentContext::AgentContext(RemoteServerPtr server, const std::string &name, bool eventConfirmation) 
+    : AbstractContext(Contexts::CTX_ROOT)
 {
 //todo
 //   FIFT_LOGIN= TableFormatPtr(new TableFormat(1, 1, "<" + FIF_LOGIN_CHALLENGE + "><S>"));

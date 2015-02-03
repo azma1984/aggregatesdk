@@ -465,7 +465,7 @@ public:
 	DataTablePtr executeDefaultGetter(const std::string & name, CallerControllerPtr caller, bool check, bool createDefault);
 
     int hashCode();
-	bool equals(AgObjectPtr obj);
+    bool equals(AbstractContext* obj);
 	DataTablePtr getVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request);
 	DataTablePtr getVariable(const std::string & name, CallerControllerPtr caller);
 	DataTablePtr getVariable(const std::string & name);
@@ -479,8 +479,8 @@ public:
     void setVariable(const std::string & name, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr value) ;
     void setVariable(const std::string & name, CallerControllerPtr caller, DataTablePtr value) ;
     void setVariable(const std::string & name, DataTablePtr value) ;
-	void setVariable(const std::string & name, CallerControllerPtr caller, AgObjectPtr value) ;
-	void setVariable(const std::string & name, AgObjectPtr value) ;
+    void setVariable(const std::string & name, CallerControllerPtr caller, std::list<AgObjectPtr> value) ;
+    void setVariable(const std::string & name, std::list<AgObjectPtr> value) ;
 
     bool setVariableField(const std::string & variable, const std::string & field, AgObjectPtr value, CallerControllerPtr cc) ;
     bool setVariableField(const std::string & variable, const std::string & field, int record, AgObjectPtr value, CallerControllerPtr cc) ;
@@ -494,8 +494,8 @@ public:
     DataTablePtr callFunction(const std::string & name, DataTablePtr parameters) ;
     DataTablePtr callFunction(const std::string & name) ;
     DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller) ;
-	DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller, AgObjectPtr parameters) ;
-	DataTablePtr callFunction(const std::string & name, AgObjectPtr parameters) ;
+    DataTablePtr callFunction(const std::string & name, CallerControllerPtr caller, std::list<AgObjectPtr> parameters) ;
+    DataTablePtr callFunction(const std::string & name, std::list<AgObjectPtr> parameters) ;
 
     void addVariableDefinition(VariableDefinitionPtr def);
     void removeVariableDefinition(const std::string & name);
@@ -557,9 +557,6 @@ public:
     DataTablePtr callFcopy(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
 	DataTablePtr callFcopyToChildren(FunctionDefinitionPtr def, CallerControllerPtr caller, RequestControllerPtr request, DataTablePtr parameters) ;
 
-
-
-    AbstractContext();
     AbstractContext(const std::string &name);
 
 protected:

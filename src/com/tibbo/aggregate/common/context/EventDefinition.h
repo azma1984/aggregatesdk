@@ -7,8 +7,9 @@
 #include "datatable/TableFormat.h"
 #include "event/PersistenceOptions.h"
 #include "security/Permissions.h"
+#include "util/Cloneable.h"
 //todo - class stub
-class EventDefinition : public AbstractEntityDefinition
+class EventDefinition : public AbstractEntityDefinition, public Cloneable
 {
 
 private:
@@ -42,8 +43,8 @@ public:
 	PersistenceOptionsPtr getPersistenceOptions();
 	int  getMemoryStorageSize();
     void setMemoryStorageSize(int  memoryStorageSize);
-    EventDefinitionPtr clone();
-    int compareTo(EventDefinitionPtr d);
+    EventDefinition* clone() const;
+    int compareTo(EventDefinition* d);
     int hashCode();
     bool equals(AgObjectPtr obj);
 
