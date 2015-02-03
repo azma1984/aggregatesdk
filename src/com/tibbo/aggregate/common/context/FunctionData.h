@@ -4,11 +4,12 @@
 #define BOOST_THREAD_USE_LIB
 
 #include "context/FunctionDefinition.h"
+#include "util/Comparable.h"
 #include <boost/thread/mutex.hpp>
 
 
 //todo - class stub
-class FunctionData//: public Comparable
+class FunctionData: public Comparable
 {
 
 private:
@@ -21,13 +22,13 @@ private:
 public:
 	void registerExecution();
 	FunctionDefinitionPtr getDefinition();
-	boost::mutex  getExecutionLock();
+    boost::mutex&  getExecutionLock();
 	long getExecutionCount();
 	bool isImplementationCached();
 	void setImplementationCached(bool implementationCached);
   //	::java::lang::reflect::Method* getImplementationMethod(); todo
  //	void setImplementationMethod(::java::lang::reflect::Method* implementationMethod); //todo
-	int compareTo(FunctionDataPtr d);
+    int compareTo(FunctionData *d) const;
 
 	FunctionData(FunctionDefinitionPtr definition);
 };

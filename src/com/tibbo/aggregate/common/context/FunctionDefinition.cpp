@@ -105,7 +105,7 @@ void FunctionDefinition::setImplementation(FunctionImplementationPtr implementat
     this->implementation = implementation;
 }
 
-FunctionDefinitionPtr FunctionDefinition::clone()
+FunctionDefinition *FunctionDefinition::clone() const
 {
 	/*
     try {
@@ -115,10 +115,11 @@ FunctionDefinitionPtr FunctionDefinition::clone()
     }
 	*/
 
-	return FunctionDefinitionPtr();
+    return 0;
 }
 
-int FunctionDefinition::compareTo(FunctionDefinitionPtr d)
+int FunctionDefinition::compareTo(Comparable *d) const
+//int FunctionDefinition::compareTo(FunctionDefinition* d) const
 {
    /*
 	if(getIndex() != 0 || d)->getIndex() != 0) 
@@ -151,7 +152,7 @@ int FunctionDefinition::hashCode()
     return result;
 }
 
-bool FunctionDefinition::equals(AgObjectPtr obj)
+bool FunctionDefinition::equals(FunctionDefinition *obj)
 {
     /*
 	if(this) == obj) {

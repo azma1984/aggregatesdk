@@ -7,9 +7,10 @@
 #include "datatable/TableFormat.h"
 #include "security/Permissions.h"
 #include "context/EntityDefinition.h"
+#include "util/Comparable.h"
+#include "util/Cloneable.h"
 
-
-class FunctionDefinition : public AbstractEntityDefinition
+class FunctionDefinition : public AbstractEntityDefinition, public Cloneable, public Comparable
 {
  private:
 	TableFormatPtr inputFormat;
@@ -34,10 +35,11 @@ public:
     bool isConcurrent();
     void setConcurrent(bool concurrent);
     void setImplementation(FunctionImplementationPtr implementation);
-    FunctionDefinitionPtr clone();
-    int compareTo(FunctionDefinitionPtr d);
+    FunctionDefinition* clone() const;
+//    int compareTo(FunctionDefinition *d) const;
+    int compareTo(Comparable *d) const;
     int hashCode();
-    bool equals(AgObjectPtr obj);
+    bool equals(FunctionDefinition* obj);
 
     FunctionDefinition(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat);
     FunctionDefinition(const std::string &name, TableFormatPtr inputFormat, TableFormatPtr outputFormat, const std::string &description);

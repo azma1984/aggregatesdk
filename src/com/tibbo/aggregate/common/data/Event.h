@@ -9,7 +9,8 @@
 class Event: public Cloneable
 {
  private:
-	void init(const std::string& context, std::string& name, int level, DataTablePtr data, long id);
+    void init();
+    void init_(const std::string & context, const std::string & name, int level, DataTablePtr data, long  id);
 	
 	long id;
 	DatePtr instantiationtime;
@@ -31,9 +32,10 @@ class Event: public Cloneable
 public:
     static const long DEFAULT_EVENT_EXPIRATION_PERIOD; // Milliseconds
     Event();
-    Event(const std::string& context, EventDefinitionPtr def, int level, DataTablePtr data, long id, Date creationtime, PermissionsPtr permissions);
+    Event(const std::string& context, EventDefinitionPtr def, int level, DataTablePtr data, long id, DatePtr creationtime, PermissionsPtr permissions);
 	Event(const std::string& context, const std::string& name, int level, DataTablePtr data, long id);
   
+    long getId();
     DatePtr getInstantiationtime();
     DatePtr getCreationtime();
     std::string getContext();
@@ -66,10 +68,10 @@ public:
 	int getCount();
 	void setCount(int count);
 	std::string getDeduplicationId();
-	void setDeduplicationId(std::string deduplicationId);
-	EventPtr clone();
+    void setDeduplicationId(const std::string& deduplicationId);
+    Event* clone() const;
 	int hashCode();
-	bool equals(AgObjectPtr obj);
+    bool equals(Event* obj);
 	std::string toString();
 };
 

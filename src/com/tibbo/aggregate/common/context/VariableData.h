@@ -16,19 +16,16 @@ private:
     bool setterCached;
    //	::java::lang::reflect::Method* getterMethod;    todo
    //	::java::lang::reflect::Method* setterMethod;    todo
-	 void init();
 
 public:
     void registerGetOperation();
     void registerSetOperation();
     VariableDefinitionPtr getDefinition();
-
-public: 
     AgObjectPtr getValue();
     void setValue(AgObjectPtr value);
 
 public:
-	boost::shared_mutex getReadWriteLock();
+    boost::shared_mutex& getReadWriteLock();
     long getGetCount();
     long getSetCount();
     bool isGetterCached();
@@ -39,7 +36,7 @@ public:
   //  void setGetterMethod(::java::lang::reflect::Method* getter); todo
    // ::java::lang::reflect::Method* getSetterMethod(); todo
   //  void setSetterMethod(::java::lang::reflect::Method* setter); todo
-    int compareTo(VariableDataPtr d);
+    int compareTo(VariableData *d);
 
 
     VariableData(VariableDefinitionPtr definition);

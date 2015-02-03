@@ -20,14 +20,13 @@ private:
     ContextEventListenerSetPtr listeners;
 	std::list<EventPtr>  history;
 	long fireCount;
-	void init();
 
 public:
 	void registerFiredEvent();
 	EventDefinitionPtr getDefinition();
     //TODO: ыуе
-//	std::set<ContextEventListenerPtr>  getListeners();
-//	std::set<ContextEventListenerInfoPtr>  getListenersInfo();
+    //std::set<ContextEventListenerPtr>  getListeners();
+    //std::set<ContextEventListenerInfoPtr>  getListenersInfo();
 	long getFireCount();
 	bool addListener(ContextEventListenerPtr listener, bool weak);
 	bool removeListener(ContextEventListenerPtr listener);
@@ -35,8 +34,8 @@ public:
 	void dispatch(EventPtr event);
 	EventPtr store(EventPtr event, int  customMemoryStorageSize);
 	std::list<EventPtr>  getHistory();
-	const std::string & toString();
-    int compareTo(EventDataPtr d);
+    std::string toString();
+    int compareTo(EventData* d) const;
 
 	EventData(EventDefinitionPtr definition);
 };

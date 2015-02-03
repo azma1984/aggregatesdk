@@ -33,6 +33,12 @@ public:
 	 */
 	 Date(unsigned day, unsigned month, unsigned year);
 
+     /** TODO:
+      * @brief Date
+      * @param date
+      */
+     Date(long date) {}
+
 	 ~Date();
 
 	 bool operator==(const Date & date) const;

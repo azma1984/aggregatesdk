@@ -648,4 +648,5 @@ HEADERS += \
     src/com/tibbo/aggregate/common/Constants.h \
     src/com/tibbo/aggregate/common/Cres.h \
     src/com/tibbo/aggregate/common/Log.h \
-    src/com/tibbo/aggregate/common/agent/HistoricalValue.h
+    src/com/tibbo/aggregate/common/agent/HistoricalValue.h \
+    src/com/tibbo/aggregate/common/IllegalStateException.h

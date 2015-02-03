@@ -1,72 +1,57 @@
 #include "context/EventData.h"
 
-//EventDataPtr::EventDataPtr(const ::default_init_tag&)
-//    : super(*static_cast< ::default_init_tag* >(0))
-//{
-//    
-//}
-//
-//EventDataPtr::EventDataPtr(EventDefinitionPtr definition) 
-//    : EventDataPtr(*static_cast< ::default_init_tag* >(0))
-//{
-//    ctor(definition);
-//}
-//
-//void EventDataPtr::init()
-//{
-//    listeners = new ContextEventListenerSet();
-//    history = ::java::util::Collections::synchronizedList(new ::java::util::LinkedList());
-//}
-//
-//void EventDataPtr::ctor(EventDefinitionPtr definition)
-//{
-//    super::ctor();
-//    init();
-//    this->definition = definition;
-//}
-//
-//void EventDataPtr::registerFiredEvent()
-//{
-//    fireCount++;
-//}
-//
-//EventDefinitionPtr EventDataPtr::getDefinition()
-//{
-//    return definition;
-//}
-//
+//#include "event/ContextEventListener.h"
+//#include "event/ContextEventListenerSet.h"
+
+EventData::EventData(EventDefinitionPtr definition)
+{
+    this->fireCount = 0;
+    this->definition = definition;
+}
+
+void EventData::registerFiredEvent()
+{
+    fireCount++;
+}
+
+EventDefinitionPtr EventData::getDefinition()
+{
+    return definition;
+}
+
 //std::set  EventDataPtr::getListeners()
 //{
-//    return listeners)->getListeners();
+//    return listeners->getListeners();
 //}
-//
+
 //std::set  EventDataPtr::getListenersInfo()
 //{
-//    return listeners)->getListenersInfo();
+//    return listeners->getListenersInfo();
 //}
-//
-//long EventDataPtr::getFireCount()
-//{
-//    return fireCount;
-//}
-//
-//bool EventDataPtr::addListener(ContextEventListenerPtr listener, bool weak)
-//{
-//    return listeners)->addListener(listener, weak);
-//}
-//
-//bool EventDataPtr::removeListener(ContextEventListenerPtr listener)
-//{
-//    return listeners)->removeListener(listener);
-//}
-//
-//void EventDataPtr::clearListeners()
-//{
-//    listeners)->clear();
-//}
-//
-//void EventDataPtr::dispatch(EventPtr event)
-//{
+
+long EventData::getFireCount()
+{
+    return fireCount;
+}
+
+bool EventData::addListener(ContextEventListenerPtr listener, bool weak)
+{
+    return listeners->addListener(listener, weak);
+}
+
+bool EventData::removeListener(ContextEventListenerPtr listener)
+{
+    return listeners->removeListener(listener);
+}
+
+void EventData::clearListeners()
+{
+    listeners->clear();
+}
+
+void EventData::dispatch(EventPtr event)
+{
+    //TODO:
 //    try {
 //        auto logger = ::com::tibbo::aggregate::common::Log::CONTEXT_EVENTS();
 //        auto listenerSet = listeners)->getListeners();
@@ -104,10 +89,11 @@
 //        Log::CONTEXT_EVENTS())->error(std::stringBuilder().append(u"Unexpected error occurred while dispatching event '"_j)->append(event))
 //            ->append(u"'"_j)->toString(), ex);
 //    }
-//}
-//
-//EventPtr EventDataPtr::store(EventPtr event, int  customMemoryStorageSize)
-//{
+}
+
+EventPtr EventData::store(EventPtr event, int  customMemoryStorageSize)
+{
+    //TODO:
 //    auto memoryStorateSize = customMemoryStorageSize != 0 ? customMemoryStorageSize : definition)->getMemoryStorageSize();
 //    if(memoryStorateSize == 0) {
 //        return 0;
@@ -150,30 +136,23 @@
 //        duplicate)->setCount(duplicate)->getCount() + int(1));
 //        return duplicate;
 //    }
-//}
-//
-//std::list  EventDataPtr::getHistory()
-//{
-//    return new ::java::util::LinkedList(history);
-//}
-//
-//std::string EventDataPtr::toString()
-//{
+    return EventPtr(0);
+}
+
+std::list<EventPtr> EventData::getHistory()
+{
+    return this->history;
+}
+
+std::string EventData::toString()
+{
 //    return std::stringBuilder().append(definition))->append(u" - "_j)
 //        ->append(listeners)->size())
 //        ->append(u" listeners"_j)->toString();
-//}
-//
-//int EventDataPtr::compareTo(EventDataPtr d)
-//{
-//    return definition)->compareTo(d)->getDefinition());
-//}
-//
-//int EventDataPtr::compareTo(AgObjectPtr arg0)
-//{ 
-//    return compareTo(dynamic_cast< EventDataPtr >(arg0));
-//}
-//
-//
-//
+    return "";
+}
 
+int EventData::compareTo(EventData* d) const
+{
+    return definition->compareTo(d->getDefinition().get());
+}
