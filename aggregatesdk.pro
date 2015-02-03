@@ -242,7 +242,10 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/util/WindowLocation.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgBoolean.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgColor.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgDouble.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgFloat.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgInteger.cpp \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgLong.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgString.cpp \
     src/com/tibbo/aggregate/common/Cres.cpp
 
@@ -642,7 +645,10 @@ HEADERS += \
     src/com/tibbo/aggregate/common/util/WindowLocation.h \
     src/com/tibbo/aggregate/common/util/simpleobject/AgBoolean.h \
     src/com/tibbo/aggregate/common/util/simpleobject/AgColor.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgDouble.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgFloat.h \
     src/com/tibbo/aggregate/common/util/simpleobject/AgInteger.h \
+    src/com/tibbo/aggregate/common/util/simpleobject/AgLong.h \
     src/com/tibbo/aggregate/common/util/simpleobject/AgString.h \
     src/com/tibbo/aggregate/common/AggreGateException.h \
     src/com/tibbo/aggregate/common/Constants.h \
