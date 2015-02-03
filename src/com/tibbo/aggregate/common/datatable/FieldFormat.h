@@ -97,8 +97,8 @@ public:
 
 
     virtual char getType() = 0;
-    virtual AgClassPtr getFieldClass() = 0;
-    virtual AgClassPtr getFieldWrappedClass() = 0;
+    virtual const std::type_info& getFieldClass() = 0;
+    virtual const std::type_info& getFieldWrappedClass() = 0;
     virtual AgObjectPtr getNotNullDefault() = 0;
     virtual AgObjectPtr valueFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate) = 0;
     virtual std::string valueToString(AgObjectPtr value, ClassicEncodingSettingsPtr settings) = 0;

@@ -1,59 +1,20 @@
-#ifndef _BooleanFieldFormat_H_
-#define _BooleanFieldFormat_H_
+#pragma once
 
-#include "../FieldFormat.h"
-#include "../encoding/ClassicEncodingSettings.h"
-#include "util/SString.h"
+#include "datatable/FieldFormat.h"
+#include "util/Pointers.h"
 
 class BooleanFieldFormat : public FieldFormat
 {
 
 public:
-    BooleanFieldFormat(const std::string &name) : FieldFormat(name)
-    {
+    BooleanFieldFormat(const std::string &name);
+    char getType();
+    const std::type_info& getFieldClass();
+    const std::type_info& getFieldWrappedClass();
+    AgObjectPtr getNotNullDefault();
+    AgObjectPtr valueFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate);
+    std::string valueToString(AgObjectPtr value, ClassicEncodingSettingsPtr settings);
 
-    }
-
-    char getType()
-    {
-        return FieldFormat::BOOLEAN_FIELD;
-    }
-
-    bool getNotNullDefault()
-    {
-        return false;
-    }
-
-    //todo
-    /*Object convertValue(Object value) throws ValidationException
-    {
-      if (value != null && !(value instanceof Boolean))
-      {
-        value = Util.convertToBoolean(value, true, false);
-      }
-
-      return value;
-    }*/
-
-
-    bool valueFromString(const std::string &value, boost::shared_ptr<ClassicEncodingSettings> settings, bool validate)
-    {
-        SString v(value);
-
-        if (v == "1" || v.toUpperCase() == "TRUE")
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    std::string valueToString(bool value, boost::shared_ptr<ClassicEncodingSettings> settings)
-    {
-        return value ? "1" : "0";
-    }
+protected:
+    AgObjectPtr convertValue(AgObjectPtr value);
 };
-
-#endif

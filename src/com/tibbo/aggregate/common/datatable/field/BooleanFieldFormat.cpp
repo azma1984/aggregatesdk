@@ -1,89 +1,61 @@
-//#include "datatable/field/BooleanFieldFormat.h"
+#include "datatable/field/BooleanFieldFormat.h"
+#include "util/simpleobject/AgBoolean.h"
+#include "util/Util.h"
 
-//#include "datatable/FieldFormat.h"
-//#include "util/Util.h"
+BooleanFieldFormat::BooleanFieldFormat(const std::string &name) : FieldFormat(name)
+{
 
+}
 
-//:BooleanFieldFormat::BooleanFieldFormat(const ::default_init_tag&)
-//    : super(*static_cast< ::default_init_tag* >(0))
-//{
-    
-//}
+char BooleanFieldFormat::getType()
+{
+    return FieldFormat::BOOLEAN_FIELD;
+}
 
-//Datefield::BooleanFieldFormat::BooleanFieldFormat(const std::string & name)
-//    : BooleanFieldFormat(*static_cast< ::default_init_tag* >(0))
-//{
-//    ctor(name);
-//}
+const std::type_info& BooleanFieldFormat::getFieldClass()
+{
+    return typeid(bool);
+}
 
-//void Datefield::BooleanFieldFormat::ctor(const std::string & name)
-//{
-//    super::ctor(name);
-//}
+const std::type_info& BooleanFieldFormat::getFieldWrappedClass()
+{
+    return typeid(bool);
+}
 
-//char16_t Datefield::BooleanFieldFormat::getType()
-//{
-//    return FieldFormat::BOOLEAN_FIELD;
-//}
+AgObjectPtr BooleanFieldFormat::getNotNullDefault()
+{
+    return AgObjectPtr(new AgBoolean(false));
+}
 
-//java::lang::Class* Datefield::BooleanFieldFormat::getFieldClass()
-//{
-//    return ::java::lang::Boolean::TYPE();
-//}
+AgObjectPtr BooleanFieldFormat::valueFromString(const std::string &value, ClassicEncodingSettingsPtr settings, bool validate)
+{
+    if (value == "1" || value == "true")
+    {
+        return AgObjectPtr(new AgBoolean(true));
+    }
+    else
+    {
+        return AgObjectPtr(new AgBoolean(false));
+    }
+}
 
-//java::lang::Class* Datefield::BooleanFieldFormat::getFieldWrappedClass()
-//{
-//    return ::java::lang::Boolean::class_();
-//}
+std::string BooleanFieldFormat::valueToString(AgObjectPtr value, ClassicEncodingSettingsPtr settings)
+{
+    AgBoolean *b = dynamic_cast<AgBoolean *>(value.get());
+    assert(b);
+    if (b->value)
+        return "1";
+    else
+        return "0";
+}
 
-//java::lang::Boolean* Datefield::BooleanFieldFormat::getNotNullDefault()
-//{
-//    return ::java::lang::Boolean::valueOf(false);
-//}
-
-//void* Datefield::BooleanFieldFormat::convertValue(void* value) /* throws(ValidationException) */
-//{
-//    if(value != 0 && !(dynamic_cast< ::java::lang::Boolean* >(value) != 0)) {
-//        value = ::com::tibbo::aggregate::common::util::Util::convertToBoolean(value, true, false);
-//    }
-//    return value;
-//}
-
-//java::lang::Boolean* Datefield::BooleanFieldFormat::valueFromString(const std::string & value, encoding::ClassicEncodingSettings* settings, bool validate)
-//{
-//    return (value)->equals(u"1"_j)) || value)->equalsIgnoreCase(u"true"_j)) ? ::java::lang::Boolean::valueOf(true) : ::java::lang::Boolean::valueOf(false);
-//}
-
-//std::string Datefield::BooleanFieldFormat::valueToString(::java::lang::Boolean* value, encoding::ClassicEncodingSettings* settings)
-//{
-//    return value == 0 ? static_cast< const std::string & >(0) : ((java_cast< ::java::lang::Boolean* >(value))))->booleanValue() ? u"1"_j : u"0"_j;
-//}
-
-//std::string Datefield::BooleanFieldFormat::valueToString(void* value, encoding::ClassicEncodingSettings* settings)
-//{
-//    return valueToString(dynamic_cast< ::java::lang::Boolean* >(value), settings);
-//}
-
-
-
-//java::lang::Class* Datefield::BooleanFieldFormat::class_()
-//{
-//    static ::java::lang::Class* c = ::class_(u"com.tibbo.aggregate.common.datatable.field.BooleanFieldFormat", 61);
-//    return c;
-//}
-
-//void* Datefield::BooleanFieldFormat::valueFromString(const std::string & value)
-//{
-//    return super::valueFromString(value);
-//}
-
-//std::string Datefield::BooleanFieldFormat::valueToString(void* value)
-//{
-//    return super::valueToString(value);
-//}
-
-//java::lang::Class* Datefield::BooleanFieldFormat::getClass0()
-//{
-//    return class_();
-//}
-
+AgObjectPtr BooleanFieldFormat::convertValue(AgObjectPtr value)
+{
+    AgBoolean *b = dynamic_cast<AgBoolean *>(value.get());
+    if (b)
+    {
+        AgObjectPtr newValue = AgObjectPtr(new AgBoolean(Util::convertToBoolean(value, true, false)));
+        return newValue;
+    }
+    return value;
+}

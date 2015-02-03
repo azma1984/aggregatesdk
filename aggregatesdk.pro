@@ -111,6 +111,7 @@ SOURCES += main.cpp \
 #    src/com/tibbo/aggregate/common/datatable/encoding/KnownFormatCollector.cpp \
 #    src/com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.cpp \
 #    src/com/tibbo/aggregate/common/datatable/encoding/XMLEncodingSettings.cpp \
+    src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.cpp \
 #    src/com/tibbo/aggregate/common/datatable/field/DateFieldFormat.cpp \
@@ -390,7 +391,7 @@ HEADERS += \
     src/com/tibbo/aggregate/common/datatable/encoding/KnownFormatCollector.h \
     src/com/tibbo/aggregate/common/datatable/encoding/TransferEncodingHelper.h \
     src/com/tibbo/aggregate/common/datatable/encoding/XMLEncodingSettings.h \
-#    src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.h \
+    src/com/tibbo/aggregate/common/datatable/field/BooleanFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/ColorFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/DataFieldFormat.h \
 #    src/com/tibbo/aggregate/common/datatable/field/DataTableFieldFormat.h \
