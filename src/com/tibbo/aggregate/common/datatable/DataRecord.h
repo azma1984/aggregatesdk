@@ -8,7 +8,6 @@
 #include "util/Cloneable.h"
 #include "util/Date.h"
 #include "util/Pointers.h"
-#include "util/Color.h"
 
 #include <string>
 #include <map>

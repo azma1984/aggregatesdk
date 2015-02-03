@@ -66,13 +66,13 @@ private:
     std::string getEncodedSelectionValues(ClassicEncodingSettingsPtr settings);
     std::string getEncodedFlags();
     //static void encAppend(StringBuffer buffer, String name, String value, ClassicEncodingSettings settings);
-    std::list<std::string> getSuitableEditors();
 
 
 protected:
     FieldFormat(const std::string &name);
     AgObjectPtr convertValue(AgObjectPtr value);
     FieldFormatPtr setTransferEncode(bool transferEncode);
+    virtual std::list<std::string> getSuitableEditors();
 
 public:
     static const char INTEGER_FIELD;

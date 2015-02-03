@@ -9,3 +9,9 @@ AgColor::AgColor(unsigned char r, unsigned char g, unsigned char b, unsigned cha
     this->a = a;
 }
 
+AgColor::AgColor(int value)
+{
+    //todo
+    assert(0);
+}
+

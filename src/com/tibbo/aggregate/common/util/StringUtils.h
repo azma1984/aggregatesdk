@@ -4,6 +4,7 @@
 
 #include "util/ElementList.h"
 #include "util/Pointers.h"
+#include "util/simpleobject/AgColor.h"
 
 
 #include <string>
@@ -47,6 +48,7 @@ class StringUtils
     static bool isPureAscii(const std::string & v);
     static bool isEmpty(const std::string & text);
 
+    static std::string colorToString(AgColor &color);
 
 	StringUtils();
 
