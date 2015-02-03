@@ -244,7 +244,8 @@ SOURCES += main.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgColor.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgInteger.cpp \
     src/com/tibbo/aggregate/common/util/simpleobject/AgString.cpp \
-    src/com/tibbo/aggregate/common/Cres.cpp
+    src/com/tibbo/aggregate/common/Cres.cpp \
+    src/com/tibbo/aggregate/common/util/StringUtils.cpp
 
 
 HEADERS += \
@@ -602,7 +603,6 @@ HEADERS += \
     src/com/tibbo/aggregate/common/util/ClassPathHelper.h \
     src/com/tibbo/aggregate/common/util/Cloneable.h \
     src/com/tibbo/aggregate/common/util/CloneUtils.h \
-    src/com/tibbo/aggregate/common/util/Color.h \
     src/com/tibbo/aggregate/common/util/Comparable.h \
     src/com/tibbo/aggregate/common/util/DashboardProperties.h \
     src/com/tibbo/aggregate/common/util/Date.h \
@@ -649,4 +649,5 @@ HEADERS += \
     src/com/tibbo/aggregate/common/Cres.h \
     src/com/tibbo/aggregate/common/Log.h \
     src/com/tibbo/aggregate/common/agent/HistoricalValue.h \
-    src/com/tibbo/aggregate/common/IllegalStateException.h
+    src/com/tibbo/aggregate/common/IllegalStateException.h \
+    src/com/tibbo/aggregate/common/IllegalArgumentException.h

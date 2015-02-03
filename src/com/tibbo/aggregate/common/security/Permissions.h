@@ -12,15 +12,16 @@ class Permissions //TODO: : public ::java::lang::Iterable
 private:
     std::list<PermissionPtr>  permissions;
     boost::mutex permissionsLock;
+    void ctor(const std::string& data, boost::shared_ptr<PermissionChecker> checker);
 
 public:
     std::string encode();
     std::string toString();
     int size();
-    PermissionPtr add(PermissionPtr permission);
+    PermissionsPtr add(PermissionPtr permission);
    // Iterator* iterator();  todo
 	int hashCode();
-    bool equals(PermissionsPtr obj);
+    bool equals(Permissions* obj);
 
 
     Permissions();

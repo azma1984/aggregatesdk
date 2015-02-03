@@ -311,14 +311,14 @@ bool VariableDefinition::equals(VariableDefinition *other)
         if(other->readPermissions != 0) {
             return false;
         }
-    }else if(!readPermissions->equals(other->readPermissions)) {
+    }else if(!readPermissions->equals(other->readPermissions.get())) {
         return false;
     }
     if (writePermissions == 0) {
         if(other->writePermissions != 0) {
             return false;
         }
-    } else if(!writePermissions->equals(other->writePermissions)) {
+    } else if(!writePermissions->equals(other->writePermissions.get())) {
         return false;
     }
 

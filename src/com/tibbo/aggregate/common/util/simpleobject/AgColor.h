@@ -9,6 +9,22 @@ public:
     AgColor(int value);
     int compareTo(Comparable *obj) const { return 0; }
 
+    unsigned char getRed() {
+        return r;
+    }
+
+    unsigned char getGreen() {
+        return g;
+    }
+
+    unsigned char getBlue() {
+        return b;
+    }
+
+    unsigned char getAlpha() {
+        return a;
+    }
+
     unsigned char r, g, b, a;
 };
 
